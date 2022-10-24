@@ -1,0 +1,18 @@
+{% set id = uid() %}
+{% set invoice = global.common.invoiceInfo.invoice %}
+{% set product = global.common.productInfo.product %}
+
+<div id="invoice-products-{{ id }}"></div>
+
+<script type="application/javascript">
+  $(document).ready(function() {
+    const component = new SellixInvoiceProductsInfoComponent(
+      '#invoice-products-{{ id }}',
+      {{ invoice | dump | safe }},
+      {{renderOptions | dump | safe}},
+      {{properties | dump | safe}},
+    );
+
+    component.render();
+  });
+</script>

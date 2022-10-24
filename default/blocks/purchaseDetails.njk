@@ -1,0 +1,64 @@
+{% if global.request.type in ['product', 'checkout'] %}
+  {% set id = uid() %}
+  {% if global.request.type == 'product' %}
+    {% set product = global.common.productInfo.product %}
+    {% set productIds = [product.uniqid] %}
+
+    {% if product.type === 'SUBSCRIPTION' %}
+      {% set type = 'subscription' %}
+    {% else %}
+      {% set type = 'product' %}
+    {% endif %}
+
+  {% elif global.request.type == 'checkout' %}
+    {% set productIds = global.common.checkoutInfo.productIds %}
+    {% set type = 'checkout' %}
+  {% endif %}
+
+  {% if properties.render_mode == "backend" %}
+    {% render_snippet 'Purchase details',
+      type=type,
+      dependencies=[{'type': 'bundles', 'productIds': productIds}],
+      properties=properties
+    %}
+  {% else %}
+    <div id="sellix-purchase-details-{{ id }}" style="display: none; margin-bottom: 1rem"></div>
+
+    <script type='application/javascript'>
+      $(document).ready(function () {
+        const $container = $('#sellix-purchase-details-{{ id }}');
+        const renderOptions = {{ renderOptions | dump | safe }};
+        sellixApi
+          .renderComponent(
+            {
+              ...renderOptions,
+              path: [renderOptions.path, ['snippet', 'Purchase details'].join(':')].join(';'),
+            },
+            {
+              type: '{{ type }}',
+              dependencies: [
+                {type: 'bundles', productIds : {{ productIds | dump | safe }}},
+              ],
+              properties: {{ properties | dump | safe }}
+            },
+          )
+          .then((resp) => {
+            const $component = $(resp.html);
+            $container.html($component);
+            setTimeout(function () {
+              $(document).trigger('SellixCartUpdateEvent', { action: 'update' });
+              $container.show();
+            });
+          })
+          .catch((resp) => {
+            const respJson = resp.responseJSON || {};
+            $(document).trigger('SellixToastify', {
+              type: 'error',
+              text: respJson.message || 'Internal server error',
+            });
+          });
+      });
+    </script>
+  {% endif %}
+
+{% endif %}

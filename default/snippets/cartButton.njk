@@ -1,0 +1,36 @@
+{% set shop = global.common.shopInfo.shop %}
+{% set product = args.product %}
+{% set subscription = global.common.shopInfo.subscription %}
+{% set cartEnabled = global.common.cartEnabled %}
+
+{% if product.stock | int === 0 or not cartEnabled or product.on_hold | int !== 0 %}
+  {# Do Nothing #}
+{% else %}
+  {% set id=uid() %}
+  <div id="cart-product-{{id}}" class="sellix-cart-icon empty {{'static' if args.isGroup else ''}}">
+    <a href="javascript:;" class="cart-product-minus-button">
+      <i class="fa-regular fa-minus"></i>
+    </a>
+    <a href="javascript:;" class="cart-product-quantity-button unselectable">
+      <span class="cart-product-quantity hidden" style="font-weight: 500"></span>
+      <i class="cart-product-cart-icon fa-regular fa-cart-shopping hidden"></i>
+    </a>
+    <a href="javascript:;" class="cart-product-plus-button">
+      <i class="fa-regular fa-plus"></i>
+    </a>
+  </div>
+
+  <script type='application/javascript'>
+    $(document).ready(function () {
+      const product = {{product | exclude_attributes(['shop_terms_of_service']) | dump | safe}};
+      let cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
+      const cartProdComponent = new SellixCartProductComponent(
+        '#cart-product-{{id}}',
+        cart,
+        product,
+        {{args.redirectToCheckout | default(false)}},
+        {{renderOptions | dump | safe}},
+      );
+    });
+  </script>
+{% endif %}

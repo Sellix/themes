@@ -1,0 +1,28 @@
+{% set feedbacks = global.common.feedbacksInfo.feedbacks %}
+{% set pageLimit = 10 %}
+{% set currentPage = 1 %}
+{% set id=uid() %}
+
+{% if feedbacks.length > 12 %}
+  <div class="sellix-pagination" id="feedback-pagination-{{id}}" style="margin: {{ properties.container_margin_y }}px auto;">
+    <button class="prev">
+      <i class="fa-solid fa-chevron-left" style="color: var(--lightFontColor); font-size: 16px;"></i>
+    </button>
+
+    <button class="next">
+      <i class="fa-solid fa-chevron-right" style="color: var(--lightFontColor); font-size: 16px;"></i>
+    </button>
+  </div>
+
+  <script type='application/javascript'>
+    $(document).ready(function () {
+      let feedbackPaginationInstance = new window.SellixFeedbackPagination({{currentPage}}, {{pageLimit}}, {{feedbacks.length}});
+      const feedbackComponent = new SellixFeedbackPaginationComponent(
+        '#feedback-pagination-{{id}}',
+        feedbackPaginationInstance,
+        '{{id}}',
+        {{renderOptions | dump | safe}}
+      );
+    });
+  </script>
+{% endif %}

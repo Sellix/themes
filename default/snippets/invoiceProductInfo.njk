@@ -1,0 +1,20 @@
+{% set invoice = args.invoice %}
+{% set product = args.product %}
+{% set properties = args.properties %}
+
+<div>
+  {% if invoice.type === 'SUBSCRIPTION' %}
+    {% render_snippet 'Invoice subscription details' %}
+  {% elif invoice.type === 'SHOPPING_CART' %}
+    {% render_snippet 'Checkout products', invoice=invoice, products=invoice.products, properties=properties %}
+  {% elif invoice.type === 'PRODUCT' or invoice.type === 'PRODUCT_SUBSCRIPTION' %}
+    {% render_snippet 'Addons', product=product, invoice=invoice, properties=properties, currency=product.currency %}
+
+    {% render_snippet 'Product details',
+      invoice=invoice,
+      product=product,
+      colors=themeProperties.current_colors,
+      properties=properties
+    %}
+  {% endif%}
+</div>

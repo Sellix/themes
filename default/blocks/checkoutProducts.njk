@@ -1,0 +1,10 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set products = global.common.checkoutInfo.products %}
+
+{% set internalProducts = [] %}
+{% for productInfo in products %}
+  {% set internalProducts = (internalProducts.push(productInfo.product | set_attribute('quantity', productInfo.quantity)), internalProducts) %}
+{% endfor %}
+
+{% render_snippet 'Checkout products', products=internalProducts, properties=properties %}

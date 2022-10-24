@@ -1,0 +1,22 @@
+{% set id = uid() %}
+
+<div id="invoice-details-{{id}}"></div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const store = window.__RENDER_CONTEXT__;
+    const { shopInfo, invoiceInfo } = store.common;
+    const isDark = {{args.isDark if args.isDark else global.theme.isDark}};
+    let invoice = (invoiceInfo && invoiceInfo.invoice)
+
+    const invoiceDetailsComponent = new SellixInvoiceDetailsComponent({
+      selector: '#invoice-details-{{id}}',
+      config: store.config,
+      shop: shopInfo.shop,
+      invoiceId: invoice.uniqid,
+      invoice: invoice,
+      theme: { isDark },
+    });
+    invoiceDetailsComponent.render();
+  });
+</script>

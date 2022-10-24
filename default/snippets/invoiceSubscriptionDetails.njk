@@ -1,0 +1,19 @@
+{% set invoice = global.common.invoiceInfo.invoice %}
+{% set subscriptionName = invoice.subscription.name or '________' %}
+
+<div class="w-100">
+
+  <div style="padding: 1rem; border: 1px solid var(--borderColor); border-radius: 8px">
+    <div class="shop-product-info-product-title mb-0">
+      Subscription {{ subscriptionName }}
+    </div>
+
+    <div class="shop-product-info-product-info"></div>
+
+    <div class="shop-product-info-product-description">
+      <div class="sellix-text p-3" style="border-radius: .25rem">
+        <p>You are purchasing the {{ subscriptionName }} subscription. Once the invoice is flagged as completed you will automatically receive the months you have paid for.</p>
+      </div>
+    </div>
+  </div>
+</div>

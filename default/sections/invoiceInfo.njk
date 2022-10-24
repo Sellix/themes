@@ -1,0 +1,31 @@
+{% set id = uid() %}
+{% set product = global.common.productInfo.product %}
+
+{% set isInvoice = renderOptions['templateName'] == 'Invoice/Invoice' %}
+
+<div class="sellix-product-screen sellix-invoice-screen">
+  <div class="shop-product-container" style="justify-content: {{ 'space-around' if isInvoice else 'space-between' }}">
+
+    <div class="shop-product-info" style="{{'width:100%' if not properties.enable_right_sidebar else '' }}{#
+      #}display: {{ 'none' if isInvoice else '' }}"
+    >
+      <div class="shop-product-info-description {{ 'with-image' if product.image_attachment else '' }}">
+        {% for block_name in settings.block_order %}
+          {% if not properties.enable_right_sidebar or loop.revindex > properties.right_sidebar_blocks_count | int %}
+            {% render_block block_name %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if properties.enable_right_sidebar %}
+      <div class="shop-product-card">
+        {% for block_name in settings.block_order %}
+          {% if loop.revindex <= properties.right_sidebar_blocks_count | int %}
+            {% render_block block_name %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
