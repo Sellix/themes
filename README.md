@@ -12,7 +12,7 @@ The import feature on the website can be used to test different themes at once b
 
 3. update the theme adding the new JS and CSS files
 
-4. use script `bash scripts/zip.sh {themeName} {version}`, e.g. `bash scripts/zip.sh default 0.0.24`
+4. use script `bash scripts/zip.sh {themeName} {version}`, e.g. `bash scripts/zip.sh default 0.0.24`; the script will create a .zip file in `output/{version}.zip`
 
 5. add a tag to this repo and push
 
@@ -24,6 +24,6 @@ git tag v0.0.24
 git push --tags
 ```
 
-6. add to api `themes/{version}.zip`
+6. add `output/{version}.zip` to the api directory `themes/{version}.zip`
 
 7. deploy api
