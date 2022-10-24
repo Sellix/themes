@@ -2,7 +2,7 @@
 
 ## Deployment process
 
-1. *[if needed]* build shop-widgets for invoice.js and purchase.js
+1. *[if needed]* build [shop-widgets](https://github.com/sellix/shop-widgets). for invoice.js and purchase.js
 
 2. *[if needed]* update theme directory to add the new two .js files
 
