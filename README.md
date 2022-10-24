@@ -1,5 +1,9 @@
 # Themes
 
+This repo will be used to version the theme releases as well as allow for multiple features to be worked on and released at the same time by different developers.
+
+The import feature on the website can be used to test different themes at once before deploying them officially for every store.
+
 ## Deployment process
 
 1. *[if needed]* build [shop-widgets](https://github.com/sellix/shop-widgets). for invoice.js and purchase.js
