@@ -4,7 +4,7 @@
 {% set shop = shopInfo.shop %}
 {% set hideOutOfStock = shop.hide_out_of_stock | int %}
 {% set cartEnabled = args.cartEnabled or global.common.cartEnabled %}
-
+{% set lang = global.lang.group %}
 {% for product in group.products_bound %}
   {% set onHold = product.on_hold | int %}
   {% set isDisabled = product.stock === 0 or onHold %}
@@ -45,7 +45,7 @@
           </div>
 
           {% if onHold %}
-            <span>Product on hold</span>}
+            <span>{{lang.productHold}}</span>}
           {% else %}
             <div class="group-option-info">
               {% if product.price_discount and not isFree %}
@@ -56,7 +56,7 @@
               {% else %}
                 <span class="group-option-info-price" >
                   {% if isFree%}
-                    Free
+                    {{lang.free}}
                   {% else %}
                     {% render_snippet 'Price', currency=product.currency, price=product.price_display %}
                   {% endif %}
@@ -75,7 +75,7 @@
                   {% else %}
                     {{productStock}}
                   {% endif %}
-                </span> in stock
+                </span> {{lang.inStock}}
               </span>
             </div>
           {% endif %}
@@ -92,9 +92,9 @@
         <a href="{{'javascript:void' if isDisabled else ['/product/', product.uniqid] | join}}" style="color: white;">
           <div class="buy-button">
             {% if isFree %}
-              Get it
+              {{lang.getIt}}
             {% else %}
-              Buy
+              {{lang.buy}}
             {% endif %}
           </div>
         </a>

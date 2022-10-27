@@ -3,6 +3,7 @@
 {% set product = args.product %}
 {% set stock = product.stock %}
 {% set quantity = args.quantity %}
+{% set lang = global.lang.checkout %}
 
 <div id="sellix-product-count-{{id}}" class="d-flex flex-column">
   <div class="sellix-cart-count">
@@ -33,6 +34,12 @@
 
   {% render_snippet 'Product min max note', product=product %}
 </div>
+
+<script type='application/javascript'>
+  window.lang = {}
+  window.lang.stock = {{lang.stock | dump | safe}};
+  window.lang.lastProduct = {{lang.lastProduct | dump | safe}};
+</script>
 
 <script type='application/javascript'>
   $(document).ready(function () {

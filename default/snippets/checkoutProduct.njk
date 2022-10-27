@@ -2,6 +2,7 @@
 {% set shop = global.common.shopInfo.shop %}
 {% set isInvoice = global.request.type == 'invoice' %}
 {% set colors = themeProperties.current_colors %}
+{% set lang = global.lang.checkout %}
 
 {% set properties = args.properties %}
 {% set invoice = args.invoice %}
@@ -45,7 +46,7 @@
 
       {% if isInvoice %}
         <div class="sellix-cart-count-quantity total unselectable">
-          Stock: {{product.quantity if product.quantity else product.unit_quantity}}
+          {{lang.stock}}: {{product.quantity if product.quantity else product.unit_quantity}}
         </div>
       {% endif %}
     </div>
@@ -77,8 +78,8 @@
           <div class="sellix-cart-description" data-product-id="{{product.uniqid}}">
             {% render_snippet 'Description icon' %}
             <div>
-              <description class="label-show-description">Show Description</description>
-              <span class="label-click-for-info">Click for more info</span>
+              <description class="label-show-description">{{lang.description[0]}}</description>
+              <span class="label-click-for-info">{{lang.clickForInfo}}</span>
             </div>
           </div>
         </div>
@@ -112,6 +113,10 @@
 
   {% render_snippet 'Price variants', is_cart=true, product=product, properties=properties, currency=shop.currency %}
 </div>
+
+<script type='application/javascript'>
+  window.lang.description = JSON.parse('{{lang.description | dump | safe}}');
+</script>
 
 <script type='application/javascript'>
   $(document).ready(function () {

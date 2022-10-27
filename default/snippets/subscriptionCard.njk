@@ -4,6 +4,7 @@
 {% set image = cdn_link(product.cloudflare_image_id, 'shopItem') %}
 {% set colors = themeProperties.current_colors %}
 {% set cardsProps = themeProperties.cards %}
+{% set lang = global.lang.subscriptionCard%}
 
 <div class="d-flex w-100 position-relative">
   {% render_snippet 'Discount badge', product=product %}
@@ -17,7 +18,7 @@
       class="sellix-card unselectable"
       style="background: {{ colors[cardsProps.product_card_background_color] }};"
     >
-      <div class="sellix-card-badge">Subscription</div>
+      <div class="sellix-card-badge">{{lang.subscription}}</div>
 
       <div class="sellix-card-image {{'placeholder' if isPlaceholder else ''}}">
         {% if isPlaceholder %}
@@ -40,14 +41,14 @@
             class="sellix-card-description"
             style="color: {{ colors[cardsProps.product_card_description_font_color] }}; font-size: {{ cardsProps.product_card_description_font_size }}px; font-weight: {{ cardsProps.product_card_description_font_weight }};"
           >
-            This product is on hold and cannot be bought as of now
+            {{lang.hold}}
           </span>
         {% else %}
           <div
             class="sellix-card-description justify-content-start"
             style="color: {{ colors[cardsProps.product_card_description_font_color] }}; font-size: {{ cardsProps.product_card_description_font_size }}px; font-weight: {{ cardsProps.product_card_description_font_weight }};"
           >
-            <span class="sellix-card-stock">Renews at: </span>
+            <span class="sellix-card-stock">{{lang.renews}}</span>
 
             <span
               style="color: {{ colors[cardsProps.product_card_price_font_color] }}; font-size: {{ cardsProps.product_card_price_font_size }}px; font-weight: {{ cardsProps.product_card_price_font_weight }};"

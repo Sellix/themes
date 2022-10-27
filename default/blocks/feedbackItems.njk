@@ -3,6 +3,7 @@
 {% set offset = args.offset if args.offset else 0 %}
 {% set limit = args.limit if args.limit else 12 * (offset + 1) %}
 {% set colors = themeProperties.current_colors %}
+{% set lang = shop.lang.feedback %}
 
 <div class="sellix-feedback-screen {{'empty' if feedbacks.length === 0 else ''}}"
      style="background: {{ colors[properties.list_items_background_color] }};{#
@@ -15,7 +16,7 @@
     <div class="empty-shop-container">
       {% render_snippet 'Empty feedbacks icon' %}
 
-      <span class="empty-shop-title"><b>{{shop.name}}</b>'s shop has no feedback.</span>
+      <span class="empty-shop-title"><b>{{lang.noFeedbacks}}</span>
     </div>
   {% endif %}
 

@@ -12,6 +12,7 @@
       bundles,
       theme,
       renderOptions,
+      lang,
     }) {
       this.domContainer = document.querySelector(selector);
       this.config = config;
@@ -24,6 +25,7 @@
       this.bundles = bundles;
       this.theme = theme;
       this.renderOptions = renderOptions;
+      this.lang = lang;
 
       this.addonsStore = new SellixAddonsStore(shop.name);
       this.priceVariantsStore = new SellixPriceVariantsStore(shop.name);
@@ -165,6 +167,7 @@
           onCustomerAuthCode: this.onCustomerAuthCode,
           onSuccess: this.onSuccess,
           onFail: this.onFail,
+          language: this.lang,
         }),
         this.domContainer,
       );

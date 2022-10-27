@@ -2,7 +2,7 @@
 {% set shop = global.common.shopInfo.shop %}
 {% set properties = args.properties %}
 {% set colors = themeProperties.current_colors %}
-
+{% set lang = global.lang.cart %}
 
 <div id="cart-{{id}}" class="cart">
   <div class="box">
@@ -18,11 +18,11 @@
   >
     <div class="cart-dropdown-header unselectable">
       <h6 style="color: {{ colors[properties.cart_title_font_color] }}; font-size: {{ properties.cart_title_font_size }}px; font-weight: {{ properties.cart_title_font_weight }}; line-height: {{ properties.cart_title_line_height }}%; text-align: {{ properties.cart_title_text_align }};">
-        {{ properties.cart_title }}
+        {{ lang.title }}
       </h6>
 
       <p style="margin: 0; color: {{ colors[properties.cart_description_font_color] }}; font-size: {{ properties.cart_description_font_size }}px; font-weight: {{ properties.cart_description_font_weight }}; line-height: {{ properties.cart_description_line_height }}%; text-align: {{ properties.cart_description_text_align }};">
-        {{ properties.cart_description }}
+        {{ lang.description }}
       </p>
     </div>
 
@@ -34,11 +34,11 @@
 
     <div class="cart-dropdown-footer">
       <button class="back unselectable sellix-cart-clear-button">
-        {{ properties.cart_clear_button_label }}
+        {{ lang.clear }}
       </button>
 
       <button class="unselectable sellix-cart-checkout-button">
-        {{ properties.cart_checkout_button_label }}
+        {{ lang.checkout }}
       </button>
     </div>
   </div>

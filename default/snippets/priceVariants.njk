@@ -6,7 +6,7 @@
 {% set currency = args.currency %}
 {% set is_cart = args.is_cart or false %}
 {% set price_variants = product.price_variants or [] %}
-
+{% set lang = global.lang.priceVariants %}
 <style>
   .variant-badge-{{ id }} {
     background-color: {{ colors[properties.container_background_color] }};
@@ -18,7 +18,7 @@
     {% if variant.stock === 0 %}
       <div class="variant-badge-{{ id }} variants-badge {{ 'is-cart' if is_cart else '' }}">
         <div class="variants-badge-out">
-          Product is out of stock
+          {{lang.outOfStock}}
         </div>
       </div>
     {% else %}
@@ -30,7 +30,7 @@
         <div class="variants-badge-description">{{ variant.description }}</div>
         <div class="variants-badge-info">
           <div>
-            Stock&nbsp<b>
+            {{lang.stock}}&nbsp<b>
               {%- if product.type === 'SERIALS' -%}
                 {{ get_stock(variant.stock) }}
               {%- else -%}
@@ -38,7 +38,7 @@
               {%- endif -%}
             </b>
           </div>
-          <div>Starting at <b>{% render_snippet 'Price', currency=currency, price=variant.price %}</b></div>
+          <div>{{lang.starting}}<b>{% render_snippet 'Price', currency=currency, price=variant.price %}</b></div>
         </div>
       </div>
     {% endif %}

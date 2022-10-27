@@ -1,7 +1,11 @@
 {% set shop = global.common.shopInfo.shop %}
 {% set subscription = global.common.shopInfo.subscription %}
-{% set colors = themeProperties.current_colors %}
-
+{% set colors = themeProperties.dark_colors if themeProperties.color_schema.dark_mode else themeProperties.light_colors %}
+{% set language = renderOptions.lang.name %}
+{% set pageSlug = page.slug %}
+<head>
+  
+</head>
 <header>
   <!-- <Status /> -->
   <div class="sellix-header" style="background-color: {{ colors[properties.header_background_color] }}">
@@ -31,6 +35,32 @@
       </div>
     </div>
 
+    <div class="lang-menu" style = "width: 960px;margin-top:0;margin-left:-23px;justify-content: space-between;">
+        <div class="selected-lang" style="width: 50px;position: absolute;left: 430;top: -15;height:50px;">
+            
+            <div style = "backgroundImage: url(https://countryflagsapi.com/png/gb);" id="selectedImage" class="image"></div>
+            <div id="selectedText" class="text"> English </div>
+        </div>
+        <ul>
+            <li>
+                <a onclick="changeLang('de')" href="/de" class="de" id="de">Deutsch</a>
+            </li>
+            <li>
+                <a onclick="changeLang('en')" href="/en" class="en" id="en">English</a>
+            </li>
+            <li>
+                <a onclick="changeLang('ru')" href="/ru" class="ru" id="ru">Русский</a>
+            </li>
+            <li>
+                <a onclick="changeLang('nl')" href="/nl" class="nl" id="nl">Nederlands</a>
+            </li>
+            <li>
+                <a onclick="changeLang('it')" href="/it" class="it" id="it">Italiano</a>
+            </li>
+        </ul>
+        
+    </div>
+
     <div class="sellix-header-cart">
       {% if global.common.cartEnabled %}
         {% render_snippet 'Cart', properties=properties %}
@@ -40,4 +70,26 @@
       <!-- {isAuth ? <User isShop={isShop} /> : null} -->
     </div>
   </div>
+  <script type='application/javascript'>
+    var globalLanguage = '{{language}}';
+    globalLanguage = globalLanguage.toLowerCase();
+    if (globalLanguage.includes('-') && globalLanguage.split('-')[0] == globalLanguage.split('-')[1]) globalLanguage = globalLanguage.split('-')[0];
+    globalLanguage.trim();
+    
+    function getLangString(lang) {
+      return document.getElementById(lang).innerHTML;
+    }
+
+    document.getElementById('selectedImage').style.backgroundImage =
+    'url(https://countryflagsapi.com/png/' + (globalLanguage.includes('en') ? 'gb)' : globalLanguage.split('-')[0] + ')');
+    document.getElementById('selectedText').innerHTML = getLangString(globalLanguage.split('-')[0]);
+
+    function changeLang(lang) {
+      const pageSlug = '{{pageSlug}}'.replace(':id', window.location.href.split('/').at(-1))
+      document.getElementById(lang).href = window.location.href.split('/')[0] + lang + pageSlug;
+      document.getElementById('selectedImage').style.backgroundImage =
+        'url(https://countryflagsapi.com/png/' + lang + ')';
+      document.getElementById('selectedText').innerHTML = getLangString(lang);
+    }
+  </script>
 </header>

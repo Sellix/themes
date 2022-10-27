@@ -4,14 +4,14 @@
 {% set image = cdn_link(group.cloudflare_image_id, 'shopItem') %}
 {% set colors = themeProperties.current_colors %}
 {% set cardsProps = themeProperties.cards %}
-
+{% set lang = global.lang.group %}
 <div
   id="sellix-card-container-{{id}}"
   class="sellix-card-container"
   data-group-id="{{group.uniqid}}"
   style="border: {{ "1px solid var(--borderColor)" if cardsProps.product_card_show_border else "none" }};"
 >
-  <div class="sellix-card-badge">Group</div>
+  <div class="sellix-card-badge">{{lang.group}}</div>
   <div
     class="sellix-card unselectable"
     style="background: {{ colors[cardsProps.product_card_background_color] }};"
@@ -39,7 +39,7 @@
         <span>
           {% if group.minPriceItem %}
             <div class="sellix-group-description-info">
-              <span>Starting at: </span>
+              <span>{{lang.startingAt}}</span>
 
               <span
                 style="color: {{ colors[cardsProps.product_card_price_font_color] }}; font-size: {{ cardsProps.product_card_price_font_size }}px; font-weight: {{ cardsProps.product_card_price_font_weight }};"
@@ -48,7 +48,7 @@
               </span>
             </div>
           {% else %}
-            <span>Out of Products</span>
+            <span>{{lang.outOfProducts}}</span>
           {% endif %}
         </span>
       </div>

@@ -2,6 +2,7 @@
 {% set shop = global.common.shopInfo.shop %}
 {% set products = global.common.shopInfo.items %}
 {% set categories = global.common.shopInfo.categories %}
+{% set lang = global.lang.mainMeta %}
 
 {% if global.render.showOgMeta %}
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -16,17 +17,15 @@
 {% endif %}
 
 {% if global.request.type === 'category' %}
-  <title>{{shop.name}}'s Categories on Sellix</title>
+  <title>{{shop.name + lang.sellixCategory}}</title>
 
   {% if products | length > 0 %}
     {% set productsMeta = [
-      "View ", shop.name, "'s shop on Sellix: check out ", (products | length),
-      " unique products and get the digital goods you need instantly with our many payment gateways in just a few clicks."
+      lang.productsMeta[0], shop.name, lang.productsMeta[1], (products | length), lang.productsMeta[2]
     ] | join %}
   {% else %}
     {% set productsMeta = [
-      "View ", shop.name,
-      "'s shop on Sellix: get the digital goods you need instantly with our many payment gateways in just a few clicks."
+      lang.productMeta[0], shop.name, lang.productMeta[1]
     ] | join %}
   {% endif %}
 
@@ -45,16 +44,14 @@
 
   <meta name="robots" content="noindex" />
 {% elif global.request.type === 'group' %}
-  <title>{{shop.name}}'s Group on Sellix</title>
+  <title>{{shop.name + lang.sellixGroup}}</title>
   {% if products | length > 0 %}
     {% set productsMeta = [
-      "View ", shop.name, "'s shop on Sellix: check out ", (products | length),
-      " unique products and get the digital goods you need instantly with our many payment gateways in just a few clicks."
+      lang.productsMeta[0], shop.name, lang.productsMeta[1], (products | length), lang.productsMeta[2]
     ] | join %}
   {% else %}
     {% set productsMeta = [
-      "View ", shop.name,
-      "'s shop on Sellix: get the digital goods you need instantly with our many payment gateways in just a few clicks."
+      lang.productMeta[0], shop.name, lang.productMeta[1]
     ] | join %}
   {% endif %}
 
@@ -92,7 +89,7 @@
 {% if pageSettings.title %}
   <title>{{ pageSettings.title }}</title>
 {% else %}
-  <title>Explore {{global.common.shopInfo.shop.name}}'s shop on Sellix</title>
+  <title>{{ lang.pageTitle[0] + global.common.shopInfo.shop.name + lang.pageTitle[1]}}</title>
 {% endif %}
 
 {% if pageSettings.meta_tags | length %}

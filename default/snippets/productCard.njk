@@ -7,10 +7,11 @@
 {% set isFree = product.price_display | float === 0 %}
 {% set colors = themeProperties.current_colors %}
 {% set cardsProps = themeProperties.cards %}
+{% set lang = global.lang.productCard %}
 
 <div class="d-flex w-100 position-relative">
   {% if isFree %}
-    <div class="sellix-card-badge">Free</div>
+    <div class="sellix-card-badge">{{lang.free}}</div>
   {% else %}
     {% render_snippet 'Cart button', product=product %}
 
@@ -48,7 +49,7 @@
             class="sellix-card-description"
             style="color: {{ colors[cardsProps.product_card_description_font_color] }}; font-size: {{ cardsProps.product_card_description_font_size }}px; font-weight: {{ cardsProps.product_card_description_font_weight }};"
           >
-            This product is on hold and cannot be bought as of now
+            {{lang.productHold}}
           </span>
         {% endif %}
 
@@ -57,7 +58,7 @@
             class="sellix-card-description"
             style="color: {{ colors[cardsProps.product_card_description_font_color] }}; font-size: {{ cardsProps.product_card_description_font_size }}px; font-weight: {{ cardsProps.product_card_description_font_weight }};"
           >
-            Product sold out
+            {{lang.soldOut}}
           </span>
         {% endif %}
 
@@ -80,7 +81,7 @@
                 style="color: {{ colors[cardsProps.product_card_price_font_color] }}; font-size: {{ cardsProps.product_card_price_font_size }}px; font-weight: {{ cardsProps.product_card_price_font_weight }};"
               >
                 {% if isFree %}
-                  Free
+                  {{lang.free}}
                 {% else %}
                   {% render_snippet 'Price', currency=product.currency, price=product.price_display %}
                 {% endif %}
@@ -91,9 +92,9 @@
               class="sellix-card-stock"
             >
               {% if get_stock(product.stock) === '∞' %}
-                Stock<i class="fa-solid fa-infinity" style="margin-left:.2rem;font-size:10px;color:{{'#28a745' if product.stock == -1 or product.stock > 1 else '#dc3545'}}"></i>
+                {{lang.stock}}<i class="fa-solid fa-infinity" style="margin-left:.2rem;font-size:10px;color:{{'#28a745' if product.stock == -1 or product.stock > 1 else '#dc3545'}}"></i>
                 {% else %}
-                Stock<span style="font-size:1rem;margin-left:.2rem;color:{{'#28a745' if product.stock == -1 or product.stock > 1 else '#dc3545'}}">{{get_stock(product.stock)}}</span>
+                {{lang.stock}}<span style="font-size:1rem;margin-left:.2rem;color:{{'#28a745' if product.stock == -1 or product.stock > 1 else '#dc3545'}}">{{get_stock(product.stock)}}</span>
               {% endif %}
             </span>
           </div>

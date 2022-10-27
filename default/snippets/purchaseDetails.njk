@@ -4,6 +4,7 @@
 {% set cartEnabled = global.common.cartEnabled %}
 {% set colors = themeProperties.current_colors %}
 {% set properties = args.properties %}
+{% set lang = global.lang.purchaseDetails %}
 
 {% render_snippet 'App paypal' %}
 
@@ -59,6 +60,7 @@
       bundles,
       theme: { isDark },
       renderOptions: {{renderOptions | dump | safe}},
+      lang: JSON.parse(`{{lang | dump | safe}}`)
     });
   });
 </script>

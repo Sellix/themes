@@ -6,6 +6,7 @@
 {% set centerGroup = shop.center_group_titles %}
 {% set items = shopInfo.items %}
 {% set colors = themeProperties.current_colors %}
+{% set lang = shop.lang.productListItems %}
 
 <style>
   .sellix-product-list-card-container--width {
@@ -59,13 +60,13 @@
     {% render_snippet 'Zoom glass icon' %}
 
     <div class="empty-shop-info">
-        No product found.
+        {{lang.noProductFound}}
 
         <button
           class="button button-primary"
           style="min-height: 2.75rem; min-width: 9rem; margin-top: 1rem"
         >
-          Clear
+          {{lang.clear}}
         </button>
     </div>
   </div>
@@ -77,13 +78,13 @@
     {% render_snippet 'Zoom glass icon' %}
 
     <div class="empty-shop-info">
-        Category has no products.
+        {{lang.categoryNoProducts}}
 
         <button
           class="button button-primary"
           style="min-height: 2.75rem; min-width: 9rem; margin-top: 1rem"
         >
-          Clear
+          {{lang.clear}}
         </button>
     </div>
   </div>

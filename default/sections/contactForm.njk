@@ -6,6 +6,7 @@
 {% set invoiceId = uid() %}
 {% set colors = themeProperties.current_colors %}
 {% set isWide = properties.contact_form_size == 100 %}
+{% set lang = global.lang.contactForm %}
 
 <div class="sellix-contact-screen">
   <form
@@ -21,18 +22,18 @@
   >
     <div>
       <div class="{{ "wide-screen" if isWide else "" }}">
-        {% render_snippet 'Text', selector=titleId, name="title", label="Title", placeholder="e.g : Terms and Conditions for dropshipper", wrapperClassName="title" %}
-        {% render_snippet 'Text', selector=emailId, name="email", label="Email", placeholder="Enter your email" %}
-        {% render_snippet 'Text', selector=invoiceId, name="invoice_id", label="Invoice Id (optional field)", placeholder="Enter 12 digit invoice id" %}
+        {% render_snippet 'Text', selector=titleId, name="title", label=lang.title, placeholder=lang.titlePlaceholder, wrapperClassName="title" %}
+        {% render_snippet 'Text', selector=emailId, name="email", label=lang.email, placeholder=lang.emailPlaceholder %}
+        {% render_snippet 'Text', selector=invoiceId, name="invoice_id", label=lang.invoiceId+"(optional field)", placeholder=lang.invoicePlaceholder %}
       </div>
 
       <div>
-        {% render_snippet 'Text area', selector=messageId, name="message", label="Message", placeholder="What would you like to ask?"  %}
+        {% render_snippet 'Text area', selector=messageId, name="message", label=lang.message, placeholder=lang.messagePlaceholder  %}
       </div>
     </div>
 
     <div style="display: flex; justify-content: {{ properties.contact_form_button_position }};">
-      {% render_snippet 'Ripple button', button_id=['contact-form-submit-', id] | join, type='submit', title=properties.contact_form_button_title %}
+      {% render_snippet 'Ripple button', button_id=['contact-form-submit-', id] | join, type='submit', title=lang.buttonTitle %}
     <div>
   </form>
 </div>
@@ -56,9 +57,9 @@
         message: 'required',
       },
       messages: {
-        title: 'Title is required',
-        email: 'Email is required',
-        message: 'Message is required',
+        title: '{{lang.titleRequired}}',
+        email: '{{lang.emailRequired}}',
+        message: '{{lang.messageRequired}}',
       },
       highlight: function(element, errorClass) {
         $(element).addClass('is-invalid').removeClass(errorClass);
