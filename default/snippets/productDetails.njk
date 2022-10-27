@@ -1,32 +1,24 @@
 {% set id = uid() %}
 {% set shop = global.common.shopInfo.shop %}
-{% set product = args.product %}
-{% set invoice = args.invoice %}
-{% set colors = args.colors %}
-{% set properties = args.properties %}
-
-{% set hideSold = (shop.hide_products_sold or (not shop.hide_products_sold and not product.sold_count)) and not product.sold_count %}
-
-{% set backgroundColor = properties.container_background_color if properties.container_background_color is defined else 'background_accent_dark' %}
-{% set showBorder = properties.show_border if properties.show_border is defined else true %}
-{% set titleFontColor = properties.title_font_color if properties.title_font_color is defined else 'light_font_color' %}
-{% set titleFontSize = properties.title_font_size if properties.title_font_size is defined else 24 %}
-{% set titleTextAlign = properties.title_text_align if properties.title_text_align is defined else 'left' %}
+{% set product = global.common.productInfo.product %}
+{% set invoice = global.common.invoiceInfo.invoice %}
+{% set colors = themeProperties.dark_colors if themeProperties.color_schema.dark_mode else themeProperties.light_colors %}
+{% set lang = shop.lang.productDetails %}
+{% set hide_sold = (shop.hide_products_sold or (not shop.hide_products_sold and not product.sold_count)) and not product.sold_count %}
 
 <div
   id="sellix-product-description-{{ id }}"
   style="padding: 1rem;{#
-    #} {{ 'border: 1px solid var(--borderColor);' if showBorder else '' }}{#
-    #} background: {{ colors[backgroundColor] }};{#
-    #} border-radius: .5rem;{#
-    #} position: relative;{#
-    #} margin-bottom: 1rem"
+      #} {{ 'border: 1px solid var(--borderColor);' if properties.show_border }}{#
+      #} background: {{ colors[properties.container_background_color] or 'var(--backgroundAccentDark)' }};{#
+      #} border-radius: .5rem;{#
+      #} position: relative;{#
+      #} margin-bottom: 1rem"
 >
   <div
-    class="shop-product-info-product-title {{'mb-0' if hideSold else ''}}"
-    style="color: {{ colors[titleFontColor] }};{#
-      #}font-size: {{ titleFontSize }}px;{#
-      #}justify-content: {{ titleTextAlign }}"
+    class="shop-product-info-product-title {{'mb-0' if hide_sold else ''}}"
+    style="{% if colors[properties.title_font_color] %}color: {{ colors[properties.title_font_color] }};{% endif %}{#
+         #}{% if properties.title_font_size %}font-size: {{ properties.title_font_size }}px;{% endif %} justify-content: {{ properties.title_text_align }}"
   >
     {% if product.title %}
       {{product.title}}
@@ -41,24 +33,24 @@
 
   {% if product.type === 'SUBSCRIPTION' %}
     <div class="shop-product-info-subscription-badge" style="background-color: var(--backgroundColor)">
-      subscription
+      {{lang.subscription}}
     </div>
+  {% endif %}
+
+  {% if not shop.hide_products_sold and product.sold_count %}
+    <span style="white-space: nowrap">
+        <span>{{lang.productSold}}</span> <i style="white: nowrap">{{product.sold_count}}</i> {{lang.times}}
+    </span>
   {% endif %}
 
   <div class="shop-product-info-product-info">
     {% if product.sold_count %}
-      {% if not shop.hide_products_sold %}
-        <span style="white-space: nowrap">
-          <span>Product sold</span> <i style="white: nowrap">{{product.sold_count}}</i> times
-        </span>
-      {% endif %}
-
       <span>
         {% render_snippet 'Rating star', rating=product.average_score or 4, iconsCount=1 %}
         {% if product.average_score %}
           {{product.average_score | float | round(1)}}
         {% endif %}
-        <i>({{product.feedback.total}} reviews)</i>
+        <i>({{product.feedback.total}} {{lang.reviews}})</i>
       </span>
     {% endif %}
   </div>
