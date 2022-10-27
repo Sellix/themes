@@ -12,4 +12,6 @@ echo $2 | grep -E -q '^[a-zA-Z0-9_.-]*$' || die "String argument required, $2 pr
 
 [ -d "$1" ] || die "Theme $1 does not exist"
 
-zip -r ./output/$2.zip $1/*
+cd $1
+zip -r ../output/$2.zip *
+cd ..
