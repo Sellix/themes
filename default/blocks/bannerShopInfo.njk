@@ -12,7 +12,7 @@
           data-tooltip-location="right"
           data-tooltip="This shop has verified its brand identity to Sellix."
         >
-          {% render_snippet 'Verified icon', style='width:20px; height:20px; margin-bottom: 0.25rem;' %}
+          {% render_snippet shop.lang.bannerShopInfo.verifiedIcon, style='width:20px; height:20px; margin-bottom: 0.25rem;' %}
         </span>
       {% endif %}
 
@@ -44,11 +44,11 @@
       <div>
         {% if subscription.name %}
           <div class="sellix-banner-subscription {{'business' if subscription.id == 2 else 'pro'}}">
-            {{ 'Professional' if subscription.name == 'pro' else subscription.name }}
+            {{ shop.lang.bannerShopInfo.professional if subscription.name == 'pro' else subscription.name }}
           </div>
         {% else %}
           <div class="sellix-banner-subscription {{'business' if subscription.id == 2 else 'pro'}}">
-            {{'Entrepreneur' if null | date_diff(first_activity) > 86400 * 7 else 'Starter'}}
+            {{shop.lang.bannerShopInfo.entrepeneur if null | date_diff(first_activity) > 86400 * 7 else shop.lang.bannerShopInfo.starter}}
           </div>
         {% endif %}
       </div>
@@ -61,8 +61,9 @@
       {% if properties.banner_shop_info_custom_text %}
         {{ properties.banner_shop_info_custom_text }}
       {% else %}
-        Providing {{'business' if subscription.id == 2 else 'customer'}}
-        services since {{first_activity | date_format('MMMM YYYY')}}
+        {{shop.lang.bannerShopInfo.providingBusiness if subscription.id == 2 else shop.lang.bannerShopInfo.providingCustomer}} 
+        {{shop.lang.months[(first_activity | date_format('MM') | int) - 1]}}
+        {{first_activity | date_format('YYYY')}}
       {% endif %}
     </div>
   </div>

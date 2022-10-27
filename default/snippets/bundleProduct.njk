@@ -11,6 +11,7 @@
 {% set isDisabled = product.stock | int === 0 or onHold %}
 {% set isPlaceholder = not product.image_name %}
 {% set image = cdn_link(product.cloudflare_image_id, 'shopItem') %}
+{% set lang = global.lang.group %}
 
 <div class="group-option {{'is-disabled' if isDisabled else ''}} {{'no-cart' if args.cartEnabled else ''}}">
   <div class="group-option-description">
@@ -47,7 +48,7 @@
       </div>
 
       {% if onHold %}
-        <span>Product on hold</span>
+        <span>{{lang.productHold}}</span>
       {% else %}
         <div class="group-option-info">
           {% if product.price_discount and not isFree %}
@@ -68,7 +69,7 @@
                 #}font-weight: {{ properties.bundles_product_price_font_weight }};"
             >
                 {% if isFree%}
-                  Free
+                  {{lang.free}}
                 {% else %}
                   {% render_snippet 'Price', currency=product.currency, price=product.price_display %}
                 {% endif %}
@@ -89,7 +90,7 @@
                   {% else %}
                     {{productStock}}
                   {% endif %}
-              </span> in stock
+              </span> {{lang.inStock}}
           </span>
         </div>
       {% endif %}
@@ -111,9 +112,9 @@
       <a href="{{'javascript:void' if isDisabled else ['/product/', product.uniqid] | join}}" style="color: white;">
         <div class="{{'disabled' if isDisabled else ''}} buy-button">
           {% if isFree %}
-            Get it
+            {{lang.getIt}}
           {% else %}
-            Buy
+            {{lang.buy}}
           {% endif %}
         </div>
       </a>

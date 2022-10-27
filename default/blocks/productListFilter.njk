@@ -4,6 +4,7 @@
 {% set categories = shopInfo.categories %}
 {% set colors = themeProperties.current_colors %}
 {% set inputsProps = themeProperties.inputs %}
+{% set lang = shop.lang.productListFilter %}
 
 <style>
   .sellix-shop-search input {
@@ -125,7 +126,7 @@
         type="text"
         id="shop-search-{{id}}"
         value=""
-        placeholder="Search for a product..."
+        placeholder="{{lang.placeholder}}"
       />
     </label>
   {% endif %}
@@ -139,11 +140,11 @@
   {% if shop.sort_enabled %}
     <div class="sellix-dropdown sellix-sort-select">
       <select id="sort-select-{{id}}" class="sort-select">
-        <option value="DEFAULT">Default</option>
-        <option value="PRICE">Price</option>
-        <option value="NAME">Name</option>
-        <option value="TYPE">Type</option>
-        <option value="STOCK">Stock</option>
+        <option value="DEFAULT">{{lang.default}}</option>
+        <option value="PRICE">{{lang.price}}</option>
+        <option value="NAME">{{lang.name}}</option>
+        <option value="TYPE">{{lang.type}}</option>
+        <option value="STOCK">{{lang.stock}}</option>
       </select>
     </div>
   {% endif %}
@@ -167,7 +168,7 @@
       $('#category-select-{{id}}').select2({
         data: [
           {
-            text: "All categories",
+            text: "{{lang.allCategories}}",
             id: "all",
           },
           {% for category in categories %}
@@ -189,7 +190,7 @@
       $('#sort-select-{{id}}').select2({
         templateSelection: (state) => {
           if (state.id) {
-            return `Index By: ${state.text}`;
+            return `{{lang.indexBy}}: ${state.text}`;
           }
           return state.text;
         },

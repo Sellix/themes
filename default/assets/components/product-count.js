@@ -130,11 +130,11 @@
 
       let inStockTitle;
       if (isLast) {
-        inStockTitle = 'Last Product';
+        inStockTitle = window.lang.lastProduct;
       } else if (!isInfinity && isEmpty) {
         inStockTitle = '';
       } else {
-        inStockTitle = `Stock <div style='margin-left: 0.5rem'>${inStock}</div>`;
+        inStockTitle = window.lang.stock + ` <div style='margin-left: 0.5rem'>${inStock}</div>`;
       }
 
       this.$root.find('.sellix-stock-total').html(inStockTitle);

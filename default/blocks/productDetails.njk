@@ -1,6 +1,91 @@
+<<<<<<< HEAD
 {% render_snippet 'Product details',
   product=global.common.productInfo.product,
   invoice=global.common.invoiceInfo.invoice,
   colors=themeProperties.current_colors,
   properties=properties
 %}
+=======
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set product = global.common.productInfo.product %}
+{% set invoice = global.common.invoiceInfo.invoice %}
+{% set colors = themeProperties.dark_colors if themeProperties.color_schema.dark_mode else themeProperties.light_colors %}
+{% set lang = shop.lang.productDetails %}
+{% set hide_sold = (shop.hide_products_sold or (not shop.hide_products_sold and not product.sold_count)) and not product.sold_count %}
+
+<div
+  id="sellix-product-description-{{ id }}"
+  style="padding: 1rem;{#
+      #} {{ 'border: 1px solid var(--borderColor);' if properties.show_border }}{#
+      #} background: {{ colors[properties.container_background_color] or 'var(--backgroundAccentDark)' }};{#
+      #} border-radius: .5rem;{#
+      #} position: relative;{#
+      #} margin-bottom: 1rem"
+>
+  <div
+    class="shop-product-info-product-title {{'mb-0' if hide_sold else ''}}"
+    style="{% if colors[properties.title_font_color] %}color: {{ colors[properties.title_font_color] }};{% endif %}{#
+         #}{% if properties.title_font_size %}font-size: {{ properties.title_font_size }}px;{% endif %} justify-content: {{ properties.title_text_align }}"
+  >
+    {% if product.title %}
+      {{product.title}}
+    {% else %}
+      {% if invoice and invoice.developer_invoice %}
+        {{invoice.developer_title}}
+      {% else %}
+        {{''}}
+      {% endif %}
+    {% endif %}
+  </div>
+
+  {% if product.type === 'SUBSCRIPTION' %}
+    <div class="shop-product-info-subscription-badge" style="background-color: var(--backgroundColor)">
+      {{lang.subscription}}
+    </div>
+  {% endif %}
+
+  {% if not shop.hide_products_sold and product.sold_count %}
+    <span style="white-space: nowrap">
+        <span>{{lang.productSold}}</span> <i style="white: nowrap">{{product.sold_count}}</i> {{lang.times}}
+    </span>
+  {% endif %}
+
+  <div class="shop-product-info-product-info">
+    {% if product.sold_count %}
+      <span>
+        {% render_snippet 'Rating star', rating=product.average_score or 4, iconsCount=1 %}
+        {% if product.average_score %}
+          {{product.average_score | float | round(1)}}
+        {% endif %}
+        <i>({{product.feedback.total}} {{lang.reviews}})</i>
+      </span>
+    {% endif %}
+  </div>
+
+  <div class="shop-product-info-collapse" style="height: 0; overflow: hidden;">
+    <div class="shop-product-info-wrapper">
+      {% render_snippet 'Product gallery', product=product %}
+      {% render_snippet 'Product description', product=product %}
+    </div>
+  </div>
+</div>
+
+<script type="application/javascript">
+  $(document).ready(function() {
+    const productId = '{{ product.uniqid }}';
+    const priceVariantsStore = new SellixPriceVariantsStore('{{ shop.name }}');
+
+    $('#sellix-product-description-{{ id }} .shop-product-info-collapse').css({ height: 'auto', overflow: 'initial'});
+
+    $(document).on('SellixVariantsUpdateEvent', (event, eventInfo) => {
+      if (!eventInfo || !eventInfo.productId || eventInfo.productId === productId) {
+        const activeVariant = priceVariantsStore.get(productId);
+        if (activeVariant) {
+          $('#sellix-product-description-{{ id }} .shop-product-info-product-title').text(activeVariant.title);
+        }
+      }
+    });
+  });
+</script>
+>>>>>>> translate all blocks, snippets and sections

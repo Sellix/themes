@@ -4,6 +4,7 @@
 {% set cartEnabled = global.common.cartEnabled %}
 {% set colors = themeProperties.current_colors %}
 {% set properties = args.properties %}
+{% set lang = global.lang.purchaseDetails %}
 
 <style>
   #purchase-details-{{id}} .sellix-product-card {
@@ -58,6 +59,7 @@
       bundles,
       theme: { isDark },
       renderOptions: {{renderOptions | dump | safe}},
+      lang: JSON.parse(`{{lang | dump | safe}}`)
     });
   });
 </script>
