@@ -1,7 +1,8 @@
 {% set slug = global.request.slug %}
 {% set colors = themeProperties.current_colors %}
 {% set menuProps = themeProperties.menu %}
-
+{% set lang = global.lang %}
+{% set langName = renderOptions.lang.name%}
 <style>
   .menu-tab.active {
     color: {{ colors[menuProps.menu_active_tab_font_color] }} !important;
@@ -24,11 +25,11 @@
         {% set active = true %}
       {% endif %}
       <a
-        href="{{item.page_slug}}"
+        href="/{{langName}}{{item.page_slug}}"
         class="menu-tab {{'active' if active else ''}}"
         style="font-size: {{ menuProps.menu_tab_font_size }}px; color: {{ colors[menuProps.menu_tab_font_color] }}; font-weight: {{ menuProps.menu_tab_font_weight }};"
       >
-        {{item.title}}
+        {{lang.menu[item.title | to_camel_case]}}
       </a>
     {% endfor %}
-</div>
+</div> 

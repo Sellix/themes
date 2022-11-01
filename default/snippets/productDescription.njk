@@ -2,7 +2,7 @@
 {% set shop = global.common.shopInfo.shop %}
 {% set product = args.product %}
 {% set invoice = global.common.invoiceInfo.invoice %}
-
+{% set lang = global.lang.productDescription %}
 <div class="shop-product-info-product-description">
   {% if shop.description_youtube_only and product.youtube_link %}
     <div class="shop-product-info-image">
@@ -22,9 +22,7 @@
   {% if invoice.developer_invoice %}
     <div class="sellix-text p-3" style="border-radius: .25rem">
       <p>
-        You are purchasing a service by {{product.title}}.
-        Once your payment is completed and this invoice flagged as paid, you will be redirected back to {{product.title}}'s site.
-        If you have any issue, please refer directly to {{product.title}}'s support.
+        {{ lang.text[0] + product.title + lang.text[1] + product.title + lang.text[2] + product.title + lang.text[3]}}
       </p>
     </div>
   {% else %}

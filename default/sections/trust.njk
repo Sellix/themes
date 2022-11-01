@@ -1,6 +1,7 @@
 {% set shop = global.common.shopInfo.shop %}
 {% set colors = themeProperties.current_colors %}
 {% set id = uid() %}
+{% set lang = global.lang.trust %}
 
 <style>
   .sellix-trust.sellix-trust-{{ id }} {
@@ -70,7 +71,7 @@
         class="sellix-trust-title"
         style="justify-content: {{ properties.title_text_align }};"
       >
-        <h1>Trusted Advisor</h1>
+        <h1>{{lang.title}}</h1>
       </div>
     </div>
 
@@ -79,17 +80,17 @@
         <h3 class="sellix-trust-block-title">
           {% if shop.trusted_checks.identity_verified %}
             <i class="fa-solid fa-circle-check text-green mr-2"></i>
-            Identity Verified
+            {{lang.identity[0]}}
           {% else %}
             <i class="fa-solid fa-circle-xmark text-red mr-2"></i>
-            Identity not Verified
+            {{lang.identity[1]}}
           {% endif %}
         </h3>
         <div>
           {% if shop.trusted_checks.identity_verified %}
-            This business has verified its identity and details to Sellix. Verified businesses have gone through an address and document validation phase which confirms their identity and the uniqueness of the merchant.
+            {{lang.identityText[0]}}
           {% else %}
-            This business has not verified its identity and details to Sellix. We cannot confirm this store is a valid and unique merchant.
+            {{lang.identityText[1]}}
           {% endif %}
         </div>
       </div>
@@ -101,9 +102,9 @@
           {% else %}
             <i class="fa-solid fa-circle-check text-green mr-2"></i>
           {% endif %}
-          <b style="text-transform: capitalize">{{shop.trusted_checks.sales_last14days_metric}}</b> sales in the last 14 days</h3>
+          <b style="text-transform: capitalize">{{(lang.low if shop.trusted_checks.sales_last14days_metric === "low" else lang.high)}}</b> {{lang.sales}}</h3>
         <div>
-          This metric takes into consideration the quantity of sales this business had in the last 14 days. High and Medium sales mean that the business has been proactively selling goods with at least one order daily.
+          {{lang.salesText}}
         </div>
       </div>
 
@@ -116,9 +117,9 @@
           {% else %}
             <i class="fa-solid fa-circle-check text-green mr-2"></i>
           {% endif %}
-          {{shop.trusted_checks.feedback_appeal_ratio}} feedback appeal ratio</h3>
+          {{shop.trusted_checks.feedback_appeal_ratio}} {{lang.feedback}}</h3>
         <div>
-          The feedback appeal ratio takes into consideration the total amount of feedback a merchant has and how many have been appealed (either removed or contested). The appeal ratio has a value between 0.00 and 1, where 0.10 corresponds to 10% of all feedback appealed.
+          {{lang.feedbackText}}
         </div>
       </div>
 
@@ -131,10 +132,10 @@
           {% else %}
             <i class="fa-solid fa-circle-check text-green mr-2"></i>
           {% endif %}
-          {{shop.trusted_checks.feedback_score | round(2) if shop.trusted_checks.feedback_score else 0 | round(2)}} feedback score
+          {{shop.trusted_checks.feedback_score | round(2) if shop.trusted_checks.feedback_score else 0 | round(2)}} {{lang.feedbackScore}}
         </h3>
         <div>
-          The feedback score helps customers understand whether or not this business has had positive feedback recently, meaning that every customer purchased a valid good.
+          {{lang.feedbackScoreText}}
         </div>
       </div>
 
@@ -142,25 +143,25 @@
         <h3 class="sellix-trust-block-title">
           {% if not shop.trusted_checks.no_chargeback_gateways %}
             <i class="fa-solid fa-circle-check text-green mr-2"></i>
-            PayPal or Credit cards accepted
+            {{lang.paypal[0]}}
           {% else %}
             <i class="fa-solid fa-circle-xmark text-red mr-2"></i>
-            PayPal or Credit/Debit cards not accepted
+            {{lang.paypal[1]}}
           {% endif %}
         </h3>
         <div>
           {% if shop.trusted_checks.no_chargeback_gateways %}
-            This merchant does not accept any payment method with consumer protection. For example, Cryptocurrencies and Cash App cannot accept refunds due to their nature. Proceed with caution and be sure that you know what you're buying.
+            {{lang.paypalText[1]}}
           {% else %}
-            This merchant accepts payment methods, such as PayPal and Credit/Debit Cards, with consumer protection; meaning that a refund request can be executed when paying through them only if the purchased good is not valid. However, this does not mean that refund requests are available for payment methods like Cash App and Cryptocurrencies as they are not accepted due to their nature.
+            {{lang.paypalText[0]}}
           {% endif %}
         </div>
       </div>
 
       <span style="font-size:13px;line-height:24px">
-        <a href="{{properties.what_is_trusted_advisor_url}}" target="_blank">What is Trusted Advisor and what does this mean for customers?</a> <br/>
+        <a href="{{properties.what_is_trusted_advisor_url}}" target="_blank">{{lang.help}}</a> <br/>
         {% if global.render.isAuth %}
-          <a href="{{properties.how_can_i_improve_my_page_url}}" target="_blank">I am the merchant, how can I improve my page?</a>
+          <a href="{{properties.how_can_i_improve_my_page_url}}" target="_blank">{{lang.helpMerchant}}</a>
         {% endif %}
       </span>
     </div>

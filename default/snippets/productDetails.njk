@@ -12,6 +12,7 @@
 {% set titleFontColor = properties.title_font_color if properties.title_font_color is defined else 'light_font_color' %}
 {% set titleFontSize = properties.title_font_size if properties.title_font_size is defined else 24 %}
 {% set titleTextAlign = properties.title_text_align if properties.title_text_align is defined else 'left' %}
+{% set lang = global.lang.productDetails %}
 
 <div
   id="sellix-product-description-{{ id }}"
@@ -26,8 +27,7 @@
     class="shop-product-info-product-title {{'mb-0' if hideSold else ''}}"
     style="color: {{ colors[titleFontColor] }};{#
       #}font-size: {{ titleFontSize }}px;{#
-      #}justify-content: {{ titleTextAlign }}"
-  >
+      #}justify-content: {{ titleTextAlign }}">
     {% if product.title %}
       {{product.title}}
     {% else %}
@@ -41,24 +41,23 @@
 
   {% if product.type === 'SUBSCRIPTION' %}
     <div class="shop-product-info-subscription-badge" style="background-color: var(--backgroundColor)">
-      subscription
+      {{lang.subscription}}
     </div>
   {% endif %}
 
   <div class="shop-product-info-product-info">
     {% if product.sold_count %}
-      {% if not shop.hide_products_sold %}
+      {% if not shop.hide_products_sold and product.sold_count %}
         <span style="white-space: nowrap">
-          <span>Product sold</span> <i style="white: nowrap">{{product.sold_count}}</i> times
+            <span>{{lang.productSold}}</span> <i style="white: nowrap">{{product.sold_count}}</i> {{lang.times}}
         </span>
       {% endif %}
-
       <span>
         {% render_snippet 'Rating star', rating=product.average_score or 4, iconsCount=1 %}
         {% if product.average_score %}
           {{product.average_score | float | round(1)}}
         {% endif %}
-        <i>({{product.feedback.total}} reviews)</i>
+        <i>({{product.feedback.total}} {{lang.reviews}})</i>
       </span>
     {% endif %}
   </div>

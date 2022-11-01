@@ -1,10 +1,10 @@
-{% set colors = themeProperties.current_colors %}
-
+{% set colors = themeProperties.dark_colors if themeProperties.color_schema.dark_mode else themeProperties.light_colors %}
+{% set lang = global.lang %}
 <footer>
   <div
     class="sellix-footer"
     style="background: {{ colors[properties.footer_background_color] }}; justify-content: {{ properties.footer_text_position }}; font-size: {{ properties.footer_font_size }}px; color: {{ colors[properties.footer_font_color] }};font-weight: 300;"
   >
-    {{ properties.footer_text | safe }}
+    <p> {{ lang.footer }} <a href=\"https://sellix.io\" target=\"_blank\"> Sellix</a>&nbsp;</p>
   </div>
 </footer>

@@ -3,6 +3,7 @@
 {% set messageId = uid() %}
 {% set id = uid() %}
 {% set colors = themeProperties.current_colors %}
+{% set lang = global.lang.feedback %}
 
 <div class="animated fadeIn sellix-leave-feedback-screen">
     <form
@@ -24,14 +25,14 @@
                           class="title"
                           style=" color: {{colors[properties.leave_feedback_form_title_font_color] }}; font-size: {{ properties.leave_feedback_form_title_font_size }}px; font-weight: {{ properties.leave_feedback_form_title_font_weight }}; line-height: {{ properties.leave_feedback_form_title_line_height }}%; text-align: {{ properties.leave_feedback_form_title_text_align }};"
                         >
-                          {{properties.leave_feedback_form_title}}
+                          {{lang.leaveFeedbackTitle}}
                         </h5>
 
                         <p
                           class="mt-3 mb-4"
                           style=" color: {{colors[properties.leave_feedback_form_sub_title_font_color] }}; font-size: {{ properties.leave_feedback_form_sub_title_font_size }}px; font-weight: {{ properties.leave_feedback_form_sub_title_font_weight }}; line-height: {{ properties.leave_feedback_form_sub_title_line_height }}%; text-align: {{ properties.leave_feedback_form_sub_title_text_align }};"
                         >
-                          {{ properties.leave_feedback_form_sub_title }}
+                          {{lang.leaveFeedbackSubtitle}}
                         </p>
                     </div>
 
@@ -39,10 +40,10 @@
                         {% render_snippet 'Rating star', rating=score, size=27, readonly="false" %}
                     </div>
 
-                    {% render_snippet 'Text area', selector=messageId, name="message", placeholder="Leave a text for your feedback", className="pt-3 pb-3", value=message %}
+                    {% render_snippet 'Text area', selector=messageId, name="message", placeholder=lang.placeholder, className="pt-3 pb-3", value=message %}
 
                     <div style="display: flex; justify-content: {{ properties.leave_feedback_form_button_position }}; margin-top: -16px">
-                      {% render_snippet 'Ripple button', button_id=['leave-feedback-submit-', id] | join, type='submit', title=properties.leave_feedback_form_button_title, class="mt-4" %}
+                      {% render_snippet 'Ripple button', button_id=['leave-feedback-submit-', id] | join, type='submit', title=lang.submit, class="mt-4" %}
                     </div>
                 </div>
             </div>
@@ -67,7 +68,7 @@
       },
       messages: {
         message: {
-            maxlength: 'Feedback must be 256 characters long',
+            maxlength: {{lang.tooLongMessage}},
         },
       },
       highlight: function(element, errorClass) {

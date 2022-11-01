@@ -54,11 +54,11 @@
     toggleDescription = (show) => {
       if (show) {
         this.$product.find('.shop-product-info-collapse').css({ height: 'auto', overflow: 'initial' });
-        this.$product.find('.sellix-cart-description .label-show-description').text('Hide Description');
+        this.$product.find('.sellix-cart-description .label-show-description').text(window.lang.description[1]);
         this.$product.find('.sellix-cart-description .label-click-for-info').hide();
       } else {
         this.$product.find('.shop-product-info-collapse').css({ height: '0px', overflow: 'hidden' });
-        this.$product.find('.sellix-cart-description .label-show-description').text('Show Description');
+        this.$product.find('.sellix-cart-description .label-show-description').text(window.lang.description[0]);
         this.$product.find('.sellix-cart-description .label-click-for-info').show();
       }
 
