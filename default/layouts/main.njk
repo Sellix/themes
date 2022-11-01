@@ -305,29 +305,6 @@
       </a>
     {% endif %}
 
-    {% if paypal.merchantId %}
-      <script type='application/javascript'>
-        (function() {
-          if (!window.paypal) {
-            var script = document.createElement('script');
-
-            var vault = (type && type === 'PRODUCT_SUBSCRIPTION') ? 'true' : 'false';
-            script.src = 'https://www.paypal.com/sdk/js' +
-              '?client-id={{global.paypal.clientId}}' +
-              '&merchant-id={{global.paypal.merchantId}}' +
-              '&components=buttons,funding-eligibility' +
-              '&currency={{global.paypal.currency}}' +
-              '&commit=true' +
-              '&vault=' + vault;
-            script.async = true;
-
-            document.body.appendChild(script);
-
-          }
-        })();
-      </script>
-    {% endif %}
-
     {% render_snippet 'Social Links' %}
 
     <script type='application/javascript'>

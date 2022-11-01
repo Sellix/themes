@@ -1,6 +1,6 @@
 {% if global.paypal.merchantId %}
   {% set invoice = global.common.invoiceInfo.invoice %}
-  {% set invoice = global.common.productInfo.product %}
+  {% set product = global.common.productInfo.product %}
 
   {% set currency = invoice.currency or product.currency %}
   {% set type = invoice.type or ('PRODUCT_SUBSCRIPTION' if product.type === 'SUBSCRIPTION' else product.type) %}
