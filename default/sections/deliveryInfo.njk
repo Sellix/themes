@@ -1,0 +1,34 @@
+{% set id = uid() %}
+{% set invoice = global.common.invoiceInfo.invoice %}
+{% set invoice = global.common.invoiceInfo.info %}
+{% set product = global.common.productInfo.product %}
+
+{% set isShoppingCart = invoice.type == 'SHOPPING_CART' %}
+
+{% set isInvoice = renderOptions['templateName'] == 'Invoice/Invoice' %}
+
+<div class="sellix-delivery-body">
+  <div class="sellix-delivery-products {{ 'is-cart' if isShoppingCart else '' }}">
+    {% for block_name in settings.block_order %}
+      {% if not properties.enable_right_sidebar or loop.revindex > properties.right_sidebar_blocks_count | int %}
+        {% render_block block_name %}
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  {% if properties.enable_right_sidebar %}
+    <div class="sellix-delivery-details">
+      {% for block_name in settings.block_order %}
+        {% if loop.revindex <= properties.right_sidebar_blocks_count | int %}
+          {% render_block block_name %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+
+<a href="/">
+  <button class="sellix-delivery-back medium primary">
+    Back to {{ invoice.name }}'s shop
+  </button>
+</a>

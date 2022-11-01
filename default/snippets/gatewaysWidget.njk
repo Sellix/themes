@@ -21,7 +21,7 @@
           pathname: '{{global.request.type}}',
         },
         theme: {
-          isDark: {{args.isDark if args.isDark else global.theme.isDark}},
+          isDark: {{args.isDark if args.isDark is defined else themeProperties.color_schema.dark_mode}},
         },
         config: window.__RENDER_CONTEXT__.config,
       }),

@@ -1,0 +1,36 @@
+{% set id = uid() %}
+
+{% set invoice = global.common.invoiceInfo.invoice %}
+{% set info = global.common.invoiceInfo.info %}
+{% set product = invoice.product or {} %}
+{% set isProductSubscription = invoice.type == 'PRODUCT_SUBSCRIPTION' %}
+{% set isSubscription = invoice.type == 'SUBSCRIPTION'  %}
+{% set isShoppingCart = invoice.type == 'SHOPPING_CART' %}
+
+
+<div class="{{ 'is-cart' if isShoppingCart else '' }}">
+  {% if isSubscription %}
+    {# <Subscription invoice={invoice} /> #}
+  {% endif %}
+
+  {% if not isShoppingCart and not isSubscription and info %}
+    {% render_snippet 'Delivery product', invoice=invoice, info=info %}
+  {% endif %}
+
+  {% if not isProductSubscription %}
+    {# <Alert
+      text="Due to security reasons, your product has been delivered to your email linked with the PayPal account you have used to complete the purchase. This is done to avoid fraud attempts."
+      title="Searching your product?"
+      show={invoice.paypal_email_delivery && invoice.gateway === "PAYPAL"}
+    /> #}
+  {% endif %}
+
+  {% if isShoppingCart and info %}
+    {% render_snippet 'Delivery cart products', invoice=invoice, info=info %}
+  {% endif %}
+
+  {% if isProductSubscription %}
+    {% render_snippet 'Delivery product subscription', invoice=invoice %}
+  {% endif %}
+
+</div>

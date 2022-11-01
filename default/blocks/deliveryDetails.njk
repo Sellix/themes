@@ -1,0 +1,10 @@
+{% set invoice = global.common.invoiceInfo.invoice %}
+{% set info = global.common.invoiceInfo.info %}
+
+<div>
+  {% render_snippet 'Delivery alert success', is_product_subscription=(invoice.type === 'PRODUCT_SUBSCRIPTION') %}
+
+  {% if info %}
+    {# <LeaveFeedback uniqid={info.feedback_uniqid}/> #}
+  {% endif %}
+</div>

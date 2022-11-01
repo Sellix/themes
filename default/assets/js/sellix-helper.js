@@ -88,6 +88,75 @@
       const defaultAsset = isDark ? 'loader-logo-light.svg' : 'loaded-logo-dark.svg';
       return SellixContext.get('assets')[defaultAsset];
     }
+
+    saveInvoiceToFile(invoiceId, productType) {
+      saveAs(`${location.origin}/invoice/${invoiceId}/download/${productType || 'any'}`);
+    }
+
+    redirectForLocalTest(toSubdomain, pathname) {
+      let host = window.location.host;
+      let subList = host.split('.');
+
+      let currentSubdomain = host.split('.')[1] && host.split('.')[1] !== 'com:3000' ? host.split('.')[0] : '';
+
+      if (toSubdomain) {
+        if (currentSubdomain) {
+          subList.shift();
+          window.location.href = `http://${toSubdomain}.local-test-sellix.com:3000${pathname}`;
+        } else {
+          window.location.href = `http://${toSubdomain}.local-test-sellix.com:3000${pathname}`;
+        }
+      } else {
+        if (currentSubdomain) {
+          subList.shift();
+          window.location.href = `http://local-test-sellix.com:3000${pathname}`;
+        } else {
+          window.location.href = `http://local-test-sellix.com:3000${pathname}`;
+        }
+      }
+    }
+
+    redirectForStaging(toSubdomain, pathname) {
+      let host = window.location.host;
+      let subList = host.split('.');
+      let currentSubdomain = host.split('.')[1]
+        ? host.split('.')[1] === 'gg' || host.split('.')[1] === 'io'
+          ? ''
+          : host.split('.')[0]
+        : '';
+
+      if (toSubdomain) {
+        if (currentSubdomain) {
+          subList.shift();
+          window.location.href = `https://${toSubdomain}.${subList.join('.')}${pathname}`;
+        } else {
+          window.location.href = `https://${toSubdomain}.${subList.join('.')}${pathname}`;
+        }
+      } else {
+        if (currentSubdomain) {
+          subList.shift();
+          window.location.href = `https://${subList.join('.')}${pathname}`;
+        } else {
+          window.location.href = `https://${subList.join('.')}${pathname}`;
+        }
+      }
+    }
+
+    redirectToSubLink(toSubdomain, pathname, blank) {
+      let host = window.location.host;
+      let localTestSellix = host.includes('local-test-sellix');
+      let isStaging = host.includes('sellix.');
+
+      if (localTestSellix) {
+        this.redirectForLocalTest(toSubdomain, pathname, blank);
+
+        return null;
+      } else if (isStaging) {
+        this.redirectForStaging(toSubdomain, pathname, blank);
+
+        return null;
+      }
+    }
   }
   window.sellixHelper = new Helper();
 })(document, window, jQuery, SellixContext);

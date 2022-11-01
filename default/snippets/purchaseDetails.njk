@@ -24,7 +24,7 @@
     const purchaseType = '{{type}}';
     const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
     const store = window.__RENDER_CONTEXT__;
-    const isDark = {{args.isDark if args.isDark else global.theme.isDark}};
+    const isDark = {{args.isDark if args.isDark is defined else themeProperties.color_schema.dark_mode}};
     const { shopInfo, productInfo } = store.common;
     let product = (productInfo && productInfo.product);
 

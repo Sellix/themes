@@ -6,7 +6,7 @@
   $(document).ready(function () {
     const store = window.__RENDER_CONTEXT__;
     const { shopInfo, invoiceInfo } = store.common;
-    const isDark = {{args.isDark if args.isDark else global.theme.isDark}};
+    const isDark = {{args.isDark if args.isDark is defined else themeProperties.color_schema.dark_mode}};
     let invoice = (invoiceInfo && invoiceInfo.invoice)
 
     const invoiceDetailsComponent = new SellixInvoiceDetailsComponent({

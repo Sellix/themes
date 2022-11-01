@@ -21,9 +21,9 @@
 
     onCompleteInvoice = ({ type, invoiceId }) => {
       if (type === 'subscription') {
-        window.location.href = `https://checkout.sellix.io/subscription/delivery/${invoiceId}`;
+        window.location.href = `/subscription/delivery/${invoiceId}`;
       } else {
-        window.location.href = `https://checkout.sellix.io/delivery/${invoiceId}`;
+        window.location.href = `/delivery/${invoiceId}`;
       }
     };
 

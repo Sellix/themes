@@ -897,6 +897,45 @@
   border-color: var(--borderColor);
 }
 
+.sellix-store button.medium.primary, .sellix-store button.large.primary, .sellix-store button.small.primary {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  user-select: none;
+  border: 1px solid #0000;
+  line-height: 1.5;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 0 20px;
+  min-height: 48px;
+  white-space: nowrap;
+  background-color: var(--buttonColor);
+  font-family: "Inter Var", sans-serif !important;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  font-weight: 400 !important;
+  font-family: "Inter Var", sans-serif !important;
+  border-radius: 0.25rem;
+  border: 1px solid var(--borderColor);
+}
+.sellix-store button.medium.primary:hover, .sellix-store button.large.primary:hover, .sellix-store button.small.primary:hover {
+  opacity: 0.9;
+}
+.sellix-store button.medium.primary.button-ghost.back, .sellix-store button.medium.primary.button-ghost, .sellix-store button.medium.primary.back, .sellix-store button.large.primary.button-ghost.back, .sellix-store button.large.primary.button-ghost, .sellix-store button.large.primary.back, .sellix-store button.small.primary.button-ghost.back, .sellix-store button.small.primary.button-ghost, .sellix-store button.small.primary.back {
+  background-color: transparent;
+  color: var(--darkFontColor);
+}
+.sellix-store button.medium.primary.button-ghost.back:hover, .sellix-store button.medium.primary.button-ghost:hover, .sellix-store button.medium.primary.back:hover, .sellix-store button.large.primary.button-ghost.back:hover, .sellix-store button.large.primary.button-ghost:hover, .sellix-store button.large.primary.back:hover, .sellix-store button.small.primary.button-ghost.back:hover, .sellix-store button.small.primary.button-ghost:hover, .sellix-store button.small.primary.back:hover {
+  background-color: var(--menuBackgroundHover);
+}
+
+
 .sellix-store-screen {
   transition: translate 1s ease-out;
   margin: 0 auto;
@@ -938,4 +977,44 @@
 
 .animated {
   animation-duration: 0.5s;
+}
+
+.sellix-copied-label {
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: all 0.3s;
+  font-size: 1rem;
+  background: var(--backgroundColor);
+}
+.sellix-copied-label > span {
+  color: var(--darkFontColor);
+  font-weight: 400;
+  padding-left: 0.25rem;
+  font-size: 14px;
+}
+.sellix-copied-label img {
+  width: 16px;
+  background: #1fa83f;
+  border-radius: 100%;
+  padding: 0.25rem;
+}
+.sellix-copied-label.show {
+  opacity: 1;
+  z-index: 1;
+}
+
+.sellix-copied-label.show > svg {
+  width: 16px;
+  height: 16px;
+  background: #00d81e;
+  border-radius: 100%;
+  /*padding: .25rem;*/
 }

@@ -105,6 +105,29 @@
       });
     }
 
+    async downloadInvoice(id, productType) {
+      return jQuery.ajax({
+        method: 'GET',
+        url: `${this.apiUrl}/api/shop/invoices/download/${id}/${productType || 'undefined'}`,
+        // xhr: function () {
+        //   const xhr = new XMLHttpRequest();
+        //   xhr.onreadystatechange = function () {
+        //     if (xhr.readyState === 2) {
+        //       if (xhr.status === 200) {
+        //         xhr.responseType = 'blob';
+        //       } else {
+        //         xhr.responseType = 'text';
+        //       }
+        //     }
+        //   };
+        //   return xhr;
+        // },
+        // xhrFields: {
+        //   responseType: 'blob',
+        // },
+      });
+    }
+
     async customerAuthEmail(data) {
       const onSuccess = (captcha) => {
         return jQuery.ajax({
