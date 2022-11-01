@@ -1,6 +1,6 @@
 (function (document, window, jQuery, React, ReactDOM, sellixApi) {
   class InvoiceDetailsComponent {
-    constructor({ selector, config, shop, invoiceId, invoice, theme, settings = {} }) {
+    constructor({ selector, config, shop, invoiceId, invoice, theme, language, settings = {} }) {
       this.domContainer = document.querySelector(selector);
       this.config = config;
       this.settings = settings;
@@ -9,6 +9,7 @@
       this.invoice = invoice;
       this.theme = theme;
       this.isVisibleProductDescription = false;
+      this.language = language;
     }
 
     onGetInvoice = (id) => {
@@ -77,6 +78,7 @@
           onShowMessage: this.onShowMessage,
           onSuccess: this.onSuccess,
           onFail: this.onFail,
+          language: this.language
         }),
         this.domContainer,
       );
