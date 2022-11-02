@@ -5,6 +5,8 @@
 {% set colors = themeProperties.current_colors %}
 {% set properties = args.properties %}
 
+{% render_snippet 'App paypal' %}
+
 <style>
   #purchase-details-{{id}} .sellix-product-card {
     background: {{ colors[properties.container_background_color] }};
@@ -23,9 +25,8 @@
   $(document).ready(function () {
     const purchaseType = '{{type}}';
     const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
-    const store = window.__RENDER_CONTEXT__;
     const isDark = {{args.isDark if args.isDark is defined else themeProperties.color_schema.dark_mode}};
-    const { shopInfo, productInfo } = store.common;
+    const { shopInfo, productInfo, isCustomDomain } = window.SellixContext.get('common');
     let product = (productInfo && productInfo.product);
 
     if (purchaseType === 'product') {
@@ -48,10 +49,10 @@
 
     const purchaseDetailsComponent = new SellixPurchaseDetailsComponent({
       selector: '#purchase-details-{{id}}',
-      config: store.config,
+      config: window.SellixContext.get('config'),
       shop: shopInfo.shop,
       cartEnabled: {{cartEnabled or 0}},
-      isCustomDomain: store.common.isCustomDomain,
+      isCustomDomain,
       purchaseType,
       cart,
       product: (product || {}),
