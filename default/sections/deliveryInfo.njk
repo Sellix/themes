@@ -7,6 +7,7 @@
 {% set isProductSubscription = invoice.type == 'PRODUCT_SUBSCRIPTION' %}
 {% set isSubscription = invoice.type == 'SUBSCRIPTION'  %}
 {% set isInvoice = renderOptions['templateName'] == 'Invoice/Invoice' %}
+{% set lang = global.lang.delivery %}
 
 <div class="sellix-delivery-body">
   <div class="sellix-delivery-products {{ 'is-cart' if isShoppingCart else '' }}">
@@ -30,6 +31,6 @@
 
 <a href="/">
   <button class="sellix-delivery-back medium primary">
-    Back to {{ invoice.name }}'s shop
+    {{ lang.backTo[0]}} {{global.common.invoiceInfo.invoice.name}} {{ lang.backTo[1] }}
   </button>
 </a>

@@ -214,8 +214,7 @@
         "identity": ["Identità verificata", "Identità non verificata"],
         "identityText": [
             "ITAThis business has verified its identity and details to Sellix. Verified businesses have gone through an address and document validation phase which confirms their identity and the uniqueness of the merchant.", 
-            "ITAThis business has not verified its identity and details to Sellix. We cannot confirm this store is a valid and unique merchant."
-            ],
+            "ITAThis business has not verified its identity and details to Sellix. We cannot confirm this store is a valid and unique merchant."],
         "low": "Basso",
         "high": "Alto",
         "sales": "ITAsales in the last 14 days",
@@ -313,6 +312,8 @@
         ]
     },
     "invoice":{
+        "processing": "ITAProcessing",
+        "paymentDetails": "ITAPayment Details",
         "titles":{
             "SELECT_PAYMENT": "ITASelect payment method",
             "WAITING_SHOP_ACTION": "ITAAwaiting Shop Action",
@@ -322,6 +323,11 @@
             "REVERSED": "ITAInvoice Reversed",
             "REFUNDED": "ITAInvoice Refunded"
         },
+        "track":{
+            "title": "ITAInvoice Tracking",
+            "clickMoreInfo": "ITAClick for more info"
+        },
+        "clickMoreInfo": "ITAClick for more info",
         "awaitingConfirmation": "ITAAwaiting Confirmation",
         "productSoldOut":"ITAProduct Sold Out",
         "cartSoldOut": "ITACart Products Sold Out",
@@ -368,11 +374,40 @@
             "subscription": "ITASubscription",
             "timer": "ITACanceled in",
             "crypto":{
-                "sendTo": ["ITASend","to"],
+                "sendTo": ["Manda","to"],
                 "copied": "ITACopied",
                 "showHash": "ITAShow Hash",
                 "qrCode": "ITAQR Code",
-                "payWallet": "ITAPay in Wallet"
+                "payWallet": "ITAPay in Wallet",
+                "qrShouldBeThere": "ITAQR should be there"
+            },
+            "paypal":{
+                "alreadyPaid": "ITAAlready Paid?",
+                "atm": "ITAIf you have already sent a payments with PayPal, the order may take up to 5 minutes to be processed.' : 'If you have already sent a payments with PayPal, the order may take up to 60 seconds to be processed.",
+                "somethingWentWrong": "ITASomething went wrong",
+                "ifWrong": ["ITAIf something went wrong while trying to purchase, please do not hesitate to","contact","the business"],
+                "loadingButtons": "ITALoading the payments button.",
+                "checkout": "ITATo proceed with the checkout, click the button above."
+            },
+            "stripe":{
+                "payNow": "Paga ora",
+                "message": "ITApayments take 2 to 14 days for the transaction to be processed and completed, depending on your bank. Once you have sent the payment, please wait for the invoice to be marked as paid.",
+                "alert":{
+                    "alreadyPaid": "ITAAlready Paid?",
+                    "alreadyPayment": "ITAIf you have already sent a payment with Stripe, the order may take up to 60 seconds to be processed.",
+                    "somethingWentWrong": "ITASomething went wrong",
+                    "ifWrong": ["ITAIf something went wrong while trying to purchase, please do not hesitate to",
+                                "contact","the business"]
+                },
+                "validating": "ITAValidating your device...",
+                "pay": "ITAPay",
+                "browserNotice":{
+                    "title": ["ITAGoogle Pay not showing up?","Apple Pay not showing up?"],
+                    "more": [
+                        "ITAIf Google Pay does not appear on the payment form, please check that you are on the latest version of Chrome. Google Pay is shown only when you are logged in to Google and your Google account has a wallet with at least one linked credit card.", 
+                        "ITAIf Apple Pay does not appear on the payment form, please check that you are on the latest version of Safari. Apple Pay is shown only if your iCloud wallet has at least one linked credit card."],
+                    "moreInfo": "ITAMore Info"
+                }
             }
         },
         "gateway":{
@@ -380,10 +415,12 @@
             "deliverPaypal": "ITADeliver to PayPal email.",
             "updateInvoice": "ITAUpdate Invoice",
             "back": "ITABack",
-            "noAvaiablePaymentMethods": "ITANo available payment methods"
+            "noAvaiablePaymentMethods": "ITANo available payment methods",
+            "hide": "ITAHide",
+            "changePaymentMethod": "ITAChange payment method"
         },
         "cashApp": {
-            "scan": "ITAScan the QR code through Cash App or copy and paste the seller's cashtag. When sending the amount, set in the note field: <br/>",
+            "scan": "ITAScan the QR code through Cash App or copy and paste the seller's cashtag. When sending the amount, set in the note field: ",
             "copied": "ITACopied",
             "afterAmount": "ITAAfter you've sent the amount, click the green icon below on the right.",
             "title": "ITACash App Cashtag",
@@ -391,7 +428,8 @@
             "help": "ITAYou can find the identifier by looking at the email Cash App has sent you. Check for a code similar to this: <b>#ABC1234</b>, scrolling down.",
             "wait": "ITAPlease allow up to 120 seconds, we are identifying your payment.",
             "manualReview" : "ITAGo now to manual review",
-            "secondsRemaining": "ITAseconds remaining"
+            "secondsRemaining": "ITAseconds remaining",
+            "qrShouldBeThere": "ITAQR should be there"
         },
         "qr":{
             "noFees": ["ITASend crypto payments with 0% transaction fees by","registering","to Binance for free."],
@@ -407,7 +445,56 @@
                 "subtotal": "ITASubtotal:",
                 "amount": "ITAAmount:"
             },
-            "copied": "ITACopied"
+            "copied": "ITACopied",
+            "qrShouldBeThere": "ITAQR should be there"
+        },
+        "product":{
+            "clickMoreInfo": "ITAClick for more info",
+            "cartInfo": "ITACart Info",
+            "description": "ITAProduct Description"
+        }
+    },
+    "delivery":{
+        "backTo": ["ITABack to","'s shop"],
+        "invoiceId": "ITAInvoice ID:",
+        "subOrderCompleted": ["ITAYour Order for ", "Subscription", "is completed."],
+        "orderShoppingCart": "ITAOrder for Shopping Cart is completed.",
+        "subscriptionSuccessful": "ITAYour subscription purchase was successful.",
+        "prodOrderCompleted": ["ITAYour Order for ", "is completed."],
+        "copied": "ITACopied",
+        "downloadInvoice": "ITADownload Invoice",
+        "paymentCompleted": "ITAPayment Completed",
+        "trialStart": "ITATrial Start",
+        "subStarted": "ITASubscription Started",
+        "orderCompleted": "ITAOrder completed!",
+        "invoiceConfirmationEmailText": "ITAYour invoice has been paid.We will send a confirmation email to your address and you will be redirected to the seller's website",
+        "trialText": "ITAYour trial has been started. You will receive the product within minutes, check your email!",
+        "subText":"ITAYour subscription is now active. You will receive an email with the confirmation of your purchase and a receipt soon.",
+        "invoiceProductText":"ITAYour invoice has been paid. You will receive the product within minutes, check your email!",
+        "messageFrom": "ITAMessage from",
+        "product": {
+            "fileName": "ITAFile Name: ",
+            "size": "ITASize : ",
+            "downloadFile": "ITADownload File",
+            "serials": "ITASerials:",
+            "copyToClipboard":"ITACopy to Clipboard",
+            "copiedToClipboard":"ITACopied to Clipboard",
+            "saveAsFile":"ITASave as File",
+            "productIssued": "ITAProduct Issued:",
+            "service": "ITAService:",
+            "noService": "ITANo service text",
+            "noServiceText": "ITAThis product has no service text, please wait further actions by the seller or open a ticket on his page.",
+            "file": "ITAFile :",
+            "contact": "ITAContact"
+        },
+        "subscription":{
+            "title": "ITASubscription Purchase",
+            "sentToEmail": ["ITAsubscriptions are sent directly to your email, please check for an email sent by", " ITAto get your product and/or get in touch with the business."],
+            "pleaseNote": "ITAPlease Note",
+            "help": "ITAIf you need help, please refer to the merchant's contact page using the button below. You can also access our customer billing portal to manage the active subscriptions in your name.",
+            "return": "ITAYou can now return to the merchant's website, where the subscription will be active soon. If you need help, please refer to the merchant's contact page using the button below. You can also access our customer billing portal to manage the active subscriptions in your name.",
+            "contactMerchant": "ITAContact the merchant",
+            "goToPortal": "ITAGo to Customer Billing Portal"
         }
     }
 }

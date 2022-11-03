@@ -1,6 +1,6 @@
 {% set invoice = args.invoice %}
 {% set info = args.info %}
-
+{% set lang = global.lang.delivery %}
 {% set products = [] %}
 {% for productId, product in info %}
   {% if productId != 'feedback_uniqid' %}
@@ -31,7 +31,7 @@
 
       {% if text %}
         <div class="sellix-delivery-product skip">
-          <div class="sellix-delivery-product-title is-cart">Message from {{ invoice.name }}:</div>
+          <div class="sellix-delivery-product-title is-cart">{{lang.messageFrom}} {{ invoice.name }}:</div>
           <div class="sellix-delivery-product-item skip is-cart">
             <div class="sellix-text">
               <p>{{ text }}</p>

@@ -6,23 +6,24 @@
 {% set isProductSubscription = invoice.type == 'PRODUCT_SUBSCRIPTION' %}
 {% set isSubscription = invoice.type == 'SUBSCRIPTION'  %}
 {% set isShoppingCart = invoice.type == 'SHOPPING_CART' %}
+{% set lang = global.lang.delivery %}
 
 <div id="sellix-delivery-title-{{ id }}">
   {% if isSubscription %}
     <span class="sellix-delivery-header-title-text">
-      Your Order for <strong>{{ invoice.subscription.name }} Subscription</strong> is completed.
+      {{lang.subOrderCompleted[0]}}<strong>{{ invoice.subscription.name }} {{lang.subOrderCompleted[1]}}</strong> {{lang.subOrderCompleted[0]}}
     </span>
   {% elif isShoppingCart %}
-    <span class="sellix-delivery-header-title-text">Order for Shopping Cart is completed.</span>
+    <span class="sellix-delivery-header-title-text">{{lang.orderShoppingCart}}</span>
   {% elif isProductSubscription %}
-    <span class="sellix-delivery-header-title-text">Your subscription purchase was successful.</span>
+    <span class="sellix-delivery-header-title-text">{{lang.subscriptionSuccessful}}</span>
   {% else %}
-    <span class="sellix-delivery-header-title-text">Your Order for <b>{{ product.title }}</b> is completed.</span>
+    <span class="sellix-delivery-header-title-text">{{lang.prodOrderCompleted[0]}} <b>{{ product.title }}</b>{{lang.prodOrderCompleted[1]}} </span>
   {% endif %}
 
   <div class="sellix-delivery-header-title-uniqid {{ 'is-cart' if isShoppingCart else '' }}">
     <span class="d-flex">
-      <span>Invoice ID:</span>
+      <span>{{lang.invoiceId}}</span>
       <span class="sellix-copy-invoice-id cursor-pointer">
         <b>
           {{ invoice.uniqid }}
@@ -33,13 +34,13 @@
       </span>
       <div class="sellix-copied-label">
         {% render_snippet 'Check icon' %}
-        <span>Copied</span>
+        <span>{{lang.copied}}</span>
       </div>
     </span>
 
     {% if info and isShoppingCart %}
       <button class="sellix-save-invoice-btn medium primary">
-        <i class="fas fa-save"></i>&nbsp;&nbsp;Download Invoice
+        <i class="fas fa-save"></i>&nbsp;&nbsp;{{lang.downloadInvoice}}
       </button>
     {% endif %}
   </div>

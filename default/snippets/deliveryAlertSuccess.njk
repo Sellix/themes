@@ -2,6 +2,7 @@
 {% set isDev = args.is_dec %}
 {% set isTrial = args.is_trial %}
 {% set isProductSubscription = args.is_product_subscription %}
+{% set lang = global.lang.delivery %}
 
 <div class="sellix-delivery-success">
   <div class="sellix-delivery-success-header">
@@ -23,31 +24,26 @@
 
     <div class="sellix-delivery-success-title">
       {% if isDev %}
-        Payment Completed
+        {{lang.paymentCompleted}}
       {%- elif isTrial -%}
-        Trial Start
+        {{lang.trialStart}}
       {%- elif isProductSubscription -%}
-        Subscription Started
+        {{lang.subStarted}}
       {% else %}
-        Order completed!
+        {{lang.orderCompleted}}
       {% endif %}
     </div>
   </div>
 
   <div class="sellix-delivery-success-info">
     {% if isDev %}
-      Your invoice has been paid.<br/>
-      We will send a confirmation email to your address and you will be redirected to the seller's
-      website
+      {{lang.invoiceConfirmationEmailText}}
     {% elif isTrial %}
-      Your trial has been started. <br/>
-      You will receive the product within minutes, check your email!
+      {{lang.trialText}}
     {% elif isProductSubscription %}
-      Your subscription is now active. <br/>
-      You will receive an email with the confirmation of your purchase and a receipt soon.
+      {{lang.subText}}
     {% else %}
-      Your invoice has been paid. <br/>
-      You will receive the product within minutes, check your email!
+      {{lang.invoiceProductText}}
     {% endif %}
   </div>
 </div>

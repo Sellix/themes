@@ -1,11 +1,11 @@
 {% set invoice = args.invoice %}
 {% set info = args.info %}
 {% set text = info.delivery_text %}
-
+{% set lang = global.lang.delivery %}
 <div>
   {% if text %}
     <div class="sellix-delivery-product skip">
-      <div class="sellix-delivery-product-title">Message from {{- invoice.name -}}:</div>
+      <div class="sellix-delivery-product-title">{{lang.messageFrom}}{{- invoice.name -}}:</div>
       <div class="sellix-delivery-product-item skip">
         <div class="sellix-text">
           <p>{{- text -}}</p>
