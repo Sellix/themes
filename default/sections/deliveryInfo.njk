@@ -9,7 +9,7 @@
 {% set isInvoice = renderOptions['templateName'] == 'Invoice/Invoice' %}
 
 <div class="sellix-delivery-body">
-  <div class="sellix-delivery-products {{ 'empty' if not isSubscription and not isProductSubscription and not info else '' }} {{ 'is-cart' if isShoppingCart else '' }}">
+  <div class="sellix-delivery-products {{ 'is-cart' if isShoppingCart else '' }}">
     {% for block_name in settings.block_order %}
       {% if not properties.enable_right_sidebar or loop.revindex > properties.right_sidebar_blocks_count | int %}
         {% render_block block_name %}

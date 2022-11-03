@@ -6,9 +6,15 @@
 {% set isProductSubscription = invoice.type == 'PRODUCT_SUBSCRIPTION' %}
 {% set isSubscription = invoice.type == 'SUBSCRIPTION'  %}
 {% set isShoppingCart = invoice.type == 'SHOPPING_CART' %}
+{% set showAlert = invoice.paypal_email_delivery and invoice.gateway === 'PAYPAL' %}
 
+{% set notEmpty = isSubscription
+  or (not isShoppingCart and not isSubscription and info)
+  or (isShoppingCart and info)
+  or isProductSubscription
+%}
 
-<div class="{{ 'is-cart' if isShoppingCart else '' }}">
+<div class="sellix-delivery-products-info {{ '' if notEmpty else 'empty'  }} {{ 'is-cart' if isShoppingCart else '' }}">
   {% if isSubscription %}
     {# <Subscription invoice={invoice} /> #}
   {% endif %}
@@ -17,12 +23,13 @@
     {% render_snippet 'Delivery product', invoice=invoice, info=info %}
   {% endif %}
 
-  {% if not isProductSubscription %}
-    {# <Alert
-      text="Due to security reasons, your product has been delivered to your email linked with the PayPal account you have used to complete the purchase. This is done to avoid fraud attempts."
-      title="Searching your product?"
-      show={invoice.paypal_email_delivery && invoice.gateway === "PAYPAL"}
-    /> #}
+  {% if not isProductSubscription and showAlert %}
+    <div class="alert show">
+        <b>{% render_snippet 'Info icon' %}Searching your product?</b>
+        <span>
+          Due to security reasons, your product has been delivered to your email linked with the PayPal account you have used to complete the purchase. This is done to avoid fraud attempts.
+        </span>
+    </div>
   {% endif %}
 
   {% if isShoppingCart and info %}
