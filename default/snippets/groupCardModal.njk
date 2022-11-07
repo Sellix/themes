@@ -1,12 +1,10 @@
+{% set id = uid() %}
+
 <style>
   .group-body {
     overflow-y: scroll;
     flex: 1 0 auto;
     max-height: calc(90vh - 120px);
-  }
-
-  .sellix-store.group-modal {
-    min-height: auto;
   }
 
   @media (max-width: 768px) {
@@ -17,7 +15,9 @@
 </style>
 
 <div id="group-card-modal" class="sellix-modal group-modal" style="display:none">
-  <a href='#' class="sellix-modal-close" rel="modal:close"><i class="fa-light fa-times" style="color: var(--darkFontColor); font-size: 1.25rem;"></i></a>
+  <a href='#' class="sellix-modal-close" rel="modal:close">
+    <i class="fa-light fa-times" style="color: var(--darkFontColor); font-size: 1.25rem;"></i>
+  </a>
   <div class="sellix-modal-header group-header" style="padding-right:2.5rem"></div>
   <div class="sellix-modal-body group-body"></div>
 </div>

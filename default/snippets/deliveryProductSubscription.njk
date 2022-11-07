@@ -17,11 +17,13 @@
 
     <div class="sellix-text">
       {% if invoice.subtype %}
-        <div class="sellix-delivery-product-title">Please Note</div>
-        <p>
-          If you need help, please refer to the merchant's contact page using the button below.
-          You can also access our customer billing portal to manage the active subscriptions in your name.
-        </p>
+        {% render_snippet 'Alert',
+          show=true,
+          small=true,
+          blue=true,
+          title='Please note',
+          text='If you need help, please refer to the merchant\'s contact page using the button below. You can also access our customer billing portal to manage the active subscriptions in your name.'
+        %}
       {% else %}
         <p>
           You can now return to the merchant's website, where the subscription will be active soon.

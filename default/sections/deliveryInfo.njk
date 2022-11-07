@@ -7,6 +7,7 @@
 {% set isProductSubscription = invoice.type == 'PRODUCT_SUBSCRIPTION' %}
 {% set isSubscription = invoice.type == 'SUBSCRIPTION'  %}
 {% set isInvoice = renderOptions['templateName'] == 'Invoice/Invoice' %}
+{% set isDev = (invoice.developer_invoice | int) if invoice else false %}
 
 <div class="sellix-delivery-body">
   <div class="sellix-delivery-products {{ 'is-cart' if isShoppingCart else '' }}">
@@ -28,8 +29,17 @@
   {% endif %}
 </div>
 
-<a href="/">
-  <button class="sellix-delivery-back medium primary">
-    Back to {{ invoice.name }}'s shop
-  </button>
-</a>
+{% if isSubscription %}
+{% elif isDev and invoice.developer_return_url %}
+  <a href={{ invoice.developer_return_url }}>
+    <button type="button" class="medium primary sellix-delivery-back">
+      Back to {{ invoice.name }}'s shop
+    </button>
+  </a>
+{% else %}
+  <a href="/" style="color: white">
+    <button type="button" class="medium primary">
+      Back to {{ invoice.name }}'s shop
+    </button>
+  </a>
+{% endif %}

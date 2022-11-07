@@ -59,6 +59,7 @@
 <script type='application/javascript'>
   $(document).ready(function () {
     $('#sellix-card-container-{{id}}').on('click', function () {
+      console.log('Click!!!');
       const groupId = $(this).data('group-id');
       const items = __RENDER_CONTEXT__.common.shopInfo.items;
       const group = items.find(({uniqid}) => uniqid === groupId);
@@ -72,5 +73,11 @@
         });
       }
     });
+
+    {% if global.request.type === 'group' and global.request.options.itemId === group.uniqid %}
+      setTimeout(function() {
+        $('#sellix-card-container-{{id}}').click();
+      }, 0);
+    {% endif %}
   });
 </script>
