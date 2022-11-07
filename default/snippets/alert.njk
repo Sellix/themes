@@ -1,0 +1,7 @@
+<div class="alert fade {{ 'preline' if args.preline else '' }} {{ 'small' if args.small else '' }} {{ 'show' if args.show else '' }} {{ 'red' if args.red else '' }} {{ 'blue' if args.blue else '' }}">
+	{% if not args.skipTitle %}
+		<b>{% render_snippet 'Info icon' %}{{ args.title }}</b>
+	{% endif %}
+
+	<span>{{ args.text }}</span>
+</div>
