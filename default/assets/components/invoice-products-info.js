@@ -18,7 +18,7 @@
           snippetName: 'Invoice product info',
           dependencies: [],
         });
-      } else if (['PRODUCT', 'PRODUCT_SUBSCRIPTION'].includes(this.invoice.type)) {
+      } else {
         this.renderComponent({
           snippetName: 'Invoice product info',
           dependencies: [{ type: 'product', productId: this.invoice.product_id }],

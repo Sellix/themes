@@ -7,7 +7,8 @@
     {% render_snippet 'Invoice subscription details' %}
   {% elif invoice.type === 'SHOPPING_CART' %}
     {% render_snippet 'Checkout products', invoice=invoice, products=invoice.products, properties=properties %}
-  {% elif invoice.type === 'PRODUCT' or invoice.type === 'PRODUCT_SUBSCRIPTION' %}
+  {#  {% elif invoice.type === 'PRODUCT' or invoice.type === 'PRODUCT_SUBSCRIPTION' %}#}
+  {% else %}
     {% render_snippet 'Addons', product=product, invoice=invoice, properties=properties, currency=product.currency %}
 
     {% render_snippet 'Product details',

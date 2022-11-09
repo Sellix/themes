@@ -1010,11 +1010,84 @@
   opacity: 1;
   z-index: 1;
 }
-
 .sellix-copied-label.show > svg {
   width: 16px;
   height: 16px;
   background: #00d81e;
   border-radius: 100%;
   /*padding: .25rem;*/
+}
+
+
+.sellix-store .sellix-checkbox {
+  background-color: #0000;
+  border: 1px solid #0000;
+  position: relative;
+  display: block;
+  min-height: 1.5rem;
+  padding-left: 1.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  margin-right: 1.5rem;
+}
+.sellix-store .sellix-checkbox input {
+  box-sizing: border-box;
+  padding: 0;
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.sellix-store .sellix-checkbox input:not(:disabled):active ~ label::before {
+  color: #fff;
+  background-color: #e3dcfb;
+  border-color: #e3dcfb;
+}
+.sellix-store .sellix-checkbox input:focus ~ label::before {
+  border-color: #beaef6;
+  box-shadow: 0 0 0 0.2rem rgba(97, 59, 234, 0.25);
+}
+.sellix-store .sellix-checkbox input:checked ~ label::before {
+  color: #fff;
+  border-color: #613bea;
+  background-color: #613bea;
+}
+.sellix-store .sellix-checkbox input:checked ~ label::after {
+  background-image: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 8 8%27%3e%3cpath fill=%27%23fff%27 d=%27M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z%27/%3e%3c/svg%3e') !important;
+  border: 1px solid var(--borderColor);
+}
+.sellix-store .sellix-checkbox label {
+  position: relative;
+  margin-bottom: 0;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 13px;
+}
+.sellix-store .sellix-checkbox label:before {
+  position: absolute;
+  cursor: pointer;
+  left: -1.5rem;
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+  content: '';
+  background-color: #fff;
+  border: #e8e8e9 solid 1px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 2px;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.sellix-store .sellix-checkbox label:after {
+  top: 50%;
+  cursor: pointer;
+  transform: translateY(-50%);
+  position: absolute;
+  left: -1.5rem;
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  content: '';
+  background: no-repeat 50%/50% 50%;
 }

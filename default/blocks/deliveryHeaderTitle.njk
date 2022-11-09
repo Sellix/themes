@@ -3,12 +3,15 @@
 {% set invoice = global.common.invoiceInfo.invoice %}
 {% set info = global.common.invoiceInfo.info %}
 {% set product = invoice.product or {} %}
+{% set isDev = (invoice.developer_invoice | int) if invoice else false %}
 {% set isProductSubscription = invoice.type == 'PRODUCT_SUBSCRIPTION' %}
 {% set isSubscription = invoice.type == 'SUBSCRIPTION'  %}
 {% set isShoppingCart = invoice.type == 'SHOPPING_CART' %}
 
 <div id="sellix-delivery-title-{{ id }}">
-  {% if isSubscription %}
+  {% if isDev %}
+    <div class="sellix-delivery-header-title-text w-100">Payment Completed</div>
+  {% elif isSubscription %}
     <span class="sellix-delivery-header-title-text">
       Your Order for <strong>{{ invoice.subscription.name }} Subscription</strong> is completed.
     </span>
