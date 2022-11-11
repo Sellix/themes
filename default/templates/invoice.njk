@@ -1,21 +1,3 @@
 {% for section in settings.section_order %}
   {% render_section section %}
 {% endfor %}
-
-<script type='application/javascript'>
-  $(document).ready(function() {
-    $(document).on('SellixInvoiceShowProductDescription', function(event, eventInfo) {
-      if (!eventInfo || !eventInfo.visible) {
-        $('.shop-product-container').css({ 'justify-content': 'space-around' });
-        $('.shop-product-info').css({ display: 'none' });
-        $('.shop-product-info-shop').css({ opacity: 0 });
-
-      } else {
-        $('.shop-product-info-shop').css({ opacity: 1 });
-        $('.shop-product-info').css({ display: '' });
-        $('.shop-product-container').css({ 'justify-content': 'space-between' });
-        $(document).trigger('SellixShowProductDescription');
-      }
-    });
-  });
-</script>

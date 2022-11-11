@@ -1,6 +1,6 @@
 {
   "id": "default",
-  "version": "0.0.28",
+  "version": "0.0.29",
   "is_active": 0,
   "name": "Default theme",
   "settings": {
@@ -2552,7 +2552,9 @@
               "visible": true,
               "block_order": [
                 "Invoice products info",
-                "Invoice details"
+                "Invoice details",
+                "Invoice product badge",
+                "Invoice track badge"
               ],
               "blocks": {
                 "Invoice details": {
@@ -2563,6 +2565,18 @@
                 },
                 "Invoice products info": {
                   "name": "Invoice products info",
+                  "settings": {
+                    "visible": true
+                  }
+                },
+                "Invoice product badge": {
+                  "name": "Invoice product badge",
+                  "settings": {
+                    "visible": true
+                  }
+                },
+                "Invoice track badge": {
+                  "name": "Invoice track badge",
                   "settings": {
                     "visible": true
                   }
@@ -3819,6 +3833,14 @@
           {
             "name": "Invoice products info",
             "limit": 1
+          },
+          {
+            "name": "Invoice product badge",
+            "limit": 1
+          },
+          {
+            "name": "Invoice track badge",
+            "limit": 1
           }
         ],
         "schema": [
@@ -3830,13 +3852,13 @@
           },
           {
             "id": "right_sidebar_blocks_count",
-            "max": 3,
+            "max": 4,
             "min": 1,
             "step": 1,
             "type": "range",
             "unit": "",
             "label": "Sidebar blocks count",
-            "defaultValue": 1
+            "defaultValue": 3
           }
         ]
       },
@@ -6003,6 +6025,300 @@
         "id": "blocks/invoiceProductsInfo.njk"
       }
     },
+    "Invoice product badge": {
+      "id": "Invoice product badge",
+      "name": "Invoice product badge",
+      "settings": {
+        "schema": [
+          {
+            "id": "show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": true
+          },
+          {
+            "id": "container_background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              }
+            ],
+            "defaultValue": "background_accent_light"
+          },
+          {
+            "id": "container_border_radius",
+            "type": "range",
+            "max": 2,
+            "min": 0,
+            "step": 0.25,
+            "unit": "rem",
+            "label": "Border radius",
+            "defaultValue": 0.5
+          },
+          {
+            "id": "container_padding_vert",
+            "type": "range",
+            "max": 48,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 16
+          },
+          {
+            "id": "container_padding_horiz",
+            "type": "range",
+            "max": 48,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 16
+          },
+          {
+            "id": "container_shadow",
+            "type": "select",
+            "label": "Drop shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 2",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+              }
+            ],
+            "defaultValue": "none"
+          },
+          {
+            "id": "header_body",
+            "type": "header",
+            "content": "Body text settings"
+          },
+          {
+            "id": "body_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              },
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              }
+            ],
+            "defaultValue": "dark_font_color"
+          },
+          {
+            "id": "body_font_size",
+            "max": 20,
+            "min": 10,
+            "step": 2,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 14
+          },
+          {
+            "id": "body_text_align",
+            "type": "select",
+            "label": "Text align",
+            "options": [
+              {
+                "title": "Left",
+                "value": "left"
+              },
+              {
+                "title": "Right",
+                "value": "right"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              }
+            ],
+            "defaultValue": "left"
+          }
+        ]
+      },
+      "file": {
+        "checksum": "checksum of file",
+        "id": "blocks/invoiceProductBadge.njk"
+      }
+    },
+    "Invoice track badge": {
+      "id": "Invoice track badge",
+      "name": "Invoice track badge",
+      "settings": {
+        "schema": [
+          {
+            "id": "show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": true
+          },
+          {
+            "id": "container_background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              }
+            ],
+            "defaultValue": "background_accent_light"
+          },
+          {
+            "id": "container_border_radius",
+            "type": "range",
+            "max": 2,
+            "min": 0,
+            "step": 0.25,
+            "unit": "rem",
+            "label": "Border radius",
+            "defaultValue": 0.5
+          },
+          {
+            "id": "container_padding_vert",
+            "type": "range",
+            "max": 48,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 16
+          },
+          {
+            "id": "container_padding_horiz",
+            "type": "range",
+            "max": 48,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 16
+          },
+          {
+            "id": "container_shadow",
+            "type": "select",
+            "label": "Drop shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 2",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+              }
+            ],
+            "defaultValue": "none"
+          },
+          {
+            "id": "header_body",
+            "type": "header",
+            "content": "Body text settings"
+          },
+          {
+            "id": "body_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              },
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              }
+            ],
+            "defaultValue": "dark_font_color"
+          },
+          {
+            "id": "body_font_size",
+            "max": 20,
+            "min": 10,
+            "step": 2,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 14
+          },
+          {
+            "id": "body_text_align",
+            "type": "select",
+            "label": "Text align",
+            "options": [
+              {
+                "title": "Left",
+                "value": "left"
+              },
+              {
+                "title": "Right",
+                "value": "right"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              }
+            ],
+            "defaultValue": "left"
+          }
+        ]
+      },
+      "file": {
+        "checksum": "checksum of file",
+        "id": "blocks/invoiceTrackBadge.njk"
+      }
+    },
     "Product details": {
       "id": "Product details",
       "name": "Product details",
@@ -6320,6 +6636,12 @@
             "defaultValue": true
           },
           {
+            "id": "show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": true
+          },
+          {
             "id": "container_background_color",
             "type": "select",
             "label": "Background color",
@@ -6340,12 +6662,6 @@
             "defaultValue": "background_accent_dark"
           },
           {
-            "id": "show_border",
-            "type": "checkbox",
-            "label": "Show border",
-            "defaultValue": true
-          },
-          {
             "id": "container_border_radius",
             "type": "range",
             "max": 2,
@@ -6356,13 +6672,23 @@
             "defaultValue": 0.5
           },
           {
-            "id": "container_padding",
+            "id": "container_padding_vert",
             "type": "range",
             "max": 48,
             "min": 0,
             "step": 1,
             "unit": "px",
-            "label": "Padding",
+            "label": "Padding vertical",
+            "defaultValue": 16
+          },
+          {
+            "id": "container_padding_horiz",
+            "type": "range",
+            "max": 48,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
             "defaultValue": 16
           },
           {
@@ -7348,12 +7674,23 @@
         "id": "snippets/invoiceSubscriptionDetails.njk"
       }
     },
-    "Invoice track button": {
-      "id": "Invoice track button",
-      "name": "Invoice track button",
+    "Invoice product badge": {
+      "id": "Invoice product badge",
+      "name": "Invoice product badge",
+      "settings": {
+        "schema": []
+      },
       "file": {
         "checksum": "checksum of file",
-        "id": "snippets/invoiceTrackButton.njk"
+        "id": "snippets/invoiceProductBadge.njk"
+      }
+    },
+    "Invoice track badge": {
+      "id": "Invoice track badge",
+      "name": "Invoice track badge",
+      "file": {
+        "checksum": "checksum of file",
+        "id": "snippets/invoiceTrackBadge.njk"
       }
     },
     "Invoice product info": {
@@ -7362,14 +7699,6 @@
       "file": {
         "checksum": "checksum of file",
         "id": "snippets/invoiceProductInfo.njk"
-      }
-    },
-    "Invoice product details button": {
-      "id": "Invoice product details button",
-      "name": "Invoice product details button",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/invoiceProductDetailsButton.njk"
       }
     },
     "Delivery alert success": {
@@ -8223,14 +8552,14 @@
       },
       "name": "snippet-invoice-details.css"
     },
-    "snippet-invoice-track-button.css": {
-      "id": "snippet-invoice-track-button.css",
+    "snippet-invoice-track-badge.css": {
+      "id": "snippet-invoice-track-badge.css",
       "file": {
         "checksum": "checksum of File",
-        "id": "assets/css/snippet-invoice-track-button.css",
-        "cdn_url": "/mock/assets/css/snippet-invoice-track-button.css"
+        "id": "assets/css/snippet-invoice-track-badge.css",
+        "cdn_url": "/mock/assets/css/snippet-invoice-track-badge.css"
       },
-      "name": "snippet-invoice-track-button.css"
+      "name": "snippet-invoice-track-badge.css"
     },
     "snippet-shop-info.css": {
       "id": "snippet-shop-info.css",

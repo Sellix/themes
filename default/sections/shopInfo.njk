@@ -1,13 +1,9 @@
 {% set id = uid() %}
 {% set colors = themeProperties.current_colors %}
 
-{% set isInvoice = renderOptions['templateName'] == 'Invoice/Invoice' %}
-
 <style>
   .shop-info-{{ id }} {
     margin-top: 2rem;
-    opacity: {{ 0 if isInvoice else 1 }};
-    pointer-events: {{ 'none' if isInvoice else 'initial' }};
   }
 </style>
 
