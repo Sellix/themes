@@ -5640,6 +5640,12 @@
             "content": "Addons"
           },
           {
+            "id": "container_show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": true
+          },
+          {
             "id": "container_background_color",
             "type": "select",
             "label": "Background color",
@@ -5658,12 +5664,6 @@
               }
             ],
             "defaultValue": "background_accent_dark"
-          },
-          {
-            "id": "show_border",
-            "type": "checkbox",
-            "label": "Show border",
-            "defaultValue": true
           },
           {
             "id": "container_border_radius",
@@ -5809,6 +5809,7 @@
             ],
             "defaultValue": "left"
           },
+
           {
             "id": "header_product",
             "type": "header",
@@ -5851,13 +5852,23 @@
             "defaultValue": 0.5
           },
           {
-            "id": "product_container_padding",
+            "id": "product_container_padding_vert",
             "type": "range",
             "max": 48,
             "min": 0,
             "step": 1,
             "unit": "px",
-            "label": "Padding",
+            "label": "Padding vertical",
+            "defaultValue": 16
+          },
+          {
+            "id": "product_container_padding_horiz",
+            "type": "range",
+            "max": 48,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
             "defaultValue": 16
           },
           {
@@ -6018,7 +6029,162 @@
       "id": "Invoice products info",
       "name": "Invoice products info",
       "settings": {
-        "schema": []
+        "schema": [
+          {
+            "id": "container_background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              }
+            ],
+            "defaultValue": "background_accent_dark"
+          },
+          {
+            "id": "container_show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": true
+          },
+          {
+            "id": "container_border_radius",
+            "type": "range",
+            "max": 2,
+            "min": 0,
+            "step": 0.25,
+            "unit": "rem",
+            "label": "Border radius",
+            "defaultValue": 0.5
+          },
+          {
+            "id": "container_padding_vert",
+            "type": "range",
+            "max": 48,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 16
+          },
+          {
+            "id": "container_padding_horiz",
+            "type": "range",
+            "max": 48,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 16
+          },
+          {
+            "id": "container_shadow",
+            "type": "select",
+            "label": "Drop shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 2",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+              }
+            ],
+            "defaultValue": "none"
+          },
+          {
+            "id": "title_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              },
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              }
+            ],
+            "defaultValue": "light_font_color"
+          },
+          {
+            "id": "title_font_size",
+            "max": 26,
+            "min": 14,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 18
+          },
+          {
+            "id": "title_text_align",
+            "type": "select",
+            "label": "Text align",
+            "options": [
+              {
+                "title": "Left",
+                "value": "left"
+              },
+              {
+                "title": "Center",
+                "value": "right"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              },
+              {
+                "title": "Space between",
+                "value": "space-between"
+              }
+            ],
+            "defaultValue": "space-between"
+          },
+          {
+            "id": "title_font_weight",
+            "type": "select",
+            "label": "Font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 500
+          }
+        ]
       },
       "file": {
         "checksum": "checksum of file",
@@ -6345,7 +6511,7 @@
             "defaultValue": "background_accent_dark"
           },
           {
-            "id": "show_border",
+            "id": "container_show_border",
             "type": "checkbox",
             "label": "Show border",
             "defaultValue": true

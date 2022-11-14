@@ -3,31 +3,42 @@
 {% set product = args.product %}
 {% set invoice = args.invoice %}
 {% set colors = args.colors %}
-{% set properties = args.properties %}
 
 {% set hideSold = (shop.hide_products_sold or (not shop.hide_products_sold and not product.sold_count)) and not product.sold_count %}
 
+{% set properties = args.properties %}
 {% set backgroundColor = properties.container_background_color if properties.container_background_color is defined else 'background_accent_dark' %}
-{% set showBorder = properties.show_border if properties.show_border is defined else true %}
+{% set showBorder = properties.container_show_border if properties.container_show_border is defined else true %}
+{% set borderRadius = properties.container_border_radius if properties.container_border_radius is defined else 0.5 %}
+{% set shadow = properties.container_shadow if properties.container_shadow is defined else 'none' %}
+{% set paddingVert = properties.container_padding_vert if properties.container_padding_vert is defined else '16' %}
+{% set paddingHoriz = properties.container_padding_horiz if properties.container_padding_horiz else '16' %}
 {% set titleFontColor = properties.title_font_color if properties.title_font_color is defined else 'light_font_color' %}
 {% set titleFontSize = properties.title_font_size if properties.title_font_size is defined else 24 %}
 {% set titleTextAlign = properties.title_text_align if properties.title_text_align is defined else 'left' %}
 
+<style>
+  .sellix-product-description-{{ id }} {
+    border: {{ '1px solid var(--borderColor)' if showBorder else 'none' }}!important;
+    background: {{ colors[backgroundColor] }}!important;
+    border-radius: {{ borderRadius }}rem!important;
+    box-shadow: {{ shadow }}!important;
+    padding: {{ paddingVert }}px {{ paddingHoriz }}px!important;
+    position: relative;
+    margin-bottom: 1rem;
+  }
+  .shop-product-info-product-title-{{ id }} {
+    color: {{ colors[titleFontColor] }}!important;
+    font-size: {{ titleFontSize }}px!important;
+    justify-content: {{ titleTextAlign }}!important;
+  }
+</style>
+
 <div
   id="sellix-product-description-{{ id }}"
-  style="padding: 1rem;{#
-    #} {{ 'border: 1px solid var(--borderColor);' if showBorder else '' }}{#
-    #} background: {{ colors[backgroundColor] }};{#
-    #} border-radius: .5rem;{#
-    #} position: relative;{#
-    #} margin-bottom: 1rem"
+  class="sellix-product-description-{{ id }}"
 >
-  <div
-    class="shop-product-info-product-title {{'mb-0' if hideSold else ''}}"
-    style="color: {{ colors[titleFontColor] }};{#
-      #}font-size: {{ titleFontSize }}px;{#
-      #}justify-content: {{ titleTextAlign }}"
-  >
+  <div class="shop-product-info-product-title {{'mb-0' if hideSold else ''}} shop-product-info-product-title-{{ id }}">
     {% if product.title %}
       {{product.title}}
     {% else %}

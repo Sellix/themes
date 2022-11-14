@@ -1,6 +1,7 @@
 {% set id =uid() %}
 {% set invoice = global.common.invoiceInfo.invoice %}
 {% set colors = themeProperties.current_colors %}
+{% set isCart = invoice.type === 'SHOPPING_CART' %}
 
 {% set showBorder = args.properties.show_border %}
 {% set borderRadius = args.properties.container_border_radius or '0.5' %}

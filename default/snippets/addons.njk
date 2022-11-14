@@ -4,14 +4,21 @@
 {% set colors = themeProperties.current_colors %}
 {% set product = args.product %}
 {% set invoice = args.invoice %}
-{% set properties = args.properties %}
 {% set currency = args.currency %}
 
-{% set showBorder = properties.show_border if properties.show_border is defined else true %}
-{% set containerBorderRadius = properties.container_border_radius if properties.container_border_radius is defined else 0.5 %}
-{% set containerShadow = properties.container_shadow if properties.container_shadow is defined else 'none' %}
-{% set containerPaddingVert = properties.container_padding_vert if properties.container_padding_vert is defined else 8 %}
-{% set containerPaddingHoriz = properties.container_padding_horiz if properties.container_padding_horiz is defined else 16 %}
+{% set properties = args.properties %}
+{% set backgroundColor = properties.container_background_color if properties.container_background_color is defined else 'background_accent_dark' %}
+{% set showBorder = properties.container_show_border if properties.container_show_border is defined else true %}
+{% set shadow = properties.container_shadow if properties.container_shadow is defined else 'none' %}
+{% set borderRadius = properties.container_border_radius if properties.container_border_radius is defined else 0.5 %}
+{% set paddingVert = properties.container_padding_vert if properties.container_padding_vert is defined else 8 %}
+{% set paddingHoriz = properties.container_padding_horiz if properties.container_padding_horiz is defined else 16 %}
+{% set titleFontColor = properties.title_font_color if properties.title_font_color is defined else 'light_font_color' %}
+{% set titleFontSize = properties.title_font_size if properties.title_font_size is defined else 24 %}
+{% set titleTextAlign = properties.title_text_align if properties.title_text_align is defined else 'left' %}
+{% set bodyFontColor = properties.body_font_color if properties.body_font_color is defined else 'light_font_color' %}
+{% set bodyFontSize = properties.body_font_size if properties.body_font_size is defined else 24 %}
+{% set bodyTextAlign = properties.body_text_align if properties.body_text_align is defined else 'left' %}
 
 {% set isInvoice = global.request.type == 'invoice' %}
 
@@ -21,37 +28,41 @@
   {% set addons = product.addons %}
 {% endif %}
 
+<style>
+  .shop-product-info-addon-{{ id }} {
+    background: {{ colors[backgroundColor] }}!important;
+    border: {{ '1px solid var(--borderColor)' if showBorder else 'none' }}!important;
+    box-shadow: {{ shadow }}!important;
+    border-radius: {{ borderRadius }}rem!important;
+    padding: {{ paddingVert }}px {{ paddingHoriz }}px!important;
+  }
+
+  .shop-product-info-addon-title-{{ id }} {
+      color: {{ colors[titleFontColor] }}!important;
+      font-size: {{ titleFontSize }}px!important;
+      justify-content: {{ titleTextAlign }}!important;
+  }
+
+  .shop-product-info-addon-description-{{ id }} {
+      justify-content: {{ bodyTextAlign }}!important;
+  }
+
+  .sellix-text.override-{{ id }} * {
+      color: {{ colors[bodyFontColor] }}!important;
+      font-size: {{ bodyfontSize }}px!important;
+  }
+</style>
+
 {% if product.type === "SUBSCRIPTION" and product.trial_period %}
   {# Do nothing #}
 {% else %}
-  <style>
-    .sellix-text.override-{{ id }} * {
-  {% if colors[properties.body_font_color] %}
-      color: {{ colors[properties.body_font_color] }};
-  {% endif %}
-  {% if properties.body_font_size %}
-      font-size: {{ properties.body_font_size }}px;
-  {% endif %}
-    }
-  </style>
-
   <div id="shop-product-addons-{{ product.uniqid }}">
     {% for addon in addons %}
-      <div
-        class="shop-product-info-addon"
-        style="{{ 'border: none;' if not showBorder }}{#
-            #} {% if colors[properties.container_background_color] %}background: {{ colors[properties.container_background_color] }};{% endif %}{#
-            #} box-shadow: {{ containerShadow }};{#
-            #} border-radius: {{ containerBorderRadius }}rem;{#
-            #} padding: {{ containerPaddingVert }}px {{ containerPaddingHoriz }}px;"
-      >
+      <div class="shop-product-info-addon shop-product-info-addon-{{ id }}">
         <div class="shop-product-info-addon-wrapper">
           <div
-            class="shop-product-info-addon-title"
+            class="shop-product-info-addon-title shop-product-info-addon-title-{{ id }}"
             data-addon-id="{{ addon.uniqid }}"
-            style="{% if colors[properties.title_font_color] %}color: {{ colors[properties.title_font_color] }};{% endif %}{#
-              #}{% if properties.title_font_size %}font-size: {{ properties.title_font_size }}px;{% endif %}{#
-              #}line-height: {{ properties.title_line_height }}%"
           >
             {{ addon.title }}
             {% if addon.description %}
@@ -77,10 +88,7 @@
           style="height: 0; overflow: hidden;"
           data-addon-id="{{ addon.uniqid }}"
         >
-          <div
-            class="shop-product-info-addon-description"
-            style="justify-content: {{ properties.body_text_align }};"
-          >
+          <div class="shop-product-info-addon-description .shop-product-info-addon-description-{{ id }}">
             <div class="sellix-text override-{{ id }}">
               {{addon.description | html_sanitize | safe}}
             </div>

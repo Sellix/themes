@@ -8,7 +8,7 @@
 {% set isCart = product.isCart %}
 {% set colors = themeProperties.current_colors %}
 {% set properties = args.properties %}
-{% set show_in_modal = properties.show_in_modal %}
+{% set showInModal = properties.show_in_modal %}
 
 <style>
   .warranty-badge-{{ id }} {
@@ -74,23 +74,23 @@
 {% if warranty != 0 %}
   <div
     id="sellix-product-warranty-badge-{{id}}"
-    class="sellix-cart-warranty warranty-badge warranty-badge-{{ id }} {{'sellix-cart-warranty' if isCart else ''}} {{ 'warranty-btn' if show_in_modal else '' }}"
+    class="sellix-cart-warranty warranty-badge warranty-badge-{{ id }} {{'sellix-cart-warranty' if isCart else ''}} {{ 'warranty-btn' if showInModal else '' }}"
   >
     <div class='warranty-head'>
       {% render_snippet 'Warranty icon' %}
       <div class='warranty-head-title'>
         <div>Product Warranty</div>
-        {% if properties.show_in_modal %}
+        {% if showInModal %}
         <span class='warranty-hint'>Click for more info</span>
         {% endif %}
       </div>
     </div>
-    {% if not properties.show_in_modal %}
+    {% if not showInModal %}
       {{ warranty_body() }}
     {% endif %}
   </div>
 
-  {% if show_in_modal %}
+  {% if showInModal %}
   <div id="product-warranty-modal-{{id}}" class="sellix-modal warranty-modal" style="display: none;">
     <div class="sellix-modal-header pb-4">
       Warranty

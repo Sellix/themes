@@ -12,11 +12,32 @@
 {% set showBorder = properties.product_show_border if properties.product_show_border is defined else true %}
 {% set containerShadow = properties.product_container_shadow if properties.product_container_shadow is defined else 'none' %}
 {% set containerBorderRadius = properties.product_container_border_radius if properties.product_container_border_radius is defined else 0.5 %}
-{% set containerPadding = properties.product_container_padding if properties.product_container_padding is defined else 16 %}
+{% set containerPaddingVert = properties.product_container_padding_vert if properties.product_container_padding_vert is defined else '16' %}
+{% set containerPaddingHoriz = properties.product_container_padding_horiz if properties.product_container_padding_horiz else '16' %}
 {% set titleFontColor = properties.product_title_font_color if properties.product_title_font_color is defined else 'light_font_color' %}
 {% set titleFontSize = properties.product_title_font_size if properties.product_title_font_size is defined else 18 %}
 {% set titleFontWeight = properties.product_title_font_weight if properties.product_title_font_weight is defined else 500 %}
 {% set titleTextAlign =  properties.product_title_text_align if  properties.product_title_text_align is defined else 'space-between' %}
+
+<style>
+  .sellix-product checkout-details-item-{{ id }} {
+    background: {{ colors[backgroundColor] }}!important;
+    border: {{ "1px solid var(--borderColor)" if showBorder else "none" }}!important;;
+    box-shadow: {{ containerShadow }}!important;;
+    border-radius: {{ containerBorderRadius }}rem!important;;
+    padding: {{ containerPaddingVert }}px {{ containerPaddingHoriz }}px!important;
+  }
+
+  .checkout-details-item-title-{{ id }} {
+    justify-content: {{ titleTextAlign }};
+  }
+
+  .checkout-details-item-title-{{ id }} span {
+    color: {{ colors[titleFontColor] }}!important;
+    font-size: {{ titleFontSize }}px!important;
+    font-weight: {{ titleFontWeight }}!important;
+  }
+</style>
 
 
 <div id="sellix-product-checkout-{{product.uniqid}}" class="mb-4">
@@ -24,22 +45,9 @@
     {% render_snippet 'Addons', product=product, invoice=invoice, properties=properties, currency=shop.currency %}
   {% endif %}
 
-  <div
-    class="sellix-product checkout-details-item"
-    style="background: {{ colors[backgroundColor] }};{#
-        #} border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};{#
-        #} box-shadow: {{ containerShadow }};{#
-        #} border-radius: {{ containerBorderRadius }}rem;{#
-        #} padding: {{ containerPadding }}px;"
-  >
-    <div
-      class="checkout-details-item-title unselectable"
-      style="justify-content: {{ titleTextAlign }};"
-    >
-      <span style="color: {{ colors[titleFontColor] }};{#
-        #}font-size: {{ titleFontSize }}px;{#
-        #}font-weight: {{ titleFontWeight }};"
-      >
+  <div class="sellix-product checkout-details-item sellix-product checkout-details-item-{{ id }}">
+    <div class="checkout-details-item-title unselectable checkout-details-item-title-{{ id }}">
+      <span>
         {{product.title}}
       </span>
 
