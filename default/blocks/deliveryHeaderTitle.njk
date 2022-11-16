@@ -7,8 +7,30 @@
 {% set isProductSubscription = invoice.type == 'PRODUCT_SUBSCRIPTION' %}
 {% set isSubscription = invoice.type == 'SUBSCRIPTION'  %}
 {% set isShoppingCart = invoice.type == 'SHOPPING_CART' %}
+{% set colors = themeProperties.current_colors %}
 
-<div id="sellix-delivery-title-{{ id }}">
+{% set titleFontColor = properties.title_font_color if properties.title_font_color is defined else 'light_font_color' %}
+{% set titleFontSize = properties.title_font_size if properties.title_font_size is defined else 24 %}
+{% set titleFontWeight = properties.title_font_weight if properties.title_font_weight is defined else 400 %}
+{% set titleTextAlign = properties.title_text_align if properties.title_text_align is defined else 'left' %}
+
+<style>
+  .sellix-delivery-title-{{ id }} .sellix-delivery-header-title-text {
+    color: {{ colors[titleFontColor] }}!important;
+    font-size: {{ titleFontSize }}px!important;
+    font-weight: {{ titleFontWeight }}!important;
+    justify-content: {{ titleTextAlign }};
+  }
+
+  .sellix-delivery-title-{{ id }} .sellix-delivery-header-title-uniqid {
+    color: {{ colors[titleFontColor] }}!important;
+    font-size: {{ titleFontSize * 0.7 }}px!important;
+    font-weight: {{ titleFontWeight }}!important;
+    justify-content: {{ titleTextAlign }};
+  }
+</style>
+
+<div id="sellix-delivery-title-{{ id }}" class="sellix-delivery-title-{{ id }}">
   {% if isDev %}
     <div class="sellix-delivery-header-title-text w-100">Payment Completed</div>
   {% elif isSubscription %}

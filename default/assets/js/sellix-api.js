@@ -44,9 +44,20 @@
     }
 
     async renderComponent(renderOptions, args) {
+      const params = new Proxy(new URLSearchParams(window.location.search), {
+        get: (searchParams, prop) => searchParams.get(prop),
+      });
+
+      let url;
+      if (params.builder) {
+        url = `${this.apiUrl}/api/builder/${params.builder}/render`;
+      } else {
+        url = `${this.apiUrl}/api/render`;
+      }
+
       return jQuery.ajax({
         method: 'POST',
-        url: `${this.apiUrl}/api/render`,
+        url,
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         data: JSON.stringify({
