@@ -3,8 +3,7 @@
 {% set invoice = global.common.invoiceInfo.invoice %}
 {% set info = global.common.invoiceInfo.info %}
 {% set product = invoice.product or {} %}
-{#{% set isProductSubscription = invoice.type == 'PRODUCT_SUBSCRIPTION' %}#}
-{% set isProductSubscription = true %}
+{% set isProductSubscription = invoice.type == 'PRODUCT_SUBSCRIPTION' %}
 {% set isSubscription = invoice.type == 'SUBSCRIPTION'  %}
 {% set isShoppingCart = invoice.type == 'SHOPPING_CART' %}
 {% set showAlert = invoice.paypal_email_delivery and invoice.gateway === 'PAYPAL' %}
