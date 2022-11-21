@@ -18,7 +18,7 @@
         </a>
       {% endif %}
 
-      <div class="sellix-header-shop-name" style="text-align: {{ properties.shop_name_text_align }};">
+      <div class="sellix-header-shop-name" style="text-align: {{ properties.shop_name_text_align }};{{ 'left: 0;position: absolute;' if properties.shop_name_text_align == 'center' }}">
         <a href="/" style="width: 230px;align-items: center;height: 100%;padding: 0 1rem 0 0;">
           <span style="color: {{ colors[properties.shop_name_font_color] if properties.shop_name_font_color else 'inherit' }}; font-size: {{ properties.shop_name_font_size }}px; font-weight: {{ properties.shop_name_font_weight }};">
             {% if properties.shop_name %}
