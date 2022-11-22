@@ -2,7 +2,7 @@
 <html
   lang="en"
   style="background-color: var(--backgroundColor);"
-  class="scroll-hidden {{ 'embed' if global.render.loadEmbed else '' }}"
+  class="scroll-hidden"
 >
   <head>
     <base href="/">
@@ -128,7 +128,7 @@
       {% render_snippet 'Root css variables' %}
     </style>
 
-    {% if global.render.showCookie %}
+    {% if global.cookiePolicy.enabled %}
       <script type="text/javascript">
         var _iub = _iub || [];
         _iub.csConfiguration = {
@@ -171,28 +171,6 @@
       </script>
       <script type="text/javascript" src="//cdn.iubenda.com/cs/ccpa/stub.js"></script>
       <script type="text/javascript" src="//cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
-    {% endif %}
-
-    {% if loadTrustPilot %}
-      <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
-    {% endif %}
-
-    {% if global.render.loadEmbed %}
-      <style>
-        html {
-          background-color: transparent !important;
-        }
-        html.embed {
-          background-color: transparent !important;
-        }
-      </style>
-
-      <link href="https://cdn.sellix.io/static/css/embed.css" rel="stylesheet" />
-      <script defer src="https://cdn.sellix.io/static/js/embed.js"></script>
-    {% endif %}
-
-    {% if global.render.isEmbed %}
-      <link href="{{ 'embed.css' | asset_url }}" rel="stylesheet" type="text/css"/>
     {% endif %}
 
     <link rel="stylesheet" href="{{ 'select2.css' | asset_url }}"/>
@@ -252,8 +230,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NPLHQLJH10"></script>
 
     <script>
-      window.isAuth = {{ global.render.isAuth }}
-        window.dataLayer = window.dataLayer || [];
+      window.dataLayer = window.dataLayer || [];
 
       function gtag() {
         dataLayer.push(arguments);
@@ -299,7 +276,7 @@
       })();
     </script>
 
-    {% if global.render.showCookie %}
+    {% if global.cookiePolicy.enabled %}
       <a href="" id="cookie-iubenda" class="iubenda-cs-preferences-link" style="position: fixed;bottom: 1.25rem;left: 1rem;width: 2.25rem;background: transparent;border: 1px solid var(--borderColor);height: 2.25rem;align-items: center;justify-content: center;display: flex;font-size: 1.5rem;font-weight: 900;border-radius: 0.5rem;line-height: 1.5rem;cursor: pointer;z-index: 99999999999;">
         <img style="width: 100%; height: 100%; border-radius: 0.5rem;" src="https://cdn.sellix.io/static/logo/single-black.png" alt=""/>
       </a>

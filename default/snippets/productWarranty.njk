@@ -3,7 +3,7 @@
 {% set shop = global.common.shopInfo.shop %}
 {% set warranty = product.warranty | int %}
 {% set title = product.title %}
-{% set name = product.title %}
+{% set name = product.name %}
 {% set warranty_text = product.warranty_text %}
 {% set isCart = product.isCart %}
 {% set colors = themeProperties.current_colors %}
@@ -46,20 +46,20 @@
 
 {% macro warranty_body(extra_class) %}
 <div class="warranty-body warranty-body-{{ id }} pb-4 {{ extra_class }}">
-  <p>
+  <div>
     <b>{{title}}</b> by <b>{{name}}</b>
     {% if warranty == -1 %}
       has an unlimited warranty.
     {% else %}
       has {{warranty | seconds_to_dhms}} limited warranty.
     {% endif %}
-  </p>
+  </div>
   {% if warranty_text %}
-    <p>
+    <div>
       This warranty, as described by the seller, covers:
       <br/>
-      <span class="w-100 warranty-text" style="white-space: pre-line;">{{warranty_text}}</span>
-    </p>
+      <div class="w-100 warranty-text" style="white-space: pre-line;">{{warranty_text}}</div>
+    </div>
   {% endif %}
   <p>
     {% if warranty_text %}
