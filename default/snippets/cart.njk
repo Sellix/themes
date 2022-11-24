@@ -3,6 +3,17 @@
 {% set properties = args.properties %}
 {% set colors = themeProperties.current_colors %}
 
+{% set showBorder = properties.cart_show_border if properties.cart_show_border is defined else true %}
+{% set backgroundColor = properties.cart_background_color if properties.container_background_color is defined else 'background_accent_dark' %}
+{% set shadow = properties.cart_shadow if properties.cart_shadow is defined else 'none' %}
+
+<style>
+  .cart-dropdown-header-{{ id }} {
+    box-shadow: {{ shadow }}!important;
+    background: {{ colors[backgroundColor] }};
+    border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
+  }
+</style>
 
 <div id="cart-{{id}}" class="cart">
   <div class="box">
@@ -12,12 +23,14 @@
     </div>
   </div>
 
-  <div
-    class="cart-dropdown customFadeIn"
-    style="background: {{ colors[properties.cart_background_color] }}; border: {{ "1px solid var(--borderColor)" if properties.cart_show_border else "none" }};"
-  >
+  <div class="cart-dropdown customFadeIn cart-dropdown-header-{{ id }}">
     <div class="cart-dropdown-header unselectable">
-      <h6 style="color: {{ colors[properties.cart_title_font_color] }}; font-size: {{ properties.cart_title_font_size }}px; font-weight: {{ properties.cart_title_font_weight }}; line-height: {{ properties.cart_title_line_height }}%; text-align: {{ properties.cart_title_text_align }};">
+      <h6 style="color: {{ colors[properties.cart_title_font_color] }};{#
+        #}font-size: {{ properties.cart_title_font_size }}px;{#
+        #}font-weight: {{ properties.cart_title_font_weight }};{#
+        #}line-height: {{ properties.cart_title_line_height }}%;{#
+        #}text-align: {{ properties.cart_title_text_align }};
+      ">
         {{ properties.cart_title }}
       </h6>
 

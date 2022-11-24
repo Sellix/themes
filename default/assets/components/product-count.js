@@ -11,7 +11,8 @@
       this.$root = jQuery(selector);
 
       this.$root.find('.sellix-stock-count-picker.real').on('click', this.onClick);
-      this.$root.find('.sellix-cart-count-quantity input').keyup(this.onKeyUp);
+      this.$root.find('.sellix-cart-count-quantity input').on('keyup', this.onKeyUp);
+      this.$root.find('.sellix-cart-count-quantity input').on('paste', this.onPaste);
 
       const eventNames = ['SellixCartUpdateEvent', 'SellixRenderComponent']
         .map((eventName) => {
@@ -78,13 +79,25 @@
 
     onKeyUp = (event) => {
       event.preventDefault();
+      this.changeProductQuantity(event.target.value);
+    };
 
-      if (isNaN(event.target.value)) {
+    onPaste = (event) => {
+      event.preventDefault();
+      return false;
+    }
+
+    changeProductQuantity(newQuantity) {
+      if (isNaN(newQuantity)) {
         this.cart.add({ uniqid: this.productId }, 0);
         return;
       }
 
-      let validatedQuantity = Number(event.target.value);
+      let validatedQuantity = Number(newQuantity);
+
+      if (!Number.isInteger(validatedQuantity)) {
+        validatedQuantity = Math.floor(validatedQuantity);
+      }
 
       if (this.stock === -1) {
         if (this.product.quantity_max !== -1) {
@@ -106,7 +119,7 @@
 
       const product = this.cart.getItemById(this.productId);
       this.cart.add({ uniqid: this.productId }, validatedQuantity - product.quantity);
-    };
+    }
 
     render({ quantity }) {
       const staticProps = {

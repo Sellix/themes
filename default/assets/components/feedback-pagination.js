@@ -34,9 +34,10 @@
           { offset: startIndex, limit: endIndex },
         )
         .then((resp) => {
-          $(document).find('.sellix-feedback-wrapper').remove();
+          // $(document).find('.sellix-feedback-wrapper').remove();
           const $component = $(resp.html);
-          $component.insertBefore(this.$pagination);
+          // $component.insertBefore(this.$pagination);
+          $('.sellix-block.feedback_items').replaceWith($component);
           setTimeout(function () {
             $(document).trigger('SellixFeedbackPaginationUpdateEvent', { paginationId: this.id });
           });

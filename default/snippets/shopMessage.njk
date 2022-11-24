@@ -2,11 +2,14 @@
 Used to show popup for every user who visit the shop at the first time
 #}
 {% set shop = global.common.shopInfo.shop %}
+{% set containerSelector = args.container_selector %}
+
 {% if shop.popup_message %}
   <style>
     .sellix-toastify.t-shop-message {
       position: absolute!important;
-      right: calc((100vw - 1440px) + 45px);
+      right: 1rem!important;
+      top: 5rem!important;
       word-break: break-word;
       background: var(--backgroundColor);
       color: var(--lightFontColor);
@@ -17,6 +20,12 @@ Used to show popup for every user who visit the shop at the first time
       width: 100%;
       max-height: 290px;
       padding: 1rem;
+    }
+    @media (max-width: 768px) {
+      .sellix-toastify.t-shop-message {
+        max-width: calc(100% - 3rem);
+        right: 1.5rem!important;
+      }
     }
     .t-shop-message .t-content {
       word-break: break-word;
@@ -41,7 +50,7 @@ Used to show popup for every user who visit the shop at the first time
       if (!localStorage.getItem(hash)) {
         setTimeout(() => {
           window._shopMessage = Toastify({
-            selector: 'content',
+            selector: '{{ containerSelector }}',
             duration: 0,
             className: `sellix-toastify t-shop-message`,
             node: $(`<div>
