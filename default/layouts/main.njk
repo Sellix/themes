@@ -128,51 +128,6 @@
       {% render_snippet 'Root css variables' %}
     </style>
 
-    {% if global.cookiePolicy.enabled %}
-      <script type="text/javascript">
-        var _iub = _iub || [];
-        _iub.csConfiguration = {
-          "ccpaAcknowledgeOnDisplay":true,
-          "ccpaApplies":true,
-          "consentOnContinuedBrowsing":false,
-          "cookiePolicyId":33942990,
-          "enableCcpa":true,
-          "invalidateConsentWithoutLog":true,
-          "lang":"en",
-          "perPurposeConsent":true,
-          "siteId":2404109,
-          "whitelabel":false,
-          "banner":{
-            "acceptButtonCaptionColor":"#FFFFFF",
-            "acceptButtonColor":"#000000",
-            "acceptButtonDisplay":true,
-            "backgroundColor":"#FFFFFF",
-            "brandBackgroundColor":"#ffffff",
-            "brandTextColor":"#000000",
-            "closeButtonRejects":true,
-            "customizeButtonCaptionColor":"#000000",
-            "customizeButtonColor":"#eeeeee",
-            "customizeButtonDisplay":true,
-            "explicitWithdrawal":true,
-            "fontSize":"14px",
-            "listPurposes":true,
-            "logo":"https://cdn.sellix.io/static/email-templates/logo.png",
-            "position":"bottom",
-            "rejectButtonCaptionColor":"#FFFFFF",
-            "rejectButtonColor":"#000000",
-            "rejectButtonDisplay":true,
-            "textColor":"#000000",
-            "acceptButtonCaption":"Accept",
-            "customizeButtonCaption":"Learn more and customize",
-            "rejectButtonCaption":"Reject",
-            "content": "",
-          }
-        };
-      </script>
-      <script type="text/javascript" src="//cdn.iubenda.com/cs/ccpa/stub.js"></script>
-      <script type="text/javascript" src="//cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
-    {% endif %}
-
     <link rel="stylesheet" href="{{ 'select2.css' | asset_url }}"/>
     <link rel="stylesheet" href="{{ 'purchase.css' | asset_url }}" />
     <link rel="stylesheet" href="{{ 'invoice.css' | asset_url }}" />
@@ -276,12 +231,6 @@
       })();
     </script>
 
-    {% if global.cookiePolicy.enabled %}
-      <a href="" id="cookie-iubenda" class="iubenda-cs-preferences-link" style="position: fixed;bottom: 1.25rem;left: 1rem;width: 2.25rem;background: transparent;border: 1px solid var(--borderColor);height: 2.25rem;align-items: center;justify-content: center;display: flex;font-size: 1.5rem;font-weight: 900;border-radius: 0.5rem;line-height: 1.5rem;cursor: pointer;z-index: 99999999999;">
-        <img style="width: 100%; height: 100%; border-radius: 0.5rem;" src="https://cdn.sellix.io/static/logo/single-black.png" alt=""/>
-      </a>
-    {% endif %}
-
     {% render_snippet 'Social Links' %}
 
     <script type='application/javascript'>
@@ -383,5 +332,24 @@
     <script src="{{ 'sellix-contact-form-component.js' | asset_url }}"></script>
     <script src="{{ 'sellix-ticket-component.js' | asset_url }}"></script>
     <script src="{{ 'sellix-leave-feedback-component.js' | asset_url }}"></script>
+
+    {% if global.cookiePolicy.enabled %}
+      <div id="sellix-cookie-modal"></div>
+      <script type="text/javascript" src="{{ 'cookie-modal.js' | asset_url }}" charset="UTF-8"></script>
+      <link rel="stylesheet" href="{{ 'cookie-modal.css' | asset_url }}" />
+      <script type="text/javascript">
+        (function (document, window, jQuery, React, ReactDOM, sellixApi) {
+          jQuery(document).ready(() => {
+            ReactDOM.render(
+              React.createElement(window.CookieModal, {
+                shop: '{{ global.common.shopInfo.shop.name }}'
+              }),
+              document.querySelector("#sellix-cookie-modal"),
+            );
+          });
+        })(document, window, jQuery, React, ReactDOM, sellixApi);
+      </script>
+    {% endif %}
+
   </body>
 </html>
