@@ -181,41 +181,6 @@
 
     {{ loadableScript }}
 
-    <script async defer src="https://www.googletagmanager.com/gtag/js?id=UA-184179078-2"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NPLHQLJH10"></script>
-
-    <script>
-      window.dataLayer = window.dataLayer || [];
-
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-
-      gtag('js', new Date());
-      gtag('config', 'UA-184179078-2');
-      gtag('config', 'G-NPLHQLJH10');
-    </script>
-
-    <!-- Hotjar Tracking Code for https://sellix.io -->
-    <script>
-      (function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:2699775,hjsv:6};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-        a.appendChild(r);
-      })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    </script>
-
-    <script>
-      (function(){
-        var w=window;
-        var ic=w.Intercom;
-        if(typeof ic==='function'){ic('reattach_activator');
-          ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/j3kaf0pd';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
-    </script>
-
     <script type='application/javascript'>
       (function() {
         $(document).ready(function () {
@@ -338,16 +303,17 @@
       <script type="text/javascript" src="{{ 'cookie-modal.js' | asset_url }}" charset="UTF-8"></script>
       <link rel="stylesheet" href="{{ 'cookie-modal.css' | asset_url }}" />
       <script type="text/javascript">
-        (function (document, window, jQuery, React, ReactDOM, sellixApi) {
+        (function (document, window, jQuery, React, ReactDOM) {
           jQuery(document).ready(() => {
             ReactDOM.render(
               React.createElement(window.CookieModal, {
-                shop: '{{ global.common.shopInfo.shop.name }}'
+                shop: '{{ global.common.shopInfo.shop.name }}',
+                googleAnalyticsTrackingId: '{{ global.common.shopInfo.shop.google_analytics_tracking_id }}',
               }),
               document.querySelector("#sellix-cookie-modal"),
             );
           });
-        })(document, window, jQuery, React, ReactDOM, sellixApi);
+        })(document, window, jQuery, React, ReactDOM);
       </script>
     {% endif %}
 
