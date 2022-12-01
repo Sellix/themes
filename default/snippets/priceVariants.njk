@@ -16,11 +16,13 @@
 {% if price_variants | length and product.stock %}
   {% for variant in price_variants %}
     {% if variant.stock === 0 %}
+      {#
       <div class="variant-badge-{{ id }} variants-badge {{ 'is-cart' if is_cart else '' }}">
         <div class="variants-badge-out">
           Product is out of stock
         </div>
       </div>
+      #}
     {% else %}
       <div
         class="variant-{{ id}} variant-badge-{{ id }} variants-badge {{ 'is-cart' if is_cart else '' }}"
