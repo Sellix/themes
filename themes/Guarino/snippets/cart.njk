@@ -1,0 +1,117 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set properties = args.properties %}
+{% set colors = themeProperties.current_colors %}
+
+{% set showBorder = properties.cart_show_border if properties.cart_show_border is defined else true %}
+{% set backgroundColor = properties.cart_background_color if properties.container_background_color is defined else 'background_accent_dark' %}
+{% set shadow = properties.cart_shadow if properties.cart_shadow is defined else 'none' %}
+
+<style>
+  .cart-dropdown-header-{{ id }} {
+    box-shadow: {{ shadow }}!important;
+    background: rgb(22, 19, 44) !important;
+  }
+</style>
+
+<div id="cart-{{id}}" class="cart">
+  <div class="box">
+    <div class="cart-icon">
+      {% render_snippet 'Cart icon' %}
+      <span class="cart-length" style="display: none"></span>
+    </div>
+  </div>
+
+  <div class="cart-dropdown customFadeIn cart-dropdown-header-{{ id }}">
+    <div class="cart-dropdown-header unselectable">
+      <h6 style="color: {{ colors[properties.cart_title_font_color] }};{#
+        #}font-size: {{ properties.cart_title_font_size }}px;{#
+        #}font-weight: {{ properties.cart_title_font_weight }};{#
+        #}line-height: {{ properties.cart_title_line_height }}%;{#
+        #}text-align: {{ properties.cart_title_text_align }};
+      ">
+        {{ properties.cart_title }}
+      </h6>
+
+      <p style="margin: 0; color: {{ colors[properties.cart_description_font_color] }}; font-size: {{ properties.cart_description_font_size }}px; font-weight: {{ properties.cart_description_font_weight }}; line-height: {{ properties.cart_description_line_height }}%; text-align: {{ properties.cart_description_text_align }};">
+        {{ properties.cart_description }}
+      </p>
+    </div>
+
+
+    <div
+      class="cart-dropdown-body"
+      style="color: {{ colors[properties.cart_item_font_color] }}; font-size: {{ properties.cart_item_font_size }}px; font-weight: {{ properties.cart_item_font_weight }};"
+    ></div>
+
+    <div class="cart-dropdown-footer">
+      <button class="back unselectable sellix-cart-clear-button">
+        {{ properties.cart_clear_button_label }}
+      </button>
+
+      <button class="unselectable sellix-cart-checkout-button">
+        {{ properties.cart_checkout_button_label }}
+      </button>
+    </div>
+  </div>
+</div>
+
+<script id="cart-item-template-{{id}}" type="text/x-jsrender">
+  {% raw %}
+      <div id="cart-product-{{:product.uniqid}}" class="cart-dropdown-item">
+          <div class="cart-dropdown-item-info">
+              {{if hasImage }}
+                <img src="{{:product.cdn_image_url}}" alt="{{:product.title}}" />
+              {{else}}
+                <i class="fa-light fa-box-taped"></i>
+              {{/if}}
+
+              <span>
+                {{:product.title}}
+              </span>
+          </div>
+
+          <div class="cart-dropdown-item-buttons unselectable">
+              <span
+                  class="sellix-stock-count-picker unselectable sellix-cart-remove-button"
+                  data-product-id="{{:product.uniqid}}"
+              >
+                  <i class="fa-regular fa-minus"></i>
+              </span>
+
+              <div class="cart-product-quantity cart-dropdown-item-buttons-quantity unselectable">
+                  {{:product.quantity}}
+              </div>
+
+              {{if !equalQuantity && inStock !== 1 && isValidPlus }}
+                  <span
+                      class="sellix-stock-count-picker unselectable sellix-cart-add-button"
+                      data-product-id="{{:product.uniqid}}"
+                  >
+                      <i class="fa-regular fa-plus"></i>
+                  </span>
+              {{else}}
+                  <span
+                      class="sellix-stock-count-picker unselectable"
+                      data-product-id="{{:product.uniqid}}"
+                  >
+                      <i></i>
+                  </span>
+              {{/if}}
+          </div>
+      </div>
+  {% endraw %}
+</script>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
+    const cartComponent = new SellixCartComponent(
+      '#cart-{{id}}',
+      cart,
+      '#cart-item-template-{{id}}',
+      {{renderOptions | dump | safe}},
+    );
+    cartComponent.render();
+  });
+</script>

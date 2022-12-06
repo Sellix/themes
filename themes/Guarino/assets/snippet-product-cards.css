@@ -1,0 +1,178 @@
+.sellix-card-container {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  flex-grow: 1;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+.sellix-card {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.sellix-card-badge {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 0.25rem;
+  border: 1px solid var(--borderColor);
+  background: var(--backgroundAccentDark);
+  color: var(--lightFontColor);
+  height: 2rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+  line-height: 0.8rem;
+  display: flex;
+  align-items: center;
+  width: auto;
+}
+
+.sellix-card-image {
+  min-height: 180px;
+  margin: 0 auto;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.sellix-card-info-image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 55%;
+  width: 100%;
+  visibility: hidden;
+  transition: opacity 1s;
+  background-color: #7040f2;
+  opacity: 1;
+}
+
+.sellix-card-info:hover .sellix-card-info-image-overlay {
+  opacity: 0;
+}
+
+.sellix-card-image-overlay-text {
+  color: white;
+  font-size: 18px;
+  FONT-WEIGHT: 900;
+  position: absolute;
+  top: 20%;
+  left: 4%;
+}
+.sellix-card-image.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--buttonColor);
+  background: var(--backgroundAccentLight);
+}
+.sellix-card-image.placeholder i {
+  font-size: 3rem;
+}
+.sellix-card-image img {
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  object-fit: cover;
+}
+
+.sellix-card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.75rem;
+  flex: 1 1 auto;
+  background-color: #160E2C;
+}
+
+.sellix-card-info:hover {
+  z-index: 3;
+  background-color: #7040f2;
+}
+
+.sellix-card-title {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  word-break: break-word;
+}
+
+.sellix-card-description {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.75rem;
+  line-height: 1.25rem;
+  align-items: flex-end;
+}
+
+.sellix-modal.group-modal .group-header-small {
+  font-weight: 300;
+  font-size: .85rem;
+}
+
+.sellix-group-card-description {
+  margin-top: 0.75rem;
+  display: flex;
+  text-align: center;
+  line-height: 1.25rem;
+  justify-content: space-between;
+}
+
+.sellix-group-description-info {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-right: 0.75rem;
+}
+
+.sellix-group-description-info span {
+  margin-right: 0.25rem;
+  white-space: nowrap;
+  opacity: 0.7;
+}
+
+.sellix-group-description-info span:last-child {
+  opacity: 1;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.sellix-card-price {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--buttonColor);
+}
+
+.sellix-card-price-with-discount {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.sellix-card-price-with-discount i {
+  font-weight: 300;
+  font-style: normal;
+  font-size: 0.75rem;
+  margin-right: 0.25rem;
+  text-decoration: line-through;
+}
+
+.sellix-card-stock {
+  margin-right: 0.25rem;
+}
+
+.sellix-card-stock svg {
+  height: 0.75rem;
+  left: 0.125rem;
+  position: relative;
+  top: 0.125rem;
+  width: 0.75rem;
+}

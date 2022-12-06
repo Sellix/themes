@@ -1,0 +1,145 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set isInvoice = global.request.type == 'invoice' %}
+{% set colors = themeProperties.current_colors %}
+
+{% set properties = args.properties %}
+{% set invoice = args.invoice %}
+{% set product = args.product %}
+{% set quantity = args.quantity %}
+
+{% set backgroundColor = properties.product_background_color if properties.product_background_color is defined else 'background_accent_dark' %}
+{% set showBorder = properties.product_show_border if properties.product_show_border is defined else true %}
+{% set containerShadow = properties.product_container_shadow if properties.product_container_shadow is defined else 'none' %}
+{% set containerBorderRadius = properties.product_container_border_radius if properties.product_container_border_radius is defined else 0.5 %}
+{% set containerPaddingVert = properties.product_container_padding_vert if properties.product_container_padding_vert is defined else '16' %}
+{% set containerPaddingHoriz = properties.product_container_padding_horiz if properties.product_container_padding_horiz else '16' %}
+{% set titleFontColor = properties.product_title_font_color if properties.product_title_font_color is defined else 'light_font_color' %}
+{% set titleFontSize = properties.product_title_font_size if properties.product_title_font_size is defined else 18 %}
+{% set titleFontWeight = properties.product_title_font_weight if properties.product_title_font_weight is defined else 500 %}
+{% set titleTextAlign =  properties.product_title_text_align if  properties.product_title_text_align is defined else 'space-between' %}
+
+<style>
+  .sellix-product.checkout-details-item-{{ id }} {
+    background: #16132c!important;
+    border: {{ "0px solid var(--borderColor)" if showBorder else "none" }}!important;;
+    box-shadow: {{ containerShadow }}!important;;
+    border-radius: {{ containerBorderRadius }}rem!important;;
+    padding: {{ containerPaddingVert }}px {{ containerPaddingHoriz }}px!important;
+  }
+
+  .checkout-details-item-title-{{ id }} {
+    justify-content: {{ titleTextAlign }};
+  }
+
+  .checkout-details-item-title-{{ id }} span {
+    color: {{ colors[titleFontColor] }}!important;
+    font-size: {{ titleFontSize }}px!important;
+    font-weight: {{ titleFontWeight }}!important;
+  }
+</style>
+
+
+<div id="sellix-product-checkout-{{product.uniqid}}" class="mb-4">
+  {% if product.stock !== 0 %}
+    {% render_snippet 'Addons', product=product, invoice=invoice, properties=properties, currency=shop.currency %}
+  {% endif %}
+
+  <div class="sellix-product checkout-details-item sellix-product checkout-details-item-{{ id }}">
+    <div class="checkout-details-item-title unselectable checkout-details-item-title-{{ id }}">
+      <span>
+        {{product.title}}
+      </span>
+
+      {% if isInvoice %}
+        <div class="sellix-cart-count-quantity total unselectable">
+          Stock: {{product.quantity if product.quantity else product.unit_quantity}}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="checkout-details-item-info">
+      {% if product.average_score %}
+        <div class="sellix-banner-feedback-star">
+          <span class="mr-2">
+            {% if product.average_score >= 4.95 %}
+              5
+              {% elif product.average_score == 0 %}
+              0
+              {% elif product.average_score %}
+              {{ product.average_score | round(1) }}
+            {% endif %}
+          </span>
+          <div>
+            {% render_snippet 'Rating star', rating=product.average_score, size=20 %}
+            <i>({{[product.feedback.total, ' reviews'] | join if product.feedback else 'No reviews'}})</i>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="checkout-details-item-details {{'is-invoice' if isInvoice else ''}}">
+      <div class="d-flex justify-content-between">
+
+        <div class="unselectable">
+          <div class="sellix-cart-description" data-product-id="{{product.uniqid}}">
+            {% render_snippet 'Description icon' %}
+            <div>
+              <description class="label-show-description">Show Description</description>
+              <span class="label-click-for-info">Click for more info</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="unselectable">
+           {% render_snippet 'Product warranty',
+             product=product,
+             properties=(properties | set_attribute('show_in_modal', true) | set_attribute('show_border', false))
+           %}
+        </div>
+      </div>
+
+      {% if not isInvoice and product.stock !== 0 %}
+        <div class="checkout-details-item-details-count-mobile">
+          {% render_snippet 'Checkout product count', product=product, quantity=quantity %}
+
+          <div class="checkout-details-item-remove" data-product-id="{{product.uniqid}}">
+            <i class="fas fa-times"></i>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="shop-product-info-collapse" style="height: 0; overflow: hidden;">
+      <div class="shop-product-info-wrapper">
+        {% render_snippet 'Product gallery', product=product %}
+        {% render_snippet 'Product description', product=product %}
+      </div>
+    </div>
+  </div>
+
+  {% render_snippet 'Price variants', is_cart=true, product=product, properties=properties, currency=shop.currency %}
+</div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const productId = '{{product.uniqid}}';
+
+    new SellixCheckoutProductComponent(
+      `#sellix-product-checkout-${productId}`,
+      '{{shop.name}}',
+      productId,
+      {{renderOptions | dump | safe}},
+    );
+
+    $(document).on(`SellixCartUpdateEvent`, (e, eventInfo) => {
+      const id = eventInfo && eventInfo.productId;
+      const action = (eventInfo && eventInfo.action) || 'update';
+
+      if (action === 'delete' && (!productId || id === productId)) {
+        const addonsStore = new SellixAddonsStore('{{ shop.name }}');
+        addonsStore.clear(productId);
+      }
+    });
+  });
+</script>

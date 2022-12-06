@@ -1,0 +1,14 @@
+{% set invoice = global.common.invoiceInfo.invoice %}
+{% set info = global.common.invoiceInfo.info %}
+{% set isDev = (invoice.developer_invoice | int) if invoice else false %}
+
+<div>
+  {% render_snippet 'Delivery alert success',
+    is_product_subscription=(invoice.type === 'PRODUCT_SUBSCRIPTION'),
+    is_dev=isDev
+  %}
+
+  {% if info %}
+    {# <LeaveFeedback uniqid={info.feedback_uniqid}/> #}
+  {% endif %}
+</div>

@@ -1,0 +1,111 @@
+{% set id = uid() %}
+{% set product = args.product %}
+{% set isPlaceholder = not product.image_name %}
+{% set image = cdn_link(product.cloudflare_image_id, 'shopItem') %}
+{% set onHold = product.on_hold | int %}
+{% set isOut = (product.stock | int === 0) %}
+{% set isFree = product.price_display | float === 0 %}
+{% set colors = themeProperties.current_colors %}
+{% set cardsProps = themeProperties.cards %}
+
+<div class="d-flex w-100 position-relative">
+  {% if isFree %}
+    <div class="sellix-card-badge">Free</div>
+  {% else %}
+    {% render_snippet 'Cart button',
+    product = product %}
+
+    {% render_snippet 'Discount badge',
+    product = product %}
+  {% endif %}
+      <div
+      class="sellix-card"
+      style="background: {{ colors[cardsProps.product_card_background_color] }}; border-top-left-radius: 0.5rem;    border-top-right-radius: 0.5rem;"
+    >
+    <a
+    href="{{'javascript:void' if product.on_hold | int else ['/product/', product.uniqid] | join}}"
+    id="sellix-card-container-{{id}}"
+    class="sellix-card-container"
+    style="border: {{ "1px solid var(--borderColor)" if cardsProps.product_card_show_border else "none" }}; border-top-left-radius: 0.5rem;  border-top-right-radius: 0.5rem;"
+  >
+      <div class="sellix-card-image {{'placeholder' if isPlaceholder else ''}}">
+        {% if isPlaceholder %}
+          <i class="fa-light fa-box-taped"></i>
+        {% else %}
+          <img src="{{image}}" alt="{{product.title}}" loading="lazy" class= "sellix-card-image"/>
+        {% endif %}
+      </div>
+
+      <div class="sellix-card-info">
+        <div
+          class="sellix-card-title {{'justify-content-center text-center' if args.centerProduct else ''}}"
+          style="color: {{ colors[cardsProps.product_card_title_font_color] }}; font-size: {{ cardsProps.product_card_title_font_size }}px; font-weight: {{ cardsProps.product_card_title_font_weight }}; line-height: {{ cardsProps.product_card_title_line_height }}%;  justify-content: space-between;"
+        >
+
+          {{product.title}}
+        </div>
+
+
+
+        {% if onHold %}
+          <span
+            class="sellix-card-description"
+            style="color: {{ colors[cardsProps.product_card_description_font_color] }}; font-size: {{ cardsProps.product_card_description_font_size }}px; font-weight: {{ cardsProps.product_card_description_font_weight }};"
+          >
+            This product is on hold and cannot be bought as of now
+          </span>
+        {% endif %}
+
+        {% if isOut %}
+          <span
+            class="sellix-card-description"
+            style="color: {{ colors[cardsProps.product_card_description_font_color] }}; font-size: {{ cardsProps.product_card_description_font_size }}px; font-weight: {{ cardsProps.product_card_description_font_weight }};"
+          >
+            Product sold out
+          </span>
+        {% endif %}
+
+        {% if not onHold and not isOut %}
+          <div
+            class="sellix-card-description justify-content-between"
+            style="color: {{ colors[cardsProps.product_card_description_font_color] }}; font-size: {{ cardsProps.product_card_description_font_size }}px; font-weight: {{ cardsProps.product_card_description_font_weight }};"
+          >
+           <span>Starting at: </span>
+
+             {% if product.price_discount and not isFree %}
+            <span
+                class="sellix-card-price-with-discount"
+                style="color: {{ colors[cardsProps.product_card_description_font_color] }}; font-size: {{ cardsProps.product_card_description_font_size }}px; font-weight: {{ cardsProps.product_card_description_font_weight }};"
+              >
+              <i>{% render_snippet 'Price',
+                currency = product.currency,
+                price = product.price_display %}</i>
+              {% render_snippet 'Price',
+              currency = product.currency,
+              price = product.price_display,
+              discount = product.price_discount %}
+            </span>
+          {% else %}
+            <span
+                class="sellix-card-price"
+                style="color: {{ colors[cardsProps.product_card_price_font_color] }}; font-size: {{ cardsProps.product_card_price_font_size }}px; font-weight: {{ cardsProps.product_card_price_font_weight }};"
+              >
+              {% if isFree %}
+                  Free
+                {% else %}
+                {% render_snippet 'Price',
+                currency = product.currency,
+                price = product.price_display %}
+              {% endif %}
+            </span>
+          {% endif %}
+
+          </div>
+          <div class="linkbottone">
+          <a  href="{{'javascript:void' if product.on_hold | int else ['/product/', product.uniqid] | join}}" style="background-color: #31274B;    color: #fff;    padding: 15px 32px;    display: block;    margin: 20px; text-align: center; font-size: 16px; font-weight: 900;  cursor: pointer; border-radius: 5px 5px 5px 5px;">Continue</a>
+          </div>
+        {% endif %}
+      </div>
+      </a>
+    </div>
+</div>

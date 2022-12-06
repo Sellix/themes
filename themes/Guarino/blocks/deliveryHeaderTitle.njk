@@ -1,0 +1,90 @@
+{% set id = uid() %}
+
+{% set invoice = global.common.invoiceInfo.invoice %}
+{% set info = global.common.invoiceInfo.info %}
+{% set product = invoice.product or {} %}
+{% set isDev = (invoice.developer_invoice | int) if invoice else false %}
+{% set isProductSubscription = invoice.type == 'PRODUCT_SUBSCRIPTION' %}
+{% set isSubscription = invoice.type == 'SUBSCRIPTION'  %}
+{% set isShoppingCart = invoice.type == 'SHOPPING_CART' %}
+{% set colors = themeProperties.current_colors %}
+
+{% set titleFontColor = properties.title_font_color if properties.title_font_color is defined else 'light_font_color' %}
+{% set titleFontSize = properties.title_font_size if properties.title_font_size is defined else 24 %}
+{% set titleFontWeight = properties.title_font_weight if properties.title_font_weight is defined else 400 %}
+{% set titleTextAlign = properties.title_text_align if properties.title_text_align is defined else 'left' %}
+
+<style>
+  .sellix-delivery-title-{{ id }} .sellix-delivery-header-title-text {
+    color: {{ colors[titleFontColor] }}!important;
+    font-size: {{ titleFontSize }}px!important;
+    font-weight: {{ titleFontWeight }}!important;
+    justify-content: {{ titleTextAlign }};
+  }
+
+  .sellix-delivery-title-{{ id }} .sellix-delivery-header-title-uniqid {
+    color: {{ colors[titleFontColor] }}!important;
+    font-size: {{ titleFontSize * 0.7 }}px!important;
+    font-weight: {{ titleFontWeight }}!important;
+    justify-content: {{ titleTextAlign }};
+  }
+</style>
+
+<div id="sellix-delivery-title-{{ id }}" class="sellix-delivery-title-{{ id }}">
+  {% if isDev %}
+    <div class="sellix-delivery-header-title-text w-100">Payment Completed</div>
+  {% elif isSubscription %}
+    <span class="sellix-delivery-header-title-text">
+      Your Order for <strong>{{ invoice.subscription.name }} Subscription</strong> is completed.
+    </span>
+  {% elif isShoppingCart %}
+    <span class="sellix-delivery-header-title-text">Order for Shopping Cart is completed.</span>
+  {% elif isProductSubscription %}
+    <span class="sellix-delivery-header-title-text">Your subscription purchase was successful.</span>
+  {% else %}
+    <span class="sellix-delivery-header-title-text">Your Order for <b>{{ product.title }}</b> is completed.</span>
+  {% endif %}
+
+  <div class="sellix-delivery-header-title-uniqid {{ 'is-cart' if isShoppingCart else '' }}">
+    <span class="d-flex">
+      <span>Invoice ID:</span>
+      <span class="sellix-copy-invoice-id cursor-pointer">
+        <b>
+          {{ invoice.uniqid }}
+          <div class="ml-2">
+            {% render_snippet 'Copy icon' %}
+          </div>
+        </b>
+      </span>
+      <div class="sellix-copied-label">
+        {% render_snippet 'Check icon' %}
+        <span>Copied</span>
+      </div>
+    </span>
+
+    {% if info and isShoppingCart %}
+      <button class="sellix-save-invoice-btn medium primary">
+        <i class="fas fa-save"></i>&nbsp;&nbsp;Download Invoice
+      </button>
+    {% endif %}
+  </div>
+</div>
+
+<script type="application/javascript">
+  $(document).ready(function() {
+    const $container = $('#sellix-delivery-title-{{ id }}');
+
+    $container.find('.sellix-save-invoice-btn').on('click', function() {
+      window.sellixHelper.saveInvoiceToFile('{{ invoice.uniqid }}', '{{ invoice.product_type }}');
+    });
+
+    $container.find('.sellix-copy-invoice-id').on('click', function() {
+      window.copyToClipboard('{{ invoice.uniqid }}');
+
+      $container.find('.sellix-delivery-header-title-uniqid .sellix-copied-label').addClass('show');
+      setTimeout(function() {
+        $('.sellix-delivery-header-title-uniqid .sellix-copied-label').removeClass('show');
+      }, 1000)
+    });
+  });
+</script>

@@ -1,0 +1,20 @@
+{% set id = uid() %}
+{% set button_id = args.id if args.id else (["ripple-button-", id] | join) %}
+
+<button
+  id='{{button_id}}'
+  type="{{args.type if args.type else 'button'}}"
+  style="{{args.style if args.style else ''}}"
+  class="button {{args.class if args.class else ''}}"
+>
+  {% if args.plus %}
+    <i class="fa-solid fa-plus" style="margin-right:.5rem"></i>
+  {% endif %}
+  {{args.title}}
+</button>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    new ripple('#{{button_id}}');
+  });
+</script>

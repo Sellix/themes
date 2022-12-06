@@ -1,0 +1,98 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set isProduct = global.request.type == 'product' %}
+{% set isInvoice = global.request.type == 'invoice' %}
+{% set cartEnabled = global.common.cartEnabled %}
+{% set bundles = args.bundles %}
+{% set properties = args.properties %}
+{% set currencyList = global.config.CURRENCY_LIST %}
+{% set colors = themeProperties.current_colors %}
+
+
+<style>
+  .bundle-hover-{{ id }}:hover {
+    background: {{ colors[properties.bundles_product_background_color_hover] }};
+  }
+</style>
+
+{% if not isInvoice and bundles | length %}
+  {% for bundle in bundles %}
+    {% set bundleId = uid() %}
+    {% set title = bundle.title %}
+    {% set discountType = bundle.discount_type  %}
+    {% set discountAmount = bundle.discount_amount %}
+    {% set products_bound = bundle.products_bound %}
+
+    <div
+      id="sellix-bundle-{{bundleId}}"
+      class="shop-product-bundle mb-4"
+      style="display: none; background: #16132c!important;{#
+          #} border: {{ "0px solid var(--borderColor)" if properties.bundles_show_border else "none" }};{#
+          #} box-shadow: {{ properties.container_shadow }};{#
+          #} border-radius: {{ properties.container_border_radius }}rem;{#
+          #} margin-top: 12px;{#
+          #} max-width: 550px; {#
+          #} padding-bottom: {{ properties.container_padding - 8 }}px;"
+    >
+      <div class="shop-product-bundle-head">
+        <div>
+          <div class="shop-product-bundle-title">{{title}}</div>
+
+          <div style="color: {{ colors[properties.bundles_description_font_color] }};{#
+              #} font-size: {{ properties.bundles_description_font_size }}px;{#
+              #} justify-content: {{ properties.bundles_description_text_align }};{#
+              #} line-height: {{ properties.bundles_description_line_height }}%;"
+          >
+              <p style="margin: 0 10px; text-align: {{ properties.bundles_description_text_align }};">
+                Save
+                <b style="color: {{ colors[properties.bundles_description_font_color] }};">
+                  {{ currencyList[shop.currency] if discountType === 'FIXED' }}
+                  {{discountAmount}}{{ '%' if discountType === 'PERCENTAGE' }}
+                </b>
+                by adding one more products to your cart with our discounts.
+              </p>
+          </div>
+        </div>
+
+        {% render_snippet 'Ripple button', class='medium primary add-all-button', title='Add All Products' %}
+      </div>
+
+      <div class="shop-product-bundle-line"></div>
+      <div class="shop-product-bundle-products">
+        {% for product in products_bound %}
+          <div class="sellix-bundle-product bundle-hover-{{ id }}" data-product-id="{{product.uniqid}}" style="display:none">
+            {%
+              render_snippet 'Bundle product',
+              product=product,
+              cartEnabled=cartEnabled,
+              skipBuyButton=true,
+              redirectToCheckout=false,
+              properties=properties
+            %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <script type='application/javascript'>
+      $(document).ready(function () {
+        const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
+
+        const bundleComponent = new SellixBundleComponent(
+          '#sellix-bundle-{{bundleId}}',
+          cart,
+          {
+            id: '{{ bundle.id }}',
+            products_bound: [
+              {% for product in bundle.products_bound %}
+              {{ product | exclude_attributes('shop_terms_of_service') | dump | safe }},
+              {% endfor %}
+            ],
+          },
+          {{isProduct}},
+          {{renderOptions | dump | safe}},
+        );
+      });
+    </script>
+  {% endfor %}
+{% endif %}

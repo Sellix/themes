@@ -1,0 +1,43 @@
+<style>
+
+  .shop-product-info-addon{
+    max-width:100%!important;
+  }
+  .shop-product-bundle{
+    max-width:100%!important;
+    margin-top: 0px!important;
+  }
+
+</style>
+<div class="sellix-product-screen">
+  <div class="shop-product-container">
+    <div class="shop-product-info" style="{{'width:100%' if not properties.enable_right_sidebar else '' }}">
+      <div class="shop-product-info-description">
+        {% for block_name in settings.block_order %}
+          {% if not properties.enable_right_sidebar or loop.index > properties.right_sidebar_blocks_count | int %}
+            {% if block_name == 'Purchase details' %}
+              {% render_block block_name, type='checkout' %}
+            {% else %}
+              {% render_block block_name %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if properties.enable_right_sidebar %}
+      <div class="shop-product-card">
+        {% for block_name in settings.block_order %}
+          {% if loop.index <= properties.right_sidebar_blocks_count | int %}
+            {% if block_name == 'Purchase details' %}
+              {% render_block block_name, type=purchaseDetailsType %}
+            {% else %}
+              {% render_block block_name %}
+            {% endif %}
+
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>

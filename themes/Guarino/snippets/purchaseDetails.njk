@@ -1,0 +1,64 @@
+{% set id = uid() %}
+{% set type = args.type if args.type else 'checkout' %}
+{% set shop = global.common.shopInfo.shop %}
+{% set cartEnabled = global.common.cartEnabled %}
+{% set colors = themeProperties.current_colors %}
+{% set properties = args.properties %}
+
+{% render_snippet 'App paypal' %}
+
+<style>
+  #purchase-details-{{id}} .sellix-product-card {
+    background: transparent;
+    box-shadow: {{ properties.container_shadow }};
+    border-radius: {{ properties.container_border_radius }}rem;
+    padding: {{ properties.container_padding }}px;
+    border: {{ "1px solid var(--borderColor)" if properties.show_border else "none" }};
+  }
+</style>
+
+<div>
+  <div id='purchase-details-{{id}}'></div>
+</div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const purchaseType = '{{type}}';
+    const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
+    const isDark = {{args.isDark if args.isDark is defined else themeProperties.color_schema.dark_mode}};
+    const { shopInfo, productInfo, isCustomDomain } = window.SellixContext.get('common');
+    let product = (productInfo && productInfo.product);
+
+    if (purchaseType === 'product') {
+      const cartProduct = cart.getItemById(product.uniqid);
+      if (cartProduct) {
+        product.quantity = cartProduct.quantity;
+      }
+    }
+
+    let bundles = [];
+    {% for bundle in args.bundles %}
+      const bundle = {{ bundle | exclude_attributes(['products_bound']) | dump | safe }}
+      bundle.products_bound = [
+        {% for product in bundle.products_bound %}
+          {{ product | exclude_attributes('shop_terms_of_service') | dump | safe }},
+        {% endfor %}
+      ];
+      bundles.push(bundle);
+    {% endfor %}
+
+    const purchaseDetailsComponent = new SellixPurchaseDetailsComponent({
+      selector: '#purchase-details-{{id}}',
+      config: window.SellixContext.get('config'),
+      shop: shopInfo.shop,
+      cartEnabled: {{cartEnabled or 0}},
+      isCustomDomain,
+      purchaseType,
+      cart,
+      product: (product || {}),
+      bundles,
+      theme: { isDark },
+      renderOptions: {{renderOptions | dump | safe}},
+    });
+  });
+</script>

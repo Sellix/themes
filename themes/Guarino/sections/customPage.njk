@@ -1,0 +1,39 @@
+{% set colors = themeProperties.current_colors %}
+{% set id = uid() %}
+
+<style>
+  .sellix-page-{{ id }} {
+    max-width: 1140px;
+    box-shadow: {{ properties.container_shadow }};
+    border-radius: {{ properties.container_border_radius }}rem;
+    padding: {{ properties.container_padding }}px;
+    margin: {{ 'auto 4rem' if properties.is_wide else 'auto' }};
+    margin-bottom: 1rem;
+    width: {{ 'auto' if properties.is_wide else '75%' }};
+  {% if properties.container_background_color %}
+    background: {{ colors[properties.container_background_color] }};
+  {% endif %}
+  {% if not properties.show_border %}
+    border: none;
+  {% else %}
+    border: 1px solid var(--borderColor);
+  {% endif %}
+  }
+  .sellix-page-{{ id }} h1 {
+    width: 100%;
+    color: {{ colors[properties.title_font_color] }};
+    font-size: {{ properties.title_font_size }}px;
+    font-weight: {{ properties.title_font_weight }};
+    text-align: {{ properties.title_text_align }};
+  }
+  .sellix-page-{{ id }} .sellix-page-content {
+    width: 100%;
+  }
+</style>
+
+<div class="sellix-store-screen align-items-start sellix-page-{{ id }}">
+  <h1>{{ page.name }}</h1>
+  <div class="sellix-page-content">
+    {{ page.content | safe }}
+  </div>
+</div>

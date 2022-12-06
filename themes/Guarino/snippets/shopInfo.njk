@@ -1,0 +1,50 @@
+{% set shop = global.common.shopInfo.shop %}
+{% set colors = args.colors %}
+{% set properties = args.properties %}
+
+{% set showLogo = properties.show_shop_info_logo if properties.show_shop_info_logo is defined else true %}
+{% set logoColor = properties.shop_info_logo_color if properties.shop_info_logo_color is defined else 'brand_color' %}
+{% set position = properties.shop_info_position if properties.shop_info_position is defined else 'flex-start' %}
+{% set paddingHoriz = properties.shop_info_padding_horiz if properties.shop_info_padding_horiz is defined else 16 %}
+{% set paddingVert = properties.shop_info_padding_vert if properties.shop_info_padding_vert is defined else 0 %}
+
+<div
+  class="shop-product-info-shop {{ args.classes }}"
+  style="justify-content: {{ position }}; padding: {{ paddingVert }}px {{ paddingHoriz }}px;"
+>
+  {% if showLogo %}
+    {% if properties.shop_info_custom_logo %}
+      <img
+        src="{{ properties.shop_info_custom_logo }}"
+        alt={shop.name}
+        class="sellix-shop-info-logo"
+      />
+    {% else %}
+      {% if shop.image_name %}
+        <img
+          src="{{cdn_link(shop.cloudflare_image_id, 'avatar')}}"
+          alt={shop.name}
+          class="sellix-shop-info-logo"
+        />
+      {% else %}
+        <i
+          class="fas fa-user-circle sellix-shop-info-logo-icon"
+          style="color: {{ colors[logoColor] }}"
+        ></i>
+      {% endif %}
+    {% endif %}
+  {% endif %}
+
+  <span>
+    <a
+      href="/"
+      style="color: {{ colors[properties.shop_info_font_color] }}!important; font-size: {{ properties.shop_info_font_size }}px; font-weight: {{ properties.shop_info_font_weight }};"
+    >
+      {% if properties.shop_name %}
+        {{ properties.shop_name }}
+      {% else %}
+        {{shop.name}}
+      {% endif %}
+    </a>
+  </span>
+</div>

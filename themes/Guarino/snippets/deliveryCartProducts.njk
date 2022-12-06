@@ -1,0 +1,52 @@
+{% set invoice = args.invoice %}
+{% set info = args.info %}
+
+{% set products = [] %}
+{% for productId, product in info %}
+  {% if productId != 'feedback_uniqid' %}
+    {% set products = (products.push(product), products) %}
+  {% endif %}
+{% endfor %}
+
+<div>
+  {% for product in products %}
+    {% set title = product.product.title or '' %}
+    {% set text = product.delivery_text %}
+
+    {% if product.status === 'PENDING' %}
+      {% set status = 'pending' %}
+    {% elif product.status === 'PROCESSED' %}
+      {% set status = 'completed' %}
+    {% else %}
+      {% set status = 'cancelled' %}
+    {% endif %}
+
+    <div class="sellix-delivery-cart-product">
+      <div class="sellix-delivery-cart-product-title">
+        <div>{{ title }}</div>
+        <div class="badge badge-{{ status }}">
+          {{ (product.status or '') | replace('_', ' ') | lower }}
+        </div>
+      </div>
+
+      {% if text %}
+        <div class="sellix-delivery-product skip">
+          <div class="sellix-delivery-product-title is-cart">Message from {{ invoice.name }}:</div>
+          <div class="sellix-delivery-product-item skip is-cart">
+            <div class="sellix-text">
+              <p>{{ text }}</p>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      {% render_snippet 'Delivery digital product',
+        is_cart=true,
+        invoice=invoice,
+        info=product,
+        product_type=product.product.type
+      %}
+
+    </div>
+  {% endfor %}
+</div>

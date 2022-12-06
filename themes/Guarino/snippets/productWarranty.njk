@@ -1,0 +1,114 @@
+{% set id = uid() %}
+{% set product = args.product or global.common.productInfo.product %}
+{% set shop = global.common.shopInfo.shop %}
+{% set warranty = product.warranty | int %}
+{% set title = product.title %}
+{% set name = product.name %}
+{% set warranty_text = product.warranty_text %}
+{% set isCart = product.isCart %}
+{% set colors = themeProperties.current_colors %}
+{% set properties = args.properties %}
+{% set showInModal = true %}
+
+<style>
+  .warranty-badge-{{ id }} {
+    display: flex;
+    flex-direction: column;
+    background: #16132c!important;
+  }
+
+  .warranty-badge-{{ id }} .warranty-head {
+    display: flex;
+  }
+
+  .warranty-properties-{{ id }} .warranty-head-title {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: left;
+  }
+
+  .warranty-body-{{ id }} {
+    padding: {{ container_padding_vert }}px {{ properties.container_padding_horiz or '0' }}px;
+    min-height: 5rem!important;
+    color: {{ colors[properties.body_font_color] or 'var(--darkFontColor)' }}!important;
+    font-size: {{ properties.body_font_size or 14 }}px!important;
+    line-height: 1.2rem!important;
+    white-space: normal!important;
+  }
+</style>
+
+{% macro warranty_body(extra_class) %}
+<div class="warranty-body warranty-body-{{ id }} pb-4 {{ extra_class }}">
+  <div>
+    <b>{{title}}</b> by <b>{{name}}</b>
+    {% if warranty == -1 %}
+      has an unlimited warranty.
+    {% else %}
+      has {{warranty | seconds_to_dhms}} limited warranty.
+    {% endif %}
+  </div>
+  {% if warranty_text %}
+    <div>
+      This warranty, as described by the seller, covers:
+      <br/>
+      <div class="w-100 warranty-text" style="white-space: pre-line;">{{warranty_text}}</div>
+    </div>
+  {% endif %}
+  <p>
+    {% if warranty_text %}
+      Unless stated otherwise in the Terms of Service.
+    {% else %}
+      This warranty, as described by the seller, covers any type of occasions unless stated otherwise in the Terms of Service.
+    {% endif %}
+  </p>
+</div>
+{% endmacro %}
+
+{% if warranty != 0 %}
+  <div
+    id="sellix-product-warranty-badge-{{id}}"
+    class="sellix-cart-warranty warranty-badge warranty-badge-{{ id }} {{'sellix-cart-warranty' if isCart else ''}} {{ 'warranty-btn' if showInModal else '' }}"
+  >
+    <div class='warranty-head'>
+      {% render_snippet 'Warranty icon' %}
+      <div class='warranty-head-title'>
+        <div>Product Warranty</div>
+        {% if showInModal %}
+        <span class='warranty-hint'>Click for more info</span>
+        {% endif %}
+      </div>
+    </div>
+    {% if not showInModal %}
+      {{ warranty_body() }}
+    {% endif %}
+  </div>
+
+  {% if showInModal %}
+  <div id="product-warranty-modal-{{id}}" class="sellix-modal warranty-modal" style="display: none;">
+    <div class="sellix-modal-header pb-4">
+      Warranty
+      <div id="sellix-modal-close-{{id}}" class="sellix-modal-close" >
+        <i class="fa-light fa-times" style="color: var(--darkFontColor); font-size:1.25rem;"></i>
+      </div>
+    </div>
+    {{ warranty_body('sellix-modal-body') }}
+  </div>
+
+  <script type='application/javascript'>
+    $(document).ready(function () {
+      $('#sellix-product-warranty-badge-{{id}}').on('click', function () {
+        $('#product-warranty-modal-{{id}}').modal({
+          modalClass: '',
+          blockerClass: '',
+          showClose: false
+        });
+      });
+
+      $('#sellix-modal-close-{{id}}').on('click', function () {
+        $.modal.close();
+      });
+    });
+  </script>
+  {% endif %}
+{% endif %}
