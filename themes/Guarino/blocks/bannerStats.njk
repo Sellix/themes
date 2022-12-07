@@ -1,0 +1,40 @@
+{% set shop = global.common.shopInfo.shop %}
+{% set average_score = shop.average_score if shop.average_score else 0 %}
+
+<div class="sellix-banner-feedback">
+  {% if properties.show_banner_products_sold %}
+    <div>
+      {% if not shop.hide_products_sold %}
+        <div>Products Sold</div>
+
+        <div class="sellix-banner-feedback-count">
+          {{shop.products_sold_count}}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if properties.show_banner_product_quality %}
+    <div>
+      <div>Product Quality</div>
+
+      <div class="sellix-banner-feedback-star">
+        <span>
+          {% if average_score | float >= 4.95 %}
+            5
+          {% else %}
+            {{ average_score | float | round(1) }}
+          {% endif%}
+        </span>
+
+        <a href="/feedback">
+          {% render_snippet 'Rating star', rating=average_score %}
+
+          <i>
+            ({{[shop.feedback.total, ' reviews'] | join if shop.feedback else 'No reviews'}})
+          </i>
+        </a>
+      </div>
+    </div>
+  {% endif %}
+</div>

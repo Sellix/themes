@@ -1,0 +1,34 @@
+{% set slug = global.request.slug %}
+{% set colors = themeProperties.current_colors %}
+{% set menuProps = themeProperties.menu %}
+
+<style>
+  .menu-tab.active {
+    color: {{ colors[menuProps.menu_active_tab_font_color] }} !important;
+    border-bottom-color: {{ colors[menuProps.menu_active_tab_font_color] }};
+    font-size: {{ menuProps.menu_active_tab_font_size }}px !important;
+    font-weight: {{ menuProps.menu_active_tab_font_weight }} !important;
+    background: {{ colors[menuProps.menu_active_tab_background] }};
+    border-radius: 0.25rem 0.25rem 0 0;
+    position: relative;
+  }
+</style>
+
+<div class="sellix-menu">
+    {% for item in menu.items %}
+      {% set active = item.page_slug == slug %}
+      {% if item.page_slug != "/" %}
+        {% set active = item.page_slug in slug %}
+      {% endif %}
+      {% if item.page_slug == "/contact" and "/ticket" in slug %}
+        {% set active = true %}
+      {% endif %}
+      <a
+        href="{{item.page_slug}}"
+        class="menu-tab {{'active' if active else ''}}"
+        style="font-size: {{ menuProps.menu_tab_font_size }}px; color: {{ colors[menuProps.menu_tab_font_color] }}; font-weight: {{ menuProps.menu_tab_font_weight }};"
+      >
+        {{item.title}}
+      </a>
+    {% endfor %}
+</div>

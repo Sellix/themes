@@ -131,8 +131,12 @@
     </style>
 
     <link rel="stylesheet" href="{{ 'select2.css' | asset_url }}"/>
+    {% if global.request.type in ['checkout', 'product', 'subscription'] %}
     <link rel="stylesheet" href="{{ 'purchase.css' | asset_url }}" />
+    {% endif %}
+    {% if global.request.type in ['invoice'] %}
     <link rel="stylesheet" href="{{ 'invoice.css' | asset_url }}" />
+    {% endif %}
     <link rel="stylesheet" href="{{ 'magnific-popup.1.1.0.css' | asset_url }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
@@ -292,9 +296,13 @@
     <script src="{{ 'ripple.js' | asset_url }}"></script>
     <script src="{{ 'react-simple-star-rating.js' | asset_url }}"></script>
     <script src="{{ 'select2.js' | asset_url }}"></script>
-    <script src="{{ 'purchase.js' | asset_url }}"></script>
-    <script src="{{ 'invoice.js' | asset_url }}"></script>
     <script src="{{ 'magnific-popup.1.1.0.min.js' | asset_url }}"></script>
+    {% if global.request.type in ['checkout', 'product', 'subscription'] %}
+    <script src="{{ 'purchase.js' | asset_url }}"></script>
+    {% endif %}
+    {% if global.request.type in ['invoice'] %}
+    <script src="{{ 'invoice.js' | asset_url }}"></script>
+    {% endif %}
 
     <script src="{{ 'sellix-api.js' | asset_url }}"></script>
     <script src="{{ 'sellix-context.js' | asset_url }}"></script>
@@ -320,26 +328,8 @@
     <script src="{{ 'sellix-ticket-component.js' | asset_url }}"></script>
     <script src="{{ 'sellix-leave-feedback-component.js' | asset_url }}"></script>
 
-    {% if global.cookiePolicy.enabled %}
-      <div id="sellix-cookie-modal"></div>
-      <script type="text/javascript" src="{{ 'cookie-modal.js' | asset_url }}" charset="UTF-8"></script>
-      <link rel="stylesheet" href="{{ 'cookie-modal.css' | asset_url }}" />
-      <script type="text/javascript">
-        (function (document, window, jQuery, React, ReactDOM) {
-          jQuery(document).ready(() => {
-            ReactDOM.render(
-              React.createElement(window.CookieModal, {
-                shop: '{{ global.common.shopInfo.shop.name }}',
-                googleAnalyticsTrackingId: '{{ global.common.shopInfo.shop.google_analytics_tracking_id }}',
-              }),
-              document.querySelector("#sellix-cookie-modal"),
-            );
-          });
-        })(document, window, jQuery, React, ReactDOM);
-      </script>
-    {% endif %}
-
-  {% render_snippet 'App google analytics' %}
+    {% render_snippet 'App cookie modal' %}
+    {% render_snippet 'App google analytics' %}
 
   </body>
 </html>

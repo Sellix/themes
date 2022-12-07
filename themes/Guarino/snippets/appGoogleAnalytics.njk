@@ -1,3 +1,5 @@
+{% set isShop = args.isShop if args.isShop is defined else true %}
+
 {% if global.common.shopInfo.shop.google_analytics_tracking_id %}
   <script async src="https://www.googletagmanager.com/gtag/js?id={{- global.common.shopInfo.shop.google_analytics_tracking_id -}}"></script>
   <script type="application/javascript">
@@ -10,6 +12,8 @@
         dataLayer.push(arguments);
       }
 
+      const isShop = {{ isShop }};
+      const cookieName = isShop ? `shop-cookies-{{ global.common.shopInfo.shop.name }}` : 'sellix-cookies';
       const isEU = euList.includes(ipcountry);
       const isChina = ipcountry === 'CN';
 
@@ -17,7 +21,7 @@
       if(!isEU) {
         storage = ['strictly', 'experience', 'measurement', 'targeting'];
       } else {
-        const shopCookies = Cookies.get(`shop-cookies-{{ global.common.shopInfo.shop.name }}`);
+        const shopCookies = Cookies.get(cookieName);
         storage = shopCookies ? shopCookies.split(',') : shopCookies;
       }
 
@@ -40,6 +44,8 @@
         gtag('config', '{{- global.common.shopInfo.shop.google_analytics_tracking_id -}}', {
           page_path: window.location.pathname.trim(),
         });
+
+        console.log('Google Tag is ready')
       }
     });
   </script>
