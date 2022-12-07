@@ -1,0 +1,28 @@
+{% set id = uid() %}
+{% set colors = themeProperties.current_colors %}
+
+{% set backgroundColor = properties.container_background_color if properties.container_background_color is defined else 'background_accent_dark' %}
+{% set showBorder = properties.container_show_border if properties.container_show_border is defined else true %}
+{% set borderRadius = properties.container_border_radius if properties.container_border_radius is defined else 0.5 %}
+{% set shadow = properties.container_shadow if properties.container_shadow is defined else 'none' %}
+{% set paddingVert = properties.container_padding_vert if properties.container_padding_vert is defined else '16' %}
+{% set paddingHoriz = properties.container_padding_horiz if properties.container_padding_horiz is defined else '16' %}
+
+<style>
+  .sellix-delivery-header-section-{{ id }} {
+      border: {{ '1px solid var(--borderColor)' if showBorder else 'none' }}!important;
+      background: {{ colors[backgroundColor] }}!important;
+      border-radius: {{ borderRadius }}rem!important;
+      box-shadow: {{ shadow }}!important;
+      padding: {{ paddingVert }}px {{ paddingHoriz }}px!important;
+  }
+</style>
+
+<div class="sellix-delivery-header-section sellix-delivery-header-section-{{ id }}">
+  <div class="sellix-delivery-header">
+    {% for block_name in settings.block_order %}
+      {% render_block block_name %}
+    {% endfor %}
+  </div>
+
+</div>

@@ -1,0 +1,29 @@
+<style>
+.sellix-banner-image-test {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: {{ properties.banner_new_image_text_size }}px;
+  color: #FFF;
+  text-align: {{ properties.banner_new_image_text_alignment }};
+}
+
+.sellix-banner-image{
+  //width:{{ properties.banner_new_image_width }}%;
+  width:  100%;
+  //height:{{ properties.banner_new_image_height }}%;
+  height: 100%;
+  border-radius: {{ properties.banner_new_image_radius }}rem; 
+}
+
+</style>
+<div class="sellix-banner-image">
+  <img src="{{ properties.banner_new_image }}" style= "opacity:{{properties.banner_new_image_opacity if properties.banner_new_image_text_bool}};" class="sellix-banner-image"/>
+  {% if properties.banner_new_image_text_bool %}
+  <div class="sellix-banner-image-test">
+  <h2>{{ properties.banner_new_image_text_title }}</h2>
+  <p>{{ properties.banner_new_image_text_description }}</p>
+  {% endif %}
+</div>
+</div>

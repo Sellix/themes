@@ -1,0 +1,62 @@
+{% set id = uid() %}
+{% set invoice = global.common.invoiceInfo.invoice %}
+{% set info = global.common.invoiceInfo.info %}
+{% set product = global.common.productInfo.product %}
+
+{% set isShoppingCart = invoice.type == 'SHOPPING_CART' %}
+{% set isProductSubscription = invoice.type == 'PRODUCT_SUBSCRIPTION' %}
+{% set isSubscription = invoice.type == 'SUBSCRIPTION'  %}
+{% set isInvoice = renderOptions['templateName'] == 'Invoice/Invoice' %}
+{% set isDev = (invoice.developer_invoice | int) if invoice else false %}
+
+{% set enableSidebar = properties.enable_right_sidebar %}
+{% set showBackButton = properties.show_back_button %}
+
+<style>
+  .sellix-delivery-products-{{ id }} {
+    {% if not enableSidebar %}
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 1.5rem;
+    {% endif %}
+  }
+</style>
+
+
+<div class="sellix-delivery-body">
+  <div class="sellix-delivery-products sellix-delivery-products-{{ id }} {{ 'is-cart' if isShoppingCart else '' }}">
+    {% for block_name in settings.block_order %}
+      {% if not enableSidebar or loop.revindex > properties.right_sidebar_blocks_count | int %}
+        {% render_block block_name %}
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  {% if enableSidebar %}
+    <div class="sellix-delivery-details">
+      {% for block_name in settings.block_order %}
+        {% if loop.revindex <= properties.right_sidebar_blocks_count | int %}
+          {% render_block block_name %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+
+{% if showBackButton %}
+  {% if isSubscription %}
+
+  {% elif isDev and invoice.developer_return_url %}
+    <a href={{ invoice.developer_return_url }}>
+      <button type="button" class="medium primary sellix-delivery-back">
+        Back to {{ invoice.name }}'s shop
+      </button>
+    </a>
+  {% else %}
+    <a href="/" style="color: white">
+      <button type="button" class="medium primary">
+        Back to {{ invoice.name }}'s shop
+      </button>
+    </a>
+  {% endif %}
+{% endif %}

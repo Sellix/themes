@@ -1,0 +1,101 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set product = args.product %}
+{% set invoice = args.invoice %}
+{% set colors = args.colors %}
+
+{% set hideSold = (shop.hide_products_sold or (not shop.hide_products_sold and not product.sold_count)) and not product.sold_count %}
+
+{% set properties = args.properties %}
+{% set backgroundColor = properties.container_background_color if properties.container_background_color is defined else 'background_accent_dark' %}
+{% set showBorder = properties.container_show_border if properties.container_show_border is defined else true %}
+{% set borderRadius = properties.container_border_radius if properties.container_border_radius is defined else 0.5 %}
+{% set shadow = properties.container_shadow if properties.container_shadow is defined else 'none' %}
+{% set paddingVert = properties.container_padding_vert if properties.container_padding_vert is defined else '16' %}
+{% set paddingHoriz = properties.container_padding_horiz if properties.container_padding_horiz is defined else '16' %}
+{% set titleFontColor = properties.title_font_color if properties.title_font_color is defined else 'light_font_color' %}
+{% set titleFontSize = properties.title_font_size if properties.title_font_size is defined else 24 %}
+{% set titleTextAlign = properties.title_text_align if properties.title_text_align is defined else 'left' %}
+
+<style>
+  .sellix-product-description-{{ id }} {
+    border: {{ '1px solid var(--borderColor)' if showBorder else 'none' }}!important;
+    background: {{ colors[backgroundColor] }}!important;
+    border-radius: {{ borderRadius }}rem!important;
+    box-shadow: {{ shadow }}!important;
+    padding: {{ paddingVert }}px {{ paddingHoriz }}px!important;
+    position: relative;
+    margin-bottom: 1rem;
+  }
+  .shop-product-info-product-title-{{ id }} {
+    color: {{ colors[titleFontColor] }}!important;
+    font-size: {{ titleFontSize }}px!important;
+    justify-content: {{ titleTextAlign }}!important;
+  }
+</style>
+
+<div
+  id="sellix-product-description-{{ id }}"
+  class="sellix-product-description-{{ id }}"
+>
+  <div class="shop-product-info-product-title {{'mb-0' if hideSold else ''}} shop-product-info-product-title-{{ id }}">
+    {% if product.title %}
+      {{product.title}}
+    {% else %}
+      {% if invoice and invoice.developer_invoice %}
+        {{invoice.developer_title}}
+      {% else %}
+        {{''}}
+      {% endif %}
+    {% endif %}
+  </div>
+
+  {% if product.type === 'SUBSCRIPTION' %}
+    <div class="shop-product-info-subscription-badge" style="background-color: var(--backgroundColor)">
+      subscription
+    </div>
+  {% endif %}
+
+  <div class="shop-product-info-product-info">
+    {% if product.sold_count %}
+      {% if not shop.hide_products_sold %}
+        <span style="white-space: nowrap">
+          <span>Product sold</span> <i style="white: nowrap">{{product.sold_count}}</i> times
+        </span>
+      {% endif %}
+
+      <span>
+        {% render_snippet 'Rating star', rating=product.average_score or 4, iconsCount=1 %}
+        {% if product.average_score %}
+          {{product.average_score | float | round(1)}}
+        {% endif %}
+        <i>({{product.feedback.total}} reviews)</i>
+      </span>
+    {% endif %}
+  </div>
+
+  <div class="shop-product-info-collapse" style="height: 0; overflow: hidden;">
+    <div class="shop-product-info-wrapper">
+      {% render_snippet 'Product gallery', product=product %}
+      {% render_snippet 'Product description', product=product %}
+    </div>
+  </div>
+</div>
+
+<script type="application/javascript">
+  $(document).ready(function() {
+    const productId = '{{ product.uniqid }}';
+    const priceVariantsStore = new SellixPriceVariantsStore('{{ shop.name }}');
+
+    $('#sellix-product-description-{{ id }} .shop-product-info-collapse').css({ height: 'auto', overflow: 'initial'});
+
+    $(document).on('SellixVariantsUpdateEvent', (event, eventInfo) => {
+      if (!eventInfo || !eventInfo.productId || eventInfo.productId === productId) {
+        const activeVariant = priceVariantsStore.get(productId);
+        if (activeVariant) {
+          $('#sellix-product-description-{{ id }} .shop-product-info-product-title').text(activeVariant.title);
+        }
+      }
+    });
+  });
+</script>

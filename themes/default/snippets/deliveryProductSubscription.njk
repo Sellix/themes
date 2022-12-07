@@ -1,0 +1,49 @@
+{% set invoice = args.invoice %}
+
+<div class="sellix-delivery-product skip mb-0 mt-5">
+  <div class="sellix-delivery-product-title" style="margin-top: -2rem">
+    Subscription Purchase
+  </div>
+  <div class="sellix-delivery-product-item">
+
+    {% if invoice.subtype %}
+      <div class="sellix-text">
+        <p class="sellix-delivery-product-item-subtype">
+          <strong>{{ invoice.subtype | lower }}</strong> subscriptions are sent directly to your email, please check for an email sent by
+          <a href="mailto:notice@orders.sellix.io" target="_blank">notice@orders.sellix.io</a> to get your product and/or get in touch with the business.
+        </p>
+      </div>
+    {% endif %}
+
+    <div class="sellix-text">
+      {% if invoice.subtype %}
+        {% render_snippet 'Alert',
+          show=true,
+          small=true,
+          blue=true,
+          title='Please note',
+          text='If you need help, please refer to the merchant\'s contact page using the button below. You can also access our customer billing portal to manage the active subscriptions in your name.'
+        %}
+      {% else %}
+        <p>
+          You can now return to the merchant's website, where the subscription will be active soon.
+          If you need help, please refer to the merchant's contact page using the button below.
+          You can also access our customer billing portal to manage the active subscriptions in your name.
+        </p>
+      {% endif %}
+    </div>
+
+    <div class="sellix-delivery-product-buttons">
+      <a href="/contact" class="w-50 mr-3 medium primary">
+        <button type="button" class="w-100 medium primary">Contact the merchant</button>
+      </a>
+      <button
+        type="button"
+        class="w-50 medium primary"
+        onclick="window.sellixHelper.redirectToSubLink('customer-portal', '/')"
+      >
+        Go to the customer billing portal
+      </button>
+    </div>
+  </div>
+</div>

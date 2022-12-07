@@ -1,0 +1,47 @@
+{% set id = uid() %}
+{% set product = global.common.productInfo.product %}
+
+{% set isInvoice = global.request.type == 'invoice' %}
+{% set isSidebarEnabled = properties.enable_right_sidebar %}
+{% set sidebarBlocksCount = properties.right_sidebar_blocks_count %}
+
+<div class="sellix-product-screen sellix-invoice-screen">
+  <div class="shop-product-container" style="justify-content: {{ 'space-around' if isInvoice else 'space-between' }};{#
+    #}flex-direction: {{ 'row' if isSidebarEnabled else 'column-reverse' }};{#
+    #}align-items: {{ 'stretch' if isSidebarEnabled else 'center' }}
+  ">
+
+    <div class="shop-product-info" style="{{'width:100%' if not isSidebarEnabled else '' }};{#
+      #}display: {{ 'none' if isInvoice else '' }}"
+    >
+      <div class="shop-product-info-description {{ 'with-image' if product.image_attachment else '' }}">
+        {% for block_name in settings.block_order %}
+          {% if loop.revindex > sidebarBlocksCount | int %}
+            {% render_block block_name %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="shop-product-card">
+      {% for block_name in settings.block_order %}
+        {% if loop.revindex <= sidebarBlocksCount | int %}
+          {% render_block block_name %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+<script type='application/javascript'>
+    $(document).ready(function() {
+        $(document).on('SellixInvoiceShowProductDescription', function(event, eventInfo) {
+            if (!eventInfo || !eventInfo.visible) {
+                $('.shop-product-info').css({ display: 'none' });
+            } else {
+                $('.shop-product-info').css({ display: '' });
+            }
+        });
+    });
+</script>

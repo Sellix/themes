@@ -1,0 +1,23 @@
+{% set id = uid() %}
+
+{% render_snippet 'App paypal' %}
+
+<div id="invoice-details-{{id}}"></div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const { shopInfo, invoiceInfo } = window.SellixContext.get('common');
+    const isDark = {{args.isDark if args.isDark is defined else themeProperties.color_schema.dark_mode}};
+    let invoice = (invoiceInfo && invoiceInfo.invoice)
+
+    const invoiceDetailsComponent = new SellixInvoiceDetailsComponent({
+      selector: '#invoice-details-{{id}}',
+      config: window.SellixContext.get('config'),
+      shop: shopInfo.shop,
+      invoiceId: invoice.uniqid,
+      invoice: invoice,
+      theme: { isDark },
+    });
+    invoiceDetailsComponent.render();
+  });
+</script>

@@ -1,0 +1,54 @@
+{% set slug = global.request.slug %}
+{% set colors = themeProperties.current_colors %}
+{% set menuProps = themeProperties.menu %}
+
+<style>
+  .menu-tab.active {
+    color: {{ colors[menuProps.menu_active_tab_font_color] }} !important;
+    font-size: {{ menuProps.menu_active_tab_font_size }}px !important;
+    font-weight: 600!important;
+    background-color: #ffffff12!important;
+    border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+    position: relative;
+    padding: 8 15px;
+    border-bottom-color: transparent!important;
+  }
+</style>
+
+{% if  menuProps.menu_bool %}
+
+<style>
+
+.menu-tab:hover {
+    color: {{ colors[menuProps.menu_active_tab_font_color] }} !important;
+    font-size: {{ menuProps.menu_active_tab_font_size }}px !important;
+    font-weight: 600!important;
+    background-color: #ffffff12!important;
+    border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+    position: relative;
+    padding: 8 15px;
+    margin: 0 10px;
+  }
+  .sellix-menu-container {    background: transparent!important;  }
+  .sellix-menu3  {   margin-left: 300px; font-weight: 600;       }
+</style>
+
+<div class="sellix-menu3">
+    {% for item in menu.items %}
+      {% set active = item.page_slug == slug %}
+      {% if item.page_slug != "/" %}
+        {% set active = item.page_slug in slug %}
+      {% endif %}
+      {% if item.page_slug == "/contact" and "/ticket" in slug %}
+        {% set active = true %}
+      {% endif %}
+      <a
+        href="{{item.page_slug}}"
+        class="menu-tab {{'active' if active else ''}}"
+        style="font-size: {{ menuProps.menu_tab_font_size }}px; color: {{ colors[menuProps.menu_tab_font_color] }}; font-weight: {{ menuProps.menu_tab_font_weight }};margin-top: 20px;"
+      >
+        {{item.title}}
+      </a>
+    {% endfor %}
+</div>
+{% endif %}

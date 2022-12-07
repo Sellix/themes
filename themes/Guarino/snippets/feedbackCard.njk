@@ -1,0 +1,54 @@
+{% set isAdditionalDomain = global.common.isAdditionalDomain %}
+{% set created_at = args.feedback.created_at * 1000 %}
+{% set message = args.feedback.message %}
+{% set reply = args.feedback.reply %}
+{% set score = args.feedback.score %}
+{% set color = 'var(--brandColor)' if isAdditionalDomain else '#FCAB06' %}
+{% set colors = themeProperties.current_colors %}
+{% set cardsProps = themeProperties.cards %}
+
+<div
+  class="sellix-feedback-card-wrapper"
+  style="background: #16132c ; border: {{ "1px solid var(--borderColor)" if cardsProps.feedback_card_show_border else "none" }};"
+>
+  <div class="sellix-feedback-card">
+    <div class="sellix-feedback-card-head">
+      {% render_snippet 'Rating star', rating=score, size=20, color=color %}
+
+      <div class="sellix-feedback-rating-info-date">
+        {{created_at | date_format('DD MMM YYYY')}}
+      </div>
+    </div>
+
+    <div class="sellix-feedback-card-review">
+      <div>
+        <div
+          class="sellix-feedback-text"
+          style="color: {{ colors[cardsProps.feedback_card_message_text_font_color] }}; font-size: {{ cardsProps.feedback_card_message_text_font_size }}px; font-weight: {{ cardsProps.feedback_card_message_text_font_weight }}; line-height: {{ cardsProps.feedback_card_message_text_line_height }}%; text-align: {{ cardsProps.feedback_card_message_text_text_align }};"
+        >
+          {{message}}
+        </div>
+
+        {% if reply %}
+          <div
+            class="sellix-feedback-reply"
+            style="background: {{ colors[cardsProps.feedback_card_reply_background_color] }}; border: {{ "1px solid var(--borderColor)" if cardsProps.feedback_card_reply_show_border else "none" }}; color: {{ colors[cardsProps.feedback_card_reply_text_font_color] }}; font-size: {{ cardsProps.feedback_card_reply_text_font_size }}px; font-weight: {{ cardsProps.feedback_card_reply_text_font_weight }}; line-height: {{ cardsProps.feedback_card_reply_text_line_height }}%; text-align: {{ cardsProps.feedback_card_reply_text_text_align }};"
+          >
+            <span>{{reply}}</span>
+
+            <span class="sellix-feedback-reply-seller">
+              — reply from the Seller
+            </span>
+          </div>
+
+        {% endif %}
+      </div>
+
+      <div class="sellix-feedback-checked">
+        <i class="fa-light fa-check"></i>
+
+        <span>Verified Purchase</span>
+      </div>
+    </div>
+  </div>
+</div>

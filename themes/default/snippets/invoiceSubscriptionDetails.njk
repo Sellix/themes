@@ -1,0 +1,53 @@
+{% set id = uid() %}
+{% set invoice = global.common.invoiceInfo.invoice %}
+{% set subscriptionName = invoice.subscription.name or '________' %}
+{% set colors = themeProperties.current_colors %}
+
+{% set properties = args.properties %}
+{% set backgroundColor = properties.container_background_color if properties.container_background_color is defined else 'background_accent_dark' %}
+{% set showBorder = properties.container_show_border if properties.container_show_border is defined else true %}
+{% set borderRadius = properties.container_border_radius if properties.container_border_radius is defined else 0.5 %}
+{% set shadow = properties.container_shadow if properties.container_shadow is defined else 'none' %}
+{% set paddingVert = properties.container_padding_vert if properties.container_padding_vert is defined else '16' %}
+{% set paddingHoriz = properties.container_padding_horiz if properties.container_padding_horiz is defined else '16' %}
+{% set titleFontColor = properties.title_font_color if properties.title_font_color is defined else 'light_font_color' %}
+{% set titleFontSize = properties.title_font_size if properties.title_font_size is defined else 24 %}
+{% set titleTextAlign = properties.title_text_align if properties.title_text_align is defined else 'left' %}
+
+<style>
+  .sellix-subscription-{{ id }} {
+    border: {{ '1px solid var(--borderColor)' if showBorder else 'none' }}!important;
+    background: {{ colors[backgroundColor] }}!important;
+    border-radius: {{ borderRadius }}rem!important;
+    box-shadow: {{ shadow }}!important;
+    padding: {{ paddingVert }}px {{ paddingHoriz }}px!important;
+    position: relative;
+    margin-bottom: 1rem;
+  }
+
+  .shop-product-info-product-title-{{ id }} {
+    color: {{ colors[titleFontColor] }}!important;
+    font-size: {{ titleFontSize }}px!important;
+    justify-content: {{ titleTextAlign }}!important;
+  }
+
+  .shop-product-info-product-description-{{ id }} {
+    justify-content: {{ bodyTextAlign }}!important;
+  }
+</style>
+
+<div class="w-100">
+  <div class="sellix-subscription-{{ id }}">
+    <div class="shop-product-info-product-title mb-0 shop-product-info-product-title-{{ id }}">
+      Subscription {{ subscriptionName }}
+    </div>
+
+    <div class="shop-product-info-product-info"></div>
+
+    <div class="shop-product-info-product-description shop-product-info-product-description-{{ id }}">
+      <div class="sellix-text p-3">
+        <p>You are purchasing the {{ subscriptionName }} subscription. Once the invoice is flagged as completed you will automatically receive the months you have paid for.</p>
+      </div>
+    </div>
+  </div>
+</div>

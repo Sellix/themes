@@ -1,0 +1,122 @@
+{% set product = args.product %}
+{% set properties = args.properties %}
+{% set colors = themeProperties.current_colors %}
+
+{% set rating = (product.average_score if product.average_score else 0) | float %}
+{% set productStock = ('∞' if product.stock === -1 else get_stock(product.stock)) %}
+{% set onHold = product.on_hold | int %}
+{% set isRatingGold = rating > 4 %}
+
+{% set isFree = product.price_display | float === 0 %}
+{% set isDisabled = product.stock | int === 0 or onHold %}
+{% set isPlaceholder = not product.cloudflare_image_id %}
+{% set image = cdn_link(product.cloudflare_image_id, 'shopItem') %}
+
+<div class="group-option {{'is-disabled' if isDisabled else ''}} {{'no-cart' if args.cartEnabled else ''}}">
+  <div class="group-option-description">
+
+    {% if not isFree %}
+      {% render_snippet 'Discount badge', product=product, isGroup=true %}
+    {% endif %}
+
+    <div class="group-option-image {{'placeholder' if isPlaceholder else ''}}">
+      {% if isPlaceholder %}
+        <i class="fa-light fa-layer-group"></i>
+      {% else %}
+        <img src="{{image}}" alt="{{product.title}}" loading="lazy" />
+      {% endif %}
+    </div>
+
+    <div class="group-option-content">
+      <div class="group-option-title">
+        <span style="color: {{ colors[properties.bundles_product_title_font_color] }};{#
+          #}font-size: {{ properties.bundles_product_title_font_size }}px;{#
+          #}font-weight: {{ properties.bundles_product_title_font_weight }};"
+        >
+          {{product.title}}
+        </span>
+
+        {% if rating %}
+          <span class="group-option-star {{'text-gold' if isRatingGold else ''}}">
+              <span class="mr-1 position-relative {{'text-gold' if isRatingGold else ''}}">
+                  <i class="fas fa-star" style="font-size: 11px;"></i>
+              </span>
+              <span>{{5 if rating === 5 else (rating | float | round(2))}}</span>
+          </span>
+        {% endif %}
+      </div>
+
+      {% if onHold %}
+        <span>Product on hold</span>
+      {% else %}
+        <div class="group-option-info">
+          {% if product.price_discount and not isFree %}
+            <span
+              class="group-option-info-price with-discount"
+              style="color: {{ colors[properties.bundles_product_price_font_color] }};{#
+                #}font-size: {{ properties.bundles_product_price_font_size }}px;{#
+                #}font-weight: {{ properties.bundles_product_price_font_weight }};"
+            >
+                <i>{% render_snippet 'Price', currency=product.currency, price=product.price_display %}</i>{#
+                #}{% render_snippet 'Price', currency=product.currency, price=product.price_display, discount=product.price_discount %}
+            </span>
+          {% else %}
+            <span
+              class="group-option-info-price"
+              style="color: {{ colors[properties.bundles_product_price_font_color] }};{#
+                #}font-size: {{ properties.bundles_product_price_font_size }}px;{#
+                #}font-weight: {{ properties.bundles_product_price_font_weight }};"
+            >
+                {% if isFree%}
+                  Free
+                {% else %}
+                  {% render_snippet 'Price', currency=product.currency, price=product.price_display %}
+                {% endif %}
+            </span>
+          {% endif %}
+
+          <span class="group-option-dot">  ●  </span>
+
+          <span class="stock">
+              <span
+                class="{{'text-red' if productStock | int === 0 else 'text-green'}}"
+                style="color: {{'#dc3545' if productStock | int == 0 else '#28a745'}};{#
+                  #}position: {{'relative' if productStock === '∞' else 'static'}};{#
+                  #}top: {{'auto' if productStock === '∞' else 'auto'}}"
+              >
+                  {% if productStock === '∞' %}
+                    <i class="fa-solid fa-infinity" style="font-size: 10px; color: {{'#dc3545' if productStock === 0 else '#28a745'}}"></i>
+                  {% else %}
+                    {{productStock}}
+                  {% endif %}
+              </span> in stock
+          </span>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="group-option-buttons unselectable {{'with-cart' if args.cartEnabled else ''}}">
+    {% if not isDisabled and not isFree %}
+      <div style="margin-right: 0.5rem">
+        {% render_snippet 'Cart button', product=product, isGroup=true, redirectToCheckout=args.redirectToCheckout %}
+      </div>
+    {% endif %}
+    {% if isDisabled and args.cartEnabled %}
+      <div></div>
+    {% endif %}
+    {% if args.skipBuyButton %}
+      <div></div>
+    {% else %}
+      <a href="{{'javascript:void' if isDisabled else ['/product/', product.uniqid] | join}}" style="color: white;">
+        <div class="{{'disabled' if isDisabled else ''}} buy-button">
+          {% if isFree %}
+            Get it
+          {% else %}
+            Buy
+          {% endif %}
+        </div>
+      </a>
+    {% endif %}
+  </div>
+</div>

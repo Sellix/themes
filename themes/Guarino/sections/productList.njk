@@ -1,0 +1,16 @@
+<div class="sellix-product-list-container">
+
+  <div class="sellix-product-list">
+    {% for block_name in settings.block_order %}
+      {%- render_block block_name -%}
+    {% endfor%}
+  </div>
+
+  {% render_snippet 'Group card modal' %}
+</div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  });
+</script>

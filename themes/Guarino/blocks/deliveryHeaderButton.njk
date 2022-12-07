@@ -1,0 +1,21 @@
+{% set invoice = global.common.invoiceInfo.invoice %}
+{% set isSubscription = invoice.type == 'SUBSCRIPTION'  %}
+{% set isDev = (invoice.developer_invoice | int) if invoice else false %}
+
+<div>
+  {% if isSubscription %}
+
+  {% elif isDev and invoice.developer_return_url %}
+    <a href={{ invoice.developer_return_url }}>
+      <button type="button" class="medium primary">
+        Back to <b class="mx-1">{{ invoice.name }}'s</b> shop
+      </button>
+    </a>
+  {% else %}
+    <a href="/" style="color: white">
+      <button type="button" class="medium primary">
+        Back to <b class="mx-1">{{ invoice.name }}'s</b> shop
+      </button>
+    </a>
+  {% endif %}
+</div>

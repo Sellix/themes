@@ -1,0 +1,22 @@
+{% set invoice = args.invoice %}
+{% set info = args.info %}
+{% set text = info.delivery_text %}
+
+<div>
+  {% if text %}
+    <div class="sellix-delivery-product skip">
+      <div class="sellix-delivery-product-title">Message from {{ invoice.name }}:</div>
+      <div class="sellix-delivery-product-item skip">
+        <div class="sellix-text">
+          <p>{{- text -}}</p>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {% render_snippet 'Delivery digital product',
+    invoice=invoice,
+    info=info,
+    product_type=invoice.product.type
+  %}
+</div>

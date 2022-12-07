@@ -1,0 +1,46 @@
+{% if global.common.shopInfo.shop.google_analytics_tracking_id %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{- global.common.shopInfo.shop.google_analytics_tracking_id -}}"></script>
+  <script type="application/javascript">
+    $(document).ready(function() {
+      const euList = {{ global.config.EU_LIST | dump | safe }};
+      const ipcountry = Cookies.get('ipcountry');
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      const isEU = euList.includes(ipcountry);
+      const isChina = ipcountry === 'CN';
+
+      let storage;
+      if(!isEU) {
+        storage = ['strictly', 'experience', 'measurement', 'targeting'];
+      } else {
+        const shopCookies = Cookies.get(`shop-cookies-{{ global.common.shopInfo.shop.name }}`);
+        storage = shopCookies ? shopCookies.split(',') : shopCookies;
+      }
+
+      let allowGoogleTag = false;
+
+      if(storage && storage.length && storage.includes("targeting")) {
+        allowGoogleTag = true;
+      }
+
+      if(!isEU) {
+        allowGoogleTag = true;
+      }
+
+      if(isChina) {
+        allowGoogleTag = false;
+      }
+
+      if (allowGoogleTag) {
+        gtag('js', new Date());
+        gtag('config', '{{- global.common.shopInfo.shop.google_analytics_tracking_id -}}', {
+          page_path: window.location.pathname.trim(),
+        });
+      }
+    });
+  </script>
+{% endif %}

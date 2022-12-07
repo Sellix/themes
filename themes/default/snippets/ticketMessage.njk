@@ -1,0 +1,20 @@
+{% set role = args.role %}
+{% set message = args.message %}
+{% set properties = args.properties %}
+{% set created_at = args.created_at * 1000 %}
+{% set colors = themeProperties.current_colors %}
+
+<div data-id="{{ role }}-{{ args.created_at }}" class="reply-screen-message {{'you' if role === 'CUSTOMER' else ''}}">
+  <div
+    class="reply-screen-message-item"
+    style="background: {{ colors[properties.ticket_message_background] }}; border: {{ "1px solid var(--borderColor)" if properties.ticket_message_show_border else "none" }};"
+  >
+    <div>
+      <div class="reply-screen-message-item-title">{{'Customer' if role !== 'CUSTOMER' else 'You'}}</div>
+    </div>
+
+    <span>{{message}}</span>
+  </div>
+
+  <span class="reply-screen-message-item-date">{{created_at | date_format('DD, MMM HH:mm')}}</span>
+</div>

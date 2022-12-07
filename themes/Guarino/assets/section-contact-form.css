@@ -1,0 +1,55 @@
+.sellix-contact-screen {
+  width: 100%;
+  max-width: 1140px;
+  padding: 0 1rem;
+  margin: 0 auto 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sellix-contact-form {
+  color: var(--darkFontColor);
+  padding: 1rem;
+  background: var(--backgroundAccentDark);
+  border-radius: 0.5rem;
+  border: 1px solid var(--borderColor);
+  width: 65%;
+}
+
+.sellix-contact-form .wide-screen {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 10px;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .sellix-contact-form .wide-screen {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .sellix-contact-form .wide-screen .title {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .sellix-contact-screen {
+    margin-top: 0;
+  }
+
+  .sellix-contact-form {
+    width: 100% !important;
+  }
+
+  .sellix-contact-form .wide-screen {
+    grid-template-columns: 1fr;
+  }
+
+  .sellix-contact-form .wide-screen .title {
+    grid-column-start: 1;
+    grid-column-end: 1;
+  }
+}

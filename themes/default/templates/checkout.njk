@@ -1,0 +1,14 @@
+{% set shop = global.common.shopInfo.shop %}
+{% for section in settings.section_order %}
+  {% render_section section %}
+{% endfor %}
+<script type='application/javascript'>
+  $(document).ready(function () {
+    $(document).on('SellixCartUpdateEvent', function() {
+      const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
+      if (!cart.getItems().length) {
+        window.location.href = '';
+      }
+    });
+  });
+</script>

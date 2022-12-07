@@ -6,6 +6,8 @@ The import feature on the website can be used to test different themes at once b
 
 ## Deployment process
 
+This process is for Sellix developers, some links might not be working for the general public.
+
 1. *[if needed]* build [shop-widgets](https://github.com/sellix/shop-widgets). for invoice.js and purchase.js
 
 2. *[if needed]* update theme directory to add the new two .js files

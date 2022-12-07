@@ -1,0 +1,64 @@
+{% set id = uid() %}
+{% set properties = args.properties %}
+{% set shop = global.common.shopInfo.shop %}
+{% set colors = themeProperties.current_colors %}
+{% set product = args.product %}
+{% set currency = args.currency %}
+{% set is_cart = args.is_cart or false %}
+{% set price_variants = product.price_variants or [] %}
+
+<style>
+  .variant-badge-{{ id }} {
+    background-color: {{ colors[properties.container_background_color] }};
+  }
+</style>
+
+{% if price_variants | length and product.stock %}
+  {% for variant in price_variants %}
+    {% if variant.stock === 0 %}
+      {#
+      <div class="variant-badge-{{ id }} variants-badge {{ 'is-cart' if is_cart else '' }}">
+        <div class="variants-badge-out">
+          Product is out of stock
+        </div>
+      </div>
+      #}
+    {% else %}
+      <div
+        class="variant-{{ id}} variant-badge-{{ id }} variants-badge {{ 'is-cart' if is_cart else '' }}"
+        data-variant="{{ variant.title }}"
+      >
+        <div class="variants-badge-title">{{ variant.title }}</div>
+        <div class="variants-badge-description">{{ variant.description }}</div>
+        <div class="variants-badge-info">
+          <div>
+            Stock&nbsp<b>
+              {%- if product.type === 'SERIALS' -%}
+                {{ get_stock(variant.stock) }}
+              {%- else -%}
+                {{ get_stock(product.stock) }}
+              {%- endif -%}
+            </b>
+          </div>
+          <div>Starting at <b>{% render_snippet 'Price', currency=currency, price=variant.price %}</b></div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+<script type='application/javascript'>
+  $(document).ready(function() {
+    $(document).ready(function() {
+      const productId = '{{ product.uniqid }}';
+      const priceVariantsComponent = new SellixVariantsComponent(
+        `.variant-{{ id}}`,
+        '{{ shop.name }}',
+        productId,
+        {{ (product.price_variants or []) | dump | safe }},
+        {{ is_cart }}
+      );
+      priceVariantsComponent.render();
+    });
+  });
+</script>

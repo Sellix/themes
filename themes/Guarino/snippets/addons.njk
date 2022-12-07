@@ -1,0 +1,117 @@
+{% set id = uid() %}
+
+{% set shop = global.common.shopInfo.shop %}
+{% set colors = themeProperties.current_colors %}
+{% set product = args.product %}
+{% set invoice = args.invoice %}
+{% set currency = args.currency %}
+
+{% set properties = args.properties %}
+{% set backgroundColor = properties.container_background_color if properties.container_background_color is defined else 'background_accent_dark' %}
+{% set showBorder = properties.container_show_border if properties.container_show_border is defined else true %}
+{% set shadow = properties.container_shadow if properties.container_shadow is defined else 'none' %}
+{% set borderRadius = properties.container_border_radius if properties.container_border_radius is defined else 0.5 %}
+{% set paddingVert = properties.container_padding_vert if properties.container_padding_vert is defined else 8 %}
+{% set paddingHoriz = properties.container_padding_horiz if properties.container_padding_horiz is defined else 16 %}
+{% set titleFontColor = properties.title_font_color if properties.title_font_color is defined else 'light_font_color' %}
+{% set titleFontSize = properties.title_font_size if properties.title_font_size is defined else 24 %}
+{% set titleTextAlign = properties.title_text_align if properties.title_text_align is defined else 'left' %}
+{% set bodyFontColor = properties.body_font_color if properties.body_font_color is defined else 'light_font_color' %}
+{% set bodyFontSize = properties.body_font_size if properties.body_font_size is defined else 24 %}
+{% set bodyTextAlign = properties.body_text_align if properties.body_text_align is defined else 'left' %}
+
+{% set isInvoice = global.request.type == 'invoice' %}
+
+{% if isInvoice %}
+  {% set addons = invoice.addons[product.uniqid] or [] %}
+{% else %}
+  {% set addons = product.addons %}
+{% endif %}
+
+<style>
+  .shop-product-info-addon-{{ id }} {
+    max-width: 550px;
+    background: #16132c!important;
+    border: {{ '0px solid var(--borderColor)' if showBorder else 'none' }}!important;
+    box-shadow: {{ shadow }}!important;
+    border-radius: 0.2rem!important;
+    padding: {{ paddingVert }}px {{ paddingHoriz }}px!important;
+  }
+
+  .shop-product-info-addon-title-{{ id }} {
+      color: {{ colors[titleFontColor] }}!important;
+      font-size: {{ titleFontSize }}px!important;
+      justify-content: {{ titleTextAlign }}!important;
+  }
+
+  .shop-product-info-addon-description-{{ id }} {
+      justify-content: {{ bodyTextAlign }}!important;
+  }
+
+  .sellix-text.override-{{ id }} * {
+      color: {{ colors[bodyFontColor] }}!important;
+      font-size: {{ bodyfontSize }}px!important;
+  }
+</style>
+
+{% if product.type === "SUBSCRIPTION" and product.trial_period %}
+  {# Do nothing #}
+{% else %}
+  <div id="shop-product-addons-{{ product.uniqid }}">
+    {% for addon in addons %}
+      <div class="shop-product-info-addon shop-product-info-addon-{{ id }}">
+        <div class="shop-product-info-addon-wrapper">
+          <div
+            class="shop-product-info-addon-title shop-product-info-addon-title-{{ id }}"
+            data-addon-id="{{ addon.uniqid }}"
+          >
+            {{ addon.title }}
+            {% if addon.description %}
+              <i class="fa-solid fa-chevron-down"></i>
+            {% endif %}
+          </div>
+
+          <div class="d-flex align-items-center">
+            <div class="shop-product-info-addon-price">
+              {% render_snippet 'Price', currency=currency, price=addon.price_conversions[currency], digits=2 %}
+            </div>
+
+            {% if not isInvoice %}
+              <button type="button" class="shop-product-info-addon-button button small" data-addon-id='{{ addon.uniqid }}'>
+                ...
+              </button>
+            {% endif %}
+          </div>
+        </div>
+
+        <div
+          class="shop-product-info-addon-description-collapse w-100 d-flex"
+          style="height: 0; overflow: hidden;"
+          data-addon-id="{{ addon.uniqid }}"
+        >
+          <div class="shop-product-info-addon-description .shop-product-info-addon-description-{{ id }}">
+            <div class="sellix-text override-{{ id }}">
+              {{addon.description | html_sanitize | safe}}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <script type="application/javascript">
+    $(document).ready(function() {
+      const productId = '{{ product.uniqid }}';
+      const addonsComponent = new SellixAddonsComponent(
+        `#shop-product-addons-${productId}`,
+        '{{ shop.name }}',
+        productId,
+        {{ (product.addons or []) | dump | safe }},
+      );
+      addonsComponent.render();
+      {% if addons | length and global.builder %}
+      $('#shop-product-addons-{{ product.uniqid }} .shop-product-info-addon-title[data-addon-id="{{ addons[0].uniqid }}"]').click();
+      {% endif %}
+    });
+  </script>
+{% endif %}
