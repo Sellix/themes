@@ -4,7 +4,7 @@
 {% endfor %}
 <script type='application/javascript'>
   $(document).ready(function () {
-    $(document).on('SellixCartUpdateEvent', function() {
+    $(document).on('SellixCartInitEvent', function() {
       const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
       if (!cart.getItems().length) {
         window.location.href = '';

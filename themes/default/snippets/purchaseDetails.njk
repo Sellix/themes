@@ -36,12 +36,12 @@
       }
     }
 
-    let bundles = [];
+    let bundles = [], bundle;
     {% for bundle in args.bundles %}
-      const bundle = {{ bundle | exclude_attributes(['products_bound']) | dump | safe }}
+      bundle = {{ bundle | exclude_attributes(['products_bound']) | dump | safe }};
       bundle.products_bound = [
         {% for product in bundle.products_bound %}
-          {{ product | exclude_attributes('shop_terms_of_service') | dump | safe }},
+          {{ product | exclude_attributes(['shop_terms_of_service', 'description']) | dump | safe }},
         {% endfor %}
       ];
       bundles.push(bundle);
