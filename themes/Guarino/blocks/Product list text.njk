@@ -5,11 +5,13 @@
   position: relative;
   height: 100px;
   z-index:2;
-  color: #FFF;
   display:flex;
   align-content: flex-end;
   justify-content: center;
-  background-image: url({{ properties.productlist_background_image }});background-repeat: no-repeat;background-size: cover;background-position: center;
+  background-image: url({{ properties.productlist_background_image }});
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 
 .productlisttext h2{
@@ -17,18 +19,8 @@
   font-size: {{ properties.productlist_Text_title_size }}px;
   font-weight: {{ properties.productlist_Text_title_thickness }};
 }
-.productlisttext p{
-  text-align: {{ properties.productlist_Text_description_alignment }};
-  font-size: {{ properties.productlist_Text_description_size }}px;
-  font-weight: {{ properties.productlist_Text_description_thickness }};
-  color: transparent;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: WHITE;
-}
 </style>
 
 <div class="productlisttext">
     <h2>{{ properties.productlist_Text_title }}</h2>
-    <p>{{ properties.productlist_Text_description }}</p>
-
 </div>

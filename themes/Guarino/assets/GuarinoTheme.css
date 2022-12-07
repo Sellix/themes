@@ -34,11 +34,6 @@
 
   }
 
-  header {
-    background: linear-gradient(-90deg, #000000 0%, #160e2c 100%) !important;
-    height: 100px !important;
-  }
-
   .sellix-template {
     background: linear-gradient(269deg, #000000 0%, #160e2c 100%) !important;
   }
@@ -106,7 +101,6 @@
   margin-top: 25px;
   align-items: center;
   font-size: 24px;
-  color: #fff;
 }
 
 .Productssold {
@@ -118,14 +112,12 @@
 .Productssold h2 {
   align-items: center;
   font-size: 24px;
-  color: #fff;
 }
 
 .valueofproductssold {
   font-size: 44px;
   display: block;
   font-weight: 900;
-  color: #7040F2;
 }
 
 .gridtextcontent {
@@ -137,12 +129,143 @@
 .gridtextcontent h2 {
   align-items: center;
   font-size: 24px;
-  color: #fff;
 }
 
 .value {
   font-size: 44px;
   display: block;
   font-weight: 900;
-  color: #7040F2;
+}
+
+/* 
+Header section colors: 
+Background:
+    --guarinoHeaderFirstGradient
+    --guarinoHeaderSecondGradient
+
+Menu:
+    --guarinoHeaderMenuActive
+    --guarinoHeaderMenuHover
+    --guarinoHeaderMenuInactive
+
+Cart:
+    --guarinoHeaderCartInactive
+    --guarinoHeaderCartHover
+
+ShopMessage:
+    --guarinoHeaderShopMessageBackground
+    --guarinoHeaderShopMessageTitle
+    --guarinoHeaderShopMessageContent
+*/
+
+header {
+  background: linear-gradient(90deg, var(--guarinoHeaderFirstGradient) 0%, var(--guarinoHeaderSecondGradient) 100%) !important;
+  height: 100px !important;
+}
+
+.menu-tab.active {
+  color: var(--guarinoHeaderMenuActive);
+}
+
+.menu-tab:hover {
+  color: var(--guarinoHeaderMenuHover);
+}
+
+.sellix-menu a {
+  color: var(--guarinoHeaderMenuInactive);
+}
+
+.cart-icon svg {
+  fill: var(--guarinoHeaderCartInactive);
+}
+
+.cart-icon svg:hover {
+  fill: var(--guarinoHeaderCartHover);
+}
+
+div.Toastify {
+  background: var(--guarinoHeaderShopMessageBackground);
+}
+
+.t-shop-message .t-header {
+  color: var(--guarinoHeaderShopMessageTitle);
+}
+
+.t-shop-message .t-content {
+  color: var(--guarinoHeaderShopMessageContent);
+}
+
+/* 
+Content section colors: 
+Banner text:
+    --guarinoContentBannerH2Color
+    --guarinoContentBannerPColor
+    
+Sellix grid text:
+    --guarinoContentSellixGridValueColor
+    --guarinoContentSellixGridH2Color
+  
+Product filters:
+    --guarinoContentProductFilterShopSearchBackground
+    --guarinoContentProductFilterShopSearchTextColor
+
+    --guarinoContentProductFilterShopDropdownBackground
+    --guarinoContentProductFilterShopDropdownTextColor
+    --guarinoContentProductFilterShopDropdownActiveColor
+    --guarinoContentProductFilterShopDropdownActiveBackground
+*/
+
+.bannertext h2 {
+  color: var(--guarinoContentBannerH2Color);
+}
+
+.bannertext p {
+  -webkit-text-stroke-color: var(--guarinoContentBannerPColor);
+}
+
+.sellix-grid div {
+  color: var(--guarinoContentSellixGridValueColor);
+}
+
+.sellix-grid h2 {
+  color: var(--guarinoContentSellixGridH2Color);
+}
+
+.productlisttext {
+  color: var(--guarinoContentProductListTextColor);
+}
+
+.sellix-shop-search input{
+  background: var(--guarinoContentProductFilterShopSearchBackground);
+  color: var(--guarinoContentProductFilterShopSearchTextColor);
+}
+
+.sellix-shop-search input::placeholder {
+  color: var(--guarinoContentProductFilterShopSearchTextColor);
+}
+
+.sellix-shop-search .fas {
+  color: var(--guarinoContentProductFilterShopSearchTextColor);
+}
+
+.sellix-dropdown .select2-container--sellix .select2-selection--single{
+  background-color: var(--guarinoContentProductFilterShopDropdownBackground);
+}
+.sellix-dropdown .select2-container--sellix .select2-selection__rendered{
+  color: var(--guarinoContentProductFilterShopDropdownTextColor);
+}
+
+.select2-container--sellix .select2-dropdown {
+  background-color: var(--guarinoContentProductFilterShopDropdownBackground);
+}
+.select2-container--sellix .select2-results__option {
+  color: var(--guarinoContentProductFilterShopDropdownTextColor);
+}
+.select2-container--sellix .select2-results__option[aria-selected='true'] {
+  background-color: var(--guarinoContentProductFilterShopDropdownActiveColor);
+  color: var(--guarinoContentProductFilterShopDropdownActiveColor);
+}
+.select2-container--sellix .select2-results__option.select2-results__option--highlighted {
+  background-color: var(--guarinoContentProductFilterShopDropdownActiveColor);
+  color: var(--guarinoContentProductFilterShopDropdownActiveColor);
 }
