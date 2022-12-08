@@ -164,40 +164,47 @@
       $(document).trigger('SellixProductListFilterChangeEvent', { search, category, sort });
     });
 
-      $('#category-select-{{id}}').select2({
-        data: [
-          {
-            text: "All categories",
-            id: "all",
-          },
-          {% for category in categories %}
-            {% if not category.unlisted %}
-            {
-              text: "{{category.title}}",
-              id: "{{category.uniqid}}"
-            },
-            {% endif %}
-          {% endfor %}
-        ],
-        minimumResultsForSearch: -1,
-        theme: 'sellix',
-      }).on('change', (e) => {
-        category = e.target.value;
-        $(document).trigger('SellixProductListFilterChangeEvent', { search, category, sort });
-      });
-
-      $('#sort-select-{{id}}').select2({
-        templateSelection: (state) => {
-          if (state.id) {
-            return `Index By: ${state.text}`;
-          }
-          return state.text;
+    $('#category-select-{{id}}').select2({
+      data: [
+        {
+          text: "All categories",
+          id: "all",
         },
-        minimumResultsForSearch: -1,
-        theme: 'sellix',
-      }).on('change', (e) => {
-        sort = e.target.value;
-        $(document).trigger('SellixProductListFilterChangeEvent', { search, category, sort });
-      });
+        {% for category in categories %}
+          {% if not category.unlisted %}
+          {
+            text: "{{category.title}}",
+            id: "{{category.uniqid}}"
+          },
+          {% endif %}
+        {% endfor %}
+      ],
+      minimumResultsForSearch: -1,
+      theme: 'sellix',
+    }).on('change', (e) => {
+      category = e.target.value;
+      $(document).trigger('SellixProductListFilterChangeEvent', { search, category, sort });
+    });
+
+    $('#sort-select-{{id}}').select2({
+      templateSelection: (state) => {
+        if (state.id) {
+          return `Index By: ${state.text}`;
+        }
+        return state.text;
+      },
+      minimumResultsForSearch: -1,
+      theme: 'sellix',
+    }).on('change', (e) => {
+      sort = e.target.value;
+      $(document).trigger('SellixProductListFilterChangeEvent', { search, category, sort });
+    });
+
+    {% if global.request.type === 'category' %}
+      setTimeout(function() {
+        $('#category-select-{{id}}').val('{{ global.request.options.itemId }}');
+        $('#category-select-{{id}}').trigger('change');
+      }, 0);
+    {% endif %}
   });
 </script>
