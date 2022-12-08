@@ -7,6 +7,8 @@
 {% set items = shopInfo.items %}
 {% set colors = themeProperties.current_colors %}
 
+{% set hideOutOfStock = shop.hide_out_of_stock %}
+
 <style>
   .sellix-product-list-card-container--width {
     width: {{ 100 / properties.list_items_per_row_wide | int }}%
@@ -34,22 +36,28 @@
       #} border-radius: {{ properties.container_border_radius }}rem;"
 >
   {% for item in items %}
-    <div
-      data-product-id="{{item.uniqid}}"
-      class="sellix-product-list-card-container sellix-product-list-card-container--width"
-    >
-      {% if item.isInfo %}
-        {% render_snippet 'Info card', product=item, theme=theme, centerProduct=centerProduct %}
-      {% elif item.isSubscription %}
-        {% render_snippet 'Subscription card', product=item, theme=theme, centerProduct=centerProduct %}
-      {% elif item.isProduct %}
-        {% render_snippet 'Product card', product=item, theme=theme, centerProduct=centerProduct %}
-      {% elif item.isGroup %}
-        {% render_snippet 'Group card', group=item, theme=theme, centerGroup=centerGroup %}
-      {% else %}
-        {% render_snippet 'Placeholder card', product=item, theme=theme, centerProduct=centerProduct %}
-      {% endif %}
-    </div>
+    {% if hideOutOfStock and item.type !== "INFO_CARD" and item.stock === 0 %}
+      {# hide Out of stock products #}
+    {% elif item.unlisted == 1 %}
+      {# hide unlisted products #}
+    {% else %}
+      <div
+        data-product-id="{{item.uniqid}}"
+        class="sellix-product-list-card-container sellix-product-list-card-container--width"
+      >
+        {% if item.isInfo %}
+          {% render_snippet 'Info card', product=item, theme=theme, centerProduct=centerProduct %}
+        {% elif item.isSubscription %}
+          {% render_snippet 'Subscription card', product=item, theme=theme, centerProduct=centerProduct %}
+        {% elif item.isProduct %}
+          {% render_snippet 'Product card', product=item, theme=theme, centerProduct=centerProduct %}
+        {% elif item.isGroup %}
+          {% render_snippet 'Group card', group=item, theme=theme, centerGroup=centerGroup %}
+        {% else %}
+          {% render_snippet 'Placeholder card', product=item, theme=theme, centerProduct=centerProduct %}
+        {% endif %}
+      </div>
+    {% endif %}
   {% endfor %}
 
   <div
