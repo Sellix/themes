@@ -1,0 +1,46 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set product = args.product %}
+{% set stock = product.stock %}
+{% set quantity = args.quantity %}
+
+<div id="sellix-product-count-{{id}}" class="d-flex flex-column">
+  <div class="sellix-cart-count">
+    <span
+      class="sellix-stock-count-picker minus real unselectable"
+      style="opacity: 0;"
+      data-modifier="-1"
+    >
+      <i class="fa-regular fa-minus"></i>
+    </span>
+
+    <div class="sellix-cart-count-quantity unselectable">
+      <input type="text" value="{{quantity}}" {{'disabled' if product.quantity_min == product.quantity_max else ''}} />
+    </div>
+
+    <span
+      class="sellix-stock-count-picker plus real unselectable"
+      style="opacity: 0;"
+      data-modifier="1"
+    >
+      <i class="fa-regular fa-plus"></i>
+    </span>
+  </div>
+
+  <div class="d-flex align-items-center mt-2 flex-column">
+    <div class="sellix-stock-total unselectable" style="font-size: .8rem;"></div>
+  </div>
+
+  {% render_snippet 'Product min max note', product=product %}
+</div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    new SellixProductCountComponent(
+      '#sellix-product-count-{{id}}',
+      '{{shop.name}}',
+      {{ product | exclude_attributes('shop_terms_of_service') | dump | safe }},
+      {{renderOptions | dump | safe}},
+    );
+  });
+</script>

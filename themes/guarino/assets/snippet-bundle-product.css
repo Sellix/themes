@@ -1,0 +1,239 @@
+.group-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--borderColor);
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .group-option.no-cart {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+  }
+
+  .group-option.no-cart .group-option-image {
+    display: none;
+  }
+
+  .group-option.no-cart .group-option-content {
+    margin: 0;
+  }
+
+  .group-option.no-cart .group-option-content .group-option-title {
+    margin-bottom: 0.75rem;
+  }
+
+  .group-option.no-cart .group-option-buttons {
+    width: auto !important;
+    margin-top: 0;
+  }
+}
+
+.group-option:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .group-option {
+    flex-direction: column;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.group-option-description {
+  display: flex;
+  width: 100%;
+  flex: 1;
+  overflow: hidden;
+}
+
+.group-option-image {
+  width: 70px;
+  height: 50px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--borderColor);
+}
+
+.group-option-image img {
+  width: 70px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 0.25rem;
+  border: 1px solid var(--borderColor);
+}
+
+.group-option-image.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brandColor);
+  width: 70px;
+  height: 50px;
+  border-radius: 0.25rem;
+  background: var(--backgroundAccentLight);
+}
+
+.group-option-image.placeholder i {
+  font-size: 1.5rem;
+}
+
+.group-option-dot {
+  font-size: 6px;
+  position: relative;
+  top: 0;
+  margin: 0 0.5rem;
+}
+
+.group-option-info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.group-option-info * {
+  color: var(--lightFontColor);
+  opacity: 0.9;
+}
+
+.group-option-info-price {
+  color: var(--brandColor);
+  opacity: 1;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.group-option-info-price.with-discount {
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
+.group-option-info-price.with-discount i {
+  color: var(--brandColor) !important;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 0.75rem;
+  margin-right: 0.25rem;
+  text-decoration: line-through;
+}
+
+.group-option-star {
+  margin: 0 1rem;
+  color: var(--darkFontColor);
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.group-option-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--lightFontColor);
+  margin-bottom: 0.75rem;
+}
+
+.group-option-title > span {
+  color: var(--lightFontColor);
+}
+
+.group-option-title > span:first-child {
+  color: var(--lightFontColor);
+  opacity: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-right: 1rem;
+}
+
+.group-option-content {
+  width: 100%;
+  margin-left: 1rem;
+  flex: 1;
+  overflow: hidden;
+}
+
+.group-option-buttons {
+  width: 70px;
+  height: 35px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .group-option-buttons {
+    height: auto;
+  }
+
+  .group-option-buttons .buy-button {
+    width: 4rem;
+    height: 3rem;
+    margin: 0;
+  }
+}
+
+.group-option-buttons .buy-button {
+  width: 60px;
+  padding: 0.5rem 1rem;
+  line-height: 1.2rem;
+}
+
+.group-option-buttons .buy-button.disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.group-option-buttons.with-cart {
+  width: 170px;
+}
+
+@media (max-width: 768px) {
+  .group-option-buttons.with-cart {
+    margin-top: 1.5rem;
+  }
+
+  .group-option-buttons.with-cart .sellix-cart-icon a {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .group-option-buttons {
+    width: 100% !important;
+    margin-top: 1rem;
+    justify-content: space-between;
+  }
+
+  .group-option-buttons .sellix-cart-icon {
+    margin-left: 0;
+  }
+}
+
+.group-option-buttons > a > div {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  color: #fff;
+  border-radius: 0.25rem;
+  font-size: 14px;
+  margin-left: 0.5rem;
+  font-weight: 500;
+}
+
+.group-option-buttons > a:last-child > div {
+  background: var(--buttonColor);
+}

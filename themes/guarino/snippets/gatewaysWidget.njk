@@ -1,0 +1,31 @@
+{% set id = uid() %}
+
+<div id='gateways-widget-{{id}}'></div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    let gateway = null, APM = null;
+    const handleChangeGateway = function(newGateway, newAPM) {
+      gateway = newGateway;
+      APM = newAPM;
+    }
+
+    const domContainer = document.querySelector('#gateways-widget-{{id}}');
+    ReactDOM.render(
+      React.createElement(Purchase.GatewaySelector, {
+        onChangeGateway: handleChangeGateway,
+        gateway: gateway,
+        stripeAvailable: [],
+        paymentOptions: ['BITCOIN', 'LITECOIN', 'USDC:BEP20'],
+        router: {
+          pathname: '{{global.request.type}}',
+        },
+        theme: {
+          isDark: {{args.isDark if args.isDark is defined else themeProperties.color_schema.dark_mode}},
+        },
+        config: window.__RENDER_CONTEXT__.config,
+      }),
+      domContainer,
+    );
+  });
+</script>

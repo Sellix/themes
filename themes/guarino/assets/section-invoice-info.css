@@ -1,0 +1,346 @@
+.sellix-invoice-screen {
+
+}
+
+.sellix-order-details {
+  margin: 1.5rem 0;
+}
+.sellix-order-details-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+  font-size: 12px;
+  line-height: 1.5rem;
+  color: var(--darkFontColor);
+}
+.sellix-order-details-item span:first-child {
+  font-weight: 500;
+  color: var(--lightFontColor);
+}
+.sellix-order-details-item span:last-child {
+  font-weight: 400;
+}
+.sellix-order-details-title {
+  text-align: center;
+  line-height: 1.5;
+  font-size: 18px;
+  color: #938eba;
+  font-weight: 600;
+  padding-bottom: 2rem;
+  margin: 0;
+}
+.sellix-order-details-status {
+  display: flex;
+  align-items: center;
+}
+.sellix-order-details-status .sk-spinner-pulse {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  margin-right: 5px;
+}
+
+.sellix-payment-methods {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+}
+.change-gateway-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 1.5rem auto 0 auto;
+  flex-direction: column;
+}
+.change-gateway-button-title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--darkFontColor);
+  font-weight: 400;
+}
+.change-gateway-button-title svg {
+  width: 1rem;
+  height: 1rem;
+  margin-left: 0.5rem;
+  fill: var(--darkFontColor);
+}
+.change-gateway-button > div {
+  width: 100%;
+}
+.change-gateway-button > div button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 40px;
+  height: 40px;
+  font-weight: 400;
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+
+.default-mode .sellix-subscription-paypal button {
+  border: 1px solid var(--borderColor);
+  background-color: #fff;
+}
+.default-mode-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+  color: var(--darkFontColor);
+  line-height: 1.5rem;
+  font-size: 12px;
+}
+.default-mode-row > span {
+  color: var(--lightFontColor);
+  font-weight: 500;
+}
+.default-mode-row a {
+  color: var(--buttonColor) !important;
+  font-weight: 400;
+}
+.default-mode-row > div {
+  font-weight: 400;
+}
+.default-mode-timer {
+  background-color: var(--backgroundAccentDark);
+  display: inline-block;
+  line-height: 1.5rem;
+  text-align: center;
+  height: 1.5rem;
+  color: var(--darkFontColor);
+  border-radius: 0.25rem;
+  min-width: 4rem;
+  border: 1px solid var(--borderColor);
+}
+.default-mode-container {
+  border-radius: 3px;
+  text-align: center;
+  margin: 0;
+  position: relative;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  height: 0;
+  opacity: 0;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+.default-mode-container.open {
+  height: auto;
+  opacity: 1;
+  padding: 0;
+  margin-top: -1px;
+}
+.default-mode-divider {
+  border-top: 1px solid var(--borderColor);
+  margin: 2rem 0;
+}
+.default-mode-wallet {
+  width: 100%;
+  height: auto;
+  border-radius: 0.25rem;
+  max-height: 3rem;
+  will-change: max-height;
+  transition: all 0.3s ease-out;
+  text-align: center;
+  position: relative;
+  margin-bottom: 1rem;
+}
+.default-mode-wallet.show {
+  max-height: 350px;
+  overflow: hidden;
+  height: auto;
+}
+.default-mode-wallet.show .default-mode-wallet-clipboard {
+  height: 1px;
+  opacity: 0;
+}
+.default-mode-wallet-clipboard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  padding: 0 0.5rem;
+  white-space: pre;
+  opacity: 1;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  height: 3rem;
+  font-weight: 400;
+  color: var(--darkFontColor);
+  background: var(--backgroundAccentDark);
+}
+.default-mode-wallet-clipboard span {
+  width: 100%;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.default-mode-wallet-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.default-mode-wallet-footer > span {
+  cursor: pointer;
+  color: var(--darkFontColor);
+  font-size: 12px;
+}
+.default-mode-wallet-footer i {
+  left: 1px;
+  position: relative;
+}
+.default-mode-wallet svg {
+  position: relative;
+  top: -3px;
+}
+.default-mode-wallet svg * {
+  color: var(--thinColor);
+}
+.default-mode-copied {
+  background: var(--backgroundAccentDark);
+  border-radius: 0.25rem;
+  overflow: hidden;
+  display: none;
+  opacity: 0;
+  transition: all 0.3s;
+  width: calc(100%);
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  transform: scale(1);
+  height: 3rem;
+  font-weight: 600;
+  color: var(--lightFontColor);
+  z-index: 9;
+  font-size: 1rem;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+.default-mode-copied > span {
+  color: var(--lightFontColor);
+  font-weight: 400;
+  padding-left: 0.25rem;
+  font-size: 14px;
+}
+.default-mode-copied img {
+  height: 16px;
+  width: 16px;
+  background: #1fa83f;
+  border-radius: 100%;
+  padding: 0.25rem;
+}
+.default-mode-copied.show {
+  opacity: 1;
+  animation: showCopied 0.3s;
+  display: flex;
+}
+.default-mode-lex {
+  margin-top: 1rem;
+}
+.default-mode-lex a {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  color: var(--lightFontColor) !important;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+}
+.default-mode-lex img {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.25rem;
+  border-radius: 5px;
+}
+.default-mode.BITCOIN .default-mode-exactly-badge, .default-mode.BITCOIN_LN .default-mode-exactly-badge {
+  background-color: #f7931a;
+}
+.default-mode.LITECOIN .default-mode-exactly-badge {
+  background-color: #bebebe;
+}
+.default-mode.TRON .default-mode-exactly-badge {
+  background-color: #ff040b;
+}
+.default-mode.BINANCE .default-mode-exactly-badge {
+  background-color: #f1bd0b;
+}
+.default-mode.NANO .default-mode-exactly-badge {
+  background-color: #488bda;
+}
+.default-mode.MONERO .default-mode-exactly-badge {
+  background-color: #ea6521;
+}
+.default-mode.SOLANA .default-mode-exactly-badge {
+  background-color: #5d7bd2;
+}
+.default-mode.RIPPLE .default-mode-exactly-badge {
+  background-color: #7a7a7a;
+}
+.default-mode.ETHEREUM .default-mode-exactly-badge {
+  background-color: #627eea;
+}
+.default-mode.BINANCE_COIN .default-mode-exactly-badge {
+  background-color: #f0b80b;
+}
+.default-mode.CRONOS .default-mode-exactly-badge {
+  background-color: #627eea;
+}
+.default-mode.USDC .default-mode-exactly-badge {
+  background-color: #2875ca;
+}
+.default-mode.USDT .default-mode-exactly-badge {
+  background-color: #51ae95;
+}
+.default-mode.BITCOIN_CASH .default-mode-exactly-badge {
+  background-color: #8dc351;
+}
+.default-mode-exactly {
+  color: var(--darkFontColor);
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin: 0 0 0.5rem 0;
+  text-align: center;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.default-mode-exactly-badge {
+  background-color: grey;
+  cursor: pointer;
+  display: inline-block;
+  color: white;
+  min-width: 80px;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  height: 1.5rem;
+  border-radius: 0.125rem;
+  padding: 0 0.5rem;
+  font-weight: 600;
+  margin: 0 0.125rem;
+}
+.default-mode .skrill-button {
+  display: flex;
+}
+.default-mode .skrill-button img {
+  margin: 0 auto;
+}
+

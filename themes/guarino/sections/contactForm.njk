@@ -1,0 +1,71 @@
+{% set shop = global.common.shopInfo.shop %}
+{% set id = uid() %}
+{% set titleId = uid() %}
+{% set emailId = uid() %}
+{% set messageId = uid() %}
+{% set invoiceId = uid() %}
+{% set colors = themeProperties.current_colors %}
+{% set isWide = properties.contact_form_size == 100 %}
+
+<div class="sellix-contact-screen">
+  <form
+    class="sellix-contact-form"
+    id="contact-form-{{id}}"
+    onsubmit="return false"
+    style="width: {{ properties.contact_form_size }}%;{#
+    #} background: transparent;{#
+    #} border: {{ "1px solid var(--borderColor)" if properties.contact_form_show_border else "none" }};{#
+    #} padding: {{ properties.contact_form_padding_x }}px {{ properties.contact_form_padding_y }}px;{#
+    #} box-shadow: {{ properties.contact_form_shadow }};{#
+    #} border-radius: {{ properties.contact_form_border_radius }}rem;"
+  >
+    <div>
+      <div class="{{ "wide-screen" if isWide else "" }}">
+        {% render_snippet 'Text', selector=titleId, name="title", label="Title", placeholder="e.g : Terms and Conditions for dropshipper", wrapperClassName="title" %}
+        {% render_snippet 'Text', selector=emailId, name="email", label="Email", placeholder="Enter your email" %}
+        {% render_snippet 'Text', selector=invoiceId, name="invoice_id", label="Invoice Id (optional field)", placeholder="Enter 12 digit invoice id" %}
+      </div>
+
+      <div>
+        {% render_snippet 'Text area', selector=messageId, name="message", label="Message", placeholder="What would you like to ask?"  %}
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: {{ properties.contact_form_button_position }};">
+      {% render_snippet 'Ripple button', button_id=['contact-form-submit-', id] | join, type='submit', title=properties.contact_form_button_title %}
+    <div>
+  </form>
+</div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const formComponent = new SellixFormComponent(
+      '#contact-form-{{id}}',
+      '{{titleId}}',
+      '{{emailId}}',
+      '{{messageId}}',
+      '{{invoiceId}}',
+      '{{shop.name}}',
+    );
+    $('#contact-form-{{id}}').validate({
+      errorElement: 'div',
+      errorClass: 'invalid-feedback',
+      rules: {
+        title: 'required',
+        email: 'required',
+        message: 'required',
+      },
+      messages: {
+        title: 'Title is required',
+        email: 'Email is required',
+        message: 'Message is required',
+      },
+      highlight: function(element, errorClass) {
+        $(element).addClass('is-invalid').removeClass(errorClass);
+      },
+      unhighlight: function(element, errorClass) {
+        $(element).removeClass('is-invalid').removeClass(errorClass);
+      },
+    });
+  });
+</script>

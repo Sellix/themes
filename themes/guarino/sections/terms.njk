@@ -1,0 +1,31 @@
+<style>
+  .sellix-text p{
+    color:#fff!important;
+  }
+</style>
+{% set shop = global.common.shopInfo.shop %}
+{% set colors = themeProperties.current_colors %}
+
+<div class="sellix-terms-screen">
+  {% if shop.terms_of_service %}
+    <div
+      class="sellix-terms"
+      style="width: {{ properties.terms_size }}%;{#
+          #} background: #160e2c;{#
+          #} border: {{ "1px solid var(--borderColor)" if properties.terms_show_border else "none" }};{#
+          #} box-shadow: {{ properties.terms_shadow }};{#
+          #} border-radius: {{ properties.terms_border_radius }}rem;{#
+          #} padding: {{ properties.terms_padding }}px;"
+    >
+      <div class="sellix-text" style="color:#fff!important;">
+        {{shop.terms_of_service | html_sanitize | safe}}
+      </div>
+    </div>
+  {% else %}
+    <div class="empty-shop-container">
+      <i class="fa-regular fa-gavel"></i>
+
+      <span class="empty-shop-title"><b>{{shop.name}}</b>'s shop has no terms and condition.</span>
+    </div>
+  {% endif %}
+</div>

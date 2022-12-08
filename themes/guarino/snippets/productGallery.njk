@@ -1,0 +1,115 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set product = args.product %}
+{% set attachments = product.image_attachments if product.image_attachments else [] %}
+{% set youtube_link = product.youtube_link %}
+{% set images = [] %}
+
+{% if shop.description_image and ((attachments | length) or youtube_link) and not shop.description_youtube_only %}
+  <div class="carousel-root" style="width:550px;height:550px;">
+    <div id="sellix-product-carousel-{{id}}" class="sellix-product-carousel">
+      {% set index = 0 %}
+      {% for attachment in attachments %}
+        {% set image = cdn_link(attachment.cloudflare_image_id, 'shopItem') %}
+
+        {% set images = (images.push(image), images) %}
+
+        <a href="{{image}}" data-slide-idx="{{index}}">
+          <div data-pswp-src="{{image}}" class="shop-product-info-image">
+            <img src="{{image}}" alt="{{attachment.original_name}}" />
+          </div>
+        </a>
+
+        {% set index = index + 1 %}
+      {% endfor %}
+
+      {% if youtube_link %}
+        <a href='{{youtube_link}}' data-slide-idx="{{index}}">
+          <div class="shop-product-info-image">
+            <div class="player-wrapper">
+              <div style="width: auto; height: auto;">
+                <div style="width: 100%; height: 100%;">
+                  <div id="sellix-video-player-{{id}}"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      {% endif %}
+
+  </div>
+
+  <script type='application/javascript'>
+    $(document).ready(function () {
+      {% if youtube_link %}
+      const container = document.getElementById('sellix-video-player-{{id}}');
+      const url ="{{youtube_link}}";
+      renderReactPlayer(container, { url, width: 'auth', height: 'auto' });
+      {% endif %}
+
+      const slider = tns({
+        container: '#sellix-product-carousel-{{id}}',
+        items: 1,
+        controls: true,
+        controlsText: ['<span class="fas fa-chevron-circle-left"></span>', '<span class="fas fa-chevron-circle-right"></span>'],
+        autoplay: true,
+        arrowKeys: true,
+        nav: true,
+        navPosition: 'bottom',
+        autoplayButtonOutput: false,
+        autoHeight: false,
+
+      });
+
+      $(document).on('SellixShowProductDescription', (event, eventInfo) => {
+        setInterval(function() {
+          slider.updateSliderHeight();
+        }, 0);
+      });
+
+      $('#sellix-product-carousel-{{id}} a').on('click', function(e) {
+        e.preventDefault();
+
+        const slideIdx = +$(this).data('slide-idx') || 0;
+
+        $.magnificPopup.open({
+          type: 'image',
+          closeBtnInside: false,
+          closeMarkup: '<button title="%title%" type="button" class="mfp-close"></button>',
+          gallery:{
+            enabled:true
+          },
+          items: [
+            {% for attachment in attachments %}
+            {
+              src: '{{cdn_link(attachment.cloudflare_image_id, 'shopItem')}}',
+              type: 'image',
+            },
+            {% endfor %}
+            {% if youtube_link %}
+            {
+              src: '{{youtube_link}}',
+              type: 'iframe',
+            },
+            {% endif %}
+          ],
+          iframe: {
+            patterns: {
+              youtube: {
+                index: 'youtube.com/',
+                id: function(url) {
+                  const pattern = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+                  const match = url.match(pattern);
+                  if (match && match[7].length == 11) {
+                    return match[7];
+                  }
+                  return null;
+                },
+              },
+            },
+          },
+        }, slideIdx);
+      });
+    });
+  </script>
+{% endif %}

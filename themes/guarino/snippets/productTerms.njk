@@ -1,0 +1,38 @@
+{% set product = global.common.productInfo.product %}
+<div id="product-terms-modal" class="sellix-modal terms-modal" style="display:none">
+  <div class="sellix-modal-header pb-4 w-100">
+    Shop Terms of Service
+  </div>
+
+  <div class="sellix-modal-body pb-4">
+    <div class="terms-modal-container">
+      <div class="sellix-modal-close">
+        <i class="fa-light fa-times" style="color: var(--darkFontColor); font-size: 1.25rem;"></i>
+      </div>
+      {% if product.shop_terms_of_service %}
+        <div class="terms-modal-description sellix-text">
+          {{ product.shop_terms_of_service | html_sanitize | safe }}
+        </div>
+        {% if product.terms_of_service %}
+          <div class="terms-modal-title">
+            Product Terms of Service
+          </div>
+        {% endif %}
+      {% endif %}
+
+      {% if product.terms_of_service %}
+        <div class="terms-modal-description sellix-text">
+          {{product.terms_of_service | html_sanitize | safe}}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script type='application/javascript'>
+  $(document).ready(function() {
+    $('#product-terms-modal .sellix-modal-close').on('click', function () {
+      $.modal.close();
+    });
+  });
+</script>

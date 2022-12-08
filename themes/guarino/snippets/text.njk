@@ -1,0 +1,73 @@
+{% set id = uid() %}
+{% set selector = args.selector if args.selector else '' %}
+{% set wrapperClassName = args.wrapperClassName if args.wrapperClassName else '' %}
+{% set showPassword = args.showPassword if args.showPassword else false %}
+{% set label = args.label if args.label else '' %}
+{% set nowrap = args.nowrap if args.nowrap else false %}
+{% set name = args.name if args.name else '' %}
+{% set note = args.note if args.note else '' %}
+{% set noteUnder = args.noteUnder if args.noteUnder else true %}
+{% set type = args.type if args.type else "text" %}
+{% set isVisible = false %}
+{% set style = args.style if args.style else "" %}
+{% set disabled = args.disabled if args.disabled else false %}
+{% set placeholder = args.placeholder if args.placeholder else "" %}
+{% set className = args.className if args.className else "" %}
+{% set colors = themeProperties.current_colors %}
+{% set inputsProps = themeProperties.inputs %}
+
+<style>
+  .sellix-input::placeholder {
+    color: {{ colors[inputsProps.common_font_color] }};
+    font-size: {{ inputsProps.common_font_size }}px;
+    font-weight: {{ inputsProps.common_font_weight }};
+  }
+</style>
+
+<div class="{{wrapperClassName if wrapperClassName else ''}} {{'position-relative' if showPassword else ''}} mb-3">
+  {% if label %}
+    <label
+      class="sellix-label {{'text-nowrap' if nowrap else ''}}"
+      htmlFor="{{name}}"
+      style="color: {{ colors[inputsProps.common_label_font_color] }}; font-size: {{ inputsProps.common_label_font_size }}px; font-weight: {{ inputsProps.common_label_font_weight }}; line-height: {{ inputsProps.common_label_line_height }}%; justify-content: {{ inputsProps.common_label_text_align }};"
+    >
+      {{label}}
+    </label>
+  {% endif %}
+
+  {% if note and not noteUnder %}
+    <p class="sellix-note">{{note}}</p>
+  {% endif %}
+
+  <input
+    autoComplete="{{'' if type == 'email' else 'off'}}"
+    type="{{'text' if showPassword and isVisible}}{{'password' if showPassword and not isVisible}}{{type if not showPassword and type}}{{'text' if not type and not showPassword}}"
+    id="{{name}}"
+    name="{{name}}"
+    {{'disabled' if disabled}}
+    placeholder="{{placeholder}}"
+    class="sellix-input{{className}} sellix-input-{{id}} sellix-input-{{selector}}"
+    style="{{style}}; height: {{ inputsProps.common_height }}px; background: {{ colors[inputsProps.text_field_background] }}; border: {{ "1px solid var(--borderColor)" if inputsProps.common_show_border else "none" }}; color: {{ colors[inputsProps.common_font_color] }}; font-size: {{ inputsProps.common_font_size }}px; font-weight: {{ inputsProps.common_font_weight }};"
+  >
+
+  {% if showPassword  %}
+    {% render_snippet 'Hide Password Icon', id=id, class="sellix-input-visible" %}
+  {% endif %}
+
+  {% if note and noteUnder %}
+    <p class="sellix-note">{{note}}</p>
+  {% endif %}
+</div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    $('#sellix-input-visible-{{id}}').on('click', function () {
+      const type = $('.sellix-input-{{id}}').attr('type');
+      if( type === 'password' ){
+        $('.sellix-input-{{id}}').attr('type', 'text');
+      } else {
+        $('.sellix-input-{{id}}').attr('type', 'password');
+      }
+    });
+  });
+</script>

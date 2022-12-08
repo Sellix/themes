@@ -1,0 +1,23 @@
+{% set widgetId = global.common.shopInfo.shop.helpspace_widget_id %}
+{% set clientId = global.common.shopInfo.shop.helpspace_client_id %}
+{% set token = global.common.shopInfo.shop.helpspace_token %}
+
+<script type='application/javascript'>
+  $(document).ready(function() {
+    const widgetId = '{{ widgetId }}';
+    const clientId = '{{ clientId }}';
+    const token = '{{ token }}';
+
+    if (widgetId && clientId && token) {
+      let script = document.createElement('script');
+      script.src = 'https://cdn.helpspace.com/widget/widget-v1.js';
+      script.id = 'helpspace-widget-script';
+      script.setAttribute('data-auto-init', 'true');
+      script.setAttribute('data-token', token);
+      script.setAttribute('data-client-id', clientId);
+      script.setAttribute('data-widget-id', widgetId);
+      script.async = true;
+      document.getElementsByTagName('head')[0].appendChild(script);
+    }
+  });
+</script>

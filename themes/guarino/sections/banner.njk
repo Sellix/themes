@@ -1,0 +1,20 @@
+{% set shop = global.common.shopInfo.shop %}
+{% set colors = themeProperties.current_colors %}
+
+<div class="sellix-banner-container">
+  <div
+    class="sellix-banner {{'products-sold-hide' if shop.hide_products_sold else ''}}"
+    style="z-index: 2; border: {{ "1px solid var(--borderColor)" if properties.show_banner_border else "none" }};{#
+        #} background-color: {{ colors[properties.banner_background_color] }};{#
+        #} {% if properties.banner_background_image %} background-image: url({{ properties.banner_background_image }});background-repeat: no-repeat;background-size: cover;background-position: center;{% endif %}{#
+        #} padding: {{ properties.banner_padding }}px;{#
+        #} box-shadow: {{ properties.banner_shadow }};{#
+        #} height: {{ properties.banner_height }};{#
+        #} margin-bottom: {{ properties.banner_margin_bottom }};{#
+        #} border-radius: {{ properties.banner_border_radius }}rem;"
+  >
+    {% for block_name in settings.block_order %}
+      {%- render_block block_name -%}
+    {% endfor%}
+  </div>
+</div>

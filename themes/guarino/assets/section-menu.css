@@ -1,0 +1,45 @@
+.sellix-menu-container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.sellix-menu {
+  display: flex;
+  align-items: flex-start;
+  margin: 0 auto 1.5rem;
+  padding: 0.5rem 1rem 0 1rem;
+  position: relative;
+  overflow-x: scroll;
+}
+
+.menu-tab {
+  border-bottom: 1px solid transparent;
+  padding: 0.5rem 0.75rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  white-space: nowrap;
+  border-radius: 0.5rem 0.5rem 0 0;
+  display: inline-flex;
+}
+
+.menu-tab:last-child {
+  margin-right: 0;
+}
+
+@media (max-width: 768px) {
+  .sellix-menu {
+    margin-bottom: 1rem;
+    justify-content: space-between;
+  }
+
+  .menu-tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 0.5rem;
+  }
+
+  .menu-tab.active {
+    border-radius: 0.125rem 0.125rem 0 0;
+  }
+}

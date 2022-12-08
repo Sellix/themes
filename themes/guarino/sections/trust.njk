@@ -1,0 +1,164 @@
+{% set shop = global.common.shopInfo.shop %}
+{% set colors = themeProperties.current_colors %}
+{% set id = uid() %}
+
+<style>
+  .sellix-trust.sellix-trust-{{ id }} {
+    {% if properties.is_wide %}
+      width: 100%;
+    {% endif %}
+    {% if not properties.show_border %}
+      border: none;
+    {% endif %}
+    background: #160e2c!important;
+    box-shadow: {{ properties.container_shadow }};
+    border-radius: {{ properties.container_border_radius }}rem;
+    padding: {{ properties.container_padding }}px;
+  }
+
+  .sellix-trust-{{ id }} .sellix-trust-title h1 {
+    {% if properties.title_font_size %}
+      font-size: {{ properties.title_font_size }}px;
+    {% endif %}
+    {% if properties.title_font_color %}
+      color: {{ colors[properties.title_font_color] }};
+    {% endif %}
+    {% if properties.title_line_height %}
+      line-height: {{ properties.title_line_height }}%;
+    {% endif %}
+  }
+
+  .sellix-trust-{{ id }} .sellix-trust-block-title {
+    {% if properties.subheader_font_size %}
+      font-size: {{ properties.subheader_font_size }}px;
+    {% endif %}
+    {% if properties.subheader_font_color %}
+      color: {{ colors[properties.subheader_font_color] }};
+    {% endif %}
+    {% if properties.subheader_line_height %}
+      line-height: {{ properties.subheader_line_height }}%;
+    {% endif %}
+    {% if properties.subheader_text_align %}
+      text-align: {{ properties.subheader_text_align }};
+    {% endif %}
+  }
+
+  .sellix-trust-{{ id }} .sellix-trust-block>div {
+    {% if properties.body_font_size %}
+      font-size: {{ properties.body_font_size }}px;
+    {% endif %}
+    {% if properties.body_font_color %}
+      color: {{ colors[properties.body_font_color] }};
+    {% endif %}
+    {% if properties.body_line_height %}
+      line-height: {{ properties.body_line_height }}%;
+    {% endif %}
+    {% if properties.body_text_align %}
+      text-align: {{ properties.body_text_align }};
+    {% endif %}
+  }
+
+</style>
+
+<div class="sellix-trust-screen">
+  <div
+    class="sellix-trust sellix-trust-{{ id }}"
+  >
+    <div>
+      <div
+        class="sellix-trust-title"
+        style="justify-content: {{ properties.title_text_align }};"
+      >
+        <h1>Trusted Advisor</h1>
+      </div>
+    </div>
+
+    <div>
+      <div class="sellix-trust-block">
+        <h3 class="sellix-trust-block-title">
+          {% if shop.trusted_checks.identity_verified %}
+            <i class="fa-solid fa-circle-check text-green mr-2"></i>
+            Identity Verified
+          {% else %}
+            <i class="fa-solid fa-circle-xmark text-red mr-2"></i>
+            Identity not Verified
+          {% endif %}
+        </h3>
+        <div>
+          {% if shop.trusted_checks.identity_verified %}
+            This business has verified its identity and details to Sellix. Verified businesses have gone through an address and document validation phase which confirms their identity and the uniqueness of the merchant.
+          {% else %}
+            This business has not verified its identity and details to Sellix. We cannot confirm this store is a valid and unique merchant.
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="sellix-trust-block">
+        <h3 class="sellix-trust-block-title">
+          {% if shop.trusted_checks.sales_last14days_metric === "low" %}
+            <i class="fa-solid fa-circle-xmark text-red mr-2"></i>
+          {% else %}
+            <i class="fa-solid fa-circle-check text-green mr-2"></i>
+          {% endif %}
+          <b style="text-transform: capitalize">{{shop.trusted_checks.sales_last14days_metric}}</b> sales in the last 14 days</h3>
+        <div>
+          This metric takes into consideration the quantity of sales this business had in the last 14 days. High and Medium sales mean that the business has been proactively selling goods with at least one order daily.
+        </div>
+      </div>
+
+      <div class="sellix-trust-block">
+        <h3 class="sellix-trust-block-title">
+          {% if shop.trusted_checks.feedback_appeal_ratio * 100 > 35 %}
+            <i class="fa-solid fa-circle-xmark text-red mr-2"></i>
+            {% elif shop.trusted_checks.feedback_appealed * 100 < 75 and shop.trusted_checks.feedback_appealed * 100 > 35 %}
+            <i class="fa-solid fa-triangle-exclamation text-gold mr-2"></i>
+          {% else %}
+            <i class="fa-solid fa-circle-check text-green mr-2"></i>
+          {% endif %}
+          {{shop.trusted_checks.feedback_appeal_ratio}} feedback appeal ratio</h3>
+        <div>
+          The feedback appeal ratio takes into consideration the total amount of feedback a merchant has and how many have been appealed (either removed or contested). The appeal ratio has a value between 0.00 and 1, where 0.10 corresponds to 10% of all feedback appealed.
+        </div>
+      </div>
+
+      <div class="sellix-trust-block">
+        <h3 class="sellix-trust-block-title">
+          {% if shop.trusted_checks.feedback_score < 1 %}
+            <i class="fa-solid fa-circle-xmark text-red mr-2"></i>
+            {% elif shop.trusted_checks.feedback_score > 1 and shop.trusted_checks.feedback_score < 4 %}
+            <i class="fa-solid fa-triangle-exclamation text-gold mr-2"></i>
+          {% else %}
+            <i class="fa-solid fa-circle-check text-green mr-2"></i>
+          {% endif %}
+          {{shop.trusted_checks.feedback_score | round(2) if shop.trusted_checks.feedback_score else 0 | round(2)}} feedback score
+        </h3>
+        <div>
+          The feedback score helps customers understand whether or not this business has had positive feedback recently, meaning that every customer purchased a valid good.
+        </div>
+      </div>
+
+      <div class="sellix-trust-block">
+        <h3 class="sellix-trust-block-title">
+          {% if not shop.trusted_checks.no_chargeback_gateways %}
+            <i class="fa-solid fa-circle-check text-green mr-2"></i>
+            PayPal or Credit cards accepted
+          {% else %}
+            <i class="fa-solid fa-circle-xmark text-red mr-2"></i>
+            PayPal or Credit/Debit cards not accepted
+          {% endif %}
+        </h3>
+        <div>
+          {% if shop.trusted_checks.no_chargeback_gateways %}
+            This merchant does not accept any payment method with consumer protection. For example, Cryptocurrencies and Cash App cannot accept refunds due to their nature. Proceed with caution and be sure that you know what you're buying.
+          {% else %}
+            This merchant accepts payment methods, such as PayPal and Credit/Debit Cards, with consumer protection; meaning that a refund request can be executed when paying through them only if the purchased good is not valid. However, this does not mean that refund requests are available for payment methods like Cash App and Cryptocurrencies as they are not accepted due to their nature.
+          {% endif %}
+        </div>
+      </div>
+
+      <span style="font-size:13px;line-height:24px">
+        <a href="{{properties.what_is_trusted_advisor_url}}" target="_blank">What is Trusted Advisor and what does this mean for customers?</a> <br/>
+      </span>
+    </div>
+  </div>
+</div>

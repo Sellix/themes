@@ -1,0 +1,55 @@
+{% set id = uid() %}
+{% set selector = args.selector if args.selector else '' %}
+{% set wrapperClassName = args.wrapperClassName if args.wrapperClassName else '' %}
+{% set label = args.label if args.label else '' %}
+{% set name = args.name if args.name else '' %}
+{% set note = args.note if args.note else '' %}
+{% set noteUnder = args.noteUnder if args.noteUnder else true %}
+{% set placeholder = args.placeholder if args.placeholder else "" %}
+{% set className = args.className if args.className else "" %}
+{% set parentHeight = args.parentHeight if args.parentHeight else "auto" %}
+{% set autoresize = args.autoresize if args.autoresize else false %}
+{% set textAreaHeight = args.textAreaHeight if args.textAreaHeight else "auto" %}
+{% set rows = args.rows if args.rows else 5 %}
+{% set initialValue = args.value if args.value else ''%}
+{% set colors = themeProperties.current_colors %}
+{% set inputsProps = themeProperties.inputs %}
+
+<div class="mb-3 {{wrapperClassName if wrapperClassName else ''}}" style="min-height: {{parentHeight if autoresize else ''}}">
+  {% if label %}
+    <label
+      class="sellix-label"
+      htmlFor="{{name}}"
+      style="color: {{ colors[inputsProps.common_label_font_color] }}; font-size: {{ inputsProps.common_label_font_size }}px; font-weight: {{ inputsProps.common_label_font_weight }}; line-height: {{ inputsProps.common_label_line_height }}%; justify-content: {{ inputsProps.common_label_text_align }};"
+    >
+      {{label}}
+    </label>
+  {% endif %}
+
+  {% if note and not noteUnder %}
+    <p class="sellix-note">{{note}}</p>
+  {% endif %}
+
+  <textarea
+    autoComplete="off"
+    id="{{name}}"
+    name="{{name}}"
+    placeholder="{{placeholder}}"
+    class="sellix-input textarea {{className}} sellix-input-{{selector}} sellix-text-area-{{id}}"
+    rows="{{rows if rows else 5}}"
+    style="min-height: {{textAreaHeight if autoresize else ''}}; background: {{ colors[inputsProps.text_field_background] }} !important; border: {{ "0px solid var(--borderColor)" if inputsProps.common_show_border else "none" }}; color: {{ colors[inputsProps.common_font_color] }}; font-size: {{ inputsProps.common_font_size }}px; font-weight: {{ inputsProps.common_font_weight }};"
+  >{{initialValue}}</textarea>
+
+  {% if note and noteUnder %}
+    <p class="sellix-note">{{note}}</p>
+  {% endif %}
+</div>
+
+{% if autoresize %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/textarea-autosize/0.4.2/jquery.textarea_autosize.min.js" ></script>
+  <script type='application/javascript'>
+    $(document).ready(function () {
+      $('.sellix-text-area-{{id}}').textareaAutoSize();
+    });
+  </script>
+{% endif %}

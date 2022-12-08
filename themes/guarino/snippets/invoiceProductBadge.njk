@@ -1,0 +1,57 @@
+{% set id =uid() %}
+{% set invoice = global.common.invoiceInfo.invoice %}
+{% set colors = themeProperties.current_colors %}
+{% set isCart = invoice.type === 'SHOPPING_CART' %}
+
+{% set showBorder = args.properties.show_border %}
+{% set borderRadius = args.properties.container_border_radius or '0.5' %}
+{% set backgroundColor = colors[args.properties.container_background_color] or 'none' %}
+{% set containerPaddingVert = args.properties.container_padding_vert or '0' %}
+{% set containerPaddingHoriz = args.properties.container_padding_horiz or '0' %}
+{% set containerShadow = args.properties.container_shadow %}
+
+{% set bodyFontColor = colors[args.properties.body_font_color] %}
+{% set bodyFontSize = args.properties.body_font_size %}
+{% set bodyTextAlign = args.properties.body_text_align %}
+
+<style>
+  .product-badge-{{ id }} {
+      border: {{ '1px solid var(--borderColor)' if showBorder else 'none' }}!important;
+      border-radius: {{ borderRadius }}rem!important;
+      max-width: 340px;
+      margin: 0 auto 1rem;
+      background: {{ backgroundColor }}!important;
+      padding:  {{ containerPaddingVert }}px {{ containerPaddingHoriz }}px!important;
+      box-shadow: {{ containerShadow }}!important;
+      justify-content: {{ bodyTextAlign }}!important;
+  }
+
+  .product-badge-{{ id }} .product-badge-text div {
+      color: {{ bodyFontColor }}!important;
+      font-size:  {{ bodyFontSize }}px!important;
+  }
+
+  .product-badge-{{ id }} .product-badge-text span {
+      color: {{ bodyFontColor }}!important;
+      font-size:  {{ bodyFontSize - 2 }}px!important;
+      opacity: 0.5;
+  }
+</style>
+
+<div id="invoice-product-badge-{{ id }}" class="track-badge product-badge-{{ id }}">
+  <i class="fa-regular fa-address-card"></i>
+  <div class="product-badge-text">
+    <div>{{ 'Cart Info' if isCart else 'Product Description' }}</div>
+    <span>Click for more info</span>
+  </div>
+</div>
+
+<script type='application/javascript'>
+  let isVisibleProductDescription_{{ id }} = false;
+  $(document).ready(function() {
+      $('#invoice-product-badge-{{ id }}').on('click', function() {
+          isVisibleProductDescription_{{ id }} = !isVisibleProductDescription_{{ id }};
+          $(document).trigger('SellixInvoiceShowProductDescription', { visible: isVisibleProductDescription_{{ id }} });
+      });
+  });
+</script>

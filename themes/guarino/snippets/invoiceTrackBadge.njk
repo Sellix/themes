@@ -1,0 +1,46 @@
+{% set id =uid() %}
+{% set invoice = global.common.invoiceInfo.invoice %}
+{% set colors = themeProperties.current_colors %}
+
+{% set showBorder = args.properties.show_border %}
+{% set borderRadius = args.properties.container_border_radius or '0.5' %}
+{% set backgroundColor = colors[args.properties.container_background_color] or 'none' %}
+{% set containerPaddingVert = args.properties.container_padding_vert or '0' %}
+{% set containerPaddingHoriz = args.properties.container_padding_horiz or '0' %}
+{% set containerShadow = args.properties.container_shadow %}
+
+{% set bodyFontColor = colors[args.properties.body_font_color] %}
+{% set bodyFontSize = args.properties.body_font_size %}
+{% set bodyTextAlign = args.properties.body_text_align %}
+
+<style>
+    .track-badge-{{ id }} {
+        border: {{ '1px solid var(--borderColor)' if showBorder else 'none' }}!important;
+        border-radius: {{ borderRadius }}rem!important;
+        background: {{ backgroundColor }}!important;
+        padding:  {{ containerPaddingVert }}px {{ containerPaddingHoriz }}px!important;
+        box-shadow: {{ containerShadow }}!important;
+        justify-content: {{ bodyTextAlign }}!important;
+        max-width: 340px;
+        margin: 0 auto 1rem;
+    }
+
+    .track-badge-{{ id }} .track-badge-text div {
+        color: {{ bodyFontColor }}!important;
+        font-size:  {{ bodyFontSize }}px!important;
+    }
+
+    .track-badge-{{ id }} .track-badge-text span {
+        color: {{ bodyFontColor }}!important;
+        font-size:  {{ bodyFontSize - 2 }}px!important;
+        opacity: 0.5;
+    }
+</style>
+
+<a class="track-badge track-badge-{{ id }}" href="https://sellix.io/track/{{ args.invoiceId }}" target="_blank">
+  {% render_snippet 'Track items icon' %}
+  <div class="track-badge-text">
+    <div>Invoice Tracking</div>
+    <span>Click for more info</span>
+  </div>
+</a>

@@ -1,0 +1,190 @@
+{% set colors = themeProperties.current_colors %}
+
+<style type='text/css'>
+  .shop-not-found {
+    max-width: 1280px;
+    width: 100%;
+    color: var(--darkFontColor);
+    padding: 2rem;
+    margin: 2rem auto 0;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  .shop-not-found div {
+    width: 100%;
+  }
+
+  @media (max-width: 680px) {
+    .shop-not-found {
+      top: auto;
+      left: auto;
+      transform: none;
+    }
+  }
+  .shop-not-found h4 {
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .not-found-container {
+    flex: 1 0 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .glitch {
+    font-weight: 600;
+    font-size: 15rem;
+    position: relative;
+    width: 410px;
+    height: 220px;
+    display: flex;
+  }
+  .glitch-container {
+    flex: 1 0 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .glitch.embed {
+    left: 40%;
+    transform: translateX(-50%) scale(0.7);
+    top: -40px;
+    height: 250px;
+  }
+  @media (max-width: 680px) {
+    .glitch {
+      font-size: 12rem;
+      width: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 200px;
+    }
+    .glitch::before {
+      left: 50% !important;
+      transform: translateX(-50%);
+    }
+    .glitch::after {
+      left: 50% !important;
+      transform: translateX(-50%);
+    }
+  }
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 4px;
+    text-shadow: -1px 0 red;
+    top: 0;
+    color: #6a3ce2 !important;
+    background: transparent;
+    overflow: hidden;
+    animation: noise-anim 5s 3 linear alternate-reverse;
+  }
+  .glitch::before {
+    content: attr(data-text);
+    position: absolute;
+    left: -4px;
+    text-shadow: -1px 0 blue;
+    top: 0;
+    color: #6a3ce2 !important;
+    background: transparent;
+    overflow: hidden;
+    animation: noise-anim-2 20s 3 linear alternate-reverse;
+  }
+
+  @keyframes noise-anim {
+    0% {
+      clip-path: inset(NaN NaN); }
+    5% {
+      clip-path: inset(NaN NaN); }
+    10% {
+      clip-path: inset(NaN NaN); }
+    15% {
+      clip-path: inset(NaN NaN); }
+    20% {
+      clip-path: inset(NaN NaN); }
+    25% {
+      clip-path: inset(NaN NaN); }
+    30% {
+      clip-path: inset(NaN NaN); }
+    35% {
+      clip-path: inset(NaN NaN); }
+    40% {
+      clip-path: inset(NaN NaN); }
+    45% {
+      clip-path: inset(NaN NaN); }
+    50% {
+      clip-path: inset(NaN NaN); }
+    55% {
+      clip-path: inset(NaN NaN); }
+    60% {
+      clip-path: inset(NaN NaN); }
+    65% {
+      clip-path: inset(NaN NaN); }
+    70% {
+      clip-path: inset(NaN NaN); }
+    75% {
+      clip-path: inset(NaN NaN); }
+    80% {
+      clip-path: inset(NaN NaN); }
+    85% {
+      clip-path: inset(NaN NaN); }
+    90% {
+      clip-path: inset(NaN NaN); }
+    95% {
+      clip-path: inset(NaN NaN); }
+    100% {
+      clip-path: inset(NaN NaN); }
+  }
+
+  @keyframes noise-anim-2 {
+    0% { }
+    10% { }
+    20% { }
+    30% { }
+    40% { }
+    50% { }
+    60% { }
+    70% { }
+    80% { }
+    90% { }
+    100% { }
+  }
+</style>
+
+<div class='glitch-container'>
+  <span class='glitch' data-text='404'></span>
+
+  <div class='shop-not-found text-center'>
+    <div>
+      <h2 style="color: {{ colors[properties.404_heading_font_color] }}; font-size: {{ properties.404_heading_font_size }}px; font-weight: {{ properties.404_heading_font_weight }}; line-height: {{ properties.404_heading_line_height }}%; text-align: {{ properties.404_heading_text_align }};">
+        {{ properties.404_heading_text }}
+      </h2>
+    </div>
+
+    <div>
+      <h4 style="color: {{ colors[properties.404_description_font_color] }}; font-size: {{ properties.404_description_font_size }}px; font-weight: {{ properties.404_description_font_weight }}; line-height: {{ properties.404_description_line_height }}%; text-align: {{ properties.404_description_text_align }};">
+        {{ properties.404_description_text }}
+      </h4>
+     </div>
+
+    <br><br>
+
+    <div style="display: flex; justify-content: {{ properties.404_button_position }};">
+      <a href='/'>
+        <button type='button' class='button'>
+          {{ properties.404_button_title }}
+        </button>
+      </a>
+    </div>
+  </div>
+</div>

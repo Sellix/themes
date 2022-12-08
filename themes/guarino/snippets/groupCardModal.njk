@@ -1,0 +1,82 @@
+{% set id = uid() %}
+
+<style>
+  .group-body {
+    overflow-y: scroll;
+    flex: 1 0 auto;
+    max-height: calc(90vh - 120px);
+  }
+
+  @media (max-width: 768px) {
+    .group-body {
+      padding: 2rem 1rem !important;
+    }
+  }
+</style>
+
+<div id="group-card-modal" class="sellix-modal group-modal" style="display:none">
+  <a href='#' class="sellix-modal-close" rel="modal:close">
+    <i class="fa-light fa-times" style="color: var(--darkFontColor); font-size: 1.25rem;"></i>
+  </a>
+  <div class="sellix-modal-header group-header" style="padding-right:2.5rem"></div>
+  <div class="sellix-modal-body group-body"></div>
+</div>
+
+<script type="application/javascript">
+  $(document).ready(function() {
+    const items = __RENDER_CONTEXT__.common.shopInfo.items;
+
+    $(document).on('SellixSetActiveModalGroup', function(e, eventInfo) {
+      const renderOptions = {{renderOptions | dump | safe}};
+      const group = items.find(({uniqid}) => uniqid === eventInfo.groupId);
+      const $modalBody = $('#group-card-modal .sellix-modal-body');
+
+      const productsCount = group.products_bound.length;
+      const headerHtml = '<span>' + group.title + '</span>' +
+        (productsCount > 0
+          ? (
+            ' <span class="group-header-small">(' +
+            String(productsCount) + ' ' +
+            (productsCount === 1 ? 'product' : 'products') +
+            ')</span>'
+          )
+          : '');
+
+      $('#group-card-modal .sellix-modal-header').html(headerHtml);
+
+      $modalBody.html('Loading...');
+      sellixApi
+        .renderComponent(
+          {
+            ...renderOptions,
+            path: [renderOptions.path, ['snippet', 'Group card products'].join(':')].join(';'),
+          },
+          {
+            group: {
+              ...group,
+              products_bound: (group.products_bound || []).map((product) => {
+                const { description, ...rest } = product;
+                return rest;
+              }),
+            }
+          },
+        )
+        .then((resp) => {
+          const $component = $(resp.html);
+          $component.css('display', 'none');
+          $('#group-card-modal .sellix-modal-body').html($component);
+          setTimeout(function () {
+            $(document).trigger('SellixCartUpdateEvent', { action: 'update' });
+            $component.css('display', '');
+          });
+        })
+        .catch((resp) => {
+          const respJson = resp.responseJSON || {};
+          jQuery(document).trigger('SellixToastify', {
+            type: 'error',
+            text: respJson.message || 'Internal server error',
+          });
+        });
+    });
+  });
+</script>
