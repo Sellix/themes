@@ -1,0 +1,47 @@
+<style>
+  .sellix-header {
+    height: {{properties.logo_image_height}};
+    padding-top: {{properties.header_padding_top}}px;
+    padding-bottom: {{properties.header_padding_bottom}}px;
+  }
+
+  canvas{
+    display: none;
+  }
+
+  nav{
+    display: none;
+  }
+
+  .sellix-header-in {
+    position: {{'absolute' if properties.header_fluid_row else 'relative'}};
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: {{properties.logo_alignment}};
+    width: 100%;
+    height: 100%;
+
+  }
+
+  header{
+        background: linear-gradient(-90deg, #000000 0%, #160e2c 100%)!important;
+        height: 100px!important;
+  }
+
+  .sellix-section{
+    background: linear-gradient(269deg, #000000 0%, #160e2c 100%)!important;
+  }
+
+  .sellix-input{
+    border: 0px!important;
+    background:#32285b!important;
+  }
+
+</style>
+
+<div class="sellix-store-screen">
+  {% for section in settings.section_order %}
+    {% render_section section %}
+  {% endfor %}
+</div>

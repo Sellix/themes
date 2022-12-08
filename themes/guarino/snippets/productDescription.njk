@@ -1,0 +1,35 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set product = args.product %}
+{% set invoice = global.common.invoiceInfo.invoice %}
+
+<div class="shop-product-info-product-description">
+  {% if shop.description_youtube_only and product.youtube_link %}
+    <div class="shop-product-info-image">
+      <div id="shop-product-info-video-player-{{id}}" class="player-wrapper mb-3" style="height: auto;">
+      </div>
+    </div>
+
+    <script type="application/javascript">
+      $(document).ready(function() {
+        const container = document.getElementById('shop-product-info-video-player-{{id}}');
+        const url ="{{product.youtube_link}}";
+        renderReactPlayer(container, { url, width: 'auth', height: 'auto' });
+      });
+    </script>
+  {% endif %}
+
+  {% if invoice.developer_invoice %}
+    <div class="sellix-text p-3" style="border-radius: .25rem">
+      <p>
+        You are purchasing a service by {{product.title}}.
+        Once your payment is completed and this invoice flagged as paid, you will be redirected back to {{product.title}}'s site.
+        If you have any issue, please refer directly to {{product.title}}'s support.
+      </p>
+    </div>
+  {% else %}
+    <div class="sellix-text">
+      {{product.description | html_sanitize | safe}}
+    </div>
+  {% endif %}
+</div>

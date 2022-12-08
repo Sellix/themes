@@ -1,0 +1,91 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set product = args.product %}
+{% set quantity_min = product.quantity_min %}
+{% set quantity_max = product.quantity_max %}
+{% set equal = (true if quantity_min == quantity_max else false) %}
+{% set currency = global.config.CURRENCY_LIST[shop.currency] %}
+
+<style>
+  .quantity-message {
+    width: 100%;
+    padding: 0.5rem 0;
+    color: var(--darkFontColor);
+    text-align: center;
+  }
+
+  .quantity-message span {
+    font-size: 11px;
+  }
+</style>
+
+<div id="sellix-min-max-note-{{id}}">
+  <div class="sellix-quantity" style="height: 0; overflow: hidden;">
+    <div class="quantity-message" style="padding-bottom: 0;">
+      <span class="min"></span>
+      <span class="max"></span>
+      {% if equal %}
+        <span>Only <b>{{quantity_max}}</b> items per order</span>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="sellix-next-discount" style="height: 0; overflow: hidden;">
+    <div class="quantity-message pb-0">
+      <span></span>
+    </div>
+  </div>
+</div>
+
+<script type='application/javascript'>
+  $(document).ready(function() {
+    const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
+    const productId = '{{product.uniqid}}';
+    const discountList = JSON.parse({{product.volume_discounts  | dump | safe}}).volume_discounts;
+
+    const render = function ({ quantity }) {
+      let nextDiscount = discountList.find(discount => !(+quantity >= +discount.quantity));
+
+      const minimum = +quantity === +{{quantity_min}} && {{quantity_min}} !== {{quantity_max}} && {{quantity_min}} > 1;
+      const maximum = +quantity === +{{quantity_max}} && {{quantity_min}} !== {{quantity_max}};
+
+      const $quantityMessage = $('#sellix-min-max-note-{{id}} .sellix-quantity');
+
+      if (minimum || maximum) {
+        $quantityMessage.find('.quantity-message .min').html(minimum ? 'Minimum required quantity: <b>{{ quantity_min }}</b>' : '');
+        $quantityMessage.find('.quantity-message .max').html(maximum ? `Maximum quantity purchasable: <b>{{ quantity_max }}</b>` : '');
+        $quantityMessage.css({ height: 'auto', overflow: 'initial' });
+      } else {
+        $quantityMessage.css({ height: '0', overflow: 'hidden' });
+      }
+
+      const $discountMessage = $('#sellix-min-max-note-{{id}} .sellix-next-discount');
+      if (nextDiscount) {
+        const nextQuantity = +nextDiscount.quantity - +quantity,
+          currency = nextDiscount.type === "FIXED" ? "{{currency}}" : "",
+          percent = nextDiscount.type !== "FIXED" ? "%" : "";
+        $discountMessage.find(".quantity-message > span").html(
+          `Add <b>${nextQuantity}</b> more to get a <b>${currency}${nextDiscount.value}${percent}</b> discount`
+        );
+        $discountMessage.css({ height: 'auto', overflow: 'initial' });
+      } else {
+        $discountMessage.css({ height: '0', overflow: 'hidden' });
+        $discountMessage.find(".quantity-message > span").html('');
+      }
+    }
+
+    const renderOptions = {{renderOptions | dump | safe}};
+    const renderEvent = sellixHelper.getEventName({
+      name: 'SellixRenderComponent',
+      namespace: renderOptions.id,
+    });
+    $(document).on(`SellixCartUpdateEvent ${renderEvent}`, (e, eventInfo) => {
+      if (!eventInfo || !eventInfo.productId || eventInfo.productId === productId) {
+        const product = cart.getItemById(productId);
+        if (product) {
+          render(product);
+        }
+      }
+    });
+  });
+</script>

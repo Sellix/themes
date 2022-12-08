@@ -1,0 +1,53 @@
+{% set invoice = args.invoice %}
+{% set isDev = args.is_dev %}
+{% set isTrial = args.is_trial %}
+{% set isProductSubscription = args.is_product_subscription %}
+
+<div class="sellix-delivery-success">
+  <div class="sellix-delivery-success-header">
+
+    <div class="sw-container">
+      <div class="sw" style="width: 140px; top: -.75rem; background-color: transparent;">
+
+        <div class="sw-icon-success">
+          <div class="elem-1"></div>
+          <span class="elem-2"></span>
+          <span class="elem-3"></span>
+          <div class="elem-4"></div>
+          <div class="elem-5"></div>
+          <div class="elem-6"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="sellix-delivery-success-title">
+      {% if isDev %}
+        Payment Completed
+      {%- elif isTrial -%}
+        Trial Start
+      {%- elif isProductSubscription -%}
+        Subscription Started
+      {% else %}
+        Order completed!
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="sellix-delivery-success-info">
+    {% if isDev %}
+      Your invoice has been paid.<br/>
+      We will send a confirmation email to your address and you will be redirected to the seller's
+      website
+    {% elif isTrial %}
+      Your trial has been started. <br/>
+      You will receive the product within minutes, check your email!
+    {% elif isProductSubscription %}
+      Your subscription is now active. <br/>
+      You will receive an email with the confirmation of your purchase and a receipt soon.
+    {% else %}
+      Your invoice has been paid. <br/>
+      You will receive the product within minutes, check your email!
+    {% endif %}
+  </div>
+</div>

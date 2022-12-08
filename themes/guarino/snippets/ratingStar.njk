@@ -1,0 +1,27 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set rating = args.rating %}
+{% set size = args.size if args.size else 25 %}
+{% set color = args.color if args.color else '#FCAB06' %}
+{% set readonly = args.readonly if args.readonly else true %}
+
+<div id='rating-widget-{{id}}'></div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const domContainer = document.querySelector('#rating-widget-{{id}}');
+    ReactDOM.render(
+      React.createElement(ReactSimpleStarRating.Rating, {
+        ratingValue: Number({{rating / 5 * 100 if rating else 0}}),
+        initialValue: Number({{rating / 5 * 100 if rating else 0}}),
+        className: 'sellix-feedback-rating-stars',
+        fillColor: '{{ color }}',
+        emptyColor: 'grey',
+        size: {{ size }},
+        iconsCount: {{ args.iconsCount or 5 }},
+        readonly: {{ readonly }},
+      }),
+      domContainer,
+    );
+  });
+</script>

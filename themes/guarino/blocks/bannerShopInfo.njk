@@ -1,0 +1,69 @@
+{% set shop = global.common.shopInfo.shop %}
+{% set subscription = global.common.shopInfo.subscription %}
+{% set first_activity = shop.first_sale_date * 1000 if shop.first_sale_date else shop.created_at * 1000 %}
+{% set colors = themeProperties.current_colors %}
+
+<div class="sellix-banner-info">
+  {% if properties.show_banner_shop_info_avatar %}
+    <div class="sellix-banner-avatar-container">
+      {% if shop.verified | int == 1 %}
+        <span
+          class="sellix-banner-verified"
+          data-tooltip-location="right"
+          data-tooltip="This shop has verified its brand identity to Sellix."
+        >
+          {% render_snippet 'Verified icon', style='width:20px; height:20px; margin-bottom: 0.25rem;' %}
+        </span>
+      {% endif %}
+
+      {% if properties.banner_shop_info_custom_avatar %}
+        <img
+          src="{{ properties.banner_shop_info_custom_avatar }}"
+          alt="{{ shop.name }}"
+          class="sellix-banner-avatar"
+        />
+      {% else %}
+        {% if shop.image_name %}
+          <img
+            src="{{cdn_link(shop.cloudflare_image_id, 'avatar')}}"
+            alt="{{ shop.name }}"
+            class="sellix-banner-avatar"
+          />
+        {% else %}
+          <i
+            class="fas fa-user-circle sellix-banner-avatar-icon"
+            style="color: {{ colors[properties.banner_shop_info_avatar_color] }}"
+          ></i>
+        {% endif %}
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="sellix-banner-description">
+    {% if properties.show_banner_shop_info_subscription %}
+      <div>
+        {% if subscription.name %}
+          <div class="sellix-banner-subscription {{'business' if subscription.id == 2 else 'pro'}}">
+            {{ 'Professional' if subscription.name == 'pro' else subscription.name }}
+          </div>
+        {% else %}
+          <div class="sellix-banner-subscription {{'business' if subscription.id == 2 else 'pro'}}">
+            {{'Entrepreneur' if null | date_diff(first_activity) > 86400 * 7 else 'Starter'}}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div
+      class="sellix-banner-info-message"
+      style="color: {{ colors[properties.banner_shop_info_font_color] }}; font-size: {{ properties.banner_shop_info_font_size }}px; font-weight: {{ properties.banner_shop_info_font_weight }}; line-height: {{ properties.banner_shop_info_line_height }}%; text-align: {{ properties.banner_shop_info_text_align }};"
+    >
+      {% if properties.banner_shop_info_custom_text %}
+        {{ properties.banner_shop_info_custom_text }}
+      {% else %}
+        Providing {{'business' if subscription.id == 2 else 'customer'}}
+        services since {{first_activity | date_format('MMMM YYYY')}}
+      {% endif %}
+    </div>
+  </div>
+</div>

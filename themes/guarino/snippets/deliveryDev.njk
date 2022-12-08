@@ -1,0 +1,24 @@
+{% set id = uid() %}
+{% set invoice = args.invoice %}
+{% set seconds = args.seconds or 5 %}
+
+<div class="sellix-text py-3">
+  Your purchase has succeeded, you will be redirected to {{ invoice.name }}'s site in <span id="time-{{ id }}">{{ seconds }}</span> seconds
+</div>
+
+<script type="application/javascript">
+  const $time = $('#time-{{ id }}');
+  let seconds = {{ seconds }};
+  const url = '{{ invoice.product.redirect_link }}';
+
+  $(document).ready(function() {
+    setInterval(function() {
+      if (seconds > 0) {
+        seconds = seconds - 1;
+        $time.text(seconds);
+      } else if (url) {
+        window.location.href = url;
+      }
+    }, 1000);
+  });
+</script>

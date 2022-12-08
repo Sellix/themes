@@ -1,0 +1,23 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set invoice = args.invoice %}
+{% set products = args.products %}
+{% set properties = args.properties %}
+
+<div id='checkout-products-{{id}}'>
+  {% for product in products %}
+    {% render_snippet 'Checkout product', product=product, invoice=invoice, quantity=product.quantity, properties=properties %}
+  {% endfor %}
+</div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
+    new SellixCheckoutProductsComponent(
+      '#checkout-products-{{id}}',
+      cart,
+      {{renderOptions | dump | safe}},
+      {{properties | dump | safe}},
+    );
+  });
+</script>

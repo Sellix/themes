@@ -1,0 +1,10 @@
+{% set feedbackId = '' %}
+
+{% if renderOptions.templateId == 'Delivery/Delivery' %}
+  {% set info = global.common.invoiceInfo.info %}
+  {% set feedbackId = info.feedback_uniqid %}
+{% endif %}
+
+{% if feedbackId %}
+  {% render_snippet 'Feedback form' %}
+{% endif %}

@@ -1,0 +1,65 @@
+.carousel-root {
+    position: relative;
+}
+
+.carousel-root .tns-outer {
+  position: relative;
+}
+
+.carousel-root .tns-inner .tns-item img {
+    width: 100%;
+}
+
+.carousel-root .tns-nav {
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    margin: 10px 0;
+    width: 100%;
+}
+
+.carousel-root .tns-nav > [aria-controls] {
+  transition: opacity .25s ease-in;
+  opacity: .3;
+  filter: alpha(opacity=30);
+  box-shadow: 1px 1px 2px rgb(0 0 0 / 90%);
+  background: #fff;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 8px;
+  padding: 0;
+  border: 0;
+}
+
+.carousel-root .tns-nav > [aria-controls]:hover {
+  opacity: 1;
+}
+
+.tns-controls{
+    z-index: 2;
+
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translatey(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.tns-outer [aria-controls], .tns-outer [data-action] {
+    cursor: pointer;
+    color: white;
+    z-index: 2;
+    background: transparent;
+    font-size: 40px;
+    border: 0px;
+}
+
+.carousel-root .tns-nav > .tns-nav-active {
+    opacity: 1;
+}

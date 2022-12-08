@@ -1,0 +1,9 @@
+{% set shop = global.common.shopInfo.shop %}
+{% set average_score = shop.average_score if shop.average_score else 0 %}
+
+<div class="feedbackaverage">
+        <a href="/feedback">
+        {% render_snippet 'Rating star', rating=average_score, size= 50 %}
+        </a>
+        <h2>Feedback average</h2>
+</div>

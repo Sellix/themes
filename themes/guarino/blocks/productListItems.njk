@@ -1,0 +1,165 @@
+{% set id = uid() %}
+{% set shopInfo = global.common.shopInfo %}
+{% set shop = shopInfo.shop %}
+{% set theme = global.common.theme %}
+{% set centerProduct = shop.center_product_titles %}
+{% set centerGroup = shop.center_group_titles %}
+{% set items = shopInfo.items %}
+{% set colors = themeProperties.current_colors %}
+
+<style>
+  .sellix-product-list-card-container--width {
+    width: {{ 100 / properties.list_items_per_row_wide | int }}%
+  }
+
+  @media (max-width: 768px) {
+    .sellix-product-list-card-container--width {
+      width: {{ 100 / properties.list_items_per_row_normal | int }}%
+    }
+  }
+
+  @media (max-width: 640px) {
+    .sellix-product-list-card-container--width {
+      width: {{ 100 / properties.list_items_per_row_narrow | int }}%
+    }
+  }
+</style>
+
+<div
+  class="sellix-product-list-body"
+  style="background: {{ colors[properties.list_items_background_color] }};{#
+      #} border: {{ "1px solid var(--borderColor)" if properties.list_items_show_border else "none" }};{#
+      #} padding: {{ properties.container_padding_vert }}px {{ properties.container_padding_horiz }}px;{#
+      #} box-shadow: {{ properties.container_shadow }};{#
+      #} border-radius: {{ properties.container_border_radius }}rem;"
+>
+  {% for item in items %}
+    <div
+      data-product-id="{{item.uniqid}}"
+      class="sellix-product-list-card-container sellix-product-list-card-container--width"
+    >
+      {% if item.isInfo %}
+        {% render_snippet 'Info card', product=item, theme=theme, centerProduct=centerProduct %}
+      {% elif item.isSubscription %}
+        {% render_snippet 'Subscription card', product=item, theme=theme, centerProduct=centerProduct %}
+      {% elif item.isProduct %}
+        {% render_snippet 'Product card', product=item, theme=theme, centerProduct=centerProduct %}
+      {% elif item.isGroup %}
+        {% render_snippet 'Group card', group=item, theme=theme, centerGroup=centerGroup %}
+      {% else %}
+        {% render_snippet 'Placeholder card', product=item, theme=theme, centerProduct=centerProduct %}
+      {% endif %}
+    </div>
+  {% endfor %}
+
+  <div
+    class="empty-shop-container empty-search"
+    {% if items and items.length > 0 %}style="display:none;"{% endif %}
+  >
+    {% render_snippet 'Zoom glass icon' %}
+
+    <div class="empty-shop-info">
+        No product found.
+
+        <button
+          class="button button-primary"
+          style="min-height: 2.75rem; min-width: 9rem; margin-top: 1rem"
+        >
+          Clear
+        </button>
+    </div>
+  </div>
+
+  <div
+    class="empty-shop-container empty-category"
+    style="display:none;"
+  >
+    {% render_snippet 'Zoom glass icon' %}
+
+    <div class="empty-shop-info">
+        Category has no products.
+
+        <button
+          class="button button-primary"
+          style="min-height: 2.75rem; min-width: 9rem; margin-top: 1rem"
+        >
+          Clear
+        </button>
+    </div>
+  </div>
+</div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const sortByDefault = (a, b) => items.findIndex((it) => it.uniqid === a.uniqid) - items.findIndex((it) => it.uniqid === b.uniqid);
+    const sortByPrice = (a, b) => (a.minPriceItem ? +a.minPriceItem.price_display : 9999999) - (b.minPriceItem ? +b.minPriceItem.price_display : 9999999);
+    const sortByName = (a, b) => a.title < b.title ? -1 : a.title > b.title ? 1 : 0;
+    const sortByType = (a, b) => b.isGroup - a.isGroup;
+    const sortByStock = (a, b) => b.stock - a.stock;
+
+    const sortFunc = {
+      "DEFAULT": sortByDefault,
+      "PRICE": sortByPrice,
+      "NAME": sortByName,
+      "TYPE": sortByType,
+      "STOCK": sortByStock
+    };
+
+    const items = __RENDER_CONTEXT__.common.shopInfo.items || [];
+    const categories = __RENDER_CONTEXT__.common.shopInfo.categories || [];
+    const itemsMap = items.reduce((m, item) => ({...m, [item.uniqid]: item}), {});
+
+    function filterProducts({ search, category, sort }) {
+      search = search || '';
+
+      let filteredItems = items;
+
+      if (category !== 'all') {
+        const categoryObj = categories.filter((cat) => cat.uniqid === category)?.[0];
+        if (categoryObj) {
+          filteredItems = [...categoryObj.products_bound, ...categoryObj.groups_bound];
+        }
+      }
+
+      filteredItems = filteredItems.filter(item => {
+        let hasProduct = false;
+        if(item.isGroup) {
+          if(item.products_bound && item.products_bound.length) {
+            hasProduct = item.products_bound.find(({ title }) => title.toLowerCase().includes(search.toLowerCase()));
+          }
+        }
+
+        return hasProduct || item.title.toLowerCase().includes(search.toLowerCase());
+      });
+      const filteredItemIds = filteredItems.map(item => item.uniqid);
+      $('.sellix-product-list-card-container[data-product-id]')
+        .hide()
+        .filter((idx, el) => filteredItemIds.includes($(el).data('product-id')))
+        .show();
+
+      $('.empty-shop-container').hide();
+      if (filteredItemIds.length === 0) {
+        if (category) {
+          $('.empty-shop-container.empty-category .category-name').text(category.title);
+          $('.empty-shop-container.empty-category').show();
+        } else {
+          $('.empty-shop-container.empty-search').show();
+        }
+      }
+
+      if (sort) {
+        const sf = sortFunc[sort] ?? sortFunc.DEFAULT;
+        const sorted = $('.sellix-product-list-card-container[data-product-id]').detach().sort((a, b) => {
+          const prA = itemsMap[$(a).data('product-id')];
+          const prB = itemsMap[$(b).data('product-id')];
+          return sf(prA, prB);
+        });
+        $('.sellix-product-list-body').append(sorted);
+      }
+    }
+
+    $(document).on('SellixProductListFilterChangeEvent', (e, eventInfo) => {
+      filterProducts(eventInfo);
+    });
+  });
+</script>
