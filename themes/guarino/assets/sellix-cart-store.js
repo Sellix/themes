@@ -25,7 +25,7 @@
                 break;
             }
           }
-
+          jQuery(document).trigger('SellixCartInitEvent');
           jQuery(document).trigger('SellixCartUpdateEvent', { action: 'insert' });
         })
         .catch((resp) => {

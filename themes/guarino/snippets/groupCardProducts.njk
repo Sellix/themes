@@ -15,8 +15,10 @@
   {% set isRatingGold = rating | float > 4 %}
   {% set productStock = ('∞' if product.stock === -1 else get_stock(product.stock)) %}
 
-  {% if product.stock !== 0 or hideOutOfStock !== 1 %}
-    <div class="group-option {{'is-disabled' if isDisabled else ''}} {{'' if cartEnabled else 'no-cart'}}">
+{% if hideOutOfStock and product.stock == 0 %}
+    {# hide Out of stock products #}
+  {% else %}
+      <div class="group-option {{'is-disabled' if isDisabled else ''}} {{'' if cartEnabled else 'no-cart'}}">
       <a href="{{'javascript:void' if isDisabled else ['/product/', product.uniqid] | join}}" class="group-option-description">
         {% if not isFree %}
           {% render_snippet 'Discount badge', product=product, isGroup=true %}
