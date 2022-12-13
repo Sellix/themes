@@ -4,13 +4,16 @@
 {% set image = cdn_link(product.cloudflare_image_id, 'shopItem') %}
 {% set onHold = product.on_hold | int %}
 {% set isOut = (product.stock | int === 0) %}
-{% set isFree = product.price_display | float === 0 %}
+{% set isPayWhatYouWant = (product.pay_what_you_want | int === 1) %}
+{% set isFree = product.price_display | float === 0 and not isPayWhatYouWant %}
 {% set colors = themeProperties.current_colors %}
 {% set cardsProps = themeProperties.cards %}
 
 <div class="d-flex w-100 position-relative">
   {% if isFree %}
     <div class="sellix-card-badge">Free</div>
+  {% elif isPayWhatYouWant %}
+    <div class="sellix-card-badge">Choose your price</div>
   {% else %}
     {% render_snippet 'Cart button', product=product %}
 
@@ -81,6 +84,8 @@
               >
                 {% if isFree %}
                   Free
+                {% elif isPayWhatYouWant %}
+                  Choose your price
                 {% else %}
                   {% render_snippet 'Price', currency=product.currency, price=product.price_display %}
                 {% endif %}
