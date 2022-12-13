@@ -29,11 +29,10 @@
 <header>
   <!-- <Status /> -->
   <div class="sellix-header">
-
-    <div class="sellix-header-in">
-    {% if global.request.type in ['main', 'group', 'contact', 'terms', 'trust', 'feedbacks', 'feedback', 'category'] %}
+{% if global.request.type in ['main', 'group', 'contact', 'terms', 'trust', 'feedbacks', 'feedback', 'category'] %}
       {% render_snippet 'Shop message', container_selector=["sellix-header-", id] | join %}
     {% endif %}
+    <div class="sellix-header-in">
       {% if properties.logo_image %}
         <a href="/">
           <div class="sellix-header-logo-image">
