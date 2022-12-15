@@ -132,6 +132,10 @@
       }
     };
 
+    onChangeData = ({ type, value }) => {
+      // console.log('Change', type, value);
+    };
+
     onSuccess = ({ type, invoice }) => {
       switch (type) {
         case 'invoice-trial':
@@ -176,6 +180,7 @@
           onCustomerAuthCode: this.onCustomerAuthCode,
           onSuccess: this.onSuccess,
           onFail: this.onFail,
+          onChangeData: this.onChangeData,
           options: {
             isCaptchaV2Visible: this.isCaptchaV2Visible,
           },
