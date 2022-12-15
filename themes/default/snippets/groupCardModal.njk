@@ -28,7 +28,7 @@
 
     $(document).on('SellixSetActiveModalGroup', function(e, eventInfo) {
       const renderOptions = {{renderOptions | dump | safe}};
-      const group = items.find(({uniqid}) => uniqid === eventInfo.groupId);
+      const group = items.find(({uniqid}) => String(uniqid) === String(eventInfo.groupId));
       const $modalBody = $('#group-card-modal .sellix-modal-body');
 
       const productsCount = group.products_bound.length;
