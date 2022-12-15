@@ -48,11 +48,11 @@
         })
         .filter((data) => Boolean(data));
 
-      this.cart.addMany(productsToAdd);
-
-      if (this.isProduct) {
-        location.href = '/checkout';
-      }
+      this.cart.addMany(productsToAdd).then(() => {
+        if (this.isProduct) {
+          location.href = '/checkout';
+        }
+      });
     }
 
     render() {
