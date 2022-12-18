@@ -66,7 +66,7 @@
       console.log('Click!!!');
       const groupId = $(this).data('group-id');
       const items = __RENDER_CONTEXT__.common.shopInfo.items;
-      const group = items.find(({uniqid}) => uniqid === groupId);
+      const group = items.find(({uniqid}) => String(uniqid) === String(groupId));
 
       if (group && group.products_bound.length) {
         $(document).trigger('SellixSetActiveModalGroup', { groupId });

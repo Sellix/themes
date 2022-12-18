@@ -21,7 +21,7 @@
     {% render_snippet 'Discount badge',
     product = product %}
   {% endif %}
-      <div
+  <div
       class="sellix-card"
       style="background: {{ colors[cardsProps.product_card_background_color] }}; border-top-left-radius: 0.5rem;    border-top-right-radius: 0.5rem;"
     >
@@ -48,8 +48,6 @@
           {{product.title}}
         </div>
 
-
-
         {% if onHold %}
           <span
             class="sellix-card-description"
@@ -73,45 +71,35 @@
             class="sellix-card-description justify-content-between"
             style="font-size: {{ cardsProps.product_card_description_font_size }}px; font-weight: {{ cardsProps.product_card_description_font_weight }};"
           >
-           <span>Starting at: </span>
-
-             {% if product.price_discount and not isFree %}
-            <span
+            {% if isFree %}
+                  Free
+          {% elif isPayWhatYouWant %}
+                  Choose your price
+          {% else %}
+              <span>Starting at: </span>
+              {% if product.price_discount and not isFree %}
+                <span
                 class="sellix-card-price-with-discount"
                 style="font-size: {{ cardsProps.product_card_description_font_size }}px; font-weight: {{ cardsProps.product_card_description_font_weight }};"
               >
-              <i>{% render_snippet 'Price',
-                currency = product.currency,
-                price = product.price_display %}</i>
-              {% render_snippet 'Price',
-              currency = product.currency,
-              price = product.price_display,
-              discount = product.price_discount %}
-            </span>
-          {% else %}
-            <span
+                  <i>{% render_snippet 'Price', currency = product.currency, price = product.price_display %}</i>
+                </span>
+              {% else %}
+                <span
                 class="sellix-card-price"
                 style="font-size: {{ cardsProps.product_card_price_font_size }}px; font-weight: {{ cardsProps.product_card_price_font_weight }};"
               >
-              {% if isFree %}
-                  Free
-                
-              {% elif isPayWhatYouWant %}
-                  Choose your price
-              {% else %}
-                {% render_snippet 'Price',
-                currency = product.currency,
-                price = product.price_display %}
+                  {% render_snippet 'Price', currency = product.currency, price = product.price_display %}
+                </span>
               {% endif %}
-            </span>
-          {% endif %}
+            {% endif %}
 
           </div>
           <div class="linkbottone">
-          <a  href="{{'javascript:void' if product.on_hold | int else ['/product/', product.uniqid] | join}}" style="padding: 15px 32px;    display: block;    margin: 20px; text-align: center; font-size: 16px; font-weight: 900;  cursor: pointer; border-radius: 5px 5px 5px 5px;">Continue</a>
+            <a  href="{{'javascript:void' if product.on_hold | int else ['/product/', product.uniqid] | join}}" style="padding: 15px 32px;    display: block;    margin: 20px; text-align: center; font-size: 16px; font-weight: 900;  cursor: pointer; border-radius: 5px 5px 5px 5px;">Continue</a>
           </div>
         {% endif %}
       </div>
-      </a>
-    </div>
+    </a>
+  </div>
 </div>

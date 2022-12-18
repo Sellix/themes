@@ -98,7 +98,7 @@
     addMany(products) {
       const updatedProducts = products.map(({ product, quantity }) => this.add(product, quantity, false));
 
-      this.update().then(() => {
+      return this.update().then(() => {
         for (const { product, isNew } of updatedProducts) {
           jQuery(document).trigger('SellixCartUpdateEvent', {
             action: isNew ? 'insert' : 'update',

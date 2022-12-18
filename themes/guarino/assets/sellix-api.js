@@ -78,7 +78,7 @@
       });
     }
 
-    async createInvoice(data) {
+    async createInvoice(data, options) {
       const onSuccess = (captcha) => {
         data.captcha = captcha;
         return jQuery.ajax({
@@ -89,7 +89,7 @@
           data: JSON.stringify(data),
         });
       };
-      return this.requestWithCaptcha('createInvoice', onSuccess);
+      return this.requestWithCaptchaV3('createInvoice', onSuccess, null, options);
     }
 
     async createInvoiceTrial(data) {
@@ -103,7 +103,7 @@
           data: JSON.stringify(data),
         });
       };
-      return this.requestWithCaptcha('createInvoice', onSuccess);
+      return this.requestWithCaptchaV3('createInvoice', onSuccess);
     }
 
     async updateInvoice(data) {
@@ -126,7 +126,7 @@
           data: JSON.stringify({ ...data, captcha }),
         });
       };
-      return this.requestWithCaptcha('createInvoice', onSuccess);
+      return this.requestWithCaptchaV3('createInvoice', onSuccess);
     }
 
     async customerAuthCode(data) {
@@ -139,7 +139,7 @@
           data: JSON.stringify({ ...data, captcha }),
         });
       };
-      return this.requestWithCaptcha('createInvoice', onSuccess);
+      return this.requestWithCaptchaV3('createInvoice', onSuccess);
     }
 
     async validateCaptcha(data) {
@@ -159,7 +159,7 @@
         const onSuccess = (captcha) => {
           return sendRequest({ ...data, captcha });
         };
-        return this.requestWithCaptcha('createStripePayment', onSuccess);
+        return this.requestWithCaptchaV3('createStripePayment', onSuccess);
       }
 
       return sendRequest(data);
@@ -201,7 +201,7 @@
           data: JSON.stringify({ ...data, captcha }),
         });
       };
-      return this.requestWithCaptcha('createTicket', onSuccess);
+      return this.requestWithCaptchaV3('createTicket', onSuccess);
     }
 
     async replyTicket(data) {
@@ -214,7 +214,7 @@
           data: JSON.stringify({ ...data, captcha }),
         });
       };
-      return this.requestWithCaptcha('replyTicket', onSuccess);
+      return this.requestWithCaptchaV3('replyTicket', onSuccess);
     }
 
     async getTicket(id) {
@@ -234,22 +234,72 @@
       });
     }
 
-    async requestWithCaptcha(action, onSuccess, onError) {
-      if (!onError) {
-        onError = (message) => message;
-      }
+    async requestWithCaptchaV2(action, onSuccess, onError, options) {
+      options ??= options;
+
+      return new Promise((resolve, reject) => {
+        try {
+          if (!options.useCaptchaV2 || !options.selectorCaptchaV2) {
+            reject({ message: 'ReCaptchaV2 required params are not initialized' });
+          }
+
+          const captchaId = `${options.selectorCaptchaV2}_recaptchaV2`;
+          const $recaptchaV2 = jQuery(`<div id='${captchaId}'></div>`);
+          jQuery(options.selectorCaptchaV2).append($recaptchaV2);
+          options.onShowCaptchaV2 && options.onShowCaptchaV2(true);
+          window.grecaptcha.render(captchaId, {
+            sitekey: window.RECAPTCHA_PUBLIC_KEY_V2,
+            size: 'normal',
+            theme: options.theme || 'light',
+            callback: (captcha) => {
+              onSuccess(captcha).then(resolve);
+            },
+            'expired-callback': () => {
+              $recaptchaV2.remove();
+              options.onShowCaptchaV2 && options.onShowCaptchaV2(false);
+              reject({ message: 'reCAPTCHA v2 expired' });
+            },
+            'error-callback': () => {
+              $recaptchaV2.remove({ message: 'reCAPTCHA v2 failed' });
+              options.onShowCaptchaV2 && options.onShowCaptchaV2(false);
+              reject();
+            },
+          });
+        } catch (e) {
+          reject(e);
+        }
+      });
+    }
+
+    async requestWithCaptchaV3(action, onSuccess, onError, options) {
+      options ??= {};
+      onError ??= (message) => message;
 
       return new Promise((resolve, reject) => {
         if (window.grecaptcha) {
-          return window.grecaptcha.ready(function () {
+          return window.grecaptcha.ready(() => {
             try {
               const captchaRequest = window.grecaptcha.execute(window.RECAPTCHA_PUBLIC_KEY, { action });
               if (onSuccess) {
-                captchaRequest.then(onSuccess).then(resolve).catch(reject);
+                captchaRequest
+                  .then(onSuccess)
+                  .then(resolve)
+                  .catch(() => {
+                    this.requestWithCaptchaV2(action, onSuccess, onError, options)
+                      .then(resolve)
+                      .catch((e) => {
+                        const message = (e && e.message) || 'Captcha request error.';
+                        reject(onError(message));
+                      });
+                  });
               }
             } catch (e) {
-              const message = (e && e.message) || 'Captcha request error.';
-              reject(onError(message));
+              this.requestWithCaptchaV2(action, onSuccess, onError, options)
+                .then(resolve)
+                .catch((e) => {
+                  const message = (e && e.message) || 'Captcha request error.';
+                  reject(onError(message));
+                });
             }
           });
         } else {

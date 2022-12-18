@@ -15,10 +15,13 @@
     padding: {{ properties.container_padding }}px;
     border: {{ "1px solid var(--borderColor)" if properties.show_border else "none" }};
   }
+  #purchase-details-{{id}} .sellix-product-card .sellix-product-form-field .currency-title {
+    background: {{ colors[properties.container_background_color] }};
+  }
 </style>
 
-<div>
-  <div id='purchase-details-{{id}}'></div>
+<div id='purchase-detail-wrapper-{{ id }}' class='purchase-detail-wrapper'>
+  <div class='purchase-details'></div>
 </div>
 
 <script type='application/javascript'>
@@ -48,7 +51,8 @@
     {% endfor %}
 
     const purchaseDetailsComponent = new SellixPurchaseDetailsComponent({
-      selector: '#purchase-details-{{id}}',
+      selector: '#purchase-detail-wrapper-{{ id }} .purchase-details',
+      selectorCaptchaV2: '#purchase-detail-recaptcha-v2',
       config: window.SellixContext.get('config'),
       shop: shopInfo.shop,
       cartEnabled: {{cartEnabled or 0}},

@@ -2,6 +2,7 @@
   class PurchaseDetailsComponent {
     constructor({
       selector,
+      selectorCaptchaV2,
       config,
       shop,
       cartEnabled,
@@ -14,6 +15,7 @@
       renderOptions,
     }) {
       this.domContainer = document.querySelector(selector);
+      this.selectorCaptchaV2 = selectorCaptchaV2;
       this.config = config;
       this.shop = shop;
       this.cartEnabled = cartEnabled;
@@ -22,8 +24,9 @@
       this.cart = cart;
       this.product = product;
       this.bundles = bundles;
-      this.theme = theme;
+      this.theme = theme || {};
       this.renderOptions = renderOptions;
+      this.isCaptchaV2Visible = false;
 
       this.addonsStore = new SellixAddonsStore(shop.name);
       this.priceVariantsStore = new SellixPriceVariantsStore(shop.name);
@@ -45,7 +48,15 @@
     };
 
     onCreateInvoice = (data) => {
-      return sellixApi.createInvoice(data);
+      return sellixApi.createInvoice(data, {
+        useCaptchaV2: true,
+        selectorCaptchaV2: this.selectorCaptchaV2,
+        theme: this.theme.isDark ? 'dark' : 'light',
+        onShowCaptchaV2: (visible) => {
+          this.isCaptchaV2Visible = visible;
+          this.render();
+        },
+      });
     };
 
     onCreateInvoiceTrial = (data) => {
@@ -121,6 +132,10 @@
       }
     };
 
+    onChangeData = ({ type, value }) => {
+      // console.log('Change', type, value);
+    };
+
     onSuccess = ({ type, invoice }) => {
       switch (type) {
         case 'invoice-trial':
@@ -165,6 +180,10 @@
           onCustomerAuthCode: this.onCustomerAuthCode,
           onSuccess: this.onSuccess,
           onFail: this.onFail,
+          onChangeData: this.onChangeData,
+          options: {
+            isCaptchaV2Visible: this.isCaptchaV2Visible,
+          },
         }),
         this.domContainer,
       );
