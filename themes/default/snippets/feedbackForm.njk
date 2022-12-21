@@ -1,1 +1,100 @@
+{% set id = uid() %}
+{% set feedbackId = args.feedbackId %}
+{% set feedback = args.feedback %}
+{% set score = feedback.score if feedback.score else 1 %}
+{% set message = feedback.message if feedback.message else '' %}
+{% set properties = args.properties %}
+{% set messageId = uid() %}
+{% set colors = themeProperties.current_colors %}
 
+<style>
+  .sellix-leave-feedback-{{id}} {
+    margin: auto;
+    width: {{ properties.leave_feedback_form_size }};
+    background: {{ colors[properties.container_background] }};
+    border: {{ "1px solid var(--borderColor)" if properties.container_show_border else "none" }};
+    box-shadow: {{ properties.container_shadow }};
+    border-radius: {{ properties.container_border_radius }}rem;
+    padding: {{ properties.container_padding_vert }}px {{ properties.container_padding_horiz }}px;
+  }
+
+  .sellix-leave-feedback-{{id}} .title {
+    color: {{colors[properties.leave_feedback_form_title_font_color] }};
+    font-size: {{ properties.leave_feedback_form_title_font_size }}px;
+    font-weight: {{ properties.leave_feedback_form_title_font_weight }};
+    line-height: {{ properties.leave_feedback_form_title_line_height }}%;
+    text-align: {{ properties.leave_feedback_form_title_text_align }};
+  }
+
+  .sellix-leave-feedback-{{id}} .text {
+    color: {{colors[properties.leave_feedback_form_sub_title_font_color] }};
+    font-size: {{ properties.leave_feedback_form_sub_title_font_size }}px;
+    font-weight: {{ properties.leave_feedback_form_sub_title_font_weight }};
+    line-height: {{ properties.leave_feedback_form_sub_title_line_height }}%;
+    text-align: {{ properties.leave_feedback_form_sub_title_text_align }};
+  }
+</style>
+
+<div class="animated fadeIn sellix-leave-feedback-screen">
+  <form
+    class="sellix-leave-feedback-{{id}}"
+    id="sellix-leave-feedback-{{id}}"
+    onsubmit="return false"
+  >
+    <div class="mx-auto col-md-6 offset-md-3">
+      <div>
+        <div class="mt-4 pb-5">
+          <div>
+            <h5 class="title">
+              {{properties.leave_feedback_form_title}}
+            </h5>
+
+            <p class="mt-3 mb-4 text">
+              {{ properties.leave_feedback_form_sub_title }}
+            </p>
+          </div>
+
+          <div class="sellix-feedback-delivery" style="margin-left: 5px">
+            {% render_snippet 'Rating star', rating=score, size=27, readonly="false" %}
+          </div>
+
+          {% render_snippet 'Text area', selector=messageId, name="message", placeholder="Leave a text for your feedback", className="pt-3 pb-3", value=message %}
+
+          <div style="display: flex; justify-content: {{ properties.leave_feedback_form_button_position }}; margin-top: -16px">
+            {% render_snippet 'Ripple button', button_id=['leave-feedback-submit-', id] | join, type='submit', title=properties.leave_feedback_form_button_title, class="mt-4" %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const formComponent = new SellixLeaveFeedbackComponent(
+      '#sellix-leave-feedback-{{id}}',
+      '{{messageId}}',
+      '{{feedbackId}}',
+    );
+    $('#sellix-leave-feedback-{{id}}').validate({
+      errorElement: 'div',
+      errorClass: 'invalid-feedback',
+      rules: {
+        message: {
+          maxlength: 256,
+        },
+      },
+      messages: {
+        message: {
+          maxlength: 'Feedback must be 256 characters long',
+        },
+      },
+      highlight: function(element, errorClass) {
+        $(element).addClass('is-invalid').removeClass(errorClass);
+      },
+      unhighlight: function(element, errorClass) {
+        $(element).removeClass('is-invalid').removeClass(errorClass);
+      },
+    });
+  });
+</script>
