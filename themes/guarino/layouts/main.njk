@@ -7,7 +7,8 @@
   <head>
     <base href="/">
     <meta charset="utf-8"/>
-
+    <script src='{{ 'js.cookie.min.js' | asset_url }}'></script>
+    {% render_snippet 'App google analytics' %}
     {% render_snippet 'Main meta' %}
 
     <link rel="icon" type="image/x-icon" href="{{ 'favicon.ico' | asset_url }}"/>
@@ -283,7 +284,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js"></script>
     <script src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
 
-    <script src='{{ 'js.cookie.min.js' | asset_url }}'></script>
+
     <script src="{{ 'copy-to-clipboard.min.js' | asset_url }}"></script>
     <script src="{{ 'file-saver.min.js' | asset_url }}"></script>
     <script src="{{ 'ripple.js' | asset_url }}"></script>
@@ -322,7 +323,6 @@
     <script src="{{ 'sellix-leave-feedback-component.js' | asset_url }}"></script>
 
     {% render_snippet 'App cookie modal' %}
-    {% render_snippet 'App google analytics' %}
 
   </body>
 </html>

@@ -1,10 +1,8 @@
-{% set feedbackId = '' %}
-
-{% if renderOptions.templateId == 'Delivery/Delivery' %}
-  {% set info = global.common.invoiceInfo.info %}
-  {% set feedbackId = info.feedback_uniqid %}
+{% if global.request.type == 'delivery' %}
+  {% set feedbackId = global.common.invoiceInfo.info.feedback_uniqid %}
+  {% set feedback = global.common.invoiceInfo.feedback %}
 {% endif %}
 
-{% if feedbackId %}
-  {% render_snippet 'Feedback form' %}
+{% if feedback %}
+  {% render_snippet 'Feedback form', feedbackId=feedbackId, feedback=feedback, properties=properties %}
 {% endif %}

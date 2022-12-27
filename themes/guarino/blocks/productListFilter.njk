@@ -6,37 +6,32 @@
 {% set inputsProps = themeProperties.inputs %}
 
 <style>
-  @media screen and (min-width: 800px) {
-
-    .sellix-shop-search {
-      padding: 0!important !important;
-      margin-right: 13px;
-      width: 47.8%!important;
-    }
-  }
   .sellix-shop-search input {
     border-radius: 0.5rem;
     padding: 1rem 2.5rem 1rem 1rem;
-    font-size: {{inputsProps.common_font_size}}px;
-    font-weight: {{inputsProps.common_font_weight}};
+    font-size: {{ inputsProps.common_font_size }}px;
+    font-weight: {{ inputsProps.common_font_weight }};
+    color: {{ colors[inputsProps.common_font_color] }};
+    background-color: {{ colors[properties.input_background_color] }};
     box-shadow: none;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    border: {{"0px solid var(--borderColor)" if inputsProps.common_show_border else "none"}};
+    border: {{ "1px solid var(--borderColor)" if inputsProps.common_show_border else "none" }};
     width: 100%;
-    height: {{inputsProps.common_height}}px;
+    height: {{ inputsProps.common_height }}px;
     font-family: inherit;
   }
 
   .sellix-shop-search input:focus {
     outline: none;
-    border: {{"0px solid var(--brandColor)" if inputsProps.common_show_border else "none"}};
+    border: {{ "1px solid var(--brandColor)" if inputsProps.common_show_border else "none" }};
   }
 
   .sellix-shop-search input::placeholder {
-    font-size: {{inputsProps.common_font_size}}px;
-    font-weight: {{inputsProps.common_font_weight}};
+    font-size: {{ inputsProps.common_font_size }}px;
+    font-weight: {{ inputsProps.common_font_weight }};
+    color: {{ colors[inputsProps.common_font_color] }};
     opacity: 0.7;
   }
 
@@ -45,21 +40,24 @@
     right: 3rem;
     font-size: 14px;
     margin-top: 1px;
+    color: {{ colors[inputsProps.common_font_color] }} !important;
   }
 
   .sellix-dropdown .select2-container--sellix .select2-selection--single {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: {{inputsProps.common_height}}px;
+    min-height: {{ inputsProps.common_height }}px;
+    background-color: {{ colors[properties.input_background_color] }};
     border-radius: 0.5rem;
-    border: {{"0px solid var(--borderColor)" if inputsProps.common_show_border else "none"}};
+    border: {{ "1px solid var(--borderColor)" if inputsProps.common_show_border else "none" }};
   }
 
   .sellix-dropdown .select2-container--sellix .select2-selection__rendered {
     padding-left: 1rem !important;
-    font-size: {{inputsProps.common_font_size}}px;
-    font-weight: {{inputsProps.common_font_weight}};
+    color: {{ colors[inputsProps.common_font_color] }};
+    font-size: {{ inputsProps.common_font_size }}px;
+    font-weight: {{ inputsProps.common_font_weight }};
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -80,29 +78,42 @@
   }
 
   .select2-container--sellix .select2-dropdown {
-    border: {{"0px solid var(--borderColor)" if inputsProps.show_dropdown_border else "none"}}!important;
+    border: {{ "1px solid var(--borderColor)" if inputsProps.show_dropdown_border else "none" }} !important;
     margin-top: 8px;
     margin-bottom: 8px;
     box-shadow: none;
     border-radius: 4px !important;
     padding-top: 4px;
     padding-bottom: 4px;
+    background-color: {{ colors[properties.input_background_color] }} !important;
   }
 
   .select2-container--sellix .select2-results__option {
-    font-size: {{inputsProps.dropdown_option_font_size}}px !important;
-    font-weight: {{inputsProps.dropdown_option_font_weight}};
+    font-size: {{ inputsProps.dropdown_option_font_size }}px !important;
+    font-weight: {{ inputsProps.dropdown_option_font_weight }};
+    color: {{ colors[inputsProps.dropdown_option_font_color] }} !important;
     padding: 0 1rem !important;
     display: flex !important;
     align-items: center;
-    height: {{inputsProps.common_height}}px;
+    height: {{ inputsProps.common_height }}px;
   }
+
+  .select2-container--sellix .select2-results__option.select2-results__option--highlighted {
+    background-color: {{ colors[inputsProps.dropdown_option_background_hover] }} !important;
+  }
+
+  .select2-container--sellix .select2-results__option[aria-selected='true'] {
+    background-color: {{ colors[inputsProps.dropdown_active_option_background] }} !important;
+    color: {{ colors[inputsProps.dropdown_active_option_font_color] }} !important;
+  }
+
+
 </style>
 
 <div
   class="sellix-product-list-header"
-  style="{% if properties.container_background_color %}background: {{colors[properties.container_background_color]}};justify-content: {{ properties.justify_content_alignment }};{% endif %}{#
-       #}{% if properties.show_border %}border: 0px solid var(--borderColor);{% else %}border: none;{% endif %}{#
+  style="{% if properties.container_background_color %}background: {{ colors[properties.container_background_color] }};{% endif %}{#
+       #}{% if properties.show_border %}border: 1px solid var(--borderColor);{% else %}border: none;{% endif %}{#
        #} box-shadow: {{ properties.container_shadow }};{#
        #} border-radius: {{ properties.container_border_radius }}rem;{#
        #}{% if properties.container_padding %}padding: {{ properties.container_padding }}px;{% endif %}"
@@ -115,7 +126,7 @@
         id="shop-search-{{id}}"
         value=""
         placeholder="Search for a product..."
-/>
+      />
     </label>
   {% endif %}
 
@@ -142,58 +153,58 @@
   $(document).ready(function () {
     const categories = __RENDER_CONTEXT__.common.shopInfo.categories;
 
-    let search = '',
-      category = 'all',
-      sort = 'DEFAULT';
+    let search = '', category = 'all', sort = 'DEFAULT';
 
     $('.empty-shop-container button').on('click', () => {
-      $('#shop-search-{{id}}')
-        .val('')
-        .trigger('keyup');
+      $('#shop-search-{{id}}').val('').trigger('keyup');
     });
 
     $('#shop-search-{{id}}').on('keyup', function (e) {
       search = e.target.value;
-      $(document).trigger('SellixProductListFilterChangeEvent', {search, category, sort});
+      $(document).trigger('SellixProductListFilterChangeEvent', { search, category, sort });
     });
 
-    $('#category-select-{{id}}')
-  .select2({
-        data: [
-      {
-            text: "All categories",
-            id: "all"
+    $('#category-select-{{id}}').select2({
+      data: [
+        {
+          text: "All categories",
+          id: "all",
+        },
+        {% for category in categories %}
+          {% if not category.unlisted %}
+          {
+            text: "{{category.title}}",
+            id: "{{category.uniqid}}"
           },
-        {% endif %}
-      {% endfor %}
-    ],
-    minimumResultsForSearch: -1,
-    theme: 'sellix'
-  })
-  .on('change', (e) => {
-    category = e.target.value;
-    $(document).trigger('SellixProductListFilterChangeEvent', {search, category, sort});
+          {% endif %}
+        {% endfor %}
+      ],
+      minimumResultsForSearch: -1,
+      theme: 'sellix',
+    }).on('change', (e) => {
+      category = e.target.value;
+      $(document).trigger('SellixProductListFilterChangeEvent', { search, category, sort });
+    });
+
+    $('#sort-select-{{id}}').select2({
+      templateSelection: (state) => {
+        if (state.id) {
+          return `Index By: ${state.text}`;
+        }
+        return state.text;
+      },
+      minimumResultsForSearch: -1,
+      theme: 'sellix',
+    }).on('change', (e) => {
+      sort = e.target.value;
+      $(document).trigger('SellixProductListFilterChangeEvent', { search, category, sort });
+    });
+
+    {% if global.request.type === 'category' %}
+      setTimeout(function() {
+        $('#category-select-{{id}}').val('{{ global.request.options.itemId }}');
+        $('#category-select-{{id}}').trigger('change');
+      }, 0);
+    {% endif %}
   });
-$('#sort-select-{{id}}')
-  .select2({
-    templateSelection: (state) => {
-      if (state.id) {
-        return `Index By: ${state.text}`;
-      }
-      return state.text;
-    },
-    minimumResultsForSearch: -1,
-    theme: 'sellix'
-  })
-  .on('change', (e) => {
-    sort = e.target.value;
-    $(document).trigger('SellixProductListFilterChangeEvent', {search, category, sort});
-  });
-{% if global.request.type === 'category' %}
-  setTimeout(function () {
-    $('#category-select-{{id}}').val('{{ global.request.options.itemId }}');
-    $('#category-select-{{id}}').trigger('change');
-  }, 0);
-{% endif %}
-});
 </script>

@@ -1,9 +1,35 @@
+{% set id = uid() %}
 {% set invoice = args.invoice %}
 {% set isDev = args.is_dev %}
 {% set isTrial = args.is_trial %}
 {% set isProductSubscription = args.is_product_subscription %}
+{% set properties = args.properties %}
+{% set colors = themeProperties.current_colors %}
+<style>
+  .sellix-delivery-success-{{id}} {
+    background: {{ colors[properties.container_background] }};
+    border: {{ "1px solid var(--borderColor)" if properties.container_show_border else "none" }};
+    box-shadow: {{ properties.container_shadow }};
+    border-radius: {{ properties.container_border_radius }}rem;
+    padding: {{ properties.container_padding_vert }}px {{ properties.container_padding_horiz }}px;
+  }
+  .sellix-delivery-success-{{id}} .title {
+    color: {{colors[properties.title_font_color] }};
+    font-size: {{ properties.font_size }}px;
+    font-weight: {{ properties.font_weight }};
+    line-height: {{ properties.title_line_height }}%;
+    text-align: {{ properties.title_text_align }};
+  }
+  .sellix-delivery-success-{{id}} .text {
+    color: {{colors[properties.text_font_color] }};
+    font-size: {{ properties.text_font_size }}px;
+    font-weight: {{ properties.text_font_weight }};
+    line-height: {{ properties.text_line_height }}%;
+    text-align: {{ properties.text_text_align }};
+  }
+</style>
 
-<div class="sellix-delivery-success">
+<div class="sellix-delivery-success sellix-delivery-success-{{id}}">
   <div class="sellix-delivery-success-header">
 
     <div class="sw-container">
@@ -21,7 +47,7 @@
       </div>
     </div>
 
-    <div class="sellix-delivery-success-title">
+    <div class="sellix-delivery-success-title title">
       {% if isDev %}
         Payment Completed
       {%- elif isTrial -%}
@@ -34,7 +60,7 @@
     </div>
   </div>
 
-  <div class="sellix-delivery-success-info">
+  <div class="sellix-delivery-success-info text">
     {% if isDev %}
       Your invoice has been paid.<br/>
       We will send a confirmation email to your address and you will be redirected to the seller's
