@@ -17,18 +17,27 @@
 
     onToggleDescription(event) {
       const addonId = jQuery(event.currentTarget).data('addon-id');
-      this.$container.find('.shop-product-info-addon-description-collapse').css({ height: '0', overflow: 'hidden' });
 
-      this.$container
-        .find(`.shop-product-info-addon-title i.fa-solid`)
-        .removeClass('fa-chevron-up')
-        .addClass('fa-chevron-down');
+      if (this.activeAddonId) {
+        this.$container
+          .find(`.shop-product-info-addon-description-collapse`)
+          .animate({ height: '0', overflow: 'hidden' }, { duration: 300, queue: false });
+
+        this.$container
+          .find(`.shop-product-info-addon-title i.fa-solid`)
+          .removeClass('fa-chevron-up')
+          .addClass('fa-chevron-down');
+      }
 
       if (this.activeAddonId !== addonId) {
+        const $addonDescription = this.$container.find(
+          `.shop-product-info-addon-description-collapse[data-addon-id=${addonId}]`,
+        );
         this.activeAddonId = addonId;
-        this.$container
-          .find(`.shop-product-info-addon-description-collapse[data-addon-id=${addonId}]`)
-          .css({ height: 'auto', overflow: 'initial' });
+        $addonDescription.animate(
+          { height: $addonDescription.get(0).scrollHeight, overflow: 'initial' },
+          { duration: 300, queue: false },
+        );
 
         this.$container
           .find(`.shop-product-info-addon-title[data-addon-id=${addonId}] i.fa-solid`)
