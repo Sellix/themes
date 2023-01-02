@@ -52,14 +52,22 @@
     }
 
     toggleDescription = (show) => {
+      const $description = this.$product.find('.shop-product-info-collapse'),
+      $label = this.$product.find('.sellix-cart-description .label-show-description'),
+      $button = this.$product.find('.sellix-cart-description .label-click-for-info');
+
+      
       if (show) {
-        this.$product.find('.shop-product-info-collapse').css({ height: 'auto', overflow: 'initial' });
-        this.$product.find('.sellix-cart-description .label-show-description').text('Hide Description');
-        this.$product.find('.sellix-cart-description .label-click-for-info').hide();
+        $description.animate(
+          { height: $description.get(0).scrollHeight, overflow: 'initial' },
+          { duration: 300, queue: false },
+        );
+        $label.text('Hide Description');
+        $button.hide();
       } else {
-        this.$product.find('.shop-product-info-collapse').css({ height: '0px', overflow: 'hidden' });
-        this.$product.find('.sellix-cart-description .label-show-description').text('Show Description');
-        this.$product.find('.sellix-cart-description .label-click-for-info').show();
+        $description.animate({ height: '0px', overflow: 'hidden' }, { duration: 300, queue: false });
+        $label.text('Show Description');
+        $button.show();
       }
 
       this.isVisibleDescription = show;

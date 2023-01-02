@@ -5,11 +5,12 @@
 {% set youtube_link = product.youtube_link %}
 {% set images = [] %}
 
-{% if shop.description_image and ((attachments | length) or youtube_link) and not shop.description_youtube_only %}
-  <div class="carousel-root" style="width:550px;height:550px;">
-    <div id="sellix-product-carousel-{{id}}" class="sellix-product-carousel">
-      {% set index = 0 %}
-      {% for attachment in attachments %}
+{% if shop.description_image and ((attachments | length) or youtube_link) %}
+  <div class="carousel-root" style="height: 550px;">
+    {% if not shop.description_youtube_only  %}
+      <div id="sellix-product-carousel-{{id}}" class="sellix-product-carousel">
+        {% set index = 0 %}
+        {% for attachment in attachments %}
         {% set image = cdn_link(attachment.cloudflare_image_id, 'shopItem') %}
 
         {% set images = (images.push(image), images) %}
@@ -21,25 +22,28 @@
         </a>
 
         {% set index = index + 1 %}
-      {% endfor %}
-
-      {% if youtube_link %}
-        <a href='{{youtube_link}}' data-slide-idx="{{index}}">
-          <div class="shop-product-info-image">
-            <div class="player-wrapper">
-              <div style="width: auto; height: auto;">
-                <div style="width: 100%; height: 100%;">
-                  <div id="sellix-video-player-{{id}}"></div>
-                </div>
+      {% endfor %}   
+    {% if youtube_link%}
+      <a href='{{youtube_link}}' data-slide-idx="{{index}}">
+        <div class="shop-product-info-image">
+          <div class="player-wrapper">
+            <div style="width: auto; height: auto;">
+              <div style="width: 100%; height: 100%;">
+                <div id="sellix-video-player-{{id}}"></div>
               </div>
             </div>
           </div>
-        </a>
-      {% endif %}
+        </div>
+      </a>
+    {% endif %}
+    {% endif %}
 
   </div>
 
+{% endif %}
+
   <script type='application/javascript'>
+
     $(document).ready(function () {
       {% if youtube_link %}
       const container = document.getElementById('sellix-video-player-{{id}}');
@@ -62,7 +66,7 @@
       });
 
       $(document).on('SellixShowProductDescription SellixInvoiceShowProductDescription', () => {
-        setInterval(function() {
+        setTimeout(function() {
           slider.updateSliderHeight();
         }, 0);
       });
@@ -112,4 +116,3 @@
       });
     });
   </script>
-{% endif %}
