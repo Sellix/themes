@@ -1,0 +1,22 @@
+{% set id = uid() %}
+{% set colors = themeProperties.current_colors %}
+<div class="accordion-item">
+    <button id="accordion-button-{{id}}" aria-expanded="false" style="color: {{ colors[properties.qea_title_font_color] if properties.qea_title_font_color else 'inherit' }};{#
+            #} font-size: {{ properties.qea_title_font_size }}px;{#
+            #} font-weight: {{ properties.qea_title_font_weight }};{#
+            #} text-align: {{ properties.qea_title_text_align }};"
+    >
+        <span class="accordion-title">
+            {{ properties.qea_title }}
+        </span>
+        <span class="icon" aria-hidden="true"></span>
+    </button>
+    <div class="accordion-content" style="color: {{ colors[properties.qea_content_font_color] if properties.qea_content_font_color else 'inherit' }};{#
+            #} font-size: {{ properties.qea_content_font_size }}px;{#
+            #} font-weight: {{ properties.qea_content_font_weight }};{#
+            #} text-align: {{ properties.qea_content_text_align }};">
+        <span class="accordion-title">
+            {{ properties.qea_content | safe }}
+        </span>
+    </div>
+</div>

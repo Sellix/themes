@@ -1,0 +1,17 @@
+{% set colors = themeProperties.current_colors %}
+<div class="sellix-faq-container">
+  <div class="sellix-faq-title">
+    <h2 style="color: {{ colors[properties.faq_font_color] if properties.faq_font_color else 'inherit' }};{#
+        #} font-size: {{ properties.faq_font_size }}px;{#
+        #} font-weight: {{ properties.faq_font_weight }};{#
+        #} text-align: {{ properties.faq_text_align }};">
+        {{ properties.faq }}
+    </h2>
+  </div>
+  <div class="accordion">
+    {% for block_name in settings.block_order %}
+      {%- render_block block_name -%}
+    {% endfor%}
+  </div>
+</div>
+<script src="{{ 'faq-behaviour.js' | asset_url}}"></script>
