@@ -1,6 +1,6 @@
 {
   "id": "default",
-  "version": "0.0.57",
+  "version": "0.0.59",
   "is_active": 0,
   "name": "Default",
   "category": "Digital Products",
@@ -12,6 +12,7 @@
       "dark_colors",
       "background",
       "typography",
+      "page_loader",
       "menu",
       "inputs",
       "cards"
@@ -146,6 +147,12 @@
           "type": "color-picker",
           "label": "menu_background_hover",
           "defaultValue": "#E5DFFA"
+        },
+        {
+          "id": "transparent",
+          "type": "color-picker",
+          "label": "transparent",
+          "defaultValue": "#FFFFFF00"
         }
       ],
       "dark_colors": [
@@ -270,6 +277,12 @@
           "type": "color-picker",
           "label": "menu_background_hover",
           "defaultValue": "#E5DFFA"
+        },
+        {
+          "id": "transparent",
+          "type": "color-picker",
+          "label": "transparent",
+          "defaultValue": "#FFFFFF00"
         }
       ],
       "background": [
@@ -1285,6 +1298,30 @@
           ],
           "defaultValue": 400
         }
+      ],
+      "page_loader": [
+        {
+          "id": "enabled",
+          "type": "checkbox",
+          "label": "Enable page loader",
+          "defaultValue": true
+        },
+        {
+          "id": "color",
+          "type": "color-picker",
+          "label": "Page loader color",
+          "defaultValue": "#5F40E5"
+        },
+        {
+          "id": "height",
+          "max": 20,
+          "min": 1,
+          "step": 1,
+          "type": "range",
+          "unit": "px",
+          "label": "Page loader height",
+          "defaultValue": 2
+        }
       ]
     },
     "properties": {
@@ -1309,7 +1346,8 @@
         "menu_background_hover": "#E9E4FF",
         "link_color": "#6461FC",
         "contrast_font_color": "#FFFFFF",
-        "background_hover": "#DEDEDE"
+        "background_hover": "#DEDEDE",
+        "transparent": "#FFFFFF00"
       },
       "dark_colors": {
         "grid_line": "#233453",
@@ -1329,7 +1367,8 @@
         "menu_background_hover": "rgba(249, 249, 250, 10%)",
         "link_color": "#6461FC",
         "contrast_font_color": "#ffffff",
-        "background_hover": "#DEDEDE"
+        "background_hover": "#DEDEDE",
+        "transparent": "#FFFFFF00"
       },
       "background": {
         "background_image": null
@@ -1388,6 +1427,8 @@
         "product_card_description_font_weight": 400,
         "feedback_card_background_color": "background_accent_dark",
         "feedback_card_show_border": true,
+        "product_card_border_radius": 0.5,
+        "product_card_shadow": "none",
         "feedback_card_message_text_font_color": "light_font_color",
         "feedback_card_message_text_font_size": 14.4,
         "feedback_card_message_text_line_height": 150,
@@ -1400,6 +1441,11 @@
         "feedback_card_reply_text_line_height": 150,
         "feedback_card_reply_text_text_align": "left",
         "feedback_card_reply_text_font_weight": 400
+      },
+      "page_loader": {
+        "enabled": true,
+        "color": "#5F40E5",
+        "height": 2
       }
     }
   },
@@ -2935,6 +2981,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_main_color"
@@ -3146,6 +3196,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_accent_dark"
@@ -3295,6 +3349,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_main_color"
@@ -3458,6 +3516,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_main_color"
@@ -3589,6 +3651,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_accent_dark"
@@ -3885,6 +3951,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_accent_light"
@@ -4261,6 +4331,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_accent_dark"
@@ -4350,6 +4424,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_accent_dark"
@@ -4469,6 +4547,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_accent_dark"
@@ -4753,6 +4835,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_main_color"
@@ -4869,6 +4955,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_accent_dark"
@@ -4900,6 +4990,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_main_color"
@@ -4965,6 +5059,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_accent_dark"
@@ -5278,6 +5376,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_accent_dark"
@@ -5486,9 +5588,13 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
-            "defaultValue": "background_accent_dark"
+            "defaultValue": "transparent"
           },
           {
             "id": "bundles_show_border",
@@ -5625,6 +5731,10 @@
               {
                 "title": "Hover",
                 "value": "background_hover"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_accent_light"
@@ -5792,6 +5902,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_accent_dark"
@@ -5962,6 +6076,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_accent_dark"
@@ -6215,6 +6333,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_accent_dark"
@@ -6467,6 +6589,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_main_color"
@@ -6570,6 +6696,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_accent_dark"
@@ -6742,6 +6872,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_accent_light"
@@ -6889,6 +7023,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_accent_light"
@@ -7030,6 +7168,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_accent_dark"
@@ -7123,6 +7265,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_main_color"
@@ -7143,6 +7289,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_accent_dark"
@@ -7225,6 +7375,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_main_color"
@@ -7347,6 +7501,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_accent_dark"
@@ -7500,6 +7658,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_accent_dark"
@@ -7583,6 +7745,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_accent_light"
@@ -7660,6 +7826,67 @@
       "settings": {
         "schema": [
           {
+            "id": "background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              }
+            ],
+            "defaultValue": "background_accent_dark"
+          },
+          {
+            "id": "show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": true
+          },
+          {
+            "id": "border_radius",
+            "type": "range",
+            "max": 2,
+            "min": 0,
+            "step": 0.25,
+            "unit": "rem",
+            "label": "Border radius",
+            "defaultValue": 0.5
+          },
+          {
+            "id": "shadow",
+            "type": "select",
+            "label": "Drop shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 2",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+              }
+            ],
+            "defaultValue": "none"
+          },
+
+          {
             "id": "container_margin_y",
             "max": 48,
             "min": 0,
@@ -7702,6 +7929,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_accent_dark"
@@ -8213,6 +8444,10 @@
               {
                 "title": "Accent (Dark)",
                 "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
               }
             ],
             "defaultValue": "background_accent_dark"

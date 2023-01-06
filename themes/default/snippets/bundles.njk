@@ -9,13 +9,13 @@
 {% set colors = themeProperties.current_colors %}
 
 
-<style>
-  .bundle-hover-{{ id }}:hover {
-    background: {{ colors[properties.bundles_product_background_color_hover] }};
-  }
-</style>
+{%- if not isInvoice and bundles | length -%}
+  <style>
+    .bundle-hover-{{ id }}:hover {
+      background: {{ colors[properties.bundles_product_background_color_hover] }};
+    }
+  </style>
 
-{% if not isInvoice and bundles | length %}
   {% for bundle in bundles %}
     {% set bundleId = uid() %}
     {% set title = bundle.title %}
