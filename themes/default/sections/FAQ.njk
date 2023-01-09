@@ -1,17 +1,59 @@
+{% set id = uid() %}
 {% set colors = themeProperties.current_colors %}
-<div class="sellix-faq-container">
+
+<style>
+  .sellix-faq-container-{{ id }} {
+    color: {{ colors[properties.faq_font_color] if properties.faq_font_color else 'inherit' }} !important;
+    font-size: {{ properties.faq_font_size }}px !important;
+    font-weight: {{ properties.faq_font_weight }} !important;
+    text-align: {{ properties.faq_text_align }} !important;
+  }
+</style>
+
+<div class="sellix-faq-container sellix-faq-container-{{ id }}">
   <div class="sellix-faq-title">
-    <h2 style="color: {{ colors[properties.faq_font_color] if properties.faq_font_color else 'inherit' }};{#
-        #} font-size: {{ properties.faq_font_size }}px;{#
-        #} font-weight: {{ properties.faq_font_weight }};{#
-        #} text-align: {{ properties.faq_text_align }};">
+    <div>
         {{ properties.faq }}
-    </h2>
+    </div>
   </div>
-  <div class="accordion">
+  <div class="accordion sellix-faq-accordion">
     {% for block_name in settings.block_order %}
-      {%- render_block block_name -%}
+      {% set itemId = uid() %}
+      <div class="sellix-faq-accordion-item sellix-faq-accordion-item-{{ itemId }}" data-faq-item-id="{{ itemId }}">
+        {%- render_block block_name -%}
+      </div>
     {% endfor%}
   </div>
 </div>
-<script src="{{ 'faq-behaviour.js' | asset_url}}"></script>
+
+<script type='application/javascript'>
+  $(document).ready(function() {
+    let activeItemId;
+    function toggleAccordion($item) {
+      const itemId = $item.data('faq-item-id');
+
+      if (activeItemId) {
+        const $itemToHide = $(`.sellix-faq-accordion-item-${activeItemId}`);
+        $itemToHide.find('.answer-content').animate(
+          { height: '0px', overflow: 'hidden' },
+          { duration: 300, queue: false },
+        );
+      }
+
+      if (itemId !== activeItemId) {
+        activeItemId = itemId;
+        const $itemContent = $item.find('.answer-content');
+        $itemContent.animate(
+          { height: $itemContent.get(0).scrollHeight, overflow: 'initial' },
+          { duration: 300, queue: false },
+        );
+      } else {
+        activeItemId = undefined;
+      }
+    }
+
+    $('.sellix-faq-accordion .sellix-faq-accordion-item').on('click', function() {
+      toggleAccordion($(this));
+    });
+  });
+</script>
