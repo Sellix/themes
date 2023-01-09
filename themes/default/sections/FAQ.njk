@@ -28,20 +28,27 @@
 
 <script type='application/javascript'>
   $(document).ready(function() {
-    let activeItemId;
+    let activeItemId, activeNestedItemId;
     function toggleAccordion($item) {
       const itemId = $item.data('faq-item-id');
 
       if (activeItemId) {
         const $itemToHide = $(`.sellix-faq-accordion-item-${activeItemId}`);
-        $itemToHide.find('.answer-content').animate(
-          { height: '0px', overflow: 'hidden' },
-          { duration: 300, queue: false },
-        );
+        const nestedItemIdToHide = $itemToHide.find('.accordion-item').data('faq-item-id')
+        if (nestedItemIdToHide === activeNestedItemId) {
+          $itemToHide.find('.answer-content').animate(
+            { height: '0px', overflow: 'hidden' },
+            { duration: 300, queue: false },
+          );
+        } else {
+          activeItemId = undefined;
+          activeNestedItemId = undefined;
+        }
       }
 
       if (itemId !== activeItemId) {
         activeItemId = itemId;
+        activeNestedItemId = $item.find('.accordion-item').data('faq-item-id')
         const $itemContent = $item.find('.answer-content');
         $itemContent.animate(
           { height: $itemContent.get(0).scrollHeight, overflow: 'initial' },
