@@ -6,6 +6,13 @@
 {% set inputsProps = themeProperties.inputs %}
 
 <style>
+  .sellix-product-list-header {
+    {% if properties.container_background_color %}background: {{ colors[properties.container_background_color] }};{% endif %}
+    border: {% if properties.show_border %}1px solid var(--borderColor){% else %}none{% endif %};
+    box-shadow: {{ properties.container_shadow }};
+    border-radius: {{ properties.container_border_radius }}rem;
+    {% if properties.container_padding %}padding: {{ properties.container_padding }}px;{% endif %}
+  }
   .sellix-shop-search input {
     border-radius: 0.5rem;
     padding: 1rem 2.5rem 1rem 1rem;
@@ -110,14 +117,7 @@
 
 </style>
 
-<div
-  class="sellix-product-list-header"
-  style="{% if properties.container_background_color %}background: {{ colors[properties.container_background_color] }};{% endif %}{#
-       #}{% if properties.show_border %}border: 1px solid var(--borderColor);{% else %}border: none;{% endif %}{#
-       #} box-shadow: {{ properties.container_shadow }};{#
-       #} border-radius: {{ properties.container_border_radius }}rem;{#
-       #}{% if properties.container_padding %}padding: {{ properties.container_padding }}px;{% endif %}"
->
+<div class="sellix-product-list-header">
   {% if shop.search_enabled %}
     <label for="shop-search-{{id}}" class="sellix-shop-search">
       <i class="fa-regular fas fa-search"></i>
