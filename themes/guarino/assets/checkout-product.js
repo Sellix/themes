@@ -56,7 +56,7 @@
       $label = this.$product.find('.sellix-cart-description .label-show-description'),
       $button = this.$product.find('.sellix-cart-description .label-click-for-info');
 
-      
+
       if (show) {
         $description.animate(
           { height: $description.get(0).scrollHeight, overflow: 'initial' },

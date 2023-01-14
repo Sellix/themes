@@ -82,6 +82,7 @@
     <link rel="stylesheet" href="{{ 'badge.css' | asset_url }}"/>
     <link rel="stylesheet" href="{{ 'sellix-text.css' | asset_url }}"/>
 
+
     {# Sections #}
     <link rel="stylesheet" href="{{ 'section-header.css' | asset_url }}"/>
     <link rel="stylesheet" href="{{ 'section-footer.css' | asset_url }}"/>
@@ -98,6 +99,8 @@
     <link rel="stylesheet" href="{{ 'section-invoice-info.css' | asset_url }}"/>
     <link rel="stylesheet" href="{{ 'section-delivery-header.css' | asset_url }}"/>
     <link rel="stylesheet" href="{{ 'section-delivery-info.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'section-faq.css' | asset_url }}"/>
+
 
     {# Blocks #}
     <link rel="stylesheet" href="{{ 'block-banner-shop-info.css' | asset_url }}"/>
@@ -196,15 +199,25 @@
       window.RECAPTCHA_PUBLIC_KEY_V2 = window.__RENDER_CONTEXT__.config.RECAPTCHA;
 
     </script>
+{% if themeProperties.page_loader.enabled %}
+      <link rel="stylesheet" href="{{ 'pace-theme.css' | asset_url }}"/>
 
+      <style>
+        .pace .pace-progress {
+          height: {{ themeProperties.page_loader.height }}px;
+          background: {{ themeProperties.page_loader.color }};
+        }
+      </style>
+      <script src="{{ 'pace.min.js' | asset_url }}"></script>
+    {% endif %}
     {{ loadableScript }}
 
     <script type='application/javascript'>
       (function() {
         $(document).ready(function () {
           setTimeout(function () {
-            var html = document.documentElement.classList;
-            var $loader = $('#loader');
+           const html = document.documentElement.classList;
+            const $loader = $('#loader');
             if($loader) {
               $loader.remove();
             }

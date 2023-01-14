@@ -1,18 +1,19 @@
 {% set product = global.common.productInfo.product %}
+{% set enableRightSidebar = properties.enable_right_sidebar and product.type != 'INFO_CARD' %}
 
 <div class="sellix-product-screen">
   <div class="shop-product-container">
-    <div class="shop-product-info" style="{{'width:100%' if not properties.enable_right_sidebar else '' }}">
+    <div class="shop-product-info" style="{{'width:100%' if not enableRightSidebar else '' }}">
       <div class="shop-product-info-description {{ 'with-image' if product.image_attachment else '' }}">
         {% for block_name in settings.block_order %}
-          {% if not properties.enable_right_sidebar or loop.revindex > properties.right_sidebar_blocks_count | int %}
+          {% if not enableRightSidebar or loop.revindex > properties.right_sidebar_blocks_count | int %}
             {% render_block block_name %}
           {% endif %}
         {% endfor %}
       </div>
     </div>
 
-    {% if properties.enable_right_sidebar %}
+    {% if enableRightSidebar %}
       <div class="shop-product-card">
         {% for block_name in settings.block_order %}
           {% if loop.revindex <= properties.right_sidebar_blocks_count | int %}
