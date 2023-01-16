@@ -60,7 +60,11 @@
                   {% if isFree%}
                     Free
                   {% else %}
-                    {% render_snippet 'Price', currency=product.currency, price=product.price_display %}
+                    {% render_snippet 'Price',
+                      currency=product.currency,
+                      price=product.price_display,
+                      priceVariants=product.price_variants
+                    %}
                   {% endif %}
                 </span>
               {% endif %}

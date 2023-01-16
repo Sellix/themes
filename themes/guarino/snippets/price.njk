@@ -1,4 +1,16 @@
 {% set currencyList = global.config.CURRENCY_LIST %}
 {% set digits = args.digits if args.digits is defined else 2 %}
-{% set price = ((args.price - args.price * args.discount / 100) | round(2) if args.discount else args.price) | to_fixed(digits) %}
+{% if args.priceVariants %}
+  {% set minPrice = null %}
+  {% for variant in args.priceVariants %}
+    {% if minPrice === null or variant.price < minPrice %}
+      {% set minPrice = variant.price %}
+    {% endif %}
+  {% endfor %}
+  {% set productPrice = minPrice %}
+{% else %}
+  {% set productPrice = args.price %}
+{% endif %}
+
+{% set price = ((productPrice - productPrice * args.discount / 100) | round(2) if args.discount else productPrice) | to_fixed(digits) %}
 {{currencyList[args.currency]}}{{ price }}
