@@ -10,7 +10,7 @@
     style="background: {{ colors[properties.ticket_message_background] }}; border: {{ "1px solid var(--borderColor)" if properties.ticket_message_show_border else "none" }};"
   >
     <div>
-      <div class="reply-screen-message-item-title">{{'Customer' if role !== 'CUSTOMER' else 'You'}}</div>
+      <div class="reply-screen-message-item-title">{{'You' if role == 'CUSTOMER' else 'Merchant'}}</div>
     </div>
 
     <span>{{message}}</span>

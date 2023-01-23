@@ -1,6 +1,6 @@
 {
   "id": "default",
-  "version": "0.0.61",
+  "version": "0.0.62",
   "is_active": 0,
   "name": "Default",
   "category": "Digital Products",
@@ -1430,7 +1430,9 @@
         "product_card_description_font_size": 14,
         "product_card_description_font_weight": 400,
         "feedback_card_background_color": "background_accent_dark",
+        "feedback_card_border_radius": 0.5,
         "feedback_card_show_border": true,
+        "feedback_card_shadow": "none",
         "product_card_border_radius": 0.5,
         "product_card_shadow": "none",
         "feedback_card_message_text_font_color": "light_font_color",
@@ -2114,6 +2116,7 @@
               "block_order": [
                 "Addons",
                 "Product details",
+                "Product relations",
                 "Bundles",
                 "Purchase details",
                 "Price variants",
@@ -2132,6 +2135,12 @@
                 },
                 "Product details": {
                   "name": "Product details",
+                  "settings": {
+                    "visible": true
+                  }
+                },
+                "Product relations": {
+                  "name": "Product relations",
                   "settings": {
                     "visible": true
                   }
@@ -4304,6 +4313,10 @@
           },
           {
             "name": "Purchase details",
+            "limit": 1
+          },
+          {
+            "name": "Product relations",
             "limit": 1
           },
           {
@@ -7771,6 +7784,344 @@
         "id": "blocks/productListItems.njk"
       }
     },
+    "Product relations": {
+      "id": "Product relations",
+      "name": "Product relations",
+      "settings": {
+        "schema": [
+          {
+            "id": "container_background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_accent_dark"
+          },
+          {
+            "id": "container_show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": true
+          },
+          {
+            "id": "container_border_radius",
+            "type": "range",
+            "max": 2,
+            "min": 0,
+            "step": 0.25,
+            "unit": "rem",
+            "label": "Border radius",
+            "defaultValue": 0.5
+          },
+          {
+            "id": "container_padding_horiz",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding horizontal",
+            "defaultValue": 16
+          },
+          {
+            "id": "container_padding_vert",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding vertical",
+            "defaultValue": 16
+          },
+          {
+            "id": "container_shadow",
+            "type": "select",
+            "label": "Drop shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 2",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+              }
+            ],
+            "defaultValue": "none"
+          },
+
+          {
+            "id": "terms_visible",
+            "type": "select",
+            "label": "Show Terms of Service",
+            "options": [
+              {
+                "title": "Show",
+                "value": "show"
+              },
+              {
+                "title": "If not empty",
+                "value": "not_empty"
+              },
+              {
+                "title": "Hide",
+                "value": "hide"
+              }
+            ],
+            "defaultValue": "not_empty"
+          },
+          {
+            "id": "terms_container_background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_accent_light"
+          },
+          {
+            "id": "terms_container_show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": true
+          },
+          {
+            "id": "terms_container_border_radius",
+            "type": "range",
+            "max": 2,
+            "min": 0,
+            "step": 0.25,
+            "unit": "rem",
+            "label": "Border radius",
+            "defaultValue": 0.5
+          },
+          {
+            "id": "terms_container_padding_horiz",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding horizontal",
+            "defaultValue": 16
+          },
+          {
+            "id": "terms_container_padding_vert",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding vertical",
+            "defaultValue": 16
+          },
+          {
+            "id": "terms_container_shadow",
+            "type": "select",
+            "label": "Drop shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 2",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+              }
+            ],
+            "defaultValue": "none"
+          },
+
+          {
+            "id": "feedback_visible",
+            "type": "select",
+            "label": "Show feedback",
+            "options": [
+              {
+                "title": "Show",
+                "value": "show"
+              },
+              {
+                "title": "If not empty",
+                "value": "not_empty"
+              },
+              {
+                "title": "Hide",
+                "value": "hide"
+              }
+            ],
+            "defaultValue": "not_empty"
+          },
+          {
+            "id": "feedback_page_size",
+            "type": "select",
+            "label": "Count of feedback on the one page",
+            "options": [
+              {
+                "title": "5",
+                "value": "5"
+              },
+              {
+                "title": "10",
+                "value": "10"
+              },
+              {
+                "title": "25",
+                "value": "25"
+              },
+              {
+                "title": "50",
+                "value": "50"
+              },
+              {
+                "title": "100",
+                "value": "100"
+              }
+            ],
+            "defaultValue": 5
+          },
+          {
+            "id": "feedback_card_background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_accent_light"
+          },
+          {
+            "id": "feedback_reply_background_color",
+            "type": "select",
+            "label": "Background color of reply",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_accent_dark"
+          },
+          {
+            "id": "feedback_card_show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": true
+          },
+          {
+            "id": "feedback_card_border_radius",
+            "type": "range",
+            "max": 2,
+            "min": 0,
+            "step": 0.25,
+            "unit": "rem",
+            "label": "Border radius",
+            "defaultValue": 0.5
+          },
+          {
+            "id": "feedback_card_shadow",
+            "type": "select",
+            "label": "Drop shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 2",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+              }
+            ],
+            "defaultValue": "none"
+          }
+        ]
+      },
+      "file": {
+        "checksum": "checksum of file",
+        "id": "blocks/productRelations.njk"
+      }
+    },
     "Product warranty": {
       "id": "Product warranty",
       "name": "Product warranty",
@@ -9253,6 +9604,14 @@
         "id": "snippets/productDescription.njk"
       }
     },
+    "Product feedback": {
+      "id": "Product feedback",
+      "name": "Product feedback",
+      "file": {
+        "checksum": "checksum of file",
+        "id": "snippets/productFeedback.njk"
+      }
+    },
     "Product gallery": {
       "id": "Product gallery",
       "name": "Product gallery",
@@ -9267,6 +9626,14 @@
       "file": {
         "checksum": "checksum of file",
         "id": "snippets/productTerms.njk"
+      }
+    },
+    "Product Terms of Service": {
+      "id": "Product Terms of Service",
+      "name": "Product Terms of Service",
+      "file": {
+        "checksum": "checksum of file",
+        "id": "snippets/productTermsOfService.njk"
       }
     },
     "Social Links": {
@@ -10196,6 +10563,16 @@
         "checksum": "checksum of file",
         "id": "assets/css/block-product-list-items.css",
         "name": "block-product-list-items.css"
+      }
+    },
+    "block-product-relations.css": {
+      "id": "block-product-relations.css",
+      "name": "block-product-relations.css",
+      "file": {
+        "cdn_url": "/mock/assets/css/block-product-relations.css",
+        "checksum": "checksum of file",
+        "id": "assets/css/block-product-relations.css",
+        "name": "block-product-relations.css"
       }
     },
     "block-feedback-items.css": {
