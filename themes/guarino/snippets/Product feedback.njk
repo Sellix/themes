@@ -1,0 +1,52 @@
+{% set id = uid() %}
+{% set product = args.product %}
+{% set properties = args.properties %}
+{% set pageSize = properties.page_size if properties.page_size is defined else 5 %}
+
+{% set pageCount = (product.feedback.list | length / pageSize) | int + 1 %}
+
+<style>
+  .view-more-button-{{ id }} a {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+</style>
+
+{% if product.feedback.list | length == 0 %}
+  <div class="empty-shop-container" style="padding: 1rem 0;">
+    {% render_snippet 'Empty feedbacks icon' %}
+    <span class="empty-shop-title">Product <b>{{ product.title }}</b> has no feedback.</span>
+  </div>
+{% else %}
+  {% for feedback in product.feedback.list %}
+    {% set page = (loop.index0 / pageSize) | int %}
+    <div class="sellix-product-feedback-card-{{ id}} {{ 'hidden' if page > 0 else '' }}" data-feedback-page="{{ page }}">
+      {% render_snippet 'Feedback Card', feedback=feedback, properties=properties %}
+    </div>
+  {% endfor %}
+
+  {% if pageCount > 1 %}
+    <div class="view-more-button-{{ id }}">
+      <a href="javascript:void(0);">
+        View more
+      </a>
+    </div>
+  {% endif %}
+{% endif %}
+
+<script type="application/javascript">
+  $(document).ready(function() {
+    const pageCount = {{ pageCount }};
+    let activePage = 0;
+    const $viewMoreBtn = $('.view-more-button-{{ id }} a');
+    $viewMoreBtn.on('click', function() {
+      activePage += 1;
+      $(`.sellix-product-feedback-card-{{ id}}[data-feedback-page=${activePage}]`).removeClass('hidden');
+
+      if ((activePage + 1) >= pageCount) {
+        $viewMoreBtn.addClass('hidden');
+      }
+    });
+  });
+</script>

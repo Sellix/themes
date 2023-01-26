@@ -1,6 +1,6 @@
 {
     "id": "guarino",
-    "name": "Guarino 1673891599",
+    "name": "Guarino",
     "category": "NFT & Cryptos",
     "preview_url": "https://cdn.sellix.io/static/previews/themes/guarino.png",
     "is_active": 0,
@@ -1844,7 +1844,7 @@
             "cards"
         ]
     },
-    "version": "0.0.8",
+    "version": "0.0.9",
     "assets": {
         "badge.css": {
             "name": "badge.css",
@@ -2098,7 +2098,7 @@
             "name": "purchase.js",
             "file": {
                 "id": "assets/purchase.js",
-                "checksum": "376142059ffcd9e2e77f47d17e66e037",
+                "checksum": "bfc51a641cf003d820b4a590a68f075b",
                 "name": "purchase.js"
             }
         },
@@ -2106,7 +2106,7 @@
             "name": "purchase.css",
             "file": {
                 "id": "assets/purchase.css",
-                "checksum": "727488770413695c3f8606380b85e300",
+                "checksum": "9e6025a516929476559d25d79c53bea4",
                 "name": "purchase.css"
             }
         },
@@ -2466,7 +2466,7 @@
             "name": "snippet-product-cards.css",
             "file": {
                 "id": "assets/snippet-product-cards.css",
-                "checksum": "6036749c5271aae7e714cf2a7aa91671",
+                "checksum": "e939434289b8d783b5493bee42b8052a",
                 "name": "snippet-product-cards.css"
             }
         },
@@ -2474,7 +2474,7 @@
             "name": "snippet-feedback-card.css",
             "file": {
                 "id": "assets/snippet-feedback-card.css",
-                "checksum": "7cc4b72b0e5e4d242eafd7a3ce3ce5ce",
+                "checksum": "bc30498a949e79d4faddc7ee2d599da2",
                 "name": "snippet-feedback-card.css"
             }
         },
@@ -2724,6 +2724,14 @@
                 "id": "assets/section-faq.css",
                 "checksum": "bb641233146f452bae491b44eee110ad",
                 "name": "section-faq.css"
+            }
+        },
+        "block-product-relations.css": {
+            "name": "block-product-relations.css",
+            "file": {
+                "id": "assets/block-product-relations.css",
+                "checksum": "28ed5ff197918010c1d55145fbc5fddf",
+                "name": "block-product-relations.css"
             }
         }
     },
@@ -5827,6 +5835,357 @@
                     }
                 ]
             }
+        },
+        "Product relations": {
+            "name": "Product relations",
+            "file": {
+                "id": "blocks/Product relations.njk",
+                "checksum": "0203cf54c37eb68c1bbe53f538db075d",
+                "name": "Product relations.njk"
+            },
+            "settings": {
+                "schema": [
+                    {
+                        "id": "container_title",
+                        "type": "header",
+                        "content": "Main Container Settings"
+                    },
+                    {
+                        "id": "container_background_color",
+                        "type": "select",
+                        "label": "Background color",
+                        "options": [
+                            {
+                                "title": "Main",
+                                "value": "background_main_color"
+                            },
+                            {
+                                "title": "Accent (Light)",
+                                "value": "background_accent_light"
+                            },
+                            {
+                                "title": "Accent (Dark)",
+                                "value": "background_accent_dark"
+                            },
+                            {
+                                "title": "Transparent",
+                                "value": "transparent"
+                            }
+                        ],
+                        "defaultValue": "background_accent_dark"
+                    },
+                    {
+                        "id": "container_show_border",
+                        "type": "checkbox",
+                        "label": "Show border",
+                        "defaultValue": true
+                    },
+                    {
+                        "id": "container_border_radius",
+                        "max": 2,
+                        "min": 0,
+                        "step": 0.25,
+                        "type": "range",
+                        "unit": "rem",
+                        "label": "Border radius",
+                        "defaultValue": 0.5
+                    },
+                    {
+                        "id": "container_padding_horiz",
+                        "max": 24,
+                        "min": 0,
+                        "step": 1,
+                        "type": "range",
+                        "unit": "px",
+                        "label": "Container padding horizontal",
+                        "defaultValue": 16
+                    },
+                    {
+                        "id": "container_padding_vert",
+                        "max": 24,
+                        "min": 0,
+                        "step": 1,
+                        "type": "range",
+                        "unit": "px",
+                        "label": "Container padding vertical",
+                        "defaultValue": 16
+                    },
+                    {
+                        "id": "container_shadow",
+                        "type": "select",
+                        "label": "Drop shadow",
+                        "options": [
+                            {
+                                "title": "None",
+                                "value": "none"
+                            },
+                            {
+                                "title": "Variant 1",
+                                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+                            },
+                            {
+                                "title": "Variant 2",
+                                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+                            },
+                            {
+                                "title": "Variant 3",
+                                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+                            }
+                        ],
+                        "defaultValue": "none"
+                    },
+                    {
+                        "id": "terms_header_title",
+                        "type": "header",
+                        "content": "Terms of Service Tab Settings"
+                    },
+                    {
+                        "id": "terms_visible",
+                        "type": "select",
+                        "label": "Show Terms of Service",
+                        "options": [
+                            {
+                                "title": "Show",
+                                "value": "show"
+                            },
+                            {
+                                "title": "If not empty",
+                                "value": "not_empty"
+                            },
+                            {
+                                "title": "Hide",
+                                "value": "hide"
+                            }
+                        ],
+                        "defaultValue": "not_empty"
+                    },
+                    {
+                        "id": "terms_container_background_color",
+                        "type": "select",
+                        "label": "Background color",
+                        "options": [
+                            {
+                                "title": "Main",
+                                "value": "background_main_color"
+                            },
+                            {
+                                "title": "Accent (Light)",
+                                "value": "background_accent_light"
+                            },
+                            {
+                                "title": "Accent (Dark)",
+                                "value": "background_accent_dark"
+                            },
+                            {
+                                "title": "Transparent",
+                                "value": "transparent"
+                            }
+                        ],
+                        "defaultValue": "background_accent_light"
+                    },
+                    {
+                        "id": "terms_container_show_border",
+                        "type": "checkbox",
+                        "label": "Show border",
+                        "defaultValue": true
+                    },
+                    {
+                        "id": "terms_container_border_radius",
+                        "max": 2,
+                        "min": 0,
+                        "step": 0.25,
+                        "type": "range",
+                        "unit": "rem",
+                        "label": "Border radius",
+                        "defaultValue": 0.5
+                    },
+                    {
+                        "id": "terms_container_padding_horiz",
+                        "max": 24,
+                        "min": 0,
+                        "step": 1,
+                        "type": "range",
+                        "unit": "px",
+                        "label": "Container padding horizontal",
+                        "defaultValue": 16
+                    },
+                    {
+                        "id": "terms_container_padding_vert",
+                        "max": 24,
+                        "min": 0,
+                        "step": 1,
+                        "type": "range",
+                        "unit": "px",
+                        "label": "Container padding vertical",
+                        "defaultValue": 16
+                    },
+                    {
+                        "id": "terms_container_shadow",
+                        "type": "select",
+                        "label": "Drop shadow",
+                        "options": [
+                            {
+                                "title": "None",
+                                "value": "none"
+                            },
+                            {
+                                "title": "Variant 1",
+                                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+                            },
+                            {
+                                "title": "Variant 2",
+                                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+                            },
+                            {
+                                "title": "Variant 3",
+                                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+                            }
+                        ],
+                        "defaultValue": "none"
+                    },
+                    {
+                        "id": "feedback_header_title",
+                        "type": "header",
+                        "content": "Feedback Tab Settings"
+                    },
+                    {
+                        "id": "feedback_visible",
+                        "type": "select",
+                        "label": "Show feedback",
+                        "options": [
+                            {
+                                "title": "Show",
+                                "value": "show"
+                            },
+                            {
+                                "title": "If not empty",
+                                "value": "not_empty"
+                            },
+                            {
+                                "title": "Hide",
+                                "value": "hide"
+                            }
+                        ],
+                        "defaultValue": "not_empty"
+                    },
+                    {
+                        "id": "feedback_page_size",
+                        "type": "select",
+                        "label": "Count of feedback on the one page",
+                        "options": [
+                            {
+                                "title": "5",
+                                "value": "5"
+                            },
+                            {
+                                "title": "10",
+                                "value": "10"
+                            },
+                            {
+                                "title": "25",
+                                "value": "25"
+                            },
+                            {
+                                "title": "50",
+                                "value": "50"
+                            },
+                            {
+                                "title": "100",
+                                "value": "100"
+                            }
+                        ],
+                        "defaultValue": "5"
+                    },
+                    {
+                        "id": "feedback_card_background_color",
+                        "type": "select",
+                        "label": "Background color",
+                        "options": [
+                            {
+                                "title": "Main",
+                                "value": "background_main_color"
+                            },
+                            {
+                                "title": "Accent (Light)",
+                                "value": "background_accent_light"
+                            },
+                            {
+                                "title": "Accent (Dark)",
+                                "value": "background_accent_dark"
+                            },
+                            {
+                                "title": "Transparent",
+                                "value": "transparent"
+                            }
+                        ],
+                        "defaultValue": "background_accent_light"
+                    },
+                    {
+                        "id": "feedback_reply_background_color",
+                        "type": "select",
+                        "label": "Background color of reply",
+                        "options": [
+                            {
+                                "title": "Main",
+                                "value": "background_main_color"
+                            },
+                            {
+                                "title": "Accent (Light)",
+                                "value": "background_accent_light"
+                            },
+                            {
+                                "title": "Accent (Dark)",
+                                "value": "background_accent_dark"
+                            },
+                            {
+                                "title": "Transparent",
+                                "value": "transparent"
+                            }
+                        ],
+                        "defaultValue": "background_accent_dark"
+                    },
+                    {
+                        "id": "feedback_card_show_border",
+                        "type": "checkbox",
+                        "label": "Show border",
+                        "defaultValue": true
+                    },
+                    {
+                        "id": "feedback_card_border_radius",
+                        "max": 2,
+                        "min": 0,
+                        "step": 0.25,
+                        "type": "range",
+                        "unit": "rem",
+                        "label": "Border radius",
+                        "defaultValue": 0.5
+                    },
+                    {
+                        "id": "feedback_card_shadow",
+                        "type": "select",
+                        "label": "Drop shadow",
+                        "options": [
+                            {
+                                "title": "None",
+                                "value": "none"
+                            },
+                            {
+                                "title": "Variant 1",
+                                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+                            },
+                            {
+                                "title": "Variant 2",
+                                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+                            },
+                            {
+                                "title": "Variant 3",
+                                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+                            }
+                        ],
+                        "defaultValue": "none"
+                    }
+                ]
+            }
         }
     },
     "layouts": {
@@ -5834,7 +6193,7 @@
             "name": "Main",
             "file": {
                 "id": "layouts/main.njk",
-                "checksum": "da29974f76a41fc4fea3b9a6e641de69",
+                "checksum": "419a7850ecad643280338a085ec7f1c3",
                 "name": "main.njk"
             },
             "is_default": 1,
@@ -7348,6 +7707,10 @@
                     },
                     {
                         "name": "Purchase details",
+                        "limit": 1
+                    },
+                    {
+                        "name": "Product relations",
                         "limit": 1
                     },
                     {
@@ -9344,7 +9707,7 @@
             "name": "Ticket Message",
             "file": {
                 "id": "snippets/ticketMessage.njk",
-                "checksum": "3d0cbd0f1c910dca38bd72a91527ef22",
+                "checksum": "06a1a29dbc4772aa7c5250faa6e51c61",
                 "name": "ticketMessage.njk"
             }
         },
@@ -9352,7 +9715,7 @@
             "name": "Feedback Card",
             "file": {
                 "id": "snippets/feedbackCard.njk",
-                "checksum": "ef9c55baceaa9abfcf1c67033a39e7d1",
+                "checksum": "3822e7bdbcca9e0f5aaf220b37ff4e4d",
                 "name": "feedbackCard.njk"
             }
         },
@@ -9522,6 +9885,22 @@
                 "id": "snippets/appCookieModal.njk",
                 "checksum": "c6c8b13de3f432d294d7eddddf79cddc",
                 "name": "appCookieModal.njk"
+            }
+        },
+        "Product feedback": {
+            "name": "Product feedback",
+            "file": {
+                "id": "snippets/Product feedback.njk",
+                "checksum": "3b942688c6e208dad9156ed9f43b4de6",
+                "name": "Product feedback.njk"
+            }
+        },
+        "Product Terms of Service": {
+            "name": "Product Terms of Service",
+            "file": {
+                "id": "snippets/Product Terms of Service.njk",
+                "checksum": "00499b874e7a02f0cd1bf81077c91ee9",
+                "name": "Product Terms of Service.njk"
             }
         }
     },
@@ -10167,11 +10546,38 @@
                                             "container_background_color": "background_accent_dark"
                                         }
                                     }
+                                },
+                                "1674738654731": {
+                                    "name": "Product relations",
+                                    "settings": {
+                                        "properties": {
+                                            "terms_visible": "not_empty",
+                                            "container_shadow": "none",
+                                            "feedback_visible": "not_empty",
+                                            "feedback_page_size": "5",
+                                            "feedback_card_shadow": "none",
+                                            "container_show_border": false,
+                                            "container_padding_vert": 0,
+                                            "terms_container_shadow": "none",
+                                            "container_border_radius": 0.5,
+                                            "container_padding_horiz": 0,
+                                            "feedback_card_show_border": false,
+                                            "container_background_color": "transparent",
+                                            "feedback_card_border_radius": 0.5,
+                                            "terms_container_show_border": false,
+                                            "terms_container_padding_vert": 16,
+                                            "terms_container_border_radius": 0.5,
+                                            "terms_container_padding_horiz": 16,
+                                            "feedback_card_background_color": "background_accent_light",
+                                            "feedback_reply_background_color": "background_accent_dark",
+                                            "terms_container_background_color": "background_accent_light"
+                                        }
+                                    }
                                 }
                             },
                             "properties": {
                                 "enable_right_sidebar": true,
-                                "right_sidebar_blocks_count": 2
+                                "right_sidebar_blocks_count": 3
                             },
                             "block_order": [
                                 "1670321901951",
@@ -10180,7 +10586,8 @@
                                 "1670321946800",
                                 "1670321948531",
                                 "1670321905301",
-                                "1670321911225"
+                                "1670321911225",
+                                "1674738654731"
                             ]
                         }
                     }
