@@ -1,0 +1,40 @@
+{% set id = uid() %}
+{% set theme = global.common.theme %}
+{% set colors = themeProperties.current_colors %}
+{% set affiliateItems = global.common.shopInfo.affiliateItems %}
+
+
+{% if affiliateItems.length === 0 %}
+  <div class="empty-shop-container empty-search" {% if items and affiliateItems.length > 0 %}style="display:none;"{% endif %}>
+
+    <div class="empty-sales-list">
+      {% render_snippet 'Empty Affiliate Icon' %}
+      <span class="empty-sales-list-title">Affiliate Links</span>
+      <span class="empty-sales-list-description">Merchant has not enabled any affiliate links on any products yet.</span>
+    </div>
+
+  </div>
+{% else %}
+
+  <table class="sellix-customer-table" cellspacing="0" cellpadding="0">
+
+    <thead data-product-id="{{item.uniqid}}" class="sellix-customer-table-head">
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Commission</th>
+        <th>Link</th>
+      </tr>
+    </thead>
+
+    <tbody data-product-id="{{item.uniqid}}" class="sellix-customer-table-body">
+      {% for item in affiliateItems %}
+        {% if (item.isProduct or item.isSubscription) and not ((item.price_display | float === 0) and not (item.pay_what_you_want | int === 1)) %}
+          {% render_snippet 'Customer Affiliate Table Row', product=item, theme=theme, isSubscription=item.isSubscription %}
+        {% endif %}
+      {% endfor %}
+    </tbody>
+
+  </table>
+
+{% endif %}

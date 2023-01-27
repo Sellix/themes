@@ -1,0 +1,53 @@
+{% set id = uid() %}
+{% set theme = global.common.theme %}
+{% set colors = themeProperties.current_colors %}
+{% set salesList = global.common.customerInfo.invoices %}
+{% set offset = args.offset if args.offset else 0 %}
+{% set limit = args.limit if args.limit else 10 * (offset + 1) %}
+
+
+{% if salesList.length === 0 %}
+    <div class="empty-sales-list">
+        {% render_snippet 'Empty Sales Icon' %}
+        <span class="empty-sales-list-title">Recent Commissions</span>
+        <span class="empty-sales-list-description">You don’t have any affiliate commission yet</span>
+    </div>
+{% else %}
+    <table class="sellix-customer-table mb-5" cellspacing="0" cellpadding="0">
+        <thead data-product-id="{{ item.uniqid }}" class="sellix-customer-table-head">
+          <tr>
+              <th colspan="5" style="border-bottom: 1px solid var(--borderColor); width: 60%;">Invoice</th>
+              <th rowspan="2" style="border-left: 1px solid var(--borderColor); text-align: center;">Date</th>
+              <th rowspan="2" style="text-align: center;">Commission</th>
+          </tr>
+          <tr>
+              <th></th>
+              <th>Product</th>
+              <th>Count</th>
+              <th>Price</th>
+              <th>Revenue %</th>
+          </tr>
+        </thead>
+
+        <tbody data-product-id="{{ item.uniqid }}" class="sellix-customer-table-body">
+          {% for item in salesList.slice(offset, limit) %}
+              {% set index = loop.index %}
+              {% render_snippet 'Customer Sales Table Row', invoice=item, theme=theme, isOdd=index % 2 %}
+          {% endfor %}
+        </tbody>
+
+    </table>
+{% endif %}
+
+
+
+{# <div class="empty-shop-container empty-search" {% if items and affiliateItems.length > 0 %}style="display:none;"{% endif %}> #}
+{#  {% render_snippet 'Zoom glass icon' %} #}
+
+{#  <div class="empty-shop-info"> #}
+{#    No product found. #}
+{#    <button class="button button-primary" style="min-height: 2.75rem; min-width: 9rem; margin-top: 1rem"> #}
+{#      Clear #}
+{#    </button> #}
+{#  </div> #}
+{# </div> #}

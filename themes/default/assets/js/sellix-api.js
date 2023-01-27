@@ -103,7 +103,7 @@
           data: JSON.stringify(data),
         });
       };
-      return this.requestWithCaptchaV3('createInvoice', onSuccess);
+      return this.requestWithCaptchaV3('createInvoiceTrial', onSuccess);
     }
 
     async updateInvoice(data) {
@@ -116,7 +116,7 @@
       });
     }
 
-    async customerAuthEmail(data) {
+    async customerAuthEmail(data, options) {
       const onSuccess = (captcha) => {
         return jQuery.ajax({
           method: 'POST',
@@ -126,10 +126,10 @@
           data: JSON.stringify({ ...data, captcha }),
         });
       };
-      return this.requestWithCaptchaV3('createInvoice', onSuccess);
+      return this.requestWithCaptchaV3('createCustomerCode', onSuccess, null, options);
     }
 
-    async customerAuthCode(data) {
+    async customerAuthCode(data, options) {
       const onSuccess = (captcha) => {
         return jQuery.ajax({
           method: 'POST',
@@ -139,7 +139,7 @@
           data: JSON.stringify({ ...data, captcha }),
         });
       };
-      return this.requestWithCaptchaV3('createInvoice', onSuccess);
+      return this.requestWithCaptchaV3('createCustomerToken', onSuccess, null, options);
     }
 
     async validateCaptcha(data) {
@@ -252,7 +252,12 @@
             size: 'normal',
             theme: options.theme || 'light',
             callback: (captcha) => {
-              onSuccess(captcha).then(resolve);
+              onSuccess(captcha).then((data) => {
+                resolve(data);
+                if(options.removeAfterComplete) {
+                  $recaptchaV2.remove();
+                }
+              });
             },
             'expired-callback': () => {
               $recaptchaV2.remove();

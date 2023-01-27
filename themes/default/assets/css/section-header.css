@@ -9,6 +9,78 @@
   margin: 0 auto;
 }
 
+.sellix-header-menu {
+  display: flex;
+  gap: .5rem;
+  width: 100%;
+}
+
+.sellix-header-menu a {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--lightFontColor);
+  padding: .5rem;
+  border-radius: .5rem;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.sellix-header-menu a.active, .sellix-header-menu a:hover {
+  background: #F4F4FE;
+}
+.sellix-header-menu a.active svg * , .sellix-header-menu a:hover svg * {
+  stroke: var(--brandColor);
+}
+
+.sellix-header-menu a svg {
+  margin-right: .5rem;
+}
+.sellix-header-menu a svg * {
+  stroke: var(--darkFontColor);
+}
+
+.sellix-header-user {
+  width: 100%;
+  text-align: left;
+  justify-content: flex-end;
+  display: flex;
+}
+
+.sellix-header-user-info {
+  display: flex;
+  cursor: pointer;
+}
+
+.sellix-header-user-info-icon {
+  width: 2rem;
+  height: 2rem;
+  color: white;
+  background: var(--brandColor);
+  border-radius: 100%;
+  margin-right: .5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sellix-header-user-info-name {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--darkFontColor);
+}
+
+.sellix-header-user-info-email {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: var(--lightFontColor);
+}
+
 .sellix-header-logo-image {
   margin-right: 10px;
 }
@@ -391,3 +463,59 @@ header {
     width: 25%;
   }
 }
+
+.sellix-header-mobile-menu-container {
+  display: none;
+}
+
+.mobile-menu-dropdown a {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-bottom: 1px solid var(--borderColor);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--lightFontColor);
+}
+
+.mobile-menu-dropdown a svg {
+  margin-right: 1rem;
+}
+
+.sellix-header-mobile-menu-icon {
+  padding: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transform: rotate(90deg);
+}
+
+.mobile-menu-dropdown a.active {
+  color: var(--brandColor);
+}
+.mobile-menu-dropdown a.active svg * , .mobile-menu-dropdown a:hover svg * {
+  stroke: var(--brandColor);
+}
+.mobile-menu-dropdown a svg {
+  margin-right: .5rem;
+}
+.mobile-menu-dropdown a svg * {
+  stroke: #555d67;
+}
+
+
+@media (max-width: 768px) {
+  .sellix-header-mobile-menu-container {
+    display: flex;
+  }
+  .sellix-header-menu {
+    display: none;
+  }
+  .sellix-header-user {
+    display: none;
+  }
+}
+

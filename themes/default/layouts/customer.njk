@@ -1,9 +1,5 @@
 <!DOCTYPE>
-<html
-  lang="en"
-  style="background-color: var(--backgroundColor);"
-  class="scroll-hidden"
->
+<html lang="en" style="background-color: var(--backgroundColor);" class="scroll-hidden">
   <head>
     <base href="/">
     <meta charset="utf-8"/>
@@ -24,7 +20,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
 
     <link rel="preload" href="{{ 'loader.css' | asset_url }}" as="style"/>
-    <link rel="preload" href="{{ 'embed.css' | asset_url }}" as="style"/>
 
     <link rel="preconnect" href="https://fonts.googleapis.com/"/>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" >
@@ -84,47 +79,20 @@
     {# Sections #}
     <link rel="stylesheet" href="{{ 'section-header.css' | asset_url }}"/>
     <link rel="stylesheet" href="{{ 'section-footer.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'section-banner.css' | asset_url }}"/>
     <link rel="stylesheet" href="{{ 'section-menu.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'section-product-list.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'section-product-checkout-invoice-shop-info.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'section-customer-list.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'section-customer-auth.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'section-customer-payout.css' | asset_url }}"/>
     <link rel="stylesheet" href="{{ 'section-contact-form.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'section-feedback-list.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'section-feedback.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'section-terms.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'section-trust.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'section-ticket.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'section-invoice-info.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'section-delivery-header.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'section-delivery-info.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'section-faq.css' | asset_url }}"/>
 
     {# Blocks #}
-    <link rel="stylesheet" href="{{ 'block-banner-shop-info.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'block-banner-stats.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'block-product-list-filter.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'block-product-list-items.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'block-product-relations.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'block-feedback-items.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'block-feedback-pagination.css' | asset_url }}"/>
     <link rel="stylesheet" href="{{ 'block-table-pagination.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'block-delivery-products-info.css' | asset_url }}"/>
 
     {# Snippets #}
-    <link rel="stylesheet" href="{{ 'snippet-cart.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-customer-menu.css' | asset_url }}"/>
     <link rel="stylesheet" href="{{ 'snippet-text-text-area.css' | asset_url }}"/>
     <link rel="stylesheet" href="{{ 'snippet-product-cards.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'snippet-feedback-card.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'snippet-addons.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'snippet-checkout-product.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'snippet-product-details.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'snippet-product-warranty.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'snippet-bundles.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'snippet-bundle-products.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'snippet-purchase-details.css' | asset_url }}"/>
     <link rel="stylesheet" href="{{ 'snippet-price-variants.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'snippet-invoice-details.css' | asset_url }}"/>
-    <link rel="stylesheet" href="{{ 'snippet-invoice-track-badge.css' | asset_url }}"/>
     <link rel="stylesheet" href="{{ 'snippet-shop-info.css' | asset_url }}"/>
     <link rel="stylesheet" href="{{ 'snippet-alert.css' | asset_url }}"/>
 
@@ -135,12 +103,7 @@
     </style>
 
     <link rel="stylesheet" href="{{ 'select2.css' | asset_url }}"/>
-    {% if global.request.type in ['checkout', 'product', 'subscription'] %}
-    <link rel="stylesheet" href="{{ 'purchase.css' | asset_url }}" />
-    {% endif %}
-    {% if global.request.type in ['invoice'] %}
-      <link rel="stylesheet" href="{{ 'invoice.css' | asset_url }}" />
-    {% endif %}
+
     <link rel="stylesheet" href="{{ 'magnific-popup.1.1.0.css' | asset_url }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
@@ -158,6 +121,10 @@
         border-radius: {{ themeProperties.cards.product_card_border_radius }}rem;
         box-shadow: {{ themeProperties.cards.product_card_shadow }};
       }
+      .sellix-feedback-card-wrapper {
+        border-radius: {{ themeProperties.cards.feedback_card_border_radius }}rem;
+        box-shadow: {{ themeProperties.cards.feedback_card_shadow }};
+      }
     </style>
   </head>
 
@@ -170,10 +137,6 @@
         <div id="content" class="{{'is-product' if global.request.type == 'product' else ''}}">
           {% render_template 'default' %}
         </div>
-
-        {% if global.request.type != 'payment' %}
-          {% render_section 'footer' %}
-        {% endif %}
       </div>
     </div>
     <div id="modal">
@@ -285,40 +248,21 @@
     <script src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
 
     <script src="{{ 'copy-to-clipboard.min.js' | asset_url }}"></script>
-    <script src="{{ 'file-saver.min.js' | asset_url }}"></script>
     <script src="{{ 'ripple.js' | asset_url }}"></script>
     <script src="{{ 'react-simple-star-rating.js' | asset_url }}"></script>
     <script src="{{ 'select2.js' | asset_url }}"></script>
     <script src="{{ 'magnific-popup.1.1.0.min.js' | asset_url }}"></script>
-    {% if global.request.type in ['checkout', 'product', 'subscription'] %}
-      <script src="{{ 'purchase.js' | asset_url }}"></script>
+
+    {% if global.request.type in ['customer_auth'] %}
+      <script src="{{ 'auth.js' | asset_url }}"></script>
     {% endif %}
-    {% if global.request.type in ['invoice'] %}
-      <script src="{{ 'invoice.js' | asset_url }}"></script>
-    {% endif %}
+
     <script src="{{ 'sellix-api.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-customer-menu-component.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-customer-auth-component.js' | asset_url }}"></script>
     <script src="{{ 'sellix-context.js' | asset_url }}"></script>
     <script src="{{ 'sellix-helper.js' | asset_url }}"></script>
-    <script src="{{ 'sellix-cart-store.js' | asset_url }}"></script>
     <script src="{{ 'sellix-store.js' | asset_url }}"></script>
-    <script src="{{ 'sellix-addons-store.js' | asset_url }}"></script>
-    <script src="{{ 'sellix-price-variants-store.js' | asset_url }}"></script>
-    <script src="{{ 'sellix-cart-component.js' | asset_url }}"></script>
-    <script src="{{ 'sellix-cart-product-component.js' | asset_url }}"></script>
-    <script src="{{ 'sellix-addons-component.js' | asset_url }}"></script>
-    <script src="{{ 'sellix-bundle-component.js' | asset_url }}"></script>
-    <script src="{{ 'sellix-checkout-products-component.js' | asset_url }}"></script>
-    <script src="{{ 'sellix-checkout-product-component.js' | asset_url }}"></script>
-    <script src="{{ 'sellix-feedback-pagination-component.js' | asset_url }}"></script>
-    <script src="{{ 'sellix-feedback-pagination.js' | asset_url }}"></script>
-    <script src="{{ 'sellix-invoice-products-info-component.js' | asset_url }}"></script>
-    <script src="{{ 'sellix-product-count-component.js' | asset_url }}"></script>
-    <script src="{{ 'sellix-price-variants-component.js' | asset_url }}"></script>
-    <script src="{{ 'sellix-purchase-details-component.js' | asset_url}}"></script>
-    <script src="{{ 'sellix-invoice-details-component.js' | asset_url}}"></script>
-    <script src="{{ 'sellix-contact-form-component.js' | asset_url }}"></script>
-    <script src="{{ 'sellix-ticket-component.js' | asset_url }}"></script>
-    <script src="{{ 'sellix-leave-feedback-component.js' | asset_url }}"></script>
 
     <script src="{{ 'sellix-table-pagination-component.js' | asset_url }}"></script>
     <script src="{{ 'sellix-table-pagination.js' | asset_url }}"></script>

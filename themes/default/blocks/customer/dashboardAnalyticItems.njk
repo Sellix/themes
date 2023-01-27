@@ -1,0 +1,35 @@
+{% set id = uid() %}
+{% set shopInfo = global.common.shopInfo %}
+{% set shop = shopInfo.shop %}
+{% set theme = global.common.theme %}
+{% set customerInfo = global.common.customerInfo %}
+
+{% set currencyList = global.config.CURRENCY_LIST %}
+
+{% set revenueTotal = customerInfo.customer.affiliate_revenue %}
+{% set revenueCurrency = customerInfo.customer.affiliate_revenue_currency %}
+
+{% set totalEarned = customerInfo.total_earned %}
+{% set totalEarnedCurrency = customerInfo.total_earned_currency %}
+
+{% set totalReferrals = customerInfo.total_referrals %}
+{% set shopPercentageTotal = customerInfo.shop.affiliate_revenue_percent %}
+
+<div class="sellix-customer-info-blocks">
+  <div>
+    <div>Total Commission</div>
+    <b>{{ currencyList[totalEarnedCurrency] }}{{ totalEarned }}</b>
+  </div>
+  <div>
+    <div>Total Referrals</div>
+    <b>{{ totalReferrals }}</b>
+  </div>
+  <div>
+    <div>Commission Balance</div>
+    <b>{{ currencyList[revenueCurrency] }}{{ revenueTotal }}</b>
+  </div>
+  <div>
+    <div>Revenue Percentage</div>
+    <b>{{ shopPercentageTotal }}%</b>
+  </div>
+</div>

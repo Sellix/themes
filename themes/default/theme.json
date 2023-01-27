@@ -5,6 +5,7 @@
   "name": "Default",
   "category": "Digital Products",
   "preview_url": "https://cdn.sellix.io/static/previews/themes/default.png",
+
   "settings": {
     "schema_order": [
       "color_schema",
@@ -1455,6 +1456,7 @@
       }
     }
   },
+
   "layouts": {
     "Main": {
       "id": "Main",
@@ -1522,8 +1524,42 @@
         "checksum": "checksum of file",
         "id": "layouts/main.njk"
       }
+    },
+    "Customer": {
+      "id": "Customer",
+      "name": "Customer",
+      "is_default": 0,
+      "settings": {
+        "section_order": [
+          "Customer Header"
+        ],
+        "sections": {
+          "header": {
+            "name": "Customer Header",
+            "settings": {
+              "visible": true,
+              "properties": {
+                "shop_name": "",
+                "logo_image": "",
+                "logo_image_height": 30,
+                "shop_name_font_size": 24,
+                "shop_name_text_align": "left",
+                "shop_name_font_color": null,
+                "shop_name_font_weight": 700,
+                "header_background_color": "background_main_color"
+              },
+              "block_order": []
+            }
+          }
+        }
+      },
+      "file": {
+        "checksum": "checksum of file",
+        "id": "layouts/customer.njk"
+      }
     }
   },
+
   "templates": {
     "Checkout/Checkout": {
       "id": "Checkout/Checkout",
@@ -2290,6 +2326,210 @@
         "id": "templates/terms.njk"
       }
     },
+
+    "Customer/Auth": {
+      "id": "Customer/Auth",
+      "name": "Customer/Auth",
+      "template_type": "CUSTOMER_AUTH",
+      "layout_type": "Customer",
+      "is_default": 1,
+      "settings": {
+        "section_order": [
+          "Customer Auth"
+        ],
+        "sections": {
+          "Customer Auth": {
+            "name": "Customer Auth",
+            "settings": {
+              "blocks": {
+                "Customer Auth": {
+                  "name": "Customer Auth",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "show_banner_products_sold": true,
+                      "show_banner_product_quality": true
+                    }
+                  }
+                }
+              },
+              "visible": true,
+              "block_order": ["Customer Auth"]
+            }
+          }
+        }
+      },
+      "file": {
+        "checksum": "checksum of file",
+        "id": "templates/customer/auth.njk"
+      }
+    },
+    "Customer/Dashboard": {
+      "id": "Customer/Dashboard",
+      "name": "Customer/Dashboard",
+      "template_type": "CUSTOMER_DASHBOARD",
+      "layout_type": "Customer",
+      "is_default": 1,
+      "settings": {
+        "section_order": [
+          "Customer Dashboard Analytic",
+          "Customer Dashboard Sales List"
+        ],
+        "sections": {
+          "Customer Dashboard Analytic": {
+            "name": "Customer Dashboard Analytic",
+            "settings": {
+              "visible": true,
+              "block_order": [
+                "Customer Dashboard Analytic Items"
+              ],
+              "blocks": {
+                "Customer Dashboard Analytic Items": {
+                  "name": "Customer Dashboard Analytic Items",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "list_items_background_color": "background_main_color",
+                      "list_items_show_border": false,
+                      "list_items_per_row_wide": "4",
+                      "list_items_per_row_normal": "2",
+                      "list_items_per_row_narrow": "1"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Customer Dashboard Sales List": {
+            "name": "Customer Dashboard Sales List",
+            "settings": {
+              "visible": true,
+              "block_order": [
+                "Customer Dashboard Sales List Items",
+                "Table pagination"
+              ],
+              "blocks": {
+                "Customer Dashboard Sales List Items": {
+                  "name": "Customer Dashboard Sales List Items",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "list_items_background_color": "background_main_color",
+                      "list_items_show_border": false,
+                      "list_items_per_row_wide": "4",
+                      "list_items_per_row_normal": "2",
+                      "list_items_per_row_narrow": "1"
+                    }
+                  }
+                },
+                "Table pagination": {
+                  "name": "Table pagination",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "list_items_background_color": "background_main_color",
+                      "list_items_show_border": false,
+                      "list_items_per_row_wide": "4",
+                      "list_items_per_row_normal": "2",
+                      "list_items_per_row_narrow": "1"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "file": {
+        "checksum": "checksum of file",
+        "id": "templates/customer/dashboard.njk"
+      }
+    },
+    "Customer/AffiliateLinks": {
+      "id": "Customer/AffiliateLinks",
+      "name": "Customer/AffiliateLinks",
+      "template_type": "CUSTOMER_AFFILIATE_LINKS",
+      "layout_type": "Customer",
+      "is_default": 1,
+      "settings": {
+        "section_order": [
+          "Customer Affiliate Links List"
+        ],
+        "sections": {
+          "Customer Affiliate Links List": {
+            "name": "Customer Affiliate Links List",
+            "settings": {
+              "visible": true,
+              "block_order": [
+                "Customer Affiliate Links List Items"
+              ],
+              "blocks": {
+                "Customer Affiliate Links List Items": {
+                  "name": "Customer Affiliate Links List Items",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "list_items_background_color": "background_main_color",
+                      "list_items_show_border": false,
+                      "list_items_per_row_wide": "4",
+                      "list_items_per_row_normal": "2",
+                      "list_items_per_row_narrow": "1"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "file": {
+        "checksum": "checksum of file",
+        "id": "templates/customer/affiliate.njk"
+      }
+    },
+    "Customer/Payouts": {
+      "id": "Customer/Payouts",
+      "name": "Customer/Payouts",
+      "template_type": "CUSTOMER_PAYOUTS",
+      "layout_type": "Customer",
+      "is_default": 1,
+      "settings": {
+        "section_order": [
+          "Customer Payouts"
+        ],
+        "sections": {
+          "Customer Payouts": {
+            "name": "Customer Payouts",
+            "settings": {
+              "visible": true,
+              "block_order": [
+                "Customer Payouts"
+              ],
+              "blocks": {
+                "Customer Payouts": {
+                  "name": "Customer Payouts",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "list_items_background_color": "background_main_color",
+                      "list_items_show_border": false,
+                      "list_items_per_row_wide": "4",
+                      "list_items_per_row_normal": "2",
+                      "list_items_per_row_narrow": "1"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "file": {
+        "checksum": "checksum of file",
+        "id": "templates/customer/payouts.njk"
+      }
+    },
+
     "Trust/Trusted Advisor": {
       "id": "Trust/Trusted Advisor",
       "name": "Trust/Trusted Advisor",
@@ -2936,6 +3176,7 @@
       "template_type": "FAQ"
     }
   },
+
   "sections": {
     "404": {
       "id": "404",
@@ -4294,6 +4535,264 @@
         "id": "sections/productList.njk"
       }
     },
+
+    "Customer Header": {
+      "id": "Customer Header",
+      "name": "Customer Header",
+      "settings": {
+        "blocks": [],
+        "schema": [
+          {
+            "id": "header_background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_main_color"
+          },
+          {
+            "id": "header_logo",
+            "type": "header",
+            "content": "Logo"
+          },
+          {
+            "id": "logo_image",
+            "type": "select-image",
+            "label": "Image",
+            "defaultValue": null
+          },
+          {
+            "id": "logo_image_height",
+            "max": 50,
+            "min": 18,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Image height",
+            "defaultValue": 30
+          },
+          {
+            "id": "header_shop_name",
+            "type": "header",
+            "content": "Shop name"
+          },
+          {
+            "id": "shop_name",
+            "type": "text",
+            "label": "Custom name",
+            "defaultValue": ""
+          },
+          {
+            "id": "shop_name_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Default",
+                "value": null
+              },
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              },
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              }
+            ],
+            "defaultValue": null
+          },
+          {
+            "id": "shop_name_font_size",
+            "max": 30,
+            "min": 18,
+            "step": 2,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 18
+          },
+          {
+            "id": "shop_name_text_align",
+            "type": "select",
+            "label": "Text align",
+            "options": [
+              {
+                "title": "Left",
+                "value": "left"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              },
+              {
+                "title": "Right",
+                "value": "right"
+              }
+            ],
+            "defaultValue": "left"
+          },
+          {
+            "id": "shop_name_font_weight",
+            "type": "select",
+            "label": "Font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 400
+          }
+        ]
+      },
+      "file": {
+        "checksum": "checksum of file",
+        "id": "sections/customer/header.njk"
+      }
+    },
+    "Customer Auth": {
+      "id": "Customer Auth",
+      "name": "Customer Auth",
+      "settings": {
+        "blocks": [{
+          "name": "Customer Auth",
+          "limit": 1
+        }],
+        "schema": [
+          {
+            "id": "terms_background",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_accent_dark"
+          }
+        ]
+      },
+      "file": {
+        "checksum": "checksum of file",
+        "id": "sections/customer/auth.njk"
+      }
+    },
+
+    "Customer Dashboard Sales List": {
+      "id": "Customer Dashboard Sales List",
+      "name": "Customer Dashboard Sales List",
+      "settings": {
+        "blocks": [{
+            "name": "Customer Dashboard Sales List Items",
+            "limit": 1
+          }, {
+            "name": "Table pagination",
+            "limit": 1
+          }
+        ],
+        "schema": []
+      },
+      "file": {
+        "checksum": "checksum of file",
+        "id": "sections/customer/dashboardSalesList.njk"
+      }
+    },
+    "Customer Dashboard Analytic": {
+      "id": "Customer Dashboard Analytic",
+      "name": "Customer Dashboard Analytic",
+      "settings": {
+        "blocks": [
+          {
+            "name": "Customer Dashboard Analytic Items",
+            "limit": 1
+          }
+        ],
+        "schema": []
+      },
+      "file": {
+        "checksum": "checksum of file",
+        "id": "sections/customer/dashboardAnalytic.njk"
+      }
+    },
+
+    "Customer Affiliate Links List": {
+      "id": "Customer Affiliate Links List",
+      "name": "Customer Affiliate Links List",
+      "settings": {
+        "blocks": [
+          {
+            "name": "Customer Affiliate Links List Items",
+            "limit": 1
+          }
+        ],
+        "schema": []
+      },
+      "file": {
+        "checksum": "checksum of file",
+        "id": "sections/customer/affiliateLinks.njk"
+      }
+    },
+
+    "Customer Payouts": {
+      "id": "Customer Payouts",
+      "name": "Customer Payouts",
+      "settings": {
+        "blocks": [
+          {
+            "name": "Customer Payouts",
+            "limit": 1
+          }
+        ],
+        "schema": []
+      },
+      "file": {
+        "checksum": "checksum of file",
+        "id": "sections/customer/payouts.njk"
+      }
+    },
+
     "Product info": {
       "id": "Product info",
       "name": "Product info",
@@ -5670,6 +6169,7 @@
       }
     }
   },
+
   "blocks": {
     "Addons": {
       "id": "Addons",
@@ -6991,6 +7491,459 @@
         "id": "blocks/invoiceDetails.njk"
       }
     },
+
+    "Customer Auth": {
+      "id": "Customer Auth",
+      "name": "Customer Auth",
+      "settings": {
+        "schema": []
+      },
+      "file": {
+        "checksum": "checksum of file",
+        "id": "blocks/customer/auth.njk"
+      }
+    },
+
+    "Customer Dashboard Analytic Items": {
+      "id": "Customer Dashboard Analytic Items",
+      "name": "Customer Dashboard Analytic Items",
+      "settings": {
+        "schema": [
+          {
+            "id": "list_items_background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_main_color"
+          },
+          {
+            "id": "list_items_show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": false
+          },
+          {
+            "id": "container_border_radius",
+            "type": "range",
+            "max": 2,
+            "min": 0,
+            "step": 0.25,
+            "unit": "rem",
+            "label": "Border radius",
+            "defaultValue": 0.5
+          },
+          {
+            "id": "container_padding_horiz",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding horizontal",
+            "defaultValue": 0
+          },
+          {
+            "id": "container_padding_vert",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding vertical",
+            "defaultValue": 0
+          },
+          {
+            "id": "container_shadow",
+            "type": "select",
+            "label": "Drop shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 2",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+              }
+            ],
+            "defaultValue": "none"
+          },
+          {
+            "id": "list_items_per_row_wide",
+            "type": "text",
+            "label": "Items per row (wide)",
+            "defaultValue": "4"
+          },
+          {
+            "id": "list_items_per_row_normal",
+            "type": "text",
+            "label": "Items per row (normal)",
+            "defaultValue": "2"
+          },
+          {
+            "id": "list_items_per_row_narrow",
+            "type": "text",
+            "label": "Items per row (narrow)",
+            "defaultValue": "1"
+          }
+        ]
+      },
+      "file": {
+        "checksum": "checksum of file",
+        "id": "blocks/customer/dashboardAnalyticItems.njk"
+      }
+    },
+    "Customer Dashboard Sales List Items": {
+      "id": "Customer Dashboard Sales List Items",
+      "name": "Customer Dashboard Sales List Items",
+      "settings": {
+        "class": "pagination-table",
+        "schema": [
+          {
+            "id": "list_items_background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_main_color"
+          },
+          {
+            "id": "list_items_show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": false
+          },
+          {
+            "id": "container_border_radius",
+            "type": "range",
+            "max": 2,
+            "min": 0,
+            "step": 0.25,
+            "unit": "rem",
+            "label": "Border radius",
+            "defaultValue": 0.5
+          },
+          {
+            "id": "container_padding_horiz",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding horizontal",
+            "defaultValue": 0
+          },
+          {
+            "id": "container_padding_vert",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding vertical",
+            "defaultValue": 0
+          },
+          {
+            "id": "container_shadow",
+            "type": "select",
+            "label": "Drop shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 2",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+              }
+            ],
+            "defaultValue": "none"
+          },
+          {
+            "id": "list_items_per_row_wide",
+            "type": "text",
+            "label": "Items per row (wide)",
+            "defaultValue": "4"
+          },
+          {
+            "id": "list_items_per_row_normal",
+            "type": "text",
+            "label": "Items per row (normal)",
+            "defaultValue": "2"
+          },
+          {
+            "id": "list_items_per_row_narrow",
+            "type": "text",
+            "label": "Items per row (narrow)",
+            "defaultValue": "1"
+          }
+        ]
+      },
+      "file": {
+        "checksum": "checksum of file",
+        "id": "blocks/customer/dashboardSalesListItems.njk"
+      }
+    },
+    "Table Pagination": {
+      "id": "Table pagination",
+      "name": "Table pagination",
+      "settings": {
+        "schema": [
+          {
+            "id": "background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              }
+            ],
+            "defaultValue": "background_accent_dark"
+          },
+          {
+            "id": "show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": true
+          },
+          {
+            "id": "border_radius",
+            "type": "range",
+            "max": 2,
+            "min": 0,
+            "step": 0.25,
+            "unit": "rem",
+            "label": "Border radius",
+            "defaultValue": 0.5
+          },
+          {
+            "id": "shadow",
+            "type": "select",
+            "label": "Drop shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 2",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+              }
+            ],
+            "defaultValue": "none"
+          },
+
+          {
+            "id": "container_margin_y",
+            "max": 48,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container margin vertical",
+            "defaultValue": 24
+          }
+        ]
+      },
+      "file": {
+        "checksum": "checksum of file",
+        "id": "blocks/customer/tablePagination.njk"
+      }
+    },
+
+    "Customer Affiliate Links List Items": {
+      "id": "Customer Affiliate Links List Items",
+      "name": "Customer Affiliate Links List Items",
+      "settings": {
+        "schema": [
+          {
+            "id": "list_items_background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_main_color"
+          },
+          {
+            "id": "list_items_show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": false
+          },
+          {
+            "id": "container_border_radius",
+            "type": "range",
+            "max": 2,
+            "min": 0,
+            "step": 0.25,
+            "unit": "rem",
+            "label": "Border radius",
+            "defaultValue": 0.5
+          },
+          {
+            "id": "container_padding_horiz",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding horizontal",
+            "defaultValue": 0
+          },
+          {
+            "id": "container_padding_vert",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding vertical",
+            "defaultValue": 0
+          },
+          {
+            "id": "container_shadow",
+            "type": "select",
+            "label": "Drop shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 2",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+              }
+            ],
+            "defaultValue": "none"
+          },
+          {
+            "id": "list_items_per_row_wide",
+            "type": "text",
+            "label": "Items per row (wide)",
+            "defaultValue": "4"
+          },
+          {
+            "id": "list_items_per_row_normal",
+            "type": "text",
+            "label": "Items per row (normal)",
+            "defaultValue": "2"
+          },
+          {
+            "id": "list_items_per_row_narrow",
+            "type": "text",
+            "label": "Items per row (narrow)",
+            "defaultValue": "1"
+          }
+        ]
+      },
+      "file": {
+        "checksum": "checksum of file",
+        "id": "blocks/customer/affiliateLinksListItems.njk"
+      }
+    },
+
+    "Customer Payouts": {
+      "id": "Customer Payouts",
+      "name": "Customer Payouts",
+      "settings": {
+        "schema": []
+      },
+      "file": {
+        "checksum": "checksum of file",
+        "id": "blocks/customer/payouts.njk"
+      }
+    },
+
     "Invoice products info": {
       "id": "Invoice products info",
       "name": "Invoice products info",
@@ -8489,6 +9442,7 @@
         "id": "blocks/feedbackItems.njk"
       }
     },
+
     "Feedback pagination": {
       "id": "Feedback pagination",
       "name": "Feedback pagination",
@@ -8572,6 +9526,7 @@
         "id": "blocks/feedbackPagination.njk"
       }
     },
+
     "Feedback form": {
       "id": "Feedback form",
       "name": "Feedback form",
@@ -9306,6 +10261,7 @@
       }
     }
   },
+
   "snippets": {
     "App crisp chat": {
       "id": "App crisp chat",
@@ -9531,6 +10487,22 @@
         "id": "snippets/productCard.njk"
       }
     },
+    "Customer Affiliate Table Row": {
+      "id": "Customer Affiliate Table Row",
+      "name": "Customer Affiliate Table Row",
+      "file": {
+        "checksum": "checksum of file",
+        "id": "snippets/customer/affiliateRow.njk"
+      }
+    },
+    "Customer Sales Table Row": {
+      "id": "Customer Sales Table Row",
+      "name": "Customer Sales Table Row",
+      "file": {
+        "checksum": "checksum of file",
+        "id": "snippets/customer/salesRow.njk"
+      }
+    },
     "Product warranty": {
       "id": "Product warranty",
       "name": "Product warranty",
@@ -9738,6 +10710,81 @@
         "id": "snippets/zoomGlassIcon.njk"
       }
     },
+
+    "Customer Dashboard Icon": {
+      "id": "Customer Dashboard Icon",
+      "name": "Customer Dashboard Icon",
+      "file": {
+        "checksum": "checksum of file",
+        "id": "snippets/customer/header/dashboardIcon.njk"
+      }
+    },
+    "Customer Affiliate Icon": {
+      "id": "Customer Affiliate Icon",
+      "name": "Customer Affiliate Icon",
+      "file": {
+        "checksum": "checksum of file",
+        "id": "snippets/customer/header/affiliateIcon.njk"
+      }
+    },
+    "Customer Payouts Icon": {
+      "id": "Customer Payouts Icon",
+      "name": "Customer Payouts Icon",
+      "file": {
+        "checksum": "checksum of file",
+        "id": "snippets/customer/header/payoutsIcon.njk"
+      }
+    },
+
+    "Customer Menu Email Icon": {
+      "id": "Customer Menu Email Icon",
+      "name": "Customer Menu Email Icon",
+      "file": {
+        "checksum": "checksum of file",
+        "id": "snippets/customer/emailIcon.njk"
+      }
+    },
+    "Customer Menu Phone Icon": {
+      "id": "Customer Menu Phone Icon",
+      "name": "Customer Menu Phone Icon",
+      "file": {
+        "checksum": "checksum of file",
+        "id": "snippets/customer/phoneIcon.njk"
+      }
+    },
+    "Customer Menu Location Icon": {
+      "id": "Customer Menu Location Icon",
+      "name": "Customer Menu Location Icon",
+      "file": {
+        "checksum": "checksum of file",
+        "id": "snippets/customer/locationIcon.njk"
+      }
+    },
+    "Customer Menu Logout Icon": {
+      "id": "Customer Menu Logout Icon",
+      "name": "Customer Menu Logout Icon",
+      "file": {
+        "checksum": "checksum of file",
+        "id": "snippets/customer/logoutIcon.njk"
+      }
+    },
+    "Customer Menu Links": {
+      "id": "Customer Menu Links",
+      "name": "Customer Menu Links",
+      "file": {
+        "checksum": "checksum of file",
+        "id": "snippets/customer/header/menuLinks.njk"
+      }
+    },
+    "Customer Menu User Details": {
+      "id": "Customer Menu User Details",
+      "name": "Customer Menu User Details",
+      "file": {
+        "checksum": "checksum of file",
+        "id": "snippets/customer/header/userDetails.njk"
+      }
+    },
+
     "Ticket Message": {
       "id": "Ticket Message",
       "name": "Ticket Message",
@@ -9776,6 +10823,14 @@
       "file": {
         "checksum": "checksum of file",
         "id": "snippets/invoiceDetails.njk"
+      }
+    },
+    "Customer Auth": {
+      "id": "Customer Auth",
+      "name": "Customer Auth",
+      "file": {
+        "checksum": "checksum of file",
+        "id": "snippets/customer/auth.njk"
       }
     },
     "Invoice subscription details": {
@@ -9870,6 +10925,7 @@
       }
     }
   },
+
   "assets": {
     "badge.css": {
       "id": "badge.css",
@@ -10177,6 +11233,24 @@
         "cdn_url": "/mock/assets/packages/widgets/invoice/invoice.css"
       }
     },
+    "auth.js": {
+      "id": "auth.js",
+      "name": "auth.js",
+      "file": {
+        "checksum": "checksum of file",
+        "id": "assets/packages/widgets/customer/auth.js",
+        "cdn_url": "/mock/assets/packages/widgets/customer/auth.js"
+      }
+    },
+    "auth.css": {
+      "id": "auth.css",
+      "name": "auth.css",
+      "file": {
+        "checksum": "checksum of file",
+        "id": "assets/packages/widgets/customer/auth.css",
+        "cdn_url": "/mock/assets/packages/widgets/customer/auth.css"
+      }
+    },
     "purchase.js": {
       "id": "purchase.js",
       "name": "purchase.js",
@@ -10285,6 +11359,15 @@
       },
       "name": "sellix-feedback-pagination.js"
     },
+    "sellix-table-pagination.js": {
+      "id": "sellix-table-pagination.js",
+      "file": {
+        "checksum": "checksum of file",
+        "id": "assets/js/sellix-table-pagination.js",
+        "cdn_url": "/mock/assets/js/sellix-table-pagination.js"
+      },
+      "name": "sellix-table-pagination.js"
+    },
     "sellix-cart-product-component.js": {
       "id": "sellix-cart-product-component.js",
       "file": {
@@ -10302,6 +11385,15 @@
         "cdn_url": "/mock/assets/components/cart.js"
       },
       "name": "sellix-cart-component.js"
+    },
+    "sellix-customer-menu-component.js": {
+      "id": "sellix-customer-menu-component.js",
+      "file": {
+        "checksum": "checksum of file",
+        "id": "assets/components/customer-menu.js",
+        "cdn_url": "/mock/assets/components/customer-menu.js"
+      },
+      "name": "sellix-customer-menu-component.js"
     },
     "sellix-addons-component.js": {
       "id": "sellix-addons-component.js",
@@ -10347,6 +11439,15 @@
         "cdn_url": "/mock/assets/components/feedback-pagination.js"
       },
       "name": "sellix-feedback-pagination-component.js"
+    },
+    "sellix-table-pagination-component.js": {
+      "id": "sellix-table-pagination-component.js",
+      "file": {
+        "checksum": "checksum of file",
+        "id": "assets/components/table-pagination.js",
+        "cdn_url": "/mock/assets/components/table-pagination.js"
+      },
+      "name": "sellix-table-pagination-component.js"
     },
     "sellix-invoice-products-info-component.js": {
       "id": "sellix-invoice-products-info-component.js",
@@ -10401,6 +11502,15 @@
         "cdn_url": "/mock/assets/components/invoice-details.js"
       },
       "name": "sellix-invoice-details-component.js"
+    },
+    "sellix-customer-auth-component.js": {
+      "id": "sellix-customer-auth-component.js",
+      "file": {
+        "checksum": "checksum of file",
+        "id": "assets/components/customer-auth.js",
+        "cdn_url": "/mock/assets/components/customer-auth.js"
+      },
+      "name": "sellix-customer-auth-component.js"
     },
     "quicklink.umd.js": {
       "id": "quicklink.umd.js",
@@ -10480,6 +11590,16 @@
         "name": "section-product-list.css"
       }
     },
+    "section-customer-list.css": {
+      "id": "section-customer-list.css",
+      "name": "section-customer-list.css",
+      "file": {
+        "cdn_url": "/mock/assets/css/section-customer-list.css",
+        "checksum": "checksum of file",
+        "id": "assets/css/section-customer-list.css",
+        "name": "section-customer-list.css"
+      }
+    },
     "section-product-checkout-invoice-shop-info.css": {
       "id": "section-product-checkout-invoice-shop-info.css",
       "name": "section-product-checkout-invoice-shop-info.css",
@@ -10488,6 +11608,26 @@
         "checksum": "checksum of file",
         "id": "assets/css/section-product-checkout-invoice-shop-info.css",
         "name": "section-product-checkout-invoice-shop-info.css"
+      }
+    },
+    "section-customer-auth.css": {
+      "id": "section-customer-auth.css",
+      "name": "section-customer-auth.css",
+      "file": {
+        "cdn_url": "/mock/assets/css/section-customer-auth.css",
+        "checksum": "checksum of file",
+        "id": "assets/css/section-customer-auth.css",
+        "name": "section-customer-auth.css"
+      }
+    },
+    "section-customer-payout.css": {
+      "id": "section-customer-payout.css",
+      "name": "section-customer-payout.css",
+      "file": {
+        "cdn_url": "/mock/assets/css/section-customer-payout.css",
+        "checksum": "checksum of file",
+        "id": "assets/css/section-customer-payout.css",
+        "name": "section-customer-payout.css"
       }
     },
     "section-contact-form.css": {
@@ -10610,6 +11750,16 @@
         "name": "block-feedback-pagination.css"
       }
     },
+    "block-table-pagination.css": {
+      "id": "block-table-pagination.css",
+      "name": "block-table-pagination.css",
+      "file": {
+        "cdn_url": "/mock/assets/css/block-table-pagination.css",
+        "checksum": "checksum of file",
+        "id": "assets/css/block-table-pagination.css",
+        "name": "block-table-pagination.css"
+      }
+    },
     "block-delivery-products-info.css": {
       "id": "block-delivery-products-info.css",
       "name": "block-delivery-products-info.css",
@@ -10658,6 +11808,16 @@
         "checksum": "checksum of file",
         "id": "assets/css/snippet-cart.css",
         "name": "snippet-cart.css"
+      }
+    },
+    "snippet-customer-menu.css": {
+      "id": "snippet-customer-menu.css",
+      "name": "snippet-customer-menu.css",
+      "file": {
+        "cdn_url": "/mock/assets/css/snippet-customer-menu.css",
+        "checksum": "checksum of file",
+        "id": "assets/css/snippet-customer-menu.css",
+        "name": "snippet-customer-menu.css"
       }
     },
     "button.css": {
@@ -10816,6 +11976,7 @@
       }
     }
   },
+
   "locales": {
     "en-EN": {
       "id": 1,

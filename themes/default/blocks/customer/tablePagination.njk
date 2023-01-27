@@ -1,0 +1,41 @@
+{% set id=uid() %}
+{% set pageLimit = 10 %}
+{% set currentPage = 1 %}
+{% set colors = themeProperties.current_colors %}
+{% set salesList = global.common.customerInfo.invoices %}
+
+{% if salesList.length > 10 %}
+  <style>
+    .table-pagination-{{id}} {
+      margin: {{ properties.container_margin_y }}px auto;
+      background: {{ colors[properties.background_color] }};
+      border: {{ "1px solid var(--borderColor)" if properties.show_border else "none" }};
+      box-shadow: {{ properties.shadow }};
+      border-radius: {{ properties.border_radius }}rem;
+    }
+  </style>
+  <div id="table-pagination-{{id}}" class="sellix-pagination table-pagination-{{id}}">
+    <button class="prev">
+      <i class="fa-solid fa-chevron-left" style="color: var(--lightFontColor); font-size: 16px;"></i>
+    </button>
+
+    <button class="next">
+      <i class="fa-solid fa-chevron-right" style="color: var(--lightFontColor); font-size: 16px;"></i>
+    </button>
+  </div>
+
+  <script type='application/javascript'>
+    $(document).ready(function () {
+
+      let tablePaginationInstance = new window.SellixTablePagination({{currentPage}}, {{pageLimit}}, {{salesList.length}});
+
+      const tableComponent = new SellixTablePaginationComponent(
+        '#table-pagination-{{id}}',
+        tablePaginationInstance,
+        '{{id}}',
+        "Customer Dashboard Sales List Items",
+        {{renderOptions | dump | safe}}
+      );
+    });
+  </script>
+{% endif %}
