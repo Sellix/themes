@@ -40,8 +40,9 @@
         topDomain = 'mysellix.io';
       }
 
-      document.cookie = `customerToken=""; path=/; sameSite=lax; domain=.customer-portal.${topDomain}; Expires=${new Date(2000, 1, 1, 1, 1, 1, 0)};`;
-      document.cookie = `customerToken=""; path=/; sameSite=lax; domain=.${window.location.hostname}; Expires=${new Date(2000, 1, 1, 1, 1, 1, 0)};`;
+      Cookies.remove('customerToken', { path: '/', sameSite: "lax", domain: `.customer-portal.${topDomain}`});
+      Cookies.remove('customerToken', { path: '/', sameSite: "lax", domain: `.${window.location.hostname}`});
+
       window.location.href = '/';
     }
   }
