@@ -1,0 +1,20 @@
+{% set customerInfo = global.common.customerInfo.customer %}
+
+{% if customerInfo.email %}
+    <div class="d-flex">
+        {% render_snippet 'Customer Menu Email Icon' %}
+        {{ customerInfo.email }}
+    </div>
+{% endif %}
+{% if customerInfo.phone_country_code or customerInfo.phone %}
+    <div class="d-flex">
+        {% render_snippet 'Customer Menu Phone Icon' %}
+        {{ customerInfo.phone_country_code }}{{ customerInfo.phone }}
+    </div>
+{% endif %}
+{% if customerInfo.country_code or customerInfo.state or customerInfo.city or customerInfo.street_address or customerInfo.postal_code %}
+    <div class="d-flex">
+        {% render_snippet 'Customer Menu Location Icon' %}
+        {{ customerInfo.country_code }}{{ customerInfo.state }}{{ customerInfo.city }}{{ customerInfo.street_address }}, {{ customerInfo.postal_code }}
+    </div>
+{% endif %}

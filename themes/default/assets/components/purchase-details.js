@@ -59,10 +59,6 @@
       });
     };
 
-    onCreateInvoiceTrial = (data) => {
-      return sellixApi.createInvoiceTrial(data);
-    };
-
     onCustomerAuthEmail = (data) => {
       return sellixApi.customerAuthEmail(data);
     };
@@ -171,7 +167,6 @@
           onAddToCart: this.onAddToCart,
           onApplyCoupon: this.onApplyCoupon,
           onCreateInvoice: this.onCreateInvoice,
-          onCreateInvoiceTrial: this.onCreateInvoiceTrial,
           onShowMessage: this.onShowMessage,
           onShowProductTerms: this.onShowProductTerms,
           onChangeProductQuantity: this.onChangeProductQuantity,
