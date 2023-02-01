@@ -2,13 +2,30 @@
 {% set theme = global.common.theme %}
 {% set colors = themeProperties.current_colors %}
 {% set affiliateItems = global.common.shopInfo.affiliateItems %}
+{% set backgroundColor = properties.customer_affiliate_table_background_color if properties.customer_affiliate_table_background_color is defined else 'background_accent_dark' %}
+{% set secondaryBackgroundColor = properties.customer_affiliate_table_secondary_background_color if properties.customer_affiliate_table_secondary_background_color is defined else 'background_accent_dark' %}
+{% set colors = themeProperties.current_colors %}
 
+<style>
+
+  .sellix-customer-table {
+    background: {{ colors[backgroundColor] }};
+    box-shadow: {{ properties.customer_affiliate_table_shadow }};
+    border-radius: {{ properties.customer_affiliate_table_border_radius }}rem;
+    border: {{ "1px solid var(--borderColor)" if properties.customer_affiliate_table_show_border else "none" }};
+  }
+
+  .sellix-customer-table thead {
+    background: {{ colors[secondaryBackgroundColor] }};
+  }
+
+</style>
 
 {% if affiliateItems.length === 0 %}
   <div class="empty-shop-container empty-search" {% if items and affiliateItems.length > 0 %}style="display:none;"{% endif %}>
 
     <div class="empty-sales-list">
-      {% render_snippet 'Empty Affiliate Icon' %}
+      {% render_snippet 'Customer Empty Affiliate Icon' %}
       <span class="empty-sales-list-title">Affiliate Links</span>
       <span class="empty-sales-list-description">Merchant has not enabled any affiliate links on any products yet.</span>
     </div>
@@ -16,7 +33,7 @@
   </div>
 {% else %}
 
-  <table class="sellix-customer-table" cellspacing="0" cellpadding="0">
+  <table class="sellix-customer-table mt-4" cellspacing="0" cellpadding="0">
 
     <thead data-product-id="{{item.uniqid}}" class="sellix-customer-table-head">
       <tr>

@@ -15,21 +15,28 @@
 {% set totalReferrals = customerInfo.total_referrals %}
 {% set shopPercentageTotal = customerInfo.shop.affiliate_revenue_percent %}
 
+<style>
+  .sellix-customer-info-blocks > div {
+    width: calc({{ 100 / properties.customer_dashboard_analytic_items_per_row_wide | int }}% - .5rem);
+  }
+
+  @media (max-width: 768px) {
+    .sellix-customer-info-blocks > div {
+      width: calc({{ 100 / properties.customer_dashboard_analytic_items_per_row_normal | int }}%);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .sellix-customer-info-blocks > div {
+      width: calc({{ 100 / properties.customer_dashboard_analytic_items_per_row_narrow | int }}%);
+    }
+  }
+</style>
+
 <div class="sellix-customer-info-blocks">
-  <div>
-    <div>Total Commission</div>
-    <b>{{ currencyList[totalEarnedCurrency] }}{{ totalEarned }}</b>
-  </div>
-  <div>
-    <div>Total Referrals</div>
-    <b>{{ totalReferrals }}</b>
-  </div>
-  <div>
-    <div>Commission Balance</div>
-    <b>{{ currencyList[revenueCurrency] }}{{ revenueTotal }}</b>
-  </div>
-  <div>
-    <div>Revenue Percentage</div>
-    <b>{{ shopPercentageTotal }}%</b>
-  </div>
+  {% render_snippet 'Customer Dashboard Analytic Item', properties=properties, title="Total Commission", value=([currencyList[totalEarnedCurrency], totalEarned] | join) %}
+  {% render_snippet 'Customer Dashboard Analytic Item', properties=properties, title="Total Referrals", value=totalReferrals %}
+  {% render_snippet 'Customer Dashboard Analytic Item', properties=properties, title="Commission Balance", value=([currencyList[revenueCurrency], revenueTotal] | join) %}
+  {% render_snippet 'Customer Dashboard Analytic Item', properties=properties, title="Revenue Percentage", value=([shopPercentageTotal, '%'] | join) %}
 </div>
+

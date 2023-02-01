@@ -3,26 +3,45 @@
 {% set customerInfo = global.common.customerInfo.customer %}
 {% set currentUrl = global.common.currentUrl %}
 {% set colors = themeProperties.current_colors %}
-{% set backgroundColor = properties.header_background_color if properties.header_background_color is defined else 'background_main_color' %}
+{% set backgroundColor = properties.customer_header_background_color if properties.customer_header_background_color is defined else 'background_main_color' %}
+
+{% set showBorder = properties.menu_show_border if properties.menu_show_border is defined else true %}
+{% set shadow = properties.menu_shadow if properties.menu_shadow is defined else 'none' %}
+{% set menuBackgroundColor = properties.menu_background_color if properties.container_background_color is defined else 'background_accent_dark' %}
+
+
+
+<style>
+  .menu-dropdown {
+    box-shadow: {{ shadow }}!important;
+    background: {{ colors[backgroundColor] }};
+    border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
+    color: var(--lightFontColor);
+  }
+  .menu-dropdown-header {
+    color: {{ menuBackgroundColor }};
+  }
+</style>
+
 
 <header style="background-color: {{ colors[backgroundColor] }}">
   <div class="sellix-header" id="sellix-header-{{ id }}">
 
     <div style="display: flex; align-items: center; width: 100%; height: 100%; padding: 0 1rem;">
 
-      {% if properties.logo_image %}
+      {% if properties.customer_logo_image %}
         <a href="/">
           <div class="sellix-header-logo-image">
-            <img style="max-height: {{ properties.logo_image_height }}px;" src="{{ properties.logo_image }}" alt="{{ shop.name }}">
+            <img style="max-height: {{ properties.customer_logo_image_height }}px;" src="{{ properties.customer_logo_image }}" alt="{{ shop.name }}">
           </div>
         </a>
       {% endif %}
 
-      <div class="sellix-header-shop-name" style="text-align: {{ properties.shop_name_text_align }};{{ 'left: 0;position: absolute;' if properties.shop_name_text_align == 'center' }}">
+      <div class="sellix-header-shop-name">
         <a href="/" style="width: 230px;align-items: center;height: 100%;padding: 0 1rem 0 0;">
-          <span style="color: {{ colors[properties.shop_name_font_color] if properties.shop_name_font_color else 'inherit' }}; font-size: {{ properties.shop_name_font_size }}px; font-weight: {{ properties.shop_name_font_weight }};">
-            {% if properties.shop_name %}
-              {{ properties.shop_name }}
+          <span style="color: {{ colors[properties.customer_header_shop_name_font_color] if properties.customer_header_shop_name_font_color else 'inherit' }}; font-size: {{ properties.customer_header_shop_name_font_size }}px; font-weight: {{ properties.customer_header_shop_name_font_weight }};">
+            {% if properties.customer_header_shop_name %}
+              {{ properties.customer_header_shop_name }}
             {% else %}
               {{ shop.name }}
             {% endif %}
@@ -33,6 +52,7 @@
       <div class="sellix-header-mobile-menu-container">
         <div class="sellix-header-mobile-menu-icon">|||</div>
         <div class="sellix-header-mobile-menu">
+
           <div class="menu-dropdown mobile-menu-dropdown customFadeIn">
 
             <div class="menu-dropdown-header unselectable">
@@ -52,6 +72,7 @@
               </button>
             </div>
           </div>
+
         </div>
       </div>
 
