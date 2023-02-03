@@ -1,10 +1,12 @@
+{% set properties = args.properties %}
+{% set backgroundColor = properties.customer_dashboard_sales_table_secondary_background_color if properties.customer_dashboard_sales_table_secondary_background_color is defined else 'background_accent_dark' %}
 {% set colors = themeProperties.current_colors %}
 {% set invoice = args.invoice %}
 {% set currencyList = global.config.CURRENCY_LIST %}
 {% set isOdd = args.isOdd %}
 
 {% for product in invoice.products %}
-     <tr class="sellix-customer-table-item" style="background: {{ "#f5f7f8" if isOdd === 1 else "transparent" }};">
+     <tr class="sellix-customer-table-item" style="background: {{ colors[backgroundColor] if isOdd === 1 else "transparent" }};">
          {% if (loop.index === 1) %}
              <td rowspan="{{ invoice.products.length }}" style="border-right: 1px solid var(--borderColor);">
                  <div class="sellix-customer-table-product justify-content-center">

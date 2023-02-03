@@ -4,11 +4,23 @@
 {% set salesList = global.common.customerInfo.invoices %}
 {% set offset = args.offset if args.offset else 0 %}
 {% set limit = args.limit if args.limit else 10 * (offset + 1) %}
+{% set backgroundColor = properties.customer_dashboard_sales_table_background_color if properties.customer_dashboard_sales_table_background_color is defined else 'background_accent_dark' %}
+{% set colors = themeProperties.current_colors %}
 
+<style>
+
+    .sellix-customer-table {
+        background: {{ colors[backgroundColor] }};
+        box-shadow: {{ properties.customer_dashboard_sales_table_shadow }};
+        border-radius: {{ properties.customer_dashboard_sales_table_border_radius }}rem;
+        border: {{ "1px solid var(--borderColor)" if properties.customer_dashboard_sales_table_show_border else "none" }};
+    }
+
+</style>
 
 {% if salesList.length === 0 %}
     <div class="empty-sales-list">
-        {% render_snippet 'Empty Sales Icon' %}
+        {% render_snippet 'Customer Empty Sales Icon' %}
         <span class="empty-sales-list-title">Recent Commissions</span>
         <span class="empty-sales-list-description">You don’t have any affiliate commission yet</span>
     </div>
