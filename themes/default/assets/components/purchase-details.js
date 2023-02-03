@@ -13,11 +13,13 @@
       bundles,
       theme,
       renderOptions,
+      totalCustomerBalance
     }) {
       this.domContainer = document.querySelector(selector);
       this.selectorCaptchaV2 = selectorCaptchaV2;
       this.config = config;
       this.shop = shop;
+      this.totalCustomerBalance = totalCustomerBalance;
       this.cartEnabled = cartEnabled;
       this.isCustomDomain = isCustomDomain;
       this.purchaseType = purchaseType;
@@ -161,6 +163,7 @@
           cartProducts: cartProducts,
           addons: this.addonsStore.getAll(),
           bundles: this.bundles,
+          totalCustomerBalance: this.totalCustomerBalance,
           priceVariants: this.priceVariantsStore.getAll(),
           theme: { isDark: this.theme.isDark },
           sellixHelper: window.sellixHelper,
