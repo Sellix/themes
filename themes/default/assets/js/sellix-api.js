@@ -79,6 +79,12 @@
     }
 
     async createInvoice(data, options) {
+      let headers = {};
+      if(options.token) {
+        headers = {
+          Authorization: 'Bearer ' + options.token
+        }
+      }
       const onSuccess = (captcha) => {
         data.captcha = captcha;
         return jQuery.ajax({
@@ -87,6 +93,7 @@
           contentType: 'application/json; charset=utf-8',
           dataType: 'json',
           data: JSON.stringify(data),
+          headers
         });
       };
       return this.requestWithCaptchaV3('createInvoice', onSuccess, null, options);

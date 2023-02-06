@@ -133,7 +133,7 @@
     };
 
     onChangeData = ({ type, value }) => {
-      // console.log('Change', type, value);
+
     };
 
     onSuccess = ({ type, invoice }) => {

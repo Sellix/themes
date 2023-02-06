@@ -1,9 +1,15 @@
 (function (window, jQuery, SellixStoreFactory) {
   class AddonsStore {
-    constructor(shop) {
+    constructor(shop, productAddons) {
       this.shop = shop;
       this.store = SellixStoreFactory.getStore(shop);
       this.key = 'addons';
+
+      if (productAddons) {
+        for (const productId in productAddons) {
+          this.sync(productId, productAddons[productId]);
+        }
+      }
     }
 
     getAll() {
@@ -31,6 +37,16 @@
         [productId]: (addons[productId] || []).filter((item) => item.uniqid !== addon.uniqid),
       });
       jQuery(document).trigger('SellixAddonsUpdateEvent');
+    }
+
+    sync(productId, addons) {
+      const addedIds = new Set(this.get(productId, []).map((a) => a.uniqid));
+      this.clear(productId);
+      for (const addon of addons) {
+        if (addedIds.has(addon.uniqid)) {
+          this.add(productId, addon);
+        }
+      }
     }
 
     clear(productId) {
