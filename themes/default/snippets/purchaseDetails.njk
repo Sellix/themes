@@ -50,8 +50,6 @@
       bundles.push(bundle);
     {% endfor %}
 
-    let totalCustomerBalance = +customerInfo?.customer?.affiliate_revenue || 0;
-
     const purchaseDetailsComponent = new SellixPurchaseDetailsComponent({
       selector: '#purchase-detail-wrapper-{{ id }} .purchase-details',
       selectorCaptchaV2: '#purchase-detail-recaptcha-v2',
@@ -60,7 +58,7 @@
       cartEnabled: {{cartEnabled or 0}},
       isCustomDomain,
       purchaseType,
-      totalCustomerBalance,
+      affiliateConversions: customerInfo?.customer?.affiliate_revenue_conversions || {},
       cart,
       product: (product || {}),
       bundles,
