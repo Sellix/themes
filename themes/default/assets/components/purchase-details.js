@@ -13,7 +13,7 @@
       bundles,
       theme,
       renderOptions,
-      affiliateConversions
+      affiliateConversions,
     }) {
       this.domContainer = document.querySelector(selector);
       this.selectorCaptchaV2 = selectorCaptchaV2;
@@ -30,7 +30,12 @@
       this.renderOptions = renderOptions;
       this.isCaptchaV2Visible = false;
 
-      this.addonsStore = new SellixAddonsStore(shop.name);
+      this.addonsStore = new SellixAddonsStore(
+        shop.name,
+        this.purchaseType === 'checkout'
+          ? Object.fromEntries(this.cart.getItems().map((p) => [p.uniqid, p.addons]))
+          : { [product.uniqid]: product.addons },
+      );
       this.priceVariantsStore = new SellixPriceVariantsStore(shop.name);
 
       const renderEvent = sellixHelper.getEventName({

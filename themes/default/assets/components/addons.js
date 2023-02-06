@@ -2,7 +2,7 @@
   class AddonsComponent {
     constructor(selector, shop, productId, addons) {
       this.$container = jQuery(selector);
-      this.store = new SellixAddonsStore(shop);
+      this.store = new SellixAddonsStore(shop, { [productId]: addons });
       this.productId = productId;
       this.addons = addons;
       this.addonsMap = Object.fromEntries(addons.map((addon) => [addon.uniqid, addon]));
