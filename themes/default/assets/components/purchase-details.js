@@ -13,13 +13,13 @@
       bundles,
       theme,
       renderOptions,
-      totalCustomerBalance
+      affiliateConversions
     }) {
       this.domContainer = document.querySelector(selector);
       this.selectorCaptchaV2 = selectorCaptchaV2;
       this.config = config;
       this.shop = shop;
-      this.totalCustomerBalance = totalCustomerBalance;
+      this.affiliateConversions = affiliateConversions;
       this.cartEnabled = cartEnabled;
       this.isCustomDomain = isCustomDomain;
       this.purchaseType = purchaseType;
@@ -49,8 +49,9 @@
       return sellixApi.checkCoupon(data);
     };
 
-    onCreateInvoice = (data) => {
+    onCreateInvoice = (data, token) => {
       return sellixApi.createInvoice(data, {
+        token: token,
         useCaptchaV2: true,
         selectorCaptchaV2: this.selectorCaptchaV2,
         theme: this.theme.isDark ? 'dark' : 'light',
@@ -163,7 +164,7 @@
           cartProducts: cartProducts,
           addons: this.addonsStore.getAll(),
           bundles: this.bundles,
-          totalCustomerBalance: this.totalCustomerBalance,
+          affiliateConversions: this.affiliateConversions,
           priceVariants: this.priceVariantsStore.getAll(),
           theme: { isDark: this.theme.isDark },
           sellixHelper: window.sellixHelper,

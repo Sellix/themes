@@ -29,7 +29,7 @@
     const purchaseType = '{{type}}';
     const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
     const isDark = {{args.isDark if args.isDark is defined else themeProperties.color_schema.dark_mode}};
-    const { shopInfo, productInfo, customerInfo, isCustomDomain } = window.SellixContext.get('common');
+    const { shopInfo, productInfo, isCustomDomain } = window.SellixContext.get('common');
     let product = (productInfo && productInfo.product);
 
     if (purchaseType === 'product') {
@@ -59,7 +59,6 @@
       isCustomDomain,
       purchaseType,
       cart,
-      totalCustomerBalance: +customerInfo?.customer?.affiliate_revenue || 0,
       product: (product || {}),
       bundles,
       theme: { isDark },
