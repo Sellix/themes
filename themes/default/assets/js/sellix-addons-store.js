@@ -40,7 +40,7 @@
     }
 
     sync(productId, addons) {
-      const addedIds = new Set(this.get(productId).map((a) => a.uniqid));
+      const addedIds = new Set(this.get(productId, []).map((a) => a.uniqid));
       this.clear(productId);
       for (const addon of addons) {
         if (addedIds.has(addon.uniqid)) {
