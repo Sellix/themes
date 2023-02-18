@@ -5,7 +5,7 @@
   {% if properties.show_banner_products_sold %}
     <div>
       {% if not shop.hide_products_sold %}
-        <div>{{ 'Products Sold' | t }}</div>
+        <div>{{ 'bannerStats.productSold' | t }}</div>
 
         <div class="sellix-banner-feedback-count">
           {{shop.products_sold_count}}
@@ -16,7 +16,7 @@
 
   {% if properties.show_banner_product_quality %}
     <div>
-      <div>{{ 'Product Quality' | t }}</div>
+      <div>{{ 'bannerStats.productQuality' | t }}</div>
 
       <div class="sellix-banner-feedback-star">
         <span>
@@ -31,7 +31,7 @@
           {% render_snippet 'Rating star', rating=average_score %}
 
           <i>
-            ({{ '%s reviews' | t_n(5) if shop.feedback else 'No reviews' | t}})
+            ({{ 'bannerStats.reviewsWithCount' | t({count: shop.feedback.total}) if shop.feedback else 'bannerStats.noReviews' | t}})
           </i>
         </a>
       </div>
