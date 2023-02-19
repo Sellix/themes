@@ -21,18 +21,44 @@
   >
     <div>
       <div class="{{ "wide-screen" if isWide else "" }}">
-        {% render_snippet 'Text', selector=titleId, name="title", label="Title", placeholder="e.g : Terms and Conditions for dropshipper", wrapperClassName="title" %}
-        {% render_snippet 'Text', selector=emailId, name="email", label="Email", placeholder="Enter your email" %}
-        {% render_snippet 'Text', selector=invoiceId, name="invoice_id", label="Invoice Id (optional field)", placeholder="Enter 12 digit invoice id" %}
+        {% render_snippet 'Text',
+          selector=titleId,
+          name="title",
+          label=('shop.contact.title' | t),
+          placeholder=('shop.contact.titlePlaceholder' | t),
+          wrapperClassName="title"
+        %}
+
+        {% render_snippet 'Text',
+          selector=emailId,
+          name="email",
+          label=('shop.contact.email' | t),
+          placeholder=('shop.contact.emailPlaceholder' | t)
+        %}
+
+        {% render_snippet 'Text',
+          selector=invoiceId,
+          name="invoice_id",
+          label=('shop.contact.invoiceId' | t),
+          placeholder=('shop.contact.invoiceIdPlaceholder' | t)
+        %}
       </div>
 
       <div>
-        {% render_snippet 'Text area', selector=messageId, name="message", label="Message", placeholder="What would you like to ask?"  %}
+        {% render_snippet 'Text area',
+          selector=messageId,
+          name="message",
+          label=('shop.contact.message' | t),
+          placeholder=('shop.contact.messagePlaceholder' | t)
+        %}
       </div>
     </div>
 
     <div style="display: flex; justify-content: {{ properties.contact_form_button_position }};">
-      {% render_snippet 'Ripple button', button_id=['contact-form-submit-', id] | join, type='submit', title=properties.contact_form_button_title %}
+      {% render_snippet 'Ripple button',
+        button_id=['contact-form-submit-', id] | join, type='submit',
+        title=(properties.contact_form_button_title | t)
+      %}
     <div>
   </form>
 </div>

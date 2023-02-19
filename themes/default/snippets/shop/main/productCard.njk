@@ -46,9 +46,9 @@
 
 <div class="d-flex w-100 position-relative">
   {% if isFree %}
-    <div class="sellix-card-badge">Free</div>
+    <div class="sellix-card-badge">{{ 'shop.main.cards.product.free' | t }}</div>
   {% elif isPayWhatYouWant %}
-    <div class="sellix-card-badge">Choose your price</div>
+    <div class="sellix-card-badge">{{ 'shop.main.cards.product.yourPrice' | t }}</div>
   {% else %}
     {% render_snippet 'Cart button', product=product %}
 
@@ -76,13 +76,13 @@
 
         {% if onHold %}
           <span class="sellix-card-description">
-            This product is on hold and cannot be bought as of now
+            {{ 'shop.main.cards.product.onHold' | t }}
           </span>
         {% endif %}
 
         {% if isOut %}
           <span class="sellix-card-description">
-            Product sold out
+            {{ 'shop.main.cards.product.soldOut' | t }}
           </span>
         {% endif %}
 
@@ -96,13 +96,13 @@
             {% else %}
               <div class="sellix-group-description-info">
                 {% if product.price_variants %}
-                  <span>Starting at: </span>
+                  <span>{{ 'shop.main.cards.product.startingAt' | t }}: </span>
                 {% endif %}
                 <span class="sellix-card-price">
                   {% if isFree %}
-                    Free
+                    {{ 'shop.main.cards.product.free' | t }}
                   {% elif isPayWhatYouWant %}
-                    Choose your price
+                    {{ 'shop.main.cards.product.yourPrice' | t }}
                   {% else %}
                     {% render_snippet 'Price',
                       currency=product.currency,
@@ -116,9 +116,9 @@
 
             <span class="sellix-card-stock">
               {% if get_stock(product.stock) === '∞' %}
-                Stock<i class="fa-solid fa-infinity" style="margin-left:.2rem;font-size:10px;color:{{'#28a745' if product.stock == -1 or product.stock > 1 else '#dc3545'}}"></i>
+                {{ 'shop.main.cards.product.stock' | t }}<i class="fa-solid fa-infinity" style="margin-left:.2rem;font-size:10px;color:{{'#28a745' if product.stock == -1 or product.stock > 1 else '#dc3545'}}"></i>
                 {% else %}
-                Stock<span style="font-size:1rem;margin-left:.2rem;color:{{'#28a745' if product.stock == -1 or product.stock > 1 else '#dc3545'}}">{{get_stock(product.stock)}}</span>
+                {{ 'shop.main.cards.product.stock' | t }}<span style="font-size:1rem;margin-left:.2rem;color:{{'#28a745' if product.stock == -1 or product.stock > 1 else '#dc3545'}}">{{get_stock(product.stock)}}</span>
               {% endif %}
             </span>
           </div>

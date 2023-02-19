@@ -1,9 +1,10 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/8.1.0/i18next.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/22.4.9/i18next.min.js"></script>
 
 <script type='application/javascript'>
   $(document).ready(function() {
     const localesConfig = window.SellixContext.get('locales');
     window.sellixI18Next = i18next.createInstance({
+      debug: true,
       lng: localesConfig.lng,
       fallbackLng: localesConfig.fallbackLng,
       resources: Object.fromEntries(Object.keys(localesConfig.resources).map(( locale ) => {

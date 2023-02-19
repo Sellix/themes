@@ -38,7 +38,7 @@
   class="sellix-card-container sellix-card-container-{{id}}"
   data-group-id="{{group.uniqid}}"
 >
-  <div class="sellix-card-badge">Group</div>
+  <div class="sellix-card-badge">{{ 'shop.main.cards.group.title' | t }}</div>
   <div class="sellix-card unselectable">
     <div class="sellix-card-image {{'placeholder' if isPlaceholder else ''}}">
       {% if isPlaceholder %}
@@ -57,14 +57,14 @@
         <span>
           {% if group.minPriceItem %}
             <div class="sellix-group-description-info">
-              <span>Starting at: </span>
+              <span>{{ 'shop.main.cards.group.startingAt' | t }}: </span>
 
               <span class="sellix-price">
                 {% render_snippet 'Price', currency=group.minPriceItem.currency, price=group.minPriceItem.price_display %}
               </span>
             </div>
           {% else %}
-            <span>Out of Products</span>
+            <span>{{ 'shop.main.cards.group.outOfProducts' | t }}</span>
           {% endif %}
         </span>
       </div>

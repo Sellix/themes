@@ -17,7 +17,7 @@
       class="sellix-card unselectable"
       style="background: {{ colors[cardsProps.product_card_background_color] }};"
     >
-      <div class="sellix-card-badge">Subscription</div>
+      <div class="sellix-card-badge">{{ 'shop.main.cards.subscription.title' | t }}</div>
 
       <div class="sellix-card-image {{'placeholder' if isPlaceholder else ''}}">
         {% if isPlaceholder %}
@@ -40,14 +40,14 @@
             class="sellix-card-description"
             style="color: {{ colors[cardsProps.product_card_description_font_color] }}; font-size: {{ cardsProps.product_card_description_font_size }}px; font-weight: {{ cardsProps.product_card_description_font_weight }};"
           >
-            This product is on hold and cannot be bought as of now
+            {{ 'shop.main.cards.subscription.onHold' | t }}
           </span>
         {% else %}
           <div
             class="sellix-card-description justify-content-start"
             style="color: {{ colors[cardsProps.product_card_description_font_color] }}; font-size: {{ cardsProps.product_card_description_font_size }}px; font-weight: {{ cardsProps.product_card_description_font_weight }};"
           >
-            <span class="sellix-card-stock">Renews at: </span>
+            <span class="sellix-card-stock">{{ 'shop.main.cards.subscription.startingAt' | t }}: </span>
 
             <span
               style="color: {{ colors[cardsProps.product_card_price_font_color] }}; font-size: {{ cardsProps.product_card_price_font_size }}px; font-weight: {{ cardsProps.product_card_price_font_weight }};"

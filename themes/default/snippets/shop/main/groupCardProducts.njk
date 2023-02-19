@@ -47,7 +47,7 @@
           </div>
 
           {% if onHold %}
-            <span>Product on hold</span>
+            <span>{{ 'shop.main.cards.group.onHold' | t }}</span>
           {% else %}
             <div class="group-option-info">
               {% if product.price_discount and not isFree %}
@@ -58,7 +58,7 @@
               {% else %}
                 <span class="group-option-info-price" >
                   {% if isFree%}
-                    Free
+                    {{ 'shop.main.cards.group.free' | t }}
                   {% else %}
                     {% render_snippet 'Price',
                       currency=product.currency,
@@ -81,7 +81,7 @@
                   {% else %}
                     {{productStock}}
                   {% endif %}
-                </span> in stock
+                </span> {{ 'shop.main.cards.group.inStock' | t }}
               </span>
             </div>
           {% endif %}
@@ -98,9 +98,9 @@
         <a href="{{'javascript:void' if isDisabled else ['/product/', product.uniqid] | join}}" style="color: white;">
           <div class="buy-button {{ 'disabled' if isDisabled else '' }}">
             {% if isFree %}
-              Get it
+              {{ 'shop.main.cards.group.getIt' | t }}
             {% else %}
-              Buy
+              {{ 'shop.main.cards.group.buy' | t }}
             {% endif %}
           </div>
         </a>

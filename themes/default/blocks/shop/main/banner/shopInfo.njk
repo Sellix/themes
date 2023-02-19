@@ -2,6 +2,7 @@
 {% set subscription = global.common.shopInfo.subscription %}
 {% set first_activity = shop.first_sale_date * 1000 if shop.first_sale_date else shop.created_at * 1000 %}
 {% set colors = themeProperties.current_colors %}
+{% set serviceType = 'business' if subscription.id == 2 else 'customer' %}
 
 <div class="sellix-banner-info">
   {% if properties.show_banner_shop_info_avatar %}
@@ -44,11 +45,11 @@
       <div>
         {% if subscription.name %}
           <div class="sellix-banner-subscription {{'business' if subscription.id == 2 else 'pro'}}">
-            {{ 'Professional' if subscription.name == 'pro' else subscription.name }}
+            {{ ['shop.shared.banner.shopInfo', 'professional' if subscription.name == 'pro' else subscription.name | lower] | join('.') | t }}
           </div>
         {% else %}
           <div class="sellix-banner-subscription {{'business' if subscription.id == 2 else 'pro'}}">
-            {{'Entrepreneur' if null | date_diff(first_activity) > 86400 * 7 else 'Starter'}}
+            {{ ['shop.shared.banner.shopInfo', 'enterpeneur' if null | date_diff(first_activity) > 86400 * 7 else 'starter'] | join('.') | t }}
           </div>
         {% endif %}
       </div>
@@ -59,10 +60,13 @@
       style="color: {{ colors[properties.banner_shop_info_font_color] }}; font-size: {{ properties.banner_shop_info_font_size }}px; font-weight: {{ properties.banner_shop_info_font_weight }}; line-height: {{ properties.banner_shop_info_line_height }}%; text-align: {{ properties.banner_shop_info_text_align }};"
     >
       {% if properties.banner_shop_info_custom_text %}
-        {{ properties.banner_shop_info_custom_text }}
+        {{ properties.banner_shop_info_custom_text | t }}
       {% else %}
-        Providing {{'business' if subscription.id == 2 else 'customer'}}
-        services since {{first_activity | date_format('MMMM YYYY')}}
+        {{ 'shop.shared.banner.shopInfo.providingService' | t({
+          'serviceType': ['shop.shared.banner.shopInfo', serviceType] | join('.') | t | lower,
+          'serviceMonth': ['shared.months', (first_activity | date_format('MMMM')) | lower] | join('.') | t({'context': 'before_after'}),
+          'serviceYear': (first_activity | date_format('YYYY'))
+        }) }}
       {% endif %}
     </div>
   </div>

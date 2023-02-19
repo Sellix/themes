@@ -37,14 +37,14 @@
           ? (
             ' <span class="group-header-small">(' +
             String(productsCount) + ' ' +
-            (productsCount === 1 ? 'product' : 'products') +
+            window.sellixI18Next.t('shared.product.quantity', { 'count': +productsCount }) +
             ')</span>'
           )
           : '');
 
       $('#group-card-modal .sellix-modal-header').html(headerHtml);
 
-      $modalBody.html('Loading...');
+      $modalBody.html(`${window.sellixI18Next.t('shop.main.cards.group.loading')}...`);
       sellixApi
         .renderComponent(
           {
