@@ -8,13 +8,13 @@
   {% elif isDev and invoice.developer_return_url %}
     <a href={{ invoice.developer_return_url }}>
       <button type="button" class="medium primary">
-        Back to <b class="mx-1">{{ invoice.name }}'s</b> shop
+        {{ 'shop.delivery.backButtonTitle' | t({ shopName: ['<b class="mx-1">', invoice.name, "</b>"] | join(' ') }) | safe }}
       </button>
     </a>
   {% else %}
     <a href="/" style="color: white">
       <button type="button" class="medium primary">
-        Back to <b class="mx-1">{{ invoice.name }}'s</b> shop
+        {{ 'shop.delivery.backButtonTitle' | t({ shopName: ['<b class="mx-1">', invoice.name, "</b>"] | join(' ') }) | safe }}
       </button>
     </a>
   {% endif %}

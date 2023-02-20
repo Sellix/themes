@@ -32,22 +32,40 @@
 
 <div id="sellix-delivery-title-{{ id }}" class="sellix-delivery-title-{{ id }}">
   {% if isDev %}
-    <div class="sellix-delivery-header-title-text w-100">Payment Completed</div>
+    <div class="sellix-delivery-header-title-text w-100">
+      {{ 'shop.delivery.paymentCompleted' | t }}
+    </div>
   {% elif isSubscription %}
     <span class="sellix-delivery-header-title-text">
-      Your Order for <strong>{{ invoice.subscription.name }} Subscription</strong> is completed.
+      {{
+        'shop.delivery.subscriptionOrderCompleted' |
+        t({
+          subscriptionName: [
+            '&nbsp;<strong>',
+            invoice.subscription.name,
+            'shop.delivery.subscriptionTitle' | t,
+            '</strong>&nbsp;'
+          ] | join(' ')
+        }) | safe
+      }}
     </span>
   {% elif isShoppingCart %}
-    <span class="sellix-delivery-header-title-text">Order for Shopping Cart is completed.</span>
+    <span class="sellix-delivery-header-title-text">
+      {{ 'shop.delivery.cartCompleted' | t }}
+    </span>
   {% elif isProductSubscription %}
-    <span class="sellix-delivery-header-title-text">Your subscription purchase was successful.</span>
+    <span class="sellix-delivery-header-title-text">
+      {{ 'shop.delivery.productSubscriptionCompleted' | t }}
+    </span>
   {% else %}
-    <span class="sellix-delivery-header-title-text">Your Order for <b>{{ product.title }}</b> is completed.</span>
+    <span class="sellix-delivery-header-title-text">
+      {{ 'shop.delivery.productCompleted' | t({productName: ['<b>', product.title, '</b>'] | join(' ')}) | safe }}
+    </span>
   {% endif %}
 
   <div class="sellix-delivery-header-title-uniqid {{ 'is-cart' if isShoppingCart else '' }}">
     <span class="d-flex">
-      <span>Invoice ID:</span>
+      <span>{{ 'shop.delivery.invoiceId' | t }}:</span>
       <span class="sellix-copy-invoice-id cursor-pointer">
         <b>
           {{ invoice.uniqid }}
@@ -58,13 +76,13 @@
       </span>
       <div class="sellix-copied-label">
         {% render_snippet 'Check icon' %}
-        <span>Copied</span>
+        <span>{{ 'shop.delivery.copied' | t }}</span>
       </div>
     </span>
 
     {% if info and isShoppingCart %}
       <button class="sellix-save-invoice-btn medium primary">
-        <i class="fas fa-save"></i>&nbsp;&nbsp;Download Invoice
+        <i class="fas fa-save"></i>&nbsp;&nbsp;{{ 'shop.delivery.downloadInvoice' | t }}
       </button>
     {% endif %}
   </div>

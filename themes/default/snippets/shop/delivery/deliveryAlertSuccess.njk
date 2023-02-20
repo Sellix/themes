@@ -52,31 +52,26 @@
 
     <div class="sellix-delivery-success-title title">
       {% if isDev %}
-        Payment Completed
+        {{ 'shop.delivery.paymentCompleted' | t }}
       {%- elif isTrial -%}
-        Trial Start
+        {{ 'shop.delivery.trialStarted' | t }}
       {%- elif isProductSubscription -%}
-        Subscription Started
+        {{ 'shop.delivery.subscriptionStarted' | t }}
       {% else %}
-        Order completed!
+        {{ 'shop.delivery.orderCompleted' | t }}
       {% endif %}
     </div>
   </div>
 
   <div class="sellix-delivery-success-info text">
     {% if isDev %}
-      Your invoice has been paid.<br/>
-      We will send a confirmation email to your address and you will be redirected to the seller's
-      website
+      {{ 'shop.delivery.invoiceConfirmationEmailText' | t | safe }}
     {% elif isTrial %}
-      Your trial has been started. <br/>
-      You will receive the product within minutes, check your email!
+      {{ 'shop.delivery.trialText' | t | safe }}
     {% elif isProductSubscription %}
-      Your subscription is now active. <br/>
-      You will receive an email with the confirmation of your purchase and a receipt soon.
+      {{ 'shop.delivery.subscriptionText' | t | safe }}
     {% else %}
-      Your invoice has been paid. <br/>
-      You will receive the product within minutes, check your email!
+      {{ 'shop.delivery.invoiceProductText' | t | safe }}
     {% endif %}
   </div>
 </div>

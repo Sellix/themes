@@ -49,13 +49,13 @@
   {% elif isDev and invoice.developer_return_url %}
     <a href={{ invoice.developer_return_url }}>
       <button type="button" class="medium primary sellix-delivery-back">
-        Back to {{ invoice.name }}'s shop
+        {{ 'shop.delivery.backButtonTitle' | t({ shopName: invoice.name }) }}
       </button>
     </a>
   {% else %}
     <a href="/" style="color: white">
       <button type="button" class="medium primary">
-        Back to {{ invoice.name }}'s shop
+        {{ 'shop.delivery.backButtonTitle' | t({ shopName: invoice.name }) }}
       </button>
     </a>
   {% endif %}
