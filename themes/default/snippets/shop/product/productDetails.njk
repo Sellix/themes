@@ -52,7 +52,7 @@
 
   {% if product.type === 'SUBSCRIPTION' %}
     <div class="shop-product-info-subscription-badge" style="background-color: var(--backgroundColor)">
-      subscription
+      {{ 'shop.shared.titles.productType.subscription' | t }}
     </div>
   {% endif %}
 
@@ -60,7 +60,7 @@
     {% if product.sold_count %}
       {% if not shop.hide_products_sold %}
         <span style="white-space: nowrap">
-          <span>Product sold</span> <i style="white: nowrap">{{product.sold_count}}</i> times
+          <span>{{ 'shop.product.soldTitle.0' | t }}</span> <i style="white: nowrap">{{product.sold_count}}</i> {{ 'shop.product.soldTitle.1' | t }}
         </span>
       {% endif %}
 
@@ -69,7 +69,7 @@
         {% if product.average_score %}
           {{product.average_score | float | round(1)}}
         {% endif %}
-        <i>({{product.feedback.total}} reviews)</i>
+        <i>({{ 'shop.shared.reviews.reviewsWithCount' | t({count: product.feedback.total}) }})</i>
       </span>
     {% endif %}
   </div>

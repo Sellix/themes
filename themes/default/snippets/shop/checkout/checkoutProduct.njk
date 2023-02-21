@@ -53,7 +53,7 @@
 
       {% if isInvoice %}
         <div class="sellix-cart-count-quantity total unselectable">
-          Stock: {{product.quantity if product.quantity else product.unit_quantity}}
+          {{ 'shop.checkout.stock' | t }}: {{product.quantity if product.quantity else product.unit_quantity}}
         </div>
       {% endif %}
     </div>
@@ -72,7 +72,13 @@
           </span>
           <div>
             {% render_snippet 'Rating star', rating=product.average_score, size=20 %}
-            <i>({{[product.feedback.total, ' reviews'] | join if product.feedback else 'No reviews'}})</i>
+            <i>
+              {{
+                'shop.shared.reviews.reviewsWithCount' | t({count: product.feedback.total})
+                if product.feedback else
+                'shop.shared.reviews.noReviews' | t
+              }}
+            </i>
           </div>
         </div>
       {% endif %}
@@ -86,9 +92,11 @@
             {% render_snippet 'Description icon' %}
             <div>
               <div class="label-show-description">
-                Show Description
+                {{ 'shop.checkout.showDescription' | t }}
               </div>
-              <span class="label-click-for-info">Click for more info</span>
+              <span class="label-click-for-info">
+                {{ 'shop.shared.titles.moreInfo' | t }}
+              </span>
             </div>
           </div>
         </div>

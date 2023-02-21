@@ -15,7 +15,9 @@
     <div class="empty-shop-container">
       {% render_snippet 'Empty feedbacks icon' %}
 
-      <span class="empty-shop-title">{{ 'shop.feedback.noFeedbacks' | t({shopName: '<b>{{shop.name}}</b>'}) }}</span>
+      <span class="empty-shop-title">
+        {{ 'shop.feedback.noFeedbacks' | t({shopName: ['<b>', shop.name, '</b>'] | join('')}) | safe }}
+      </span>
     </div>
   {% endif %}
   {% for item in feedbacks.slice(offset, limit) %}

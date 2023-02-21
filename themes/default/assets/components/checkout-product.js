@@ -61,11 +61,11 @@
           { height: $description.get(0).scrollHeight, overflow: 'initial' },
           { duration: 300, queue: false },
         );
-        $label.text('Hide Description');
+        $label.text(window.sellixI18Next.t('shop.checkout.hideDescription'));
         $button.hide();
       } else {
         $description.animate({ height: '0px', overflow: 'hidden' }, { duration: 300, queue: false });
-        $label.text('Show Description');
+        $label.text(window.sellixI18Next.t('shop.checkout.showDescription'));
         $button.show();
       }
 

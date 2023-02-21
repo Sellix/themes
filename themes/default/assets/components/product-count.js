@@ -143,11 +143,13 @@
 
       let inStockTitle;
       if (isLast) {
-        inStockTitle = 'Last Product';
+        inStockTitle = window.sellixI18Next.t('shop.shared.titles.lastProduct');
       } else if (!isInfinity && isEmpty) {
         inStockTitle = '';
       } else {
-        inStockTitle = `Stock <div style='margin-left: 0.5rem'>${inStock}</div>`;
+        inStockTitle = `${window.sellixI18Next.t(
+          'shop.shared.titles.stock',
+        )} <div style='margin-left: 0.5rem'>${inStock}</div>`;
       }
 
       this.$root.find('.sellix-stock-total').html(inStockTitle);

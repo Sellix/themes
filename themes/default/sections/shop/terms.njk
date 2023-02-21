@@ -20,7 +20,9 @@
     <div class="empty-shop-container">
       <i class="fa-regular fa-gavel"></i>
 
-      <span class="empty-shop-title"><b>{{shop.name}}</b>'s shop has no terms and condition.</span>
+      <span class="empty-shop-title">
+        {{ 'shop.terms.noTerms' | t({shopName: ['<b>', shop.name, '</b>'] | join(' ')}) | safe }}
+      </span>
     </div>
   {% endif %}
 </div>

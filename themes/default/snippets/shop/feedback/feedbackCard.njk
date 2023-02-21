@@ -49,7 +49,9 @@
       {% render_snippet 'Rating star', rating=score, size=20, color=color %}
 
       <div class="sellix-feedback-rating-info-date">
-        {{created_at | date_format('DD MMM YYYY')}}
+        {{created_at | date_format('DD')}}
+        {{['shared', 'months', created_at | date_format('MMMM')] | join('.') | lower | t({'context': 'short'})}}
+        {{created_at | date_format('YYYY')}}
       </div>
     </div>
 
@@ -64,7 +66,7 @@
             <span>{{reply}}</span>
 
             <span class="sellix-feedback-reply-seller">
-              — reply from the Seller
+              — {{ 'shop.feedback.card.reply' | t }}
             </span>
           </div>
 
@@ -74,7 +76,7 @@
       <div class="sellix-feedback-checked">
         <i class="fa-light fa-check"></i>
 
-        <span>Verified Purchase</span>
+        <span>{{ 'shop.feedback.card.verifiedPurchase' | t }}</span>
       </div>
     </div>
   </div>

@@ -96,7 +96,7 @@
             {% else %}
               <div class="sellix-group-description-info">
                 {% if product.price_variants %}
-                  <span>{{ 'shop.main.cards.product.startingAt' | t }}: </span>
+                  <span>{{ 'shop.shared.titles.startingAt' | t }}: </span>
                 {% endif %}
                 <span class="sellix-card-price">
                   {% if isFree %}
@@ -116,9 +116,9 @@
 
             <span class="sellix-card-stock">
               {% if get_stock(product.stock) === '∞' %}
-                {{ 'shop.main.cards.product.stock' | t }}<i class="fa-solid fa-infinity" style="margin-left:.2rem;font-size:10px;color:{{'#28a745' if product.stock == -1 or product.stock > 1 else '#dc3545'}}"></i>
+                {{ 'shop.shared.titles.stock' | t }}<i class="fa-solid fa-infinity" style="margin-left:.2rem;font-size:10px;color:{{'#28a745' if product.stock == -1 or product.stock > 1 else '#dc3545'}}"></i>
                 {% else %}
-                {{ 'shop.main.cards.product.stock' | t }}<span style="font-size:1rem;margin-left:.2rem;color:{{'#28a745' if product.stock == -1 or product.stock > 1 else '#dc3545'}}">{{get_stock(product.stock)}}</span>
+                {{ 'shop.shared.titles.stock' | t }}<span style="font-size:1rem;margin-left:.2rem;color:{{'#28a745' if product.stock == -1 or product.stock > 1 else '#dc3545'}}">{{get_stock(product.stock)}}</span>
               {% endif %}
             </span>
           </div>

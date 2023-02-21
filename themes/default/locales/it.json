@@ -21,6 +21,12 @@
     }
   },
   "shop": {
+    "cart":{
+      "title":"Carrello",
+      "description":"Add, remove products or go to the checkout page to proceed with the purchase. ITA",
+      "clear": "Rimuovi tutto",
+      "checkout": "Checkout"
+    },
     "contact": {
       "title": "Title",
       "email": "Email",
@@ -36,6 +42,9 @@
       "messageRequired": "Message is required!"
     },
     "checkout": {
+      "hideDescription": "Mostra descrizione",
+      "showDescription": "Nascondi Descrizione",
+      "stock": "Quantità",
       "purchaseDetails": {
         "titles": {
           "purchase": "Compra",
@@ -80,7 +89,7 @@
           "serials_ita": "Serials"
         },
         "service": {
-          "service_ita": "Service",
+          "title_ita": "Service",
           "noService_ita": "No service text",
           "noServiceText_ita": "This product has no service text, please wait further actions by the seller or open a ticket on his page.",
           "contact_ita": "Contact {{- shopName}}"
@@ -105,13 +114,15 @@
       "textPlaceholder": "Leave a text for your feedback",
       "buttonTitle": "Submit",
       "tooLongMessage": "Feedback must be 256 characters long",
-      "noFeedbacks": "Lo shop {{shopName}} non ha feedbacks"
+      "noFeedbacks": "Lo shop {{- shopName}} non ha feedbacks",
+      "card": {
+        "reply_ita": "— reply from the Seller",
+        "verifiedPurchase_ita": "Verified Purchase"
+      }
     },
     "main": {
       "cards": {
         "group": {
-          "title": "Gruppo",
-          "startingAt": "Inizia a:",
           "outOfProducts": "Prodotti esauriti",
           "onHold": "Prodotto trattenuto",
           "free": "Gratis",
@@ -121,22 +132,16 @@
           "loading": "Caricamento..."
         },
         "info": {
-          "title": "Info",
           "clickHere_ita": "Click here for more info"
         },
         "product": {
-          "title": "Prodotto",
-          "startingAt": "Inizia a:",
           "onHold": "Questo prodotto è trattenuto e non può essere comprato ora",
           "soldOut": "Prodotto esaurito",
           "free": "Gratis",
-          "yourPrice_ita": "Choose your price",
-          "stock": "Quantità"
+          "yourPrice_ita": "Choose your price"
         },
         "subscription": {
-          "subscription": "Abbonamento",
-          "onHold": "Questo prodotto è in attesa e non può essere comprato al momento.",
-          "startingAt":"Rinnovo a"
+          "onHold": "Questo prodotto è in attesa e non può essere comprato al momento."
         }
       },
       "productList": {
@@ -157,15 +162,56 @@
         }
       }
     },
+    "product": {
+      "soldTitle_ita": [
+        "Product sold",
+        "times"
+      ],
+      "warrantyTitle_ita": "Product Warranty"
+    },
+    "terms": {
+      "noTerms": "Lo shop {{- shopName}} non ha termini e condizioni."
+    },
+    "trust": {
+      "title": "Trusted Advisor",
+      "identityVerified": {
+        "yes": "Identity Verified",
+        "no": "Identity not verified"
+      },
+      "identityText": {
+        "yes": "This business has verified its identity and details to Sellix. Verified businesses have gone through an address and document validation phase which confirms their identity and the uniqueness of the merchant.",
+        "no": "This business has not verified its identity and details to Sellix. We cannot confirm this store is a valid and unique merchant."
+      },
+      "low": "Low",
+      "high": "High",
+      "sales": "sales in the last 14 days",
+      "salesText": "This metric takes into consideration the quantity of sales this business had in the last 14 days. High and Medium sales mean that the business has been proactively selling goods with at least one order daily.",
+      "feedback": "feedback appeal ratio",
+      "feedbackText": "The feedback appeal ratio takes into consideration the total amount of feedback a merchant has and how many have been appealed (either removed or contested). The appeal ratio has a value between 0.00 and 1, where 0.10 corresponds to 10% of all feedback appealed.",
+      "feedbackScore": "feedback score",
+      "feedbackScoreText": "The feedback score helps customers understand whether or not this business has had positive feedback recently, meaning that every customer purchased a valid good.",
+      "paypalAccepted": {
+        "yes": "PayPal or Credit cards accepted",
+        "no": "PayPal or Credit/Debit cards not accepted"
+      },
+      "paypalText": [
+        "This merchant does not accept any payment method with consumer protection. For example, Cryptocurrencies and Cash App cannot accept refunds due to their nature. Proceed with caution and be sure that you know what you're buying.",
+        "This merchant accepts payment methods, such as PayPal and Credit/Debit Cards, with consumer protection; meaning that a refund request can be executed when paying through them only if the purchased good is not valid. However, this does not mean that refund requests are available for payment methods like Cash App and Cryptocurrencies as they are not accepted due to their nature."
+      ],
+      "help": "What is Trusted Advisor and what does this mean for customers?"
+    },
     "shared": {
+      "reviews": {
+        "reviewsWithCount_one": "{{count}} revisione",
+        "reviewsWithCount_few": "{{count}} recensioni",
+        "reviewsWithCount_many": "{{count}} recensioni",
+        "reviewsWithCount_other": "{{count}} recensioni",
+        "noReviews": "Nessuna recensione"
+      },
       "banner": {
         "stats": {
           "productSold": "Prodotti venduti",
-          "productQuality": "Qualità dei prodotti",
-          "reviewsWithCount_one": "{{count}} revisione",
-          "reviewsWithCount_few": "{{count}} recensioni",
-          "reviewsWithCount_other": "{{count}} recensioni",
-          "noReviews": "Nessuna recensione"
+          "productQuality": "Qualità dei prodotti"
         },
         "shopInfo": {
           "business": "Business",
@@ -183,9 +229,25 @@
         "contact": "Contatti",
         "feedback": "Feedback",
         "terms": "Termini",
-        "trustedAdvisor": "Trusted Advisor",
+        "trustedAdvisor_ita": "Trusted Advisor",
         "faq": "F.A.Q",
         "affiliateProgram": "Affiliate Program"
+      },
+      "titles": {
+        "add_ita": "Add",
+        "lastProduct": "Ultimo rimasto",
+        "moreInfo": "Clicca per più info",
+        "remove_ita": "Remove",
+        "startingAt": "Inizia a",
+        "stock": "Quantità",
+        "productType": {
+          "group": "Gruppo",
+          "product": "Prodotto",
+          "info": "Info",
+          "serials_ita": "Serials",
+          "service_ita": "Service",
+          "subscription": "Abbonamento"
+        }
       },
       "toastify": {
         "success_ita": "Your action has been completed, the resources have been updated.",
