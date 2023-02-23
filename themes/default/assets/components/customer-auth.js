@@ -39,7 +39,7 @@
         };
 
         onCompleteAuth = () => {
-            window.location.href = "/customer/dashboard";
+            window.location.href = "customer/dashboard";
         };
 
         render() {

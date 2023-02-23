@@ -38,7 +38,7 @@
       }
 
       if (this.redirectToCheckout) {
-        window.location.href = '/checkout';
+        window.location.href = 'checkout';
       }
     }
 

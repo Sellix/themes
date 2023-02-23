@@ -146,7 +146,7 @@
           break;
         case 'invoice':
           this.cart.clear().then(() => {
-            window.location.href = `/invoice/${invoice.uniqid}`;
+            window.location.href = `invoice/${invoice.uniqid}`;
           });
           break;
       }

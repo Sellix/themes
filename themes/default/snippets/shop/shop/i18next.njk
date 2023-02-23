@@ -3,8 +3,8 @@
 <script type='application/javascript'>
   const localesConfig = window.SellixContext.get('locales');
   window.sellixI18Next = i18next.createInstance({
-    lng: localesConfig.lng,
-    fallbackLng: localesConfig.fallbackLng,
+    lng: localesConfig.locale,
+    fallbackLng: localesConfig.fallbackLocales,
     resources: Object.fromEntries(Object.keys(localesConfig.resources).map(( locale ) => {
       return [
         locale,

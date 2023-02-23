@@ -39,14 +39,16 @@
 <div class="w-100">
   <div class="sellix-subscription-{{ id }}">
     <div class="shop-product-info-product-title mb-0 shop-product-info-product-title-{{ id }}">
-      Subscription {{ subscriptionName }}
+      {{ 'shop.invoice.subscription.title' | t({subscriptionName: subscriptionName}) }}
     </div>
 
     <div class="shop-product-info-product-info"></div>
 
     <div class="shop-product-info-product-description shop-product-info-product-description-{{ id }}">
       <div class="sellix-text p-3">
-        <p>You are purchasing the {{ subscriptionName }} subscription. Once the invoice is flagged as completed you will automatically receive the months you have paid for.</p>
+        <p>
+          {{ 'shop.invoice.subscription.description' | t({subscriptionName: subscriptionName}) | safe }}
+        </p>
       </div>
     </div>
   </div>

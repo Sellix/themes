@@ -19,7 +19,7 @@
     {# hide Out of stock products #}
   {% else %}
     <div class="group-option {{'is-disabled' if isDisabled else ''}} {{'' if cartEnabled else 'no-cart'}}">
-      <a href="{{'javascript:void' if isDisabled else ['/product/', product.uniqid] | join}}" class="group-option-description">
+      <a href="{{'javascript:void' if isDisabled else ['product/', product.uniqid] | join}}" class="group-option-description">
         {% if not isFree %}
           {% render_snippet 'Discount badge', product=product, isGroup=true %}
         {% endif %}
@@ -95,7 +95,7 @@
           <div></div>
         {% endif %}
 
-        <a href="{{'javascript:void' if isDisabled else ['/product/', product.uniqid] | join}}" style="color: white;">
+        <a href="{{'javascript:void' if isDisabled else ['product/', product.uniqid] | join}}" style="color: white;">
           <div class="buy-button {{ 'disabled' if isDisabled else '' }}">
             {% if isFree %}
               {{ 'shop.main.cards.group.getIt' | t }}

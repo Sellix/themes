@@ -21,9 +21,9 @@
 
     onCompleteInvoice = ({ type, invoiceId }) => {
       if (type === 'subscription') {
-        window.location.href = `/subscription/delivery/${invoiceId}`;
+        window.location.href = `subscription/delivery/${invoiceId}`;
       } else {
-        window.location.href = `/delivery/${invoiceId}`;
+        window.location.href = `delivery/${invoiceId}`;
       }
     };
 

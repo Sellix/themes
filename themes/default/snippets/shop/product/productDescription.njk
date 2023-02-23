@@ -19,12 +19,10 @@
     </script>
   {% endif %}
 
-  {% if invoice.developer_invoice %}
+  {% if true or invoice.developer_invoice %}
     <div class="sellix-text p-3" style="border-radius: .25rem">
       <p>
-        You are purchasing a service by {{product.title}}.
-        Once your payment is completed and this invoice flagged as paid, you will be redirected back to {{product.title}}'s site.
-        If you have any issue, please refer directly to {{product.title}}'s support.
+        {{ 'shop.product.developerInvoiceDescription' | t({ productTitle: product.title}) | safe }}
       </p>
     </div>
   {% else %}
