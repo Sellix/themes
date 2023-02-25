@@ -21,7 +21,7 @@
             class="screen-title back"
             style="color: {{ colors[properties.ticket_title_font_color] }}; font-size: {{ properties.ticket_title_font_size }}px; font-weight: {{ properties.ticket_title_font_weight }};"
           >
-            Ticket: <span style="font-weight: 400; font-size: 20px; margin-left: 1rem;">{{title}}</span>
+            {{ 'shop.ticket.title' | t }}: <span style="font-weight: 400; font-size: 20px; margin-left: 1rem;">{{title}}</span>
           </h1>
         </div>
       </div>
@@ -43,7 +43,16 @@
         </div>
 
         <div class="reply-screen-send-form-container">
-            {% render_snippet 'Text area', selector=messageId, name="message", placeholder="Type a message", wrapperclass="reply-screen-send-form", rows=2, textAreaHeight="66px", autoresize=true, wrapperClassName="reply-screen-send-form", parentHeight="66px" %}
+            {% render_snippet 'Text area',
+              selector=messageId,
+              name="message",
+              placeholder=('shop.ticket.messagePlaceholder' | t),
+              wrapperclass="reply-screen-send-form",
+              rows=2, textAreaHeight="66px",
+              autoresize=true,
+              wrapperClassName="reply-screen-send-form",
+              parentHeight="66px"
+            %}
             <i class="fa-solid fa-paper-plane-top cursor-pointer" id="ticket-submit-{{submitId}}"></i>
         </div>
       </form>

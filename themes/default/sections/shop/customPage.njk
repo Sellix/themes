@@ -3,7 +3,9 @@
 
 <style>
   .sellix-page-{{ id }} {
+  {% if not properties.is_wide %}
     max-width: 1140px;
+  {% endif %}
     box-shadow: {{ properties.container_shadow }};
     border-radius: {{ properties.container_border_radius }}rem;
     padding: {{ properties.container_padding }}px;

@@ -43,17 +43,20 @@
               #} line-height: {{ properties.bundles_description_line_height }}%;"
           >
               <p style="margin: 0; text-align: {{ properties.bundles_description_text_align }};">
-                Save
+                {{ 'shop.product.bundle.discountTitle.0' | t }}
                 <b style="color: {{ colors[properties.bundles_description_font_color] }};">
                   {{ currencyList[shop.currency] if discountType === 'FIXED' }}
                   {{discountAmount}}{{ '%' if discountType === 'PERCENTAGE' }}
                 </b>
-                by adding one more products to your cart with our discounts.
+                {{ 'shop.product.bundle.discountTitle.1' | t }}
               </p>
           </div>
         </div>
 
-        {% render_snippet 'Ripple button', class='medium primary add-all-button', title='Add All Products' %}
+        {% render_snippet 'Ripple button',
+          class='medium primary add-all-button',
+          title=('shop.product.bundle.addAllButtonTitle' | t)
+        %}
       </div>
 
       <div class="shop-product-bundle-line"></div>

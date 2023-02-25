@@ -47,7 +47,9 @@
       </div>
 
       {% if onHold %}
-        <span>Product on hold</span>
+        <span>
+          {{ 'shop.shared.titles.onHold' | t }}
+        </span>
       {% else %}
         <div class="group-option-info">
           {% if product.price_discount and not isFree %}
@@ -68,7 +70,7 @@
                 #}font-weight: {{ properties.bundles_product_price_font_weight }};"
             >
                 {% if isFree%}
-                  Free
+                  {{ 'shop.shared.titles.free' | t }}
                 {% else %}
                   {% render_snippet 'Price', currency=product.currency, price=product.price_display %}
                 {% endif %}
@@ -89,7 +91,7 @@
                   {% else %}
                     {{productStock}}
                   {% endif %}
-              </span> in stock
+              </span> {{ 'shop.shared.titles.stock' | t | lower }}
           </span>
         </div>
       {% endif %}
@@ -111,9 +113,9 @@
       <a href="{{'javascript:void' if isDisabled else ['product/', product.uniqid] | join}}" style="color: white;">
         <div class="{{'disabled' if isDisabled else ''}} buy-button">
           {% if isFree %}
-            Get it
+            {{ 'shop.shared.titles.getIt' | t }}
           {% else %}
-            Buy
+            {{ 'shop.shared.titles.buy' | t }}
           {% endif %}
         </div>
       </a>

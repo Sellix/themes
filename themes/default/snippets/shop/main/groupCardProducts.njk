@@ -58,7 +58,7 @@
               {% else %}
                 <span class="group-option-info-price" >
                   {% if isFree%}
-                    {{ 'shop.main.cards.group.free' | t }}
+                    {{ 'shop.shared.titles.free' | t }}
                   {% else %}
                     {% render_snippet 'Price',
                       currency=product.currency,
@@ -98,9 +98,9 @@
         <a href="{{'javascript:void' if isDisabled else ['product/', product.uniqid] | join}}" style="color: white;">
           <div class="buy-button {{ 'disabled' if isDisabled else '' }}">
             {% if isFree %}
-              {{ 'shop.main.cards.group.getIt' | t }}
+              {{ 'shop.shared.titles.getIt' | t }}
             {% else %}
-              {{ 'shop.main.cards.group.buy' | t }}
+              {{ 'shop.shared.titles.buy' | t }}
             {% endif %}
           </div>
         </a>
