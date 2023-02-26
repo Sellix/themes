@@ -18,6 +18,27 @@
       "quantity_one": "Prodotto",
       "quantity_few": "Prodotti",
       "quantity_other": "Prodotti"
+    },
+    "periods": {
+      "day_one": "day",
+      "day_few": "days",
+      "day_many": "days",
+      "day_other": "days",
+
+      "month_one": "month",
+      "month_few": "months",
+      "month_many": "months",
+      "month_other": "months",
+
+      "week_one": "week",
+      "week_few": "weeks",
+      "week_many": "weeks",
+      "week_other": "weeks",
+
+      "year_one": "year",
+      "year_few": "years",
+      "year_many": "years",
+      "year_other": "years"
     }
   },
   "shop": {
@@ -87,9 +108,11 @@
             }
           },
           "price": {
+            "tooltip": "How is the price calculated?",
             "balanceAmount": "Used from balance",
             "bundleDiscount": "Bundle Discount",
             "couponDiscount": "Coupon",
+            "gatewayFee": "Gateway Fee",
             "productDiscount": "Product Discount",
             "volumeDiscount": "Volume Discount",
             "subtotal": "Subtotal",
@@ -97,15 +120,21 @@
             "total": "Total"
           }
         },
-        "subscription":{
+        "subscription": {
           "titles": {
             "subscription": "Subscription",
-            "gatewaysAfterTrial": "Available Gateways After Trial Ends",
+            "paymentMethodTrial": "Available Gateways After Trial Ends",
             "paymentMethod": "Payment Method",
-            "subscriptionEmail": "Subscription Email",
+            "email": "Subscription Email",
             "billingInfo": "Billing Info"
           },
-          "serverError": "Server error!",
+          "subtitles": {
+            "subscription": "",
+            "paymentMethodTrial": "You are not able to select these gateways now, it's just for your information to know how you will be able to pay after the trial period ends.",
+            "paymentMethod": "",
+            "email": "",
+            "billingInfo": ""
+          },
           "chargedAddon": "Payment for the addon is charged only the first time",
           "paymentRenewal": "Payment at each renewal",
           "coupon": "Coupon",
@@ -115,15 +144,13 @@
           "continue": "Continue",
           "pay": "Pay",
           "paymentMethod": "Payment Method",
+          "proceed": "Proceed",
           "goToPortal": "Go to Customer Billing Portal",
           "applyACoupon": "Apply a Coupon",
           "changeEmail": "Change Email",
           "billedEvery": "Billed Every",
-          "trialPeriod": "Trial Period",
-          "day": ["day", "days"],
-          "month": ["month", "months"],
-          "week": ["week", "weeks"],
-          "year": ["year", "years"]
+          "startSubscription": "Start Subscription",
+          "trialPeriod": "Trial Period"
         },
         "applyCoupon": {
           "apply": "Apply",
@@ -144,19 +171,31 @@
           "lastProduct": "Last Product",
           "stock": "Stock"
         },
-        "form":{
-          "byClickingPay": ["By clicking Pay you agree to "," Terms of Service"],
-          "deliverToPaypal": "Deliver to PayPal email.",
-          "emailRequired": "Email is required",
-          "fraudPaypal": "This is to avoid fraud purchases with PayPal.",
-          "youWillAlso": "You will also not be able to view the product here on the website after the purchase.",
-          "sellixFulfillment": "Sellix fulfillment emails will be delivered to your PayPal email.",
-          "moreInfo": "More Info",
-          "emailForInvoiceUpdates":"Email for invoice updates"
+        "customFields": {
+          "paypal": {
+            "alertTitle": "Please note",
+            "text": "Sellix fulfillment emails will be delivered to your PayPal email.",
+            "moreInfo": "More Info",
+            "info": [
+              "You will also not be able to view the product here on the website after the purchase.",
+              "This is to avoid fraud purchases with PayPal."
+            ],
+            "deliverCheckboxTitle": "Deliver to PayPal email."
+          },
+          "optional": "optional",
+          "emailInputPlaceholder": "Email for invoice updates",
+          "emailIsRequired": "Email is required",
+          "discordMessage": ["Connect your", "account"],
+          "termsOfServiceMessage": [
+            "By clicking Pay you agree to {{productName}}'s",
+            "Terms of Service",
+            ""
+          ],
+          "byClickingPay": ["By clicking Pay you agree to "," Terms of Service"]
         },
         "codeAuthForm":{
-          "authenticationCode": "Authentication Code",
-          "weHaveSent": "We have sent a unique code to your email address, please insert it below.",
+          "title": "Authentication Code",
+          "message": "We have sent a unique code to your email address, please insert it below.",
           "firstName": "First Name",
           "lastName": "Last Name"
         },
@@ -166,36 +205,68 @@
           "purchaseLimit": ["You can only purchase ", "items per order"],
           "addMore": ["Add ","more to get a ","discount"]
         },
-        "success":{
-          "invoice": "Your invoice has been paid. We will send a confirmation email to your address and you will be redirected to the seller's website",
-          "trial": "Your trial has been started. You will receive the product within minutes, check your email!",
-          "active": "Your subscription is now active. You will receive an email with the confirmation of your purchase and a receipt soon.",
-          "paid": "Your invoice has been paid. You will receive the product within minutes, check your email!",
-          "trialStart": "Trial start",
-          "subStarted": "Subscription Started",
-          "orderCompleted": "Order completed!"
+        "priceDetails": {
+          "title": "Price after gateway fees",
+          "tooltip": "How is the price calculated?",
+          "calcTitles": {
+            "productDiscount": "Product Discount",
+            "volumeDiscount": "Volume Discount",
+            "bundleDiscount": "Bundle Discount",
+            "couponDiscount": "Coupon Discount",
+            "gatewayFee": "Gateway Fee",
+            "tax": "Tax",
+            "usedFromBalance": "Used from Balance",
+            "subtotal": "Subtotal"
+          }
         },
-        "gatewaySelector":{
+        "alerts": {
+          "success":{
+            "invoice": [
+              "Your invoice has been paid.",
+              "We will send a confirmation email to your address and you will be redirected to the seller's website"
+            ],
+            "trial": [
+              "Your trial has been started.",
+              "You will receive the product within minutes, check your email!"
+            ],
+            "subscription": [
+              "Your subscription is now active.",
+              "You will receive an email with the confirmation of your purchase and a receipt soon."
+            ],
+            "product": [
+              "Your invoice has been paid.",
+              "You will receive the product within minutes, check your email!"
+            ],
+            "trialStarted": "Trial started",
+            "subscriptionStarted": "Subscription Started",
+            "orderCompleted": "Order completed!"
+          }
+        },
+        "gateways":{
           "gatewaySelectorText":"payments take 2 to 14 days for the transaction to be processed and completed, depending on your bank. Once you have sent the payment, please wait for the invoice to be marked as paid.",
           "banking":{
             "title":"Banking, Regional methods"
           },
           "crypto":{
-            "cryptocurrencies": "Cryptocurrencies",
+            "title": "Cryptocurrencies",
             "sendTransaction": "Send a direct transaction to an address"
           },
           "paypal":{
             "title": "PayPal",
-            "creditCardOrPaypal": "Credit Card with PayPal",
+            "subtitle": "Use your PayPal account",
+            "creditCardAndPaypal": "Credit Card with PayPal",
             "payLater": "Pay Later",
             "paypalCredit": "PayPal Credit",
-            "paypal": "PayPal",
-            "useYourPayPalAccount": "Use your PayPal account"
+            "paypal": "PayPal"
           },
           "stripe":{
-            "creditDebit": "Credit/Debit",
-            "title": ["Cards", "Google Pay", "Apple Pay", "Apple Pay or Google Pay"],
-            "subtitle": ["Pay with Visa, Mastercard, Amex or use", "if they are enabled on your device."]
+            "title": "Credit/Debit Cards",
+            "browserPays": {
+              "google": "Google Pay",
+              "apple": "Apple Pay",
+              "googleOrApple": "Apple Pay or Google Pay"
+            },
+            "message": "Pay with Visa, Mastercard, Amex or use {{browserPay}} if they are enabled on your device."
           },
           "skrill":{
             "title": "Skrill",
@@ -215,18 +286,45 @@
           },
           "binance":{
             "title": "Binance Pay",
-            "subtitle": ["If you do not have a Binance account, ","and send crypto transactions with 0% fees."],
-            "registerHere": "register here"
+            "subtitle": [
+              "If you do not have a Binance account, ",
+              "register here",
+              "and send crypto transactions with 0% fees."
+            ]
           }
         },
         "stripeForm": {
-          "name": ["Name", "Name is required"],
-          "surname": ["Surname","Surname is required"],
-          "address": ["Address", "Address is required"],
-          "city": ["City","City is required"],
-          "country": ["Country", "Country is required"],
-          "postalCode": ["Postal Code", "Postal Code is required"],
-          "state": ["State", "State is required"]
+          "title": "Details requested by Stripe",
+          "fields": {
+            "name": {
+              "title": "Name",
+              "isRequired": "Name is required"
+            },
+            "surname": {
+              "title": "Surname",
+              "isRequired": "Surname is required"
+            },
+            "address": {
+              "title": "Address",
+              "isRequired": "Address is required"
+            },
+            "city": {
+              "title": "City",
+              "isRequired": "City is required"
+            },
+            "country": {
+              "title": "Country",
+              "isRequired": "Country is required"
+            },
+            "postalCode": {
+              "title": "Postal Code",
+              "isRequired": "Postal Code is required"
+            },
+            "state": {
+              "title": "State",
+              "isRequired": "State is required"
+            }
+          }
         },
         "shared": {
           "serverError": "Server error!"
