@@ -1,15 +1,15 @@
 {% set id = uid() %}
 {% set currentUrl = global.common.currentUrl %}
 
-<a href="customer/dashboard" class="{{'active' if currentUrl == '/customer/dashboard' else ''}}" style="border-top: 1px solid var(--borderColor);">
-    {% render_snippet 'Customer Dashboard Icon' %}
-    Dashboard
+<a href="customer/dashboard" class="{{'active' if currentUrl == '/customer/dashboard' else ''}}">
+  {% render_snippet 'Customer Dashboard Icon' %}
+  {{ 'customer.menu.dashboard' | t }}
 </a>
 <a href="customer/affiliate-links" class="{{'active' if currentUrl == '/customer/affiliate-links' else ''}}">
-    {% render_snippet 'Customer Affiliate Icon' %}
-    Affiliate Links
+  {% render_snippet 'Customer Affiliate Icon' %}
+  {{ 'customer.menu.affiliateLinks' | t }}
 </a>
 <a href="customer/payouts" class="{{'active' if currentUrl == '/customer/payouts' else ''}}" style="border-bottom: none;">
-    {% render_snippet 'Customer Payouts Icon' %}
-    Payouts
+  {% render_snippet 'Customer Payouts Icon' %}
+  {{ 'customer.menu.payouts' | t }}
 </a>

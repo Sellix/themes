@@ -34,9 +34,29 @@
 </style>
 
 <div class="sellix-customer-info-blocks">
-  {% render_snippet 'Customer Dashboard Analytic Item', properties=properties, title="Current Balance", value=([currencyList[revenueCurrency], revenueTotal] | join) %}
-  {% render_snippet 'Customer Dashboard Analytic Item', properties=properties, title="Revenue Percentage", value=([shopPercentageTotal, '%'] | join) %}
-  {% render_snippet 'Customer Dashboard Analytic Item', properties=properties, title="Total Commission", value=([currencyList[totalEarnedCurrency], totalEarned] | join) %}
-  {% render_snippet 'Customer Dashboard Analytic Item', properties=properties, title="Total Referrals", value=totalReferrals %}
+  {% render_snippet
+    'Customer Dashboard Analytic Item',
+    properties=properties,
+    title=('customer.dashboard.analytics.titles.currentBalance' | t),
+    value=([currencyList[revenueCurrency], revenueTotal] | join)
+  %}
+  {% render_snippet
+    'Customer Dashboard Analytic Item',
+    properties=properties,
+    title=('customer.dashboard.analytics.titles.revenuePercentage' | t),
+    value=([shopPercentageTotal, '%'] | join)
+  %}
+  {% render_snippet
+    'Customer Dashboard Analytic Item',
+    properties=properties,
+    title=('customer.dashboard.analytics.titles.totalCommission' | t),
+    value=([currencyList[totalEarnedCurrency], totalEarned] | join)
+  %}
+  {% render_snippet
+    'Customer Dashboard Analytic Item',
+    properties=properties,
+    title=('customer.dashboard.analytics.titles.totalReferrals' | t),
+    value=totalReferrals
+  %}
 </div>
 

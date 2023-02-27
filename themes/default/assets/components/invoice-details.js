@@ -66,6 +66,7 @@
           theme: this.theme,
           invoiceId: this.invoiceId,
           invoiceInfo: this.invoice,
+          sellixI18Next: window.sellixI18Next,
           onGetInvoice: this.onGetInvoice,
           onUpdateInvoice: this.onUpdateInvoice,
           onCompleteInvoice: this.onCompleteInvoice,
