@@ -3,7 +3,7 @@
 {% set shop = shopInfo.shop %}
 {% set theme = global.common.theme %}
 {% set customerInfo = global.common.customerInfo %}
-
+{% set customerRefferalID = global.common.customerInfo.customer.id %}
 {% set currencyList = global.config.CURRENCY_LIST %}
 
 {% set revenueTotal = customerInfo.customer.affiliate_revenue %}
@@ -38,5 +38,5 @@
   {% render_snippet 'Customer Dashboard Analytic Item', properties=properties, title="Revenue Percentage", value=([shopPercentageTotal, '%'] | join) %}
   {% render_snippet 'Customer Dashboard Analytic Item', properties=properties, title="Total Commission", value=([currencyList[totalEarnedCurrency], totalEarned] | join) %}
   {% render_snippet 'Customer Dashboard Analytic Item', properties=properties, title="Total Referrals", value=totalReferrals %}
+  {% render_snippet 'Customer Dashboard Analytic Item Ref Link', properties=properties, title="Referral Link" %}
 </div>
-
