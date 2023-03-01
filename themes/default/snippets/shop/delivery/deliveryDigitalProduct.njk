@@ -1,0 +1,160 @@
+{% set id = uid() %}
+{% set invoice = args.invoice %}
+{% set info = args.info %}
+{% set productType = args.product_type %}
+{% set isCart = args.is_cart if args.is_cart is defined else false %}
+
+{% if not productType %}
+  {% set productType = info.product.type %}
+{% endif %}
+
+{% if productType === 'FILE' and info.file_attachment %}
+  <div class="sellix-delivery-digital">
+    <div class="sellix-delivery-digital-title">{{ 'shop.delivery.product.file.file' | t }}:</div>
+
+    <pre class="sellix-delivery-digital-item">
+      {%- if true -%}
+      <span>{{ 'shop.delivery.product.file.fileName' | t }}: {{ info.file_attachment.original_name }}</span><br>{#
+      #}<span>{{ 'shop.delivery.product.file.fileSize' | t }}: {{ info.file_attachment.size | format_bytes }}</span>
+      {%- endif -%}
+    </pre>
+  </div>
+
+  {% if not isCart %}
+    <button
+      type="button"
+      class="sellix-delivery-digital-button medium primary"
+      onclick="saveToFile_{{ id }}()"
+    >
+      <i class="fas fa-save"></i>&nbsp;&nbsp; {{ 'shop.delivery.downloadFile' | t }}
+    </button>
+  {% endif %}
+{% endif %}
+
+{% if productType === 'SERIALS' and info.serials | length %}
+  <div class="sellix-delivery-digital">
+    <div class="sellix-delivery-digital-title">{{ 'shop.delivery.product.serials.serials' | t }}:</div>
+
+    <pre class="sellix-delivery-digital-item" style="overflow:auto hidden">
+        {%- for serial in info.serials -%}
+          <span style="font-size: .75rem;line-height: 1;">{{ serial }}<br/></span>
+        {%- endfor -%}
+    </pre>
+  </div>
+
+  <div class="sellix-delivery-digital-buttons">
+    <button
+      type="button"
+      style="min-width: 11rem; min-height: 40px; max-height: 40px"
+      class="medium primary mr-3"
+      onclick="copyToClipboard_{{ id }}(`{{ info.serials }}`)"
+    >
+      <i class="fas fa-copy"></i>&nbsp;&nbsp;{{ 'shop.delivery.copyToClipboard' | t }}
+    </button>
+
+    {% if not isCart %}
+      <button
+        type="button"
+        class="sellix-delivery-digital-button medium primary"
+        onclick="saveToFile_{{ id }}()"
+      >
+        <i class="fas fa-save"></i>&nbsp;&nbsp;{{ 'shop.delivery.saveAsFile' | t }}
+      </button>
+    {% endif %}
+  </div>
+{% endif %}
+
+{% if productType === 'DYNAMIC' and info.dynamic_response %}
+  <div class="sellix-delivery-digital">
+    <div class="sellix-delivery-digital-title">
+      {{ 'shop.delivery.product.dynamic.productIssued' | t }}:
+    </div>
+
+    <pre class="sellix-delivery-digital-item" style="font-size:.8rem">
+      {{- info.dynamic_response -}}
+    </pre>
+  </div>
+  <div class="sellix-delivery-digital-buttons">
+    <button
+      type="button"
+      style="min-width: 11rem; min-height: 40px; max-height: 40px"
+      class="mr-3 medium primary"
+      onclick="copyToClipboard_{{ id }}(`{{ info.dynamic_response }}`)"
+    >
+      <i class="fas fa-copy"></i>&nbsp;&nbsp;{{ 'shop.delivery.copyToClipboard' | t }}
+    </button>
+
+    {% if not isCart %}
+      <button
+        type="button"
+        class="sellix-delivery-digital-button medium primary"
+        onclick="saveToFile_{{ id }}()"
+      >
+        <i class="fas fa-save"></i>&nbsp;&nbsp;{{ 'shop.delivery.saveAsFile' | t }}
+      </button>
+    {% endif %}
+  </div>
+{% endif %}
+
+{% if productType === 'SERVICE' %}
+  {% if info.service_text %}
+    <div class="sellix-delivery-digital">
+      <div class="sellix-delivery-digital-title">{{ 'shop.delivery.product.service.service' | t }}:</div>
+
+      <pre class="sellix-delivery-digital-item" style="white-space: break-spaces">
+          {{- info.service_text | dom_sanitize -}}
+      </pre>
+    </div>
+
+    <div class="sellix-delivery-digital-buttons">
+      <button
+        type="button"
+        style="min-width:11rem; min-height: 40px; max-height: 40px"
+        class="mr-3 medium primary"
+        onclick="copyToClipboard_{{ id }}(`{{ info.service_text }}`)"
+      >
+        <i class="fas fa-copy"></i>&nbsp;&nbsp;{{ 'shop.delivery.copyToClipboard' | t }}
+      </button>
+
+      {% if not isCart %}
+        <button
+          type="button"
+          class="sellix-delivery-digital-button medium primary"
+          onclick="saveToFile_{{ id }}()"
+        >
+          <i class="fas fa-save"></i>&nbsp;&nbsp;{{ 'shop.delivery.saveAsFile' | t }}
+        </button>
+      {% endif %}
+    </div>
+  {% else %}
+    <div class="sellix-delivery-digital">
+      <div class="sellix-delivery-digital-title">
+        {{ 'shop.delivery.product.service.noService' | t }}
+      </div>
+      <div class="sellix-delivery-digital-item sellix-text">
+        <p>
+          {{ 'shop.delivery.product.service.noServiceText' | t }}
+        </p>
+      </div>
+    </div>
+    <a href="contact" target="_blank" class="sellix-delivery-digital-button">
+      <button type="button" class="medium primary">
+        <i class="fas fa-comments"></i>&nbsp;&nbsp;{{ 'shop.delivery.product.service.contact' | t({shopName: info.product.name}) }}
+      </button>
+    </a>
+  {% endif %}
+{% endif %}
+
+<script type="application/javascript">
+  function copyToClipboard_{{ id }}(text) {
+    window.copyToClipboard(text);
+    jQuery(document).trigger('SellixToastify', {
+      type: 'success',
+      text: "{{ 'shop.delivery.copiedToClipboard' | t }}",
+    });
+  }
+
+  function saveToFile_{{ id }}() {
+    window.sellixHelper.saveInvoiceToFile('{{ invoice.uniqid }}', '{{ productType }}');
+  }
+</script>

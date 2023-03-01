@@ -31,7 +31,7 @@
                 type: 'success',
                 text: resp.message,
               });
-              window.location.href = '/ticket/' + resp.data.uniqid;
+              window.location.href = 'ticket/' + resp.data.uniqid;
             } else {
               jQuery(document).trigger('SellixToastify', {
                 type: 'error',

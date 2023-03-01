@@ -1,0 +1,954 @@
+{
+  "shop": {
+    "delivery": {
+      "productSubscriptionCompleted": "你的订阅购买成功了。",
+      "downloadFile": "下载文件",
+      "invoiceId": "发票编号",
+      "product": {
+        "file": {
+          "fileSize": "尺寸",
+          "file": "文件",
+          "fileName": "文件名称"
+        },
+        "serials": {
+          "serials": "连环画"
+        },
+        "service": {
+          "noService": "没有服务文本",
+          "noServiceText": "该产品没有服务文本，请等待卖家的进一步行动或在其页面上开票。",
+          "service": "服务",
+          "contact": "联系{{- shopName}}。"
+        },
+        "dynamic": {
+          "productIssued": "发布的产品"
+        }
+      },
+      "invoiceConfirmationEmailText": "您的发票已被支付。<br />我们将向您的地址发送一封确认邮件，您将被转到卖家的网站上。",
+      "subscription": {
+        "sentToEmail": [ "订阅直接发送到您的电子邮件，请检查是否有电子邮件发送。", "以获得你的产品和/或与企业取得联系。" ],
+        "goToPortal": "转到客户帐单门户",
+        "note": "如果你需要帮助，请使用下面的按钮参考商家的联系页面。你也可以进入我们的客户计费门户，管理你名下的有效订阅。",
+        "title": "订阅购买",
+        "return": "你现在可以回到商家的网站，那里的订阅很快就会激活。如果您需要帮助，请使用下面的按钮参考商户的联系页面。你也可以进入我们的客户计费门户，管理你名下的有效订阅。",
+        "contactMerchant": "联系商家",
+        "pleaseNote": "请注意"
+      },
+      "orderCompleted": "订单完成了!",
+      "messageFrom": "信息来自",
+      "trialStarted": "审判开始",
+      "subscriptionOrderCompleted": "您对{{- subscriptionName}}的订单已经完成。",
+      "trialText": "您的试用已经开始。<br />您将在几分钟内收到产品，请查看您的电子邮件!",
+      "saveAsFile": "保存为文件",
+      "paymentCompleted": "付款完成",
+      "downloadInvoice": "下载发票",
+      "subscriptionStarted": "订阅开始",
+      "backButtonTitle": "返回到{{shopName}}的商店",
+      "copyToClipboard": "复制到剪贴板",
+      "cartCompleted": "购物车的订单已经完成。",
+      "productCompleted": "您对{{- productName}}的订单已经完成。",
+      "copiedToClipboard": "复制到剪贴板",
+      "subscriptionTitle": "订阅",
+      "invoiceProductText": "您的发票已经支付。<br />您将在几分钟内收到产品，请查看您的电子邮件",
+      "subscriptionText": "您的订阅现在已经激活。<br />您将很快收到一封电子邮件，确认您的购买并提供收据。",
+      "copied": "抄袭"
+    },
+    "invoice": {
+      "invoiceDetails": {
+        "modes": {
+          "cashApp": {
+            "messages": {
+              "one": [ "复制你的付款代码。", "发送金额时", "，在备注栏中设置。" ],
+              "three": "或者复制并粘贴卖家的现金标签。",
+              "four": "在你发送完金额后，点击下一步按钮。",
+              "two": "然后通过Cash App扫描QR码。"
+            },
+            "copied": "抄袭",
+            "timeUp": {
+              "message": [ "你可以通过查看Cash App发给你的邮件找到识别器。", "检查是否有与此类似的代码。", "，向下滚动。" ],
+              "title": "您的付款无法被识别"
+            },
+            "cashTagTitle": "现金应用 现金标签",
+            "next": "下一页",
+            "notTimeUp": {
+              "secondsRemaining": "{{seconds}}剩余秒数",
+              "title": "请允许长达120秒的时间，我们正在识别您的付款。",
+              "manualReview": "现在转到人工审查"
+            },
+            "qrShouldBeThere": "QR应该在那里"
+          },
+          "default": {
+            "payments": {
+              "stripe": {
+                "isNotReadyError": "Stripe还没有准备好。请稍后再试。",
+                "browserNotice": {
+                  "browsers": {
+                    "other": {
+                      "title": "苹果支付没有显示出来？",
+                      "message": "如果Apple Pay没有出现在付款表格上，请检查你是否使用了最新版本的Safari浏览器。只有当你的iCloud钱包至少有一张链接的信用卡时，才会显示Apple Pay。"
+                    },
+                    "chrome": {
+                      "message": "如果Google Pay没有出现在付款表格上，请检查您使用的是最新版本的Chrome浏览器。只有当你登录到谷歌，并且你的谷歌账户有一个至少有一张链接信用卡的钱包时，才会显示谷歌支付。",
+                      "title": "谷歌支付没有显示出来？"
+                    }
+                  },
+                  "moreInfo": "更多信息"
+                },
+                "noSuchPrice": "没有这样的价格",
+                "alreadyPaid": {
+                  "title": "已经付款了吗？",
+                  "message": "如果您已经用Stripe发送了付款，订单可能需要60秒的时间来处理。",
+                  "somethingWrong": {
+                    "message": [ "如果在尝试购买时出了问题，请不要犹豫，以", "联系", "的业务。" ],
+                    "title": "出了问题"
+                  }
+                },
+                "message": "{{paymentName}}付款需要2至14天的时间来处理和完成交易，这取决于您的银行。一旦您发送了付款，请等待发票被标记为付款。",
+                "payNow": "立即支付",
+                "pay": "缴费"
+              },
+              "perfectMoney": {
+                "payButton": {
+                  "value": "现在就支付!",
+                  "title": "完美的金钱"
+                }
+              },
+              "crypto": {
+                "sendTo": [ "发送", "至" ],
+                "qrCode": "二维码",
+                "showHash": "显示哈希",
+                "payWallet": "在钱包中支付",
+                "copied": "抄袭"
+              },
+              "paypal": {
+                "notes": {
+                  "loading": "加载付款按钮。",
+                  "isLoaded": "要继续结账，请点击上面的按钮。"
+                },
+                "alreadyPaid": {
+                  "message": "如果你已经用PayPal支付了款项，订单可能需要60秒的时间来处理。",
+                  "somethingWrong": {
+                    "message": [ "如果在尝试购买时出了问题，请不要犹豫，以", "联系", "的业务。" ],
+                    "title": "出了问题"
+                  },
+                  "messageAPM": "如果你已经用PayPal支付了款项，订单可能需要5分钟的时间来处理。",
+                  "title": "已经付款了吗？"
+                }
+              }
+            },
+            "subscription": "订阅",
+            "orderDetails": {
+              "statuses": {
+                "waiting": "等待商店的行动",
+                "processing": "处理",
+                "received": "收到",
+                "partial": "局部付款",
+                "pending": "等待付款",
+                "confirmation": "等待确认"
+              },
+              "titles": {
+                "email": "电子邮件",
+                "created": "创建",
+                "months": "几个月",
+                "shop": "淘宝店",
+                "quantity": "数量",
+                "status": "状况"
+              }
+            },
+            "price": "价格",
+            "invoice": "发票",
+            "product": "产品",
+            "blockchain": "区块链",
+            "chainAlert": "通过{{名}}以外的其他连锁机构发送资金，将导致您的资金永久丢失。",
+            "cart": "产品",
+            "addonsTitle": "附加组件",
+            "timerTitle": "取消在"
+          },
+          "qr": {
+            "payOn": "支付上",
+            "infoSlider": {
+              "totalPrice": "总价",
+              "exchangeRate": "汇率",
+              "amount": "数量",
+              "subtotal": "小计",
+              "pleaseSend": "请将您的付款在"
+            },
+            "title": {
+              "common": [ "扫描二维码或复制并粘贴付款细节到你的钱包。", "我们只支持通过以下方式进行加密货币交易", ".发送到其他链上的交易将不会被检测到，并会导致加密货币的损失。" ],
+              "binanceAlert": "用您的Binance应用程序扫描下面的QRCode以进行支付。",
+              "binance": [ "通过以下方式发送加密货币付款，交易费用为0", "登记", "到Binance免费。" ]
+            },
+            "copied": "抄袭",
+            "qrShouldBeThere": "QR应该在那里"
+          }
+        },
+        "statuses": {
+          "waitingShopAction": {
+            "short": "等待商店的行动",
+            "title": "等待商店的行动"
+          },
+          "selectPayment": {
+            "title": "选择支付方式",
+            "short": "选择支付方式"
+          },
+          "waitingConfirmations": {
+            "title": "待定",
+            "short": "待定"
+          },
+          "voided": {
+            "title": "发票作废",
+            "short": "取消了"
+          },
+          "partial": {
+            "short": "部分",
+            "title": "部分"
+          },
+          "customerDispute": {
+            "short": "争议",
+            "title": "客户争议"
+          },
+          "refunded": {
+            "short": "资助",
+            "title": "发票退款"
+          },
+          "processing": {
+            "short": "处理",
+            "title": "处理"
+          },
+          "reversed": {
+            "title": "发票反转",
+            "short": "推翻"
+          },
+          "completed": {
+            "short": "付费",
+            "title": "付费"
+          }
+        },
+        "alerts": {
+          "processing": {
+            "message": "发票目前正在处理中，这可能需要5分钟。请忍耐一下，我们会尽快把你的数码产品做好。"
+          },
+          "success": {
+            "message": [ "您的发票已被支付。", "你将在几分钟内收到产品，请查看你的电子邮件" ],
+            "developerMessage": [ "您的发票已被支付。", "我们将向您的地址发送一封确认邮件，您将被转到卖家的网站。" ]
+          },
+          "await": {
+            "message": [ "我们已经收到你的交易。", "一旦达到所需的确认，你购买的产品将被运到你的邮箱。" ],
+            "messageCashApp": [ "该店现在必须接受你的", "交易。", "一旦这一行动得到处理，你将自动收到一封电子邮件，其中包含你购买的产品。", "这一行动可能需要几个小时，你可以关闭这个页面。" ]
+          },
+          "partial": {
+            "message": [ "已经收到了{{name}}，但这还不够。", "我们只收到", "请将剩余的金额寄给我们，以便履行发票。" ],
+            "title": "我们还没有收到全部款项",
+            "of": "的",
+            "payments": "支付的费用",
+            "transaction": "交易"
+          },
+          "canceled": {
+            "messageReversed": "PayPal已经撤销了这项交易，你已经收到了你的钱，发票也被取消了。",
+            "messageRefunded": "该交易已被退还，你已收到你的钱，并且发票已被取消。",
+            "message": "发票已经作废，这意味着你的付款可能没有达到预期的效果，或者你达到了时限。"
+          },
+          "dispute": {
+            "message": "这张发票目前正处于客户的争议之中。"
+          }
+        },
+        "gateway": {
+          "deliverPaypal": "交付给PayPal电子邮件。",
+          "back": "溯源",
+          "changeButtonHide": "隐藏",
+          "gatewayChanged": [ "支付方式已改变", "它可以影响发票的价格" ],
+          "update": "更新发票",
+          "changeButtonShow": "改变支付方式",
+          "noAvailablePaymentMethods": "没有可用的支付方式",
+          "changeButtonTitle": "更改网关"
+        },
+        "productSoldOut": "产品售罄",
+        "cartSoldOut": "购物车产品已售完",
+        "processing": "处理",
+        "awaitingConfirmation": "等待确认",
+        "pageTitle": "发票 {{invoiceId}}| Sellix",
+        "paymentDetails": "付款细节"
+      },
+      "subscription": {
+        "title": "订阅 {{- subscriptionName }}.",
+        "description": "您购买的是{{-订阅名}}订阅。一旦发票被标记为完成，您将自动收到您所支付的月份。"
+      },
+      "cart": {
+        "title": "购物车信息"
+      },
+      "product": {
+        "title": "产品介绍"
+      },
+      "trackingTitle": "发票跟踪"
+    },
+    "trust": {
+      "help": "什么是可信顾问，这对客户意味着什么？",
+      "identityVerified": {
+        "yes": "身份验证",
+        "no": "身份未被核实"
+      },
+      "feedbackText": "反馈上诉率考虑了一个商家拥有的反馈总量以及有多少被上诉（被删除或被质疑）。上诉率的数值在0.00和1之间，其中0.10对应于所有上诉反馈的10%。",
+      "identityText": {
+        "no": "该商家没有向Sellix核实其身份和细节。我们无法确认这家店是一个有效的、独特的商家。",
+        "yes": "该企业已经向Sellix核实了其身份和细节。经过验证的商家已经通过了地址和文件验证阶段，确认了他们的身份和商家的唯一性。"
+      },
+      "low": "低",
+      "paypalAccepted": {
+        "no": "不接受PayPal或信用卡/借记卡",
+        "yes": "接受PayPal或信用卡"
+      },
+      "sales": "过去14天的销售情况",
+      "feedback": "反馈上诉率",
+      "salesText": "这个指标考虑到该企业在过去14天的销售数量。高销量和中等销量意味着该企业一直在积极主动地销售商品，每天至少有一个订单。",
+      "feedbackScore": "反馈得分",
+      "high": "高",
+      "paypalText": [ "该商家不接受任何有消费者保护的支付方式。例如，加密货币和现金应用由于其性质，不能接受退款。请谨慎行事，并确保你知道你买的是什么。", "该商家接受PayPal和信用卡/借记卡等支付方式，具有消费者保护功能；也就是说，通过他们支付时，只有在所购商品无效的情况下才能执行退款请求。然而，这并不意味着现金应用和加密货币等支付方式可以申请退款，因为这些支付方式由于其性质而不被接受。" ],
+      "feedbackScoreText": "反馈得分帮助客户了解这个企业最近是否有积极的反馈，这意味着每个客户购买的都是有效的商品。",
+      "title": "值得信赖的顾问"
+    },
+    "checkout": {
+      "purchaseDetails": {
+        "product": {
+          "price": {
+            "subtotal": "小计",
+            "productDiscount": "产品折扣",
+            "tax": "税收",
+            "total": "共计",
+            "balanceAmount": "从余额中使用",
+            "volumeDiscount": "数量折扣",
+            "bundleDiscount": "捆绑式折扣",
+            "couponDiscount": "优惠券",
+            "gatewayFee": "门槛费",
+            "tooltip": "价格是如何计算的？"
+          },
+          "addToCart": "添加到购物车",
+          "applyCoupon": "应用优惠券",
+          "titles": {
+            "productDelivery": "产品交付",
+            "purchase": "购买",
+            "paymentMethod": "支付方式"
+          },
+          "getIt": "得到它",
+          "pay": "缴费",
+          "useYourBalance": "使用你的余额",
+          "back": "溯源",
+          "customPrice": {
+            "validationMessages": {
+              "isNotNumber": "价格字段的值应该是一个数字",
+              "isEmpty": "价格字段不能为空",
+              "toLow": "你的价格应该超过{{-价格}}。"
+            },
+            "title": "选择你的价格"
+          },
+          "noPaymentOptions": "该产品没有付款选项。",
+          "addCart": {
+            "add": "添加",
+            "typeHere": "这里的类型"
+          },
+          "continue": "继续",
+          "selectGateway": "选择网关",
+          "coupon": "优惠券",
+          "buyNow": "现在购买",
+          "free": "免费",
+          "tax": "税收",
+          "priceCalculated": "价格是如何计算的？"
+        },
+        "customFields": {
+          "paypal": {
+            "alertTitle": "请注意",
+            "text": "Sellix履行的电子邮件将被传递到你的PayPal邮箱。",
+            "moreInfo": "更多信息",
+            "info": [ "购买后，你也将无法在网站上查看该产品。", "这是为了避免用PayPal进行欺诈性购买。" ],
+            "deliverCheckboxTitle": "交付给PayPal电子邮件。"
+          },
+          "emailInputPlaceholder": "通过电子邮件获取发票更新信息",
+          "termsOfServiceMessage": [ "通过点击支付，您同意{{产品名称}}的", "服务条款", "" ],
+          "optional": "可选",
+          "emailIsRequired": "需要电子邮件",
+          "discordMessage": [ "连接你的", "帐户" ],
+          "byClickingPay": [ "通过点击支付，你同意", "服务条款" ]
+        },
+        "productQuantity": {
+          "stock": "股票",
+          "lastProduct": "最后一个产品"
+        },
+        "subscription": {
+          "subtitles": {
+            "billingInfo": "",
+            "subscription": "",
+            "paymentMethod": "",
+            "paymentMethodTrial": "你现在还不能选择这些网关，这只是为了让你知道在试用期结束后你将如何付款。",
+            "email": ""
+          },
+          "tax": "税收",
+          "back": "溯源",
+          "titles": {
+            "paymentMethodTrial": "试用结束后可用的网关",
+            "email": "订阅电子邮件",
+            "subscription": "订阅",
+            "paymentMethod": "支付方式",
+            "billingInfo": "账单信息"
+          },
+          "proceed": "继续",
+          "coupon": "优惠券",
+          "pay": "缴费",
+          "chargedAddon": "对附加组件的付款只在第一次时收取。",
+          "changeEmail": "更改电子邮件",
+          "goToPortal": "转到客户帐单门户",
+          "noPaymentOptions": "该产品没有付款选项。",
+          "startSubscription": "开始订阅",
+          "applyACoupon": "应用优惠券",
+          "continue": "继续",
+          "billedEvery": "每次开票",
+          "trialPeriod": "试用期",
+          "paymentRenewal": "每次续约时付款",
+          "paymentMethod": "支付方式"
+        },
+        "codeAuthForm": {
+          "title": "认证码",
+          "firstName": "名字",
+          "lastName": "姓氏",
+          "message": "我们已经向您的电子邮件地址发送了一个独特的代码，请在下面插入该代码。"
+        },
+        "applyCoupon": {
+          "volumeDiscountIsUsed": "本优惠券不能在使用批量折扣时使用",
+          "inputPlaceholder": "优惠券代码",
+          "paypalExcluded": "贝宝将不会是一个可用的支付方式与优惠券",
+          "isApplied": "优惠券已使用!",
+          "apply": "申请",
+          "notValid": "优惠券无效。它可能已经过期，对购物车中的产品无效或不存在。"
+        },
+        "gateways": {
+          "crypto": {
+            "subtitle": "向一个地址发送直接交易",
+            "title": "加密货币"
+          },
+          "binance": {
+            "subtitle": [ "如果你没有Binance账户。", "在此注册", "并以0%的费用发送加密货币交易。" ],
+            "title": "Binance Pay"
+          },
+          "gatewaySelectorText": "付款需要2至14天的时间来处理和完成交易，这取决于你的银行。一旦你发送了付款，请等待发票被标记为付款。",
+          "venmo": {
+            "title": "文摩",
+            "subtitle": "仅适用于部分美国客户和美元购买的产品"
+          },
+          "stripe": {
+            "message": "使用维萨卡、万事达卡、运通卡或使用{{browserPay}}（如果您的设备上启用了这些卡）进行支付。",
+            "browserPays": {
+              "apple": "苹果支付",
+              "google": "谷歌支付",
+              "googleOrApple": "苹果支付或谷歌支付"
+            },
+            "title": "信用卡/借记卡"
+          },
+          "cashApp": {
+            "title": "现金应用",
+            "subtitle": "使用你的移动设备通过现金应用程序支付，实现即时支付"
+          },
+          "paypal": {
+            "payLater": "后付款",
+            "title": "贝宝",
+            "creditCardAndPaypal": "使用PayPal的信用卡",
+            "paypalCredit": "PayPal信贷",
+            "useYourPayPalAccount": "使用你的贝宝账户",
+            "paypal": "贝宝"
+          },
+          "perfectMoney": {
+            "title": "完美的金钱",
+            "subtitle": "使用您的Perfect Money账户进行购买"
+          },
+          "banking": {
+            "title": "银行业务，区域方法"
+          },
+          "skrill": {
+            "subtitle": "使用您的 Skrill 钱包进行购买",
+            "title": "Skrill"
+          }
+        },
+        "stripeForm": {
+          "fields": {
+            "surname": {
+              "isRequired": "需要姓氏",
+              "title": "姓氏"
+            },
+            "state": {
+              "isRequired": "要求国家",
+              "title": "国家"
+            },
+            "city": {
+              "title": "城市",
+              "isRequired": "城市是需要的"
+            },
+            "address": {
+              "isRequired": "地址是必须的",
+              "title": "地址"
+            },
+            "country": {
+              "isRequired": "国家是必需的",
+              "title": "国家"
+            },
+            "postalCode": {
+              "title": "邮政编号",
+              "isRequired": "需要提供邮政编码"
+            },
+            "name": {
+              "title": "命名",
+              "isRequired": "名字是必须的"
+            }
+          },
+          "title": "Stripe要求的细节"
+        },
+        "priceDetails": {
+          "calcTitles": {
+            "gatewayFee": "门槛费",
+            "volumeDiscount": "数量折扣",
+            "bundleDiscount": "捆绑式折扣",
+            "usedFromBalance": "从余额中使用",
+            "productDiscount": "产品折扣",
+            "tax": "税收",
+            "couponDiscount": "优惠券折扣",
+            "subtotal": "小计"
+          },
+          "title": "扣除网关费用后的价格",
+          "tooltip": "价格是如何计算的？"
+        },
+        "alerts": {
+          "success": {
+            "orderCompleted": "订单完成了!",
+            "invoice": [ "您的发票已被支付。", "我们将向您的地址发送一封确认邮件，您将被转到卖家的网站。" ],
+            "subscriptionStarted": "订阅开始",
+            "product": [ "您的发票已被支付。", "你将在几分钟内收到产品，请查看你的电子邮件" ],
+            "trialStarted": "审判开始",
+            "subscription": [ "您的订阅现在已经激活。", "你将很快收到一封电子邮件，确认你的购买并提供收据。" ],
+            "trial": [ "你的审判已经开始。", "你将在几分钟内收到产品，请查看你的电子邮件" ]
+          }
+        },
+        "productMinMaxNote": {
+          "addMore": [ "添加", "更多的是为了得到一个", "折扣" ],
+          "maxQuantity": "可购买的最大数量",
+          "purchaseLimit": [ "你只能购买", "每个订单的项目" ],
+          "minQuantity": "最低要求的数量"
+        },
+        "customerBalance": {
+          "balance": "平衡"
+        },
+        "addToCart": {
+          "inputPlaceholder": "在此键入",
+          "add": "添加",
+          "selectPlaceholder": "数量"
+        }
+      },
+      "showDescription": "显示说明",
+      "stock": "股票",
+      "hideDescription": "隐藏描述"
+    },
+    "contact": {
+      "email": "电子邮件",
+      "buttonTitle": "创建票据",
+      "emailRequired": "电子邮件是必需的!",
+      "message": "留言",
+      "invoiceId": "发票编号（可选字段）",
+      "invoiceIdPlaceholder": "输入12位数字的发票编号",
+      "messageRequired": "需要留言!",
+      "messagePlaceholder": "你想问什么？",
+      "emailPlaceholder": "输入你的电子邮件",
+      "title": "标题",
+      "titleRequired": "标题是必须的!",
+      "titlePlaceholder": "例如：滴滴出行的条款和条件"
+    },
+    "ticket": {
+      "messagePlaceholder": "输入一个信息",
+      "senders": {
+        "merchant": "商户",
+        "you": "你"
+      },
+      "title": "票务"
+    },
+    "shared": {
+      "menu": {
+        "affiliateProgram": "联盟计划",
+        "terms": "条款",
+        "products": "产品",
+        "trustedAdvisor": "值得信赖的顾问",
+        "feedback": "反馈信息",
+        "faq": "基金会",
+        "contact": "联系我们"
+      },
+      "banner": {
+        "shopInfo": {
+          "enterpeneur": "承包商",
+          "starter": "首发",
+          "business": "商业",
+          "professional": "专业人员",
+          "providingService": "提供{{服务类型}}服务，自{{服务月份}}起{{服务年}}提供服务"
+        },
+        "stats": {
+          "productQuality": "产品质量",
+          "productSold": "销售的产品"
+        }
+      },
+      "reviews": {
+        "reviewsWithCount_other": "{{count}}评论",
+        "reviewsWithCount_few": "{{count}}评论",
+        "reviewsWithCount_one": "{{count}}审查",
+        "reviewsWithCount_many": "{{count}}评论",
+        "noReviews": "没有评论"
+      },
+      "toastify": {
+        "fail": "在试图访问你的一个资源时，发生了一个错误。",
+        "success": "你的行动已经完成，资源已被更新。"
+      },
+      "titles": {
+        "productType": {
+          "serials": "连环画",
+          "product": "产品",
+          "subscription": "订阅",
+          "service": "服务",
+          "info": "信息",
+          "group": "集团"
+        },
+        "serverError": "服务器错误!",
+        "add": "添加",
+        "startingAt": "起点是",
+        "onHold": "搁置中",
+        "goBack": "返回首页",
+        "remove": "移除",
+        "getIt": "得到它",
+        "stock": "股票",
+        "free": "免费",
+        "moreInfo": "点击查看更多信息",
+        "buy": "购买",
+        "lastProduct": "最后一个产品"
+      },
+      "footer": {
+        "title": "电子商务解决方案由"
+      }
+    },
+    "main": {
+      "productList": {
+        "filter": {
+          "default": "默认情况下",
+          "price": "价格",
+          "placeholder": "搜索一个产品...",
+          "indexBy": "指数由",
+          "type": "类型",
+          "allCategories": "所有类别",
+          "stock": "股票",
+          "name": "命名"
+        },
+        "items": {
+          "categoryNoProducts": "类别没有产品",
+          "clear": "清楚",
+          "noProductFound": "没有找到产品"
+        }
+      },
+      "cards": {
+        "group": {
+          "onHold": "搁置的产品",
+          "inStock": "有库存",
+          "outOfProducts": "缺少的产品",
+          "loading": "正在加载..."
+        },
+        "product": {
+          "soldOut": "产品售罄",
+          "onHold": "该产品被搁置，目前无法购买。",
+          "yourPrice": "选择你的价格"
+        },
+        "info": {
+          "clickHere": "点击这里获取更多信息"
+        },
+        "subscription": {
+          "onHold": "该产品被搁置，目前无法购买。"
+        }
+      }
+    },
+    "faq": {
+      "items": [ {
+        "answer": "要在购买后与支持部门取得联系，你可以使用内置的票务系统。只需访问联系页面，提交您的详细资料，我们将尽快回复您。",
+        "question": "在我购买产品后，我如何与支持部门联系？"
+      }, {
+        "question": "我可以用我喜欢的方式付款吗？",
+        "answer": "是的，我们支持广泛的支付方式，包括信用卡等流行的法定选项以及各种加密货币。这使你能够使用对你来说最方便的方法进行支付。"
+      }, {
+        "question": "缴费是否安全？",
+        "answer": "是的，我们非常重视安全问题。我们使用先进的防欺诈措施来防止欺诈性交易，并安全地存储所有付款信息。"
+      }, {
+        "question": "我如何进行购买？",
+        "answer": "进行购买很容易。只需浏览现有的产品，并将你想购买的产品添加到你的购物车。当你准备结账时，你会被提示输入你的付款信息并完成交易。"
+      }, {
+        "answer": "购买产品的退货政策将根据所购买的具体产品而有所不同。重要的是，在购买前要查看每种产品的退货政策，以确保你了解条款和条件。",
+        "question": "购买产品的退货政策是什么？"
+      } ],
+      "title": "常见问题"
+    },
+    "feedback": {
+      "noFeedbacks": "{{- shopName}}的店铺没有反馈。",
+      "card": {
+        "reply": "- 卖方的答复",
+        "verifiedPurchase": "经过验证的购买"
+      },
+      "formTitle": "留下您的反馈意见",
+      "formSubtitle": "这个产品好吗？请在这里写下你的反馈意见。",
+      "tooLongMessage": "反馈必须是256个字符的长度",
+      "textPlaceholder": "请留下您的反馈文字",
+      "buttonTitle": "提交"
+    },
+    "product": {
+      "onHold": "搁置的产品",
+      "bundle": {
+        "addAllButtonTitle": "添加所有产品",
+        "discountTitle": [ "拯救", "用我们的折扣在你的购物车里多加一件产品。" ]
+      },
+      "warrantyTitle": "产品保修",
+      "developerInvoiceDescription": "您正在购买{{产品名称}}的一项服务。<br /> 一旦您的付款完成，并且这张发票被标记为已付款，您将被重新定向到{{产品名称}}的网站。<br /> 如果您有任何问题，请直接联系{{产品名称}}的支持。",
+      "soldTitle": [ "已售出的产品", "次" ],
+      "relations": {
+        "feedback": {
+          "title": "反馈信息"
+        },
+        "termsOfService": {
+          "title": "服务条款"
+        }
+      }
+    },
+    "cart": {
+      "clear": "清楚",
+      "description": "添加、删除产品或进入结账页面继续购买。",
+      "title": "购物车",
+      "checkout": "结账"
+    },
+    "404": {
+      "description": "看起来你正试图访问一个从未存在过的项目。",
+      "header": "未找到页面"
+    },
+    "terms": {
+      "noTerms": "{{- shopName}}的店铺没有条款和条件。"
+    }
+  },
+  "shared": {
+    "periods": {
+      "day_one": "日",
+      "week_one": "周",
+      "day_many": "天",
+      "day_few": "天",
+      "day_other": "天",
+      "year_other": "年",
+      "year_few": "年",
+      "week_many": "周数",
+      "year_one": "年",
+      "week_other": "周数",
+      "month_one": "月",
+      "year_many": "年",
+      "week_few": "周数",
+      "month_other": "几个月",
+      "month_many": "几个月",
+      "month_few": "几个月"
+    },
+    "product": {
+      "quantity_few": "产品",
+      "quantity_other": "产品",
+      "quantity_one": "产品"
+    },
+    "months": {
+      "june_short": "淳",
+      "may": "5月",
+      "january_short": "扬",
+      "january": "一月",
+      "november_short": "11月",
+      "february_short": "2月",
+      "december_short": "拓展",
+      "march_short": "叁",
+      "september_short": "9月",
+      "june": "6月",
+      "may_short": "5月",
+      "august_short": "8月",
+      "august": "八月",
+      "july": "七月",
+      "april": "四月",
+      "december": "12月",
+      "march": "三月",
+      "february": "2月",
+      "july_short": "7月",
+      "november": "11月",
+      "october": "10月",
+      "september": "9月",
+      "october_short": "10月",
+      "april_short": "四月"
+    }
+  },
+  "pages": {
+    "customer": {
+      "auth": {
+        "title": "塞利克斯客户授权"
+      },
+      "dashboard": {
+        "title": "Sellix客户仪表板"
+      },
+      "payouts": {
+        "title": "塞利克斯的客户赔付"
+      },
+      "invoices": {
+        "title": "塞利克斯客户发票"
+      },
+      "affiliateLinks": {
+        "title": "Sellix客户联盟链接"
+      },
+      "profile": {
+        "title": "Sellix客户简介"
+      }
+    },
+    "shop": {
+      "invoice": {
+        "title": "Sellix的发票：{{invoiceId}}。"
+      },
+      "terms": {
+        "title": "服务条款",
+        "metaTags": {
+          "description": "在继续购买之前，请查看我们的服务条款和Cookie政策，以核实我们处理哪些数据，在哪里处理，以及允许你对我们的产品做什么。",
+          "title": "请查看我们的服务条款，了解我们产品允许的活动和行为。"
+        }
+      },
+      "category": {
+        "title": "探索{{shopName}}的数字商店",
+        "metaTags": {
+          "description": "查看{{shopName}}的数字商店：只需点击几下，就能通过我们的多种支付方式立即获得您需要的数字商品，如果您需要帮助，也可以与我们联系。",
+          "title": "探索{{shopName}}的数字商店"
+        }
+      },
+      "contact": {
+        "title": "需要帮助吗？请与我们联系",
+        "metaTags": {
+          "description": "如果你在最近的采购中需要帮助，想了解我们提供的数字产品的更多信息，或者你只是对我们的解决方案感到好奇，不要犹豫，请与我们联系。这就像填写3个信息和点击一个按钮一样简单。",
+          "title": "需要帮助吗？请与我们联系"
+        }
+      },
+      "group": {
+        "metaTags": {
+          "title": "探索{{global.common.shopInfo.shop.name}}的数字商店",
+          "description": "查看{{shopName}}的数字商店：只需点击几下，就能通过我们的多种支付方式立即获得您需要的数字商品，如果您需要帮助，也可以与我们联系。"
+        },
+        "title": "探索{{shopName}}的数字商店"
+      },
+      "product": "",
+      "main": {
+        "metaTags": {
+          "description": "查看{{shopName}}的数字商店：只需点击几下，就能通过我们的多种支付方式立即获得您需要的数字商品，如果您需要帮助，也可以与我们联系。",
+          "title": "探索{{shopName}}的数字商店"
+        },
+        "title": "探索{{shopName}}的数字商店"
+      },
+      "feedbackList": {
+        "metaTags": {
+          "description": "看看客户对我们产品的评价，审查最新的反馈和评级。通过 \"信任顾问 \"页面验证这些评论的完整性。",
+          "title": "来自我们客户的反馈和评论"
+        },
+        "title": "反馈和评论"
+      },
+      "payment": {
+        "title": "付款方式"
+      },
+      "trust": {
+        "metaTags": {
+          "title": "值得信赖的顾问指标",
+          "description": "可信赖的顾问页面提供了一个简单的解决方案，以检查我们的反馈、上诉和安全评分。在进行任何购买之前，请看一看它，以核实我们的产品。"
+        },
+        "title": "值得信赖的顾问指标"
+      },
+      "ticket": {
+        "title": "票务"
+      },
+      "paymentList": {
+        "title": "付款清单"
+      },
+      "subscription": "",
+      "faq": {
+        "title": "F.A.Q."
+      },
+      "delivery": {
+        "title": "送货 {{invoiceId}}"
+      },
+      "feedback": {
+        "title": "反馈信息"
+      },
+      "notFound": {
+        "title": "404页面未找到"
+      },
+      "checkout": {
+        "title": "结账"
+      }
+    }
+  },
+  "customer": {
+    "affiliateLinks": {
+      "columns": {
+        "price": "价格",
+        "link": "链接",
+        "product": "产品",
+        "commission": "委员会"
+      },
+      "isEmpty": {
+        "title": "关联链接",
+        "message": "商家还没有在任何产品上启用任何联盟链接。"
+      },
+      "row": {
+        "copyLink": "复制链接",
+        "subscription": "订阅",
+        "startingAt": "始于。",
+        "chooseYourPrice": "选择你的价格"
+      }
+    },
+    "dashboard": {
+      "sales": {
+        "columns": {
+          "count": "计数",
+          "price": "价格",
+          "date": "日期",
+          "commission": "委员会",
+          "revenue": "收入",
+          "invoice": "发票",
+          "product": "产品"
+        },
+        "isEmpty": {
+          "title": "最近的委托项目",
+          "message": "你还没有任何联盟佣金"
+        }
+      },
+      "analytics": {
+        "titles": {
+          "totalReferrals": "推荐人总数",
+          "totalCommission": "佣金总额",
+          "currentBalance": "当前余额",
+          "revenuePercentage": "收入百分比"
+        }
+      }
+    },
+    "menu": {
+      "affiliateLinks": "关联链接",
+      "dashboard": "仪表板",
+      "payouts": "赔付"
+    },
+    "payouts": {
+      "message": "与商户取得联系，手动支付佣金余额。",
+      "title": "人工赔付"
+    },
+    "auth": {
+      "customerAuth": {
+        "pageTitle": "客户授权｜Sellix",
+        "email": {
+          "valid": {
+            "title": "请输入2FA代码",
+            "message": "您的账户已启用双因素认证（2FA）。请输入一个代码来登录。"
+          },
+          "title": "电子邮件",
+          "invalid": {
+            "message": "进入客户门户仪表板，管理你的联盟余额和更多。",
+            "title": "客户门户"
+          },
+          "placeholder": "example@email.com",
+          "isRequired": "需要电子邮件"
+        },
+        "login": "登录",
+        "continue": "继续"
+      }
+    }
+  }
+}

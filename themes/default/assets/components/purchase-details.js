@@ -146,7 +146,7 @@
           break;
         case 'invoice':
           this.cart.clear().then(() => {
-            window.location.href = `/invoice/${invoice.uniqid}`;
+            window.location.href = `invoice/${invoice.uniqid}`;
           });
           break;
       }
@@ -173,6 +173,7 @@
           priceVariants: this.priceVariantsStore.getAll(),
           theme: { isDark: this.theme.isDark },
           sellixHelper: window.sellixHelper,
+          sellixI18Next: window.sellixI18Next,
           onAddToCart: this.onAddToCart,
           onApplyCoupon: this.onApplyCoupon,
           onCreateInvoice: this.onCreateInvoice,

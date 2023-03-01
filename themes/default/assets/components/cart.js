@@ -76,7 +76,7 @@
       sellixApi
         .updateCart(products)
         .then(() => {
-          window.location.href = '/checkout';
+          window.location.href = 'checkout';
         })
         .catch((resp) => {
           const respJson = resp.responseJSON || {};

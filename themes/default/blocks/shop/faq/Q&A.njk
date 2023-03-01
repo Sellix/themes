@@ -1,0 +1,36 @@
+{% set id = uid() %}
+{% set colors = themeProperties.current_colors %}
+
+<style>
+  .faq-item-{{ id }} {
+
+  }
+
+  .faq-item-{{ id }} .question-button {
+    color: {{ colors[properties.qea_title_font_color] if properties.qea_title_font_color else 'inherit' }};
+    font-size: {{ properties.qea_title_font_size }}px;
+    font-weight: {{ properties.qea_title_font_weight }};
+    text-align: {{ properties.qea_title_text_align }};
+  }
+
+  .faq-item-{{ id }} .answer-content {
+    color: {{ colors[properties.qea_content_font_color] if properties.qea_content_font_color else 'inherit' }};
+    font-size: {{ properties.qea_content_font_size }}px;
+    font-weight: {{ properties.qea_content_font_weight }};
+    text-align: {{ properties.qea_content_text_align }};
+  }
+</style>
+
+<div class="accordion-item faq-item-{{ id }}" data-faq-item-id="{{ id }}">
+  <button class="question-button">
+    <span class="accordion-title">
+      {{ properties.qea_title | t }}
+    </span>
+    <span class="icon" aria-hidden="true"></span>
+  </button>
+  <div class="accordion-content answer-content">
+    <span class="accordion-title">
+      {{ properties.qea_content | t | safe }}
+    </span>
+  </div>
+</div>

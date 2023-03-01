@@ -21,9 +21,9 @@
 
     onCompleteInvoice = ({ type, invoiceId }) => {
       if (type === 'subscription') {
-        window.location.href = `/subscription/delivery/${invoiceId}`;
+        window.location.href = `subscription/delivery/${invoiceId}`;
       } else {
-        window.location.href = `/delivery/${invoiceId}`;
+        window.location.href = `delivery/${invoiceId}`;
       }
     };
 
@@ -66,6 +66,7 @@
           theme: this.theme,
           invoiceId: this.invoiceId,
           invoiceInfo: this.invoice,
+          sellixI18Next: window.sellixI18Next,
           onGetInvoice: this.onGetInvoice,
           onUpdateInvoice: this.onUpdateInvoice,
           onCompleteInvoice: this.onCompleteInvoice,

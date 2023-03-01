@@ -8,8 +8,12 @@
       this.addonsMap = Object.fromEntries(addons.map((addon) => [addon.uniqid, addon]));
       this.activeAddonId = undefined;
 
-      this.addButtonContent = '<span>Add <i class="fa-regular fa-plus"></i></span>';
-      this.removeButtonContent = '<span>Remove <i class="fa-regular fa-xmark"></i></span>';
+      this.addButtonContent = `<span>${window.sellixI18Next.t(
+        'shop.shared.titles.add',
+      )} <i class="fa-regular fa-plus"></i></span>`;
+      this.removeButtonContent = `<span>${window.sellixI18Next.t(
+        'shop.shared.titles.remove',
+      )} <i class="fa-regular fa-xmark"></i></span>`;
 
       this.$container.find('.shop-product-info-addon-title').on('click', this.onToggleDescription.bind(this));
       this.$container.find('.shop-product-info-addon-button').on('click', this.onClickButton.bind(this));

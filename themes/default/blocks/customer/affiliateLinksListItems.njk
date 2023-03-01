@@ -26,8 +26,12 @@
 
     <div class="empty-sales-list">
       {% render_snippet 'Customer Empty Affiliate Icon' %}
-      <span class="empty-sales-list-title">Affiliate Links</span>
-      <span class="empty-sales-list-description">Merchant has not enabled any affiliate links on any products yet.</span>
+      <span class="empty-sales-list-title">
+        {{ 'customer.affiliateLinks.isEmpty.title' | t }}
+      </span>
+      <span class="empty-sales-list-description">
+        {{ 'customer.affiliateLinks.isEmpty.message' | t }}
+      </span>
     </div>
 
   </div>
@@ -37,10 +41,10 @@
 
     <thead data-product-id="{{item.uniqid}}" class="sellix-customer-table-head">
       <tr>
-        <th>Product</th>
-        <th>Price</th>
-        <th>Commission</th>
-        <th>Link</th>
+        <th>{{ 'customer.affiliateLinks.columns.product' | t }}</th>
+        <th>{{ 'customer.affiliateLinks.columns.price' | t }}</th>
+        <th>{{ 'customer.affiliateLinks.columns.commission' | t }}</th>
+        <th>{{ 'customer.affiliateLinks.columns.link' | t }}</th>
       </tr>
     </thead>
 

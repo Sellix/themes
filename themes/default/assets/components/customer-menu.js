@@ -43,7 +43,7 @@
       Cookies.remove('customerToken', { path: '/', sameSite: "lax", domain: `.customer-portal.${topDomain}`});
       Cookies.remove('customerToken', { path: '/', sameSite: "lax", domain: `.${window.location.hostname}`});
 
-      window.location.href = '/';
+      window.location.href = '';
     }
   }
 

@@ -1,6 +1,6 @@
 {
   "id": "default",
-  "version": "0.0.65",
+  "version": "0.1.0",
   "is_active": 0,
   "name": "Default",
   "category": "Digital Products",
@@ -1453,14 +1453,17 @@
         "enabled": true,
         "color": "#5F40E5",
         "height": 2
+      },
+      "locale": {
+        "default": "en"
       }
     }
   },
 
   "layouts": {
     "Main": {
-      "id": "Main",
       "name": "Main",
+      "path": "layouts/main.njk",
       "is_default": 1,
       "settings": {
         "section_order": [
@@ -1473,7 +1476,7 @@
             "settings": {
               "visible": true,
               "properties": {
-                "footer_text": "<p>E-commerce solution powered by <a href=\"https://sellix.io\" target=\"_blank\">Sellix</a>&nbsp;</p>",
+                "footer_text": "<p>{{'shop.shared.footer.title' | t}} <a href=\"https://sellix.io\" target=\"_blank\">Sellix</a>&nbsp;</p>",
                 "footer_font_size": 14,
                 "footer_font_color": "dark_font_color",
                 "footer_background_color": "background_accent_light",
@@ -1497,13 +1500,13 @@
                 "header_background_color": "background_main_color",
                 "cart_background_color": "background_accent_dark",
                 "cart_show_border": true,
-                "cart_title": "Shopping Cart",
+                "cart_title": "shop.cart.title",
                 "cart_title_font_color": "light_font_color",
                 "cart_title_font_size": 16,
                 "cart_title_line_height": 100,
                 "cart_title_text_align": "left",
                 "cart_title_font_weight": 700,
-                "cart_description": "Add, remove products or go to the checkout page to proceed with the purchase.",
+                "cart_description": "shop.cart.description",
                 "cart_description_font_color": "light_font_color",
                 "cart_description_font_size": 12,
                 "cart_description_line_height": 100,
@@ -1512,22 +1515,18 @@
                 "cart_item_font_color": "dark_font_color",
                 "cart_item_font_size": 14,
                 "cart_item_font_weight": 400,
-                "cart_clear_button_label": "Clear",
-                "cart_checkout_button_label": "Checkout"
+                "cart_clear_button_label": "shop.cart.clear",
+                "cart_checkout_button_label": "shop.cart.checkout"
               },
               "block_order": []
             }
           }
         }
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "layouts/main.njk"
       }
     },
     "Customer": {
-      "id": "Customer",
       "name": "Customer",
+      "path": "layouts/customer.njk",
       "is_default": 0,
       "settings": {
         "section_order": [
@@ -1552,18 +1551,14 @@
             }
           }
         }
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "layouts/customer.njk"
       }
     }
   },
 
   "templates": {
     "Checkout/Checkout": {
-      "id": "Checkout/Checkout",
       "name": "Checkout/Checkout",
+      "path": "templates/shop/checkout.njk",
       "template_type": "CHECKOUT",
       "is_default": 1,
       "settings": {
@@ -1656,15 +1651,11 @@
             }
           }
         }
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "templates/checkout.njk"
       }
     },
     "Contact/Contact": {
-      "id": "Contact/Contact",
       "name": "Contact/Contact",
+      "path": "templates/shop/contact.njk",
       "template_type": "CONTACT",
       "is_default": 1,
       "settings": {
@@ -1744,22 +1735,18 @@
                 "contact_form_background": "background_accent_dark",
                 "contact_form_show_border": true,
                 "contact_form_size": 65,
-                "contact_form_button_title": "Create Ticket",
+                "contact_form_button_title": "shop.contact.buttonTitle",
                 "contact_form_button_position": "flex-start"
               },
               "block_order": []
             }
           }
         }
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "templates/contact.njk"
       }
     },
     "Feedback list/Feedback": {
-      "id": "Feedback list/Feedback",
       "name": "Feedback list/Feedback",
+      "path": "templates/shop/feedbacks.njk",
       "template_type": "FEEDBACK_LIST",
       "is_default": 1,
       "settings": {
@@ -1856,15 +1843,11 @@
             }
           }
         }
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "templates/feedbacks.njk"
       }
     },
     "Ticket/Ticket": {
-      "id": "Ticket/Ticket",
       "name": "Ticket/Ticket",
+      "path": "templates/shop/ticket.njk",
       "template_type": "TICKET",
       "is_default": 1,
       "settings": {
@@ -1957,15 +1940,11 @@
             }
           }
         }
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "templates/ticket.njk"
       }
     },
     "Main/Main Page": {
-      "id": "Main/Main Page",
       "name": "Main/Main Page",
+      "path": "templates/shop/mainpage.njk",
       "template_type": "MAIN",
       "is_default": 1,
       "settings": {
@@ -2069,15 +2048,11 @@
             }
           }
         }
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "templates/mainpage.njk"
       }
     },
     "Not found/404": {
-      "id": "Not found/404",
       "name": "Not found/404",
+      "path": "templates/shop/notFound.njk",
       "template_type": "NOT_FOUND",
       "is_default": 1,
       "settings": {
@@ -2090,34 +2065,30 @@
             "settings": {
               "visible": true,
               "properties": {
-                "404_heading_text": "Page not found",
+                "404_heading_text": "shop.404.header",
                 "404_heading_font_color": "dark_font_color",
                 "404_heading_font_size": 21,
                 "404_heading_line_height": 120,
                 "404_heading_text_align": "center",
                 "404_heading_font_weight": 500,
-                "404_description_text": "It looks like you are trying to access an item that never existed.",
+                "404_description_text": "shop.404.description",
                 "404_description_font_color": "dark_font_color",
                 "404_description_font_size": 18,
                 "404_description_line_height": 120,
                 "404_description_text_align": "center",
                 "404_description_font_weight": 400,
-                "404_button_title": "Go Back",
+                "404_button_title": "shop.shared.titles.goBack",
                 "404_button_position": "center"
               },
               "block_order": []
             }
           }
         }
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "templates/notFound.njk"
       }
     },
     "Product/Product": {
-      "id": "Product/Product",
       "name": "Product/Product",
+      "path": "templates/shop/product.njk",
       "template_type": "PRODUCT",
       "is_default": 1,
       "settings": {
@@ -2232,15 +2203,11 @@
             }
           }
         }
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "templates/product.njk"
       }
     },
     "Terms/Terms": {
-      "id": "Terms/Terms",
       "name": "Terms/Terms",
+      "path": "templates/shop/terms.njk",
       "template_type": "TERMS",
       "is_default": 1,
       "settings": {
@@ -2320,16 +2287,11 @@
             }
           }
         }
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "templates/terms.njk"
       }
     },
-
     "Customer/Auth": {
-      "id": "Customer/Auth",
       "name": "Customer/Auth",
+      "path": "templates/customer/auth.njk",
       "template_type": "CUSTOMER_AUTH",
       "layout_name": "Customer",
       "is_default": 1,
@@ -2342,15 +2304,11 @@
             "name": "Customer Auth"
           }
         }
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "templates/customer/auth.njk"
       }
     },
     "Customer/Dashboard": {
-      "id": "Customer/Dashboard",
       "name": "Customer/Dashboard",
+      "path": "templates/customer/dashboard.njk",
       "template_type": "CUSTOMER_DASHBOARD",
       "layout_name": "Customer",
       "is_default": 1,
@@ -2423,15 +2381,11 @@
             }
           }
         }
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "templates/customer/dashboard.njk"
       }
     },
     "Customer/AffiliateLinks": {
-      "id": "Customer/AffiliateLinks",
       "name": "Customer/AffiliateLinks",
+      "path": "templates/customer/affiliate.njk",
       "template_type": "CUSTOMER_AFFILIATE_LINKS",
       "layout_name": "Customer",
       "is_default": 1,
@@ -2465,15 +2419,11 @@
             }
           }
         }
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "templates/customer/affiliate.njk"
       }
     },
     "Customer/Payouts": {
-      "id": "Customer/Payouts",
       "name": "Customer/Payouts",
+      "path": "templates/customer/payouts.njk",
       "template_type": "CUSTOMER_PAYOUTS",
       "layout_name": "Customer",
       "is_default": 1,
@@ -2507,16 +2457,11 @@
             }
           }
         }
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "templates/customer/payouts.njk"
       }
     },
-
     "Trust/Trusted Advisor": {
-      "id": "Trust/Trusted Advisor",
       "name": "Trust/Trusted Advisor",
+      "path": "templates/shop/trust.njk",
       "template_type": "TRUST",
       "is_default": 1,
       "settings": {
@@ -2600,15 +2545,11 @@
             }
           }
         }
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "templates/trust.njk"
       }
     },
     "Page/Page": {
-      "id": "Page/Page",
       "name": "Page/Page",
+      "path": "templates/shop/customPage.njk",
       "template_type": "PAGE",
       "is_default": 1,
       "settings": {
@@ -2692,15 +2633,11 @@
             }
           }
         }
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "templates/customPage.njk"
       }
     },
     "Feedback/Feedback": {
-      "id": "Feedback/Feedback",
       "name": "Feedback/Feedback",
+      "path": "templates/shop/feedback.njk",
       "template_type": "FEEDBACK",
       "is_default": 1,
       "settings": {
@@ -2780,15 +2717,15 @@
                 "leave_feedback_form_background": "background_accent_light",
                 "leave_feedback_form_show_border": false,
                 "leave_feedback_form_size": "427px",
-                "leave_feedback_form_button_title": "Submit",
+                "leave_feedback_form_button_title": "shop.feedback.buttonTitle",
                 "leave_feedback_form_button_position": "flex-start",
-                "leave_feedback_form_title": "Leave your feedback",
+                "leave_feedback_form_title": "shop.feedback.formTitle",
                 "leave_feedback_form_title_font_color": "light_font_color",
                 "leave_feedback_form_title_font_size": 20,
                 "leave_feedback_form_title_line_height": 120,
                 "leave_feedback_form_title_text_align": "left",
                 "leave_feedback_form_title_font_weight": 500,
-                "leave_feedback_form_sub_title": "Was the a product good? Write your feedback about it here.",
+                "leave_feedback_form_sub_title": "shop.feedback.formSubtitle",
                 "leave_feedback_form_sub_title_font_color": "dark_font_color",
                 "leave_feedback_form_sub_title_font_size": 14,
                 "leave_feedback_form_sub_title_line_height": 120,
@@ -2799,15 +2736,11 @@
             }
           }
         }
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "templates/feedback.njk"
       }
     },
     "Invoice/Invoice": {
-      "id": "Invoice/Invoice",
       "name": "Invoice/Invoice",
+      "path": "templates/shop/invoice.njk",
       "template_type": "INVOICE",
       "is_default": 1,
       "settings": {
@@ -2873,15 +2806,11 @@
             }
           }
         }
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "templates/invoice.njk"
       }
     },
     "Delivery/Delivery": {
-      "id": "Delivery/Delivery",
       "name": "Delivery/Delivery",
+      "path": "templates/shop/delivery.njk",
       "template_type": "DELIVERY",
       "is_default": 1,
       "settings": {
@@ -2961,19 +2890,12 @@
             }
           }
         }
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "templates/delivery.njk"
       }
     },
     "Page/FAQ": {
       "name": "Page/FAQ",
-      "file": {
-        "id": "templates/FAQ.njk",
-        "checksum": "6e41175d277815cbc34f7b0d243c010c",
-        "name": "FAQ.njk"
-      },
+      "path": "templates/shop/FAQ.njk",
+      "template_type": "FAQ",
       "is_default": 1,
       "settings": {
         "sections": {
@@ -3048,8 +2970,8 @@
                   "name": "Q&A",
                   "settings": {
                     "properties": {
-                      "qea_title": "How can i get in touch with support after I bought the product?",
-                      "qea_content": "To get in touch with support after making a purchase, you can use the built-in ticketing system. Simply visit the contact page to submit your details and we will get back to you ASAP.",
+                      "qea_title": "shop.faq.items.0.question",
+                      "qea_content": "shop.faq.items.0.answer",
                       "qea_title_font_size": 18,
                       "qea_title_font_color": null,
                       "qea_title_text_align": "left",
@@ -3065,8 +2987,8 @@
                   "name": "Q&A",
                   "settings": {
                     "properties": {
-                      "qea_title": "Can I make payments using my preferred method?",
-                      "qea_content": "Yes, we support a wide range of payment methods, including popular fiat options like Credit Cards as well as various cryptocurrencies. This enables you to make payments using the method that is most convenient for you.",
+                      "qea_title": "shop.faq.items.1.question",
+                      "qea_content": "shop.faq.items.1.answer",
                       "qea_title_font_size": 18,
                       "qea_title_font_color": null,
                       "qea_title_text_align": "left",
@@ -3082,8 +3004,8 @@
                   "name": "Q&A",
                   "settings": {
                     "properties": {
-                      "qea_title": "Is it safe to make payments?",
-                      "qea_content": "Yes, we take security very seriously. We use advanced fraud prevention measures to protect against fraudulent transactions and we securely store all payment information.",
+                      "qea_title": "shop.faq.items.2.question",
+                      "qea_content": "shop.faq.items.2.answer",
                       "qea_title_font_size": 18,
                       "qea_title_font_color": null,
                       "qea_title_text_align": "left",
@@ -3099,8 +3021,8 @@
                   "name": "Q&A",
                   "settings": {
                     "properties": {
-                      "qea_title": "How do I make a purchase?",
-                      "qea_content": "Making a purchase is easy. Simply browse the available products and add the ones you wish to purchase to your cart. When you are ready to checkout, you will be prompted to enter your payment information and complete the transaction.",
+                      "qea_title": "shop.faq.items.3.question",
+                      "qea_content": "shop.faq.items.3.answer",
                       "qea_title_font_size": 18,
                       "qea_title_font_color": null,
                       "qea_title_text_align": "left",
@@ -3116,8 +3038,8 @@
                   "name": "Q&A",
                   "settings": {
                     "properties": {
-                      "qea_title": "What is the return policy for purchases?",
-                      "qea_content": "The return policy for purchases will vary depending on the specific product being purchased. It is important to review the return policy for each product before making a purchase to ensure that you understand the terms and conditions.",
+                      "qea_title": "shop.faq.items.4.question",
+                      "qea_content": "shop.faq.items.4.answer",
                       "qea_title_font_size": 18,
                       "qea_title_font_color": null,
                       "qea_title_text_align": "left",
@@ -3131,7 +3053,7 @@
                 }
               },
               "properties": {
-                "faq": "Frequently Asked Questions",
+                "faq": "shop.faq.title",
                 "faq_font_size": 30,
                 "faq_font_color": null,
                 "faq_text_align": "left",
@@ -3156,15 +3078,14 @@
           "Menu",
           "FAQ"
         ]
-      },
-      "template_type": "FAQ"
+      }
     }
   },
 
   "sections": {
     "404": {
-      "id": "404",
       "name": "404",
+      "path": "sections/shop/404.njk",
       "settings": {
         "class": "flex-fill d-flex",
         "blocks": [],
@@ -3383,15 +3304,11 @@
             "defaultValue": "center"
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "sections/404.njk"
       }
     },
     "Page content": {
-      "id": "Page content",
       "name": "Page content",
+      "path": "sections/shop/customPage.njk",
       "settings": {
         "blocks": [],
         "schema": [
@@ -3429,7 +3346,7 @@
             "id": "is_wide",
             "type": "checkbox",
             "label": "Full width",
-            "defaultValue": true
+            "defaultValue": false
           },
           {
             "id": "container_border_radius",
@@ -3551,15 +3468,11 @@
             "defaultValue": "left"
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "sections/customPage.njk"
       }
     },
     "Checkout info": {
-      "id": "Checkout info",
       "name": "Checkout info",
+      "path": "sections/shop/checkoutInfo.njk",
       "settings": {
         "blocks": [
           {
@@ -3593,15 +3506,11 @@
             "defaultValue": 1
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "sections/checkoutInfo.njk"
       }
     },
     "Contact form": {
-      "id": "Contact form",
       "name": "Contact form",
+      "path": "sections/shop/contactForm.njk",
       "settings": {
         "blocks": [],
         "schema": [
@@ -3719,7 +3628,7 @@
             "id": "contact_form_button_title",
             "type": "text",
             "label": "Title",
-            "defaultValue": "Create Ticket"
+            "defaultValue": "{{'shop.contact.buttonTitle' | t}}"
           },
           {
             "id": "contact_form_button_position",
@@ -3742,15 +3651,11 @@
             "defaultValue": "flex-start"
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "sections/contactForm.njk"
       }
     },
     "Delivery header": {
-      "id": "Delivery header",
       "name": "Delivery header",
+      "path": "sections/shop/deliveryHeader.njk",
       "settings": {
         "blocks": [
           {
@@ -3848,15 +3753,11 @@
             "defaultValue": "none"
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "sections/deliveryHeader.njk"
       }
     },
     "Delivery info": {
-      "id": "Delivery info",
       "name": "Delivery info",
+      "path": "sections/shop/deliveryInfo.njk",
       "settings": {
         "blocks": [
           {
@@ -3896,15 +3797,11 @@
             "defaultValue": true
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "sections/deliveryInfo.njk"
       }
     },
     "Feedbacks": {
-      "id": "Feedbacks",
       "name": "Feedbacks",
+      "path": "sections/shop/feedbacks.njk",
       "settings": {
         "class": "feedbacks_section",
         "blocks": [
@@ -3918,15 +3815,11 @@
           }
         ],
         "schema": []
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "sections/feedbacks.njk"
       }
     },
     "Header": {
-      "id": "Header",
       "name": "Header",
+      "path": "sections/shop/header.njk",
       "settings": {
         "blocks": [],
         "schema": [
@@ -4354,15 +4247,11 @@
             "defaultValue": "Checkout"
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "sections/header.njk"
       }
     },
     "Footer": {
-      "id": "Footer",
       "name": "Footer",
+      "path": "sections/shop/footer.njk",
       "settings": {
         "schema": [
           {
@@ -4446,15 +4335,11 @@
             "defaultValue": "center"
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "sections/footer.njk"
       }
     },
     "Invoice info": {
-      "id": "Invoice info",
       "name": "Invoice info",
+      "path": "sections/shop/invoiceInfo.njk",
       "settings": {
         "blocks": [
           {
@@ -4492,15 +4377,11 @@
             "defaultValue": 3
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "sections/invoiceInfo.njk"
       }
     },
     "Product list": {
-      "id": "Product list",
       "name": "Product list",
+      "path": "sections/shop/productList.njk",
       "settings": {
         "blocks": [
           {
@@ -4513,16 +4394,11 @@
           }
         ],
         "schema": []
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "sections/productList.njk"
       }
     },
-
     "Customer Header": {
-      "id": "Customer Header",
       "name": "Customer Header",
+      "path": "sections/customer/header.njk",
       "settings": {
         "blocks": [],
         "schema": [
@@ -4766,17 +4642,11 @@
             "defaultValue": 14
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "sections/customer/header.njk"
       }
     },
-
-
     "Customer Auth": {
-      "id": "Customer Auth",
       "name": "Customer Auth",
+      "path": "sections/customer/auth.njk",
       "settings": {
         "blocks": [],
         "schema": [
@@ -4881,16 +4751,11 @@
             "defaultValue": "light_font_color"
           }
         ]
-      },
-
-      "file": {
-        "checksum": "checksum of file",
-        "id": "sections/customer/auth.njk"
       }
     },
     "Customer Dashboard Sales List": {
-      "id": "Customer Dashboard Sales List",
       "name": "Customer Dashboard Sales List",
+      "path": "sections/customer/dashboardSalesList.njk",
       "settings": {
         "blocks": [{
             "name": "Customer Dashboard Sales List Items",
@@ -4901,15 +4766,11 @@
           }
         ],
         "schema": []
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "sections/customer/dashboardSalesList.njk"
       }
     },
     "Customer Dashboard Analytic": {
-      "id": "Customer Dashboard Analytic",
       "name": "Customer Dashboard Analytic",
+      "path": "sections/customer/dashboardAnalytic.njk",
       "settings": {
         "blocks": [
           {
@@ -4918,15 +4779,11 @@
           }
         ],
         "schema": []
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "sections/customer/dashboardAnalytic.njk"
       }
     },
     "Customer Affiliate Links List": {
-      "id": "Customer Affiliate Links List",
       "name": "Customer Affiliate Links List",
+      "path": "sections/customer/affiliateLinks.njk",
       "settings": {
         "blocks": [
           {
@@ -4935,15 +4792,11 @@
           }
         ],
         "schema": []
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "sections/customer/affiliateLinks.njk"
       }
     },
     "Customer Payouts": {
-      "id": "Customer Payouts",
       "name": "Customer Payouts",
+      "path": "sections/customer/payouts.njk",
       "settings": {
         "blocks": [
           {
@@ -4952,15 +4805,11 @@
           }
         ],
         "schema": []
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "sections/customer/payouts.njk"
       }
     },
     "Product info": {
-      "id": "Product info",
       "name": "Product info",
+      "path": "sections/shop/productInfo.njk",
       "settings": {
         "blocks": [
           {
@@ -5010,15 +4859,11 @@
             "defaultValue": 3
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "sections/productInfo.njk"
       }
     },
     "Shop info": {
-      "id": "Shop info",
       "name": "Shop info",
+      "path": "sections/shop/shopInfo.njk",
       "settings": {
         "schema": [
           {
@@ -5164,15 +5009,11 @@
             "defaultValue": 400
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "sections/shopInfo.njk"
       }
     },
     "Banner": {
-      "id": "Banner",
       "name": "Banner",
+      "path": "sections/shop/banner.njk",
       "settings": {
         "blocks": [
           {
@@ -5269,15 +5110,11 @@
             "defaultValue": "none"
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "sections/banner.njk"
       }
     },
     "Terms": {
-      "id": "Terms",
       "name": "Terms",
+      "path": "sections/shop/terms.njk",
       "settings": {
         "blocks": [],
         "schema": [
@@ -5392,15 +5229,11 @@
             "defaultValue": "light_font_color"
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "sections/terms.njk"
       }
     },
     "Trust": {
-      "id": "Trust",
       "name": "Trust",
+      "path": "sections/shop/trust.njk",
       "settings": {
         "blocks": [],
         "schema": [
@@ -5680,15 +5513,11 @@
             "defaultValue": "left"
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "sections/trust.njk"
       }
     },
     "Ticket": {
-      "id": "Ticket",
       "name": "Ticket",
+      "path": "sections/shop/ticket.njk",
       "settings": {
         "blocks": [],
         "schema": [
@@ -5878,15 +5707,11 @@
             "defaultValue": true
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "sections/ticket.njk"
       }
     },
     "Menu": {
-      "id": "Menu",
       "name": "Menu",
+      "path": "sections/shop/menu.njk",
       "settings": {
         "class": "sellix-menu-container",
         "blocks": [],
@@ -5898,15 +5723,11 @@
             "defaultValue": "Main Menu"
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "sections/menu.njk"
       }
     },
     "Feedback": {
-      "id": "Feedback",
       "name": "Feedback",
+      "path": "sections/shop/feedback.njk",
       "settings": {
         "class": "sellix-leave-feedback-section",
         "blocks": [],
@@ -6015,7 +5836,7 @@
             "id": "leave_feedback_form_title",
             "type": "text",
             "label": "Title",
-            "defaultValue": "Leave your feedback"
+            "defaultValue": "shop.feedback.formTitle"
           },
           {
             "id": "leave_feedback_form_title_font_color",
@@ -6106,7 +5927,7 @@
             "id": "leave_feedback_form_sub_title",
             "type": "text",
             "label": "Title",
-            "defaultValue": "Was the a product good? Write your feedback about it here."
+            "defaultValue": "shop.feedback.formSubtitle"
           },
           {
             "id": "leave_feedback_form_sub_title_font_color",
@@ -6197,7 +6018,7 @@
             "id": "leave_feedback_form_button_title",
             "type": "text",
             "label": "Title",
-            "defaultValue": "Submit"
+            "defaultValue": "shop.feedback.buttonTitle"
           },
           {
             "id": "leave_feedback_form_button_position",
@@ -6220,19 +6041,11 @@
             "defaultValue": "flex-start"
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "sections/feedback.njk"
       }
     },
     "FAQ": {
       "name": "FAQ",
-      "file": {
-        "id": "sections/FAQ.njk",
-        "checksum": "44e696353a923303d5427f3e61b8383e",
-        "name": "FAQ.njk"
-      },
+      "path": "sections/shop/FAQ.njk",
       "settings": {
         "blocks": [
           {
@@ -6249,7 +6062,7 @@
             "id": "faq",
             "type": "text",
             "label": "Custom section name",
-            "defaultValue": "Frequently Asked Questions"
+            "defaultValue": "shop.faq.title"
           },
           {
             "id": "header_faq_text",
@@ -6337,8 +6150,8 @@
 
   "blocks": {
     "Addons": {
-      "id": "Addons",
       "name": "Addons",
+      "path": "blocks/shop/product/addons.njk",
       "settings": {
         "schema": [
           {
@@ -6526,15 +6339,11 @@
             "defaultValue": "left"
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/addons.njk"
       }
     },
     "Bundles": {
-      "id": "Bundles",
       "name": "Bundles",
+      "path": "blocks/shop/product/bundles.njk",
       "settings": {
         "schema": [
           {
@@ -6821,15 +6630,12 @@
             "defaultValue": 500
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/bundles.njk"
       }
+
     },
     "Button": {
-      "id": "Button",
       "name": "Button",
+      "path": "blocks/shared/button.njk",
       "settings": {
         "schema": [
           {
@@ -6845,15 +6651,11 @@
             "defaultValue": null
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/button.njk"
       }
     },
     "Checkout products": {
-      "id": "Checkout products",
       "name": "Checkout products",
+      "path": "blocks/shop/checkout/checkoutProducts.njk",
       "settings": {
         "schema": [
           {
@@ -7192,15 +6994,11 @@
             "defaultValue": 500
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/checkoutProducts.njk"
       }
     },
     "Delivery header title": {
-      "id": "Delivery header title",
       "name": "Delivery header title",
+      "path": "blocks/shop/delivery/deliveryHeaderTitle.njk",
       "settings": {
         "class": "sellix-delivery-header-title",
         "schema": [
@@ -7275,27 +7073,19 @@
             "defaultValue": 400
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/deliveryHeaderTitle.njk"
       }
     },
     "Delivery header button": {
-      "id": "Delivery header button",
       "name": "Delivery header button",
+      "path": "blocks/shop/delivery/deliveryHeaderButton.njk",
       "settings": {
         "class": "sellix-delivery-header-button",
         "schema": []
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/deliveryHeaderButton.njk"
       }
     },
     "Delivery details": {
-      "id": "Delivery details",
       "name": "Delivery details",
+      "path": "blocks/shop/delivery/deliveryDetails.njk",
       "settings": {
         "schema": [
           {
@@ -7543,15 +7333,11 @@
             "defaultValue": 400
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/deliveryDetails.njk"
       }
     },
     "Delivery products info": {
-      "id": "Delivery products info",
       "name": "Delivery products info",
+      "path": "blocks/shop/delivery/deliveryProductsInfo.njk",
       "settings": {
         "schema": [
           {
@@ -7639,27 +7425,18 @@
             "defaultValue": "none"
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/deliveryProductsInfo.njk"
       }
     },
     "Invoice details": {
-      "id": "Invoice details",
       "name": "Invoice details",
+      "path": "blocks/shop/invoice/invoiceDetails.njk",
       "settings": {
         "schema": []
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/invoiceDetails.njk"
       }
     },
-
     "Customer Dashboard Analytic Items": {
-      "id": "Customer Dashboard Analytic Items",
       "name": "Customer Dashboard Analytic Items",
+      "path": "blocks/customer/dashboardAnalyticItems.njk",
       "settings": {
         "schema": [
           {
@@ -7804,15 +7581,11 @@
             "defaultValue": "1"
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/customer/dashboardAnalyticItems.njk"
       }
     },
     "Customer Dashboard Sales List Items": {
-      "id": "Customer Dashboard Sales List Items",
       "name": "Customer Dashboard Sales List Items",
+      "path": "blocks/customer/dashboardSalesListItems.njk",
       "settings": {
         "class": "pagination-table",
         "schema": [
@@ -7905,15 +7678,11 @@
             "defaultValue": "0 1px 3px rgb(7 14 35 / 6%), 0 2px 8px -1px rgb(7 14 35 / 5%)"
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/customer/dashboardSalesListItems.njk"
       }
     },
     "Table Pagination": {
-      "id": "Table pagination",
       "name": "Table pagination",
+      "path": "blocks/customer/tablePagination.njk",
       "settings": {
         "schema": [
           {
@@ -7988,16 +7757,11 @@
             "defaultValue": 24
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/customer/tablePagination.njk"
       }
     },
-
     "Customer Affiliate Links List Items": {
-      "id": "Customer Affiliate Links List Items",
       "name": "Customer Affiliate Links List Items",
+      "path": "blocks/customer/affiliateLinksListItems.njk",
       "settings": {
         "schema": [
           {
@@ -8089,16 +7853,11 @@
             "defaultValue": "0 1px 3px rgb(7 14 35 / 6%), 0 2px 8px -1px rgb(7 14 35 / 5%)"
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/customer/affiliateLinksListItems.njk"
       }
     },
-
     "Customer Payouts": {
-      "id": "Customer Payouts",
       "name": "Customer Payouts",
+      "path": "blocks/customer/payouts.njk",
       "settings": {
         "schema": [
           {
@@ -8186,16 +7945,11 @@
             "defaultValue": 24
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/customer/payouts.njk"
       }
     },
-
     "Invoice products info": {
-      "id": "Invoice products info",
       "name": "Invoice products info",
+      "path": "blocks/shop/invoice/invoiceProductsInfo.njk",
       "settings": {
         "schema": [
           {
@@ -8357,15 +8111,11 @@
             "defaultValue": 500
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/invoiceProductsInfo.njk"
       }
     },
     "Invoice product badge": {
-      "id": "Invoice product badge",
       "name": "Invoice product badge",
+      "path": "blocks/shop/invoice/invoiceProductBadge.njk",
       "settings": {
         "schema": [
           {
@@ -8508,15 +8258,11 @@
             "defaultValue": "left"
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/invoiceProductBadge.njk"
       }
     },
     "Invoice track badge": {
-      "id": "Invoice track badge",
       "name": "Invoice track badge",
+      "path": "blocks/shop/invoice/invoiceTrackBadge.njk",
       "settings": {
         "schema": [
           {
@@ -8659,15 +8405,11 @@
             "defaultValue": "left"
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/invoiceTrackBadge.njk"
       }
     },
     "Product details": {
-      "id": "Product details",
       "name": "Product details",
+      "path": "blocks/shop/product/productDetails.njk",
       "settings": {
         "schema": [
           {
@@ -8756,15 +8498,11 @@
             "defaultValue": "left"
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/productDetails.njk"
       }
     },
     "Product list filter": {
-      "id": "Product list filter",
       "name": "Product list filter",
+      "path": "blocks/shop/main/productListFilter.njk",
       "settings": {
         "schema": [
           {
@@ -8866,15 +8604,11 @@
             "defaultValue": "none"
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/productListFilter.njk"
       }
     },
     "Product list items": {
-      "id": "Product list items",
       "name": "Product list items",
+      "path": "blocks/shop/main/productListItems.njk",
       "settings": {
         "schema": [
           {
@@ -8980,15 +8714,11 @@
             "defaultValue": "1"
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/productListItems.njk"
       }
     },
     "Product relations": {
-      "id": "Product relations",
       "name": "Product relations",
+      "path": "blocks/shop/product/productRelations.njk",
       "settings": {
         "schema": [
           {
@@ -9333,15 +9063,11 @@
             "defaultValue": "none"
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/productRelations.njk"
       }
     },
     "Product warranty": {
-      "id": "Product warranty",
       "name": "Product warranty",
+      "path": "blocks/shop/product/productWarranty.njk",
       "settings": {
         "schema": [
           {
@@ -9486,15 +9212,11 @@
             "defaultValue": "left"
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/productWarranty.njk"
       }
     },
     "Purchase details": {
-      "id": "Purchase details",
       "name": "Purchase details",
+      "path": "blocks/shop/checkout/purchaseDetails.njk",
       "settings": {
         "schema": [
           {
@@ -9588,15 +9310,11 @@
             "defaultValue": "none"
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/purchaseDetails.njk"
       }
     },
     "Feedback items": {
-      "id": "Feedback items",
       "name": "Feedback items",
+      "path": "blocks/shop/feedback/feedbackItems.njk",
       "settings": {
         "class": "feedback_items",
         "schema": [
@@ -9685,16 +9403,11 @@
             "defaultValue": "none"
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/feedbackItems.njk"
       }
     },
-
     "Feedback pagination": {
-      "id": "Feedback pagination",
       "name": "Feedback pagination",
+      "path": "blocks/shop/feedback/feedbackPagination.njk",
       "settings": {
         "schema": [
           {
@@ -9769,16 +9482,11 @@
             "defaultValue": 24
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/feedbackPagination.njk"
       }
     },
-
     "Feedback form": {
-      "id": "Feedback form",
       "name": "Feedback form",
+      "path": "blocks/shop/feedback/feedbackForm.njk",
       "settings": {
         "schema": [
           {
@@ -9895,7 +9603,7 @@
             "id": "leave_feedback_form_title",
             "type": "text",
             "label": "Title",
-            "defaultValue": "Leave your feedback"
+            "defaultValue": "shop.feedback.formTitle"
           },
           {
             "id": "leave_feedback_form_title_font_color",
@@ -9986,7 +9694,7 @@
             "id": "leave_feedback_form_sub_title",
             "type": "text",
             "label": "Title",
-            "defaultValue": "Was the a product good? Write your feedback about it here."
+            "defaultValue": "shop.feedback.formSubtitle"
           },
           {
             "id": "leave_feedback_form_sub_title_font_color",
@@ -10077,7 +9785,7 @@
             "id": "leave_feedback_form_button_title",
             "type": "text",
             "label": "Title",
-            "defaultValue": "Submit"
+            "defaultValue": "shop.feedback.buttonTitle"
           },
           {
             "id": "leave_feedback_form_button_position",
@@ -10100,15 +9808,11 @@
             "defaultValue": "flex-start"
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/feedbackForm.njk"
       }
     },
     "Banner shop info": {
-      "id": "Banner shop info",
       "name": "Banner shop info",
+      "path": "blocks/shop/main/banner/shopInfo.njk",
       "settings": {
         "class": "sellix-banner-info-wrapper",
         "schema": [
@@ -10236,15 +9940,11 @@
             "defaultValue": true
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/bannerShopInfo.njk"
       }
     },
     "Banner stats": {
-      "id": "Banner stats",
       "name": "Banner stats",
+      "path": "blocks/shop/main/banner/stats.njk",
       "settings": {
         "class": "sellix-banner-feedback-wrapper",
         "schema": [
@@ -10271,15 +9971,11 @@
             "defaultValue": true
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/bannerStats.njk"
       }
     },
     "Banner divider": {
-      "id": "Banner divider",
       "name": "Banner divider",
+      "path": "blocks/shop/main/banner/divider.njk",
       "settings": {
         "class": "sellix-banner-divider",
         "schema": [
@@ -10290,15 +9986,11 @@
             "defaultValue": false
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/bannerDivider.njk"
       }
     },
     "Price variants": {
-      "id": "Price variants",
       "name": "Price variants",
+      "path": "blocks/shop/product/priceVariants.njk",
       "settings": {
         "schema": [
           {
@@ -10332,14 +10024,11 @@
             "defaultValue": true
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/priceVariants.njk"
       }
     },
     "Q&A": {
       "name": "Q&A",
+      "path": "blocks/shop/faq/Q&A.njk",
       "settings": {
         "schema": [
           {
@@ -10503,1763 +10192,848 @@
             "defaultValue": 400
           }
         ]
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "blocks/Q&A.njk"
       }
     }
   },
 
   "snippets": {
     "App crisp chat": {
-      "id": "App crisp chat",
       "name": "App crisp chat",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/appCrispChat.njk"
-      }
+      "path": "snippets/shop/external/appCrispChat.njk"
     },
     "App helpspace": {
-      "id": "App helpspace",
       "name": "App helpspace",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/appHelpspace.njk"
-      }
+      "path": "snippets/shop/external/appHelpspace.njk"
     },
     "App paypal": {
-      "id": "App paypal",
       "name": "App paypal",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/appPayPal.njk"
-      }
+      "path": "snippets/shop/external/appPayPal.njk"
     },
     "App google analytics": {
-      "id": "App google analytics",
       "name": "App google analytics",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/appGoogleAnalytics.njk"
-      }
+      "path": "snippets/shop/external/appGoogleAnalytics.njk"
     },
     "App cookie modal": {
-      "id": "App cookie modal",
       "name": "App cookie modal",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/appCookieModal.njk"
-      }
+      "path": "snippets/shop/external/appCookieModal.njk"
+    },
+    "I18Next": {
+      "name": "I18Next",
+      "path": "snippets/shop/shop/i18next.njk"
     },
     "Alert": {
-      "id": "Alert",
       "name": "Alert",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/alert.njk"
-      }
+      "path": "snippets/shared/alert.njk"
     },
     "Cart icon": {
-      "id": "Cart icon",
       "name": "Cart icon",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/cartIcon.njk"
-      }
+      "path": "snippets/shared/icons/cartIcon.njk"
     },
     "Check icon": {
-      "id": "Check icon",
       "name": "Check icon",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/checkIcon.njk"
-      }
+      "path": "snippets/shared/icons/checkIcon.njk"
     },
     "Copy icon": {
-      "id": "Copy icon",
       "name": "Copy icon",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/copyIcon.njk"
-      }
+      "path": "snippets/shared/icons/copyIcon.njk"
     },
     "Info icon": {
-      "id": "Info icon",
       "name": "Info icon",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/infoIcon.njk"
-      }
+      "path": "snippets/shared/icons/infoIcon.njk"
     },
     "Verified icon": {
-      "id": "Verified icon",
       "name": "Verified icon",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/verifiedIcon.njk"
-      }
+      "path": "snippets/shared/icons/verifiedIcon.njk"
     },
     "Loader logo light": {
-      "id": "Loader logo light",
       "name": "Loader logo light",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/loaderLogoLight.njk"
-      }
+      "path": "snippets/shared/icons/loaderLogoLight.njk"
     },
     "Loader logo dark": {
-      "id": "Loader logo dark",
       "name": "Loader logo dark",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/loaderLogoDark.njk"
-      }
+      "path": "snippets/shared/icons/loaderLogoDark.njk"
     },
     "Description icon": {
-      "id": "Description icon",
       "name": "Description icon",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/descriptionIcon.njk"
-      }
+      "path": "snippets/shared/icons/descriptionIcon.njk"
     },
     "Warranty icon": {
-      "id": "Warranty icon",
       "name": "Warranty icon",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/warrantyIcon.njk"
-      }
+      "path": "snippets/shared/icons/warrantyIcon.njk"
     },
     "Empty feedbacks icon": {
-      "id": "Empty feedbacks icon",
       "name": "Empty feedbacks icon",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/emptyFeedbacksIcon.njk"
-      }
+      "path": "snippets/shared/icons/emptyFeedbacksIcon.njk"
     },
     "Hide Password Icon": {
-      "id": "Hide Password Icon",
       "name": "Hide Password Icon",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/hidePasswordIcon.njk"
-      }
+      "path": "snippets/shared/icons/hidePasswordIcon.njk"
     },
     "Cart button": {
-      "id": "Cart button",
       "name": "Cart button",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/cartButton.njk"
-      }
+      "path": "snippets/shop/cart/cartButton.njk"
     },
     "Cart": {
-      "id": "Cart",
       "name": "Cart",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/cart.njk"
-      }
+      "path": "snippets/shop/cart/cart.njk"
     },
     "Addons": {
-      "id": "Addons",
       "name": "Addons",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/addons.njk"
-      }
+      "path": "snippets/shop/product/addons.njk"
     },
     "Bundles": {
-      "id": "Bundles",
       "name": "Bundles",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/bundles.njk"
-      }
+      "path": "snippets/shop/product/bundles.njk"
     },
     "Discount badge": {
-      "id": "Discount badge",
       "name": "Discount badge",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/discountBadge.njk"
-      }
+      "path": "snippets/shared/discountBadge.njk"
     },
     "Group card": {
-      "id": "Group card",
       "name": "Group card",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/groupCard.njk"
-      }
+      "path": "snippets/shop/main/groupCard.njk"
     },
     "Group card modal": {
-      "id": "Group card modal",
       "name": "Group card modal",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/groupCardModal.njk"
-      }
+      "path": "snippets/shop/main/groupCardModal.njk"
     },
     "Group card products": {
-      "id": "Group card products",
       "name": "Group card products",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/groupCardProducts.njk"
-      }
+      "path": "snippets/shop/main/groupCardProducts.njk"
     },
     "Info card": {
-      "id": "Info card",
       "name": "Info card",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/infoCard.njk"
-      }
+      "path": "snippets/shop/main/infoCard.njk"
     },
     "Placeholder card": {
-      "id": "Placeholder card",
       "name": "Placeholder card",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/placeholderCard.njk"
-      }
+      "path": "snippets/shop/main/placeholderCard.njk"
     },
     "Product card": {
-      "id": "Product card",
       "name": "Product card",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/productCard.njk"
-      }
+      "path": "snippets/shop/main/productCard.njk"
     },
     "Customer Affiliate Table Row": {
-      "id": "Customer Affiliate Table Row",
       "name": "Customer Affiliate Table Row",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/customer/affiliateRow.njk"
-      }
+      "path": "snippets/customer/affiliateRow.njk"
     },
     "Customer Sales Table Row": {
-      "id": "Customer Sales Table Row",
       "name": "Customer Sales Table Row",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/customer/salesRow.njk"
-      }
+      "path": "snippets/customer/salesRow.njk"
     },
     "Product warranty": {
-      "id": "Product warranty",
       "name": "Product warranty",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/productWarranty.njk"
-      }
+      "path": "snippets/shop/product/productWarranty.njk"
     },
     "Purchase details": {
-      "id": "Purchase details",
       "name": "Purchase details",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/purchaseDetails.njk"
-      }
+      "path": "snippets/shop/checkout/purchaseDetails.njk"
     },
     "Subscription card": {
-      "id": "Subscription card",
       "name": "Subscription card",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/subscriptionCard.njk"
-      }
+      "path": "snippets/shop/main/subscriptionCard.njk"
     },
     "Bundle product": {
-      "id": "bundle_product",
       "name": "Bundle product",
-      "file": {
-        "checksum": "checksum",
-        "id": "snippets/bundleProduct.njk"
-      }
+      "path": "snippets/shop/product/bundleProduct.njk"
     },
     "Product min max note": {
-      "id": "product_min_max_note",
       "name": "Product min max note",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/productMinMaxNote.njk"
-      }
+      "path": "snippets/shop/product/productMinMaxNote.njk"
     },
     "Checkout product count": {
-      "id": "Checkout product count",
       "name": "Checkout product count",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/checkoutProductCount.njk"
-      }
+      "path": "snippets/shop/checkout/checkoutProductCount.njk"
     },
     "Checkout product": {
-      "id": "Checkout product",
       "name": "Checkout product",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/checkoutProduct.njk"
-      }
+      "path": "snippets/shop/checkout/checkoutProduct.njk"
     },
     "Checkout productsCheckout products": {
-      "id": "Checkout products",
       "name": "Checkout products",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/checkoutProducts.njk"
-      }
+      "path": "snippets/shop/checkout/checkoutProducts.njk"
     },
     "Rating star": {
-      "id": "Rating star",
       "name": "Rating star",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/ratingStar.njk"
-      }
+      "path": "snippets/shared/ratingStar.njk"
     },
     "Product details": {
-      "id": "Product details",
       "name": "Product details",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/productDetails.njk"
-      }
+      "path": "snippets/shop/product/productDetails.njk"
     },
     "Product description": {
-      "id": "product_description",
       "name": "Product description",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/productDescription.njk"
-      }
+      "path": "snippets/shop/product/productDescription.njk"
     },
     "Product feedback": {
-      "id": "Product feedback",
       "name": "Product feedback",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/productFeedback.njk"
-      }
+      "path": "snippets/shop/product/productFeedback.njk"
     },
     "Product gallery": {
-      "id": "Product gallery",
       "name": "Product gallery",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/productGallery.njk"
-      }
+      "path": "snippets/shop/product/productGallery.njk"
     },
     "Product terms": {
-      "id": "Product terms",
       "name": "Product terms",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/productTerms.njk"
-      }
+      "path": "snippets/shop/product/productTerms.njk"
     },
     "Product Terms of Service": {
-      "id": "Product Terms of Service",
       "name": "Product Terms of Service",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/productTermsOfService.njk"
-      }
+      "path": "snippets/shop/product/productTermsOfService.njk"
     },
     "Social Links": {
       "name": "Social Links",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/socialLinks.njk"
-      }
+      "path": "snippets/shop/shop/socialLinks.njk"
     },
     "Ripple button": {
-      "id": "Ripple button",
       "name": "Ripple button",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/rippleButton.njk"
-      }
+      "path": "snippets/shared/rippleButton.njk"
     },
     "Root css variables": {
-      "id": "Root css variables",
       "name": "Root css variables",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/rootCssVariables.njk"
-      }
+      "path": "snippets/shop/shop/rootCssVariables.njk"
     },
     "Shop info": {
-      "id": "Shop info",
       "name": "Shop info",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/shopInfo.njk"
-      }
+      "path": "snippets/shop/shop/shopInfo.njk"
     },
     "Shop message": {
-      "id": "Shop message",
       "name": "Shop message",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/shopMessage.njk"
-      }
+      "path": "snippets/shop/shop/shopMessage.njk"
     },
     "Price": {
-      "id": "Price",
       "name": "Price",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/price.njk"
-      }
+      "path": "snippets/shared/price.njk"
     },
     "Main meta": {
-      "id": "Main meta",
       "name": "Main meta",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/mainMeta.njk"
-      }
-    },
-    "Gateways widget": {
-      "id": "Gateways widget",
-      "name": "Gateways widget",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/gatewaysWidget.njk"
-      }
+      "path": "snippets/shop/shop/mainMeta.njk"
     },
     "Text": {
-      "id": "Text",
       "name": "Text",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/text.njk"
-      }
+      "path": "snippets/shared/text.njk"
     },
     "Text area": {
-      "id": "Text area",
       "name": "Text area",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/textArea.njk"
-      }
+      "path": "snippets/shared/textArea.njk"
     },
     "Zoom glass icon": {
-      "id": "Zoom glass icon",
       "name": "Zoom glass icon",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/zoomGlassIcon.njk"
-      }
+      "path": "snippets/shared/icons/zoomGlassIcon.njk"
     },
-
     "Customer Dashboard Icon": {
-      "id": "Customer Dashboard Icon",
       "name": "Customer Dashboard Icon",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/customer/header/dashboardIcon.njk"
-      }
+      "path": "snippets/customer/header/dashboardIcon.njk"
     },
     "Customer Affiliate Icon": {
-      "id": "Customer Affiliate Icon",
       "name": "Customer Affiliate Icon",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/customer/header/affiliateIcon.njk"
-      }
+      "path": "snippets/customer/header/affiliateIcon.njk"
     },
     "Customer Payouts Icon": {
-      "id": "Customer Payouts Icon",
       "name": "Customer Payouts Icon",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/customer/header/payoutsIcon.njk"
-      }
+      "path": "snippets/customer/header/payoutsIcon.njk"
     },
-
     "Customer Dashboard Analytic Item": {
-      "id": "Customer Dashboard Analytic Item",
       "name": "Customer Dashboard Analytic Item",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/customer/dashboardAnalyticItem.njk"
-      }
+      "path": "snippets/customer/dashboardAnalyticItem.njk"
     },
-
     "Customer Menu Email Icon": {
-      "id": "Customer Menu Email Icon",
       "name": "Customer Menu Email Icon",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/customer/emailIcon.njk"
-      }
+      "path": "snippets/customer/emailIcon.njk"
     },
     "Customer Menu Phone Icon": {
-      "id": "Customer Menu Phone Icon",
       "name": "Customer Menu Phone Icon",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/customer/phoneIcon.njk"
-      }
+      "path": "snippets/customer/phoneIcon.njk"
     },
     "Customer Menu Location Icon": {
-      "id": "Customer Menu Location Icon",
       "name": "Customer Menu Location Icon",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/customer/locationIcon.njk"
-      }
+      "path": "snippets/customer/locationIcon.njk"
     },
     "Customer Menu Logout Icon": {
-      "id": "Customer Menu Logout Icon",
       "name": "Customer Menu Logout Icon",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/customer/logoutIcon.njk"
-      }
+      "path": "snippets/customer/logoutIcon.njk"
     },
     "Customer Menu Links": {
-      "id": "Customer Menu Links",
       "name": "Customer Menu Links",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/customer/header/menuLinks.njk"
-      }
+      "path": "snippets/customer/header/menuLinks.njk"
     },
     "Customer Menu User Details": {
-      "id": "Customer Menu User Details",
       "name": "Customer Menu User Details",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/customer/header/userDetails.njk"
-      }
+      "path": "snippets/customer/header/userDetails.njk"
     },
     "Customer Empty Sales Icon": {
-      "id": "Customer Empty Sales Icon",
       "name": "Customer Empty Sales Icon",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/customer/emptySalesIcon.njk"
-      }
+      "path": "snippets/customer/emptySalesIcon.njk"
     },
     "Customer Empty Affiliate Icon": {
-      "id": "Customer Empty Affiliate Icon",
       "name": "Customer Empty Affiliate Icon",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/customer/emptyAffiliateIcon.njk"
-      }
+      "path": "snippets/customer/emptyAffiliateIcon.njk"
     },
-
     "Ticket Message": {
-      "id": "Ticket Message",
       "name": "Ticket Message",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/ticketMessage.njk"
-      }
+      "path": "snippets/shop/ticket/ticketMessage.njk"
     },
     "Feedback Card": {
-      "id": "Feedback Card",
       "name": "Feedback Card",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/feedbackCard.njk"
-      }
+      "path": "snippets/shop/feedback/feedbackCard.njk"
     },
     "Feedback form": {
-      "id": "Feedback form",
       "name": "Feedback form",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/feedbackForm.njk"
-      }
+      "path": "snippets/shop/feedback/feedbackForm.njk"
     },
     "Price variants": {
-      "id": "Price variants",
       "name": "Price variants",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/priceVariants.njk"
-      }
+      "path": "snippets/shop/product/priceVariants.njk"
     },
     "Invoice details": {
-      "id": "Invoice details",
       "name": "Invoice details",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/invoiceDetails.njk"
-      }
+      "path": "snippets/shop/invoice/invoiceDetails.njk"
     },
     "Invoice subscription details": {
-      "id": "Invoice subscription details",
       "name": "Invoice subscription details",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/invoiceSubscriptionDetails.njk"
-      }
+      "path": "snippets/shop/invoice/invoiceSubscriptionDetails.njk"
     },
     "Invoice product badge": {
-      "id": "Invoice product badge",
       "name": "Invoice product badge",
-      "settings": {
-        "schema": []
-      },
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/invoiceProductBadge.njk"
-      }
+      "path": "snippets/shop/invoice/invoiceProductBadge.njk"
     },
     "Invoice track badge": {
-      "id": "Invoice track badge",
       "name": "Invoice track badge",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/invoiceTrackBadge.njk"
-      }
+      "path": "snippets/shop/invoice/invoiceTrackBadge.njk"
     },
     "Invoice product info": {
-      "id": "Invoice product info",
       "name": "Invoice product info",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/invoiceProductInfo.njk"
-      }
+      "path": "snippets/shop/invoice/invoiceProductInfo.njk"
     },
     "Delivery alert success": {
-      "id": "Delivery alert success",
       "name": "Delivery alert success",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/deliveryAlertSuccess.njk"
-      }
+      "path": "snippets/shop/delivery/deliveryAlertSuccess.njk"
     },
     "Delivery cart products": {
-      "id": "Delivery cart products",
       "name": "Delivery cart products",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/deliveryCartProducts.njk"
-      }
+      "path": "snippets/shop/delivery/deliveryCartProducts.njk"
     },
     "Delivery product": {
-      "id": "Delivery product",
       "name": "Delivery product",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/deliveryProduct.njk"
-      }
+      "path": "snippets/shop/delivery/deliveryProduct.njk"
     },
     "Delivery product subscription": {
-      "id": "Delivery product subscription",
       "name": "Delivery product subscription",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/deliveryProductSubscription.njk"
-      }
+      "path": "snippets/shop/delivery/deliveryProductSubscription.njk"
     },
     "Delivery dev": {
-      "id": "Delivery dev",
       "name": "Delivery dev",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/deliveryDev.njk"
-      }
+      "path": "snippets/shop/delivery/deliveryDev.njk"
     },
     "Delivery digital product": {
-      "id": "Delivery digital product",
       "name": "Delivery digital product",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/deliveryDigitalProduct.njk"
-      }
+      "path": "snippets/shop/delivery/deliveryDigitalProduct.njk"
     },
     "Track items icon": {
-      "id": "Track items icon",
       "name": "Track items icon",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "snippets/trackItemsIcon.njk"
-      }
+      "path": "snippets/shared/icons/trackItemsIcon.njk"
     }
   },
 
   "assets": {
     "badge.css": {
-      "id": "badge.css",
-      "file": {
-        "checksum": "checksum of File",
-        "id": "assets/css/badge.css",
-        "cdn_url": "/mock/assets/css/badge.css"
-      },
-      "name": "badge.css"
+      "name": "badge.css",
+      "path": "assets/css/badge.css"
     },
     "embed.css": {
-      "id": "embed.css",
-      "file": {
-        "checksum": "checksum of File",
-        "id": "assets/css/embed.css",
-        "cdn_url": "/mock/assets/css/embed.css"
-      },
-      "name": "embed.css"
+      "name": "embed.css",
+      "path": "assets/css/embed.css"
     },
     "loader.css": {
-      "id": "loader.css",
-      "file": {
-        "checksum": "checksum of File",
-        "id": "assets/css/loader.css",
-        "cdn_url": "/mock/assets/css/loader.css"
-      },
-      "name": "loader.css"
+      "name": "loader.css",
+      "path": "assets/css/loader.css"
     },
     "select2.css": {
-      "id": "select2.css",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/packages/select2/select2.min.css",
-        "cdn_url": "/mock/assets/packages/select2/select2.min.css"
-      },
-      "name": "select2.css"
+      "name": "select2.css",
+      "path": "assets/packages/select2/select2.min.css"
     },
     "pace-theme.css": {
-      "id": "pace-theme.css",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/packages/pace/pace-theme.css",
-        "cdn_url": "/mock/assets/packages/pace/pace-theme.css"
-      },
-      "name": "pace-theme.css"
+      "name": "pace-theme.css",
+      "path": "assets/packages/pace/pace-theme.css"
     },
     "logo.png": {
-      "id": "logo.png",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/media/logo.png",
-        "cdn_url": "/mock/assets/media/logo.png"
-      },
-      "name": "logo.png"
+      "name": "logo.png",
+      "path": "assets/media/logo.png"
     },
     "sellix.svg": {
-      "id": "sellix.svg",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/media/sellix.svg",
-        "cdn_url": "/mock/assets/media/sellix.svg"
-      },
-      "name": "sellix.svg"
+      "name": "sellix.svg",
+      "path": "assets/media/sellix.svg"
     },
     "favicon.ico": {
-      "id": "favicon.ico",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/media/favicon.ico",
-        "cdn_url": "/mock/assets/media/favicon.ico"
-      },
-      "name": "favicon.ico"
+      "name": "favicon.ico",
+      "path": "assets/media/favicon.ico"
     },
     "loaded-logo-dark.svg": {
-      "id": "loaded-logo-dark.svg",
       "name": "loaded-logo-dark.svg",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/media/loaded-logo-dark.svg",
-        "cdn_url": "/mock/assets/media/loaded-logo-dark.svg"
-      }
+      "path": "assets/media/loaded-logo-dark.svg"
     },
     "loader-logo-light.svg": {
-      "id": "loader-logo-light.svg",
       "name": "loader-logo-light.svg",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/media/loader-logo-light.svg",
-        "cdn_url": "/mock/assets/media/loader-logo-light.svg"
-      }
+      "path": "assets/media/loader-logo-light.svg"
     },
     "section-ticket.css": {
-      "id": "section-ticket.css",
-      "file": {
-        "checksum": "checksum of File",
-        "id": "assets/css/section-ticket.css",
-        "cdn_url": "/mock/assets/css/section-ticket.css"
-      },
-      "name": "section-ticket.css"
+      "name": "section-ticket.css",
+      "path": "assets/css/section-ticket.css"
     },
     "snippet-addons.css": {
-      "id": "snippet-addons.css",
-      "file": {
-        "checksum": "checksum of File",
-        "id": "assets/css/snippet-addons.css",
-        "cdn_url": "/mock/assets/css/snippet-addons.css"
-      },
-      "name": "snippet-addons.css"
+      "name": "snippet-addons.css",
+      "path": "assets/css/snippet-addons.css"
     },
     "snippet-bundles.css": {
-      "id": "snippet-bundles.css",
-      "file": {
-        "checksum": "checksum of File",
-        "id": "assets/css/snippet-bundles.css",
-        "cdn_url": "/mock/assets/css/snippet-bundles.css"
-      },
-      "name": "snippet-bundles.css"
+      "name": "snippet-bundles.css",
+      "path": "assets/css/snippet-bundles.css"
     },
     "snippet-bundle-products.css": {
-      "id": "snippet-bundle-products.css",
-      "file": {
-        "checksum": "checksum of File",
-        "id": "assets/css/snippet-bundle-product.css",
-        "cdn_url": "/mock/assets/css/snippet-bundle-product.css"
-      },
-      "name": "snippet-bundle-products.css"
+      "name": "snippet-bundle-products.css",
+      "path": "assets/css/snippet-bundle-product.css"
     },
     "snippet-price-variants.css": {
-      "id": "snippet-price-variants.css",
-      "file": {
-        "checksum": "checksum of File",
-        "id": "assets/css/snippet-price-variants.css",
-        "cdn_url": "/mock/assets/css/snippet-price-variants.css"
-      },
-      "name": "snippet-price-variants.css"
+      "name": "snippet-price-variants.css",
+      "path": "assets/css/snippet-price-variants.css"
     },
     "section-trust.css": {
-      "id": "section-trust.css",
-      "file": {
-        "checksum": "checksum of File",
-        "id": "assets/css/section-trust.css",
-        "cdn_url": "/mock/assets/css/section-trust.css"
-      },
-      "name": "section-trust.css"
+      "name": "section-trust.css",
+      "path": "assets/css/section-trust.css"
     },
     "shop-common-styles.css": {
-      "id": "shop-common-styles.css",
-      "file": {
-        "checksum": "checksum of File",
-        "id": "assets/css/shop-common-styles.css",
-        "cdn_url": "/mock/assets/css/shop-common-styles.css"
-      },
-      "name": "shop-common-styles.css"
+      "name": "shop-common-styles.css",
+      "path": "assets/css/shop-common-styles.css"
     },
     "toastify.css": {
-      "id": "toastify.css",
-      "file": {
-        "checksum": "checksum of File",
-        "id": "assets/css/toastify.css",
-        "cdn_url": "/mock/assets/css/toastify.css"
-      },
-      "name": "toastify.css"
+      "name": "toastify.css",
+      "path": "assets/css/toastify.css"
     },
     "modal.css": {
-      "id": "modal.css",
-      "file": {
-        "checksum": "checksum of File",
-        "id": "assets/css/modal.css",
-        "cdn_url": "/mock/assets/css/modal.css"
-      },
-      "name": "modal.css"
+      "name": "modal.css",
+      "path": "assets/css/modal.css"
     },
     "fa-icons.css": {
-      "id": "fa-icons.css",
-      "file": {
-        "checksum": "checksum of File",
-        "id": "assets/css/fa-icons.css",
-        "cdn_url": "/mock/assets/css/fa-icons.css"
-      },
-      "name": "fa-icons.css"
+      "name": "fa-icons.css",
+      "path": "assets/css/fa-icons.css"
     },
     "tiny-slider.css": {
-      "id": "tiny-slider.css",
-      "file": {
-        "checksum": "checksum of File",
-        "id": "assets/css/tiny-slider.css",
-        "cdn_url": "/mock/assets/css/tiny-slider.css"
-      },
-      "name": "tiny-slider.css"
+      "name": "tiny-slider.css",
+      "path": "assets/css/tiny-slider.css"
     },
     "section-feedback-list.css": {
-      "id": "section-feedback-list.css",
-      "file": {
-        "checksum": "checksum of File",
-        "id": "assets/css/section-feedback-list.css",
-        "cdn_url": "/mock/assets/css/section-feedback-list.css"
-      },
-      "name": "section-feedback-list.css"
+      "name": "section-feedback-list.css",
+      "path": "assets/css/section-feedback-list.css"
     },
     "section-feedback.css": {
-      "id": "section-feedback.css",
-      "file": {
-        "checksum": "checksum of File",
-        "id": "assets/css/section-feedback.css",
-        "cdn_url": "/mock/assets/css/section-feedback.css"
-      },
-      "name": "section-feedback.css"
+      "name": "section-feedback.css",
+      "path": "assets/css/section-feedback.css"
     },
     "snippet-purchase-details.css": {
-      "id": "snippet-purchase-details.css",
-      "file": {
-        "checksum": "checksum of File",
-        "id": "assets/css/snippet-purchase-details.css",
-        "cdn_url": "/mock/assets/css/snippet-purchase-details.css"
-      },
-      "name": "snippet-purchase-details.css"
+      "name": "snippet-purchase-details.css",
+      "path": "assets/css/snippet-purchase-details.css"
     },
     "react-simple-star-rating.js": {
-      "id": "react-simple-star-rating.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/packages/widgets/react-simple-star-rating/react-simple-star-rating.js",
-        "cdn_url": "/mock/assets/packages/widgets/react-simple-star-rating/react-simple-star-rating.js"
-      },
-      "name": "react-simple-star-rating.js"
+      "name": "react-simple-star-rating.js",
+      "path": "assets/packages/widgets/react-simple-star-rating/react-simple-star-rating.js"
     },
     "select2.js": {
-      "id": "select2.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/packages/select2/select2.min.js",
-        "cdn_url": "/mock/assets/packages/select2/select2.min.js"
-      },
-      "name": "select2.js"
+      "name": "select2.js",
+      "path": "assets/packages/select2/select2.min.js"
     },
     "pace.js": {
-      "id": "pace.min.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/packages/pace/pace.min.js",
-        "cdn_url": "/mock/assets/packages/pace/pace.min.js"
-      },
-      "name": "pace.min.js"
+      "name": "pace.min.js",
+      "path": "assets/packages/pace/pace.min.js"
     },
     "jquery.js": {
-      "id": "jquery.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/packages/jquery/jquery.3.6.0.js",
-        "cdn_url": "/mock/assets/packages/jquery/jquery.3.6.0.js"
-      },
-      "name": "jquery.js"
+      "name": "jquery.js",
+      "path": "assets/packages/jquery/jquery.3.6.0.js"
     },
     "ripple.js": {
-      "id": "ripple.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/js/ripple.js",
-        "cdn_url": "/mock/assets/js/ripple.js"
-      },
-      "name": "ripple.js"
+      "name": "ripple.js",
+      "path": "assets/js/ripple.js"
     },
     "copy-to-clipboard.min.js": {
-      "id": "copy-to-clipboard.min.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/packages/copy-to-clipboard/copy-to-clipboard.min.js",
-        "cdn_url": "/mock/assets/packages/copy-to-clipboard/copy-to-clipboard.min.js"
-      },
-      "name": "copy-to-clipboard.min.js"
+      "name": "copy-to-clipboard.min.js",
+      "path": "assets/packages/copy-to-clipboard/copy-to-clipboard.min.js"
     },
     "file-saver.js": {
-      "id": "file-saver.min.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/packages/file-saver/file-saver.min.js",
-        "cdn_url": "/mock/assets/packages/file-saver/file-saver.min.js"
-      },
-      "name": "file-saver.min.js"
+      "name": "file-saver.min.js",
+      "path": "assets/packages/file-saver/file-saver.min.js"
     },
     "ReactPlayer.standalone.js": {
-      "id": "ReactPlayer.standalone.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/packages/react-player/ReactPlayer.2.11.0.standalone.js",
-        "cdn_url": "/mock/assets/packages/react-player/ReactPlayer.2.11.0.standalone.js"
-      },
-      "name": "ReactPlayer.standalone.js"
+      "name": "ReactPlayer.standalone.js",
+      "path": "assets/packages/react-player/ReactPlayer.2.11.0.standalone.js"
     },
     "js.cookie.min.js": {
-      "id": "js.cookie.min.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/packages/js.cookie/js.cookie.min.js",
-        "cdn_url": "/mock/assets/packages/js.cookie/js.cookie.min.js"
-      },
-      "name": "js.cookie.min.js"
+      "name": "js.cookie.min.js",
+      "path": "assets/packages/js.cookie/js.cookie.min.js"
     },
     "invoice.js": {
-      "id": "invoice.js",
       "name": "invoice.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/packages/widgets/invoice/invoice.js",
-        "cdn_url": "/mock/assets/packages/widgets/invoice/invoice.js"
-      }
+      "path": "assets/packages/widgets/invoice/invoice.js"
     },
     "invoice.css": {
-      "id": "invoice.css",
       "name": "invoice.css",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/packages/widgets/invoice/invoice.css",
-        "cdn_url": "/mock/assets/packages/widgets/invoice/invoice.css"
-      }
+      "path": "assets/packages/widgets/invoice/invoice.css"
     },
     "auth.js": {
-      "id": "auth.js",
       "name": "auth.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/packages/widgets/customer/auth.js",
-        "cdn_url": "/mock/assets/packages/widgets/customer/auth.js"
-      }
+      "path": "assets/packages/widgets/customer/auth.js"
     },
     "auth.css": {
-      "id": "auth.css",
       "name": "auth.css",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/packages/widgets/customer/auth.css",
-        "cdn_url": "/mock/assets/packages/widgets/customer/auth.css"
-      }
+      "path": "assets/packages/widgets/customer/auth.css"
     },
     "purchase.js": {
-      "id": "purchase.js",
       "name": "purchase.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/packages/widgets/purchase/purchase.js",
-        "cdn_url": "/mock/assets/packages/widgets/purchase/purchase.js"
-      }
+      "path": "assets/packages/widgets/purchase/purchase.js"
     },
     "purchase.css": {
-      "id": "purchase.css",
       "name": "purchase.css",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/packages/widgets/purchase/purchase.css",
-        "cdn_url": "/mock/assets/packages/widgets/purchase/purchase.css"
-      }
+      "path": "assets/packages/widgets/purchase/purchase.css"
     },
     "magnific-popup.1.1.0.min.js": {
-      "id": "magnific-popup.1.1.0.min.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/packages/magnific-popup/magnific-popup.1.1.0.min.js",
-        "cdn_url": "/mock/assets/packages/magnific-popup/magnific-popup.1.1.0.min.js"
-      },
-      "name": "magnific-popup.1.1.0.min.js"
+      "name": "magnific-popup.1.1.0.min.js",
+      "path": "assets/packages/magnific-popup/magnific-popup.1.1.0.min.js"
     },
     "magnific-popup.1.1.0.css": {
-      "id": "magnific-popup.1.1.0.css",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/packages/magnific-popup/magnific-popup.1.1.0.css",
-        "cdn_url": "/mock/assets/packages/magnific-popup/magnific-popup.1.1.0.css"
-      },
-      "name": "magnific-popup.1.1.0.css"
+      "name": "magnific-popup.1.1.0.css",
+      "path": "assets/packages/magnific-popup/magnific-popup.1.1.0.css"
     },
     "sellix-helper.js": {
-      "id": "sellix-helper.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/js/sellix-helper.js",
-        "cdn_url": "/mock/assets/js/sellix-helper.js"
-      },
-      "name": "sellix-helper.js"
+      "name": "sellix-helper.js",
+      "path": "assets/js/sellix-helper.js"
     },
     "sellix-context.js": {
-      "id": "sellix-context.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/js/sellix-context.js",
-        "cdn_url": "/mock/assets/js/sellix-context.js"
-      },
-      "name": "sellix-context.js"
+      "name": "sellix-context.js",
+      "path": "assets/js/sellix-context.js"
     },
     "sellix-cart-store.js": {
-      "id": "sellix-cart-store.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/js/sellix-cart-store.js",
-        "cdn_url": "/mock/assets/js/sellix-cart-store.js"
-      },
-      "name": "sellix-cart-store.js"
+      "name": "sellix-cart-store.js",
+      "path": "assets/js/sellix-cart-store.js"
     },
     "sellix-store.js": {
-      "id": "sellix-store.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/js/sellix-store.js",
-        "cdn_url": "/mock/assets/js/sellix-store.js"
-      },
-      "name": "sellix-store.js"
+      "name": "sellix-store.js",
+      "path": "assets/js/sellix-store.js"
     },
     "sellix-addons-store.js": {
-      "id": "sellix-addons-store.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/js/sellix-addons-store.js",
-        "cdn_url": "/mock/assets/js/sellix-addons-store.js"
-      },
-      "name": "sellix-addons-store.js"
+      "name": "sellix-addons-store.js",
+      "path": "assets/js/sellix-addons-store.js"
     },
     "sellix-price-variants-store.js": {
-      "id": "sellix-price-variants-store.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/js/sellix-price-variants-store.js",
-        "cdn_url": "/mock/assets/js/sellix-price-variants-store.js"
-      },
-      "name": "sellix-price-variants-store.js"
+      "name": "sellix-price-variants-store.js",
+      "path": "assets/js/sellix-price-variants-store.js"
     },
     "sellix-api.js": {
-      "id": "sellix-api.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/js/sellix-api.js",
-        "cdn_url": "/mock/assets/js/sellix-api.js"
-      },
-      "name": "sellix-api.js"
+      "name": "sellix-api.js",
+      "path": "assets/js/sellix-api.js"
     },
     "sellix-feedback-pagination.js": {
-      "id": "sellix-feedback-pagination.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/js/sellix-feedback-pagination.js",
-        "cdn_url": "/mock/assets/js/sellix-feedback-pagination.js"
-      },
-      "name": "sellix-feedback-pagination.js"
+      "name": "sellix-feedback-pagination.js",
+      "path": "assets/js/sellix-feedback-pagination.js"
     },
     "sellix-table-pagination.js": {
-      "id": "sellix-table-pagination.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/js/sellix-table-pagination.js",
-        "cdn_url": "/mock/assets/js/sellix-table-pagination.js"
-      },
-      "name": "sellix-table-pagination.js"
+      "name": "sellix-table-pagination.js",
+      "path": "assets/js/sellix-table-pagination.js"
     },
     "sellix-cart-product-component.js": {
-      "id": "sellix-cart-product-component.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/components/cart-product.js",
-        "cdn_url": "/mock/assets/components/cart-product.js"
-      },
-      "name": "sellix-cart-product-component.js"
+      "name": "sellix-cart-product-component.js",
+      "path": "assets/components/cart-product.js"
     },
     "sellix-cart-component.js": {
-      "id": "sellix-cart-component.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/components/cart.js",
-        "cdn_url": "/mock/assets/components/cart.js"
-      },
-      "name": "sellix-cart-component.js"
+      "name": "sellix-cart-component.js",
+      "path": "assets/components/cart.js"
     },
     "sellix-customer-menu-component.js": {
-      "id": "sellix-customer-menu-component.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/components/customer-menu.js",
-        "cdn_url": "/mock/assets/components/customer-menu.js"
-      },
-      "name": "sellix-customer-menu-component.js"
+      "name": "sellix-customer-menu-component.js",
+      "path": "assets/components/customer-menu.js"
     },
     "sellix-addons-component.js": {
-      "id": "sellix-addons-component.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/components/addons.js",
-        "cdn_url": "/mock/assets/components/addons.js"
-      },
-      "name": "sellix-addons-component.js"
+      "name": "sellix-addons-component.js",
+      "path": "assets/components/addons.js"
     },
     "sellix-bundle-component.js": {
-      "id": "sellix-bundle-component.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/components/bundle.js",
-        "cdn_url": "/mock/assets/components/bundle.js"
-      },
-      "name": "sellix-bundle-component.js"
+      "name": "sellix-bundle-component.js",
+      "path": "assets/components/bundle.js"
     },
     "sellix-checkout-products-component.js": {
-      "id": "sellix-checkout-products-component.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/components/checkout-products.js",
-        "cdn_url": "/mock/assets/components/checkout-products.js"
-      },
-      "name": "sellix-checkout-products-component.js"
+      "name": "sellix-checkout-products-component.js",
+      "path": "assets/components/checkout-products.js"
     },
     "sellix-checkout-product-component.js": {
-      "id": "sellix-checkout-product-component.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/components/checkout-product.js",
-        "cdn_url": "/mock/assets/components/checkout-product.js"
-      },
-      "name": "sellix-checkout-product-component.js"
+      "name": "sellix-checkout-product-component.js",
+      "path": "assets/components/checkout-product.js"
     },
     "sellix-feedback-pagination-component.js": {
-      "id": "sellix-feedback-pagination-component.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/components/feedback-pagination.js",
-        "cdn_url": "/mock/assets/components/feedback-pagination.js"
-      },
-      "name": "sellix-feedback-pagination-component.js"
+      "name": "sellix-feedback-pagination-component.js",
+      "path": "assets/components/feedback-pagination.js"
     },
     "sellix-table-pagination-component.js": {
-      "id": "sellix-table-pagination-component.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/components/table-pagination.js",
-        "cdn_url": "/mock/assets/components/table-pagination.js"
-      },
-      "name": "sellix-table-pagination-component.js"
+      "name": "sellix-table-pagination-component.js",
+      "path": "assets/components/table-pagination.js"
     },
     "sellix-invoice-products-info-component.js": {
-      "id": "sellix-invoice-products-info-component.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/components/invoice-products-info.js",
-        "cdn_url": "/mock/assets/components/invoice-products-info.js"
-      },
-      "name": "sellix-invoice-products-info-component.js"
+      "name": "sellix-invoice-products-info-component.js",
+      "path": "assets/components/invoice-products-info.js"
     },
     "sellix-product-count-component.js": {
-      "id": "sellix-product-count-component.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/components/product-count.js",
-        "cdn_url": "/mock/assets/components/product-count.js"
-      },
-      "name": "sellix-product-count-component.js"
+      "name": "sellix-product-count-component.js",
+      "path": "assets/components/product-count.js"
     },
     "sellix-price-variants-component.js": {
-      "id": "sellix-price-variants-component.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/components/price-variants.js",
-        "cdn_url": "/mock/assets/components/price-variants.js"
-      },
-      "name": "sellix-price-variants-component.js"
+      "name": "sellix-price-variants-component.js",
+      "path": "assets/components/price-variants.js"
     },
     "sellix-contact-form-component.js": {
-      "id": "sellix-contact-form-component.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/components/contact-form.js",
-        "cdn_url": "/mock/assets/components/contact-form.js"
-      },
-      "name": "sellix-contact-form-component.js"
+      "name": "sellix-contact-form-component.js",
+      "path": "assets/components/contact-form.js"
     },
     "sellix-purchase-details-component.js": {
-      "id": "sellix-purchase-details-component.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/components/purchase-details.js",
-        "cdn_url": "/mock/assets/components/purchase-details.js"
-      },
-      "name": "sellix-purchase-details-component.js"
+      "name": "sellix-purchase-details-component.js",
+      "path": "assets/components/purchase-details.js"
     },
     "sellix-invoice-details-component.js": {
-      "id": "sellix-invoice-details-component.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/components/invoice-details.js",
-        "cdn_url": "/mock/assets/components/invoice-details.js"
-      },
-      "name": "sellix-invoice-details-component.js"
+      "name": "sellix-invoice-details-component.js",
+      "path": "assets/components/invoice-details.js"
     },
     "sellix-customer-auth-component.js": {
-      "id": "sellix-customer-auth-component.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/components/customer-auth.js",
-        "cdn_url": "/mock/assets/components/customer-auth.js"
-      },
-      "name": "sellix-customer-auth-component.js"
+      "name": "sellix-customer-auth-component.js",
+      "path": "assets/components/customer-auth.js"
     },
     "quicklink.umd.js": {
-      "id": "quicklink.umd.js",
       "name": "quicklink.umd.js",
-      "file": {
-        "id": "assets/packages/quicklink/quicklink.umd.js",
-        "cdn_url": "/mock/assets/packages/quicklink/quicklink.umd.js",
-        "checksum": "checksum of file",
-        "name": "quicklink.umd.js"
-      }
+      "path": "assets/packages/quicklink/quicklink.umd.js"
     },
     "sellix-ticket-component.js": {
-      "id": "sellix-ticket-component.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/components/ticket.js",
-        "cdn_url": "/mock/assets/components/ticket.js"
-      },
-      "name": "sellix-ticket-component.js"
+      "name": "sellix-ticket-component.js",
+      "path": "assets/components/ticket.js"
     },
     "sellix-leave-feedback-component.js": {
-      "id": "sellix-leave-feedback-component.js",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/components/leave-feedback.js",
-        "cdn_url": "/mock/assets/components/leave-feedback.js"
-      },
-      "name": "sellix-leave-feedback-component.js"
+      "name": "sellix-leave-feedback-component.js",
+      "path": "assets/components/leave-feedback.js"
     },
     "section-header.css": {
-      "id": "section-header.css",
       "name": "section-header.css",
-      "file": {
-        "checksum": "checksum of file",
-        "id": "assets/css/section-header.css",
-        "cdn_url": "/mock/assets/css/section-header.css",
-        "name": "section-header.css"
-      }
+      "path": "assets/css/section-header.css"
     },
     "section-footer.css": {
-      "id": "section-footer.css",
       "name": "section-footer.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/section-footer.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/section-footer.css",
-        "name": "section-footer.css"
-      }
+      "path": "assets/css/section-footer.css"
     },
     "section-banner.css": {
-      "id": "section-banner.css",
       "name": "section-banner.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/section-banner.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/section-banner.css",
-        "name": "section-banner.css"
-      }
+      "path": "assets/css/section-banner.css"
     },
     "section-menu.css": {
-      "id": "section-menu.css",
       "name": "section-menu.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/section-menu.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/section-menu.css",
-        "name": "section-menu.css"
-      }
+      "path": "assets/css/section-menu.css"
     },
     "section-product-list.css": {
-      "id": "section-product-list.css",
       "name": "section-product-list.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/section-product-list.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/section-product-list.css",
-        "name": "section-product-list.css"
-      }
+      "path": "assets/css/section-product-list.css"
     },
     "section-customer-list.css": {
-      "id": "section-customer-list.css",
       "name": "section-customer-list.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/section-customer-list.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/section-customer-list.css",
-        "name": "section-customer-list.css"
-      }
+      "path": "assets/css/section-customer-list.css"
     },
     "section-product-checkout-invoice-shop-info.css": {
-      "id": "section-product-checkout-invoice-shop-info.css",
       "name": "section-product-checkout-invoice-shop-info.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/section-product-checkout-invoice-shop-info.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/section-product-checkout-invoice-shop-info.css",
-        "name": "section-product-checkout-invoice-shop-info.css"
-      }
+      "path": "assets/css/section-product-checkout-invoice-shop-info.css"
     },
     "section-customer-auth.css": {
-      "id": "section-customer-auth.css",
       "name": "section-customer-auth.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/section-customer-auth.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/section-customer-auth.css",
-        "name": "section-customer-auth.css"
-      }
+      "path": "assets/css/section-customer-auth.css"
     },
     "section-customer-payout.css": {
-      "id": "section-customer-payout.css",
       "name": "section-customer-payout.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/section-customer-payout.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/section-customer-payout.css",
-        "name": "section-customer-payout.css"
-      }
+      "path": "assets/css/section-customer-payout.css"
     },
     "section-contact-form.css": {
-      "id": "section-contact-form.css",
       "name": "section-contact-form.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/section-contact-form.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/section-contact-form.css",
-        "name": "section-contact-form.css"
-      }
+      "path": "assets/css/section-contact-form.css"
     },
     "section-terms.css": {
-      "id": "section-terms.css",
       "name": "section-terms.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/section-terms.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/section-terms.css",
-        "name": "section-terms.css"
-      }
+      "path": "assets/css/section-terms.css"
     },
     "section-invoice-info.css": {
-      "id": "section-invoice-info.css",
       "name": "section-invoice-info.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/section-invoice-info.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/section-invoice-info.css",
-        "name": "section-invoice-info.css"
-      }
+      "path": "assets/css/section-invoice-info.css"
     },
     "section-delivery-header.css": {
-      "id": "section-delivery-header.css",
       "name": "section-delivery-header.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/section-delivery-header.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/section-delivery-header.css",
-        "name": "section-delivery-header.css"
-      }
+      "path": "assets/css/section-delivery-header.css"
     },
     "section-delivery-info.css": {
-      "id": "section-delivery-info.css",
       "name": "section-delivery-info.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/section-delivery-info.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/section-delivery-info.css",
-        "name": "section-delivery-info.css"
-      }
+      "path": "assets/css/section-delivery-info.css"
     },
     "block-banner-shop-info.css": {
-      "id": "block-banner-shop-info.css",
       "name": "block-banner-shop-info.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/block-banner-shop-info.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/block-banner-shop-info.css",
-        "name": "block-banner-shop-info.css"
-      }
+      "path": "assets/css/block-banner-shop-info.css"
     },
     "block-banner-stats.css": {
-      "id": "block-banner-stats.css",
       "name": "block-banner-stats.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/block-banner-stats.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/block-banner-stats.css",
-        "name": "block-banner-stats.css"
-      }
+      "path": "assets/css/block-banner-stats.css"
     },
     "block-product-list-filter.css": {
-      "id": "block-product-list-filter.css",
       "name": "block-product-list-filter.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/block-product-list-filter.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/block-product-list-filter.css",
-        "name": "block-product-list-filter.css"
-      }
+      "path": "assets/css/block-product-list-filter.css"
     },
     "block-product-list-items.css": {
-      "id": "block-product-list-items.css",
       "name": "block-product-list-items.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/block-product-list-items.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/block-product-list-items.css",
-        "name": "block-product-list-items.css"
-      }
+      "path": "assets/css/block-product-list-items.css"
     },
     "block-product-relations.css": {
-      "id": "block-product-relations.css",
       "name": "block-product-relations.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/block-product-relations.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/block-product-relations.css",
-        "name": "block-product-relations.css"
-      }
+      "path": "assets/css/block-product-relations.css"
     },
     "block-feedback-items.css": {
-      "id": "block-feedback-items.css",
       "name": "block-feedback-items.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/block-feedback-items.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/block-feedback-items.css",
-        "name": "block-feedback-items.css"
-      }
+      "path": "assets/css/block-feedback-items.css"
     },
     "block-feedback-pagination.css": {
-      "id": "block-feedback-pagination.css",
       "name": "block-feedback-pagination.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/block-feedback-pagination.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/block-feedback-pagination.css",
-        "name": "block-feedback-pagination.css"
-      }
+      "path": "assets/css/block-feedback-pagination.css"
     },
     "block-table-pagination.css": {
-      "id": "block-table-pagination.css",
       "name": "block-table-pagination.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/block-table-pagination.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/block-table-pagination.css",
-        "name": "block-table-pagination.css"
-      }
+      "path": "assets/css/block-table-pagination.css"
     },
     "block-delivery-products-info.css": {
-      "id": "block-delivery-products-info.css",
       "name": "block-delivery-products-info.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/block-delivery-products-info.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/block-delivery-products-info.css",
-        "name": "block-delivery-products-info.css"
-      }
+      "path": "assets/css/block-delivery-products-info.css"
     },
     "snippet-product-cards.css": {
-      "id": "snippet-product-cards.css",
       "name": "snippet-product-cards.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/snippet-product-cards.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/snippet-product-cards.css",
-        "name": "snippet-product-cards.css"
-      }
+      "path": "assets/css/snippet-product-cards.css"
     },
     "snippet-feedback-card.css": {
-      "id": "snippet-feedback-card.css",
       "name": "snippet-feedback-card.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/snippet-feedback-card.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/snippet-feedback-card.css",
-        "name": "snippet-feedback-card.css"
-      }
+      "path": "assets/css/snippet-feedback-card.css"
     },
     "snippet-text-text-area.css": {
-      "id": "snippet-text-text-area.css",
       "name": "snippet-text-text-area.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/snippet-text-text-area.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/snippet-text-text-area.css",
-        "name": "snippet-text-text-area.css"
-      }
+      "path": "assets/css/snippet-text-text-area.css"
     },
     "snippet-cart.css": {
-      "id": "snippet-cart.css",
       "name": "snippet-cart.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/snippet-cart.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/snippet-cart.css",
-        "name": "snippet-cart.css"
-      }
+      "path": "assets/css/snippet-cart.css"
     },
     "snippet-customer-menu.css": {
-      "id": "snippet-customer-menu.css",
       "name": "snippet-customer-menu.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/snippet-customer-menu.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/snippet-customer-menu.css",
-        "name": "snippet-customer-menu.css"
-      }
+      "path": "assets/css/snippet-customer-menu.css"
     },
     "button.css": {
-      "id": "button.css",
       "name": "button.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/button.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/button.css",
-        "name": "button.css"
-      }
+      "path": "assets/css/button.css"
     },
     "snippet-checkout-product.css": {
-      "id": "snippet-checkout-product.css",
       "name": "snippet-checkout-product.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/snippet-checkout-product.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/snippet-checkout-product.css",
-        "name": "snippet-checkout-product.css"
-      }
+      "path": "assets/css/snippet-checkout-product.css"
     },
     "snippet-product-details.css": {
-      "id": "snippet-product-details.css",
       "name": "snippet-product-details.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/snippet-product-details.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/snippet-product-details.css",
-        "name": "snippet-product-details.css"
-      }
+      "path": "assets/css/snippet-product-details.css"
     },
     "snippet-product-warranty.css": {
-      "id": "snippet-product-warranty.css",
       "name": "snippet-product-warranty.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/snippet-product-warranty.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/snippet-product-warranty.css",
-        "name": "snippet-product-warranty.css"
-      }
+      "path": "assets/css/snippet-product-warranty.css"
     },
     "snippet-invoice-details.css": {
-      "id": "snippet-invoice-details.css",
-      "file": {
-        "checksum": "checksum of File",
-        "id": "assets/css/snippet-invoice-details.css",
-        "cdn_url": "/mock/assets/css/snippet-invoice-details.css"
-      },
-      "name": "snippet-invoice-details.css"
+      "name": "snippet-invoice-details.css",
+      "path": "assets/css/snippet-invoice-details.css"
     },
     "snippet-invoice-track-badge.css": {
-      "id": "snippet-invoice-track-badge.css",
-      "file": {
-        "checksum": "checksum of File",
-        "id": "assets/css/snippet-invoice-track-badge.css",
-        "cdn_url": "/mock/assets/css/snippet-invoice-track-badge.css"
-      },
-      "name": "snippet-invoice-track-badge.css"
+      "name": "snippet-invoice-track-badge.css",
+      "path": "assets/css/snippet-invoice-track-badge.css"
     },
     "snippet-shop-info.css": {
-      "id": "snippet-shop-info.css",
-      "file": {
-        "checksum": "checksum of File",
-        "id": "assets/css/snippet-shop-info.css",
-        "cdn_url": "/mock/assets/css/snippet-shop-info.css"
-      },
-      "name": "snippet-shop-info.css"
+      "name": "snippet-shop-info.css",
+      "path": "assets/css/snippet-shop-info.css"
     },
     "snippet-alert.css": {
-      "id": "snippet-alert.css",
-      "file": {
-        "checksum": "checksum of File",
-        "id": "assets/css/snippet-alert.css",
-        "cdn_url": "/mock/assets/css/snippet-alert.css"
-      },
-      "name": "snippet-alert.css"
+      "name": "snippet-alert.css",
+      "path": "assets/css/snippet-alert.css"
     },
     "font-awesome.css": {
-      "id": "font-awesome.css",
       "name": "font-awesome.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/font-awesome.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/font-awesome.css",
-        "name": "font-awesome.css"
-      }
+      "path": "assets/css/font-awesome.css"
     },
     "root-styles.css": {
-      "id": "root-styles.css",
       "name": "root-styles.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/root-styles.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/root-styles.css",
-        "name": "root-styles.css"
-      }
+      "path": "assets/css/root-styles.css"
     },
     "sellix-text.css": {
-      "id": "sellix-text.css",
       "name": "sellix-text.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/sellix-text.css",
-        "checksum": "checksum of file",
-        "id": "assets/css/sellix-text.css",
-        "name": "sellix-text.css"
-      }
+      "path": "assets/css/sellix-text.css"
     },
     "Inter.woff2": {
-      "id": "Inter.woff2",
       "name": "Inter.woff2",
-      "file": {
-        "cdn_url": "/mock/assets/fonts/Inter.woff2",
-        "checksum": "checksum of file",
-        "id": "assets/fonts/Inter.woff2",
-        "name": "Inter.woff2"
-      }
+      "path": "assets/fonts/Inter.woff2"
     },
     "Inter-italic.var.woff2": {
-      "id": "Inter-italic.var.woff2",
       "name": "Inter-italic.var.woff2",
-      "file": {
-        "cdn_url": "/mock/assets/fonts/Inter-italic.var.woff2",
-        "checksum": "checksum of file",
-        "id": "assets/fonts/Inter-italic.var.woff2",
-        "name": "Inter-italic.var.woff2"
-      }
+      "path": "assets/fonts/Inter-italic.var.woff2"
     },
     "cookie-modal.js": {
-      "id": "cookie-modal.js",
       "name": "cookie-modal.js",
-      "file": {
-        "cdn_url": "/mock/assets/packages/widgets/cookie-modal/cookie-modal.js",
-        "checksum": "checksum of file",
-        "id": "assets/packages/widgets/cookie-modal/cookie-modal.js",
-        "name": "cookie-modal.js"
-      }
+      "path": "assets/packages/widgets/cookie-modal/cookie-modal.js"
     },
     "cookie-modal.css": {
-      "id": "cookie-modal.css",
       "name": "cookie-modal.css",
-      "file": {
-        "cdn_url": "/mock/assets/packages/widgets/cookie-modal/cookie-modal.css",
-        "checksum": "checksum of file",
-        "id": "assets/packages/widgets/cookie-modal/cookie-modal.css",
-        "name": "cookie-modal.css"
-      }
+      "path": "assets/packages/widgets/cookie-modal/cookie-modal.css"
     },
     "section-faq.css": {
       "name": "section-faq.css",
-      "file": {
-        "cdn_url": "/mock/assets/css/section-faq.css",
-        "id": "assets/css/section-faq.css",
-        "checksum": "0bc97a0ea9f6baa98312a80e89f43566",
-        "name": "section-faq.css"
-      }
+      "path": "assets/css/section-faq.css"
     }
   },
 
   "locales": {
-    "en-EN": {
-      "id": 1,
-      "file": {
-        "checksum": "checksum of File",
-        "id": "locales/en-EN.json"
-      },
-      "name": "en-EN"
+    "ar_sa": {
+      "name": "ar_sa",
+      "path": "locales/ar_sa.json"
+    },
+    "de": {
+      "name": "de",
+      "path": "locales/de.json"
+    },
+    "en": {
+      "name": "en",
+      "path": "locales/en.json"
+    },
+    "es": {
+      "name": "es",
+      "path": "locales/es.json"
+    },
+    "fr": {
+      "name": "fr",
+      "path": "locales/fr.json"
+    },
+    "it": {
+      "name": "it",
+      "path": "locales/it.json"
+    },
+    "ja": {
+      "name": "ja",
+      "path": "locales/ja.json"
+    },
+    "nl": {
+      "name": "nl",
+      "path": "locales/nl.json"
+    },
+    "pt": {
+      "name": "pt",
+      "path": "locales/pt.json"
+    },
+    "ru": {
+      "name": "ru",
+      "path": "locales/ru.json"
+    },
+    "zh_cn": {
+      "name": "zh_cn",
+      "path": "locales/zh_cn.json"
     }
   }
 }

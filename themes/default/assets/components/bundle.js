@@ -50,7 +50,7 @@
 
       this.cart.addMany(productsToAdd).then(() => {
         if (this.isProduct) {
-          location.href = '/checkout';
+          location.href = 'checkout';
         }
       });
     }
