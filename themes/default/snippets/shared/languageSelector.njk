@@ -1,0 +1,51 @@
+<select id='language-selector'>
+  {% for locale, localeInfo in global.locales.supportedLocales %}
+    <option
+      value="{{ locale }}"
+      {{'selected' if locale == global.locales.locale else ''}}
+      data-img-url="{{ localeInfo.imgUrl }}"
+    >
+      {{- localeInfo.title -}}
+    </option>
+  {% endfor %}
+</select>
+
+<script type='application/javascript'>
+  function optionFactory(state) {
+    const $element = $(state.element);
+    const imgUrl = $element.data("imgUrl");
+    window.flagState = state;
+    if (!state.id) {
+      return state.text;
+    }
+
+    return $(`<span style="display: flex; align-items: center;">
+        <img style="height:20px;width: 20px; margin-right: 8px;" src="${imgUrl}" />
+        ${state.text}
+      </span>`);
+  }
+
+  $(document).ready(function() {
+    $('#language-selector').select2({
+      minimumResultsForSearch: Infinity,
+      templateSelection: optionFactory,
+      templateResult: optionFactory,
+      escapeMarkup: function(m) {
+        return m;
+      },
+    })
+    .on('select2:select', (e) => {
+      const oldLocale = '{{ global.locales.locale }}';
+      const newLocale = e.params.data.id;
+      if (oldLocale !== newLocale) {
+        const pathParts = window.location.pathname.split('/').filter((p) => !!p);
+        if (pathParts.length && pathParts[0] === oldLocale) {
+          pathParts[0] = newLocale;
+        } else {
+          pathParts.unshift(newLocale);
+        }
+        window.location.href = `/${pathParts.join('/')}`;
+      }
+    });
+  });
+</script>

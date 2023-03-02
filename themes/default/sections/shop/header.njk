@@ -39,35 +39,7 @@
     </div>
 
     <div style='padding-right: 1rem'>
-      <select id='language-selector'>
-        {% for locale, localeInfo in global.locales.supportedLocales %}
-          <option value='{{ locale }}' {{'selected' if locale == global.locales.locale else ''}}>
-            {{ localeInfo.title }}
-          </option>
-        {% endfor %}
-      </select>
-
-      <script type='application/javascript'>
-        $(document).ready(function() {
-          $('#language-selector').select2({
-            minimumResultsForSearch: Infinity,
-            dropdownAutoWidth: true,
-          })
-          .on('select2:select', (e) => {
-            const oldLocale = '{{ global.locales.locale }}';
-            const newLocale = e.params.data.id;
-            if (oldLocale !== newLocale) {
-              const pathParts = window.location.pathname.split('/').filter((p) => !!p);
-              if (pathParts.length && pathParts[0] === oldLocale) {
-                pathParts[0] = newLocale;
-              } else {
-                pathParts.unshift(newLocale);
-              }
-              window.location.href = `/${pathParts.join('/')}`;
-            }
-          });
-        });
-      </script>
+      {% render_snippet 'Language selector' %}
     </div>
 
     <div class="sellix-header-cart">
