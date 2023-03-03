@@ -1,8 +1,13 @@
+{% set localesList = [] %}
+{% for locale, localeInfo in global.locales.supportedLocales %}
+  {% set localesList = (localesList.push(localeInfo), localesList) %}
+{% endfor %}
+
 <select id='language-selector'>
-  {% for locale, localeInfo in global.locales.supportedLocales %}
+  {% for localeInfo in localesList | sort(false, false, 'title') %}
     <option
-      value="{{ locale }}"
-      {{'selected' if locale == global.locales.locale else ''}}
+      value="{{ localeInfo.code }}"
+      {{'selected' if localeInfo.code == global.locales.locale else ''}}
       data-img-url="{{ localeInfo.imgUrl }}"
     >
       {{- localeInfo.title -}}
