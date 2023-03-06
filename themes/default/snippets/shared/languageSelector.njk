@@ -19,13 +19,12 @@
   function optionFactory(state) {
     const $element = $(state.element);
     const imgUrl = $element.data("imgUrl");
-    window.flagState = state;
     if (!state.id) {
       return state.text;
     }
 
     return $(`<span style="display: flex; align-items: center; overflow: hidden;">
-        <img style="height:20px;width: 20px; margin-right: 8px;" src="${imgUrl}" />
+        ${imgUrl ? `<img style="height:20px;width: 20px; margin-right: 8px;" src="${imgUrl}" />` : ''}
         ${state.text}
       </span>`);
   }

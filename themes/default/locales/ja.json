@@ -36,13 +36,13 @@
       "orderCompleted": "注文完了",
       "messageFrom": "メッセージ",
       "trialStarted": "トライアル開始",
-      "subscriptionOrderCompleted": "サブスクリプション名}}の注文が完了しました。",
+      "subscriptionOrderCompleted": "{{- subscriptionName}}の注文が完了しました。",
       "trialText": "あなたのトライアルが開始されました。<br /> 数分以内に商品が届きますので、メールをご確認ください!",
       "saveAsFile": "ファイルとして保存する",
       "paymentCompleted": "支払い完了",
       "downloadInvoice": "インボイスのダウンロード",
       "subscriptionStarted": "購読開始",
-      "backButtonTitle": "ショッ{{- shopName }}のショップに戻る",
+      "backButtonTitle": "ショッ{{- shopName}}のショップに戻る",
       "copyToClipboard": "クリップボードにコピーする",
       "cartCompleted": "ショッピングカートの注文が完了しました。",
       "productCompleted": "商品{{- productName}}の注文が完了しました。",
@@ -70,7 +70,7 @@
             "cashTagTitle": "キャッシュアプリのキャッシュタグ",
             "next": "次のページ",
             "notTimeUp": {
-              "secondsRemaining": "{秒}} 残り秒数",
+              "secondsRemaining": "{{seconds}} 残り秒数",
               "title": "120秒以内にご入金ください。",
               "manualReview": "今すぐマニュアルレビューへ"
             },
@@ -158,7 +158,7 @@
             "invoice": "インボイス",
             "product": "製品",
             "blockchain": "ブロックチェーン",
-            "chainAlert": "名前}}以外の別のチェーンで資金を送ると、資金は永久に失われることになります。",
+            "chainAlert": "{{name}}以外の別のチェーンで資金を送ると、資金は永久に失われることになります。",
             "cart": "製品情報",
             "addonsTitle": "アドオン",
             "timerTitle": "でキャンセル。"
@@ -236,7 +236,7 @@
             "messageCashApp": [ "ショップは今、あなたのことを受け入れなければなりません。", "のトランザクションが発生します。", "このアクションが処理されると、自動的に購入した製品が記載された電子メールが送信されます。", "このアクションには数時間かかる場合がありますので、このページを閉じることができます。" ]
           },
           "partial": {
-            "message": [ "{名前}}が受信されましたが、十分ではありません。", "だけ受け取りました。", "請求書発行のため、残額を送金してください。" ],
+            "message": [ "{{name}}が受信されましたが、十分ではありません。", "だけ受け取りました。", "請求書発行のため、残額を送金してください。" ],
             "title": "全額を受け取っていない",
             "of": "の",
             "payments": "支払いについて",
@@ -270,7 +270,7 @@
       },
       "subscription": {
         "title": "サブスクリプション {{- subscriptionName }}",
-        "description": "あなたは{{- 購読名 }}の購読を購入しています。請求書に完了のフラグが立てられると、支払った月数分の請求書が自動的に届きます。"
+        "description": "あなたは{{- subscriptionName }}の購読を購入しています。請求書に完了のフラグが立てられると、支払った月数分の請求書が自動的に届きます。"
       },
       "cart": {
         "title": "カート情報"
@@ -335,7 +335,7 @@
             "validationMessages": {
               "isNotNumber": "価格欄の値は数字であること",
               "isEmpty": "価格欄は空欄にできない",
-              "toLow": "価格は{{-価格}}以上である必要があります。"
+              "toLow": "価格は{{- price}}以上である必要があります。"
             },
             "title": "価格を選択してください"
           },
@@ -579,7 +579,7 @@
           "starter": "スターター",
           "business": "事業内容",
           "professional": "プロフェッショナル",
-          "providingService": "サービス月}}から{{サービスタイプ}}のサービスを提供中{サービス年}}から"
+          "providingService": "{{serviceYear}}年{{ serviceMonth }}月以来、{{ serviceType }}サービスを提供しています。"
         },
         "stats": {
           "productQuality": "製品の品質",
@@ -681,7 +681,7 @@
       "title": "よくある質問"
     },
     "feedback": {
-      "noFeedbacks": "{shopName}}のショップにはフィードバックがありません。",
+      "noFeedbacks": "{{- shopName}}のショップにはフィードバックがありません。",
       "card": {
         "reply": "- 売主からの返答",
         "verifiedPurchase": "購入確認済み"
@@ -721,7 +721,7 @@
       "header": "ページが見つかりません"
     },
     "terms": {
-      "noTerms": "{shopName}}のショップには利用規約がありません。"
+      "noTerms": "{{- shopName}}のショップには利用規約がありません。"
     }
   },
   "shared": {
@@ -808,10 +808,10 @@
         }
       },
       "category": {
-        "title": "ショップ名}}のデジタルストアを探索する",
+        "title": "{{shopName}}のデジタルストアを探索する",
         "metaTags": {
-          "description": "ショップ名}}のデジタルストアを見る：数回のクリックで、多くの支払いゲートウェイを使って必要なデジタル商品を即座に入手できます。",
-          "title": "ショップ名}}のデジタルストアを探索する"
+          "description": "{{shopName}}}}のデジタルストアを見る：数回のクリックで、多くの支払いゲートウェイを使って必要なデジタル商品を即座に入手できます。",
+          "title": "{{shopName}}}}のデジタルストアを探索する"
         }
       },
       "contact": {
@@ -823,18 +823,18 @@
       },
       "group": {
         "metaTags": {
-          "title": "Global.common.shopInfo.shop.name}}のデジタルストアを探索する。",
-          "description": "ショップ名}}のデジタルストアを見る：数回のクリックで、多くの支払いゲートウェイを使って必要なデジタル商品を即座に入手できます。"
+          "title": "{{shopName}}のデジタルストアを探索する。",
+          "description": "{{shopName}}}}のデジタルストアを見る：数回のクリックで、多くの支払いゲートウェイを使って必要なデジタル商品を即座に入手できます。"
         },
-        "title": "ショップ名}}のデジタルストアを探索する"
+        "title": "{{shopName}}}}のデジタルストアを探索する"
       },
-      "product": "",
+      "product": {},
       "main": {
         "metaTags": {
-          "description": "ショップ名}}のデジタルストアを見る：数回のクリックで、多くの支払いゲートウェイを使って必要なデジタル商品を即座に入手できます。",
-          "title": "ショップ名}}のデジタルストアを探索する"
+          "description": "{{shopName}}のデジタルストアを見る：数回のクリックで、多くの支払いゲートウェイを使って必要なデジタル商品を即座に入手できます。",
+          "title": "{{shopName}}}}のデジタルストアを探索する"
         },
-        "title": "ショップ名}}のデジタルストアを探索する"
+        "title": "{{shopName}}}}のデジタルストアを探索する"
       },
       "feedbackList": {
         "metaTags": {
@@ -859,7 +859,7 @@
       "paymentList": {
         "title": "支払い一覧"
       },
-      "subscription": "",
+      "subscription": {},
       "faq": {
         "title": "よくある質問"
       },
