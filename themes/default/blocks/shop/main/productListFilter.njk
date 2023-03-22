@@ -200,11 +200,14 @@
       $(document).trigger('SellixProductListFilterChangeEvent', { search, category, sort });
     });
 
-    {% if global.request.type === 'category' %}
-      setTimeout(function() {
+    setTimeout(function() {
+      {% if global.request.type === 'category' %}
         $('#category-select-{{id}}').val('{{ global.request.options.itemId }}');
         $('#category-select-{{id}}').trigger('change');
-      }, 0);
-    {% endif %}
+      {% endif %}
+
+      $('#sort-select-{{id}}').val('{{ shop.default_sort }}');
+      $('#sort-select-{{id}}').trigger('change');
+    }, 0);
   });
 </script>
