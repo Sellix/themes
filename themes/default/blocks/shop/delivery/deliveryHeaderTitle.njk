@@ -1,5 +1,7 @@
 {% set id = uid() %}
 
+{% set shopInfo = global.common.shopInfo %}
+{% set shop = shopInfo.shop %}
 {% set invoice = global.common.invoiceInfo.invoice %}
 {% set info = global.common.invoiceInfo.info %}
 {% set product = invoice.product or {} %}
@@ -93,7 +95,7 @@
     const $container = $('#sellix-delivery-title-{{ id }}');
 
     $container.find('.sellix-save-invoice-btn').on('click', function() {
-      window.sellixHelper.saveInvoiceToFile('{{ invoice.uniqid }}', '{{ invoice.product_type }}');
+      window.sellixHelper.saveInvoiceToFile('{{ shop.name }}', '{{ invoice.uniqid }}', '{{ invoice.product_type }}');
     });
 
     $container.find('.sellix-copy-invoice-id').on('click', function() {

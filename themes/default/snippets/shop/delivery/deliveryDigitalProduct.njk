@@ -1,4 +1,6 @@
 {% set id = uid() %}
+{% set shopInfo = global.common.shopInfo %}
+{% set shop = shopInfo.shop %}
 {% set invoice = args.invoice %}
 {% set info = args.info %}
 {% set productType = args.product_type %}
@@ -155,6 +157,6 @@
   }
 
   function saveToFile_{{ id }}() {
-    window.sellixHelper.saveInvoiceToFile('{{ invoice.uniqid }}', '{{ productType }}');
+    window.sellixHelper.saveInvoiceToFile('{{ shop.name }}', '{{ invoice.uniqid }}', '{{ productType }}');
   }
 </script>

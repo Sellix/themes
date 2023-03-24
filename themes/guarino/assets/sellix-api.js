@@ -1,4 +1,4 @@
-(function (document, window, jQuery) {
+(function (document, window, jQuery, SellixContext) {
   class Api {
     constructor(apiUrl) {
       this.apiUrl = apiUrl || location.origin;
@@ -55,16 +55,20 @@
         url = `${this.apiUrl}/api/render`;
       }
 
+      const mainRequest = SellixContext.get('request');
+
       return jQuery.ajax({
         method: 'POST',
         url,
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         data: JSON.stringify({
+          shop_id: renderOptions.shopId,
           theme_id: renderOptions.themeId,
           layout_name: renderOptions.layoutName,
           template_name: renderOptions.templateName,
           path: renderOptions.path,
+          mainRequest: mainRequest,
           args,
         }),
       });
@@ -310,4 +314,4 @@
   }
   window.SellixApiClass = Api;
   window.sellixApi = new Api();
-})(document, window, jQuery);
+})(document, window, jQuery, SellixContext);
