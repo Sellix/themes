@@ -1,8 +1,13 @@
 {% set shop = global.common.shopInfo.shop %}
 {% set subscription = global.common.shopInfo.subscription %}
-{% set first_activity = shop.first_sale_date * 1000 if shop.first_sale_date else shop.created_at * 1000 %}
 {% set colors = themeProperties.current_colors %}
 {% set serviceType = 'business' if subscription.id == 2 else 'customer' %}
+
+{% if shop.service_date_from == 'FIRST_SALE' %}
+  {% set first_activity = (shop.first_sale_date if shop.first_sale_date else shop.created_at) * 1000 %}
+{% else %}
+  {% set first_activity = shop.created_at * 1000 %}
+{% endif %}
 
 <div class="sellix-banner-info">
   {% if properties.show_banner_shop_info_avatar %}
