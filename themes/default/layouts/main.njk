@@ -5,7 +5,11 @@
   class="scroll-hidden"
 >
   <head>
-    <base id='main-base-tag' href="/{{ global.locales.locale }}/">
+    {% if global.locales.defaultLocale != global.locales.locale %}
+      <base id='main-base-tag' href="/{{ global.locales.locale }}/">
+    {% else %}
+      <base href="/">
+    {% endif %}
     <meta charset="utf-8"/>
 
     <script src='{{ 'js.cookie.min.js' | asset_url }}'></script>
