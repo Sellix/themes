@@ -18,10 +18,10 @@
           .checkStoreCode(this.$code.val(), this.shopName)
           .then((resp) => {
             if (resp.status === 200) {
-              jQuery(document).trigger('SellixToastify', {
-                type: 'success',
-                text: resp.message,
-              });
+              // jQuery(document).trigger('SellixToastify', {
+              //   type: 'success',
+              //   text: resp.message,
+              // });
 
               const date = new Date();
               date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
