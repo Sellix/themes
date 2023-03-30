@@ -84,10 +84,13 @@
       if (oldLocale !== newLocale) {
         const pathParts = window.location.pathname.split('/').filter((p) => !!p);
         if (pathParts.length && pathParts[0] === oldLocale) {
-          pathParts[0] = newLocale;
-        } else {
+          pathParts.shift();
+        }
+
+        if (newLocale !== '{{ global.locales.defaultLocale }}') {
           pathParts.unshift(newLocale);
         }
+
         window.location.href = `/${pathParts.join('/')}` + (pathParts.length === 1 ? '/' : '');
       }
     });

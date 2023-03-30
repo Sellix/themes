@@ -1,4 +1,14 @@
-(function (document, window, jQuery, React, ReactDOM, SellixAddonsStore, SellixPriceVariantsStore, sellixApi) {
+(function (
+  document,
+  window,
+  jQuery,
+  React,
+  ReactDOM,
+  SellixStoreFactory,
+  SellixAddonsStore,
+  SellixPriceVariantsStore,
+  sellixApi,
+) {
   class PurchaseDetailsComponent {
     constructor({
       selector,
@@ -29,6 +39,7 @@
       this.theme = theme || {};
       this.renderOptions = renderOptions;
       this.isCaptchaV2Visible = false;
+      this.shopStore = SellixStoreFactory.getStore(this.shop.name);
 
       this.addonsStore = new SellixAddonsStore(
         shop.name,
@@ -55,16 +66,30 @@
     };
 
     onCreateInvoice = (data, token) => {
-      return sellixApi.createInvoice(data, {
-        token: token,
-        useCaptchaV2: true,
-        selectorCaptchaV2: this.selectorCaptchaV2,
-        theme: this.theme.isDark ? 'dark' : 'light',
-        onShowCaptchaV2: (visible) => {
-          this.isCaptchaV2Visible = visible;
-          this.render();
-        },
-      });
+      return sellixApi
+        .createInvoice(data, {
+          token: token,
+          useCaptchaV2: true,
+          selectorCaptchaV2: this.selectorCaptchaV2,
+          theme: this.theme.isDark ? 'dark' : 'light',
+          onShowCaptchaV2: (visible) => {
+            this.isCaptchaV2Visible = visible;
+            this.render();
+          },
+        })
+        .then((response) => {
+          const { status, data } = response;
+          if (status === 200) {
+            const { invoice } = data;
+            const invoices = this.shopStore.get('invoices') || {};
+            invoices[invoice.uniqid] = {
+              uniqid: invoice.uniqid,
+              secret: invoice.secret,
+            };
+            this.shopStore.set('invoices', invoices);
+          }
+          return response;
+        });
     };
 
     onCustomerAuthEmail = (data) => {
@@ -196,4 +221,14 @@
   }
 
   window.SellixPurchaseDetailsComponent = PurchaseDetailsComponent;
-})(document, window, jQuery, React, ReactDOM, SellixAddonsStore, SellixPriceVariantsStore, sellixApi);
+})(
+  document,
+  window,
+  jQuery,
+  React,
+  ReactDOM,
+  SellixStoreFactory,
+  SellixAddonsStore,
+  SellixPriceVariantsStore,
+  sellixApi,
+);

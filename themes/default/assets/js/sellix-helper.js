@@ -1,4 +1,4 @@
-(function (document, window, jQuery, SellixContext) {
+(function (document, window, jQuery, SellixContext, SellixStoreFactory,) {
   class Helper {
     scrollTo(offset, callback) {
       const fixedOffset = offset.toFixed();
@@ -89,8 +89,16 @@
       return SellixContext.get('assets')[defaultAsset];
     }
 
-    saveInvoiceToFile(invoiceId, productType) {
-      saveAs(`${location.origin}/invoice/${invoiceId}/download/${productType || 'any'}`);
+    saveInvoiceToFile(shopName, invoiceId, productType) {
+      const shopStore = SellixStoreFactory.getStore(shopName);
+      const invoices = shopStore.get('invoices') || {};
+      const secret = (invoices[invoiceId] || {}).secret;
+
+      if (secret) {
+        saveAs(`${location.origin}/invoice/${invoiceId}/download/${productType || 'any'}/${secret}`);
+      } else {
+        saveAs(`${location.origin}/invoice/${invoiceId}/download/${productType || 'any'}`);
+      }
     }
 
     redirectForLocalTest(toSubdomain, pathname) {
@@ -159,4 +167,4 @@
     }
   }
   window.sellixHelper = new Helper();
-})(document, window, jQuery, SellixContext);
+})(document, window, jQuery, SellixContext, SellixStoreFactory);

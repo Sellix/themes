@@ -1,4 +1,4 @@
-(function (document, window, jQuery) {
+(function (document, window, jQuery, SellixContext) {
   class Api {
     constructor(apiUrl) {
       this.apiUrl = apiUrl || location.origin;
@@ -65,16 +65,20 @@
         url = `${this.apiUrl}/api/render`;
       }
 
+      const mainRequest = SellixContext.get('request');
+
       return jQuery.ajax({
         method: 'POST',
         url,
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         data: JSON.stringify({
+          shop_id: renderOptions.shopId,
           theme_id: renderOptions.themeId,
           layout_name: renderOptions.layoutName,
           template_name: renderOptions.templateName,
           path: renderOptions.path,
+          mainRequest: mainRequest,
           args,
         }),
       });
@@ -90,10 +94,10 @@
 
     async createInvoice(data, options) {
       let headers = {};
-      if(options.token) {
+      if (options.token) {
         headers = {
-          Authorization: 'Bearer ' + options.token
-        }
+          Authorization: 'Bearer ' + options.token,
+        };
       }
       const onSuccess = (captcha) => {
         data.captcha = captcha;
@@ -103,7 +107,7 @@
           contentType: 'application/json; charset=utf-8',
           dataType: 'json',
           data: JSON.stringify(data),
-          headers
+          headers,
         });
       };
       return this.requestWithCaptchaV3('createInvoice', onSuccess, null, options);
@@ -271,7 +275,7 @@
             callback: (captcha) => {
               onSuccess(captcha).then((data) => {
                 resolve(data);
-                if(options.removeAfterComplete) {
+                if (options.removeAfterComplete) {
                   $recaptchaV2.remove();
                 }
               });
@@ -332,4 +336,4 @@
   }
   window.SellixApiClass = Api;
   window.sellixApi = new Api();
-})(document, window, jQuery);
+})(document, window, jQuery, SellixContext);

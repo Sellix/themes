@@ -5,7 +5,11 @@
   class="scroll-hidden"
 >
   <head>
-    <base id='main-base-tag' href="/{{ global.locales.locale }}/">
+    {% if global.locales.defaultLocale != global.locales.locale %}
+      <base id='main-base-tag' href="/{{ global.locales.locale }}/">
+    {% else %}
+      <base href="/">
+    {% endif %}
     <meta charset="utf-8"/>
 
     <script src='{{ 'js.cookie.min.js' | asset_url }}'></script>
@@ -297,11 +301,11 @@
     {% if global.request.type in ['invoice'] %}
       <script src="{{ 'invoice.js' | asset_url }}"></script>
     {% endif %}
-    <script src="{{ 'sellix-api.js' | asset_url }}"></script>
     <script src="{{ 'sellix-context.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-store.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-api.js' | asset_url }}"></script>
     <script src="{{ 'sellix-helper.js' | asset_url }}"></script>
     <script src="{{ 'sellix-cart-store.js' | asset_url }}"></script>
-    <script src="{{ 'sellix-store.js' | asset_url }}"></script>
     <script src="{{ 'sellix-addons-store.js' | asset_url }}"></script>
     <script src="{{ 'sellix-price-variants-store.js' | asset_url }}"></script>
     <script src="{{ 'sellix-cart-component.js' | asset_url }}"></script>
