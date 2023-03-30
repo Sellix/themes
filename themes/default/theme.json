@@ -1554,6 +1554,11 @@
           }
         }
       }
+    },
+    "Store": {
+      "name": "Store",
+      "path": "layouts/store.njk",
+      "is_default": 0
     }
   },
 
@@ -2368,6 +2373,44 @@
                 },
                 "Table pagination": {
                   "name": "Table pagination",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "list_items_background_color": "background_main_color",
+                      "list_items_show_border": false,
+                      "list_items_per_row_wide": "4",
+                      "list_items_per_row_normal": "2",
+                      "list_items_per_row_narrow": "1"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Store/Code": {
+      "name": "Store/Code",
+      "path": "templates/store/store.njk",
+      "template_type": "STORE_CODE",
+      "layout_name": "Store",
+      "is_default": 1,
+      "settings": {
+        "section_order": [
+          "Store Code"
+        ],
+        "sections": {
+          "Store Code": {
+            "name": "Store Code",
+            "settings": {
+              "visible": true,
+              "block_order": [
+                "Store Code Form"
+              ],
+              "blocks": {
+                "Store Code Form": {
+                  "name": "Store Code Form",
                   "settings": {
                     "visible": true,
                     "properties": {
@@ -4816,6 +4859,17 @@
             "limit": 1
           }
         ],
+        "schema": []
+      }
+    },
+    "Store Code": {
+      "name": "Store Code",
+      "path": "sections/store/store.njk",
+      "settings": {
+        "blocks": [{
+          "name": "Store Code Form",
+          "limit": 1
+        }],
         "schema": []
       }
     },
@@ -7998,6 +8052,100 @@
         ]
       }
     },
+
+    "Store Code Form": {
+      "name": "Store Code Form",
+      "path": "blocks/store/store.njk",
+      "settings": {
+        "schema": [
+          {
+            "id": "customer_payouts_background",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_accent_dark"
+          },
+          {
+            "id": "customer_payouts_show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": false
+          },
+          {
+            "id": "customer_payouts_border_radius",
+            "type": "range",
+            "max": 2,
+            "min": 0,
+            "step": 0.25,
+            "unit": "rem",
+            "label": "Border radius",
+            "defaultValue": 0.5
+          },
+          {
+            "id": "customer_payouts_shadow",
+            "type": "select",
+            "label": "Drop shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0 1px 3px rgba(7, 14, 35, 0.06), 0px 2px 8px -1px rgba(7, 14, 35, 0.05)"
+              },
+              {
+                "title": "Variant 2",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+              }
+            ],
+            "defaultValue": "0 1px 3px rgba(7, 14, 35, 0.06), 0px 2px 8px -1px rgba(7, 14, 35, 0.05)"
+          },
+          {
+            "id": "customer_payouts_padding_horiz",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding horizontal",
+            "defaultValue": 24
+          },
+          {
+            "id": "customer_payouts_padding_vert",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding vertical",
+            "defaultValue": 24
+          }
+        ]
+      }
+    },
+
     "Invoice products info": {
       "name": "Invoice products info",
       "path": "blocks/shop/invoice/invoiceProductsInfo.njk",
@@ -10863,6 +11011,10 @@
       "name": "sellix-customer-auth-component.js",
       "path": "assets/components/customer-auth.js"
     },
+    "sellix-store-code-component.js": {
+      "name": "sellix-store-code-component.js",
+      "path": "assets/components/store-code.js"
+    },
     "quicklink.umd.js": {
       "name": "quicklink.umd.js",
       "path": "assets/packages/quicklink/quicklink.umd.js"
@@ -10950,6 +11102,10 @@
     "block-product-relations.css": {
       "name": "block-product-relations.css",
       "path": "assets/css/block-product-relations.css"
+    },
+    "block-store-code.css": {
+      "name": "block-store-code.css",
+      "path": "assets/css/block-store-code.css"
     },
     "block-feedback-items.css": {
       "name": "block-feedback-items.css",
