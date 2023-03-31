@@ -1,0 +1,91 @@
+{% set config = global.config %}
+{% set shop = global.common.shopInfo.shop %}
+{% set products = global.common.shopInfo.items %}
+{% set categories = global.common.shopInfo.categories %}
+
+{% if global.request.type === 'category' %}
+  <title>{{shop.name}}'s Categories on Sellix</title>
+
+  {% if products | length > 0 %}
+    {% set productsMeta = [
+      "View ", shop.name, "'s shop on Sellix: check out ", (products | length),
+      " unique products and get the digital goods you need instantly with our many payment gateways in just a few clicks."
+    ] | join %}
+  {% else %}
+    {% set productsMeta = [
+      "View ", shop.name,
+      "'s shop on Sellix: get the digital goods you need instantly with our many payment gateways in just a few clicks."
+    ] | join %}
+  {% endif %}
+
+  <meta name="description" content="{{productsMeta}}" />
+
+  <meta name="og:description" content="{{productsMeta}}" />
+  <meta name="og:title" content="{{shop.name}}'s categories on Sellix" />
+
+  <meta name="twitter:title" content="{{shop.name}}'s categories on Sellix" />
+  <meta name="twitter:description" content="{{productsMeta}}" />
+  <meta name='twitter:site' content="https://{{shop.name}}.sellix.io/"/>
+
+  <meta property="og:image" content="{{config.CDN_PREVIEWS_URL}}/categories.png" />
+  <meta property="twitter:image" content="{{config.CDN_PREVIEWS_URL}}/categories.png" />
+  <meta property="twitter:card" content="summary_large_image" />
+
+  <meta name="robots" content="noindex" />
+{% elif global.request.type === 'group' %}
+  <title>{{shop.name}}'s Group on Sellix</title>
+  {% if products | length > 0 %}
+    {% set productsMeta = [
+      "View ", shop.name, "'s shop on Sellix: check out ", (products | length),
+      " unique products and get the digital goods you need instantly with our many payment gateways in just a few clicks."
+    ] | join %}
+  {% else %}
+    {% set productsMeta = [
+      "View ", shop.name,
+      "'s shop on Sellix: get the digital goods you need instantly with our many payment gateways in just a few clicks."
+    ] | join %}
+  {% endif %}
+
+  <meta name="description" content="{{productsMeta}}" />
+
+  <meta name="og:description" content="{{productsMeta}}" />
+  <meta name="og:title" content="{{shop.name}}'s group on Sellix" />
+
+  <meta name="twitter:title" content="{{shop.name}}'s group on Sellix" />
+  <meta name="twitter:description" content="{{productMeta}}" />
+  <meta name='twitter:site' content="https://{{shop.name}}.sellix.io"/>
+
+  <meta property="og:image" content="{{config.CDN_PREVIEWS_URL}}/group.png" />
+  <meta property="twitter:image" content="{{config.CDN_PREVIEWS_URL}}/group.png" />
+  <meta property="twitter:card" content="summary_large_image" />
+
+  <meta name="robots" content="noindex" />
+
+{% elif global.request.type === 'track' %}
+{# TODO: client/entrypoints/shop/layout/head.js #}
+{% elif global.request.type === 'invoice' %}
+{# TODO: client/entrypoints/shop/layout/head.js #}
+{% elif global.request.type === 'bill' %}
+{# TODO: client/entrypoints/shop/layout/head.js #}
+{% elif global.request.type === 'payment' %}
+{# TODO: client/entrypoints/shop/layout/head.js #}
+{% elif global.request.type === 'subscription' %}
+{# TODO: client/entrypoints/shop/layout/head.js #}
+{% elif global.request.type === 'delivery' %}
+{# TODO: client/entrypoints/shop/layout/head.js #}
+{% elif global.request.type === 'subscription_delivery' %}
+{# TODO: client/entrypoints/shop/layout/head.js #}
+{% endif %}
+
+{% if pageSettings.title %}
+  <title>{{ pageSettings.title }}</title>
+{% else %}
+  <title>Explore {{global.common.shopInfo.shop.name}}'s shop on Sellix</title>
+{% endif %}
+
+{% if pageSettings.meta_tags | length %}
+  {% for meta_tag in pageSettings.meta_tags %}
+    <meta {% if meta_tag.name %}name="{{meta_tag.name}}" {% elif meta_tag.property %}property="{{meta_tag.property}}"{% endif %}
+          content="{{meta_tag.content}}" />
+  {% endfor %}
+{% endif %}

@@ -1,0 +1,11 @@
+{% if themeProperties.page_loader.enabled %}
+  <link rel="stylesheet" href="{{ 'pace-theme.css' | asset_url }}"/>
+
+  <style>
+    .pace .pace-progress {
+      height: {{ themeProperties.page_loader.height }}px;
+      background: {{ themeProperties.page_loader.color }};
+    }
+  </style>
+  <script src="{{ 'pace.min.js' | asset_url }}"></script>
+{% endif %}

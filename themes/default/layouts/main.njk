@@ -56,13 +56,7 @@
         -webkit-font-smoothing: antialiased;
         margin: 0;
         font-family: {{ "Inter var" if font.fontFamily == "Inter" else font.fontFamily }},
-          {% if font.systemFont == "sans-serif" %}
-            sans-serif
-          {% elif font.systemFont == "serif" %}
-            serif
-          {% else %}
-            monospace
-          {% endif %} !important;
+          {{ font.systemFont if font.systemFont in ["sans-serif", "serif"] else "monospace" }} !important;
 
         {% if backgroundImage %}
           background-image: url({{ backgroundImage }});
@@ -151,10 +145,6 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css" />
 
-    <!-- TODO -->
-    {{ loadableLink }}
-    {{ loadableStyle }}
-
     <script src="{{ 'jquery.js' | asset_url}}"></script>
     <script src="{{ 'quicklink.umd.js' | asset_url}}"></script>
     <script>/*jQuery(document).ready(() => {quicklink.listen();});*/</script>
@@ -202,8 +192,6 @@
       </style>
       <script src="{{ 'pace.min.js' | asset_url }}"></script>
     {% endif %}
-
-    {{ loadableScript }}
 
     <script type='application/javascript'>
       (function() {
