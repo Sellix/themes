@@ -75,10 +75,10 @@
   <link rel="stylesheet" href="{{ 'section-header.css' | asset_url }}"/>
 
   {# Blocks #}
-  {# Add blocks' css files below #}
+  <link rel="stylesheet" href="{{ 'block-cart.css' | asset_url }}"/>
 
   {# Snippets #}
-  {# Add snippets' css files below #}
+  <link rel="stylesheet" href="{{ 'snippet-language-selector.css' | asset_url }}"/>
 
   {% set theme = global.common.shopInfo.theme %}
   <style>
@@ -124,7 +124,7 @@
   </script>
 
   {% render_snippet 'Page loader' %}
-  {% render_snippet 'Social Links' %}
+  {# {% render_snippet 'Social Links' %} #}
   {% render_snippet 'Toastify' %}
   {% render_snippet 'Heart beat' %}
   {% render_snippet 'App crisp chat' %}
@@ -137,6 +137,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrender/1.0.11/jsrender.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.waitforimages/1.5.0/jquery.waitforimages.min.js"></script>
 
@@ -165,7 +166,8 @@
   <script src="{{ 'sellix-api.js' | asset_url }}"></script>
   <script src="{{ 'sellix-helper.js' | asset_url }}"></script>
 
-  {# Other sellix scripts #}
+  <script src="{{ 'sellix-cart-component.js' | asset_url }}"></script>
+  <script src="{{ 'sellix-cart-store.js' | asset_url }}"></script>
 
   {% render_snippet 'App cookie modal' %}
   {% render_snippet 'I18Next' %}

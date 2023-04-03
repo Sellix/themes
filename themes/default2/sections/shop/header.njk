@@ -15,7 +15,6 @@
   .sellix-header-{{ id }} .sellix-header__logo {
     display: flex;
     align-items: center;
-    width: 100%;
     height: 100%;
   }
   .sellix-header-{{ id }} .sellix-header__shop-name {
@@ -37,7 +36,6 @@
     font-weight: {{ properties.shop_name_font_weight }};
   }
   .sellix-header-{{ id }} .sellix-header__language-selector {
-    padding-right: 1rem;
   }
 </style>
 
@@ -69,13 +67,17 @@
       </div>
     </div>
 
+    <div class="sellix-header__main-menu">
+      {% render_block 'Menu' %}
+    </div>
+
     <div class="sellix-header__language-selector">
       {% render_snippet 'Language selector', properties=properties %}
     </div>
 
     <div class="sellix-header__cart">
       {% if global.common.cartEnabled %}
-        {% render_snippet 'Cart', properties=properties %}
+        {% render_block 'Cart' %}
       {% endif %}
     </div>
   </div>
