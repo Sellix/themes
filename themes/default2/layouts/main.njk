@@ -32,7 +32,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   {% set font = themeProperties.typography.font %}
-  {% set backgroundImage = themeProperties.background.background_image %}
+  {% set backgroundImage = themeProperties.page.background_image %}
 
   <link href="{{ font.href }}" rel="stylesheet">
 
@@ -79,6 +79,7 @@
 
   {# Snippets #}
   <link rel="stylesheet" href="{{ 'snippet-language-selector.css' | asset_url }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-mobile-sidebar-menu.css' | asset_url }}"/>
 
   {% set theme = global.common.shopInfo.theme %}
   <style>
@@ -116,6 +117,7 @@
   </div>
 
   <div id="modal"></div>
+  {% render_snippet 'Mobile sidebar menu', menu='Main Menu' %}
 
   <script>
     window.__RENDER_CONTEXT__ = {{ global | dump | safe | replace('\u003c', '<') }};

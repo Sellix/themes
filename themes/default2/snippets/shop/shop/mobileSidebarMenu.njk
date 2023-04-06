@@ -1,0 +1,54 @@
+{% set id = uid() %}
+{% set slug = global.request.slug %}
+{% set colors = themeProperties.current_colors %}
+{% set menuProps = themeProperties.mobileMenu %}
+
+{% if global.locales.defaultLocale != global.locales.locale %}
+  {% set locale_prefix = ["/", global.locales.locale] | join %}
+{% else %}
+  {% set locale_prefix = "" %}
+{% endif %}
+
+<style>
+  .mobile-sidebar-menu-{{ id }} {
+    background-color: {{ colors[menuProps.menu_item_background] }};
+  }
+
+  .mobile-sidebar-menu-{{ id }} .mobile-menu-item {
+    color: {{ colors[menuProps.menu_item_font_color] }} !important;
+    font-size: {{ menuProps.menu_item_font_size }}px !important;
+    font-weight: {{ menuProps.menu_item_font_weight }} !important;
+  }
+
+  .mobile-sidebar-menu-{{ id }} .mobile-menu-item.active {
+    color: {{ colors[menuProps.menu_active_item_font_color] }} !important;
+    border-bottom: 2px solid {{ colors[menuProps.menu_active_item_font_color] }};
+    font-size: {{ menuProps.menu_active_item_font_size }}px !important;
+    font-weight: {{ menuProps.menu_active_item_font_weight }} !important;
+    background: {{ colors[menuProps.menu_active_item_background] }};
+    border-radius: 0.25rem 0.25rem 0 0;
+    position: relative;
+  }
+
+  .mobile-sidebar-menu-{{ id }} .mobile-menu-item:hover {
+    background: {{ colors[menuProps.menu_item_background_hover] }} !important;
+  }
+</style>
+
+<div class="mobile-sidebar-menu mobile-sidebar-menu-{{ id }}">
+  {% for item in menu.items %}
+    {% set active = item.page_slug == slug %}
+    {% if item.page_slug != "/" %}
+      {% set active = item.page_slug in slug %}
+    {% endif %}
+    {% if item.page_slug == "/contact" and "/ticket" in slug %}
+      {% set active = true %}
+    {% endif %}
+    <a
+      href="{{ locale_prefix }}{{item.page_slug}}"
+      class="mobile-menu-item {{'active' if active else ''}}"
+    >
+      {{item.title | t}}
+    </a>
+  {% endfor %}
+</div>

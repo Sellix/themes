@@ -11,20 +11,29 @@
       "color_schema",
       "light_colors",
       "dark_colors",
-      "background",
+      "page",
       "typography",
       "page_loader",
       "menu",
+      "mobileMenu",
       "inputs",
       "locale"
     ],
     "schema": {
-      "background": [
+      "page": [
         {
           "id": "background_image",
           "type": "select-image",
           "label": "Image",
           "defaultValue": null
+        },
+        {
+          "id": "content_width",
+          "type": "range",
+          "min": 1000,
+          "max": 1440,
+          "label": "Content width",
+          "defaultValue": 1080
         }
       ],
       "color_schema": [
@@ -80,7 +89,7 @@
           "id": "light_font_color",
           "type": "color-picker",
           "label": "Light",
-          "defaultValue": "#3F4A60"
+          "defaultValue": "#555D67"
         },
         {
           "id": "dark_font_color",
@@ -143,19 +152,31 @@
         {
           "id": "menu_background",
           "type": "color-picker",
-          "label": "menu_background",
+          "label": "Menu background",
           "defaultValue": "#FFFFFF"
-        },
-        {
-          "id": "input_border_hover",
-          "type": "color-picker",
-          "label": "input_border_hover",
-          "defaultValue": "#E5DFFA"
         },
         {
           "id": "menu_background_hover",
           "type": "color-picker",
           "label": "menu_background_hover",
+          "defaultValue": "#E5DFFA"
+        },
+        {
+          "id": "mobile_menu_background",
+          "type": "color-picker",
+          "label": "Mobile menu background",
+          "defaultValue": "#F5F7F8"
+        },
+        {
+          "id": "mobile_menu_background_hover",
+          "type": "color-picker",
+          "label": "Mobile menu background on hover",
+          "defaultValue": "#DFE1E3"
+        },
+        {
+          "id": "input_border_hover",
+          "type": "color-picker",
+          "label": "input_border_hover",
           "defaultValue": "#E5DFFA"
         },
         {
@@ -570,7 +591,7 @@
           "id": "light_font_color",
           "type": "color-picker",
           "label": "Light",
-          "defaultValue": "#3F4A60"
+          "defaultValue": "#555D67"
         },
         {
           "id": "dark_font_color",
@@ -633,19 +654,31 @@
         {
           "id": "menu_background",
           "type": "color-picker",
-          "label": "menu_background",
+          "label": "Menu background",
           "defaultValue": "#FFFFFF"
-        },
-        {
-          "id": "input_border_hover",
-          "type": "color-picker",
-          "label": "input_border_hover",
-          "defaultValue": "#E5DFFA"
         },
         {
           "id": "menu_background_hover",
           "type": "color-picker",
           "label": "menu_background_hover",
+          "defaultValue": "#E5DFFA"
+        },
+        {
+          "id": "mobile_menu_background",
+          "type": "color-picker",
+          "label": "Mobile menu background",
+          "defaultValue": "#F5F7F8"
+        },
+        {
+          "id": "mobile_menu_background_hover",
+          "type": "color-picker",
+          "label": "Mobile menu background on hover",
+          "defaultValue": "#DFE1E3"
+        },
+        {
+          "id": "input_border_hover",
+          "type": "color-picker",
+          "label": "input_border_hover",
           "defaultValue": "#E5DFFA"
         },
         {
@@ -665,12 +698,12 @@
       ],
       "menu": [
         {
-          "id": "header_menu_tab",
+          "id": "header_menu_item",
           "type": "header",
-          "content": "Tab"
+          "content": "Item"
         },
         {
-          "id": "menu_tab_font_color",
+          "id": "menu_item_font_color",
           "type": "select",
           "label": "Font color",
           "options": [
@@ -690,7 +723,7 @@
           "defaultValue": "light_font_color"
         },
         {
-          "id": "menu_tab_font_size",
+          "id": "menu_item_font_size",
           "max": 18,
           "min": 10,
           "step": 2,
@@ -700,7 +733,7 @@
           "defaultValue": 14
         },
         {
-          "id": "menu_tab_font_weight",
+          "id": "menu_item_font_weight",
           "type": "select",
           "label": "Font weight",
           "options": [
@@ -717,15 +750,15 @@
               "value": 700
             }
           ],
-          "defaultValue": 400
+          "defaultValue": 500
         },
         {
-          "id": "header_menu_active_tab",
+          "id": "header_menu_active_item",
           "type": "header",
-          "content": "Active tab"
+          "content": "Active item"
         },
         {
-          "id": "menu_active_tab_background",
+          "id": "menu_active_item_background",
           "type": "select",
           "label": "Background color",
           "options": [
@@ -749,7 +782,7 @@
           "defaultValue": "background_main_color"
         },
         {
-          "id": "menu_active_tab_font_color",
+          "id": "menu_active_item_font_color",
           "type": "select",
           "label": "Font color",
           "options": [
@@ -769,7 +802,7 @@
           "defaultValue": "brand_color"
         },
         {
-          "id": "menu_active_tab_font_size",
+          "id": "menu_active_item_font_size",
           "max": 18,
           "min": 10,
           "step": 2,
@@ -779,7 +812,7 @@
           "defaultValue": 14
         },
         {
-          "id": "menu_active_tab_font_weight",
+          "id": "menu_active_item_font_weight",
           "type": "select",
           "label": "Font weight",
           "options": [
@@ -796,7 +829,199 @@
               "value": 700
             }
           ],
-          "defaultValue": 400
+          "defaultValue": 500
+        }
+      ],
+      "mobileMenu": [
+        {
+          "id": "header_menu_item",
+          "type": "header",
+          "content": "Item"
+        },
+        {
+          "id": "menu_item_background",
+          "type": "select",
+          "label": "Background color",
+          "options": [
+            {
+              "title": "Main",
+              "value": "background_main_color"
+            },
+            {
+              "title": "Mobile menu",
+              "value": "mobile_menu_background"
+            },
+            {
+              "title": "Accent (Light)",
+              "value": "background_accent_light"
+            },
+            {
+              "title": "Accent (Dark)",
+              "value": "background_accent_dark"
+            },
+            {
+              "title": "Brand",
+              "value": "brand_color"
+            }
+          ],
+          "defaultValue": "mobile_menu_background"
+        },
+        {
+          "id": "menu_item_background_hover",
+          "type": "select",
+          "label": "Background color on hover",
+          "options": [
+            {
+              "title": "Main",
+              "value": "background_main_color"
+            },
+            {
+              "title": "Mobile menu on hover",
+              "value": "mobile_menu_background_hover"
+            },
+            {
+              "title": "Accent (Light)",
+              "value": "background_accent_light"
+            },
+            {
+              "title": "Accent (Dark)",
+              "value": "background_accent_dark"
+            },
+            {
+              "title": "Brand",
+              "value": "brand_color"
+            }
+          ],
+          "defaultValue": "mobile_menu_background_hover"
+        },
+        {
+          "id": "menu_item_font_color",
+          "type": "select",
+          "label": "Font color",
+          "options": [
+            {
+              "title": "Brand",
+              "value": "brand_color"
+            },
+            {
+              "title": "Light",
+              "value": "light_font_color"
+            },
+            {
+              "title": "Dark",
+              "value": "dark_font_color"
+            }
+          ],
+          "defaultValue": "light_font_color"
+        },
+        {
+          "id": "menu_item_font_size",
+          "max": 18,
+          "min": 10,
+          "step": 2,
+          "type": "range",
+          "unit": "px",
+          "label": "Font size",
+          "defaultValue": 14
+        },
+        {
+          "id": "menu_item_font_weight",
+          "type": "select",
+          "label": "Font weight",
+          "options": [
+            {
+              "title": "Normal",
+              "value": 400
+            },
+            {
+              "title": "Medium",
+              "value": 500
+            },
+            {
+              "title": "Bold",
+              "value": 700
+            }
+          ],
+          "defaultValue": 500
+        },
+        {
+          "id": "header_menu_active_item",
+          "type": "header",
+          "content": "Active item"
+        },
+        {
+          "id": "menu_active_item_background",
+          "type": "select",
+          "label": "Background color",
+          "options": [
+            {
+              "title": "Main",
+              "value": "background_main_color"
+            },
+            {
+              "title": "Accent (Light)",
+              "value": "background_accent_light"
+            },
+            {
+              "title": "Accent (Dark)",
+              "value": "background_accent_dark"
+            },
+            {
+              "title": "Brand",
+              "value": "brand_color"
+            }
+          ],
+          "defaultValue": "background_main_color"
+        },
+        {
+          "id": "menu_active_item_font_color",
+          "type": "select",
+          "label": "Font color",
+          "options": [
+            {
+              "title": "Brand",
+              "value": "brand_color"
+            },
+            {
+              "title": "Light",
+              "value": "light_font_color"
+            },
+            {
+              "title": "Dark",
+              "value": "dark_font_color"
+            }
+          ],
+          "defaultValue": "brand_color"
+        },
+        {
+          "id": "menu_active_item_font_size",
+          "max": 18,
+          "min": 10,
+          "step": 2,
+          "type": "range",
+          "unit": "px",
+          "label": "Font size",
+          "defaultValue": 14
+        },
+        {
+          "id": "menu_active_item_font_weight",
+          "type": "select",
+          "label": "Font weight",
+          "options": [
+            {
+              "title": "Normal",
+              "value": 400
+            },
+            {
+              "title": "Medium",
+              "value": 500
+            },
+            {
+              "title": "Bold",
+              "value": 700
+            }
+          ],
+          "defaultValue": 500
         }
       ],
       "page_loader": [
@@ -837,8 +1062,9 @@
       ]
     },
     "properties": {
-      "background": {
-        "background_image": null
+      "page": {
+        "background_image": null,
+        "content_width": 1080
       },
       "color_schema": {
         "dark_mode": false
@@ -852,13 +1078,15 @@
         "input_border": "#233453",
         "background_dark": "#DEDEDE",
         "dark_font_color": "#b4aebc",
-        "menu_background": "rgb(249, 249, 250)",
         "background_main_color": "#0A1730",
         "background_accent_light": "#0A1730",
         "background_accent_dark": "#192843",
         "light_font_color": "#ffffff",
-        "input_border_hover": "#3F4A60",
+        "input_border_hover": "#555D67",
+        "menu_background": "rgb(249, 249, 250)",
         "menu_background_hover": "rgba(249, 249, 250, 10%)",
+        "mobile_menu_background": "#F5F7F8",
+        "mobile_menu_background_hover": "#DFE1E3",
         "link_color": "#6461FC",
         "contrast_font_color": "#ffffff",
         "background_hover": "#DEDEDE",
@@ -867,7 +1095,7 @@
       "inputs": {
         "common_height": 48,
         "common_show_border": true,
-        "common_font_color": "dark_font_color",
+        "common_font_color": "light_font_color",
         "common_font_size": 14,
         "common_font_weight": 400,
         "common_label_font_color": "dark_font_color",
@@ -895,13 +1123,15 @@
         "input_border": "#C9C9CB",
         "background_dark": "#DEDEDE",
         "dark_font_color": "#121417",
-        "menu_background": "#FFFFFF",
         "background_main_color": "#FFFFFF",
         "background_accent_light": "#FFFFFF",
         "background_accent_dark": "#F5F5F5",
-        "light_font_color": "#3F4A60",
+        "light_font_color": "#555D67",
         "input_border_hover": "#E5DFFA",
+        "menu_background": "#FFFFFF",
         "menu_background_hover": "#E9E4FF",
+        "mobile_menu_background": "#F5F7F8",
+        "mobile_menu_background_hover": "#DFE1E3",
         "link_color": "#6461FC",
         "contrast_font_color": "#FFFFFF",
         "background_hover": "#DEDEDE",
@@ -911,13 +1141,24 @@
         "default": "en"
       },
       "menu": {
-        "menu_tab_font_size": 14,
-        "menu_tab_font_color": "light_font_color",
-        "menu_tab_font_weight": 400,
-        "menu_active_tab_font_size": 14,
-        "menu_active_tab_background": "background_main_color",
-        "menu_active_tab_font_color": "brand_color",
-        "menu_active_tab_font_weight": 400
+        "menu_item_font_size": 14,
+        "menu_item_font_color": "light_font_color",
+        "menu_item_font_weight": 500,
+        "menu_active_item_font_size": 14,
+        "menu_active_item_background": "background_main_color",
+        "menu_active_item_font_color": "brand_color",
+        "menu_active_item_font_weight": 500
+      },
+      "mobileMenu": {
+        "menu_item_background": "mobile_menu_background",
+        "menu_item_background_hover": "mobile_menu_background_hover",
+        "menu_item_font_size": 16,
+        "menu_item_font_color": "light_font_color",
+        "menu_item_font_weight": 500,
+        "menu_active_item_background": "background_main_color",
+        "menu_active_item_font_size": 16,
+        "menu_active_item_font_color": "brand_color",
+        "menu_active_item_font_weight": 500
       },
       "page_loader": {
         "enabled": true,
@@ -977,7 +1218,7 @@
   "templates": {
     "Main/Main Page": {
       "name": "Main/Main Page",
-      "path": "templates/shop/mainpage.njk",
+      "path": "templates/shop/main.njk",
       "template_type": "MAIN",
       "is_default": 1,
       "settings": {
@@ -1019,6 +1260,36 @@
         "class": "header",
         "blocks": ["Menu"],
         "schema": [
+          {
+            "id": "fullwidth",
+            "type": "checkbox",
+            "label": "Fullwidth",
+            "defaultValue": false
+          },
+          {
+            "id": "shadow",
+            "type": "select",
+            "label": "Shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0px 2px 4px -1px rgba(7, 14, 35, 0.08)"
+              },
+              {
+                "title": "Variant 2",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2)"
+              }
+            ],
+            "defaultValue": "0px 2px 4px -1px rgba(7, 14, 35, 0.08)"
+          },
           {
             "id": "background_color",
             "type": "select",
@@ -1097,7 +1368,7 @@
                 "value": "dark_font_color"
               }
             ],
-            "defaultValue": null
+            "defaultValue": "dark_font_color"
           },
           {
             "id": "shop_name_font_size",
@@ -1147,7 +1418,7 @@
                 "value": 700
               }
             ],
-            "defaultValue": 400
+            "defaultValue": 700
           }
         ]
       }
@@ -1508,6 +1779,14 @@
       "name": "Main meta",
       "path": "snippets/shop/shop/mainMeta.njk"
     },
+    "Menu icon": {
+      "name": "Menu icon",
+      "path": "snippets/shared/icons/menuIcon.njk"
+    },
+    "Mobile sidebar menu": {
+      "name": "Mobile sidebar menu",
+      "path": "snippets/shop/shop/mobileSidebarMenu.njk"
+    },
     "Page loader": {
       "name": "Page loader",
       "path": "snippets/shop/shop/pageLoader.njk"
@@ -1594,6 +1873,10 @@
     "magnific-popup.1.1.0.css": {
       "name": "magnific-popup.1.1.0.css",
       "path": "assets/packages/magnific-popup/magnific-popup.1.1.0.css"
+    },
+    "snippet-mobile-sidebar-menu.css": {
+      "name": "snippet-mobile-sidebar-menu.css",
+      "path": "assets/css/snippet-mobile-sidebar-menu.css"
     },
     "modal.css": {
       "name": "modal.css",
@@ -1683,9 +1966,49 @@
   },
 
   "locales": {
+    "ar_sa": {
+      "name": "ar_sa",
+      "path": "locales/ar_sa.json"
+    },
+    "de": {
+      "name": "de",
+      "path": "locales/de.json"
+    },
     "en": {
       "name": "en",
       "path": "locales/en.json"
+    },
+    "es": {
+      "name": "es",
+      "path": "locales/es.json"
+    },
+    "fr": {
+      "name": "fr",
+      "path": "locales/fr.json"
+    },
+    "it": {
+      "name": "it",
+      "path": "locales/it.json"
+    },
+    "ja": {
+      "name": "ja",
+      "path": "locales/ja.json"
+    },
+    "nl": {
+      "name": "nl",
+      "path": "locales/nl.json"
+    },
+    "pt": {
+      "name": "pt",
+      "path": "locales/pt.json"
+    },
+    "ru": {
+      "name": "ru",
+      "path": "locales/ru.json"
+    },
+    "zh_cn": {
+      "name": "zh_cn",
+      "path": "locales/zh_cn.json"
     }
   }
 }

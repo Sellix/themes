@@ -1,0 +1,963 @@
+{
+  "shop": {
+    "delivery": {
+      "productSubscriptionCompleted": "Votre abonnement a été acheté avec succès.",
+      "downloadFile": "Fichier de téléchargement",
+      "invoiceId": "Invoice ID",
+      "product": {
+        "file": {
+          "fileSize": "Taille",
+          "file": "Fichier",
+          "fileName": "Nom du fichier"
+        },
+        "serials": {
+          "serials": "Serials"
+        },
+        "service": {
+          "noService": "Aucun texte de service",
+          "noServiceText": "Ce produit n'a pas de texte de service, veuillez attendre les actions ultérieures du vendeur ou ouvrir un ticket sur sa page.",
+          "service": "Service",
+          "contact": "Contact {{- shopName}}"
+        },
+        "dynamic": {
+          "productIssued": "Produit délivré"
+        }
+      },
+      "invoiceConfirmationEmailText": "Votre facture a été payée. <br />Nous enverrons un courriel de confirmation à votre adresse et vous serez redirigé vers le site web du vendeur.",
+      "subscription": {
+        "sentToEmail": [ "les abonnements sont envoyés directement à votre adresse électronique, veuillez vérifier si un courriel a été envoyé par", "pour obtenir votre produit et/ou entrer en contact avec l'entreprise." ],
+        "goToPortal": "Accéder au portail de facturation des clients",
+        "note": "Si vous avez besoin d'aide, veuillez vous référer à la page de contact du commerçant en utilisant le bouton ci-dessous. Vous pouvez également accéder à notre portail de facturation client pour gérer les abonnements actifs à votre nom.",
+        "title": "Achat d'abonnement",
+        "return": "Vous pouvez maintenant retourner sur le site du commerçant, où l'abonnement sera bientôt actif. Si vous avez besoin d'aide, veuillez vous référer à la page de contact du commerçant en utilisant le bouton ci-dessous. Vous pouvez également accéder à notre portail de facturation client pour gérer les abonnements actifs à votre nom.",
+        "contactMerchant": "Contacter le marchand",
+        "pleaseNote": "Veuillez noter"
+      },
+      "orderCompleted": "Commande terminée !",
+      "messageFrom": "Message de",
+      "trialStarted": "Début du procès",
+      "subscriptionOrderCompleted": "Votre commande de {{- subscriptionName}} est terminée.",
+      "trialText": "Votre essai a été lancé. <br />Vous recevrez le produit dans quelques minutes, vérifiez votre courriel !",
+      "saveAsFile": "Enregistrer comme fichier",
+      "paymentCompleted": "Paiement effectué",
+      "downloadInvoice": "Télécharger la facture",
+      "subscriptionStarted": "Début de l'abonnement",
+      "backButtonTitle": "Retour à la boutique de {{- shopName}}.",
+      "copyToClipboard": "Copier dans le presse-papiers",
+      "cartCompleted": "La commande du panier est terminée.",
+      "productCompleted": "Votre commande pour {{- productName}} est terminée.",
+      "copiedToClipboard": "Copié dans le presse-papiers",
+      "subscriptionTitle": "Abonnement",
+      "invoiceProductText": "Votre facture a été payée. <br />Vous recevrez le produit dans quelques minutes, vérifiez votre email !",
+      "subscriptionText": "Votre abonnement est maintenant actif. <br />Vous recevrez bientôt un courriel avec la confirmation de votre achat et un reçu.",
+      "copied": "Copié"
+    },
+    "invoice": {
+      "invoiceDetails": {
+        "modes": {
+          "cashApp": {
+            "messages": {
+              "one": [ "Copiez votre code de paiement.", "Lorsque vous envoyez le montant", "dans le champ \"note\" :" ],
+              "three": "Ou copier et coller le cashtag du vendeur.",
+              "four": "Après avoir envoyé le montant, cliquez sur le bouton suivant.",
+              "two": "Ensuite, scannez le code QR via l'application Cash."
+            },
+            "copied": "Copié",
+            "timeUp": {
+              "message": [ "Vous pouvez trouver l'identifiant en consultant l'e-mail que Cash App vous a envoyé.", "Vérifiez si le code est similaire à celui-ci :", "en faisant défiler la page." ],
+              "title": "Votre paiement n'a pas pu être identifié"
+            },
+            "cashTagTitle": "Cash App Cashtag",
+            "next": "Suivant",
+            "notTimeUp": {
+              "secondsRemaining": "{{seconds}} secondes restantes",
+              "title": "Veuillez patienter jusqu'à 120 secondes, nous sommes en train d'identifier votre paiement.",
+              "manualReview": "Aller maintenant à l'examen manuel"
+            },
+            "qrShouldBeThere": "QR devrait être là"
+          },
+          "default": {
+            "payments": {
+              "stripe": {
+                "isNotReadyError": "Stripe n'est pas encore prêt. Veuillez essayer plus tard.",
+                "browserNotice": {
+                  "browsers": {
+                    "other": {
+                      "title": "Apple Pay ne s'affiche pas ?",
+                      "message": "Si Apple Pay n'apparaît pas sur le formulaire de paiement, veuillez vérifier que vous disposez de la dernière version de Safari. Apple Pay ne s'affiche que si votre portefeuille iCloud comporte au moins une carte de crédit liée."
+                    },
+                    "chrome": {
+                      "message": "Si Google Pay n'apparaît pas sur le formulaire de paiement, veuillez vérifier que vous disposez de la dernière version de Chrome. Google Pay ne s'affiche que si vous êtes connecté à Google et que votre compte Google dispose d'un portefeuille avec au moins une carte de crédit liée.",
+                      "title": "Google Pay ne s'affiche pas ?"
+                    }
+                  },
+                  "moreInfo": "Plus d'informations"
+                },
+                "noSuchPrice": "Aucun prix de ce type",
+                "alreadyPaid": {
+                  "title": "Déjà payé ?",
+                  "message": "Si vous avez déjà envoyé un paiement avec Stripe, le traitement de la commande peut prendre jusqu'à 60 secondes.",
+                  "somethingWrong": {
+                    "message": [ "Si quelque chose ne va pas lors de votre achat, n'hésitez pas à", "contacter", "l'entreprise." ],
+                    "title": "Quelque chose a mal tourné"
+                  }
+                },
+                "message": "Les paiements {{paymentName}} prennent de 2 à 14 jours pour que la transaction soit traitée et achevée, en fonction de votre banque. Une fois que vous avez envoyé le paiement, veuillez attendre que la facture soit marquée comme payée.",
+                "payNow": "Payez maintenant",
+                "pay": "Payez"
+              },
+              "perfectMoney": {
+                "payButton": {
+                  "value": "Payez maintenant !",
+                  "title": "L'argent parfait"
+                }
+              },
+              "crypto": {
+                "sendTo": [ "Envoyer", "à" ],
+                "qrCode": "Code QR",
+                "showHash": "Afficher le hachage",
+                "payWallet": "Payer dans le portefeuille",
+                "copied": "Copié"
+              },
+              "paypal": {
+                "notes": {
+                  "loading": "Chargement du bouton des paiements.",
+                  "isLoaded": "Pour procéder à la vérification, cliquez sur le bouton ci-dessus."
+                },
+                "alreadyPaid": {
+                  "message": "Si vous avez déjà envoyé un paiement avec PayPal, la commande peut prendre jusqu'à 60 secondes pour être traitée.",
+                  "somethingWrong": {
+                    "message": [ "Si quelque chose ne va pas lors de votre achat, n'hésitez pas à", "contacter", "l'entreprise." ],
+                    "title": "Quelque chose a mal tourné"
+                  },
+                  "messageAPM": "Si vous avez déjà envoyé un paiement avec PayPal, la commande peut prendre jusqu'à 5 minutes pour être traitée.",
+                  "title": "Déjà payé ?"
+                }
+              }
+            },
+            "subscription": "Abonnement",
+            "orderDetails": {
+              "statuses": {
+                "waiting": "En attente de l'action du magasin",
+                "processing": "Traitement",
+                "received": "Reçu",
+                "partial": "Paiement partiel",
+                "pending": "En attente de paiement",
+                "confirmation": "En attente de confirmation"
+              },
+              "titles": {
+                "email": "Courriel :",
+                "created": "Créé",
+                "months": "Mois",
+                "shop": "Boutique",
+                "quantity": "Quantité",
+                "status": "Statut"
+              }
+            },
+            "price": "Prix",
+            "invoice": "Facture",
+            "product": "Produit",
+            "blockchain": "Blockchain",
+            "chainAlert": "L'envoi des fonds par une chaîne différente de celle du {{name}} entraînera la perte définitive de vos fonds.",
+            "cart": "Produits",
+            "addonsTitle": "Addons",
+            "timerTitle": "Annulé en"
+          },
+          "qr": {
+            "payOn": "Payez le",
+            "infoSlider": {
+              "totalPrice": "Prix total",
+              "exchangeRate": "Taux de change",
+              "amount": "Montant",
+              "subtotal": "Sous-total",
+              "pleaseSend": "Veuillez envoyer votre paiement dans les"
+            },
+            "title": {
+              "common": [ "Scannez le code QR ou copiez et collez les détails du paiement dans votre portefeuille.", "Nous ne prenons en charge les transactions cryptographiques que par l'intermédiaire du", ". Les transactions envoyées à d'autres chaînes ne seront pas détectées et entraîneront une perte de crypto." ],
+              "binanceAlert": "Scannez le QRCode ci-dessous avec votre application Binance pour procéder au paiement.",
+              "binance": [ "Envoyez des paiements cryptographiques avec des frais de transaction de 0 % en", "Enregistrement de", "à Binance gratuitement." ]
+            },
+            "copied": "Copié",
+            "qrShouldBeThere": "QR devrait être là"
+          }
+        },
+        "statuses": {
+          "waitingShopAction": {
+            "short": "En attente de l'action du magasin",
+            "title": "En attente de l'action du magasin"
+          },
+          "selectPayment": {
+            "title": "Sélectionnez le mode de paiement",
+            "short": "Sélectionnez le mode de paiement"
+          },
+          "waitingConfirmations": {
+            "title": "En attente",
+            "short": "En attente"
+          },
+          "voided": {
+            "title": "Invoice Voided",
+            "short": "Annulé"
+          },
+          "partial": {
+            "short": "Partiel",
+            "title": "Partiel"
+          },
+          "customerDispute": {
+            "short": "Dispute",
+            "title": "Litige avec un client"
+          },
+          "refunded": {
+            "short": "Remboursé",
+            "title": "Facture remboursée"
+          },
+          "processing": {
+            "short": "Traitement",
+            "title": "Traitement"
+          },
+          "reversed": {
+            "title": "Annulation de la facture",
+            "short": "Inversé"
+          },
+          "completed": {
+            "short": "Payé",
+            "title": "Payé"
+          }
+        },
+        "alerts": {
+          "processing": {
+            "message": "La facture est en cours de traitement, cela peut prendre jusqu'à 5 minutes. Soyez indulgents avec nous pendant un certain temps, le temps que nous vous fournissions votre numérique le plus rapidement possible !"
+          },
+          "success": {
+            "message": [ "Votre facture a été payée.", "Vous recevrez le produit dans les minutes qui suivent, vérifiez votre e-mail !" ],
+            "developerMessage": [ "Votre facture a été payée.", "Nous enverrons un courriel de confirmation à votre adresse et vous serez redirigé vers le site web du vendeur." ]
+          },
+          "await": {
+            "message": [ "Nous avons reçu votre transaction.", "Une fois les confirmations requises obtenues, le produit que vous avez acheté sera expédié à votre adresse électronique." ],
+            "messageCashApp": [ "Le magasin doit maintenant accepter votre", "transaction.", "Une fois cette action traitée, vous recevrez automatiquement un courriel contenant le produit que vous avez acheté.", "Cette action peut prendre quelques heures, vous pouvez fermer cette page." ]
+          },
+          "partial": {
+            "message": [ "{{name}} a été reçu mais ce n'est pas suffisant.", "Nous avons seulement reçu", "veuillez envoyer le montant restant afin d'honorer la facture." ],
+            "title": "Nous n'avons pas reçu le montant total",
+            "of": "de",
+            "payments": "Les paiements",
+            "transaction": "Transaction"
+          },
+          "canceled": {
+            "messageReversed": "PayPal a annulé cette transaction, vous avez reçu votre argent et la facture a été annulée.",
+            "messageRefunded": "La transaction a été remboursée, vous avez reçu votre argent et la facture a été annulée.",
+            "message": "La facture a été annulée, ce qui signifie que vos paiements ne se sont peut-être pas déroulés comme prévu ou que vous avez atteint le délai imparti."
+          },
+          "dispute": {
+            "message": "Cette facture fait actuellement l'objet d'un litige de la part du client."
+          }
+        },
+        "gateway": {
+          "deliverPaypal": "Livrer à l'email de PayPal.",
+          "back": "Dos",
+          "changeButtonHide": "Hide",
+          "gatewayChanged": [ "Le mode de paiement a été modifié", "Il peut affecter le prix de la facture" ],
+          "update": "Mise à jour de la facture",
+          "changeButtonShow": "Modifier le mode de paiement",
+          "noAvailablePaymentMethods": "Aucune méthode de paiement disponible",
+          "changeButtonTitle": "Passerelle de changement"
+        },
+        "productSoldOut": "Produit épuisé",
+        "cartSoldOut": "Panier Produits épuisés",
+        "processing": "Traitement",
+        "awaitingConfirmation": "En attente de confirmation",
+        "pageTitle": "Facture {{invoiceId}} | Sellix",
+        "paymentDetails": "Détails du paiement"
+      },
+      "subscription": {
+        "title": "Abonnement {{- subscriptionName }}",
+        "description": "Vous achetez l'abonnement {{- subscriptionName }}. Une fois que la facture est marquée comme achevée, vous recevrez automatiquement les mois pour lesquels vous avez payé."
+      },
+      "cart": {
+        "title": "Info panier"
+      },
+      "product": {
+        "title": "Description du produit"
+      },
+      "trackingTitle": "Suivi des factures"
+    },
+    "trust": {
+      "help": "Qu'est-ce qu'un conseiller de confiance et qu'est-ce que cela signifie pour les clients ?",
+      "identityVerified": {
+        "yes": "Identité vérifiée",
+        "no": "Identité non vérifiée"
+      },
+      "feedbackText": "Le taux d'appel des commentaires prend en compte le nombre total de commentaires d'un commerçant et le nombre de ceux qui ont fait l'objet d'un appel (supprimés ou contestés). Le taux d'appel a une valeur comprise entre 0,00 et 1, où 0,10 correspond à 10 % de tous les commentaires ayant fait l'objet d'un appel.",
+      "identityText": {
+        "no": "Ce commerce n'a pas vérifié son identité et ses détails auprès de Sellix. Nous ne pouvons pas confirmer que ce magasin est un commerçant valide et unique.",
+        "yes": "Cette entreprise a vérifié son identité et ses coordonnées auprès de Sellix. Les entreprises vérifiées sont passées par une phase de validation de l'adresse et des documents qui confirme leur identité et l'unicité du commerçant."
+      },
+      "low": "Faible",
+      "paypalAccepted": {
+        "no": "PayPal ou les cartes de crédit/débit ne sont pas acceptés.",
+        "yes": "PayPal ou cartes de crédit acceptées"
+      },
+      "sales": "ventes au cours des 14 derniers jours",
+      "feedback": "le taux d'appel en retour",
+      "salesText": "Cette métrique prend en compte la quantité de ventes que cette entreprise a réalisées au cours des 14 derniers jours. Des ventes élevées et moyennes signifient que l'entreprise a vendu de manière proactive des biens avec au moins une commande par jour.",
+      "feedbackScore": "score de rétroaction",
+      "high": "Haut",
+      "paypalText": [ "Ce commerçant n'accepte aucune méthode de paiement avec protection du consommateur. Par exemple, les crypto-monnaies et Cash App ne peuvent pas accepter les remboursements en raison de leur nature. Procédez avec prudence et assurez-vous de savoir ce que vous achetez.", "Ce commerçant accepte les méthodes de paiement, telles que PayPal et les cartes de crédit/débit, avec une protection du consommateur ; ce qui signifie qu'une demande de remboursement peut être exécutée lors du paiement par leur intermédiaire uniquement si le bien acheté n'est pas valide. Toutefois, cela ne signifie pas que les demandes de remboursement sont disponibles pour les méthodes de paiement comme Cash App et les crypto-monnaies, car elles ne sont pas acceptées en raison de leur nature." ],
+      "feedbackScoreText": "Le score d'évaluation aide les clients à comprendre si cette entreprise a eu des évaluations positives récemment, ce qui signifie que chaque client a acheté un bien valide.",
+      "title": "Conseiller de confiance"
+    },
+    "checkout": {
+      "purchaseDetails": {
+        "product": {
+          "price": {
+            "subtotal": "Sous-total",
+            "productDiscount": "Remise sur le produit",
+            "tax": "Taxe",
+            "total": "Total",
+            "balanceAmount": "Utilisé à partir du solde",
+            "volumeDiscount": "Remise sur le volume",
+            "bundleDiscount": "Remise sur l'offre groupée",
+            "couponDiscount": "Coupon",
+            "gatewayFee": "Frais de passerelle",
+            "tooltip": "Comment le prix est-il calculé ?"
+          },
+          "addToCart": "Ajouter au panier",
+          "applyCoupon": "Appliquer un coupon",
+          "titles": {
+            "productDelivery": "Livraison du produit",
+            "purchase": "Achat",
+            "paymentMethod": "Mode de paiement"
+          },
+          "getIt": "Obtenez-le",
+          "pay": "Payez",
+          "useYourBalance": "Utilisez votre équilibre",
+          "back": "Dos",
+          "customPrice": {
+            "validationMessages": {
+              "isNotNumber": "La valeur du champ Prix doit être un nombre",
+              "isEmpty": "Le champ \"Prix\" ne peut pas être vide",
+              "toLow": "Votre prix doit être supérieur à {{- price}}."
+            },
+            "title": "Choisissez votre prix"
+          },
+          "noPaymentOptions": "Ce produit n'a pas d'option de paiement.",
+          "addCart": {
+            "add": "Ajouter",
+            "typeHere": "Tapez ici"
+          },
+          "continue": "Continuer",
+          "selectGateway": "Sélectionner la passerelle",
+          "coupon": "Coupon",
+          "buyNow": "Acheter maintenant",
+          "free": "Gratuit",
+          "tax": "Taxe",
+          "priceCalculated": "Comment le prix est-il calculé ?"
+        },
+        "customFields": {
+          "paypal": {
+            "alertTitle": "Veuillez noter",
+            "text": "Les courriels d'exécution de Sellix seront envoyés à votre courriel PayPal.",
+            "moreInfo": "Plus d'informations",
+            "info": [ "Vous ne pourrez pas non plus visualiser le produit sur le site web après l'achat.", "Ceci afin d'éviter les achats frauduleux avec PayPal." ],
+            "deliverCheckboxTitle": "Livrer à l'email de PayPal."
+          },
+          "emailInputPlaceholder": "Courriel pour les mises à jour des factures",
+          "termsOfServiceMessage": [ "En cliquant sur Pay, vous acceptez les conditions d'utilisation de {{name}}.", "Conditions d'utilisation", "" ],
+          "optional": "en option",
+          "emailIsRequired": "L'adresse électronique est obligatoire",
+          "discordMessage": [ "Connectez votre", "compte" ],
+          "byClickingPay": [ "En cliquant sur Payer, vous acceptez", " Conditions d'utilisation" ]
+        },
+        "productQuantity": {
+          "stock": "Stock",
+          "lastProduct": "Dernier produit"
+        },
+        "subscription": {
+          "subtitles": {
+            "billingInfo": "",
+            "subscription": "",
+            "paymentMethod": "",
+            "paymentMethodTrial": "Vous ne pouvez pas sélectionner ces passerelles maintenant, c'est juste pour votre information pour savoir comment vous pourrez payer après la fin de la période d'essai.",
+            "email": ""
+          },
+          "tax": "Taxe",
+          "back": "Dos",
+          "titles": {
+            "paymentMethodTrial": "Passerelles disponibles après la fin de l'essai",
+            "email": "Email d'abonnement",
+            "subscription": "Abonnement",
+            "paymentMethod": "Mode de paiement",
+            "billingInfo": "Informations sur la facturation"
+          },
+          "proceed": "Procédez à",
+          "coupon": "Coupon",
+          "pay": "Payez",
+          "chargedAddon": "Le paiement de l'addon n'est facturé que la première fois.",
+          "changeEmail": "Modifier l'e-mail",
+          "goToPortal": "Accéder au portail de facturation des clients",
+          "noPaymentOptions": "Ce produit n'a pas d'option de paiement.",
+          "startSubscription": "Démarrer l'abonnement",
+          "applyACoupon": "Appliquer un coupon",
+          "continue": "Continuer",
+          "billedEvery": "Facturé chaque",
+          "trialPeriod": "Période d'essai",
+          "paymentRenewal": "Paiement à chaque renouvellement",
+          "paymentMethod": "Mode de paiement"
+        },
+        "codeAuthForm": {
+          "title": "Code d'authentification",
+          "firstName": "Prénom",
+          "lastName": "Dernier nom",
+          "message": "Nous avons envoyé un code unique à votre adresse e-mail, veuillez l'insérer ci-dessous."
+        },
+        "applyCoupon": {
+          "volumeDiscountIsUsed": "Ce coupon ne peut pas être appliqué lorsqu'un rabais de volume est utilisé.",
+          "inputPlaceholder": "Code coupon",
+          "paypalExcluded": "PayPal ne sera pas un mode de paiement disponible avec les coupons",
+          "isApplied": "Le coupon est appliqué !",
+          "apply": "Appliquer",
+          "notValid": "Coupon non valide : Il peut avoir expiré, ne pas être valable pour les produits du panier ou ne pas exister."
+        },
+        "gateways": {
+          "crypto": {
+            "subtitle": "Envoyer une transaction directe à une adresse",
+            "title": "Cryptocurrencies"
+          },
+          "binance": {
+            "subtitle": [ "Si vous n'avez pas de compte Binance,", "Inscrivez-vous ici", "et envoyer des transactions cryptographiques sans frais." ],
+            "title": "Binance Pay"
+          },
+          "gatewaySelectorText": "Les paiements prennent de 2 à 14 jours pour que la transaction soit traitée et achevée, en fonction de votre banque. Une fois que vous avez envoyé le paiement, veuillez attendre que la facture soit marquée comme payée.",
+          "venmo": {
+            "title": "Venmo",
+            "subtitle": "Disponible pour certains clients américains et pour les achats en USD uniquement"
+          },
+          "stripe": {
+            "message": "Payez avec Visa, Mastercard, Amex ou utilisez {{browserPay}} s'ils sont activés sur votre appareil.",
+            "browserPays": {
+              "apple": "Apple Pay",
+              "google": "Google Pay",
+              "googleOrApple": "Apple Pay ou Google Pay"
+            },
+            "title": "Cartes de crédit/débit",
+            "processingPeriodMessage": "Les paiements {{paymentName}} prennent de 2 à 14 jours pour que la transaction soit traitée et achevée, en fonction de votre banque. Une fois que vous avez envoyé le paiement, veuillez attendre que la facture soit marquée comme payée."
+          },
+          "cashApp": {
+            "title": "Cash App",
+            "subtitle": "Payez par l'intermédiaire de Cash App en utilisant votre appareil mobile pour des paiements instantanés."
+          },
+          "paypal": {
+            "payLater": "Payez plus tard",
+            "title": "PayPal",
+            "subtitle": "Utilisez votre compte PayPal",
+            "creditCardAndPaypal": "Carte de crédit avec PayPal",
+            "paypalCredit": "Crédit PayPal",
+            "paypal": "PayPal"
+          },
+          "perfectMoney": {
+            "title": "L'argent parfait",
+            "subtitle": "Utilisez votre compte Perfect Money pour effectuer l'achat."
+          },
+          "banking": {
+            "title": "Banque, Méthodes régionales"
+          },
+          "skrill": {
+            "subtitle": "Effectuez l'achat en utilisant votre porte-monnaie Skrill.",
+            "title": "Skrill"
+          }
+        },
+        "stripeForm": {
+          "fields": {
+            "surname": {
+              "isRequired": "Le nom de famille est requis",
+              "title": "Nom de famille"
+            },
+            "state": {
+              "isRequired": "L'État est requis",
+              "title": "État"
+            },
+            "city": {
+              "title": "Ville",
+              "isRequired": "La ville est requise"
+            },
+            "address": {
+              "isRequired": "L'adresse est requise",
+              "title": "Adresse"
+            },
+            "country": {
+              "isRequired": "Le pays est requis",
+              "title": "Pays"
+            },
+            "postalCode": {
+              "title": "Code postal",
+              "isRequired": "Le code postal est requis"
+            },
+            "name": {
+              "title": "Nom",
+              "isRequired": "Le nom est obligatoire"
+            }
+          },
+          "title": "Détails demandés par Stripe"
+        },
+        "priceDetails": {
+          "calcTitles": {
+            "gatewayFee": "Frais de passerelle",
+            "volumeDiscount": "Remise sur le volume",
+            "bundleDiscount": "Remise sur l'offre groupée",
+            "usedFromBalance": "Utilisé à partir du solde",
+            "productDiscount": "Remise sur le produit",
+            "tax": "Taxe",
+            "couponDiscount": "Remise sur les coupons",
+            "subtotal": "Sous-total"
+          },
+          "title": "Prix après frais de passerelle",
+          "tooltip": "Comment le prix est-il calculé ?"
+        },
+        "alerts": {
+          "success": {
+            "orderCompleted": "Commande terminée !",
+            "invoice": [ "Votre facture a été payée.", "Nous enverrons un courriel de confirmation à votre adresse et vous serez redirigé vers le site web du vendeur." ],
+            "subscriptionStarted": "Début de l'abonnement",
+            "product": [ "Votre facture a été payée.", "Vous recevrez le produit dans les minutes qui suivent, vérifiez votre e-mail !" ],
+            "trialStarted": "Début du procès",
+            "subscription": [ "Votre abonnement est maintenant actif.", "Vous recevrez bientôt un courriel avec la confirmation de votre achat et un reçu." ],
+            "trial": [ "Votre procès a commencé.", "Vous recevrez le produit dans les minutes qui suivent, vérifiez votre e-mail !" ]
+          }
+        },
+        "productMinMaxNote": {
+          "addMore": [ "Ajouter", "plus pour obtenir un", "rabais" ],
+          "maxQuantity": "Quantité maximale achetable",
+          "purchaseLimit": [ "Vous pouvez uniquement acheter", "articles par commande" ],
+          "minQuantity": "Quantité minimale requise"
+        },
+        "customerBalance": {
+          "balance": "Balance"
+        },
+        "addToCart": {
+          "inputPlaceholder": "Tapez ici",
+          "add": "Ajouter",
+          "selectPlaceholder": "Quantité"
+        },
+        "selectPaymentMethodError": "Veuillez sélectionner le mode de paiement!"
+      },
+      "showDescription": "Description du spectacle",
+      "stock": "Stock",
+      "hideDescription": "Hide Description"
+    },
+    "contact": {
+      "email": "Courriel :",
+      "buttonTitle": "Créer un ticket",
+      "emailRequired": "L'e-mail est obligatoire !",
+      "message": "Message",
+      "invoiceId": "Id de la facture (champ facultatif)",
+      "invoiceIdPlaceholder": "Entrez l'identifiant de la facture à 12 chiffres",
+      "messageRequired": "Le message est obligatoire !",
+      "messagePlaceholder": "Que voulez-vous demander ?",
+      "emailPlaceholder": "Entrez votre courriel",
+      "title": "Titre",
+      "titleRequired": "Le titre est requis !",
+      "titlePlaceholder": "ex : Conditions générales pour les dropshipper"
+    },
+    "ticket": {
+      "messagePlaceholder": "Tapez un message",
+      "senders": {
+        "merchant": "Merchant",
+        "you": "Vous"
+      },
+      "title": "Ticket"
+    },
+    "shared": {
+      "menu": {
+        "affiliateProgram": "Programme d'affiliation",
+        "terms": "Conditions",
+        "products": "Produits",
+        "trustedAdvisor": "Conseiller de confiance",
+        "feedback": "Commentaires",
+        "faq": "F.A.Q",
+        "contact": "Contact"
+      },
+      "banner": {
+        "shopInfo": {
+          "enterpeneur": "Entrepreneur",
+          "starter": "Démarreur",
+          "business": "Entreprise",
+          "professional": "Professionnel",
+          "providingService": "Fournissant des services {{ serviceType }} depuis {{ serviceMonth }} {{serviceYear}}"
+        },
+        "stats": {
+          "productQuality": "Qualité du produit",
+          "productSold": "Produits vendus"
+        }
+      },
+      "reviews": {
+        "reviewsWithCount_other": "{{count}} critiques",
+        "reviewsWithCount_few": "{{count}} critiques",
+        "reviewsWithCount_one": "Revue {{count}}",
+        "reviewsWithCount_many": "{{count}} critiques",
+        "noReviews": "Aucune critique"
+      },
+      "toastify": {
+        "fail": "Une erreur s'est produite lors de la tentative d'accès à l'une de vos ressources.",
+        "success": "Votre action a été réalisée, les ressources ont été mises à jour."
+      },
+      "titles": {
+        "productType": {
+          "serials": "Serials",
+          "product": "Produit",
+          "subscription": "Abonnement",
+          "service": "Service",
+          "info": "Info",
+          "group": "Groupe"
+        },
+        "serverError": "Erreur de serveur !",
+        "add": "Ajouter",
+        "startingAt": "À partir de",
+        "onHold": "En attente",
+        "goBack": "Retourner",
+        "remove": "Retirer",
+        "getIt": "Obtenez-le",
+        "stock": "Stock",
+        "free": "Gratuit",
+        "moreInfo": "Cliquez pour plus d'informations",
+        "buy": "Acheter",
+        "lastProduct": "Dernier produit"
+      },
+      "footer": {
+        "title": "Solution de commerce électronique alimentée par"
+      }
+    },
+    "main": {
+      "productList": {
+        "filter": {
+          "default": "Défaut",
+          "price": "Prix",
+          "placeholder": "Rechercher un produit...",
+          "indexBy": "Index par",
+          "type": "Type",
+          "allCategories": "Toutes les catégories",
+          "stock": "Stock",
+          "name": "Nom"
+        },
+        "items": {
+          "categoryNoProducts": "La catégorie n'a pas de produits",
+          "clear": "Clair",
+          "noProductFound": "Aucun produit trouvé"
+        }
+      },
+      "cards": {
+        "group": {
+          "onHold": "Produit en attente",
+          "inStock": "en stock",
+          "outOfProducts": "Hors produits",
+          "loading": "Chargement..."
+        },
+        "product": {
+          "soldOut": "Produit épuisé",
+          "onHold": "Ce produit est en attente et ne peut être acheté pour le moment.",
+          "yourPrice": "Choisissez votre prix"
+        },
+        "info": {
+          "clickHere": "Cliquez ici pour plus d'informations"
+        },
+        "subscription": {
+          "onHold": "Ce produit est en attente et ne peut être acheté pour le moment."
+        }
+      }
+    },
+    "faq": {
+      "items": [ {
+        "answer": "Pour contacter le service d'assistance après avoir effectué un achat, vous pouvez utiliser le système de billetterie intégré. Il vous suffit de visiter la page de contact pour soumettre vos coordonnées et nous vous répondrons dès que possible.",
+        "question": "Comment puis-je contacter le support après avoir acheté le produit ?"
+      }, {
+        "question": "Puis-je effectuer des paiements en utilisant ma méthode préférée ?",
+        "answer": "Oui, nous prenons en charge un large éventail de méthodes de paiement, y compris les options fiat populaires comme les cartes de crédit, ainsi que diverses crypto-monnaies. Cela vous permet d'effectuer des paiements en utilisant la méthode qui vous convient le mieux."
+      }, {
+        "question": "Est-il possible d'effectuer des paiements en toute sécurité ?",
+        "answer": "Oui, nous prenons la sécurité très au sérieux. Nous utilisons des mesures avancées de prévention des fraudes pour nous protéger contre les transactions frauduleuses et nous stockons de manière sécurisée toutes les informations relatives aux paiements."
+      }, {
+        "question": "Comment faire un achat ?",
+        "answer": "Faire un achat est facile. Il suffit de parcourir les produits disponibles et d'ajouter ceux que vous souhaitez acheter à votre panier. Lorsque vous serez prêt à passer à la caisse, vous serez invité à saisir vos informations de paiement et à conclure la transaction."
+      }, {
+        "answer": "La politique de retour des achats varie en fonction du produit spécifique acheté. Il est important d'examiner la politique de retour de chaque produit avant d'effectuer un achat afin de s'assurer que vous comprenez les termes et conditions.",
+        "question": "Quelle est la politique de retour des achats ?"
+      } ],
+      "title": "Questions fréquemment posées"
+    },
+    "feedback": {
+      "noFeedbacks": "La boutique de {{- shopName}} n'a pas de commentaires.",
+      "card": {
+        "reply": "- Réponse du vendeur",
+        "verifiedPurchase": "Achat vérifié"
+      },
+      "formTitle": "Laissez vos commentaires",
+      "formSubtitle": "Le produit était-il bon ? Donnez votre avis sur le produit ici.",
+      "tooLongMessage": "Les commentaires doivent comporter 256 caractères",
+      "textPlaceholder": "Laissez un texte pour vos commentaires",
+      "buttonTitle": "Soumettre"
+    },
+    "product": {
+      "onHold": "Produit en attente",
+      "bundle": {
+        "addAllButtonTitle": "Ajouter tous les produits",
+        "discountTitle": [ "Sauvez", "en ajoutant un produit de plus à votre panier avec nos remises." ]
+      },
+      "warrantyTitle": "Garantie du produit",
+      "developerInvoiceDescription": "Vous achetez un service de {{productTitle}}. <br />Une fois votre paiement effectué et cette facture marquée comme payée, vous serez redirigé vers le site de {{productTitle}}. <br />En cas de problème, veuillez vous adresser directement au support de {{productTitle}}.",
+      "soldTitle": [ "Produit vendu", "temps" ],
+      "relations": {
+        "feedback": {
+          "title": "Commentaires"
+        },
+        "termsOfService": {
+          "title": "Conditions d'utilisation"
+        }
+      },
+      "productMinMaxNote": {
+        "addMore": [ "Ajouter", "plus pour obtenir un", "rabais" ],
+        "maxQuantity": "Quantité maximale achetable",
+        "purchaseLimit": [ "Vous pouvez uniquement acheter", "articles par commande" ],
+        "minQuantity": "Quantité minimale requise"
+      }
+    },
+    "cart": {
+      "clear": "Clair",
+      "description": "Ajoutez, supprimez des produits ou passez à la page de paiement pour procéder à l'achat.",
+      "title": "Panier d'achat",
+      "checkout": "Checkout"
+    },
+    "404": {
+      "description": "Il semble que vous essayez d'accéder à un élément qui n'a jamais existé.",
+      "header": "Page non trouvée"
+    },
+    "terms": {
+      "noTerms": "La boutique de {{- shopName}} n'a pas de conditions générales."
+    }
+  },
+  "shared": {
+    "periods": {
+      "day_one": "jour",
+      "week_one": "semaine",
+      "day_many": "jours",
+      "day_few": "jours",
+      "day_other": "jours",
+      "year_other": "années",
+      "year_few": "années",
+      "week_many": "semaines",
+      "year_one": "année",
+      "week_other": "semaines",
+      "month_one": "mois",
+      "year_many": "années",
+      "week_few": "semaines",
+      "month_other": "mois",
+      "month_many": "mois",
+      "month_few": "mois"
+    },
+    "product": {
+      "quantity_few": "Produits",
+      "quantity_other": "Produits",
+      "quantity_one": "Produit"
+    },
+    "months": {
+      "june_short": "Jun",
+      "may": "Mai",
+      "january_short": "Jan",
+      "january": "Janvier",
+      "november_short": "Nov",
+      "february_short": "Février",
+      "december_short": "Dev",
+      "march_short": "Mar",
+      "september_short": "Sep",
+      "june": "Juin",
+      "may_short": "Mai",
+      "august_short": "Août",
+      "august": "Août",
+      "july": "Juillet",
+      "april": "Avril",
+      "december": "Décembre",
+      "march": "Mars",
+      "february": "Février",
+      "july_short": "Juillet",
+      "november": "Novembre",
+      "october": "Octobre",
+      "september": "Septembre",
+      "october_short": "Oct",
+      "april_short": "Avril"
+    }
+  },
+  "pages": {
+    "customer": {
+      "auth": {
+        "title": "Authentification des clients Sellix"
+      },
+      "dashboard": {
+        "title": "Tableau de bord des clients Sellix"
+      },
+      "payouts": {
+        "title": "Paiements des clients de Sellix"
+      },
+      "invoices": {
+        "title": "Factures des clients Sellix"
+      },
+      "affiliateLinks": {
+        "title": "Liens d'affiliation pour les clients de Sellix"
+      },
+      "profile": {
+        "title": "Profil du client Sellix"
+      }
+    },
+    "shop": {
+      "invoice": {
+        "title": "Facture Sellix : {{invoiceId}}"
+      },
+      "terms": {
+        "title": "Conditions d'utilisation",
+        "metaTags": {
+          "description": "Avant de procéder à un achat, consultez nos conditions de service et notre politique en matière de cookies afin de vérifier quelles données nous traitons, où elles sont traitées et ce que vous êtes autorisé à faire avec nos produits.",
+          "title": "Consultez nos conditions d'utilisation pour connaître les activités et les comportements autorisés avec nos produits."
+        }
+      },
+      "category": {
+        "title": "Explorez la boutique numérique de {{shopName}}.",
+        "metaTags": {
+          "description": "Consultez la boutique numérique de {{shopName}} : obtenez les biens numériques dont vous avez besoin en quelques clics grâce à nos nombreuses passerelles de paiement, ou contactez-nous si vous avez besoin d'aide.",
+          "title": "Explorez la boutique numérique de {{shopName}}."
+        }
+      },
+      "contact": {
+        "title": "Vous avez besoin d'aide ? Prenez contact avec nous",
+        "metaTags": {
+          "description": "Si vous avez besoin d'aide pour un achat récent, si vous souhaitez obtenir plus d'informations sur un produit numérique que nous proposons ou si vous êtes simplement curieux de connaître nos solutions, n'hésitez pas à nous contacter. C'est aussi simple que de remplir 3 champs et de cliquer sur un bouton.",
+          "title": "Vous avez besoin d'aide ? Prenez contact avec nous"
+        }
+      },
+      "group": {
+        "metaTags": {
+          "title": "Explorez la boutique numérique de {{shopName}}.",
+          "description": "Consultez la boutique numérique de {{shopName}} : obtenez les biens numériques dont vous avez besoin en quelques clics grâce à nos nombreuses passerelles de paiement, ou contactez-nous si vous avez besoin d'aide."
+        },
+        "title": "Explorez la boutique numérique de {{shopName}}."
+      },
+      "product": {},
+      "main": {
+        "metaTags": {
+          "description": "Consultez la boutique numérique de {{shopName}} : obtenez les biens numériques dont vous avez besoin en quelques clics grâce à nos nombreuses passerelles de paiement, ou contactez-nous si vous avez besoin d'aide.",
+          "title": "Explorez la boutique numérique de {{shopName}}."
+        },
+        "title": "Explorez la boutique numérique de {{shopName}}."
+      },
+      "feedbackList": {
+        "metaTags": {
+          "description": "Jetez un coup d'œil à ce que les clients disent de nos produits, consultez les derniers commentaires et évaluations. Vérifiez l'intégrité de ces avis en consultant la page des conseillers de confiance.",
+          "title": "Commentaires et critiques de nos clients"
+        },
+        "title": "Commentaires et évaluations"
+      },
+      "payment": {
+        "title": "Paiement"
+      },
+      "trust": {
+        "metaTags": {
+          "title": "Paramètres des conseillers de confiance",
+          "description": "La page des conseillers de confiance offre une solution simple pour vérifier nos commentaires, nos appels et nos scores de sécurité. Jetez-y un coup d'œil avant d'effectuer tout achat pour vérifier nos offres."
+        },
+        "title": "Paramètres des conseillers de confiance"
+      },
+      "ticket": {
+        "title": "Ticket"
+      },
+      "paymentList": {
+        "title": "Liste des paiements"
+      },
+      "subscription": {},
+      "faq": {
+        "title": "F.A.Q."
+      },
+      "delivery": {
+        "title": "Livraison {{invoiceId}}"
+      },
+      "feedback": {
+        "title": "Commentaires"
+      },
+      "notFound": {
+        "title": "404 Page non trouvée"
+      },
+      "checkout": {
+        "title": "Checkout"
+      }
+    }
+  },
+  "customer": {
+    "affiliateLinks": {
+      "columns": {
+        "price": "Prix",
+        "link": "Lien",
+        "product": "Produit",
+        "commission": "Commission"
+      },
+      "isEmpty": {
+        "title": "Liens d'affiliation",
+        "message": "Le marchand n'a pas encore activé de liens d'affiliation sur aucun produit."
+      },
+      "row": {
+        "copyLink": "Copier le lien",
+        "subscription": "Abonnement",
+        "startingAt": "A partir de :",
+        "chooseYourPrice": "Choisissez votre prix"
+      }
+    },
+    "dashboard": {
+      "sales": {
+        "columns": {
+          "count": "Comte",
+          "price": "Prix",
+          "date": "Date",
+          "commission": "Commission",
+          "revenue": "Revenue %",
+          "invoice": "Facture",
+          "product": "Produit"
+        },
+        "isEmpty": {
+          "title": "Commissions récentes",
+          "message": "Vous n'avez pas encore de commission d'affiliation"
+        }
+      },
+      "analytics": {
+        "titles": {
+          "totalReferrals": "Total des renvois",
+          "totalCommission": "Commission totale",
+          "currentBalance": "Solde actuel",
+          "revenuePercentage": "Pourcentage de recettes",
+          "referralLink": "Lien de référence"
+        }
+      }
+    },
+    "menu": {
+      "affiliateLinks": "Liens d'affiliation",
+      "dashboard": "Tableau de bord",
+      "payouts": "Paiements"
+    },
+    "payouts": {
+      "message": "Prenez contact avec le commerçant pour un versement manuel du solde de la commission.",
+      "title": "Paiements manuels"
+    },
+    "auth": {
+      "customerAuth": {
+        "pageTitle": "Auth. client | Sellix",
+        "email": {
+          "valid": {
+            "title": "Veuillez entrer le code 2FA",
+            "message": "L'authentification à deux facteurs (2FA) est activée pour votre compte. Veuillez entrer un code pour vous connecter."
+          },
+          "title": "Courriel :",
+          "invalid": {
+            "message": "Accédez au tableau de bord du portail client pour gérer vos soldes d'affiliés et plus encore.",
+            "title": "Portail clients"
+          },
+          "placeholder": "example@email.com",
+          "isRequired": "L'adresse électronique est obligatoire"
+        },
+        "login": "Connexion",
+        "continue": "Continuer"
+      }
+    }
+  }
+}

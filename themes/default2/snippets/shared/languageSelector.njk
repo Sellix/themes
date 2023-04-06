@@ -10,7 +10,6 @@
 <style>
   .language-selector-{{ id }} .select2-container--sellix-lng-selector .select2-selection--single {
     background-color: {{ colors[inputsProps.select_background] }}!important;
-    border: {{ "1px solid var(--borderColor)" if inputsProps.common_show_border else "none" }} !important;
   }
 
   .language-selector-{{ id }} .select2-container--sellix-lng-selector .select2-selection__rendered {
@@ -40,8 +39,8 @@
   }
 </style>
 
-<div class='language-selector-{{ id }}'>
-  <select id='language-selector' class='testetetes'>
+<div class="language-selector-{{ id }} d-none">
+  <select id="language-selector" class="testetetes">
     {% for localeInfo in localesList | sort(false, false, 'title') %}
       <option
         value="{{ localeInfo.code }}"
@@ -63,7 +62,7 @@
     }
 
     return $(`<span style="display: flex; align-items: center; overflow: hidden;">
-        ${imgUrl ? `<img style="height:20px;width: 20px; margin-right: 8px;" src="${imgUrl}" />` : ''}
+        ${imgUrl ? `<img style="height:18px;width: 18px; margin-right: 8px;" src="${imgUrl}" />` : ''}
         ${state.text}
       </span>`);
   }
@@ -94,5 +93,7 @@
         window.location.href = `/${pathParts.join('/')}` + (pathParts.length === 1 ? '/' : '');
       }
     });
+
+    $('.language-selector-{{ id }}').removeClass('d-none');
   });
 </script>

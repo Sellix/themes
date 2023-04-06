@@ -9,13 +9,17 @@
 %}
 
 <style>
-  .header-{{ id }} {
-    background-color: {{ colors[backgroundColor] }}
+  .header {
+    position: relative;
+    z-index: 1000;
+    box-shadow: {{ properties.shadow }};
   }
-  .sellix-header-{{ id }} .sellix-header__logo {
-    display: flex;
-    align-items: center;
-    height: 100%;
+  .header-{{ id }} {
+    background-color: {{ colors[backgroundColor] }};
+    {% if not properties.fullwidth %}
+      max-width: {{ themeProperties.page.content_width }}px;
+      margin: 0 auto;
+    {% endif %}
   }
   .sellix-header-{{ id }} .sellix-header__shop-name {
     text-align: {{ properties.shop_name_text_align }};
@@ -24,24 +28,25 @@
       position: absolute;
     {% endif %}
   }
-  .sellix-header-{{ id }} .sellix-header__shop-name > a {
-    width: 230px;
-    align-items: center;
-    height: 100%;
-    padding: 0 1rem 0 0;
-  }
   .sellix-header-{{ id }} .sellix-header__shop-name > a > span {
     color: {{ colors[properties.shop_name_font_color] if properties.shop_name_font_color else 'inherit' }};
     font-size: {{ properties.shop_name_font_size }}px;
     font-weight: {{ properties.shop_name_font_weight }};
   }
-  .sellix-header-{{ id }} .sellix-header__language-selector {
+  .sellix-header-{{ id }} .sidebar-toggler {
+    color: {{ colors[properties.shop_name_font_color] if properties.shop_name_font_color else 'inherit' }};
   }
 </style>
 
 <header class="header-{{ id }}">
   <div class="sellix-header sellix-header-{{ id }}">
     <div class="sellix-header__logo">
+{#      <input type="checkbox" name="" id="">#}
+
+      <div class="sidebar-toggler">
+        {% render_snippet 'Menu icon' %}
+      </div>
+
       {% if properties.logo_image %}
         <a href="">
           <div class="sellix-header__logo-image">
@@ -82,3 +87,18 @@
     </div>
   </div>
 </header>
+
+<script>
+  $(document).ready(function() {
+    $('.header-{{ id }} .sidebar-toggler').click(function() {
+      const $mobileMenu = $('.mobile-sidebar-menu');
+      if ($mobileMenu.hasClass('open')) {
+        $mobileMenu.removeClass('open');
+        $('html').removeClass('no-scroll');
+      } else {
+        $mobileMenu.addClass('open');
+        $('html').addClass('no-scroll');
+      }
+    });
+  });
+</script>

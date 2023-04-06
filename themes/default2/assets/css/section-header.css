@@ -5,19 +5,43 @@
   display: grid;
   grid-template-columns: auto 1fr auto auto;
   align-items: center;
-  width: 100%;
-  height: 100%;
-  max-width: 1140px;
+  /*width: 100%;*/
+  /*height: 100%;*/
+  /*max-width: 1140px;*/
   min-height: 72px;
-  padding: 0 1rem 0 1.5rem;
-  margin: 0 auto;
+  padding: 0 1.25rem;
+  /*margin: 0 auto;*/
 }
 
 @media (max-width: 768px) {
   .sellix-header {
-    overflow-x: scroll;
-    overflow-y: hidden;
+    min-height: 64px;
   }
+}
+
+.sidebar-toggler {
+  display: none;
+  margin-right: 1.25rem;
+  font-size: 1rem;
+  background-color: #0000;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .sidebar-toggler {
+    display: flex;
+  }
+}
+
+.sellix-header__logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 .sellix-header__logo-image {
@@ -25,15 +49,47 @@
 }
 
 .sellix-header__shop-name {
-  text-align: left;
-  /*width: 100%;*/
+  display: flex;
+  align-items: center;
+  height: 1rem;
+  padding: 0 1.5rem 0 0;
+  border-right: 1px solid var(--black2);
+}
+
+@media (max-width: 768px) {
+  .sellix-header__shop-name {
+    border-right: inherit;
+  }
 }
 
 .sellix-header__main-menu {
-  width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
+  padding: 0 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .sellix-header__main-menu .sellix-menu {
+    display: none!important;
+  }
+}
+
+.sellix-header__main-menu .sellix-menu {
+  height: 100%;
+  display: flex;
+}
+
+.sellix-header__main-menu .sellix-menu a {
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .sellix-header__language-selector {
