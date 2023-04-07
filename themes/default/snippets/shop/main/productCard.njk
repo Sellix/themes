@@ -4,8 +4,8 @@
 {% set image = cdn_link(product.cloudflare_image_id, 'shopItem') %}
 {% set onHold = product.on_hold | int %}
 {% set isOut = (product.stock | int === 0) %}
-{% set isPayWhatYouWant = (product.pay_what_you_want | int === 1) %}
 {% set isFree = product.price_display | float === 0 and not isPayWhatYouWant %}
+{% set isPayWhatYouWant = (product.pay_what_you_want | int === 1) %}
 {% set colors = themeProperties.current_colors %}
 {% set cardsProps = themeProperties.cards %}
 
@@ -86,6 +86,10 @@
           </span>
         {% endif %}
 
+        {% if not isFree and not isOut and not onHold %}
+          <span class="sellix-card-tax" style="color: var(--darkFontColor)"></span>
+        {% endif %}
+
         {% if not onHold and not isOut %}
           <div class="sellix-card-description justify-content-between">
             {% if product.price_discount and not isFree %}
@@ -127,3 +131,28 @@
     </div>
   </a>
 </div>
+
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const { shopInfo } = window.SellixContext.get('common');
+    const ipcountry = Cookies.get('ipcountry') || "BUGO";
+
+    let taxAmount = shopInfo.shop.vat_percentage ? shopInfo.shop.vat_percentage : '';
+    if(shopInfo.shop.tax_configuration === "EU" || shopInfo.shop.tax_configuration === "CUSTOM") {
+      if(shopInfo.shop.tax_configuration_data && ipcountry) {
+        if(shopInfo.shop.tax_configuration_data.find(({ country, type }) => country === ipcountry)) {
+          console.log(1, "1")
+          taxAmount = shopInfo.shop.tax_configuration_data.find(({ country, type }) => country === ipcountry).tax_percentage;
+        }
+      }
+    }
+
+
+    if(shopInfo.shop.display_tax_on_storefront && taxAmount) {
+      console.log(taxAmount, "taxAmount")
+      taxAmount = parseFloat(Number(taxAmount).toFixed(2));
+      $('.sellix-card-container-{{ id }} .sellix-card .sellix-card-tax').append(`<span>${taxAmount}% {{ 'shop.main.cards.product.tax' | t }}</span>`);
+    }
+  });
+</script>

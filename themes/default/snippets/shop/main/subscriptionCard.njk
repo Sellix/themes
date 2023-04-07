@@ -4,11 +4,12 @@
 {% set image = cdn_link(product.cloudflare_image_id, 'shopItem') %}
 {% set colors = themeProperties.current_colors %}
 {% set cardsProps = themeProperties.cards %}
+{% set onHold = product.on_hold | int %}
 
 <div class="d-flex w-100 position-relative">
   {% render_snippet 'Discount badge', product=product %}
   <a
-    href="{{'javascript:void' if product.on_hold | int else ['product/', product.uniqid] | join}}"
+    href="{{'javascript:void' if onHold else ['product/', product.uniqid] | join}}"
     id="sellix-card-container-{{id}}"
     class="sellix-card-container"
     style="border: {{ "1px solid var(--borderColor)" if cardsProps.product_card_show_border else "none" }};"
@@ -35,7 +36,11 @@
           {{product.title}}
         </div>
 
-        {% if product.on_hold | int %}
+        {% if not onHold %}
+          <span class="sellix-card-tax" style="color: var(--darkFontColor)"></span>
+        {% endif %}
+
+        {% if onHold %}
           <span
             class="sellix-card-description"
             style="color: {{ colors[cardsProps.product_card_description_font_color] }}; font-size: {{ cardsProps.product_card_description_font_size }}px; font-weight: {{ cardsProps.product_card_description_font_weight }};"
@@ -60,3 +65,27 @@
     </div>
   </a>
 </div>
+
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const { shopInfo } = window.SellixContext.get('common');
+    const ipcountry = Cookies.get('ipcountry');
+
+    let taxAmount = shopInfo.shop.vat_percentage ? shopInfo.shop.vat_percentage : '';
+    if(shopInfo.shop.tax_configuration === "EU" || shopInfo.shop.tax_configuration === "CUSTOM") {
+      if(shopInfo.shop.tax_configuration_data && ipcountry) {
+        if(shopInfo.shop.tax_configuration_data.find(({ country, type }) => country === ipcountry)) {
+          taxAmount = shopInfo.shop.tax_configuration_data.find(({ country, type }) => country === ipcountry).tax_percentage;
+        }
+      }
+    }
+
+    if(shopInfo.shop.display_tax_on_storefront && taxAmount) {
+      taxAmount = parseFloat(Number(taxAmount).toFixed(2));
+      console.log(taxAmount, "SUBSCRIPTION")
+      $('#sellix-card-container-{{ id }} .sellix-card .sellix-card-tax').append(`<span>${taxAmount}% {{ 'shop.main.cards.product.tax' | t }}</span>`);
+    }
+  });
+</script>
+

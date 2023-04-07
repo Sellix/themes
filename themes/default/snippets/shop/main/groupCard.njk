@@ -53,6 +53,10 @@
         {{group.title}}
       </div>
 
+      {% if group.minPriceItem %}
+        <span class="sellix-card-tax" style="color: var(--darkFontColor)"></span>
+      {% endif %}
+
       <div class="sellix-group-card-description">
         <span>
           {% if group.minPriceItem %}
@@ -96,3 +100,28 @@
     {% endif %}
   });
 </script>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const { shopInfo } = window.SellixContext.get('common');
+    const ipcountry = Cookies.get('ipcountry') || "BUGO";
+
+    let taxAmount = shopInfo.shop.vat_percentage ? shopInfo.shop.vat_percentage : '';
+    if(shopInfo.shop.tax_configuration === "EU" || shopInfo.shop.tax_configuration === "CUSTOM") {
+      if(shopInfo.shop.tax_configuration_data && ipcountry) {
+        if(shopInfo.shop.tax_configuration_data.find(({ country, type }) => country === ipcountry)) {
+          console.log(1, "1")
+          taxAmount = shopInfo.shop.tax_configuration_data.find(({ country, type }) => country === ipcountry).tax_percentage;
+        }
+      }
+    }
+
+
+    if(shopInfo.shop.display_tax_on_storefront && taxAmount) {
+      console.log(taxAmount, "taxAmount")
+      taxAmount = parseFloat(Number(taxAmount).toFixed(2));
+      $('#sellix-card-container-{{ id }} .sellix-card .sellix-card-tax').append(`<span>${taxAmount}% {{ 'shop.main.cards.product.tax' | t }}</span>`);
+    }
+  });
+</script>
+
