@@ -1,0 +1,84 @@
+{% set id = uid() %}
+{% set colors = themeProperties.current_colors %}
+
+{% set contentAlign = properties.column_content_align or 'center' %}
+{% set fixedWidth = properties.column_fixed_width %}
+{% set paddingVert = properties.column_padding_vert or 0 %}
+{% set paddingHoriz = properties.column_padding_horiz or 0 %}
+{% set marginBottom = properties.column_margin_bottom or 0 %}
+{% set backgroundColor = properties.column_column_background_color or 'transparent' %}
+
+<style>
+  .column-{{ id }} {
+    display: flex;
+    {% if contentAlign === 'left' %}
+      justify-content: flex-start;
+    {% elif contentAlign === 'right' %}
+      justify-content: flex-end;
+    {% else %}
+      justify-content: space-around;
+    {% endif %}
+    align-items: center;
+    background-color: {{ colors[backgroundColor] }};
+    padding: {{ paddingVert }}px {{ paddingHoriz }}px;
+    margin: 0 auto {{ marginBottom }}px auto;
+    {% if fixedWidth %}
+      max-width: {{ fixedWidth }}px;
+    {% endif %}
+  }
+</style>
+
+<div class="column-{{ id }}">
+
+  {% if properties.column_type === 'text' %}
+    {% render_snippet
+      'Columns: Text',
+      columnId=id,
+      properties={
+        'content_align': properties.column_content_align,
+        'content': properties.text_content,
+        'font_color': properties.text_font_color,
+        'font_size': properties.text_font_size,
+        'line_height': properties.text_line_height,
+        'font_weight': properties.text_font_weight
+      }
+    %}
+  {% elif properties.column_type === 'image' %}
+    {% render_snippet
+      'Columns: Image',
+      columnId=id,
+      properties={
+        'content_align': properties.column_content_align,
+        'url': properties.image_url,
+        'size': properties.image_size
+      }
+    %}
+  {% elif properties.column_type === 'button' %}
+    {% render_snippet
+      'Columns: Button',
+      columnId=id,
+      properties={
+        'content_align': properties.column_content_align,
+        'background_color': properties.button_background_color,
+        'label_color': properties.button_label_color,
+        'label': properties.button_label,
+        'url': properties.button_url
+      }
+    %}
+  {% elif properties.column_type === 'link' %}
+    {% render_snippet
+      'Columns: Link',
+      columnId=id,
+      properties={
+        'content_align': properties.column_content_align,
+        'background_color': properties.button_background_color,
+        'label_color': properties.button_label_color,
+        'label': properties.button_label,
+        'url': properties.button_url
+      }
+    %}
+  {% else %}
+    Unknown column type: {{ properties.column_type }}
+  {% endif %}
+
+</div>

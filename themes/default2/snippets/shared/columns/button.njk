@@ -1,0 +1,40 @@
+{% set columnId = args.columnId %}
+{% set colors = themeProperties.current_colors %}
+{% set properties = args.properties %}
+
+{% set contentAlign = properties.contentAlign or 'center' %}
+{% set backgroundColor = properties.background_color or 'dark_font_color' %}
+{% set labelColor = properties.label_color %}
+{% set label = properties.label %}
+{% set url = properties.url %}
+
+<style>
+  .column-{{ columnId }}__button {
+    background-color: {{ colors[backgroundColor] }};
+    padding: 14px 20px;
+    border-radius: 18px;
+  }
+
+  .column-{{ columnId }}__button a {
+    display: flex;
+    align-items: center;
+    color: {{ colors[labelColor] }};
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .column-{{ columnId }}__button a span {
+    margin-right: 8px;
+  }
+</style>
+
+<div class="column-{{ columnId }}__button">
+  <a href="{{ url }}">
+    <span>{{ label }}</span>
+    {% render_snippet 'Arrow right' %}
+  </a>
+</div>

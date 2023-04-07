@@ -1,0 +1,48 @@
+{% set id = uid() %}
+
+{% set columnsPerRowWide = properties.columns_per_row_wide or 2 %}
+{% set paddingVertWide = properties.padding_vert_wide or 130 %}
+{% set paddingHorizWide = properties.padding_horiz_wide or 400 %}
+{% set columnsPerRowNormal = properties.columns_per_row_normal or 2 %}
+{% set paddingVertNormal = properties.padding_vert_normal or 115 %}
+{% set paddingHorizNormal = properties.padding_horiz_normal or 200 %}
+{% set columnsPerRowNarrow = properties.columns_per_row_narrow or 2 %}
+{% set paddingVertNarrow = properties.padding_vert_narrow or 96 %}
+{% set paddingHorizNarrow = properties.padding_horiz_narrow or 36 %}
+{% set bgImage = properties.background_image %}
+{% set bgColor = properties.background_color %}
+
+<style>
+  .multi-columns-{{ id }} {
+    display: grid;
+    grid-template-columns: repeat({{ columnsPerRowWide }}, 1fr);
+    padding: {{ paddingVertWide }}px {{ paddingHorizWide }}px;
+    {% if bgImage %}
+      background: url({{bgImage | asset_url}});
+      background-repeat: no-repeat, no-repeat;
+      background-position: top;
+      background-size: cover;
+    {% elif bgColor %}
+      background-color: {{ bgColor }};
+    {% endif %}
+  }
+  @media (max-width: 768px) {
+    .multi-columns-{{ id }} {
+      grid-template-columns: repeat({{ columnsPerRowNormal }}, 1fr);
+      padding: {{ paddingVertNormal }}px {{ paddingHorizNormal }}px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .multi-columns-{{ id }} {
+      grid-template-columns: repeat({{ columnsPerRowNarrow }}, 1fr);
+      padding: {{ paddingVertNarrow }}px {{ paddingHorizNarrow }}px;
+    }
+  }
+</style>
+
+<div class="multi-columns-{{ id }} {{ 'full-width' if properties.fullwidth else 'content-width' }}">
+  {% for block_name in settings.block_order %}
+    {%- render_block block_name -%}
+  {% endfor%}
+</div>

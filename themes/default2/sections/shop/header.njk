@@ -16,10 +16,6 @@
   }
   .header-{{ id }} {
     background-color: {{ colors[backgroundColor] }};
-    {% if not properties.fullwidth %}
-      max-width: {{ themeProperties.page.content_width }}px;
-      margin: 0 auto;
-    {% endif %}
   }
   .sellix-header-{{ id }} .sellix-header__shop-name {
     text-align: {{ properties.shop_name_text_align }};
@@ -38,7 +34,7 @@
   }
 </style>
 
-<header class="header-{{ id }}">
+<header class="header-{{ id }} {{ 'full-width' if properties.fullwidth else 'content-width' }}">
   <div class="sellix-header sellix-header-{{ id }}">
     <div class="sellix-header__logo">
 {#      <input type="checkbox" name="" id="">#}
