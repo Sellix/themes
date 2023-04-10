@@ -1231,18 +1231,19 @@
             "name": "Multi columns",
             "settings": {
               "visible": true,
-              "block_order": ["Column1", "Column2", "Column3"],
+              "block_order": ["Column item 1", "Column item 2", "Column item 3"],
               "blocks": {
-                "Column1": {
-                  "name": "Column",
+                "Column item 1": {
+                  "name": "Column item",
                   "settings": {
                     "visible": true,
                     "properties": {
-                      "column_type": "text",
-                      "column_fixed_width": 640,
-                      "column_background_color": "transparent",
-                      "column_content_align": "center",
-                      "column_margin_bottom": 24,
+                      "column_index": 1,
+                      "item_type": "text",
+                      "item_fixed_width": 640,
+                      "item_background_color": "transparent",
+                      "item_content_align": "center",
+                      "item_margin_bottom": 24,
                       "text_content": "Design Resources to Speed Up Your Creative Workflow",
                       "text_font_color": "dark_font_color",
                       "text_font_size": 56,
@@ -1251,16 +1252,17 @@
                     }
                   }
                 },
-                "Column2": {
-                  "name": "Column",
+                "Column item 2": {
+                  "name": "Column item",
                   "settings": {
                     "visible": true,
                     "properties": {
-                      "column_type": "text",
-                      "column_fixed_width": 640,
-                      "column_background_color": "transparent",
-                      "column_content_align": "center",
-                      "column_margin_bottom": 54,
+                      "column_index": 1,
+                      "item_type": "text",
+                      "item_fixed_width": 640,
+                      "item_background_color": "transparent",
+                      "item_content_align": "center",
+                      "item_margin_bottom": 54,
                       "text_content": "A designer knows he has achieved perfection not when there is nothing left to add, but when there is nothing left to take away.",
                       "text_font_color": "dark_font_color",
                       "text_font_size": 18,
@@ -1269,16 +1271,17 @@
                     }
                   }
                 },
-                "Column3": {
-                  "name": "Column",
+                "Column item 3": {
+                  "name": "Column item",
                   "settings": {
                     "visible": true,
                     "properties": {
-                      "column_type": "button",
-                      "column_fixed_width": 640,
-                      "column_background_color": "transparent",
-                      "column_content_align": "center",
-                      "column_margin_bottom": 0,
+                      "column index": 1,
+                      "item_type": "button",
+                      "item_fixed_width": 640,
+                      "item_background_color": "transparent",
+                      "item_content_align": "center",
+                      "item_margin_bottom": 0,
                       "button_background_color": "dark_font_color",
                       "button_label_color": "contrast_font_color",
                       "button_label": "Explore shop",
@@ -1304,7 +1307,7 @@
             }
           },
 
-          "Multi columns 1": {
+          "Multi columns 2": {
             "name": "Multi columns",
             "settings": {
               "visible": true,
@@ -1585,7 +1588,7 @@
         "class": "multi-columns",
         "blocks": [
           {
-            "name": "Column",
+            "name": "Column item",
             "limit": -1
           }
         ],
@@ -1625,6 +1628,12 @@
             "type": "select-image",
             "label": "Image",
             "defaultValue": null
+          },
+          {
+            "id": "columns_count",
+            "type": "text",
+            "label": "Columns count",
+            "default": "2"
           },
           {
             "id": "wide_screen_properties",
@@ -2028,20 +2037,26 @@
         ]
       }
     },
-    "Column": {
-      "name": "Column",
-      "path": "blocks/shared/column.njk",
+    "Column item": {
+      "name": "Column item",
+      "path": "blocks/shared/columnItem.njk",
       "settings": {
         "schema": [
           {
-            "id": "column_properties",
+            "id": "item_properties",
             "type": "header",
-            "content": "Column properties"
+            "content": "Column item properties"
           },
           {
-            "id": "column_type",
+            "id": "column_index",
+            "type": "text",
+            "label": "Column index (starting from 1)",
+            "defaultValue": "1"
+          },
+          {
+            "id": "item_type",
             "type": "select",
-            "label": "Column type",
+            "label": "Item type",
             "options": [
               {"title": "Text", "value": "text"},
               {"title": "Image", "value": "image"},
@@ -2051,17 +2066,17 @@
             "defaultValue": "text"
           },
           {
-            "id": "column_fixed_width",
+            "id": "item_fixed_width",
             "type": "range",
             "max": 1440,
             "min": 0,
             "step": 1,
             "unit": "px",
-            "label": "Column fixed width",
+            "label": "Item fixed width",
             "defaultValue": 0
           },
           {
-            "id": "column_background_color",
+            "id": "item_background_color",
             "type": "select",
             "label": "Background color",
             "options": [
@@ -2085,13 +2100,13 @@
             "defaultValue": "background_accent_dark"
           },
           {
-            "id": "column_background_image",
+            "id": "Item_background_image",
             "type": "select-image",
             "label": "Image",
             "defaultValue": null
           },
           {
-            "id": "column_padding_vert",
+            "id": "item_padding_vert",
             "type": "range",
             "max": 200,
             "min": 0,
@@ -2101,7 +2116,7 @@
             "defaultValue": 0
           },
           {
-            "id": "column_padding_horiz",
+            "id": "item_padding_horiz",
             "type": "range",
             "max": 200,
             "min": 0,
@@ -2111,7 +2126,7 @@
             "defaultValue": 0
           },
           {
-            "id": "column_margin_bottom",
+            "id": "item_margin_bottom",
             "type": "range",
             "max": 200,
             "min": 0,
@@ -2121,7 +2136,7 @@
             "defaultValue": 0
           },
           {
-            "id": "column_content_align",
+            "id": "item_content_align",
             "type": "select",
             "label": "Align",
             "options": [
@@ -2319,6 +2334,10 @@
           }
         ]
       }
+    },
+    "Column properties": {
+      "name": "Column properties",
+      "path": "blocks/shared/columnProperties.njk"
     },
     "Menu": {
       "name": "Menu",
