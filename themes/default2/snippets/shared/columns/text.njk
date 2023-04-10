@@ -1,24 +1,30 @@
-{% set columnId = args.columnId %}
-{% set colors = themeProperties.current_colors %}
-{% set properties = args.properties %}
+{% set sectionId = args.sectionId or id() %}
+{% set columnIndex = args.columnIndex %}
 
-{% set contentAlign = properties.content_align or 'center' %}
-{% set fontColor = properties.font_color or 'dark_font_color' %}
-{% set fontSize = properties.font_size or 14 %}
-{% set fontWeight = properties.font_weight or 400 %}
-{% set lineHeight = properties.line_height or 28 %}
+{% if properties.column_index | int === columnIndex %}
+  {% set colors = themeProperties.current_colors %}
+  {% set properties = args.properties %}
 
-<style>
-  .column-{{ columnId }}__text {
-    width: 100%;
-    text-align: {{ contentAlign }};
-    color: {{ colors[fontColor] }};
-    font-size: {{ fontSize }}px;
-    font-weight: {{ fontWeight }};
-    line-height: {{ lineHeight }}px;
-  }
-</style>
+  {% set contentAlign = properties.content_align or 'center' %}
+  {% set fontColor = properties.font_color or 'dark_font_color' %}
+  {% set fontSize = properties.font_size or 14 %}
+  {% set fontWeight = properties.font_weight or 400 %}
+  {% set lineHeight = properties.line_height or 28 %}
 
-<div class="column-{{ columnId }}__text">
-  {{ properties.content }}
-</div>
+  {% set rootClass = ['multi-columns-', sectionId, '__column-item-text'] | join %}
+
+  <style>
+    .{{ rootClass }} {
+      width: 100%;
+      text-align: {{ contentAlign }};
+      color: {{ colors[fontColor] }};
+      font-size: {{ fontSize }}px;
+      font-weight: {{ fontWeight }};
+      line-height: {{ lineHeight }}px;
+    }
+  </style>
+
+  <div class="column-item-{{ sectionId }}__text">
+    {{ properties.content }}
+  </div>
+{% endif %}

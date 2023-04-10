@@ -1,40 +1,46 @@
-{% set columnId = args.columnId %}
-{% set colors = themeProperties.current_colors %}
-{% set properties = args.properties %}
+{% set sectionId = args.sectionId or id() %}
+{% set columnIndex = args.columnIndex %}
 
-{% set contentAlign = properties.contentAlign or 'center' %}
-{% set backgroundColor = properties.background_color or 'dark_font_color' %}
-{% set labelColor = properties.label_color %}
-{% set label = properties.label %}
-{% set url = properties.url %}
+{% if properties.column_index | int === columnIndex %}
+  {% set colors = themeProperties.current_colors %}
+  {% set properties = args.properties %}
 
-<style>
-  .column-{{ columnId }}__button {
-    background-color: {{ colors[backgroundColor] }};
-    padding: 14px 20px;
-    border-radius: 18px;
-  }
+  {% set contentAlign = properties.contentAlign or 'center' %}
+  {% set backgroundColor = properties.background_color or 'dark_font_color' %}
+  {% set labelColor = properties.label_color %}
+  {% set label = properties.label %}
+  {% set url = properties.url %}
 
-  .column-{{ columnId }}__button a {
-    display: flex;
-    align-items: center;
-    color: {{ colors[labelColor] }};
-    text-decoration: none;
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 17px;
-  }
+  {% set rootClass = ['multi-columns-', sectionId, '__column-item-button'] | join %}
 
-  .column-{{ columnId }}__button a span {
-    margin-right: 8px;
-  }
-</style>
+  <style>
+    .{{ rootClass }} {
+      background-color: {{ colors[backgroundColor] }};
+      padding: 14px 20px;
+      border-radius: 18px;
+    }
 
-<div class="column-{{ columnId }}__button">
-  <a href="{{ url }}">
-    <span>{{ label }}</span>
-    {% render_snippet 'Arrow right' %}
-  </a>
-</div>
+    .{{ rootClass }} a {
+      display: flex;
+      align-items: center;
+      color: {{ colors[labelColor] }};
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 17px;
+    }
+
+    .{{ rootClass }} a span {
+      margin-right: 8px;
+    }
+  </style>
+
+  <div class="{{ rootClass }}">
+    <a href="{{ url }}">
+      <span>{{ label }}</span>
+      {% render_snippet 'Arrow right' %}
+    </a>
+  </div>
+{% endif %}

@@ -1,3 +1,8 @@
-{% set properties = args.properties %}
+{% set sectionId = args.sectionId or id() %}
+{% set columnIndex = args.columnIndex %}
 
-{{ properties.url}}
+{% if properties.column_index | int === columnIndex %}
+  {% set properties = args.properties %}
+
+  {{ properties.url}}
+{% endif %}

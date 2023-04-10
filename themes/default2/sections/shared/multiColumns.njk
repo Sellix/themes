@@ -12,8 +12,10 @@
 {% set bgImage = properties.background_image %}
 {% set bgColor = properties.background_color %}
 
+{% set rootClass = ['multi-columns-', id] | join %}
+
 <style>
-  .multi-columns-{{ id }} {
+  .{{ rootClass }} {
     display: grid;
     grid-template-columns: repeat({{ columnsPerRowWide }}, 1fr);
     padding: {{ paddingVertWide }}px {{ paddingHorizWide }}px;
@@ -27,22 +29,28 @@
     {% endif %}
   }
   @media (max-width: 768px) {
-    .multi-columns-{{ id }} {
+    .{{ rootClass }} {
       grid-template-columns: repeat({{ columnsPerRowNormal }}, 1fr);
       padding: {{ paddingVertNormal }}px {{ paddingHorizNormal }}px;
     }
   }
 
   @media (max-width: 640px) {
-    .multi-columns-{{ id }} {
+    .{{ rootClass }} {
       grid-template-columns: repeat({{ columnsPerRowNarrow }}, 1fr);
       padding: {{ paddingVertNarrow }}px {{ paddingHorizNarrow }}px;
     }
   }
+
+  .{{ rootClass }}__column {}
 </style>
 
-<div class="multi-columns-{{ id }} {{ 'full-width' if properties.fullwidth else 'content-width' }}">
-  {% for block_name in settings.block_order %}
-    {%- render_block block_name -%}
-  {% endfor%}
+<div class="{{ rootClass }} {{ 'full-width' if properties.fullwidth else 'content-width' }}">
+  {% for columnIndex in safe_range(1, properties.columns_count | int + 1) %}
+    <div class="{{ rootClass }}__column">
+      {% for block_name in settings.block_order %}
+        {%- render_block block_name, sectionId=id, columnIndex=columnIndex -%}
+      {% endfor%}
+    </div>
+  {% endfor %}
 </div>
