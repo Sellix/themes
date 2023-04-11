@@ -2,9 +2,9 @@
 {% set shop = global.common.shopInfo.shop %}
 {% set colors = themeProperties.current_colors %}
 
-{% set showBorder = properties.show_border if properties.show_border is defined else true %}
-{% set backgroundColor = properties.background_color if properties.container_background_color is defined else 'background_accent_dark' %}
-{% set shadow = properties.shadow if properties.shadow is defined else 'none' %}
+{% set showBorder = safe_get(properties.show_border, true) %}
+{% set backgroundColor = safe_get(properties.background_color, 'background_accent_dark') %}
+{% set shadow = safe_get(properties.shadow, 'none') %}
 
 <style>
   .cart-dropdown-{{ id }} {

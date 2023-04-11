@@ -1,30 +1,40 @@
-{% set sectionId = args.sectionId or id() %}
-{% set columnIndex = args.columnIndex %}
+{% set id = uid() %}
+{% set properties = args.properties %}
 
-{% if properties.column_index | int === columnIndex %}
-  {% set colors = themeProperties.current_colors %}
-  {% set properties = args.properties %}
+{% set colors = themeProperties.current_colors %}
 
-  {% set contentAlign = properties.content_align or 'center' %}
-  {% set fontColor = properties.font_color or 'dark_font_color' %}
-  {% set fontSize = properties.font_size or 14 %}
-  {% set fontWeight = properties.font_weight or 400 %}
-  {% set lineHeight = properties.line_height or 28 %}
+{% set contentAlignDesktop = safe_get(properties.content_align_desktop, 'center') %}
+{% set contentAlignTablet = safe_get(properties.content_align_tablet, 'center') %}
+{% set contentAlignMobile = safe_get(properties.content_align_mobile, 'center') %}
+{% set fontColor = safe_get(properties.font_color, 'dark_font_color') %}
+{% set fontSize = safe_get(properties.font_size, 14) %}
+{% set fontWeight = safe_get(properties.font_weight, 400) %}
+{% set lineHeight = safe_get(properties.line_height, 28) %}
 
-  {% set rootClass = ['multi-columns-', sectionId, '__column-item-text'] | join %}
+{% set rootClass = ['multi-columns-', id, '__column-item-text'] | join %}
 
-  <style>
+<style>
+  .{{ rootClass }} {
+    width: 100%;
+    text-align: {{ contentAlignDesktop }};
+    color: {{ colors[fontColor] }};
+    font-size: {{ fontSize }}px;
+    font-weight: {{ fontWeight }};
+    line-height: {{ lineHeight }}px;
+  }
+  @media (max-width: 768px) {
     .{{ rootClass }} {
-      width: 100%;
-      text-align: {{ contentAlign }};
-      color: {{ colors[fontColor] }};
-      font-size: {{ fontSize }}px;
-      font-weight: {{ fontWeight }};
-      line-height: {{ lineHeight }}px;
+      text-align: {{ contentAlignTablet }};
     }
-  </style>
+  }
 
-  <div class="column-item-{{ sectionId }}__text">
-    {{ properties.content }}
-  </div>
-{% endif %}
+  @media (max-width: 640px) {
+    .{{ rootClass }} {
+      text-align: {{ contentAlignMobile }};
+    }
+  }
+</style>
+
+<div class="{{ rootClass }}">
+  {{ properties.content }}
+</div>

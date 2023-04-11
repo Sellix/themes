@@ -1,14 +1,17 @@
 {% set id = uid() %}
+{% set colors = themeProperties.current_colors %}
 
-{% set columnsPerRowWide = properties.columns_per_row_wide or 2 %}
-{% set paddingVertWide = properties.padding_vert_wide or 130 %}
-{% set paddingHorizWide = properties.padding_horiz_wide or 400 %}
-{% set columnsPerRowNormal = properties.columns_per_row_normal or 2 %}
-{% set paddingVertNormal = properties.padding_vert_normal or 115 %}
-{% set paddingHorizNormal = properties.padding_horiz_normal or 200 %}
-{% set columnsPerRowNarrow = properties.columns_per_row_narrow or 2 %}
-{% set paddingVertNarrow = properties.padding_vert_narrow or 96 %}
-{% set paddingHorizNarrow = properties.padding_horiz_narrow or 36 %}
+{% set columnGap = safe_get(properties.column_gap, 30) %}
+{% set rowGap = safe_get(properties.row_gap, 30) %}
+{% set columnsPerRowDesktop = safe_get(properties.columns_per_row_desktop, 2) %}
+{% set paddingVertDesktop = safe_get(properties.padding_vert_desktop, 130) %}
+{% set paddingHorizDesktop = safe_get(properties.padding_horiz_desktop, 400) %}
+{% set columnsPerRowTablet = safe_get(properties.columns_per_row_tablet, 2) %}
+{% set paddingVertTablet = safe_get(properties.padding_vert_tablet, 115) %}
+{% set paddingHorizTablet = safe_get(properties.padding_horiz_tablet, 200) %}
+{% set columnsPerRowMobile = safe_get(properties.columns_per_row_mobile, 2) %}
+{% set paddingVertMobile = safe_get(properties.padding_vert_mobile, 96) %}
+{% set paddingHorizMobile = safe_get(properties.padding_horiz_mobile, 36) %}
 {% set bgImage = properties.background_image %}
 {% set bgColor = properties.background_color %}
 
@@ -17,39 +20,42 @@
 <style>
   .{{ rootClass }} {
     display: grid;
-    grid-template-columns: repeat({{ columnsPerRowWide }}, 1fr);
-    padding: {{ paddingVertWide }}px {{ paddingHorizWide }}px;
+    grid-template-columns: repeat({{ columnsPerRowDesktop }}, 1fr);
+    grid-column-gap: {{ columnGap }}px;
+    grid-row-gap: {{ rowGap }}px;
+    padding: {{ paddingVertDesktop }}px {{ paddingHorizDesktop }}px;
     {% if bgImage %}
       background: url({{bgImage | asset_url}});
       background-repeat: no-repeat, no-repeat;
       background-position: top;
       background-size: cover;
     {% elif bgColor %}
-      background-color: {{ bgColor }};
+      background-color: {{ colors[bgColor] }};
     {% endif %}
   }
   @media (max-width: 768px) {
     .{{ rootClass }} {
-      grid-template-columns: repeat({{ columnsPerRowNormal }}, 1fr);
-      padding: {{ paddingVertNormal }}px {{ paddingHorizNormal }}px;
+      grid-template-columns: repeat({{ columnsPerRowTablet }}, 1fr);
+      padding: {{ paddingVertTablet }}px {{ paddingHorizTablet }}px;
     }
   }
 
   @media (max-width: 640px) {
     .{{ rootClass }} {
-      grid-template-columns: repeat({{ columnsPerRowNarrow }}, 1fr);
-      padding: {{ paddingVertNarrow }}px {{ paddingHorizNarrow }}px;
+      grid-template-columns: repeat({{ columnsPerRowMobile }}, 1fr);
+      padding: {{ paddingVertMobile }}px {{ paddingHorizMobile }}px;
     }
   }
-
-  .{{ rootClass }}__column {}
 </style>
 
 <div class="{{ rootClass }} {{ 'full-width' if properties.fullwidth else 'content-width' }}">
-  {% for columnIndex in safe_range(1, properties.columns_count | int + 1) %}
-    <div class="{{ rootClass }}__column">
+  {% for columnIdx in safe_range(1, properties.columns_count | int + 1) %}
+    <div class="{{ rootClass }}__{{ columnIdx }}__column">
       {% for block_name in settings.block_order %}
-        {%- render_block block_name, sectionId=id, columnIndex=columnIndex -%}
+        {% set block = settings.blocks[block_name] %}
+        {% if block.settings.properties.column_index | int === columnIdx %}
+          {%- render_block block_name, sectionId=id, columnIdx=columnIdx -%}
+        {% endif %}
       {% endfor%}
     </div>
   {% endfor %}

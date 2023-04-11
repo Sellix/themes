@@ -1,1 +1,64 @@
 {% set sectionId = args.sectionId or id() %}
+{% set columnIdx = args.columnIdx or 1 %}
+
+{% if properties.column_index | int === columnIdx %}
+  {% set colors = themeProperties.current_colors %}
+  {% set fixedWidthDesktop = properties.fixed_width_desktop %}
+  {% set paddingVertDesktop = safe_get(properties.padding_vert_desktop, 130) %}
+  {% set paddingHorizDesktop = safe_get(properties.padding_horiz_desktop, 400) %}
+  {% set fixedWidthTablet = properties.fixed_width_tablet %}
+  {% set paddingVertTablet = safe_get(properties.padding_vert_tablet, 115) %}
+  {% set paddingHorizTablet = safe_get(properties.padding_horiz_tablet, 200) %}
+  {% set fixedWidthMobile = properties.fixed_width_mobile %}
+  {% set paddingVertMobile = safe_get(properties.padding_vert_mobile, 96) %}
+  {% set paddingHorizMobile = safe_get(properties.padding_horiz_mobile, 36) %}
+
+  {% set bgImage = properties.background_image %}
+  {% set bgColor = properties.background_color %}
+
+  {% set rootClass = ['multi-columns-', sectionId, '__', columnIdx, '__column'] | join %}
+
+  <style>
+    .{{ rootClass }} {
+      margin: 0 auto;
+      min-height: 375px;
+      padding: {{ paddingVertDesktop }}px {{ paddingHorizDesktop }}px;
+      {% if bgImage %}
+        background: url({{bgImage | asset_url}});
+        background-repeat: no-repeat, no-repeat;
+        background-position: top;
+        background-size: cover;
+      {% elif bgColor %}
+        background-color: {{ colors[bgColor] }};
+      {% endif %}
+
+      {% if fixedWidthDesktop %}
+        max-width: {{ fixedWidthDesktop }}px;
+      {% else %}
+        width: 100%;
+      {% endif %}
+    }
+
+    @media (max-width: 768px) {
+      .{{ rootClass }} {
+        padding: {{ paddingVertTablet }}px {{ paddingHorizTablet }}px;
+        {% if fixedWidthTablet %}
+          max-width: {{ fixedWidthTablet }}px;
+        {% else %}
+          width: 100%;
+        {% endif %}
+      }
+    }
+
+    @media (max-width: 640px) {
+      .{{ rootClass }} {
+        padding: {{ paddingVertMobile }}px {{ paddingHorizMobile }}px;
+        {% if fixedWidthMobile %}
+          max-width: {{ fixedWidthMobile }}px;
+        {% else %}
+          width: 100%;
+        {% endif %}
+      }
+    }
+  </style>
+{% endif %}

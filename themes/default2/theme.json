@@ -49,7 +49,7 @@
           "id": "brand_color",
           "type": "color-picker",
           "label": "Brand",
-          "defaultValue": "#5F40E5"
+          "defaultValue": "#6A3CE2"
         },
         {
           "id": "header_background_colors",
@@ -72,7 +72,7 @@
           "id": "background_accent_dark",
           "type": "color-picker",
           "label": "Accent (Dark)",
-          "defaultValue": "#F5F5F5"
+          "defaultValue": "#F5F7F8"
         },
         {
           "id": "background_hover",
@@ -551,7 +551,7 @@
           "id": "brand_color",
           "type": "color-picker",
           "label": "Brand",
-          "defaultValue": "#5F40E5"
+          "defaultValue": "#6A3CE2"
         },
         {
           "id": "header_background_colors",
@@ -574,7 +574,7 @@
           "id": "background_accent_dark",
           "type": "color-picker",
           "label": "Accent (Dark)",
-          "defaultValue": "#F5F5F5"
+          "defaultValue": "#F5F7F8"
         },
         {
           "id": "background_hover",
@@ -1125,7 +1125,7 @@
         "dark_font_color": "#121417",
         "background_main_color": "#FFFFFF",
         "background_accent_light": "#FFFFFF",
-        "background_accent_dark": "#F5F5F5",
+        "background_accent_dark": "#F5F7F8",
         "light_font_color": "#555D67",
         "input_border_hover": "#E5DFFA",
         "menu_background": "#FFFFFF",
@@ -1237,9 +1237,14 @@
                   "name": "Column properties",
                   "visible": true,
                   "settings": {
-                    "column_index": "1",
-                    "column_fixed_width": 640,
-                    "column_background_color": "transparent"
+                    "visible": true,
+                    "properties": {
+                      "column_index": "1",
+                      "fixed_width_desktop": 640,
+                      "fixed_width_tablet": 480,
+                      "fixed_width_mobile": 343,
+                      "background_color": "transparent"
+                    }
                   }
                 },
                 "Column item 1": {
@@ -1250,8 +1255,9 @@
                       "column_index": "1",
                       "item_type": "text",
                       "item_background_color": "transparent",
-                      "item_content_align": "center",
-                      "item_margin_bottom": 24,
+                      "item_margin_bottom_desktop": 24,
+                      "item_margin_bottom_tablet": 24,
+                      "item_margin_bottom_mobile": 24,
                       "text_content": "Design Resources to Speed Up Your Creative Workflow",
                       "text_font_color": "dark_font_color",
                       "text_font_size": 56,
@@ -1268,8 +1274,9 @@
                       "column_index": "1",
                       "item_type": "text",
                       "item_background_color": "transparent",
-                      "item_content_align": "center",
-                      "item_margin_bottom": 54,
+                      "item_margin_bottom_desktop": 54,
+                      "item_margin_bottom_tablet": 54,
+                      "item_margin_bottom_mobile": 54,
                       "text_content": "A designer knows he has achieved perfection not when there is nothing left to add, but when there is nothing left to take away.",
                       "text_font_color": "dark_font_color",
                       "text_font_size": 18,
@@ -1283,11 +1290,12 @@
                   "settings": {
                     "visible": true,
                     "properties": {
-                      "column index": "1",
+                      "column_index": "1",
                       "item_type": "button",
                       "item_background_color": "transparent",
-                      "item_content_align": "center",
-                      "item_margin_bottom": 0,
+                      "item_margin_bottom_desktop": 0,
+                      "item_margin_bottom_tablet": 0,
+                      "item_margin_bottom_mobile": 0,
                       "button_background_color": "dark_font_color",
                       "button_label_color": "contrast_font_color",
                       "button_label": "Explore shop",
@@ -1300,16 +1308,18 @@
                 "fullwidth": true,
                 "background_color": "transparent",
                 "background_image": "column-background-1.jpg",
-                "columns_count": 2,
-                "columns_per_row_wide": 1,
-                "padding_vert_wide": 130,
-                "padding_horiz_wide": 400,
-                "columns_per_row_normal": 1,
-                "padding_vert_wide_normal": 115,
-                "padding_horiz_wide_normal": 200,
-                "columns_per_row_narrow": 1,
-                "padding_vert_narrow": 96,
-                "padding_horiz_narrow": 36
+                "columns_count": 1,
+                "column_gap": 30,
+                "row_gap": 30,
+                "columns_per_row_desktop": 1,
+                "padding_vert_desktop": 130,
+                "padding_horiz_desktop": 200,
+                "columns_per_row_tablet": 1,
+                "padding_vert_tablet": 115,
+                "padding_horiz_tablet": 100,
+                "columns_per_row_mobile": 1,
+                "padding_vert_mobile": 96,
+                "padding_horiz_mobile": 36
               }
             }
           },
@@ -1317,19 +1327,71 @@
             "name": "Multi columns",
             "settings": {
               "visible": true,
-              "block_order": ["Column1", "Column2", "Column3"],
+              "block_order": [
+                "Column properties 1",
+                "Column item 1",
+                "Column item 2",
+                "Column item 3",
+                "Column item 4",
+                "Column properties 2"
+              ],
               "blocks": {
-                "Column1": {
-                  "name": "Column",
+                "Column properties 1": {
+                  "name": "Column properties",
                   "settings": {
                     "visible": true,
                     "properties": {
-                      "column_type": "text",
-                      "column_fixed_width": 640,
-                      "column_background_color": "transparent",
-                      "column_content_align": "center",
-                      "column_margin_bottom": 24,
-                      "text_content": "Design Resources to Speed Up Your Creative Workflow",
+                      "column_index": "1",
+                      "background_color": "background_accent_dark",
+                      "fixed_width_desktop": 420,
+                      "padding_vert_desktop": 126,
+                      "padding_horiz_desktop": 50,
+                      "fixed_width_tablet": 480,
+                      "padding_vert_tablet": 80,
+                      "padding_horiz_tablet": 25,
+                      "fixed_width_mobile": 343,
+                      "padding_vert_mobile": 60,
+                      "padding_horiz_mobile": 16
+                    }
+                  }
+                },
+                "Column item 1": {
+                  "name": "Column item",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "column_index": "1",
+                      "item_type": "text",
+                      "item_background_color": "transparent",
+                      "item_content_align_desktop": "left",
+                      "item_margin_bottom_desktop": 24,
+                      "item_content_align_tablet": "left",
+                      "item_margin_bottom_tablet": 24,
+                      "item_content_align_mobile": "center",
+                      "item_margin_bottom_mobile": 24,
+                      "text_content": "Have no fear of perfection",
+                      "text_font_color": "brand_color",
+                      "text_font_size": 18,
+                      "text_line_height": 28,
+                      "text_font_weight": 500
+                    }
+                  }
+                },
+                "Column item 2": {
+                  "name": "Column item",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "column_index": "1",
+                      "item_type": "text",
+                      "item_background_color": "transparent",
+                      "item_content_align_desktop": "left",
+                      "item_margin_bottom_desktop": 24,
+                      "item_content_align_tablet": "left",
+                      "item_margin_bottom_tablet": 24,
+                      "item_content_align_mobile": "center",
+                      "item_margin_bottom_mobile": 24,
+                      "text_content": "Make it simple, but significant.",
                       "text_font_color": "dark_font_color",
                       "text_font_size": 56,
                       "text_line_height": 72,
@@ -1337,17 +1399,21 @@
                     }
                   }
                 },
-                "Column2": {
-                  "name": "Column",
+                "Column item 3": {
+                  "name": "Column item",
                   "settings": {
                     "visible": true,
                     "properties": {
-                      "column_type": "text",
-                      "column_fixed_width": 640,
-                      "column_background_color": "transparent",
-                      "column_content_align": "center",
-                      "column_margin_bottom": 54,
-                      "text_content": "A designer knows he has achieved perfection not when there is nothing left to add, but when there is nothing left to take away.",
+                      "column_index": "1",
+                      "item_type": "text",
+                      "item_background_color": "transparent",
+                      "item_content_align_desktop": "left",
+                      "item_margin_bottom_desktop": 40,
+                      "item_content_align_tablet": "left",
+                      "item_margin_bottom_tablet": 40,
+                      "item_content_align_mobile": "center",
+                      "item_margin_bottom_mobile": 40,
+                      "text_content": "Design can be art. Design can be aesthetics. Design is so simple, that's why it is so complicated.",
                       "text_font_color": "dark_font_color",
                       "text_font_size": 18,
                       "text_line_height": 28,
@@ -1355,38 +1421,54 @@
                     }
                   }
                 },
-                "Column3": {
-                  "name": "Column",
+                "Column item 4": {
+                  "name": "Column item",
                   "settings": {
                     "visible": true,
                     "properties": {
-                      "column_type": "button",
-                      "column_fixed_width": 640,
-                      "column_background_color": "transparent",
-                      "column_content_align": "center",
-                      "column_margin_bottom": 0,
+                      "column_index": "1",
+                      "item_type": "button",
+                      "item_background_color": "transparent",
+                      "item_content_align_desktop": "left",
+                      "item_margin_bottom_desktop": 0,
+                      "item_content_align_tablet": "left",
+                      "item_margin_bottom_tablet": 0,
+                      "item_content_align_mobile": "center",
+                      "item_margin_bottom_mobile": 0,
                       "button_background_color": "dark_font_color",
                       "button_label_color": "contrast_font_color",
                       "button_label": "Explore shop",
                       "button_url": "shop"
                     }
                   }
+                },
+                "Column properties 2": {
+                  "name": "Column properties",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "column_index": "2",
+                      "background_image": "column-background-2.jpg"
+                    }
+                  }
                 }
               },
               "properties": {
                 "fullwidth": true,
-                "background_color": "transparent",
-                "background_image": "column-background-1.jpg",
+                "background_color": "background_accent_dark",
+                "background_image": null,
                 "columns_count": 2,
-                "columns_per_row_wide": 1,
-                "padding_vert_wide": 130,
-                "padding_horiz_wide": 400,
-                "columns_per_row_normal": 1,
-                "padding_vert_wide_normal": 115,
-                "padding_horiz_wide_normal": 200,
-                "columns_per_row_narrow": 1,
-                "padding_vert_narrow": 96,
-                "padding_horiz_narrow": 36
+                "column_gap": 0,
+                "row_gap": 0,
+                "columns_per_row_desktop": 2,
+                "padding_vert_desktop": 0,
+                "padding_horiz_desktop": 0,
+                "columns_per_row_tablet": 2,
+                "padding_vert_tablet": 0,
+                "padding_horiz_tablet": 0,
+                "columns_per_row_mobile": 1,
+                "padding_vert_mobile": 0,
+                "padding_horiz_mobile": 0
               }
             }
           }
@@ -1647,103 +1729,128 @@
             "default": 2
           },
           {
-            "id": "wide_screen_properties",
-            "type": "header",
-            "content": "Wide screen"
+            "id": "column_gap",
+            "type": "range",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Column gap",
+            "defaultValue": 30
           },
           {
-            "id": "columns_per_row_wide",
+            "id": "row_gap",
+            "type": "range",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Row gap",
+            "defaultValue": 30
+          },
+          {
+            "id": "desktop_screen_properties",
+            "type": "header",
+            "content": "Desktop screen"
+          },
+          {
+            "id": "columns_per_row_desktop",
             "type": "range",
             "max": 10,
             "min": 0,
             "step": 1,
             "unit": "px",
-            "label": "Columns per row",
+            "label": "Columns per row (desktop)",
             "defaultValue": 2
           },
           {
-            "id": "padding_vert_wide",
+            "id": "padding_vert_desktop",
             "type": "range",
             "max": 500,
             "min": 0,
             "step": 1,
             "unit": "px",
-            "label": "Padding vertical",
+            "label": "Padding vertical (desktop)",
             "defaultValue": 130
           },
           {
-            "id": "padding_horiz_wide",
+            "id": "padding_horiz_desktop",
             "type": "range",
             "max": 500,
             "min": 0,
             "step": 1,
             "unit": "px",
-            "label": "Padding horizontal",
+            "label": "Padding horizontal (desktop)",
             "defaultValue": 400
           },
           {
-            "id": "normal_screen_properties",
+            "id": "tablet_screen_properties",
             "type": "header",
-            "content": "Normal screen"
+            "content": "Tablet screen"
           },
           {
-            "id": "columns_per_row_normal",
+            "id": "columns_per_row_tablet",
             "type": "range",
             "max": 10,
             "min": 0,
             "step": 1,
             "unit": "px",
-            "label": "Columns per row (normal)",
+            "label": "Columns per row (tablet)",
             "defaultValue": 2
           },
           {
-            "id": "padding_vert_normal",
+            "id": "padding_vert_tablet",
             "type": "range",
             "max": 500,
             "min": 0,
             "step": 1,
             "unit": "px",
-            "label": "Padding vertical",
+            "label": "Padding vertical (tablet)",
             "defaultValue": 115
           },
           {
-            "id": "padding_horiz_normal",
+            "id": "padding_horiz_tablet",
             "type": "range",
             "max": 500,
             "min": 0,
             "step": 1,
             "unit": "px",
-            "label": "Padding horizontal",
+            "label": "Padding horizontal (tablet)",
             "defaultValue": 200
           },
           {
-            "id": "columns_per_row_narrow",
+            "id": "mobile_screen_properties",
+            "type": "header",
+            "content": "Mobile screen"
+          },
+          {
+            "id": "columns_per_row_mobile",
             "type": "range",
             "max": 10,
             "min": 0,
             "step": 1,
             "unit": "px",
-            "label": "Columns per row (narrow)",
+            "label": "Columns per row (mobile)",
             "defaultValue": 2
           },
           {
-            "id": "padding_vert_narrow",
+            "id": "padding_vert_mobile",
             "type": "range",
             "max": 500,
             "min": 0,
             "step": 1,
             "unit": "px",
-            "label": "Padding vertical",
+            "label": "Padding vertical (mobile)",
             "defaultValue": 96
           },
           {
-            "id": "padding_horiz_narrow",
+            "id": "padding_horiz_mobile",
             "type": "range",
             "max": 500,
             "min": 0,
             "step": 1,
             "unit": "px",
-            "label": "Padding horizontal",
+            "label": "Padding horizontal (mobile)",
             "defaultValue": 36
           }
         ]
@@ -2107,7 +2214,12 @@
             "defaultValue": null
           },
           {
-            "id": "item_padding_vert",
+            "id": "desktop_screen_properties",
+            "type": "header",
+            "content": "Desktop screen"
+          },
+          {
+            "id": "item_padding_vert_desktop",
             "type": "range",
             "max": 200,
             "min": 0,
@@ -2117,7 +2229,7 @@
             "defaultValue": 0
           },
           {
-            "id": "item_padding_horiz",
+            "id": "item_padding_horiz_desktop",
             "type": "range",
             "max": 200,
             "min": 0,
@@ -2127,7 +2239,7 @@
             "defaultValue": 0
           },
           {
-            "id": "item_margin_bottom",
+            "id": "item_margin_bottom_desktop",
             "type": "range",
             "max": 200,
             "min": 0,
@@ -2137,7 +2249,7 @@
             "defaultValue": 0
           },
           {
-            "id": "item_content_align",
+            "id": "item_content_align_desktop",
             "type": "select",
             "label": "Align",
             "options": [
@@ -2154,7 +2266,117 @@
                 "value": "right"
               }
             ],
-            "defaultValue": "background_accent_dark"
+            "defaultValue": "center"
+          },
+          {
+            "id": "tablet_screen_properties",
+            "type": "header",
+            "content": "Tablet screen"
+          },
+          {
+            "id": "item_padding_vert_tablet",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 0
+          },
+          {
+            "id": "item_padding_horiz_tablet",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 0
+          },
+          {
+            "id": "item_margin_bottom_tablet",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin bottom",
+            "defaultValue": 0
+          },
+          {
+            "id": "item_content_align_tablet",
+            "type": "select",
+            "label": "Align",
+            "options": [
+              {
+                "title": "Left",
+                "value": "left"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              },
+              {
+                "title": "Right",
+                "value": "right"
+              }
+            ],
+            "defaultValue": "center"
+          },
+          {
+            "id": "mobile_screen_properties",
+            "type": "header",
+            "content": "Mobile screen"
+          },
+          {
+            "id": "item_padding_vert_mobile",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 0
+          },
+          {
+            "id": "item_padding_horiz_mobile",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 0
+          },
+          {
+            "id": "item_margin_bottom_mobile",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin bottom",
+            "defaultValue": 0
+          },
+          {
+            "id": "item_content_align_mobile",
+            "type": "select",
+            "label": "Align",
+            "options": [
+              {
+                "title": "Left",
+                "value": "left"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              },
+              {
+                "title": "Right",
+                "value": "right"
+              }
+            ],
+            "defaultValue": "center"
           },
           {
             "id": "text_properties",
@@ -2348,17 +2570,7 @@
             "defaultValue": "1"
           },
           {
-            "id": "column_fixed_width",
-            "type": "range",
-            "max": 1440,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Item fixed width",
-            "defaultValue": 0
-          },
-          {
-            "id": "column_background_color",
+            "id": "background_color",
             "type": "select",
             "label": "Background color",
             "options": [
@@ -2382,13 +2594,28 @@
             "defaultValue": "background_accent_dark"
           },
           {
-            "id": "column_background_image",
+            "id": "background_image",
             "type": "select-image",
             "label": "Image",
             "defaultValue": null
           },
           {
-            "id": "column_padding_vert",
+            "id": "desktop_screen_properties",
+            "type": "header",
+            "content": "Desktop screen"
+          },
+          {
+            "id": "fixed_width_desktop",
+            "type": "range",
+            "max": 1440,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Item fixed width",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_vert_desktop",
             "type": "range",
             "max": 200,
             "min": 0,
@@ -2398,7 +2625,77 @@
             "defaultValue": 0
           },
           {
-            "id": "column_padding_horiz",
+            "id": "padding_horiz_desktop",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 0
+          },
+          {
+            "id": "tablet_screen_properties",
+            "type": "header",
+            "content": "Tablet screen"
+          },
+          {
+            "id": "fixed_width_tablet",
+            "type": "range",
+            "max": 1440,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Item fixed width",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_vert_tablet",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_horiz_tablet",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 0
+          },
+          {
+            "id": "mobile_screen_properties",
+            "type": "header",
+            "content": "Desktop screen"
+          },
+          {
+            "id": "fixed_width_mobile",
+            "type": "range",
+            "max": 1440,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Item fixed width",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_vert_mobile",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_horiz_mobile",
             "type": "range",
             "max": 200,
             "min": 0,
@@ -2533,6 +2830,10 @@
     "column-background-1.jpg": {
       "name": "column-background-1.jpg",
       "path": "assets/media/column-background-1.jpg"
+    },
+    "column-background-2.jpg": {
+      "name": "column-background-2.jpg",
+      "path": "assets/media/column-background-2.jpg"
     },
     "cookie-modal.js": {
       "name": "cookie-modal.js",
