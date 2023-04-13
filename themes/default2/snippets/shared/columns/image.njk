@@ -1,4 +1,18 @@
 {% set id = uid() %}
 {% set properties = args.properties %}
 
-{{ properties.url}}
+{% set rootClass = ['multi-columns-', id, '__column-item-image'] | join %}
+
+<style>
+  .{{ rootClass }} {
+    width: {{ properties.size }};
+    height: {{ properties.size }};
+    background: url({{properties.url | asset_url}});
+    background-repeat: no-repeat, no-repeat;
+    background-position: top;
+    background-size: cover;
+  }
+</style>
+
+<div class="{{ rootClass }}">
+</div>

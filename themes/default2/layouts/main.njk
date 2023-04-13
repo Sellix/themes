@@ -52,7 +52,7 @@
       font-size: 14px;
       -webkit-font-smoothing: antialiased;
       margin: 0;
-      font-family: {{ "Inter var" if font.fontFamily == "Inter" else font.fontFamily }},
+      font-family: {{ font.fontFamily }},
       {{ font.systemFont if font.systemFont in ["sans-serif", "serif"] else "monospace" }} !important;
 
       {% if backgroundImage %}
@@ -62,15 +62,10 @@
         background-size: cover;
       {% endif %}
     }
+  </style>
 
-    .content-width {
-      max-width: {{ themeProperties.page.content_width }}px;
-      margin: 0 auto;
-    }
-
-    .full-width {
-      min-width: 100%;
-    }
+  <style>
+    {% render_snippet 'Root css variables' %}
   </style>
 
   <link rel="stylesheet" href="{{ 'root-styles.css' | asset_url }}"/>
@@ -91,9 +86,6 @@
   <link rel="stylesheet" href="{{ 'snippet-mobile-sidebar-menu.css' | asset_url }}"/>
 
   {% set theme = global.common.shopInfo.theme %}
-  <style>
-    {% render_snippet 'Root css variables' %}
-  </style>
 
   <link rel="stylesheet" href="{{ 'select2.css' | asset_url }}"/>
   {% if global.request.type in ['checkout', 'product', 'subscription'] %}
