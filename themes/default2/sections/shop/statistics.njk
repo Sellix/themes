@@ -1,0 +1,58 @@
+{% set id = uid() %}
+{% set colors = themeProperties.current_colors %}
+{% set shop = global.common.shopInfo.shop %}
+
+{% set paddingVertDesktop = safe_get(properties.padding_vert_desktop, 32) %}
+{% set paddingHorizDesktop = safe_get(properties.padding_horiz_desktop, 0) %}
+{% set paddingVertTablet = safe_get(properties.padding_vert_tablet, 24) %}
+{% set paddingHorizTablet = safe_get(properties.padding_horiz_tablet, 0) %}
+{% set paddingVertMobile = safe_get(properties.padding_vert_mobile, 16) %}
+{% set paddingHorizMobile = safe_get(properties.padding_horiz_mobile, 0) %}
+
+{% set bgColor = properties.background_color %}
+
+{% set rootClass = ['section-shop-statistics-', id] | join %}
+
+<style>
+  .sellix-section.section-shop-statistics {
+    background-color: {{ colors[bgColor] }};
+  }
+  .{{ rootClass }} {
+    display: grid;
+    grid-template-columns: repeat({{ settings.block_order | length }}, 1fr);
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: {{ colors[bgColor] }};
+    padding: {{ paddingVertDesktop }}px {{ paddingHorizDesktop }}px;
+  }
+
+  .{{ rootClass }}__item_wrapper:not(:last-child) {
+    border-right: 1px solid var(--black2);
+  }
+
+  @media (max-width: 768px) {
+    .{{ rootClass }} {
+      grid-template-columns: repeat(1, 1fr);
+      padding: {{ paddingVertTablet }}px {{ paddingHorizTablet }}px;
+    }
+
+    .{{ rootClass }}__item_wrapper:not(:last-child) {
+      border-right: none;
+      padding-bottom: 0.5rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .{{ rootClass }} {
+      padding: {{ paddingVertMobile }}px {{ paddingHorizMobile }}px;
+    }
+  }
+</style>
+
+<div class="{{ rootClass }} {{ 'full-width' if properties.fullwidth else 'content-width' }}">
+    {% for block_name in settings.block_order %}
+      <div class="{{ rootClass }}__item_wrapper">
+        {%- render_block block_name -%}
+      </div>
+    {% endfor%}
+</div>
