@@ -1,0 +1,134 @@
+{% set colors = themeProperties.current_colors %}
+{% set rootClass = args.rootClass %}
+{% set properties = args.properties %}
+
+{% set color = safe_get(properties.color, 'light_font_color') %}
+
+<style>
+  .{{ rootClass}}__burger-button {
+    cursor: pointer;
+  }
+  .{{ rootClass}}__burger-button > div {
+    width: 16px;
+    height: 2px;
+    border-radius: 1em;
+    background: {{ colors[color] }};
+  }
+  .{{ rootClass}}__burger-button > div::before, .{{ rootClass}}__burger-button > div::after {
+    transition: font-size 0s;
+    content: "";
+    display: block;
+    position: absolute;
+    width: 16px;
+    height: 2px;
+    background: {{ colors[color] }};
+    border-radius: 1em;
+  }
+  .{{ rootClass}}__burger-button > div::before {
+    margin-top: -6px;
+  }
+  .{{ rootClass}}__burger-button > div::after {
+    margin-top: 6px;
+  }
+
+  .{{ rootClass}}__burger-button > div {
+    transition: background 0.4s, font-size 0s;
+  }
+  .{{ rootClass}}__burger-button > div::before, .{{ rootClass}}__burger-button2 > div::after {
+    transition: font-size 0s;
+    transform-origin: center center;
+  }
+  .{{ rootClass}}__burger-button.toggled > div::before {
+    animation: burg2top 0.4s linear forwards;
+  }
+  .{{ rootClass}}__burger-button.toggled > div {
+    background: transparent;
+  }
+  .{{ rootClass}}__burger-button.toggled > div::after {
+    animation: burg2bottom 0.4s linear forwards;
+  }
+  .{{ rootClass}}__burger-button.unToggled > div::before {
+    animation: burg2topReset 0.4s linear forwards;
+  }
+  .{{ rootClass}}__burger-button.unToggled > div {
+    background: {{ colors[color] }};
+  }
+  .{{ rootClass}}__burger-button.unToggled > div::after {
+    animation: burg2bottomReset 0.4s linear forwards;
+  }
+  @keyframes burg2top {
+    20% {
+      margin-top: 0;
+      transform: rotate(0deg);
+    }
+    60% {
+      margin-top: 0;
+      transform: rotate(55deg);
+    }
+    100% {
+      margin-top: 0;
+      transform: rotate(45deg);
+    }
+  }
+  @keyframes burg2bottom {
+    20% {
+      margin-top: 0;
+      transform: rotate(0deg);
+    }
+    60% {
+      margin-top: 0;
+      transform: rotate(-55deg);
+    }
+    100% {
+      margin-top: 0;
+      transform: rotate(-45deg);
+    }
+  }
+  @keyframes burg2topReset {
+    0% {
+      margin-top: 0;
+      transform: rotate(45deg);
+    }
+    20% {
+      transform: rotate(0deg);
+    }
+    60% {
+      margin-top: 8px;
+      transform: rotate(0deg);
+    }
+    100% {
+      margin-top: 6px;
+      transform: rotate(0deg);
+    }
+  }
+  @keyframes burg2bottomReset {
+    0% {
+      margin-top: 0;
+      transform: rotate(-45deg);
+    }
+    20% {
+      transform: rotate(0deg);
+    }
+    60% {
+      margin-top: -8px;
+      transform: rotate(0deg);
+    }
+    100% {
+      margin-top: -6px;
+      transform: rotate(0deg);
+    }
+  }
+</style>
+
+<div class="{{ rootClass }}__burger-button unToggled">
+  <div></div>
+</div>
+
+<script type="application/javascript">
+  $(document).ready(function() {
+    $('.{{ rootClass }}__burger-button').click(function() {
+      $(this).toggleClass("toggled");
+      $(this).toggleClass("unToggled");
+    })
+  });
+</script>

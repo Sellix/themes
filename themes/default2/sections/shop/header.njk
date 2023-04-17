@@ -1,4 +1,5 @@
 {% set id = args.layoutId or uid() %}
+{% set menuProps = themeProperties.mobile_menu %}
 {% set shop = global.common.shopInfo.shop %}
 {% set subscription = global.common.shopInfo.subscription %}
 {% set colors = themeProperties.current_colors %}
@@ -38,7 +39,13 @@
   <div class="sellix-header sellix-header-{{ id }}">
     <div class="sellix-header__logo">
       <div class="sidebar-toggler">
-        {% render_snippet 'Menu icon' %}
+        {% render_snippet
+          'Burger button',
+          rootClass=['sellix-header-', id] | join,
+          properties={
+            'color': menuProps.menu_icon_font_color
+          }
+        %}
       </div>
 
       {% if properties.logo_image %}
@@ -86,11 +93,14 @@
   $(document).ready(function() {
     $('.header-{{ id }} .sidebar-toggler').click(function() {
       const $mobileMenu = $('.mobile-sidebar-menu');
+      const $toggler = $('.sidebar-toggler');
       if ($mobileMenu.hasClass('open')) {
         $mobileMenu.removeClass('open');
+        $toggler.removeClass('open');
         $('html').removeClass('no-scroll');
       } else {
         $mobileMenu.addClass('open');
+        $toggler.addClass('open');
         $('html').addClass('no-scroll');
       }
     });
