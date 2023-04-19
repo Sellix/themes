@@ -81,12 +81,14 @@
           const { status, data } = response;
           if (status === 200) {
             const { invoice } = data;
-            const invoices = this.shopStore.get('invoices') || {};
-            invoices[invoice.uniqid] = {
-              uniqid: invoice.uniqid,
-              secret: invoice.secret,
-            };
-            this.shopStore.set('invoices', invoices);
+            if (invoice) {
+              const invoices = this.shopStore.get('invoices') || {};
+              invoices[invoice.uniqid] = {
+                uniqid: invoice.uniqid,
+                secret: invoice.secret,
+              };
+              this.shopStore.set('invoices', invoices);
+            }
           }
           return response;
         });
