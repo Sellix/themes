@@ -21,10 +21,10 @@
   {% set paddingHorizMobile = safe_get(properties.item_padding_horiz_mobile, 0) %}
   {% set marginBottomMobile = safe_get(properties.item_margin_bottom_mobile, 0) %}
 
-  {% set rootClass = ['multi-columns-', id, '__column-item'] | join %}
+  {% set localClass = ['multi-columns-', id, '__column-item'] | join %}
 
   <style>
-    .{{ rootClass }} {
+    .{{ localClass }} {
       display: flex;
       align-items: center;
       background-color: {{ colors[backgroundColor] }};
@@ -40,7 +40,7 @@
     }
 
     @media (max-width: 768px) {
-      .{{ rootClass }} {
+      .{{ localClass }} {
         {% if contentAlignTablet === 'left' %}
           justify-content: flex-start;
         {% elif contentAlignTablet === 'right' %}
@@ -54,7 +54,7 @@
     }
 
     @media (max-width: 640px) {
-      .{{ rootClass }} {
+      .{{ localClass }} {
         {% if contentAlignMobile === 'left' %}
           justify-content: flex-start;
         {% elif contentAlignMobile === 'right' %}
@@ -68,7 +68,7 @@
     }
   </style>
 
-  <div class="{{ rootClass }}">
+  <div class="{{ localClass }}">
     {% if properties.item_type === 'text' %}
       {% render_snippet
         'Column item: Text',

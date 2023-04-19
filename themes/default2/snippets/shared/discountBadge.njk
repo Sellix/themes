@@ -1,0 +1,36 @@
+{% set id=uid() %}
+
+{% set localClass = ['snippet-disctoun-badge-', id] | join %}
+
+<style>
+  .{{ localClass }} {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    pointer-events: visible;
+    z-index: 1;
+    display: flex;
+    border-radius: 0.25rem;
+    border: 1px solid var(--buttonColor);
+    background: var(--buttonColor);
+    color: #fff !important;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    opacity: 1;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+  }
+
+  .{{ localClass }}.group {
+    position: static;
+    margin-right: 0.5rem;
+  }
+</style>
+
+{% if args.product.price_discount %}
+  <div class="{{ localClass }} unselectable {{'group' if args.isGroup else ''}}">
+    <i class="fa-regular fa-tag"></i>
+  </div>
+{% endif %}

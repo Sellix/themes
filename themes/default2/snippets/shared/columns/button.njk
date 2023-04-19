@@ -8,13 +8,13 @@
 {% set label = properties.label %}
 {% set url = properties.url %}
 
-{% set rootClass = ['multi-columns-', id, '__column-item-button'] | join %}
+{% set localClass = ['multi-columns-', id, '__column-item-button'] | join %}
 
 <style>
-  .{{ rootClass }} {
+  .{{ localClass }} {
   }
 
-  .{{ rootClass }} a {
+  .{{ localClass }} a {
     background-color: {{ colors[backgroundColor] }};
     padding: 14px 20px;
     border-radius: 18px;
@@ -30,12 +30,12 @@
     line-height: 17px;
   }
 
-  .{{ rootClass }} a span {
+  .{{ localClass }} a span {
     margin-right: 8px;
   }
 </style>
 
-<div class="{{ rootClass }}">
+<div class="{{ localClass }}">
   <a href="{{ url }}">
     <span>{{ label }}</span>
     {% render_snippet 'Icons: Arrow right 1' %}

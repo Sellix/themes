@@ -15,10 +15,10 @@
 {% set bgImage = properties.background_image %}
 {% set bgColor = properties.background_color %}
 
-{% set rootClass = ['multi-columns-', id] | join %}
+{% set localClass = ['multi-columns-', id] | join %}
 
 <style>
-  .{{ rootClass }} {
+  .{{ localClass }} {
     display: grid;
     grid-template-columns: repeat({{ columnsPerRowDesktop }}, 1fr);
     grid-column-gap: {{ columnGap }}px;
@@ -34,23 +34,23 @@
     {% endif %}
   }
   @media (max-width: 768px) {
-    .{{ rootClass }} {
+    .{{ localClass }} {
       grid-template-columns: repeat({{ columnsPerRowTablet }}, 1fr);
       padding: {{ paddingVertTablet }}px {{ paddingHorizTablet }}px;
     }
   }
 
   @media (max-width: 640px) {
-    .{{ rootClass }} {
+    .{{ localClass }} {
       grid-template-columns: repeat({{ columnsPerRowMobile }}, 1fr);
       padding: {{ paddingVertMobile }}px {{ paddingHorizMobile }}px;
     }
   }
 </style>
 
-<div class="{{ rootClass }} {{ 'full-width' if properties.fullwidth else 'content-width' }}">
+<div class="{{ localClass }} {{ 'full-width' if properties.fullwidth else 'content-width' }}">
   {% for columnIdx in safe_range(1, properties.columns_count | int + 1) %}
-    <div class="{{ rootClass }}__{{ columnIdx }}__column">
+    <div class="{{ localClass }}__{{ columnIdx }}__column">
       {% for block_name in settings.block_order %}
         {% set block = settings.blocks[block_name] %}
         {% if block.settings.properties.column_index | int === columnIdx %}

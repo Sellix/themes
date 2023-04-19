@@ -11,21 +11,21 @@
 {% set subtitleFontWeight = safe_get(properties.subtitle_font_weight, 400) %}
 {% set subtitleLineHeight = safe_get(properties.subtitle_line_height, 28) %}
 
-{% set rootClass = ['section-title-', id] | join %}
+{% set localClass = ['section-title-', id] | join %}
 
 <style>
-  .{{ rootClass }} {
+  .{{ localClass }} {
     display: grid;
     grid-template-columns: auto 1fr;
   }
 
   @media (max-width: 768px) {
-    .{{ rootClass }} {
+    .{{ localClass }} {
       grid-template-columns: 1fr;
     }
   }
 
-  .{{ rootClass }}__title {
+  .{{ localClass }}__title {
     display: flex;
     justify-content: start;
     align-items: center;
@@ -36,13 +36,13 @@
   }
 
   @media (max-width: 768px) {
-    .{{ rootClass }}__title {
+    .{{ localClass }}__title {
       justify-content: space-around;
       margin-bottom: 8px;
     }
   }
 
-  .{{ rootClass }}__title::after {
+  .{{ localClass }}__title::after {
     content: "";
     display: block;
     height: 1.5rem;
@@ -52,12 +52,12 @@
   }
 
   @media (max-width: 768px) {
-    .{{ rootClass }}__title::after {
+    .{{ localClass }}__title::after {
       display: none;
     }
   }
 
-  .{{ rootClass }}__subtitle {
+  .{{ localClass }}__subtitle {
     display: flex;
     justify-content: start;
     align-items: center;
@@ -69,18 +69,18 @@
   }
 
   @media (max-width: 768px) {
-    .{{ rootClass }}__subtitle {
+    .{{ localClass }}__subtitle {
       justify-content: space-around;
       padding: 0;
     }
   }
 </style>
 
-<div class="{{ rootClass }} {{ 'full-width' if properties.fullwidth else 'content-width' }}">
-  <div class="{{ rootClass }}__title">
+<div class="{{ localClass }} {{ 'full-width' if properties.fullwidth else 'content-width' }}">
+  <div class="{{ localClass }}__title">
     {{ properties.title_content }}
   </div>
-  <div class="{{ rootClass }}__subtitle">
+  <div class="{{ localClass }}__subtitle">
     {{ properties.subtitle_content }}
   </div>
 </div>

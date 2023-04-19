@@ -1,15 +1,15 @@
 {% set id = uid() %}
 {% set properties = args.properties %}
 
-{% set rootClass = ['multi-columns-', id, '__column-item-image'] | join %}
+{% set localClass = ['multi-columns-', id, '__column-item-image'] | join %}
 
 <style>
-  .{{ rootClass }} {
+  .{{ localClass }} {
     width: {{ properties.size }};
     height: {{ properties.size }};
   }
 </style>
 
 <div>
-  <img class="{{ rootClass }}" src='{{properties.url | asset_url}}' alt=''>
+  <img class="{{ localClass }}" src='{{properties.url | asset_url}}' alt=''>
 </div>

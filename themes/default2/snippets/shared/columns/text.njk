@@ -11,10 +11,10 @@
 {% set fontWeight = safe_get(properties.font_weight, 400) %}
 {% set lineHeight = safe_get(properties.line_height, 28) %}
 
-{% set rootClass = ['multi-columns-', id, '__column-item-text'] | join %}
+{% set localClass = ['multi-columns-', id, '__column-item-text'] | join %}
 
 <style>
-  .{{ rootClass }} {
+  .{{ localClass }} {
     width: 100%;
     text-align: {{ contentAlignDesktop }};
     color: {{ colors[fontColor] }};
@@ -23,18 +23,18 @@
     line-height: {{ lineHeight }}px;
   }
   @media (max-width: 768px) {
-    .{{ rootClass }} {
+    .{{ localClass }} {
       text-align: {{ contentAlignTablet }};
     }
   }
 
   @media (max-width: 640px) {
-    .{{ rootClass }} {
+    .{{ localClass }} {
       text-align: {{ contentAlignMobile }};
     }
   }
 </style>
 
-<div class="{{ rootClass }}">
+<div class="{{ localClass }}">
   {{ properties.content }}
 </div>

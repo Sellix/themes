@@ -5,11 +5,11 @@
 {% set colors = themeProperties.current_colors %}
 {% set inputsProps = themeProperties.inputs %}
 
-{% set globalClass = 'block-product-list-filter'%}
-{% set rootClass = [globalClass, '-', id] | join %}
+{% set globalClass = 'block-product-list-filter' %}
+{% set localClass = [globalClass, '-', id] | join %}
 
 <style>
-  .{{ rootClass}} {
+  .{{ localClass}} {
     {% if properties.container_background_color %}background: {{ colors[properties.container_background_color] }};{% endif %}
     border: {% if properties.show_border %}1px solid var(--borderColor){% else %}none{% endif %};
     box-shadow: {{ properties.container_shadow }};
@@ -48,6 +48,10 @@
 
   .{{ globalClass }}__search .fas {
     color: {{ colors[inputsProps.common_font_color] }} !important;
+  }
+
+  {{ globalClass }}__categories-dropdown select {
+    background: {{ colors[inputsProps.select_background] }}
   }
 
   .sellix-dropdown .select2-container--sellix {
@@ -120,7 +124,7 @@
   }
 </style>
 
-<div class="{{ globalClass }}__container {{ rootClass }}">
+<div class="{{ globalClass }}__container {{ localClass }}">
   {% if shop.search_enabled %}
     <label for="shop-search-{{id}}" class="{{ globalClass }}__item {{ globalClass }}__search">
       <i class="fa-regular fas fa-search"></i>
@@ -134,13 +138,13 @@
   {% endif %}
 
   {% if categories | length %}
-    <div class="sellix-dropdown {{ globalClass }}__item {{ globalClass }}__categories-dropdown">
-      <select id="category-select-{{id}}" class="category-select" style="background: {{ colors[inputsProps.select_background] }} "></select>
+    <div class="sellix-dropdown {{ globalClass }}__item {{ globalClass }}__categories-dropdown d-none">
+      <select id="category-select-{{id}}" class="category-select"></select>
     </div>
   {% endif %}
 
   {% if shop.sort_enabled %}
-    <div class="sellix-dropdown {{ globalClass }}__item {{ globalClass }}__sort-dropdown">
+    <div class="sellix-dropdown {{ globalClass }}__item {{ globalClass }}__sort-dropdown d-none">
       <select id="sort-select-{{id}}" class="sort-select">
         <option value="DEFAULT">{{ 'shop.main.productList.filter.default' | t }}</option>
         <option value="PRICE">{{ 'shop.main.productList.filter.price' | t }}</option>
@@ -154,12 +158,14 @@
 
 <script type='application/javascript'>
   $(document).ready(function () {
-    const categories = __RENDER_CONTEXT__.common.shopInfo.categories;
+    $('.{{ globalClass }}__item').removeClass('d-none');
 
     let search = '', category = 'all', sort = 'DEFAULT';
 
-    $('.empty-shop-container button').on('click', () => {
+    $('.block-product-list-items__empty-container button').on('click', () => {
       $('#shop-search-{{id}}').val('').trigger('keyup');
+      $('#category-select-{{id}}').val('all');
+      $('#category-select-{{id}}').trigger('change');
     });
 
     $('#shop-search-{{id}}').on('keyup', function (e) {

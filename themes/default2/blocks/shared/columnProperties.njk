@@ -27,10 +27,10 @@
   {% set bgColor = properties.background_color %}
   {% set borderRadius = safe_get(properties.border_radius, 0) %}
 
-  {% set rootClass = ['multi-columns-', sectionId, '__', columnIdx, '__column'] | join %}
+  {% set localClass = ['multi-columns-', sectionId, '__', columnIdx, '__column'] | join %}
 
   <style>
-    .{{ rootClass }} {
+    .{{ localClass }} {
       padding: {{ paddingVertDesktop }}px {{ paddingHorizDesktop }}px;
       justify-self: {{ itemsAlign }};
       border-radius: {{ borderRadius }}px;
@@ -51,7 +51,7 @@
     }
 
     @media (max-width: 768px) {
-      .{{ rootClass }} {
+      .{{ localClass }} {
         padding: {{ paddingVertTablet }}px {{ paddingHorizTablet }}px;
         min-width: {{ [minWidthTablet, 'px'] | join if minWidthTablet | int > 0 else 'auto' }};
         max-width: {{ [maxWidthTablet, 'px'] | join if maxWidthTablet | int > 0 else 'none' }};
@@ -61,7 +61,7 @@
     }
 
     @media (max-width: 640px) {
-      .{{ rootClass }} {
+      .{{ localClass }} {
         padding: {{ paddingVertMobile }}px {{ paddingHorizMobile }}px;
         min-width: {{ [minWidthMobile, 'px'] | join if minWidthMobile | int > 0 else 'auto' }};
         max-width: {{ [maxWidthMobile, 'px'] | join if maxWidthMobile | int > 0 else 'none' }};

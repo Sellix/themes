@@ -21,32 +21,32 @@
 {% set crumbLineHeight = safe_get(properties.crumb_line_height, 48) %}
 {% set bgColor = properties.background_color %}
 
-{% set rootClass = ['section-breadcrumbs-', id] | join %}
+{% set localClass = ['section-breadcrumbs-', id] | join %}
 
 <style>
   .sellix-section.section-breadcrumbs {
     background-color: {{ colors[bgColor] }};
   }
 
-  .{{ rootClass }} {
+  .{{ localClass }} {
     background-color: {{ colors[bgColor] }};
     padding: {{ paddingVertDesktop }}px {{ paddingHorizDesktop }}px;
   }
 
-  .{{ rootClass }}__title {
+  .{{ localClass }}__title {
     color: {{ colors[titleFontColor] }};
     font-size: {{ titleFontSize }}px;
     font-weight: {{ titleFontWeight }};
     line-height: {{ titleLineHeight }}px;
   }
 
-  .{{ rootClass }}__crumbs {
+  .{{ localClass }}__crumbs {
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
   }
 
-  .{{ rootClass }}__link-crumb {
+  .{{ localClass }}__link-crumb {
     display: flex;
     align-items: center;
     color: {{ colors[crumbFontColor] }};
@@ -55,24 +55,24 @@
     line-height: {{ crumbLineHeight }}px;
   }
 
-  .{{ rootClass }}__link-crumb a {
+  .{{ localClass }}__link-crumb a {
     color: {{ colors[crumbFontColor] }};
     text-decoration: none;
     margin-right: 0.625rem;
   }
 
-  .{{ rootClass }}__link-crumb span {
+  .{{ localClass }}__link-crumb span {
     margin-right: 0.75rem;
   }
 
   @media (max-width: 768px) {
-    .{{ rootClass }} {
+    .{{ localClass }} {
       padding: {{ paddingVertTablet }}px {{ paddingHorizTablet }}px;
     }
   }
 
   @media (max-width: 640px) {
-    .{{ rootClass }} {
+    .{{ localClass }} {
       padding: {{ paddingVertMobile }}px {{ paddingHorizMobile }}px;
     }
   }
@@ -86,15 +86,15 @@
   {% endif %}
 {% endfor %}
 
-<div class="{{ rootClass }} {{ 'full-width' if properties.fullwidth else 'content-width' }}">
-  <div class="{{ rootClass }}__crumbs">
+<div class="{{ localClass }} {{ 'full-width' if properties.fullwidth else 'content-width' }}">
+  <div class="{{ localClass }}__crumbs">
     {% for idx in safe_range(1, 11) %}
       {% set crumbLabel = properties[['crumb_label_', idx] | join] %}
       {% set crumbUrl = properties[['crumb_url_', idx] | join] %}
 
       {% if crumbLabel %}
         {% if idx != lastItemIdx %}
-          <div class="{{ rootClass }}__link-crumb">
+          <div class="{{ localClass }}__link-crumb">
             <a href="{{ crumbUrl }}">
               <span>{{ crumbLabel }}</span>
             </a>
@@ -111,7 +111,7 @@
 
     {% endfor %}
   </div>
-  <div class="{{ rootClass }}__title">
+  <div class="{{ localClass }}__title">
     {{ title }}
   </div>
 </div>

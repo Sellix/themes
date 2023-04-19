@@ -68,12 +68,13 @@
     {% render_snippet 'Root css variables' %}
   </style>
 
-  <link rel="stylesheet" href="{{ 'root-styles.css' | asset_url }}"/>
+  <link rel="stylesheet" href="{{ 'button.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'fa-icons.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'toastify.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'modal.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'font-awesome.css' | asset_url }}"/>
+  <link rel="stylesheet" href="{{ 'modal.css' | asset_url }}"/>
+  <link rel="stylesheet" href="{{ 'root-styles.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'shop.css' | asset_url }}"/>
+  <link rel="stylesheet" href="{{ 'toastify.css' | asset_url }}"/>
 
   {# Sections #}
   <link rel="stylesheet" href="{{ 'section-header.css' | asset_url }}"/>
@@ -87,6 +88,7 @@
   {# Snippets #}
   <link rel="stylesheet" href="{{ 'snippet-language-selector.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-mobile-sidebar-menu.css' | asset_url }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-product-cards.css' | asset_url }}"/>
 
   {% set theme = global.common.shopInfo.theme %}
 
@@ -112,7 +114,7 @@
     <div class="sellix-store">
       {% render_section 'header', layoutId=layoutId %}
 
-      <div class="template">
+      <div id="content" class="template">
         {% render_template 'default' %}
       </div>
 
@@ -172,8 +174,9 @@
   <script src="{{ 'sellix-api.js' | asset_url }}"></script>
   <script src="{{ 'sellix-helper.js' | asset_url }}"></script>
 
-  <script src="{{ 'sellix-cart-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-cart-store.js' | asset_url }}"></script>
+  <script src="{{ 'sellix-cart-component.js' | asset_url }}"></script>
+  <script src="{{ 'sellix-cart-product-component.js' | asset_url }}"></script>
 
   {% render_snippet 'App cookie modal' %}
   {% render_snippet 'I18Next' %}

@@ -17,15 +17,15 @@
 {% set labelFontWeight = safe_get(properties.label_font_weight, 500) %}
 {% set labelLineHeight = safe_get(properties.label_line_height, 20) %}
 
-{% set rootClass = ['shop-statistics-', id, '__product_sold'] | join %}
+{% set localClass = ['shop-statistics-', id, '__product_sold'] | join %}
 
 <style>
-  .{{ rootClass }} {
+  .{{ localClass }} {
     display: flex;
     flex-direction: column;
     align-items: {{ alignMap[align] }};
   }
-  .{{ rootClass }}__value {
+  .{{ localClass }}__value {
     display: flex;
     align-items: center;
     color: {{ colors[valueFontColor] }};
@@ -33,7 +33,7 @@
     font-weight: {{ valueFontWeight }};
     line-height: {{ valueLineHeight }}px;
   }
-  .{{ rootClass }}__label {
+  .{{ localClass }}__label {
     color: {{ colors[labelFontColor] }};
     font-size: {{ labelFontSize }}px;
     font-weight: {{ labelFontWeight }};
@@ -41,11 +41,11 @@
   }
 </style>
 
-<div class="{{ rootClass }}">
+<div class="{{ localClass }}">
   {% if shop.feedback.total %}
-    <div class="{{ rootClass }}__value">{{ shop.feedback.total }}</div>
-    <div class="{{ rootClass }}__label">{{ labelContent | t}}</div>
+    <div class="{{ localClass }}__value">{{ shop.feedback.total }}</div>
+    <div class="{{ localClass }}__label">{{ labelContent | t}}</div>
   {% else %}
-    <div class="{{ rootClass }}__label">{{ 'shop.shared.reviews.noReviews' | t }}</div>
+    <div class="{{ localClass }}__label">{{ 'shop.shared.reviews.noReviews' | t }}</div>
   {% endif %}
 </div>

@@ -1,6 +1,6 @@
 {% set id = uid() %}
 {% set globalClass = 'section-product-list' %}
-{% set rootClass = [globalClass, '-', id] | join %}
+{% set localClass = [globalClass, '-', id] | join %}
 
 <style>
   .{{ globalClass }}__container {
@@ -8,7 +8,7 @@
   }
 </style>
 
-<div class="{{ globalClass }}__container {{ rootClass }} {{ 'full-width' if properties.fullwidth else 'content-width' }}">
+<div class="{{ globalClass }}__container {{ localClass }} {{ 'full-width' if properties.fullwidth else 'content-width' }}">
   {% for block_name in settings.block_order %}
     {%- render_block block_name -%}
   {% endfor%}

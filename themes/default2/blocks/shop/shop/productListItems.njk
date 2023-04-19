@@ -9,32 +9,35 @@
 
 {% set hideOutOfStock = shop.hide_out_of_stock %}
 
+{% set globalClass = 'block-product-list-items' %}
+{% set localClass = [globalClass, '-', id] | join %}
+
 <style>
-  .sellix-product-list-card-container--width {
+  .{{ localClass }} {
+    background: {{ colors[properties.list_items_background_color] }};
+    border: {{ "1px solid var(--borderColor)" if properties.list_items_show_border else "none" }};
+    padding: {{ properties.container_padding_vert }}px {{ properties.container_padding_horiz }}px;
+    box-shadow: {{ properties.container_shadow }};
+    border-radius: {{ properties.container_border_radius }}rem;
+  }
+  .{{ localClass }}__cards {
     width: {{ 100 / properties.list_items_per_row_wide | int }}%
   }
 
   @media (max-width: 768px) {
-    .sellix-product-list-card-container--width {
+    .{{ localClass }}__cards {
       width: {{ 100 / properties.list_items_per_row_normal | int }}%
     }
   }
 
   @media (max-width: 640px) {
-    .sellix-product-list-card-container--width {
+    .{{ localClass }}__cards {
       width: {{ 100 / properties.list_items_per_row_narrow | int }}%
     }
   }
 </style>
 
-<div
-  class="sellix-product-list-body"
-  style="background: {{ colors[properties.list_items_background_color] }};{#
-      #} border: {{ "1px solid var(--borderColor)" if properties.list_items_show_border else "none" }};{#
-      #} padding: {{ properties.container_padding_vert }}px {{ properties.container_padding_horiz }}px;{#
-      #} box-shadow: {{ properties.container_shadow }};{#
-      #} border-radius: {{ properties.container_border_radius }}rem;"
->
+<div class="{{ globalClass }}__container {{ localClass }}">
   {% for item in items %}
     {% if hideOutOfStock and item.type !== "INFO_CARD" and item.stock === 0 %}
       {# hide Out of stock products #}
@@ -43,55 +46,42 @@
     {% else %}
       <div
         data-product-id="{{item.uniqid}}"
-        class="sellix-product-list-card-container sellix-product-list-card-container--width"
+        class="{{ globalClass }}__cards {{ localClass }}__cards"
       >
         {% if item.isInfo %}
-          {% render_snippet 'Info card', product=item, theme=theme, centerProduct=centerProduct %}
+          {% render_snippet 'Card: Info', product=item, theme=theme, centerProduct=centerProduct %}
         {% elif item.isSubscription %}
-          {% render_snippet 'Subscription card', product=item, theme=theme, centerProduct=centerProduct %}
+          {% render_snippet 'Card: Subscription', product=item, theme=theme, centerProduct=centerProduct %}
         {% elif item.isProduct %}
-          {% render_snippet 'Product card', product=item, theme=theme, centerProduct=centerProduct %}
+          {% render_snippet 'Card: Product', product=item, theme=theme, centerProduct=centerProduct %}
         {% elif item.isGroup %}
-          {% render_snippet 'Group card', group=item, theme=theme, centerGroup=centerGroup %}
-        {% else %}
-          {% render_snippet 'Placeholder card', product=item, theme=theme, centerProduct=centerProduct %}
+          {% render_snippet 'Card: Group', group=item, theme=theme, centerGroup=centerGroup %}
         {% endif %}
       </div>
     {% endif %}
   {% endfor %}
 
   <div
-    class="empty-shop-container empty-search"
-    {% if items and items.length > 0 %}style="display:none;"{% endif %}
+    class="{{ localClass}}__empty-container {{ globalClass}}__empty-container empty-search {{ 'd-none' if items.length > 0 }}"
   >
-    {% render_snippet 'Zoom glass icon' %}
+    {% render_snippet 'Icons: Zoom glass' %}
 
     <div class="empty-shop-info">
-        No product found.
         {{ 'shop.main.productList.items.noProducts' | t }}.
 
-        <button
-          class="button button-primary"
-          style="min-height: 2.75rem; min-width: 9rem; margin-top: 1rem"
-        >
+        <button class="button button-primary">
           {{ 'shop.main.productList.items.clear' | t }}
         </button>
     </div>
   </div>
 
-  <div
-    class="empty-shop-container empty-category"
-    style="display:none;"
-  >
-    {% render_snippet 'Zoom glass icon' %}
+  <div class="{{ localClass}}__empty-container {{ globalClass}}__empty-container empty-category d-none">
+    {% render_snippet 'Icons: Zoom glass' %}
 
     <div class="empty-shop-info">
         {{ 'shop.main.productList.items.categoryNoProducts' | t }}.
 
-        <button
-          class="button button-primary"
-          style="min-height: 2.75rem; min-width: 9rem; margin-top: 1rem"
-        >
+        <button class="button button-primary">
           {{ 'shop.main.productList.items.clear' | t }}
         </button>
     </div>
@@ -114,8 +104,9 @@
       "STOCK": sortByStock
     };
 
-    const items = __RENDER_CONTEXT__.common.shopInfo.items || [];
-    const categories = __RENDER_CONTEXT__.common.shopInfo.categories || [];
+    const shopInfo = SellixContext.get('common', {}).shopInfo || {};
+    const items = shopInfo.items || [];
+    const categories = shopInfo.categories || [];
     const itemsMap = items.reduce((m, item) => ({...m, [item.uniqid]: item}), {});
 
     function filterProducts({ search, category, sort }) {
@@ -141,29 +132,29 @@
         return hasProduct || item.title.toLowerCase().includes(search.toLowerCase());
       });
       const filteredItemIds = filteredItems.map(item => item.uniqid);
-      $('.sellix-product-list-card-container[data-product-id]')
+      $('.{{ localClass }}__cards[data-product-id]')
         .hide()
         .filter((idx, el) => filteredItemIds.includes($(el).data('product-id')))
         .show();
 
-      $('.empty-shop-container').hide();
+      $('.{{ localClass }}__empty-container').addClass('d-none');
       if (filteredItemIds.length === 0) {
         if (category) {
-          $('.empty-shop-container.empty-category .category-name').text(category.title);
-          $('.empty-shop-container.empty-category').show();
+          $('.{{ localClass }}__empty-container.empty-category .category-name').text(category.title);
+          $('.{{ localClass }}__empty-container.empty-category').removeClass('d-none');
         } else {
-          $('.empty-shop-container.empty-search').show();
+          $('.{{ localClass }}__empty-container.empty-search').removeClass('d-none');
         }
       }
 
       if (sort) {
         const sf = sortFunc[sort] ?? sortFunc.DEFAULT;
-        const sorted = $('.sellix-product-list-card-container[data-product-id]').detach().sort((a, b) => {
+        const sorted = $('.{{ localClass }}__cards[data-product-id]').detach().sort((a, b) => {
           const prA = itemsMap[$(a).data('product-id')];
           const prB = itemsMap[$(b).data('product-id')];
           return sf(prA, prB);
         });
-        $('.sellix-product-list-body').append(sorted);
+        $('.{{ localClass }}').append(sorted);
       }
     }
 

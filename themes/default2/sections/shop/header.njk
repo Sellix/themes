@@ -36,12 +36,12 @@
 </style>
 
 <header class="header-{{ id }} {{ 'full-width' if properties.fullwidth else 'content-width' }}">
-  <div class="sellix-header sellix-header-{{ id }}">
+  <div id="sellix-header-{{ id }}" class="sellix-header sellix-header-{{ id }}">
     <div class="sellix-header__logo">
       <div class="sidebar-toggler">
         {% render_snippet
           'Burger button',
-          rootClass=['sellix-header-', id] | join,
+          localClass=['sellix-header-', id] | join,
           properties={
             'color': menuProps.menu_icon_font_color
           }
