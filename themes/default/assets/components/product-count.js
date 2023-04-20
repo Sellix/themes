@@ -1,12 +1,13 @@
 (function (document, window, jQuery, SellixCartStoreFactory, SellixPriceVariantsStore, sellixHelper) {
   class ProductCountComponent {
-    constructor(selector, shop, product, renderOptions) {
+    constructor(selector, shop, product, renderOptions, hideStockCounter) {
       this.cart = SellixCartStoreFactory.getCart(shop);
       this.priceVariantsStore = new SellixPriceVariantsStore(shop);
       this.product = product;
       this.productId = product.uniqid;
       this.renderOptions = renderOptions;
       this.activePriceVariant = null;
+      this.hideStockCounter = hideStockCounter
 
       this.$root = jQuery(selector);
 
@@ -146,6 +147,8 @@
         inStockTitle = window.sellixI18Next.t('shop.shared.titles.lastProduct');
       } else if (!isInfinity && isEmpty) {
         inStockTitle = '';
+      } else if (this.hideStockCounter) {
+        inStockTitle = `${window.sellixI18Next.t('shop.shared.titles.inStock')}`;
       } else {
         inStockTitle = `${window.sellixI18Next.t(
           'shop.shared.titles.stock',

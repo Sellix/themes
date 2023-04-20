@@ -6,6 +6,7 @@
 {% set currency = args.currency %}
 {% set is_cart = args.is_cart or false %}
 {% set price_variants = product.price_variants or [] %}
+{% set hideStockCounter = shop.hide_stock_counter %}
 
 <style>
   .variant-badge-{{ id }} {
@@ -24,16 +25,20 @@
         <div class="variants-badge-title">{{ variant.title }}</div>
         <div class="variants-badge-description">{{ variant.description }}</div>
         <div class="variants-badge-info">
-          <div>
-            {{ 'shop.shared.titles.stock' |t }}&nbsp<b>
-              {%- if product.type === 'SERIALS' -%}
-                {{ get_stock(variant.stock) }}
-              {%- else -%}
-                {{ get_stock(product.stock) }}
-              {%- endif -%}
-            </b>
-          </div>
-          <div>{{ 'shop.shared.titles.startingAt' | t }} <b>{% render_snippet 'Price', currency=currency, price=variant.price %}</b></div>
+            {% if hideStockCounter %}
+              {{ 'shop.shared.titles.inStock' |t }}
+            {% else %}
+              <div>
+                {{ 'shop.shared.titles.stock' |t }}&nbsp<b>
+                  {%- if product.type === 'SERIALS' -%}
+                    {{ get_stock(variant.stock) }}
+                  {%- else -%}
+                    {{ get_stock(product.stock) }}
+                  {%- endif -%}
+                </b>
+              </div>
+            {% endif %}
+            <div>{{ 'shop.shared.titles.startingAt' | t }} <b>{% render_snippet 'Price', currency=currency, price=variant.price %}</b></div>
         </div>
       </div>
     {% endif %}

@@ -8,6 +8,9 @@
 {% set isPayWhatYouWant = (product.pay_what_you_want | int === 1) %}
 {% set colors = themeProperties.current_colors %}
 {% set cardsProps = themeProperties.cards %}
+{% set shopInfo = global.common.shopInfo %}
+{% set shop = shopInfo.shop %}
+{% set hideStockCounter = shop.hide_stock_counter %}
 
 <style>
   .sellix-card-container-{{ id }} {
@@ -120,9 +123,19 @@
 
             <span class="sellix-card-stock">
               {% if get_stock(product.stock) === '∞' %}
-                {{ 'shop.shared.titles.stock' | t }}<i class="fa-solid fa-infinity" style="margin-left:.2rem;font-size:10px;color:{{'#28a745' if product.stock == -1 or product.stock > 1 else '#dc3545'}}"></i>
+                  {% if hideStockCounter %}
+                    {{ 'shop.shared.titles.inStock' | t }}
+                  {% else %}
+                    {{ 'shop.shared.titles.stock' | t }}
+                    <i class="fa-solid fa-infinity" style="margin-left:.2rem;font-size:10px;color:{{'#28a745' if product.stock == -1 or product.stock > 1 else '#dc3545'}}"></i>
+                  {% endif %}
                 {% else %}
-                {{ 'shop.shared.titles.stock' | t }}<span style="font-size:1rem;margin-left:.2rem;color:{{'#28a745' if product.stock == -1 or product.stock > 1 else '#dc3545'}}">{{get_stock(product.stock)}}</span>
+                  {% if hideStockCounter %}
+                    {{ 'shop.shared.titles.inStock' | t }}
+                  {% else %}
+                    {{ 'shop.shared.titles.stock' | t }}
+                    <span style="font-size:1rem;margin-left:.2rem;color:{{'#28a745' if product.stock == -1 or product.stock > 1 else '#dc3545'}}">{{get_stock(product.stock)}}</span>
+                {% endif %}
               {% endif %}
             </span>
           </div>
@@ -142,7 +155,6 @@
     if(shopInfo.shop.tax_configuration === "EU" || shopInfo.shop.tax_configuration === "CUSTOM") {
       if(shopInfo.shop.tax_configuration_data && ipcountry) {
         if(shopInfo.shop.tax_configuration_data.find(({ country, type }) => country === ipcountry)) {
-          console.log(1, "1")
           taxAmount = shopInfo.shop.tax_configuration_data.find(({ country, type }) => country === ipcountry).tax_percentage;
         }
       }
@@ -150,7 +162,6 @@
 
 
     if(shopInfo.shop.display_tax_on_storefront && taxAmount) {
-      console.log(taxAmount, "taxAmount")
       taxAmount = parseFloat(Number(taxAmount).toFixed(2));
       $('.sellix-card-container-{{ id }} .sellix-card .sellix-card-tax').append(`<span>${taxAmount}% {{ 'shop.main.cards.product.tax' | t }}</span>`);
     }

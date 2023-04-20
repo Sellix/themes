@@ -110,7 +110,6 @@
     if(shopInfo.shop.tax_configuration === "EU" || shopInfo.shop.tax_configuration === "CUSTOM") {
       if(shopInfo.shop.tax_configuration_data && ipcountry) {
         if(shopInfo.shop.tax_configuration_data.find(({ country, type }) => country === ipcountry)) {
-          console.log(1, "1")
           taxAmount = shopInfo.shop.tax_configuration_data.find(({ country, type }) => country === ipcountry).tax_percentage;
         }
       }
@@ -118,7 +117,6 @@
 
 
     if(shopInfo.shop.display_tax_on_storefront && taxAmount) {
-      console.log(taxAmount, "taxAmount")
       taxAmount = parseFloat(Number(taxAmount).toFixed(2));
       $('#sellix-card-container-{{ id }} .sellix-card .sellix-card-tax').append(`<span>${taxAmount}% {{ 'shop.main.cards.product.tax' | t }}</span>`);
     }
