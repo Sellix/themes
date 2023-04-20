@@ -6,20 +6,23 @@
 {% set backgroundColor = safe_get(properties.background_color, 'background_accent_dark') %}
 {% set shadow = safe_get(properties.shadow, 'none') %}
 
+{% set localClass = ['block-cart-', id] | join %}
+{% set globalClass =  'block-cart' %}
+
 <style>
-  .cart-dropdown-{{ id }} {
+  .{{ localClass }} {
     box-shadow: {{ shadow }}!important;
     background: {{ colors[backgroundColor] }};
     border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
   }
-  .cart-dropdown-header-{{ id }}__title {
+  .{{ localClass }}__header-title {
     color: {{ colors[properties.title_font_color] }};
     font-size: {{ properties.title_font_size }}px;
     font-weight: {{ properties.title_font_weight }};
     line-height: {{ properties.title_line_height }}%;
     text-align: {{ properties.title_text_align }};
   }
-  .cart-dropdown-header-{{ id }}__description {
+  .{{ localClass }}__header-description {
     margin: 0;
     color: {{ colors[properties.description_font_color] }};
     font-size: {{ properties.description_font_size }}px;
@@ -28,7 +31,7 @@
     text-align: {{ properties.description_text_align }};
   }
 
-  .cart-dropdown-{{ id }}__body {
+  .{{ localClass }}__body {
     color: {{ colors[properties.item_font_color] }};
     font-size: {{ properties.item_font_size }}px;
     font-weight: {{ properties.item_font_weight }};
@@ -39,22 +42,22 @@
   <div class="box">
     <div class="cart-icon">
       {% render_snippet 'Icons: Cart' %}
-      <span class="cart-length" style="display: none"></span>
+      <span class="cart-length"></span>
     </div>
   </div>
 
-  <div class="cart-dropdown customFadeIn cart-dropdown-{{ id }}">
+  <div class="cart-dropdown customFadeIn {{ localClass }}">
     <div class="cart-dropdown-header unselectable">
-      <h6 class="cart-dropdown-header-{{ id }}__title">
+      <h6 class="{{ localClass }}__header-title">
         {{ properties.title | t }}
       </h6>
 
-      <p class="cart-dropdown-header-{{ id }}__description">
+      <p class="{{ localClass }}__header-description">
         {{ properties.description | t }}
       </p>
     </div>
 
-    <div class="cart-dropdown-body cart-dropdown-{{ id }}__body"></div>
+    <div class="cart-dropdown-body {{ localClass }}__body"></div>
 
     <div class="cart-dropdown-footer">
       <button class="back unselectable sellix-cart-clear-button">

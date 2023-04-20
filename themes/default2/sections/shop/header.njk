@@ -9,34 +9,35 @@
   else 'background_main_color'
 %}
 
+{% set localClass = ['section-header-', id] | join %}
+{% set globalClass =  'sellix-header' %}
+
 <style>
-  .header {
-    position: relative;
-    z-index: 1000;
-    box-shadow: {{ properties.shadow }};
-  }
-  .header-{{ id }} {
+  .{{ localClass }} {
     background-color: {{ colors[backgroundColor] }};
   }
-  .sellix-header-{{ id }} .sellix-header__shop-name {
+  .{{ localClass }} .sellix-header__shop-name {
     text-align: {{ properties.shop_name_text_align }};
     {% if properties.shop_name_text_align == 'center' %}
       left: 0;
       position: absolute;
     {% endif %}
   }
-  .sellix-header-{{ id }} .sellix-header__shop-name > a > span {
+  .{{ localClass }} .sellix-header__shop-name > a > span {
     color: {{ colors[properties.shop_name_font_color] if properties.shop_name_font_color else 'inherit' }};
     font-size: {{ properties.shop_name_font_size }}px;
     font-weight: {{ properties.shop_name_font_weight }};
   }
-  .sellix-header-{{ id }} .sidebar-toggler {
+  .{{ localClass }} .sidebar-toggler {
     color: {{ colors[properties.shop_name_font_color] if properties.shop_name_font_color else 'inherit' }};
+  }
+  .{{ localClass }} .sellix-header__logo-image img {
+    max-height: {{ properties.logo_image_height }}px;
   }
 </style>
 
-<header class="header-{{ id }} {{ 'full-width' if properties.fullwidth else 'content-width' }}">
-  <div id="sellix-header-{{ id }}" class="sellix-header sellix-header-{{ id }}">
+<header class="{{ localClass }} {{ 'full-width' if properties.fullwidth else 'content-width' }}">
+  <div id="sellix-header-{{ id }}" class="sellix-header {{ localClass }}">
     <div class="sellix-header__logo">
       <div class="sidebar-toggler">
         {% render_snippet
@@ -52,7 +53,6 @@
         <a href="">
           <div class="sellix-header__logo-image">
             <img
-              style="max-height: {{ properties.logo_image_height }}px;"
               src="{{ properties.logo_image }}"
               alt="{{ shop.name }}"
             >

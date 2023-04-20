@@ -147,13 +147,7 @@
           break;
       }
 
-      if (products.length) {
-        this.$cartLength.text(products.length);
-        this.$cartLength.show();
-      } else {
-        this.$cartLength.hide();
-        this.$cartLength.text('');
-      }
+      this.$cartLength.text(products.length);
     }
   }
 

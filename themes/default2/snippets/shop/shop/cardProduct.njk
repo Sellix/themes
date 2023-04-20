@@ -9,8 +9,8 @@
 {% set colors = themeProperties.current_colors %}
 {% set cardsProps = themeProperties.cards %}
 
+{% set globalClass = 'sellix-product-card' %}
 {% set localClass = ['snippet-card-product-', id] | join %}
-{% set globalClass =  'sellix-product-card' %}
 
 <style>
   .{{ localClass }}__container {
@@ -20,7 +20,7 @@
     background: {{ colors[cardsProps.product_card_background_color] }};
   }
 
-  .{{ localClass }}__card-title {
+  .{{ localClass }}__title {
     color: {{ colors[cardsProps.product_card_title_font_color] }};
     font-size: {{ cardsProps.product_card_title_font_size }}px;
     font-weight: {{ cardsProps.product_card_title_font_weight }};
@@ -28,26 +28,26 @@
     justify-content: {{ cardsProps.product_card_title_text_align }} !important;
   }
 
-  .{{ localClass }}__card-description {
+  .{{ localClass }}__description {
     color: {{ colors[cardsProps.product_card_description_font_color] }};
     font-size: {{ cardsProps.product_card_description_font_size }}px;
     font-weight: {{ cardsProps.product_card_description_font_weight }};
   }
 
-  .{{ localClass }}__card-price-with-discount {
+  .{{ localClass }}__price-with-discount {
     color: {{ colors[cardsProps.product_card_price_font_color] }};
     font-size: {{ cardsProps.product_card_price_font_size }}px;
     font-weight: {{ cardsProps.product_card_price_font_weight }};
   }
 
-  .{{ localClass }}__card-price {
+  .{{ localClass }}__price {
     color: {{ colors[cardsProps.product_card_price_font_color] }};
     font-size: {{ cardsProps.product_card_price_font_size }}px;
     font-weight: {{ cardsProps.product_card_price_font_weight }};
   }
 </style>
 
-<div class="{{ localClass }} d-flex w-100 position-relative">
+<div class="{{ globalClass }} {{ localClass }} d-flex w-100 position-relative">
   {% if isFree %}
     <div class="{{ globalClass }}__badge">{{ 'shop.shared.titles.free' | t }}</div>
   {% elif isPayWhatYouWant %}
@@ -74,26 +74,26 @@
       </div>
 
       <div class="{{ globalClass }}__info">
-        <div class="{{ localClass }}__card-title {{'justify-content-center text-center' if args.centerProduct else ''}}">
+        <div class="{{ globalClass }}__title {{ localClass }}__title {{'justify-content-center text-center' if args.centerProduct else ''}}">
           {{product.title}}
         </div>
 
         {% if onHold %}
-          <span class="{{ localClass }}__card-description">
+          <span class="{{ globalClass }}__description {{ localClass }}__description">
             {{ 'shop.main.cards.product.onHold' | t }}
           </span>
         {% endif %}
 
         {% if isOut %}
-          <span class="{{ localClass }}__card-description">
+          <span class="{{ globalClass }}__description {{ localClass }}__description">
             {{ 'shop.main.cards.product.soldOut' | t }}
           </span>
         {% endif %}
 
         {% if not onHold and not isOut %}
-          <div class="{{ localClass }}__card-description justify-content-between">
+          <div class="{{ globalClass }}__description {{ localClass }}__description justify-content-between">
             {% if product.price_discount and not isFree %}
-              <span class="{{ localClass }}__card-price-with-discount">
+              <span class="{{ localClass }}__price-with-discount">
                 <i>{% render_snippet 'Price', currency=product.currency, price=product.price_display %}</i>
                 {% render_snippet 'Price', currency=product.currency, price=product.price_display, discount=product.price_discount %}
               </span>
@@ -102,7 +102,7 @@
                 {% if product.price_variants %}
                   <span>{{ 'shop.shared.titles.startingAt' | t }}: </span>
                 {% endif %}
-                <span class="{{ localClass }}__card-price">
+                <span class="{{ globalClass }}__price {{ localClass }}__price">
                   {% if isFree %}
                     {{ 'shop.shared.titles.free' | t }}
                   {% elif isPayWhatYouWant %}
@@ -118,10 +118,10 @@
               </div>
             {% endif %}
 
-            <span class="sellix-card-stock">
+            <span class="{{ globalClass }}__stock">
               {% if get_stock(product.stock) === '∞' %}
                 {{ 'shop.shared.titles.stock' | t }}<i class="fa-solid fa-infinity" style="margin-left:.2rem;font-size:10px;color:{{'#28a745' if product.stock == -1 or product.stock > 1 else '#dc3545'}}"></i>
-                {% else %}
+              {% else %}
                 {{ 'shop.shared.titles.stock' | t }}<span style="font-size:1rem;margin-left:.2rem;color:{{'#28a745' if product.stock == -1 or product.stock > 1 else '#dc3545'}}">{{get_stock(product.stock)}}</span>
               {% endif %}
             </span>

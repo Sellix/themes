@@ -17,23 +17,510 @@
       "menu",
       "mobile_menu",
       "inputs",
+      "cards",
       "locale"
     ],
     "schema": {
-      "page": [
+      "cards": [
         {
-          "id": "background_image",
-          "type": "select-image",
-          "label": "Image",
-          "defaultValue": null
+          "id": "header_product_card",
+          "type": "header",
+          "content": "Product card"
         },
         {
-          "id": "content_width",
+          "id": "product_card_background_color",
+          "type": "select",
+          "label": "Background color",
+          "options": [
+            {
+              "title": "Main",
+              "value": "background_main_color"
+            },
+            {
+              "title": "Accent (Light)",
+              "value": "background_accent_light"
+            },
+            {
+              "title": "Accent (Dark)",
+              "value": "background_accent_dark"
+            },
+            {
+              "title": "Transparent",
+              "value": "transparent"
+            }
+          ],
+          "defaultValue": "background_accent_dark"
+        },
+        {
+          "id": "product_card_show_border",
+          "type": "checkbox",
+          "label": "Show border",
+          "defaultValue": true
+        },
+        {
+          "id": "product_card_border_radius",
           "type": "range",
-          "min": 1000,
-          "max": 1440,
-          "label": "Content width",
-          "defaultValue": 1080
+          "max": 2,
+          "min": 0,
+          "step": 0.25,
+          "unit": "rem",
+          "label": "Border radius",
+          "defaultValue": 0.5
+        },
+        {
+          "id": "product_card_shadow",
+          "type": "select",
+          "label": "Drop shadow",
+          "options": [
+            {
+              "title": "None",
+              "value": "none"
+            },
+            {
+              "title": "Variant 1",
+              "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+            },
+            {
+              "title": "Variant 2",
+              "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+            },
+            {
+              "title": "Variant 3",
+              "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+            }
+          ],
+          "defaultValue": "none"
+        },
+        {
+          "id": "product_card_title_font_color",
+          "type": "select",
+          "label": "Title font color",
+          "options": [
+            {
+              "title": "Light",
+              "value": "light_font_color"
+            },
+            {
+              "title": "Dark",
+              "value": "dark_font_color"
+            },
+            {
+              "title": "Brand",
+              "value": "brand_color"
+            }
+          ],
+          "defaultValue": "light_font_color"
+        },
+        {
+          "id": "product_card_title_font_size",
+          "max": 20,
+          "min": 12,
+          "step": 2,
+          "type": "range",
+          "unit": "px",
+          "label": "Title font size",
+          "defaultValue": 16
+        },
+        {
+          "id": "product_card_title_line_height",
+          "max": 200,
+          "min": 50,
+          "step": 1,
+          "type": "range",
+          "unit": "%",
+          "label": "Title line height",
+          "defaultValue": 100
+        },
+        {
+          "id": "product_card_title_text_align",
+          "type": "select",
+          "label": "Title text align",
+          "options": [
+            {
+              "title": "Left",
+              "value": "left"
+            },
+            {
+              "title": "Center",
+              "value": "center"
+            },
+            {
+              "title": "Right",
+              "value": "right"
+            }
+          ],
+          "defaultValue": "left"
+        },
+        {
+          "id": "product_card_title_font_weight",
+          "type": "select",
+          "label": "Title font weight",
+          "options": [
+            {
+              "title": "Normal",
+              "value": 400
+            },
+            {
+              "title": "Medium",
+              "value": 500
+            },
+            {
+              "title": "Bold",
+              "value": 700
+            }
+          ],
+          "defaultValue": 400
+        },
+        {
+          "id": "product_card_price_font_color",
+          "type": "select",
+          "label": "Price font color",
+          "options": [
+            {
+              "title": "Light",
+              "value": "light_font_color"
+            },
+            {
+              "title": "Dark",
+              "value": "dark_font_color"
+            },
+            {
+              "title": "Brand",
+              "value": "brand_color"
+            }
+          ],
+          "defaultValue": "brand_color"
+        },
+        {
+          "id": "product_card_price_font_size",
+          "max": 20,
+          "min": 12,
+          "step": 2,
+          "type": "range",
+          "unit": "px",
+          "label": "Price font size",
+          "defaultValue": 16
+        },
+        {
+          "id": "product_card_price_font_weight",
+          "type": "select",
+          "label": "Price font weight",
+          "options": [
+            {
+              "title": "Normal",
+              "value": 400
+            },
+            {
+              "title": "Medium",
+              "value": 500
+            },
+            {
+              "title": "Bold",
+              "value": 700
+            }
+          ],
+          "defaultValue": 500
+        },
+        {
+          "id": "product_card_description_font_color",
+          "type": "select",
+          "label": "Description font color",
+          "options": [
+            {
+              "title": "Light",
+              "value": "light_font_color"
+            },
+            {
+              "title": "Dark",
+              "value": "dark_font_color"
+            },
+            {
+              "title": "Brand",
+              "value": "brand_color"
+            }
+          ],
+          "defaultValue": "dark_font_color"
+        },
+        {
+          "id": "product_card_description_font_size",
+          "max": 18,
+          "min": 10,
+          "step": 2,
+          "type": "range",
+          "unit": "px",
+          "label": "Description font size",
+          "defaultValue": 14
+        },
+        {
+          "id": "product_card_description_font_weight",
+          "type": "select",
+          "label": "Description font weight",
+          "options": [
+            {
+              "title": "Normal",
+              "value": 400
+            },
+            {
+              "title": "Medium",
+              "value": 500
+            },
+            {
+              "title": "Bold",
+              "value": 700
+            }
+          ],
+          "defaultValue": 400
+        },
+        {
+          "id": "header_feedback_card",
+          "type": "header",
+          "content": "Feedback card"
+        },
+        {
+          "id": "feedback_card_background_color",
+          "type": "select",
+          "label": "Background color",
+          "options": [
+            {
+              "title": "Main",
+              "value": "background_main_color"
+            },
+            {
+              "title": "Accent (Light)",
+              "value": "background_accent_light"
+            },
+            {
+              "title": "Accent (Dark)",
+              "value": "background_accent_dark"
+            }
+          ],
+          "defaultValue": "background_accent_dark"
+        },
+        {
+          "id": "feedback_card_show_border",
+          "type": "checkbox",
+          "label": "Show border",
+          "defaultValue": true
+        },
+        {
+          "id": "feedback_card_border_radius",
+          "type": "range",
+          "max": 2,
+          "min": 0,
+          "step": 0.25,
+          "unit": "rem",
+          "label": "Border radius",
+          "defaultValue": 0.5
+        },
+        {
+          "id": "feedback_card_shadow",
+          "type": "select",
+          "label": "Drop shadow",
+          "options": [
+            {
+              "title": "None",
+              "value": "none"
+            },
+            {
+              "title": "Variant 1",
+              "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+            },
+            {
+              "title": "Variant 2",
+              "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+            },
+            {
+              "title": "Variant 3",
+              "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+            }
+          ],
+          "defaultValue": "none"
+        },
+        {
+          "id": "feedback_card_message_text_font_color",
+          "type": "select",
+          "label": "Message font color",
+          "options": [
+            {
+              "title": "Light",
+              "value": "light_font_color"
+            },
+            {
+              "title": "Dark",
+              "value": "dark_font_color"
+            },
+            {
+              "title": "Brand",
+              "value": "brand_color"
+            }
+          ],
+          "defaultValue": "light_font_color"
+        },
+        {
+          "id": "feedback_card_message_text_font_size",
+          "max": 18,
+          "min": 10,
+          "step": 0.1,
+          "type": "range",
+          "unit": "px",
+          "label": "Message font size",
+          "defaultValue": 14.4
+        },
+        {
+          "id": "feedback_card_message_text_line_height",
+          "max": 200,
+          "min": 50,
+          "step": 1,
+          "type": "range",
+          "unit": "%",
+          "label": "Message line height",
+          "defaultValue": 150
+        },
+        {
+          "id": "feedback_card_message_text_text_align",
+          "type": "select",
+          "label": "Message text align",
+          "options": [
+            {
+              "title": "Left",
+              "value": "left"
+            },
+            {
+              "title": "Center",
+              "value": "center"
+            },
+            {
+              "title": "Right",
+              "value": "right"
+            }
+          ],
+          "defaultValue": "left"
+        },
+        {
+          "id": "feedback_card_message_text_font_weight",
+          "type": "select",
+          "label": "Message font weight",
+          "options": [
+            {
+              "title": "Normal",
+              "value": 400
+            },
+            {
+              "title": "Medium",
+              "value": 500
+            },
+            {
+              "title": "Bold",
+              "value": 700
+            }
+          ],
+          "defaultValue": 400
+        },
+        {
+          "id": "feedback_card_reply_background_color",
+          "type": "select",
+          "label": "Reply background color",
+          "options": [
+            {
+              "title": "Main",
+              "value": "background_main_color"
+            },
+            {
+              "title": "Accent (Light)",
+              "value": "background_accent_light"
+            },
+            {
+              "title": "Accent (Dark)",
+              "value": "background_accent_dark"
+            }
+          ],
+          "defaultValue": "background_accent_light"
+        },
+        {
+          "id": "feedback_card_reply_show_border",
+          "type": "checkbox",
+          "label": "Reply show border",
+          "defaultValue": false
+        },
+        {
+          "id": "feedback_card_reply_text_font_color",
+          "type": "select",
+          "label": "Reply font color",
+          "options": [
+            {
+              "title": "Light",
+              "value": "light_font_color"
+            },
+            {
+              "title": "Dark",
+              "value": "dark_font_color"
+            },
+            {
+              "title": "Brand",
+              "value": "brand_color"
+            }
+          ],
+          "defaultValue": "dark_font_color"
+        },
+        {
+          "id": "feedback_card_reply_text_font_size",
+          "max": 18,
+          "min": 10,
+          "step": 1,
+          "type": "range",
+          "unit": "px",
+          "label": "Reply font size",
+          "defaultValue": 14
+        },
+        {
+          "id": "feedback_card_reply_text_line_height",
+          "max": 200,
+          "min": 50,
+          "step": 1,
+          "type": "range",
+          "unit": "%",
+          "label": "Reply line height",
+          "defaultValue": 150
+        },
+        {
+          "id": "feedback_card_reply_text_text_align",
+          "type": "select",
+          "label": "Reply text align",
+          "options": [
+            {
+              "title": "Left",
+              "value": "left"
+            },
+            {
+              "title": "Center",
+              "value": "center"
+            },
+            {
+              "title": "Right",
+              "value": "right"
+            }
+          ],
+          "defaultValue": "left"
+        },
+        {
+          "id": "feedback_card_reply_text_font_weight",
+          "type": "select",
+          "label": "Reply font weight",
+          "options": [
+            {
+              "title": "Normal",
+              "value": 400
+            },
+            {
+              "title": "Medium",
+              "value": 500
+            },
+            {
+              "title": "Bold",
+              "value": 700
+            }
+          ],
+          "defaultValue": 400
         }
       ],
       "color_schema": [
@@ -1188,6 +1675,22 @@
           "defaultValue": 500
         }
       ],
+      "page": [
+        {
+          "id": "background_image",
+          "type": "select-image",
+          "label": "Image",
+          "defaultValue": null
+        },
+        {
+          "id": "content_width",
+          "type": "range",
+          "min": 1000,
+          "max": 1440,
+          "label": "Content width",
+          "defaultValue": 1080
+        }
+      ],
       "page_loader": [
         {
           "id": "enabled",
@@ -1226,9 +1729,38 @@
       ]
     },
     "properties": {
-      "page": {
-        "background_image": null,
-        "content_width": 1080
+      "cards": {
+        "product_card_background_color": "background_accent_dark",
+        "product_card_show_border": true,
+        "product_card_title_font_color": "light_font_color",
+        "product_card_title_font_size": 16,
+        "product_card_title_line_height": 150,
+        "product_card_title_text_align": "left",
+        "product_card_title_font_weight": 400,
+        "product_card_price_font_color": "brand_color",
+        "product_card_price_font_size": 16,
+        "product_card_price_font_weight": 500,
+        "product_card_description_font_color": "dark_font_color",
+        "product_card_description_font_size": 14,
+        "product_card_description_font_weight": 400,
+        "feedback_card_background_color": "background_accent_dark",
+        "feedback_card_border_radius": 0.5,
+        "feedback_card_show_border": true,
+        "feedback_card_shadow": "none",
+        "product_card_border_radius": 0.5,
+        "product_card_shadow": "none",
+        "feedback_card_message_text_font_color": "light_font_color",
+        "feedback_card_message_text_font_size": 14.4,
+        "feedback_card_message_text_line_height": 150,
+        "feedback_card_message_text_text_align": "left",
+        "feedback_card_message_text_font_weight": 400,
+        "feedback_card_reply_background_color": "background_accent_light",
+        "feedback_card_reply_show_border": false,
+        "feedback_card_reply_text_font_color": "dark_font_color",
+        "feedback_card_reply_text_font_size": 14,
+        "feedback_card_reply_text_line_height": 150,
+        "feedback_card_reply_text_text_align": "left",
+        "feedback_card_reply_text_font_weight": 400
       },
       "color_schema": {
         "dark_mode": false
@@ -1348,6 +1880,10 @@
         "menu_active_item_font_size": 16,
         "menu_active_item_font_color": "brand_color",
         "menu_active_item_font_weight": 500
+      },
+      "page": {
+        "background_image": null,
+        "content_width": 1080
       },
       "page_loader": {
         "enabled": true,
@@ -5740,9 +6276,25 @@
       "name": "Cart button",
       "path": "snippets/shop/cart/cartButton.njk"
     },
+    "Card: Group": {
+      "name": "Card: Group",
+      "path": "snippets/shop/shop/cardGroup.njk"
+    },
+    "Card: Group modal": {
+      "name": "Card: Group modal",
+      "path": "snippets/shop/shop/cardGroupModal.njk"
+    },
+    "Card: Group products": {
+      "name": "Card: Group products",
+      "path": "snippets/shop/shop/cardGroupProducts.njk"
+    },
     "Card: Product": {
       "name": "Card: Product",
       "path": "snippets/shop/shop/cardProduct.njk"
+    },
+    "Card: Subscription": {
+      "name": "Card: Subscription",
+      "path": "snippets/shop/shop/cardSubscription.njk"
     },
     "Column item: Button": {
       "name": "Column item: Button",
