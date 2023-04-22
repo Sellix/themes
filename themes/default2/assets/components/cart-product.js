@@ -8,7 +8,7 @@
 
       this.$cart = jQuery(selector);
       this.$cartQuantity = this.$cart.find('.cart-product-quantity');
-      this.$cartCartIcon = this.$cart.find('.cart-product-cart-icon');
+      this.$cartCartFirstBtn = this.$cart.find('.cart-product-first-button');
       this.$cartAddBtn = this.$cart.find('.cart-product-plus-button');
       this.$cartRemoveBtn = this.$cart.find('.cart-product-minus-button');
       this.$cartQuantityBtn = this.$cart.find('.cart-product-quantity-button');
@@ -28,9 +28,11 @@
       });
     }
 
-    add() {
-      let quantity = (this.cart.getItemById(this.product.uniqid) || { quantity: 0 }).quantity || 0;
-      let valid = sellixHelper.isValidCount({ ...this.product, count: quantity + 1 });
+    add(event) {
+      event.preventDefault();
+
+      const quantity = (this.cart.getItemById(this.product.uniqid) || { quantity: 0 }).quantity || 0;
+      const valid = sellixHelper.isValidCount({ ...this.product, count: quantity + 1 });
       if (this.product.quantity_min > 1 && (quantity === 0 || quantity === undefined)) {
         this.cart.add(this.product, this.product.quantity_min);
       } else if (valid) {
@@ -42,15 +44,19 @@
       }
     }
 
-    addFirst() {
-      let quantity = (this.cart.getItemById(this.product.uniqid) || { quantity: 0 }).quantity || 0;
+    addFirst(event) {
+      event.preventDefault();
+
+      const quantity = (this.cart.getItemById(this.product.uniqid) || { quantity: 0 }).quantity || 0;
       if (!quantity) {
-        this.add();
+        this.add(event);
       }
     }
 
-    remove() {
-      let quantity = (this.cart.getItemById(this.product.uniqid) || { quantity: 0 }).quantity || 0;
+    remove(event) {
+      event.preventDefault();
+
+      const quantity = (this.cart.getItemById(this.product.uniqid) || { quantity: 0 }).quantity || 0;
       if (quantity === this.product.quantity_min) {
         this.cart.remove(this.product.uniqid, this.product.quantity_min);
       } else {
@@ -59,14 +65,12 @@
     }
 
     render() {
-      let quantity = (this.cart.getItemById(this.product.uniqid) || { quantity: 0 }).quantity || 0;
+      const quantity = (this.cart.getItemById(this.product.uniqid) || { quantity: 0 }).quantity || 0;
       this.$cart.toggleClass('empty', quantity === 0);
       this.$cartQuantity.toggleClass('hidden', quantity === 0);
-      this.$cartCartIcon.toggleClass('hidden', quantity !== 0);
+      this.$cartCartFirstBtn.toggleClass('hidden', quantity !== 0);
 
-      if (quantity) {
-        this.$cartQuantity.text(quantity);
-      }
+      this.$cartQuantity.text(quantity);
     }
   }
 

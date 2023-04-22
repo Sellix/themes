@@ -68,6 +68,16 @@
           "defaultValue": 0.5
         },
         {
+          "id": "product_card_image_border_radius",
+          "type": "range",
+          "max": 2,
+          "min": 0,
+          "step": 0.25,
+          "unit": "rem",
+          "label": "Image border radius",
+          "defaultValue": 0.5
+        },
+        {
           "id": "product_card_shadow",
           "type": "select",
           "label": "Drop shadow",
@@ -1730,19 +1740,21 @@
     },
     "properties": {
       "cards": {
-        "product_card_background_color": "background_accent_dark",
-        "product_card_show_border": true,
-        "product_card_title_font_color": "light_font_color",
+        "product_card_background_color": "transparent",
+        "product_card_show_border": false,
+        "product_card_border_radius": 0.5,
+        "product_card_image_border_radius": 0.5,
+        "product_card_title_font_color": "dark_font_color",
         "product_card_title_font_size": 16,
         "product_card_title_line_height": 150,
         "product_card_title_text_align": "left",
-        "product_card_title_font_weight": 400,
-        "product_card_price_font_color": "brand_color",
-        "product_card_price_font_size": 16,
+        "product_card_title_font_weight": 600,
+        "product_card_price_font_color": "dark_font_color",
+        "product_card_price_font_size": 14,
         "product_card_price_font_weight": 500,
         "product_card_description_font_color": "dark_font_color",
         "product_card_description_font_size": 14,
-        "product_card_description_font_weight": 400,
+        "product_card_description_font_weight": 500,
         "feedback_card_background_color": "background_accent_dark",
         "feedback_card_border_radius": 0.5,
         "feedback_card_show_border": true,
@@ -2933,9 +2945,11 @@
                     "properties": {
                       "list_items_background_color": "background_main_color",
                       "list_items_show_border": false,
-                      "list_items_per_row_wide": "4",
-                      "list_items_per_row_normal": "2",
-                      "list_items_per_row_narrow": "1"
+                      "list_items_column_gap": 30,
+                      "list_items_row_gap": 30,
+                      "list_items_per_row_desktop": "4",
+                      "list_items_per_row_tablet": "2",
+                      "list_items_per_row_mobile": "1"
                     }
                   }
                 }
@@ -5649,36 +5663,6 @@
         "class": "block-product-list-items",
         "schema": [
           {
-            "id": "list_items_background_color",
-            "type": "select",
-            "label": "Background color",
-            "options": [
-              {
-                "title": "Main",
-                "value": "background_main_color"
-              },
-              {
-                "title": "Accent (Light)",
-                "value": "background_accent_light"
-              },
-              {
-                "title": "Accent (Dark)",
-                "value": "background_accent_dark"
-              },
-              {
-                "title": "Transparent",
-                "value": "transparent"
-              }
-            ],
-            "defaultValue": "background_main_color"
-          },
-          {
-            "id": "list_items_show_border",
-            "type": "checkbox",
-            "label": "Show border",
-            "defaultValue": false
-          },
-          {
             "id": "container_border_radius",
             "type": "range",
             "max": 2,
@@ -5733,21 +5717,86 @@
             "defaultValue": "none"
           },
           {
-            "id": "list_items_per_row_wide",
+            "id": "list_items_background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_main_color"
+          },
+          {
+            "id": "list_items_show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": false
+          },
+          {
+            "id": "list_items_column_gap",
+            "type": "range",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Column gap",
+            "defaultValue": 30
+          },
+          {
+            "id": "list_items_row_gap",
+            "type": "range",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Row gap",
+            "defaultValue": 30
+          },
+          {
+            "id": "desktop_screen_properties",
+            "type": "header",
+            "content": "Desktop screen"
+          },
+          {
+            "id": "list_items_per_row_desktop",
             "type": "text",
-            "label": "Items per row (wide)",
+            "label": "Items per row (desktop)",
             "defaultValue": "4"
           },
           {
-            "id": "list_items_per_row_normal",
+            "id": "tablet_screen_properties",
+            "type": "header",
+            "content": "Tablet screen"
+          },
+          {
+            "id": "list_items_per_row_tablet",
             "type": "text",
-            "label": "Items per row (normal)",
+            "label": "Items per row (tablet)",
             "defaultValue": "2"
           },
           {
-            "id": "list_items_per_row_narrow",
+            "id": "mobile_screen_properties",
+            "type": "header",
+            "content": "Desktop screen"
+          },
+          {
+            "id": "list_items_per_row_mobile",
             "type": "text",
-            "label": "Items per row (narrow)",
+            "label": "Items per row (mobile)",
             "defaultValue": "1"
           }
         ]
@@ -6272,9 +6321,13 @@
       "name": "Burger button",
       "path": "snippets/shared/burgerButton.njk"
     },
-    "Cart button": {
-      "name": "Cart button",
-      "path": "snippets/shop/cart/cartButton.njk"
+    "Cart button 1": {
+      "name": "Cart button 1",
+      "path": "snippets/shop/cart/cartButton1.njk"
+    },
+    "Cart button 2": {
+      "name": "Cart button 2",
+      "path": "snippets/shop/cart/cartButton2.njk"
     },
     "Card: Group": {
       "name": "Card: Group",
@@ -6287,6 +6340,10 @@
     "Card: Group products": {
       "name": "Card: Group products",
       "path": "snippets/shop/shop/cardGroupProducts.njk"
+    },
+    "Card: Info": {
+      "name": "Card: Info",
+      "path": "snippets/shop/shop/cardInfo.njk"
     },
     "Card: Product": {
       "name": "Card: Product",
@@ -6340,6 +6397,14 @@
       "name": "Icons: Menu",
       "path": "snippets/shared/icons/menu.njk"
     },
+    "Icons: Minus": {
+      "name": "Icons: Minus",
+      "path": "snippets/shared/icons/minus.njk"
+    },
+    "Icons: Plus": {
+      "name": "Icons: Plus",
+      "path": "snippets/shared/icons/plus.njk"
+    },
     "Icons: Zoom glass": {
       "name": "Icons: Zoom glass",
       "path": "snippets/shared/icons/zoomGlass.njk"
@@ -6364,6 +6429,10 @@
       "name": "Price",
       "path": "snippets/shared/price.njk"
     },
+    "Product list": {
+      "name": "Product list",
+      "path": "snippets/shop/shop/productList.njk"
+    },
     "Rating star": {
       "name": "Rating star",
       "path": "snippets/shared/ratingStar.njk"
@@ -6379,6 +6448,10 @@
     "Social Links": {
       "name": "Social Links",
       "path": "snippets/shop/common/socialLinks.njk"
+    },
+    "Tag": {
+      "name": "Tag",
+      "path": "snippets/shared/tag.njk"
     },
     "Toastify": {
       "name": "Toastify",
@@ -6579,6 +6652,14 @@
       "name": "shop.css",
       "path": "assets/css/shop.css"
     },
+    "snippet-cart-button-1.css": {
+      "name": "snippet-cart-button-1.css",
+      "path": "assets/css/snippet-cart-button-1.css"
+    },
+    "snippet-cart-button-2.css": {
+      "name": "snippet-cart-button-2.css",
+      "path": "assets/css/snippet-cart-button-2.css"
+    },
     "snippet-language-selector.css": {
       "name": "snippet-language-selector.css",
       "path": "assets/css/snippet-language-selector.css"
@@ -6590,6 +6671,14 @@
     "snippet-product-cards.css": {
       "name": "snippet-product-cards.css",
       "path": "assets/css/snippet-product-cards.css"
+    },
+    "snippet-product-list.css": {
+      "name": "snippet-product-list.css",
+      "path": "assets/css/snippet-product-list.css"
+    },
+    "snippet-tag.css": {
+      "name": "snippet-tag.css",
+      "path": "assets/css/snippet-tag.css"
     },
     "toastify.css": {
       "name": "toastify.css",

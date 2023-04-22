@@ -3,36 +3,60 @@
 {% set isPlaceholder = not group.image_name %}
 {% set image = cdn_link(group.cloudflare_image_id, 'shopItem') %}
 {% set colors = themeProperties.current_colors %}
-{% set cardsProps = themeProperties.cards %}
+{% set cardProps = themeProperties.cards %}
+
+{% set background = safe_get(cardProps.product_card_background_color, 'background_accent_dark') %}
+{% set border = '1px solid var(--borderColor)' if cardProps.product_card_show_border else 'none' %}
+{% set borderRadius = safe_get(cardProps.product_card_border_radius, 0.5) %}
+{% set imageBorderRadius = safe_get(cardProps.product_card_image_border_radius, '0.5') %}
+
+{% set titleFontcolor = safe_get(cardProps.product_card_title_font_color, 'light_font_color') %}
+{% set titleFontSize = safe_get(cardProps.product_card_title_font_size, '16') %}
+{% set titleFontWeight = safe_get(cardProps.product_card_title_font_weight, '400') %}
+{% set titleLineHeight = safe_get(cardProps.product_card_title_line_height, '100') %}
+{% set titleTextAlign = safe_get(cardProps.product_card_title_text_align, 'left') %}
+
+{% set descriptionFontColor = safe_get(cardProps.product_card_description_font_color, 'dark_font_color') %}
+{% set descriptionFontSize = safe_get(cardProps.product_card_description_font_size, '14') %}
+{% set descriptionFontWeight = safe_get(cardProps.product_card_description_font_weight, '400') %}
+
+{% set priceFontColor = safe_get(cardProps.product_card_price_font_color, 'brand_color') %}
+{% set priceFontSize = safe_get(cardProps.product_card_price_font_size, '16') %}
+{% set priceFontWeight = safe_get(cardProps.product_card_price_font_weight, '500') %}
 
 {% set localClass = ['snippet-card-product-', id] | join %}
 {% set globalClass =  'sellix-product-card' %}
 
 <style>
   .{{ localClass }}__container {
-    border: {{ "1px solid var(--borderColor)" if cardsProps.product_card_show_border else "none" }};
+    border: {{ border }};
+    border-radius: {{ borderRadius }}rem;
   }
   .{{ localClass }}__card {
-    background: {{ colors[cardsProps.product_card_background_color] }};
+    background: {{ colors[background] }};
   }
   .{{ localClass }}__title {
-    color: {{ colors[cardsProps.product_card_title_font_color] }};
-    font-size: {{ cardsProps.product_card_title_font_size }}px;
-    font-weight: {{ cardsProps.product_card_title_font_weight }};
-    line-height: {{ cardsProps.product_card_title_line_height }}%;
-    justify-content: {{ cardsProps.product_card_title_text_align }} !important;
+    color: {{ colors[titleFontcolor] }};
+    font-size: {{ titleFontSize }}px;
+    font-weight: {{ titleFontWeight }};
+    line-height: {{ titleLineHeight }}%;
+    justify-content: {{ titleTextAlign }} !important;
   }
-
   .{{ localClass }}__description {
-    color: {{ colors[cardsProps.product_card_description_font_color] }};
-    font-size: {{ cardsProps.product_card_description_font_size }}px;
-    font-weight: {{ cardsProps.product_card_description_font_weight }};
+    color: {{ colors[descriptionFontColor] }};
+    font-size: {{ descriptionFontSize }}px;
+    font-weight: {{ descriptionFontWeight }};
   }
-
   .{{ localClass }}__price {
-    color: {{ colors[cardsProps.product_card_price_font_color] }};
-    font-size: {{ cardsProps.product_card_price_font_size }}px;
-    font-weight: {{ cardsProps.product_card_price_font_weight }};
+    color: {{ colors[priceFontColor] }};
+    font-size: {{ priceFontSize }}px;
+    font-weight: {{ priceFontWeight }};
+  }
+  .{{ localClass }}__image.placeholder {
+    border: 1px solid var(--borderColor)
+  }
+  .{{ localClass }}__image, .{{ localClass }}__image img {
+    border-radius: {{ imageBorderRadius }}rem;
   }
 </style>
 
@@ -45,7 +69,7 @@
     {{ 'shop.shared.titles.productType.group' | t }}
   </div>
   <div class="{{ globalClass }}__card {{ localClass }}__card unselectable">
-    <div class="{{ globalClass }}__image {{'placeholder' if isPlaceholder else ''}}">
+    <div class="{{ globalClass }}__image {{ localClass }}__image {{'placeholder' if isPlaceholder else ''}}">
       {% if isPlaceholder %}
         <i class="fa-light fa-layer-group"></i>
       {% else %}
@@ -54,11 +78,7 @@
     </div>
 
     <div class="{{ globalClass }}__info">
-      <div class="{{ globalClass }}__title {{ localClass }}__title {{'justify-content-center text-center' if args.centerGroup else ''}}">
-        {{group.title}}
-      </div>
-
-      <div class="{{ globalClass }}__description {{ localClass }}__description">
+      <div class="{{ globalClass }}__description {{ localClass }}__description  justify-content-between">
         <span>
           {% if group.minPriceItem %}
             <div class="{{ globalClass }}__group-description-info {{ localClass }}__group-description-info">
@@ -78,6 +98,10 @@
             </span>
           {% endif %}
         </span>
+      </div>
+
+      <div class="{{ globalClass }}__title {{ localClass }}__title {{'justify-content-center text-center' if args.centerGroup else ''}}">
+        {{group.title}}
       </div>
     </div>
   </div>

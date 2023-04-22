@@ -1,23 +1,26 @@
+{% set id = uid() %}
 {% set shop = global.common.shopInfo.shop %}
 {% set product = args.product %}
 {% set subscription = global.common.shopInfo.subscription %}
 {% set cartEnabled = global.common.cartEnabled %}
 
+{% set globalClass = 'snippet-cart-button-1' %}
+{% set localClass = [globalClass, '-', id] | join %}
+
 {% if product.stock | int === 0 or not cartEnabled or product.on_hold | int !== 0 %}
   {# Do Nothing #}
 {% else %}
-  {% set id=uid() %}
-  <div id="cart-product-{{id}}" class="sellix-cart-icon empty {{'static' if args.isGroup else ''}}">
-    <a href="javascript:;" class="cart-product-minus-button">
+  <div id="cart-button-{{id}}" class="{{ globalClass }} empty {{'static' if args.isGroup else ''}}">
+    <div class="{{ globalClass }}__button cart-product-minus-button">
       <i class="fa-regular fa-minus"></i>
-    </a>
-    <a href="javascript:;" class="cart-product-quantity-button unselectable">
+    </div>
+    <div class="{{ globalClass }}__button cart-product-quantity-button unselectable">
       <span class="cart-product-quantity hidden" style="font-weight: 500"></span>
-      <i class="cart-product-cart-icon fa-regular fa-cart-shopping hidden"></i>
-    </a>
-    <a href="javascript:;" class="cart-product-plus-button">
+      <i class="cart-product-first-button fa-regular fa-cart-shopping hidden"></i>
+    </div>
+    <div class="{{ globalClass }}__button cart-product-plus-button">
       <i class="fa-regular fa-plus"></i>
-    </a>
+    </div>
   </div>
 
   <script type='application/javascript'>
@@ -25,7 +28,7 @@
       const product = {{product | exclude_attributes(['shop_terms_of_service']) | dump | safe}};
       let cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
       const cartProdComponent = new SellixCartProductComponent(
-        '#cart-product-{{id}}',
+        '#cart-button-{{id}}',
         cart,
         product,
         {{args.redirectToCheckout | default(false)}},

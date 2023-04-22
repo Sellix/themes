@@ -9,35 +9,51 @@
 
 {% set hideOutOfStock = shop.hide_out_of_stock %}
 
+{% set containerShadow = safe_get(properties.container_shadow, 'none') %}
+{% set containerBorderRadius = safe_get(properties.container_border_radius, '0.5') %}
+{% set backgroundColor = safe_get(properties.list_items_background_color, 'background_main_color') %}
+{% set showBorder = safe_get(properties.list_items_show_border, true) %}
+{% set paddingVert = safe_get(properties.container_padding_vert, 0) %}
+{% set paddingHoriz = safe_get(properties.container_padding_horiz, 0) %}
+{% set columnGap = safe_get(properties.list_items_column_gap, 30) %}
+{% set rowGap = safe_get(properties.list_items_row_gap, 30) %}
+{% set itemsPerRowDesktop = safe_get(properties.list_items_per_row_desktop, 4) | int %}
+{% set itemsPerRowTablet = safe_get(properties.list_items_per_row_tablet, 2) | int %}
+{% set itemsPerRowMobile = safe_get(properties.list_items_per_row_mobile, 1) | int %}
+
 {% set globalClass = 'block-product-list-items' %}
 {% set localClass = [globalClass, '-', id] | join %}
 
 <style>
-  .{{ localClass }} {
-    background: {{ colors[properties.list_items_background_color] }};
-    border: {{ "1px solid var(--borderColor)" if properties.list_items_show_border else "none" }};
-    padding: {{ properties.container_padding_vert }}px {{ properties.container_padding_horiz }}px;
-    box-shadow: {{ properties.container_shadow }};
-    border-radius: {{ properties.container_border_radius }}rem;
-  }
-  .{{ localClass }}__cards {
-    width: {{ 100 / properties.list_items_per_row_wide | int }}%
-  }
+  .{{ localClass }}__container {
+    background: {{ colors[backgroundColor] }};
+    border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
+    padding: {{ paddingVert }}px {{ paddingHoriz }}px;
+    box-shadow: {{ containerShadow }};
+    border-radius: {{ containerBorderRadius }}rem;
 
+    display: grid;
+    grid-template-columns: repeat({{ itemsPerRowDesktop }}, 1fr);
+    grid-column-gap: {{ columnGap }}px;
+    grid-row-gap: {{ rowGap }}px;
+  }
   @media (max-width: 768px) {
-    .{{ localClass }}__cards {
-      width: {{ 100 / properties.list_items_per_row_normal | int }}%
+    .{{ localClass }}__container {
+      grid-template-columns: repeat({{ itemsPerRowTablet }}, 1fr);
+    }
+  }
+  @media (max-width: 640px) {
+    .{{ localClass }}__container {
+      grid-template-columns: repeat({{ itemsPerRowTablet }}, 1fr);
     }
   }
 
-  @media (max-width: 640px) {
-    .{{ localClass }}__cards {
-      width: {{ 100 / properties.list_items_per_row_narrow | int }}%
-    }
+  .grid-one-column {
+    grid-template-columns: repeat(1, 1fr)!important;
   }
 </style>
 
-<div class="{{ globalClass }}__container {{ localClass }}">
+<div class="{{ globalClass }}__container {{ localClass }}__container">
   {% for item in items %}
     {% if hideOutOfStock and item.type !== "INFO_CARD" and item.stock === 0 %}
       {# hide Out of stock products #}
@@ -137,14 +153,17 @@
         .filter((idx, el) => filteredItemIds.includes($(el).data('product-id')))
         .show();
 
-      $('.{{ localClass }}__empty-container').addClass('d-none');
       if (filteredItemIds.length === 0) {
+        $('.{{ localClass }}__container').addClass('grid-one-column')
         if (category) {
           $('.{{ localClass }}__empty-container.empty-category .category-name').text(category.title);
           $('.{{ localClass }}__empty-container.empty-category').removeClass('d-none');
         } else {
           $('.{{ localClass }}__empty-container.empty-search').removeClass('d-none');
         }
+      } else {
+        $('.{{ localClass }}__container').removeClass('grid-one-column')
+        $('.{{ localClass }}__empty-container').addClass('d-none');
       }
 
       if (sort) {
@@ -154,7 +173,7 @@
           const prB = itemsMap[$(b).data('product-id')];
           return sf(prA, prB);
         });
-        $('.{{ localClass }}').append(sorted);
+        $('.{{ localClass }}__container').append(sorted);
       }
     }
 

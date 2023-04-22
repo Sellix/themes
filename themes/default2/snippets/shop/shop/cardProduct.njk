@@ -7,43 +7,94 @@
 {% set isPayWhatYouWant = (product.pay_what_you_want | int === 1) %}
 {% set isFree = product.price_display | float === 0 and not isPayWhatYouWant %}
 {% set colors = themeProperties.current_colors %}
-{% set cardsProps = themeProperties.cards %}
+{% set cardProps = themeProperties.cards %}
+
+{% set background = safe_get(cardProps.product_card_background_color, 'background_accent_dark') %}
+{% set border = '1px solid var(--borderColor)' if cardProps.product_card_show_border else 'none' %}
+{% set borderRadius = safe_get(cardProps.product_card_border_radius, '0.5') %}
+{% set imageBorderRadius = safe_get(cardProps.product_card_image_border_radius, '0.5') %}
+
+{% set titleFontcolor = safe_get(cardProps.product_card_title_font_color, 'light_font_color') %}
+{% set titleFontSize = safe_get(cardProps.product_card_title_font_size, '16') %}
+{% set titleFontWeight = safe_get(cardProps.product_card_title_font_weight, '400') %}
+{% set titleLineHeight = safe_get(cardProps.product_card_title_line_height, '100') %}
+{% set titleTextAlign = safe_get(cardProps.product_card_title_text_align, 'left') %}
+
+{% set descriptionFontColor = safe_get(cardProps.product_card_description_font_color, 'dark_font_color') %}
+{% set descriptionFontSize = safe_get(cardProps.product_card_description_font_size, '14') %}
+{% set descriptionFontWeight = safe_get(cardProps.product_card_description_font_weight, '400') %}
+
+{% set priceFontColor = safe_get(cardProps.product_card_price_font_color, 'brand_color') %}
+{% set priceFontSize = safe_get(cardProps.product_card_price_font_size, '16') %}
+{% set priceFontWeight = safe_get(cardProps.product_card_price_font_weight, '500') %}
 
 {% set globalClass = 'sellix-product-card' %}
-{% set localClass = ['snippet-card-product-', id] | join %}
+{% set localClass = ['snippet-product-card', id] | join %}
 
 <style>
   .{{ localClass }}__container {
-    border: {{ "1px solid var(--borderColor)" if cardsProps.product_card_show_border else "none" }};
+    border: {{ border }};
+    border-radius: {{ borderRadius }}rem;
   }
   .{{ localClass }}__card {
-    background: {{ colors[cardsProps.product_card_background_color] }};
+    background: {{ colors[background] }};
   }
-
   .{{ localClass }}__title {
-    color: {{ colors[cardsProps.product_card_title_font_color] }};
-    font-size: {{ cardsProps.product_card_title_font_size }}px;
-    font-weight: {{ cardsProps.product_card_title_font_weight }};
-    line-height: {{ cardsProps.product_card_title_line_height }}%;
-    justify-content: {{ cardsProps.product_card_title_text_align }} !important;
+    color: {{ colors[titleFontcolor] }};
+    font-size: {{ titleFontSize }}px;
+    font-weight: {{ titleFontWeight }};
+    line-height: {{ titleLineHeight }}%;
+    justify-content: {{ titleTextAlign }} !important;
   }
-
   .{{ localClass }}__description {
-    color: {{ colors[cardsProps.product_card_description_font_color] }};
-    font-size: {{ cardsProps.product_card_description_font_size }}px;
-    font-weight: {{ cardsProps.product_card_description_font_weight }};
+    color: {{ colors[descriptionFontColor] }};
+    font-size: {{ descriptionFontSize }}px;
+    font-weight: {{ descriptionFontWeight }};
   }
-
-  .{{ localClass }}__price-with-discount {
-    color: {{ colors[cardsProps.product_card_price_font_color] }};
-    font-size: {{ cardsProps.product_card_price_font_size }}px;
-    font-weight: {{ cardsProps.product_card_price_font_weight }};
+  .{{ localClass }}__price-with-discount, .{{ localClass }}__price-with-discount i {
+    color: {{ colors[priceFontColor] }};
+    font-size: {{ priceFontSize }}px;
+    font-weight: {{ priceFontWeight }};
   }
-
+  .{{ localClass }}__price-with-discount i {
+    opacity: 0.4;
+  }
   .{{ localClass }}__price {
-    color: {{ colors[cardsProps.product_card_price_font_color] }};
-    font-size: {{ cardsProps.product_card_price_font_size }}px;
-    font-weight: {{ cardsProps.product_card_price_font_weight }};
+    color: {{ colors[priceFontColor] }};
+    font-size: {{ priceFontSize }}px;
+    font-weight: {{ priceFontWeight }};
+  }
+  .{{ localClass }}__image.placeholder {
+    border: 1px solid var(--borderColor)
+  }
+  .{{ localClass }}__image, .{{ localClass }}__image img {
+    border-radius: {{ imageBorderRadius }}rem;
+  }
+  .{{ localClass }}__stock i {
+    margin-left: 0.2rem;
+    font-size: 10px;
+    color: {{'#28a745' if product.stock == -1 or product.stock > 1 else '#dc3545'}};
+  }
+  .{{ localClass}}__stock span {
+    font-size: 1rem;
+    margin-left:.2rem;
+    color:{{'#28a745' if product.stock == -1 or product.stock > 1 else '#dc3545'}};
+  }
+
+  .{{ localClass }} .{{ localClass }}__cart {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  @media (hover: hover) {
+    .{{ localClass }} .{{ localClass }}__cart {
+      display: none;
+    }
+    .{{ localClass }}:hover .{{ localClass }}__cart {
+      display: block!important;
+    }
   }
 </style>
 
@@ -53,8 +104,6 @@
   {% elif isPayWhatYouWant %}
     <div class="{{ globalClass }}__badge">{{ 'shop.main.cards.product.yourPrice' | t }}</div>
   {% else %}
-    {% render_snippet 'Cart button', product=product %}
-
     {% render_snippet 'Discount badge', product=product %}
   {% endif %}
 
@@ -65,7 +114,10 @@
   >
 
     <div class="{{ globalClass}}__card {{ localClass }}__card unselectable">
-      <div class="{{ globalClass}}__image {{'placeholder' if isPlaceholder else ''}}">
+      <div class="{{ globalClass}}__image {{ localClass }}__image {{'placeholder' if isPlaceholder else ''}}">
+        <div class="{{ localClass }}__cart">
+          {% render_snippet 'Cart button 2', product=product %}
+        </div>
         {% if isPlaceholder %}
           <i class="fa-light fa-box-taped"></i>
         {% else %}
@@ -74,10 +126,6 @@
       </div>
 
       <div class="{{ globalClass }}__info">
-        <div class="{{ globalClass }}__title {{ localClass }}__title {{'justify-content-center text-center' if args.centerProduct else ''}}">
-          {{product.title}}
-        </div>
-
         {% if onHold %}
           <span class="{{ globalClass }}__description {{ localClass }}__description">
             {{ 'shop.main.cards.product.onHold' | t }}
@@ -93,9 +141,14 @@
         {% if not onHold and not isOut %}
           <div class="{{ globalClass }}__description {{ localClass }}__description justify-content-between">
             {% if product.price_discount and not isFree %}
-              <span class="{{ localClass }}__price-with-discount">
+              <span class="{{ globalClass }}__price-with-discount {{ localClass }}__price-with-discount">
+                {% render_snippet
+                  'Price',
+                  currency=product.currency,
+                  price=product.price_display,
+                  discount=product.price_discount
+                %}
                 <i>{% render_snippet 'Price', currency=product.currency, price=product.price_display %}</i>
-                {% render_snippet 'Price', currency=product.currency, price=product.price_display, discount=product.price_discount %}
               </span>
             {% else %}
               <div class="{{ globalClass }}__group-description-info">
@@ -118,15 +171,19 @@
               </div>
             {% endif %}
 
-            <span class="{{ globalClass }}__stock">
+            <span class="{{ globalClass }}__stock {{ localClass }}__stock">
               {% if get_stock(product.stock) === '∞' %}
-                {{ 'shop.shared.titles.stock' | t }}<i class="fa-solid fa-infinity" style="margin-left:.2rem;font-size:10px;color:{{'#28a745' if product.stock == -1 or product.stock > 1 else '#dc3545'}}"></i>
+                {{ 'shop.shared.titles.stock' | t }}<i class="fa-solid fa-infinity"></i>
               {% else %}
-                {{ 'shop.shared.titles.stock' | t }}<span style="font-size:1rem;margin-left:.2rem;color:{{'#28a745' if product.stock == -1 or product.stock > 1 else '#dc3545'}}">{{get_stock(product.stock)}}</span>
+                {{ 'shop.shared.titles.stock' | t }}<span>{{get_stock(product.stock)}}</span>
               {% endif %}
             </span>
           </div>
         {% endif %}
+
+        <div class="{{ globalClass }}__title {{ localClass }}__title {{'justify-content-center text-center' if args.centerProduct else ''}}">
+          {{product.title}}
+        </div>
       </div>
     </div>
   </a>
