@@ -1,14 +1,24 @@
 {% set id = uid() %}
 {% set colors = themeProperties.current_colors %}
 
-{% set paddingVertDesktop = safe_get(properties.padding_vert_desktop, 32) %}
+{% set paddingVertTopDesktop = safe_get(properties.padding_vert_top_desktop, 32) %}
+{% set paddingVertBottomDesktop = safe_get(properties.padding_vert_bottom_desktop, 32) %}
 {% set paddingHorizDesktop = safe_get(properties.padding_horiz_desktop, 0) %}
-{% set paddingVertTablet = safe_get(properties.padding_vert_tablet, 24) %}
+{% set marginTopDesktop = safe_get(properties.margin_top_desktop, 0) %}
+{% set marginBottomDesktop = safe_get(properties.margin_bottom_desktop, 60) %}
+{% set paddingVertTopTablet = safe_get(properties.padding_vert_top_tablet, 24) %}
+{% set paddingVertBottomTablet = safe_get(properties.padding_vert_bottom_tablet, 24) %}
 {% set paddingHorizTablet = safe_get(properties.padding_horiz_tablet, 0) %}
-{% set paddingVertMobile = safe_get(properties.padding_vert_mobile, 16) %}
+{% set marginTopTablet = safe_get(properties.margin_top_tablet, 0) %}
+{% set marginBottomTablet = safe_get(properties.margin_bottom_tablet, 30) %}
+{% set paddingVertTopMobile = safe_get(properties.padding_vert_top_mobile, 16) %}
+{% set paddingVertBottomMobile = safe_get(properties.padding_vert_bottom_mobile, 16) %}
 {% set paddingHorizMobile = safe_get(properties.padding_horiz_mobile, 0) %}
+{% set marginTopMobile = safe_get(properties.margin_top_mobile, 0) %}
+{% set marginBottomMobile = safe_get(properties.margin_bottom_mobile, 30) %}
 
 {% set title = properties.title %}
+{% set titleVisible = properties.title_visible %}
 {% set titleFontColor = safe_get(properties.title_font_color, 'dark_font_color') %}
 {% set titleFontSize = safe_get(properties.title_font_size, 40) %}
 {% set titleFontWeight = safe_get(properties.title_font_weight, 500) %}
@@ -21,19 +31,23 @@
 {% set crumbLineHeight = safe_get(properties.crumb_line_height, 48) %}
 {% set bgColor = properties.background_color %}
 
-{% set localClass = ['section-breadcrumbs-', id] | join %}
+{% set localClass = [globalClass, '-', id] | join %}
 
 <style>
-  .sellix-section.section-breadcrumbs {
+  .sellix-section.{{ globalClass}} {
     background-color: {{ colors[bgColor] }};
   }
 
   .{{ localClass }} {
     background-color: {{ colors[bgColor] }};
-    padding: {{ paddingVertDesktop }}px {{ paddingHorizDesktop }}px;
+    padding: {{ paddingVertTopDesktop }}px {{ paddingHorizDesktop }}px {{ paddingVertBottomDesktop }}px {{ paddingHorizDesktop }}px;
+    margin-top: {{ marginTopDesktop }}px;
+    margin-bottom: {{ marginBottomDesktop }}px;
   }
 
   .{{ localClass }}__title {
+    margin-top: 1rem;
+    display: {{ 'block' if titleVisible else 'none' }};
     color: {{ colors[titleFontColor] }};
     font-size: {{ titleFontSize }}px;
     font-weight: {{ titleFontWeight }};
@@ -43,7 +57,6 @@
   .{{ localClass }}__crumbs {
     display: flex;
     align-items: center;
-    margin-bottom: 1rem;
   }
 
   .{{ localClass }}__link-crumb {
@@ -67,13 +80,17 @@
 
   @media (max-width: 768px) {
     .{{ localClass }} {
-      padding: {{ paddingVertTablet }}px {{ paddingHorizTablet }}px;
+      padding: {{ paddingVertTopTablet }}px {{ paddingHorizTablet }}px {{ paddingVertBottomTablet }}px {{ paddingHorizTablet }}px;
+      margin-top: {{ marginTopTablet }}px;
+      margin-bottom: {{ marginBottomTablet }}px;
     }
   }
 
   @media (max-width: 640px) {
     .{{ localClass }} {
-      padding: {{ paddingVertMobile }}px {{ paddingHorizMobile }}px;
+      padding: {{ paddingVertTopMobile }}px {{ paddingHorizMobile }}px {{ paddingVertBottomMobile }}px {{ paddingHorizMobile }}px;
+      margin-top: {{ marginTopMobile }}px;
+      margin-bottom: {{ marginBottomMobile }}px;
     }
   }
 </style>
@@ -86,7 +103,7 @@
   {% endif %}
 {% endfor %}
 
-<div class="{{ localClass }} {{ 'full-width' if properties.fullwidth else 'content-width' }}">
+<div class="{{ localClass }} {{ globalClass }} {{ 'full-width' if properties.fullwidth else 'content-width' }}">
   <div class="{{ localClass }}__crumbs">
     {% for idx in safe_range(1, 11) %}
       {% set crumbLabel = properties[['crumb_label_', idx] | join] %}

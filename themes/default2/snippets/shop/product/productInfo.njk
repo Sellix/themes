@@ -1,0 +1,45 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set product = args.product %}
+
+
+<div
+  id="sellix-product-description-{{ id }}"
+  class="sellix-product-description-{{ id }}"
+>
+  <div class="shop-product-info-product-title {{'mb-0' if hideSold else ''}} shop-product-info-product-title-{{ id }}">
+    {% if product.title %}
+      {{product.title}}
+    {% else %}
+      {% if invoice and invoice.developer_invoice %}
+        {{invoice.developer_title}}
+      {% else %}
+        {{''}}
+      {% endif %}
+    {% endif %}
+  </div>
+
+  {% if product.type === 'SUBSCRIPTION' %}
+    <div class="shop-product-info-subscription-badge" style="background-color: var(--backgroundColor)">
+      {{ 'shop.shared.titles.productType.subscription' | t }}
+    </div>
+  {% endif %}
+
+  <div class="shop-product-info-product-info">
+    {% if product.sold_count %}
+      {% if not shop.hide_products_sold %}
+        <span style="white-space: nowrap">
+            <span>{{ 'shop.product.soldTitle.0' | t }}</span> <i style="white: nowrap">{{product.sold_count}}</i> {{ 'shop.product.soldTitle.1' | t }}
+          </span>
+      {% endif %}
+
+      <span>
+          {% render_snippet 'Rating star', rating=product.average_score or 4, iconsCount=1 %}
+        {% if product.average_score %}
+          {{product.average_score | float | round(1)}}
+        {% endif %}
+          <i>({{ 'shop.shared.reviews.reviewsWithCount' | t({count: product.feedback.total}) }})</i>
+      </span>
+    {% endif %}
+  </div>
+</div>

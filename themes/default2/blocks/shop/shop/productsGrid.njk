@@ -4,24 +4,43 @@
 {% set theme = global.common.theme %}
 {% set centerProduct = shop.center_product_titles %}
 {% set centerGroup = shop.center_group_titles %}
-{% set items = shopInfo.items %}
+
+{% set filterName = properties.filter_name %}
+{% set showGroup = properties.grid_show_group %}
+{% set showInfo = properties.grid_show_info %}
+{% set showProduct = properties.grid_show_product %}
+{% set showSubscription = properties.grid_show_subscription %}
+
+{% set items = [] %}
+{% for item in shopInfo.items %}
+  {% if item.isGroup and showGroup %}
+    {% set items = (items.push(item), items) %}
+  {% elif item.isInfo and showInfo %}
+    {% set items = (items.push(item), items) %}
+  {% elif item.isProduct and showProduct %}
+    {% set items = (items.push(item), items) %}
+  {% elif item.isSubscription and showSubscription %}
+    {% set items = (items.push(item), items) %}
+  {% else %}
+  {% endif %}
+{% endfor %}
+
 {% set colors = themeProperties.current_colors %}
 
 {% set hideOutOfStock = shop.hide_out_of_stock %}
 
 {% set containerShadow = safe_get(properties.container_shadow, 'none') %}
 {% set containerBorderRadius = safe_get(properties.container_border_radius, '0.5') %}
-{% set backgroundColor = safe_get(properties.list_items_background_color, 'background_main_color') %}
-{% set showBorder = safe_get(properties.list_items_show_border, true) %}
+{% set backgroundColor = safe_get(properties.grid_background_color, 'transparent') %}
+{% set showBorder = safe_get(properties.grid_show_border, true) %}
 {% set paddingVert = safe_get(properties.container_padding_vert, 0) %}
 {% set paddingHoriz = safe_get(properties.container_padding_horiz, 0) %}
-{% set columnGap = safe_get(properties.list_items_column_gap, 30) %}
-{% set rowGap = safe_get(properties.list_items_row_gap, 30) %}
-{% set itemsPerRowDesktop = safe_get(properties.list_items_per_row_desktop, 4) | int %}
-{% set itemsPerRowTablet = safe_get(properties.list_items_per_row_tablet, 2) | int %}
-{% set itemsPerRowMobile = safe_get(properties.list_items_per_row_mobile, 1) | int %}
+{% set columnGap = safe_get(properties.grid_column_gap, 30) %}
+{% set rowGap = safe_get(properties.grid_row_gap, 30) %}
+{% set itemsPerRowDesktop = safe_get(properties.grid_items_per_row_desktop, 4) | int %}
+{% set itemsPerRowTablet = safe_get(properties.grid_items_per_row_tablet, 2) | int %}
+{% set itemsPerRowMobile = safe_get(properties.grid_items_per_row_mobile, 1) | int %}
 
-{% set globalClass = 'block-product-list-items' %}
 {% set localClass = [globalClass, '-', id] | join %}
 
 <style>
@@ -53,7 +72,7 @@
   }
 </style>
 
-<div class="{{ globalClass }}__container {{ localClass }}__container">
+<div class="{{ globalClass }}__container {{ localClass }}__container {{ 'grid-one-column' if items.length == 0 }}">
   {% for item in items %}
     {% if hideOutOfStock and item.type !== "INFO_CARD" and item.stock === 0 %}
       {# hide Out of stock products #}
@@ -83,7 +102,7 @@
     {% render_snippet 'Icons: Zoom glass' %}
 
     <div class="empty-shop-info">
-        {{ 'shop.main.productList.items.noProducts' | t }}.
+        {{ 'shop.main.productList.items.noProductFound' | t }}.
 
         <button class="button button-primary">
           {{ 'shop.main.productList.items.clear' | t }}
@@ -121,9 +140,16 @@
     };
 
     const shopInfo = SellixContext.get('common', {}).shopInfo || {};
-    const items = shopInfo.items || [];
+    const items = filterItems(shopInfo.items || []);
     const categories = shopInfo.categories || [];
     const itemsMap = items.reduce((m, item) => ({...m, [item.uniqid]: item}), {});
+
+    function filterItems(items) {
+      return items.filter((item) => {
+        return (item.isGroup && {{ showGroup }}) || (item.isInfo && {{ showInfo }}) ||
+          (item.isProduct && {{ showProduct }}) || (item.isSubscription && {{ showSubscription }})
+      })
+    }
 
     function filterProducts({ search, category, sort }) {
       search = search || '';
@@ -147,6 +173,9 @@
 
         return hasProduct || item.title.toLowerCase().includes(search.toLowerCase());
       });
+
+      filteredItems = filterItems(filteredItems);
+
       const filteredItemIds = filteredItems.map(item => item.uniqid);
       $('.{{ localClass }}__cards[data-product-id]')
         .hide()
@@ -178,7 +207,12 @@
     }
 
     $(document).on('SellixProductListFilterChangeEvent', (e, eventInfo) => {
-      filterProducts(eventInfo);
+      console.log('{{ filterName }}', eventInfo);
+
+      const { name } = eventInfo;
+      if (name === '{{ filterName }}') {
+        filterProducts(eventInfo);
+      }
     });
   });
 </script>

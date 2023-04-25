@@ -6,16 +6,22 @@
 {% set columnsPerRowDesktop = safe_get(properties.columns_per_row_desktop, 2) %}
 {% set paddingVertDesktop = safe_get(properties.padding_vert_desktop, 130) %}
 {% set paddingHorizDesktop = safe_get(properties.padding_horiz_desktop, 400) %}
+{% set marginTopDesktop = safe_get(properties.margin_top_desktop, 130) %}
+{% set marginBottomDesktop = safe_get(properties.margin_bottom_desktop, 400) %}
 {% set columnsPerRowTablet = safe_get(properties.columns_per_row_tablet, 2) %}
 {% set paddingVertTablet = safe_get(properties.padding_vert_tablet, 115) %}
 {% set paddingHorizTablet = safe_get(properties.padding_horiz_tablet, 200) %}
+{% set marginTopTablet = safe_get(properties.margin_top_tablet, 130) %}
+{% set marginBottomTablet = safe_get(properties.margin_bottom_tablet, 400) %}
 {% set columnsPerRowMobile = safe_get(properties.columns_per_row_mobile, 2) %}
 {% set paddingVertMobile = safe_get(properties.padding_vert_mobile, 96) %}
 {% set paddingHorizMobile = safe_get(properties.padding_horiz_mobile, 36) %}
+{% set marginTopMobile = safe_get(properties.margin_top_mobile, 130) %}
+{% set marginBottomMobile = safe_get(properties.margin_bottom_mobile, 400) %}
 {% set bgImage = properties.background_image %}
 {% set bgColor = properties.background_color %}
 
-{% set localClass = ['multi-columns-', id] | join %}
+{% set localClass = [globalClass, '-', id] | join %}
 
 <style>
   .{{ localClass }} {
@@ -24,6 +30,8 @@
     grid-column-gap: {{ columnGap }}px;
     grid-row-gap: {{ rowGap }}px;
     padding: {{ paddingVertDesktop }}px {{ paddingHorizDesktop }}px;
+    margin-top: {{ marginTopDesktop }}px;
+    margin-bottom: {{ marginBottomDesktop }}px;
     {% if bgImage %}
       background: url({{bgImage | asset_url}});
       background-repeat: no-repeat, no-repeat;
@@ -37,6 +45,8 @@
     .{{ localClass }} {
       grid-template-columns: repeat({{ columnsPerRowTablet }}, 1fr);
       padding: {{ paddingVertTablet }}px {{ paddingHorizTablet }}px;
+      margin-top: {{ marginTopTablet }}px;
+      margin-bottom: {{ marginBottomTablet }}px;
     }
   }
 
@@ -44,6 +54,8 @@
     .{{ localClass }} {
       grid-template-columns: repeat({{ columnsPerRowMobile }}, 1fr);
       padding: {{ paddingVertMobile }}px {{ paddingHorizMobile }}px;
+      margin-top: {{ marginTopTablet }}px;
+      margin-bottom: {{ marginBottomTablet }}px;
     }
   }
 </style>

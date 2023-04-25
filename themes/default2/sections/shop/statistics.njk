@@ -2,12 +2,19 @@
 {% set colors = themeProperties.current_colors %}
 {% set shop = global.common.shopInfo.shop %}
 
+{% set fullWidth = safe_get(properties.fullwidth, false) %}
 {% set paddingVertDesktop = safe_get(properties.padding_vert_desktop, 32) %}
 {% set paddingHorizDesktop = safe_get(properties.padding_horiz_desktop, 0) %}
+{% set marginTopDesktop = safe_get(properties.margin_top_desktop, 0) %}
+{% set marginBottomDesktop = safe_get(properties.margin_bottom_desktop, 60) %}
 {% set paddingVertTablet = safe_get(properties.padding_vert_tablet, 24) %}
 {% set paddingHorizTablet = safe_get(properties.padding_horiz_tablet, 0) %}
+{% set marginTopTablet = safe_get(properties.margin_top_tablet, 0) %}
+{% set marginBottomTablet = safe_get(properties.margin_bottom_tablet, 30) %}
 {% set paddingVertMobile = safe_get(properties.padding_vert_mobile, 16) %}
 {% set paddingHorizMobile = safe_get(properties.padding_horiz_mobile, 0) %}
+{% set marginTopMobile = safe_get(properties.margin_top_mobile, 0) %}
+{% set marginBottomMobile = safe_get(properties.margin_bottom_mobile, 30) %}
 
 {% set bgColor = properties.background_color %}
 
@@ -24,6 +31,8 @@
     flex-wrap: wrap;
     background-color: {{ colors[bgColor] }};
     padding: {{ paddingVertDesktop }}px {{ paddingHorizDesktop }}px;
+    margin-top: {{ marginTopDesktop }}px;
+    margin-bottom: {{ marginBottomDesktop }}px;
   }
 
   .{{ localClass }}__item_wrapper:not(:last-child) {
@@ -34,6 +43,8 @@
     .{{ localClass }} {
       grid-template-columns: repeat(1, 1fr);
       padding: {{ paddingVertTablet }}px {{ paddingHorizTablet }}px;
+      margin-top: {{ marginTopTablet }}px;
+      margin-bottom: {{ marginBottomTablet }}px;
     }
 
     .{{ localClass }}__item_wrapper:not(:last-child) {
@@ -45,11 +56,13 @@
   @media (max-width: 640px) {
     .{{ localClass }} {
       padding: {{ paddingVertMobile }}px {{ paddingHorizMobile }}px;
+      margin-top: {{ marginTopMobile }}px;
+      margin-bottom: {{ marginBottomMobile }}px;
     }
   }
 </style>
 
-<div class="{{ localClass }} {{ 'full-width' if properties.fullwidth else 'content-width' }}">
+<div class="{{ localClass }} {{ 'full-width' if fullWidth else 'content-width' }}">
     {% for block_name in settings.block_order %}
       <div class="{{ localClass }}__item_wrapper">
         {%- render_block block_name -%}

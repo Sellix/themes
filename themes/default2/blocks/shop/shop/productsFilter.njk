@@ -5,7 +5,8 @@
 {% set colors = themeProperties.current_colors %}
 {% set inputsProps = themeProperties.inputs %}
 
-{% set globalClass = 'block-product-list-filter' %}
+{% set filterName = properties.filter_name %}
+
 {% set localClass = [globalClass, '-', id] | join %}
 
 <style>
@@ -170,7 +171,10 @@
 
     $('#shop-search-{{id}}').on('keyup', function (e) {
       search = e.target.value;
-      $(document).trigger('SellixProductListFilterChangeEvent', { search, category, sort });
+      $(document).trigger(
+        'SellixProductListFilterChangeEvent',
+        { name: '{{ filterName }}', search, category, sort },
+      );
     });
 
     $('#category-select-{{id}}').select2({
@@ -192,7 +196,10 @@
       theme: 'sellix',
     }).on('change', (e) => {
       category = e.target.value;
-      $(document).trigger('SellixProductListFilterChangeEvent', { search, category, sort });
+      $(document).trigger(
+        'SellixProductListFilterChangeEvent',
+        { name: '{{ filterName }}', search, category, sort },
+      );
     });
 
     $('#sort-select-{{id}}').select2({
@@ -206,7 +213,10 @@
       theme: 'sellix',
     }).on('change', (e) => {
       sort = e.target.value;
-      $(document).trigger('SellixProductListFilterChangeEvent', { search, category, sort });
+      $(document).trigger(
+        'SellixProductListFilterChangeEvent',
+        { name: '{{ filterName }}', search, category, sort },
+      );
     });
 
     setTimeout(function() {

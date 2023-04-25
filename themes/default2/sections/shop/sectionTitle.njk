@@ -1,6 +1,8 @@
 {% set id = uid() %}
 {% set colors = themeProperties.current_colors %}
 
+{% set fullWidth = safe_get(properties.fullwidth, false) %}
+
 {% set titleFontColor = safe_get(properties.title_font_color, 'dark_font_color') %}
 {% set titleFontSize = safe_get(properties.title_font_size, 14) %}
 {% set titleFontWeight = safe_get(properties.title_font_weight, 400) %}
@@ -11,17 +13,35 @@
 {% set subtitleFontWeight = safe_get(properties.subtitle_font_weight, 400) %}
 {% set subtitleLineHeight = safe_get(properties.subtitle_line_height, 28) %}
 
-{% set localClass = ['section-title-', id] | join %}
+{% set marginTopDesktop = safe_get(properties.margin_top_desktop, 0) %}
+{% set marginBottomDesktop = safe_get(properties.margin_bottom_desktop, 60) %}
+{% set marginTopTablet = safe_get(properties.margin_top_tablet, 0) %}
+{% set marginBottomTablet = safe_get(properties.margin_bottom_tablet, 30) %}
+{% set marginTopMobile = safe_get(properties.margin_top_mobile, 0) %}
+{% set marginBottomMobile = safe_get(properties.margin_bottom_mobile, 30) %}
+
+{% set localClass = [globalClass, '-', id] | join %}
 
 <style>
   .{{ localClass }} {
     display: grid;
     grid-template-columns: auto 1fr;
+    margin-top: {{ marginTopDesktop }}px;
+    margin-bottom: {{ marginBottomDesktop }}px;
   }
 
   @media (max-width: 768px) {
     .{{ localClass }} {
       grid-template-columns: 1fr;
+      margin-top: {{ marginTopTablet }}px;
+      margin-bottom: {{ marginBottomTablet }}px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .{{ localClass }} {
+      margin-top: {{ marginTopMobile }}px;
+      margin-bottom: {{ marginBottomMobile }}px;
     }
   }
 
@@ -76,7 +96,7 @@
   }
 </style>
 
-<div class="{{ localClass }} {{ 'full-width' if properties.fullwidth else 'content-width' }}">
+<div class="{{ localClass }} {{ 'full-width' if fullWidth else 'content-width' }}">
   <div class="{{ localClass }}__title">
     {{ properties.title_content }}
   </div>

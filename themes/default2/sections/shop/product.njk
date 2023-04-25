@@ -1,0 +1,59 @@
+{% set id = uid() %}
+{% set product = global.common.productInfo.product %}
+
+{% set fullWidth = safe_get(properties.fullwidth, false) %}
+{% set sidebarEnabled = safe_get(properties.right_sidebar_enable, true) %}
+{% set sidebarBlocksCount = safe_get(properties.right_sidebar_blocks_count, 3) %}
+{% set sidebarGap = safe_get(properties.right_sidebar_gap, 60) %}
+
+{% set localClass = [globalClass, '-', id] | join %}
+
+<style>
+  {% if sidebarEnabled %}
+    .{{ localClass }}__container {
+      display: grid;
+      grid-template-areas: "content sidebar";
+      grid-template-columns: minmax(360px, 1fr) minmax(300px, 420px);
+      grid-column-gap: {{ sidebarGap }}px;
+    }
+
+    .{{ localClass }}__content {
+      grid-area: content;
+    }
+
+    .{{ localClass }}__sidebar {
+      grid-area: sidebar;
+    }
+
+    @media (max-width: 768px) {
+      .{{ localClass }}__container {
+        grid-template-areas:
+          "content"
+          "sidebar";
+        grid-template-columns: 1fr;
+      }
+    }
+  {% endif %}
+</style>
+
+<div class="{{ localClass }} {{ 'full-width' if fullWidth else 'content-width' }}">
+  <div class="{{ globalClass }}__container {{ localClass }}__container">
+    <div class="{{ globalClass }}__content {{ localClass }}__content">
+      {% for block_name in settings.block_order %}
+        {% if not sidebarEnabled or loop.revindex > sidebarBlocksCount | int %}
+          {% render_block block_name %}
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    {% if sidebarEnabled %}
+      <div class="{{ globalClass }}__sidebar {{ localClass }}__sidebar">
+        {% for block_name in settings.block_order %}
+          {% if loop.revindex <= sidebarBlocksCount | int %}
+            {% render_block block_name %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>

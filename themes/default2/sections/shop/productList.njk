@@ -1,14 +1,52 @@
 {% set id = uid() %}
-{% set globalClass = 'section-product-list' %}
+{% set colors = themeProperties.current_colors %}
+
 {% set localClass = [globalClass, '-', id] | join %}
 
-<style>
-  .{{ globalClass }}__container {
+{% set fullWidth = safe_get(properties.fullwidth, false) %}
+{% set bgColor = properties.background_color %}
+{% set marginTopDesktop = safe_get(properties.margin_top_desktop, 0) %}
+{% set marginBottomDesktop = safe_get(properties.margin_bottom_desktop, 60) %}
+{% set paddingHorizDesktop = safe_get(properties.padding_horiz_desktop, 130) %}
+{% set paddingVertDesktop = safe_get(properties.padding_vert_desktop, 400) %}
+{% set marginTopTablet = safe_get(properties.margin_top_tablet, 0) %}
+{% set marginBottomTablet = safe_get(properties.margin_bottom_tablet, 30) %}
+{% set paddingHorizTablet = safe_get(properties.padding_horiz_tablet, 130) %}
+{% set paddingVertTablet = safe_get(properties.padding_vert_tablet, 400) %}
+{% set marginTopMobile = safe_get(properties.margin_top_mobile, 0) %}
+{% set marginBottomMobile = safe_get(properties.margin_bottom_mobile, 30) %}
+{% set paddingHorizMobile = safe_get(properties.padding_horiz_mobile, 130) %}
+{% set paddingVertMobile = safe_get(properties.padding_vert_mobile, 400) %}
 
+<style>
+  .sellix-section.section-product-list {
+    background-color: {{ colors[bgColor] }};
+  }
+
+  .{{ localClass }}__container {
+    padding: {{ paddingVertDesktop }}px {{ paddingHorizDesktop }}px;
+    margin-top: {{ marginTopDesktop }}px;
+    margin-bottom: {{ marginBottomDesktop }}px;
+  }
+
+  @media (max-width: 768px) {
+    .{{ localClass }} {
+      padding: {{ paddingVertTablet }}px {{ paddingHorizTablet }}px;
+      margin-top: {{ marginTopTablet }}px;
+      margin-bottom: {{ marginBottomTablet }}px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .{{ localClass }} {
+      padding: {{ paddingVertMobile }}px {{ paddingHorizMobile }}px;
+      margin-top: {{ marginTopMobile }}px;
+      margin-bottom: {{ marginBottomMobile }}px;
+    }
   }
 </style>
 
-<div class="{{ globalClass }}__container {{ localClass }} {{ 'full-width' if properties.fullwidth else 'content-width' }}">
+<div class="{{ globalClass }}__container {{ localClass }}__container {{ 'full-width' if fullWidth else 'content-width' }}">
   {% for block_name in settings.block_order %}
     {%- render_block block_name -%}
   {% endfor%}

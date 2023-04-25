@@ -100,11 +100,15 @@
 
 <div class="{{ globalClass }} {{ localClass }} d-flex w-100 position-relative">
   {% if isFree %}
-    <div class="{{ globalClass }}__badge">{{ 'shop.shared.titles.free' | t }}</div>
+    <div class="{{ globalClass }}__badge">
+      {{ 'shop.shared.titles.free' | t }}
+    </div>
   {% elif isPayWhatYouWant %}
-    <div class="{{ globalClass }}__badge">{{ 'shop.main.cards.product.yourPrice' | t }}</div>
+    <div class="{{ globalClass }}__badge">
+      {{ 'shop.main.cards.product.yourPrice' | t }}
+    </div>
   {% else %}
-    {% render_snippet 'Discount badge', product=product %}
+    {# {% render_snippet 'Discount badge', product=product %} #}
   {% endif %}
 
   <a
@@ -157,7 +161,7 @@
                 {% endif %}
                 <span class="{{ globalClass }}__price {{ localClass }}__price">
                   {% if isFree %}
-                    {{ 'shop.shared.titles.free' | t }}
+                    {% render_snippet 'Tag', tag=('shop.shared.titles.free' | t) %}
                   {% elif isPayWhatYouWant %}
                     {{ 'shop.main.cards.product.yourPrice' | t }}
                   {% else %}
