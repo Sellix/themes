@@ -1,96 +1,200 @@
 {% set id = uid() %}
+{% set properties = args.properties %}
 {% set shop = global.common.shopInfo.shop %}
 {% set product = args.product %}
 {% set attachments = product.image_attachments if product.image_attachments else [] %}
-{% set youtube_link = product.youtube_link %}
+{% set youtubeLink = product.youtube_link %}
 {% set images = [] %}
+
+{% set sliderLightboxEnabled = safe_get(properties.slider_lightbox_enabled, true) %}
+{% set sliderNavigationEnabled = safe_get(properties.slider_navigation_enabled, true) %}
+{% set sliderPaginationEnabled = safe_get(properties.slider_pagination_enabled, false) %}
+{% set sliderShowWholeImage = safe_get(properties.slider_show_whole_image, true) %}
+{% set sliderHeight = safe_get(properties.slider_height, 400) %}
+{% set sliderBorderRadius = safe_get(properties.slider_border_radius, 8) %}
+{% set sliderItemsPerView = safe_get(properties.slider_items_per_view, 1) %}
+{% set sliderSpaceBetween = safe_get(properties.slider_space_between, 16) %}
+
+{% set thumbnailsEnabled = safe_get(properties.thumbnails_enabled, true) %}
+{% set thumbnailsShowWholeImage = safe_get(properties.thumbnails_show_whole_image, false) %}
+{% set thumbnailHeight = safe_get(properties.thumbnails_height, 196) %}
+{% set thumbnailsBorderRadius = safe_get(properties.thumbnails_border_radius, 8) %}
+{% set thumbnailsItemsPerView = safe_get(properties.thumbnails_items_per_view, 2) %}
+{% set thumbnailsSpaceBetween = safe_get(properties.thumbnails_space_between, 16) %}
 
 {% set globalClass = ['snippet-product-gallery'] %}
 {% set localClass = [globalClass, '-', id] | join %}
 
 <style>
-  .{{ globalClass }}__nav-thumbnails {
-    display: flex;
-    height: 196px;
-    overflow-x: scroll;
-    justify-content: space-between;
-    /*align-items: center;*/
+  .{{ localClass }}__slides {
+    height: {{ sliderHeight }}px;
+    width: 100%;
   }
-  .{{ globalClass }}__nav-thumbnails-item {
+
+  .{{ localClass }}__slides swiper-slide img {
+    border-radius: {{ sliderBorderRadius }}px;
+    {% if sliderShowWholeImage %}
+      max-width: 100%;
+      max-height: 100%;
+      width: initial;
+      height: initial;
+    {% else %}
+      width: 100%;
+      height: 100%;
+    {% endif %}
+  }
+
+  .{{ localClass }}__slides swiper-slide iframe {
+    border-radius: {{ sliderBorderRadius }}px;
+  }
+
+  .{{ localClass }}__thumbnails {
+    height: {{ thumbnailHeight }}px;
+    padding-top: 16px;
+  }
+
+  .{{ localClass }}__thumbnails swiper-slide img {
+    border-radius: {{ thumbnailsBorderRadius }}px;
+    {% if thumbnailsShowWholeImage %}
+      max-width: 100%;
+      max-height: 100%;
+      width: initial;
+      height: initial;
+    {% else %}
+      width: 100%;
+      height: 100%;
+    {% endif %}
+  }
+
+  .{{ localClass }}__thumbnails swiper-slide iframe {
+    border-radius: {{ thumbnailsBorderRadius }}px;
+  }
+
+  .{{ localClass }}__youtube-slide {
+    position: relative;
+  }
+  .{{ localClass }}__youtube-slide-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
-    justify-content: center;
-    align-items: center;
-    display: flex;
+  }
+
+  .{{ localClass }}__slide .{{ localClass }}__youtube-slide-cover {
+    height: {{ '100%' if sliderLightboxEnabled else '0px'}};
   }
 </style>
 
-{% if shop.description_image and ((attachments | length) or youtube_link) and not shop.description_youtube_only %}
-  <div class="{{ globalClass }} {{ localClass }}">
-    <div id="{{ localClass }}__main" class="{{ globalClass }}__main {{ localClass }}__main">
+<div class="{{ globalClass }}__container {{ localClass }}__container">
+  <swiper-container
+    init="false"
+    style="--swiper-navigation-color: var(--black3)"
+    class="d-none {{ globalClass }}__slides {{ localClass }}__slides"
+  >
+    {% for attachment in attachments %}
+      {% set image = cdn_link(attachment.cloudflare_image_id, 'shopItem') %}
+      <swiper-slide class="{{ localClass }}__slide" data-slide-idx="{{loop.index0}}">
+        <img src="{{image}}" alt="{{attachment.original_name}}" />
+      </swiper-slide>
+    {% endfor %}
+
+    {% if youtubeLink %}
+      <swiper-slide class="{{ localClass }}__slide {{ localClass }}__youtube-slide" data-slide-idx="{{attachments | length}}">
+        <div class="{{ localClass }}__youtube-slide-cover"></div>
+        <div id="{{ localClass }}__youtube-player"></div>
+      </swiper-slide>
+    {% endif %}
+  </swiper-container>
+
+  {% if thumbnailsEnabled %}
+    <swiper-container
+      init="false"
+      class="d-none {{ globalClass }}__thumbnails {{ localClass }}__thumbnails"
+    >
       {% for attachment in attachments %}
         {% set image = cdn_link(attachment.cloudflare_image_id, 'shopItem') %}
-
-        {% set images = (images.push(image), images) %}
-
-        <a href="{{image}}" data-slide-idx="{{loop.index0}}">
-          <div data-pswp-src="{{image}}" class="shop-product-info-image">
-            <img src="{{image}}" alt="{{attachment.original_name}}" />
-          </div>
-        </a>
+        <swiper-slide>
+          <img src="{{image}}" alt="{{attachment.original_name}}" />
+        </swiper-slide>
       {% endfor %}
 
-      {% if youtube_link %}
-        <a href='{{youtube_link}}' data-slide-idx="{{attachments | length}}">
-          <div class="shop-product-info-image">
-            <div class="player-wrapper">
-              <div style="width: auto; height: auto;">
-                <div style="width: 100%; height: 100%;">
-                  <div id="sellix-video-player-{{id}}"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </a>
+      {% if youtubeLink %}
+        <swiper-slide class="{{ localClass }}__youtube-slide">
+          <div class="{{ localClass }}__youtube-slide-cover"></div>
+          <div id="{{ localClass }}__youtube-thumb-player"></div>
+        </swiper-slide>
       {% endif %}
-    </div>
+    </swiper-container>
+  {% endif %}
+</div>
 
-    <div class="{{ globalClass }}__nav-container {{ localClass }}__nav-container">
-      <div id="{{ localClass }}__nav-thumbnails" class="{{ globalClass }}__nav-thumbnails {{ localClass }}__nav-thumbnails">
-        {% for attachment in attachments %}
-          {% set image = cdn_link(attachment.cloudflare_image_id, 'shopItem') %}
-          <div class="{{ globalClass }}__nav-thumbnails-item {{ localClass }}__nav-thumbnails-item">
-            <img src="{{image}}" alt="{{attachment.original_name}}" style="max-height: 100%;" />
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
+<script type="application/javascript">
+  $(document).ready(function() {
+    const slidesCount = {{ attachments | length + 1 if youtubeLink else 0 }};
 
-  <script type='application/javascript'>
-    $(document).ready(function () {
-      {% if youtube_link %}
-      const container = document.getElementById('sellix-video-player-{{id}}');
-      const url ="{{youtube_link}}";
-      renderReactPlayer(container, { url, width: 'auth', height: 'auto' });
+    let thumbnailsElement;
+    {% if thumbnailsEnabled %}
+      thumbnailsElement = activateSwiper__{{ id }}(
+        '.{{ localClass }}__thumbnails',
+        {
+          loop: true,
+          spaceBetween: {{ thumbnailsSpaceBetween }},
+          slidesPerView: Math.min({{ thumbnailsItemsPerView }}, slidesCount),
+          freeMode: false,
+          on: {
+            init: () => {
+              $('.{{ localClass }}__thumbnails').removeClass('d-none');
+            }
+          }
+        },
+      );
+    {% endif %}
+
+    activateSwiper__{{ id }}(
+      '.{{ localClass }}__slides',
+      {
+        navigation: {{ sliderNavigationEnabled }},
+        pagination: {
+          enabled: {{ sliderPaginationEnabled }},
+          clickable: {{ sliderPaginationEnabled }},
+        },
+        spaceBetween: {{ sliderSpaceBetween }},
+        slidesPerView: Math.min({{ sliderItemsPerView }}, slidesCount),
+        loop: true,
+        thumbs: {
+          swiper: thumbnailsElement ? thumbnailsElement.swiper : undefined,
+        },
+        on: {
+          init: () => {
+            $('.{{ localClass }}__slides').removeClass('d-none');
+          }
+        }
+      },
+    );
+
+    {% if youtubeLink %}
+      const url ="{{youtubeLink}}";
+      activateYoutubePlayer__{{ id }}('{{ localClass }}__youtube-player', url);
+      {% if thumbnailsEnabled %}
+        activateYoutubePlayer__{{ id }}('{{ localClass }}__youtube-thumb-player', url);
       {% endif %}
+    {% endif %}
 
-      const slider = tns({
-        container: '#{{ localClass }}__main',
-        items: 1,
-        controls: false,
-        navContainer: '#{{ localClass }}__nav-thumbnails',
-        navAsThumbnails: true,
-        navPosition: 'bottom',
-        autoHeight: true,
-      });
+    {% if sliderLightboxEnabled %}
+      activateLightBox__{{ id }}();
+    {% endif %}
 
-      $(document).on('SellixShowProductDescription SellixInvoiceShowProductDescription', () => {
-        setTimeout(function() {
-          slider.updateSliderHeight();
-        }, 0);
-      });
+    function activateSwiper__{{ id }}(selector, params) {
+      const element = document.querySelector(selector);
+      Object.assign(element, params);
+      element.initialize();
 
-      $('#{{ localClass}}__main a').on('click', function(e) {
+      return element;
+    }
+
+    function activateLightBox__{{ id }}() {
+      $('.{{ localClass}}__slide').on('click', function(e) {
         e.preventDefault();
 
         const slideIdx = +$(this).data('slide-idx') || 0;
@@ -109,9 +213,9 @@
               type: 'image',
             },
             {% endfor %}
-            {% if youtube_link %}
+            {% if youtubeLink %}
             {
-              src: '{{youtube_link}}',
+              src: '{{youtubeLink}}',
               type: 'iframe',
             },
             {% endif %}
@@ -133,6 +237,11 @@
           },
         }, slideIdx);
       });
-    });
-  </script>
-{% endif %}
+    }
+
+    function activateYoutubePlayer__{{ id }}(selector) {
+      const container = document.getElementById(selector, url);
+      renderReactPlayer(container, { url, width: 'auth', height: 'auto' });
+    }
+  });
+</script>

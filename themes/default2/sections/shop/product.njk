@@ -1,6 +1,8 @@
 {% set id = uid() %}
 {% set product = global.common.productInfo.product %}
+{% set colors = themeProperties.current_colors %}
 
+{% set bgColor = properties.background_color %}
 {% set fullWidth = safe_get(properties.fullwidth, false) %}
 {% set sidebarEnabled = safe_get(properties.right_sidebar_enable, true) %}
 {% set sidebarBlocksCount = safe_get(properties.right_sidebar_blocks_count, 3) %}
@@ -9,6 +11,9 @@
 {% set localClass = [globalClass, '-', id] | join %}
 
 <style>
+  .sellix-section.{{ globalClass}} {
+    background-color: {{ colors[bgColor] }};
+  }
   {% if sidebarEnabled %}
     .{{ localClass }}__container {
       display: grid;
