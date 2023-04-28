@@ -2959,18 +2959,48 @@
               "class": "section-product",
               "properties": {
                 "enable_right_sidebar": true,
-                "right_sidebar_blocks_count": 5
+                "right_sidebar_blocks_count": 7
               },
               "block_order": [
                 "Product: Gallery",
                 "Product: Info",
+                "Horizontal delimiter 1",
                 "Purchase details",
                 "Product: Addons",
+                "Horizontal delimiter 2",
                 "Product: Description",
                 "Product: Warranty"
 
               ],
               "blocks": {
+                "Horizontal delimiter 1": {
+                  "name": "Horizontal delimiter",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "margin_top_desktop": 24,
+                      "margin_bottom_desktop": 24,
+                      "margin_top_tablet": 24,
+                      "margin_bottom_tablet": 24,
+                      "margin_top_mobile": 24,
+                      "margin_bottom_mobile": 24
+                    }
+                  }
+                },
+                "Horizontal delimiter 2": {
+                  "name": "Horizontal delimiter",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "margin_top_desktop": 24,
+                      "margin_bottom_desktop": 24,
+                      "margin_top_tablet": 24,
+                      "margin_bottom_tablet": 24,
+                      "margin_top_mobile": 24,
+                      "margin_bottom_mobile": 24
+                    }
+                  }
+                },
                 "Product: Gallery": {
                   "name": "Product: Gallery",
                   "settings": {
@@ -8524,6 +8554,205 @@
           }
         ]
       }
+    },
+    "Horizontal delimiter": {
+      "name": "Horizontal delimiter",
+      "path": "blocks/shared/horizontalDelimiter.njk",
+      "settings": {
+        "class": "block-horizontal-delimiter",
+        "schema": [
+          {
+            "id": "align",
+            "type": "select",
+            "label": "Align",
+            "options": [
+              {
+                "title": "Left",
+                "value": "start"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              },
+              {
+                "title": "Right",
+                "value": "end"
+              }
+            ],
+            "defaultValue": "center"
+          },
+          {
+            "id": "width",
+            "type": "range",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "unit": "%",
+            "label": "Width",
+            "defaultValue": 100
+          },
+          {
+            "id": "height",
+            "type": "range",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Height",
+            "defaultValue": 1
+          },
+          {
+            "id": "color",
+            "type": "select",
+            "label": "Color",
+            "options": [
+              {
+                "title": "Light Fron Color",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark Font Color",
+                "value": "dark_font_color"
+              },
+              {
+                "title": "Contrast Font Color",
+                "value": "contrast_font_color"
+              },
+
+              {
+                "title": "Gray #0",
+                "value": "gray_shade_0"
+              },
+              {
+                "title": "Gray #1",
+                "value": "gray_shade_1"
+              },
+              {
+                "title": "Gray #2",
+                "value": "gray_shade_2"
+              },
+              {
+                "title": "Gray #3",
+                "value": "gray_shade_3"
+              },
+              {
+                "title": "Gray #4",
+                "value": "gray_shade_4"
+              },
+              {
+                "title": "Gray #5",
+                "value": "gray_shade_5"
+              },
+              {
+                "title": "Gray #6",
+                "value": "gray_shade_6"
+              },
+              {
+                "title": "Gray #7",
+                "value": "gray_shade_7"
+              },
+              {
+                "title": "Gray #8",
+                "value": "gray_shade_8"
+              },
+              {
+                "title": "Gray #9",
+                "value": "gray_shade_9"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "gray_shade_2"
+          },
+          {
+            "id": "border_radius",
+            "type": "range",
+            "max": 75,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Border radius",
+            "defaultValue": 0
+          },
+          {
+            "id": "desktop_screen_properties",
+            "type": "header",
+            "content": "Desktop screen"
+          },
+          {
+            "id": "margin_top_desktop",
+            "type": "range",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin top",
+            "defaultValue": 0
+          },
+          {
+            "id": "margin_bottom_desktop",
+            "type": "range",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin bottom",
+            "defaultValue": 0
+          },
+          {
+            "id": "tablet_screen_properties",
+            "type": "header",
+            "content": "Tablet screen"
+          },
+          {
+            "id": "margin_top_tablet",
+            "type": "range",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin bottom",
+            "defaultValue": 0
+          },
+          {
+            "id": "margin_bottom_tablet",
+            "type": "range",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin bottom",
+            "defaultValue": 0
+          },
+          {
+            "id": "mobile_screen_properties",
+            "type": "header",
+            "content": "Mobile screen"
+          },
+          {
+            "id": "margin_top_mobile",
+            "type": "range",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin bottom",
+            "defaultValue": 0
+          },
+          {
+            "id": "margin_bottom_mobile",
+            "type": "range",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin bottom",
+            "defaultValue": 0
+          }
+        ]
+      }
     }
   },
 
@@ -8715,6 +8944,10 @@
     "Product: Warranty": {
       "name": "Product: Warranty",
       "path": "snippets/shop/product/productWarranty.njk"
+    },
+    "Purchase details": {
+      "name": "Purchase details",
+      "path": "snippets/shop/checkout/purchaseDetails.njk"
     },
     "Rating star": {
       "name": "Rating star",

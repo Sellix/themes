@@ -1,12 +1,45 @@
 {% set id = uid() %}
 {% set shop = global.common.shopInfo.shop %}
 {% set product = args.product %}
+{% set isPayWhatYouWant = (product.pay_what_you_want | int === 1) %}
+{% set isFree = product.price_display | float === 0 and not isPayWhatYouWant %}
+{% set onHold = product.on_hold | int %}
+{% set isOut = (product.stock | int === 0) %}
 {% set colors = themeProperties.current_colors %}
+
+{% set tags = [] %}
+{% if product.type === 'SUBSCRIPTION' %}
+  {% set tags = (tags.push('shop.shared.titles.productType.subscription'), tags) %}
+{% endif %}
+{% if isFree %}
+  {% set tags = (tags.push('shop.shared.titles.free'), tags) %}
+{% endif %}
+{% if isPayWhatYouWant %}
+  {% set tags = (tags.push('shop.main.cards.product.yourPrice'), tags) %}
+{% endif %}
+{% if onHold %}
+  {% set tags = (tags.push('shop.main.cards.product.onHold'), tags) %}
+{% endif %}
 
 {% set titleFontColor = safe_get(properties.title_font_color, 'dark_font_color') %}
 {% set titleFontSize = safe_get(properties.title_font_size, 32) %}
 {% set titleFontWeight = safe_get(properties.title_font_weight, 500) %}
 {% set titleLineHeight = safe_get(properties.title_line_height, 48) %}
+
+{% set priceFontColor = safe_get(properties.price_font_color, 'dark_font_color') %}
+{% set priceFontSize = safe_get(properties.price_font_size, 18) %}
+{% set priceFontWeight = safe_get(properties.price_font_weight, 500) %}
+{% set priceLineHeight = safe_get(properties.price_line_height, 28) %}
+
+{% set initialPriceFontColor = safe_get(properties.initial_price_font_color, 'gray_shade_3') %}
+{% set initialPriceFontSize = safe_get(properties.initial_price_font_size, 18) %}
+{% set initialPriceFontWeight = safe_get(properties.initial_price_font_weight, 400) %}
+{% set initialPriceLineHeight = safe_get(properties.initial_price_line_height, 28) %}
+
+{% set taxFontColor = safe_get(properties.tax_font_color, 'gray_shade_5') %}
+{% set taxFontSize = safe_get(properties.tax_size, 14) %}
+{% set taxFontWeight = safe_get(properties.tax_font_weight, 400) %}
+{% set taxLineHeight = safe_get(properties.tax_line_height, 20) %}
 
 {% set globalClass = ['snippet-product-info'] %}
 {% set localClass = [globalClass, '-', id] | join %}
@@ -20,6 +53,25 @@
   }
   .{{ localClass }}__rating {
     color: {{ colors[titleFontColor] }};
+  }
+  .{{ localClass }}__price {
+    color: {{ colors[priceFontColor] }};
+    font-size: {{ priceFontSize }}px;
+    font-weight: {{ priceFontWeight }};
+    line-height: {{ priceLineHeight }}px;
+  }
+  .{{ localClass }}__price-initial {
+    text-decoration: line-through;
+    font-weight: {{ initialPriceFontWeight }};
+    color: {{ colors[initialPriceFontColor] }};
+    font-size: {{ initialPriceFontSize }}px;
+    line-height: {{ initialPriceLineHeight }}px;
+  }
+  .{{ localClass }}__tax {
+    color: {{ colors[priceFontColor] }};
+    font-size: 14px;
+    font-weight: 40;
+    line-height: 20px;
   }
 </style>
 
@@ -36,9 +88,48 @@
     {% endif %}
   </div>
 
-  {% if product.type === 'SUBSCRIPTION' %}
+  {% if tags | length > 0 %}
     <div class="{{ globalClass }}__tags {{ localClass }}__tags">
-      {% render_snippet 'Tag', tag=('shop.shared.titles.productType.subscription' | t) %}
+      {% for tag in tags %}
+        {% render_snippet 'Tag', tag=(tag | t) %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if not isFree %}
+    <div class="{{ globalClass }}__price-info {{ localClass }}__price-info">
+      {% if product.price_variants %}
+        <span class="{{ globalClass }}__price-starting-at {{ localClass }}__price-starting-at">
+          {{ 'shop.shared.titles.startingAt' | t }}:
+        </span>
+      {% endif %}
+
+      <span class="{{ globalClass }}__price {{ localClass }}__price">
+        {% render_snippet
+          'Price',
+          currency=product.currency,
+          price=product.price_display,
+          discount=product.price_discount,
+          priceVariants=product.price_variants
+        %}
+      </span>
+
+      {% if product.price_discount %}
+        <span class="{{ globalClass }}__price-initial {{ localClass }}__price-initial">
+          {% render_snippet 'Price', currency=product.currency, price=product.price_display %}
+        </span>
+
+        {% render_snippet
+          'Tag',
+          tag=([product.price_discount, '%', ' OFF'] | join | t),
+          is_warning=true
+        %}
+      {% endif %}
+
+      {# TODO #}
+      {# <span class="{{ globalClass }}__price-tax {{ localClass }}__price-tax"> #}
+      {#   +10% Tax #}
+      {# </span> #}
     </div>
   {% endif %}
 

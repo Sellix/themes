@@ -1,0 +1,50 @@
+{% set id = uid() %}
+{% set colors = themeProperties.current_colors %}
+
+{% set align = safe_get(properties.align, 'center') %}
+{% set width = safe_get(properties.width, 100) %}
+{% set height = safe_get(properties.height, 1) %}
+{% set color = safe_get(properties.color, 'gray_shade_2') %}
+{% set borderRadius = safe_get(properties.border_radius, 0) %}
+{% set marginTopDesktop = safe_get(properties.margin_top_desktop, 0) %}
+{% set marginBottomDesktop = safe_get(properties.margin_bottom_desktop, 0) %}
+{% set marginTopTablet = safe_get(properties.margin_top_tablet, 0) %}
+{% set marginBottomTablet = safe_get(properties.margin_bottom_tablet, 0) %}
+{% set marginTopMobile = safe_get(properties.margin_top_mobile, 0) %}
+{% set marginBottomMobile = safe_get(properties.margin_bottom_mobile, 0) %}
+
+{% set localClass = [globalClass, '-', id] | join %}
+
+
+<style>
+  .{{ localClass }}__container {
+    width: 100%;
+    display: flex;
+    justify-content: {{ align }};
+  }
+  .{{ localClass }}__delimiter {
+    background-color: {{ colors[color] }};
+    width: {{ width }}%;
+    height: {{ height }}px;
+    border-radius: {{ borderRadius }}px;
+
+    margin-top: {{ marginTopDesktop }}px;
+    margin-bottom: {{ marginBottomDesktop }}px;
+  }
+  @media (max-width: 768px) {
+    .{{ localClass }}__delimiter {
+      margin-top: {{ marginTopTablet }}px;
+      margin-bottom: {{ marginBottomTablet }}px;
+    }
+  }
+  @media (max-width: 640px) {
+    .{{ localClass }}__delimiter {
+      margin-top: {{ marginTopMobile }}px;
+      margin-bottom: {{ marginBottomMobile }}px;
+    }
+  }
+</style>
+
+<div class="{{ globalClass }}__container {{ localClass }}__container">
+  <div class="{{ globalClass }}__delimiter {{ localClass }}__delimiter"></div>
+</div>

@@ -91,7 +91,7 @@
               {{ 'shop.shared.titles.startingAt' | t }}:
             </span>
             <span class="{{ localClass }}__price">
-              {{global.config.CURRENCY_LIST[product.currency]}}{{product.price_display}}
+              {% render_snippet 'Price', currency=product.currency, price=product.price_display %}
             </span>
           </div>
         {% endif %}
