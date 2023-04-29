@@ -6,14 +6,16 @@
 {% set colors = themeProperties.current_colors %}
 
 {% set collapsable = safe_get(properties.collapsable, true) %}
-{% set showYoutubePlayer = safe_get(properties.show_youtube_player, false) %}
-{% set isYoutubeDescription = true if (shop.description_youtube_only and product.youtube_link and showYoutubePlayer) else false %}
+{% set warranty = product.warranty | int %}
 
-{% if invoice.developer_invoice %}
-  {% set description = 'shop.product.developerInvoiceDescription' | t({ productTitle: product.title}) %}
-{% else %}
-  {% set description = product.description | html_sanitize %}
-{% endif %}
+{% set warrnatyBodyProps = {
+  "padding_vert": properties.body_padding_vert,
+  "padding_horiz": properties.body_padding_horiz,
+  "font_color": properties.body_font_color,
+  "font_size": properties.body_font_size,
+  "font_weight": properties.body_font_weight,
+  "line_height": properties.body_line_height
+} %}
 
 {% set titleFontColor = safe_get(properties.title_font_color, 'dark_font_color') %}
 {% set titleFontSize = safe_get(properties.title_font_size, 16) %}
@@ -25,7 +27,7 @@
 {% set bodyFontWeight = safe_get(properties.body_font_weight, 400) %}
 {% set bodyLineHeight = safe_get(properties.body_line_height, 20) %}
 
-{% set globalClass = ['snippet-product-description'] %}
+{% set globalClass = ['snippet-product-warranty-collapsable'] %}
 {% set localClass = [globalClass, '-', id] | join %}
 
 <style>
@@ -47,7 +49,7 @@
 <div class="{{ globalClass }} {{ localClass }}">
   <div class="{{ globalClass }}__header {{ localClass }}__header">
     <span>
-      {{ 'shop.shared.titles.description' | t }}
+      {{ 'shop.shared.titles.productWarranty' | t }}
     </span>
 
     <span class="chevron {{ 'd-none' if not collapsable }}">
@@ -60,29 +62,16 @@
   </div>
 
   <div class="{{ globalClass }}__body {{ localClass }}__body {{ 'd-none' if collapsable }}">
-    {% if isYoutubeDescription %}
-      <div class="{{ localClass }}__player youtube-player-wrapper"></div>
+    {% if warranty %}
+      {% render_snippet 'Product: Warranty text', properties=warrnatyBodyProps, product=product %}
+    {% else %}
+      {{ 'shop.shared.titles.noProductWarranty' | t }}
     {% endif %}
-
-    <div class="{{ globalClass }}__description {{ localClass}}__description">
-      {% if description %}
-        {{ description | safe }}
-      {% else %}
-        {{ 'shop.shared.titles.noDescription' | t }}
-      {% endif %}
-    </div>
   </div>
 </div>
 
 <script type="application/javascript">
   $(document).ready(function() {
-    const isYoutubeDescription = {{ isYoutubeDescription }};
-    if (isYoutubeDescription) {
-      const container = document.querySelector('.{{ localClass }}__player');
-      const url ="{{product.youtube_link}}";
-      renderReactPlayer(container, { url, width: 'auth', height: 'auto' });
-    }
-
     const collapsable = {{ collapsable }};
     if (collapsable) {
       $('.{{ localClass }}__header').on('click', function() {

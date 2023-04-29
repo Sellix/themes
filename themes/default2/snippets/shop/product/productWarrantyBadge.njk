@@ -1,0 +1,143 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set properties = args.properties %}
+{% set colors = themeProperties.current_colors %}
+
+{% set product = args.product or global.common.productInfo.product %}
+{% set warranty = product.warranty | int %}
+{% set title = product.title %}
+{% set name = product.name %}
+{% set warranty_text = product.warranty_text %}
+{% set isCart = product.isCart %}
+{% set showInModal = properties.show_in_modal %}
+
+{% set containerShowBorder = safe_get(properties.show_border, true) %}
+{% set containerBorderRadius = safe_get(properties.container_border_radius, 8) %}
+{% set containerBackgroundColor = safe_get(properties.container_background_color, 'transparent') %}
+{% set containerPaddingVert = safe_get(properties.container_padding_vert, 16) %}
+{% set containerPaddingHoriz = safe_get(properties.container_padding_horiz, 16) %}
+{% set containerShadow = safe_get(properties.container_shadow, 'none') %}
+
+{% set titleFontColor = safe_get(properties.title_font_color, 'dark_font_color') %}
+{% set titleFontSize = safe_get(properties.title_font_size, 16) %}
+{% set titleFontWeight = safe_get(properties.title_font_weight, 500) %}
+{% set titleLineHeight = safe_get(properties.title_line_height, 24) %}
+
+{% set warrnatyBodyProps = {
+  "padding_vert": properties.body_padding_vert,
+  "padding_horiz": properties.body_padding_horiz,
+  "font_color": properties.body_font_color,
+  "font_size": properties.body_font_size,
+  "font_weight": properties.body_font_weight,
+  "line_height": properties.body_line_height
+} %}
+
+{% set globalClass = ['snippet-product-warranty-badge'] %}
+{% set localClass = [globalClass, '-', id] | join %}
+
+<style>
+  .{{ localClass }} {
+    display: flex;
+    flex-direction: column;
+    border: {{ '1px solid var(--borderColor)!important' if containerShowBorder else 'none' }};
+    border-radius: {{ containerBorderRadius }}px;
+    background: {{ colors[containerBackgroundColor] }};
+    padding:  {{ containerPaddingVert }}px {{ containerPaddingHoriz }}px;
+    box-shadow: {{ containerShadow }};
+  }
+
+  .{{ localClass }}__head,
+  .{{ localClass }}__modal .sellix-modal-header {
+    display: flex;
+    color: {{ colors[titleFontColor] }}!important;
+    font-size: {{ titleFontSize }}px!important;
+    font-weight: {{ titleFontWeight }}!important;
+    line-height: {{ titleLineHeight }}px;
+  }
+
+  .{{ localClass }}__head svg {
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    margin-right: 1rem;
+    fill: {{ colors[titleFontColor] }};
+  }
+
+  .{{ localClass }}__head-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .{{ localClass }}__head-hint {
+    display: flex;
+    font-weight: 300;
+    margin-top: 0.5rem;
+    font-size: 12px;
+    color: {{ colors[titleFontColor] }};
+    opacity: .7;
+  }
+
+  .{{ localClass }}__modal {
+    display: none;
+  }
+</style>
+
+<div class="{{ globalClass }} {{ localClass }}">
+  <div class="{{ globalClass }}__head {{ localClass }}__head">
+    {% if warranty %}
+      {% render_snippet 'Icons: Warranty yes' %}
+      <div class="{{ globalClass }}__head-title {{ localClass }}__head-title">
+        <div>
+          {{ 'shop.product.warrantyTitle' | t }}
+        </div>
+        {% if showInModal %}
+          <span class="{{ globalClass }}__head-hint {{ localClass }}__head-hint">
+            {{ 'shop.shared.titles.moreInfo' | t }}
+          </span>
+        {% endif %}
+      </div>
+    {% else %}
+      {% render_snippet 'Icons: Warranty no' %}
+      <div class="{{ globalClass }}__head-title {{ localClass }}__head-title">
+        <div>
+          {{ 'shop.product.noWarrantyTitle' | t }}
+        </div>
+      </div>
+      {% endif %}
+  </div>
+  {% if warranty and not showInModal %}
+    <div class="{{ globalClass }}__body {{ localClass }}__body">
+      {% render_snippet 'Product: Warranty text', properties=warrnatyBodyProps, product=product %}
+    </div>
+  {% endif %}
+</div>
+
+{% if warranty and showInModal %}
+  <div class="sellix-modal {{ globalClass }}__modal {{ localClass }}__modal">
+    <div class="sellix-modal-header pb-4">
+      {{ 'shop.shared.titles.productWarranty' | t }}
+      <div class="sellix-modal-close" >
+        <i class="fa-light fa-times" style="color: var(--darkFontColor); font-size:1.25rem;"></i>
+      </div>
+    </div>
+    {% render_snippet 'Product: Warranty text', properties=warrnatyBodyProps, product=product %}
+  </div>
+
+  <script type='application/javascript'>
+    $(document).ready(function () {
+      $('.{{ localClass }}').on('click', function () {
+        $('.{{ localClass }}__modal').modal({
+          modalClass: '',
+          blockerClass: '',
+          showClose: false
+        });
+      });
+
+      $('.{{ localClass }}__modal .sellix-modal-close').on('click', function () {
+        $.modal.close();
+      });
+    });
+  </script>
+{% endif %}

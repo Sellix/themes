@@ -2959,7 +2959,7 @@
               "class": "section-product",
               "properties": {
                 "enable_right_sidebar": true,
-                "right_sidebar_blocks_count": 7
+                "right_sidebar_blocks_count": 9
               },
               "block_order": [
                 "Product: Gallery",
@@ -2969,8 +2969,9 @@
                 "Product: Addons",
                 "Horizontal delimiter 2",
                 "Product: Description",
-                "Product: Warranty"
-
+                "Horizontal delimiter 3",
+                "Product: Warranty",
+                "Horizontal delimiter 4"
               ],
               "blocks": {
                 "Horizontal delimiter 1": {
@@ -2988,6 +2989,34 @@
                   }
                 },
                 "Horizontal delimiter 2": {
+                  "name": "Horizontal delimiter",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "margin_top_desktop": 24,
+                      "margin_bottom_desktop": 24,
+                      "margin_top_tablet": 24,
+                      "margin_bottom_tablet": 24,
+                      "margin_top_mobile": 24,
+                      "margin_bottom_mobile": 24
+                    }
+                  }
+                },
+                "Horizontal delimiter 3": {
+                  "name": "Horizontal delimiter",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "margin_top_desktop": 24,
+                      "margin_bottom_desktop": 24,
+                      "margin_top_tablet": 24,
+                      "margin_bottom_tablet": 24,
+                      "margin_top_mobile": 24,
+                      "margin_bottom_mobile": 24
+                    }
+                  }
+                },
+                "Horizontal delimiter 4": {
                   "name": "Horizontal delimiter",
                   "settings": {
                     "visible": true,
@@ -3049,8 +3078,8 @@
                   "settings": {
                     "visible": true,
                     "properties": {
-                      "show_in_modal": true,
-                      "body_text_align": "left"
+                      "type": "collapsable",
+                      "body_padding_vert": 20
                     }
                   }
                 }
@@ -5017,13 +5046,13 @@
           {
             "id": "title_content",
             "type": "text",
-            "label": "title",
+            "label": "Title",
             "defaultValue": "Put your title here"
           },
           {
             "id": "title_font_color",
             "type": "select",
-            "label": "title font color",
+            "label": "Font color",
             "options": [
               {
                 "title": "Brand",
@@ -5047,7 +5076,7 @@
             "step": 1,
             "type": "range",
             "unit": "px",
-            "label": "title font size",
+            "label": "Font size",
             "defaultValue": 32
           },
           {
@@ -5057,13 +5086,13 @@
             "step": 1,
             "type": "range",
             "unit": "px",
-            "label": "title line height",
+            "label": "Line height",
             "defaultValue": 39
           },
           {
             "id": "title_font_weight",
             "type": "select",
-            "label": "title font weight",
+            "label": "Font weight",
             "options": [
               {
                 "title": "Normal",
@@ -5088,13 +5117,13 @@
           {
             "id": "subtitle_content",
             "type": "text",
-            "label": "subtitle",
+            "label": "Subtitle",
             "defaultValue": "Put your title here"
           },
           {
             "id": "subtitle_font_color",
             "type": "select",
-            "label": "subtitle font color",
+            "label": "Font color",
             "options": [
               {
                 "title": "Brand",
@@ -5118,23 +5147,23 @@
             "step": 1,
             "type": "range",
             "unit": "px",
-            "label": "subtitle font size",
+            "label": "Font size",
             "defaultValue": 16
           },
           {
             "id": "subtitle_line_height",
             "max": 200,
-            "min": 50,
+            "min": 1,
             "step": 1,
             "type": "range",
             "unit": "px",
-            "label": "subtitle line height",
+            "label": "Line height",
             "defaultValue": 24
           },
           {
             "id": "subtitle_font_weight",
             "type": "select",
-            "label": "subtitle font weight",
+            "label": "Font weight",
             "options": [
               {
                 "title": "Normal",
@@ -5442,6 +5471,7 @@
       "name": "Cart",
       "path": "blocks/shop/cart.njk",
       "settings": {
+        "class": "block-cart",
         "schema": [
           {
             "id": "background_color",
@@ -6398,6 +6428,7 @@
       "name": "Menu",
       "path": "blocks/shop/menu.njk",
       "settings": {
+        "class": "block-menu",
         "schema": [
           {
             "id": "menu",
@@ -6706,6 +6737,7 @@
       "name": "Product: Addons",
       "path": "blocks/shop/product/productAddons.njk",
       "settings": {
+        "class": "block-product-addons",
         "schema": [
           {
             "id": "container_background_color",
@@ -6898,6 +6930,7 @@
       "name": "Product: Bundles",
       "path": "blocks/shop/product/productBundles.njk",
       "settings": {
+        "class": "block-product-bundles",
         "schema": [
           {
             "id": "render_mode",
@@ -7190,7 +7223,150 @@
       "name": "Product: Description",
       "path": "blocks/shop/product/productDescription.njk",
       "settings": {
+        "class": "block-product-description",
         "schema": [
+          {
+            "id": "collapsable",
+            "type": "checkbox",
+            "label": "Collapsable",
+            "defaultValue": true
+          },
+          {
+            "id": "show_youtube_player",
+            "type": "checkbox",
+            "label": "Show youtube player",
+            "defaultValue": false
+          },
+          {
+            "id": "title_properties",
+            "type": "header",
+            "content": "Title properties"
+          },
+          {
+            "id": "title_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              },
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              }
+            ],
+            "defaultValue": "dark_font_color"
+          },
+          {
+            "id": "title_font_size",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 16
+          },
+          {
+            "id": "title_line_height",
+            "max": 200,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Line height",
+            "defaultValue": 24
+          },
+          {
+            "id": "title_font_weight",
+            "type": "select",
+            "label": "Font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 500
+          },
+          {
+            "id": "body_properties",
+            "type": "header",
+            "content": "Body properties"
+          },
+          {
+            "id": "body_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              },
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              }
+            ],
+            "defaultValue": "dark_font_color"
+          },
+          {
+            "id": "body_font_size",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 14
+          },
+          {
+            "id": "body_line_height",
+            "max": 200,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Line height",
+            "defaultValue": 20
+          },
+          {
+            "id": "body_font_weight",
+            "type": "select",
+            "label": "Font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 400
+          }
         ]
       }
     },
@@ -7198,6 +7374,7 @@
       "name": "Product: Details",
       "path": "blocks/shop/product/productDetails.njk",
       "settings": {
+        "class": "block-product-details",
         "schema": [
           {
             "id": "container_background_color",
@@ -7291,6 +7468,7 @@
       "name": "Product: Gallery",
       "path": "blocks/shop/product/productGallery.njk",
       "settings": {
+        "class": "block-product-gallery",
         "schema": [
           {
             "id": "slider_properties",
@@ -7425,6 +7603,7 @@
       "name": "Product: Info",
       "path": "blocks/shop/product/productInfo.njk",
       "settings": {
+        "class": "block-product-info",
         "schema": [
         ]
       }
@@ -7433,6 +7612,7 @@
       "name": "Product: Relations",
       "path": "blocks/shop/product/productRelations.njk",
       "settings": {
+        "class": "block-product-relations",
         "schema": [
           {
             "id": "container_title",
@@ -7782,6 +7962,7 @@
       "name": "Product: Variants",
       "path": "blocks/shop/product/productVariants.njk",
       "settings": {
+        "class": "block-product-variants",
         "schema": [
           {
             "id": "container_background_color",
@@ -7820,7 +8001,29 @@
       "name": "Product: Warranty",
       "path": "blocks/shop/product/productWarranty.njk",
       "settings": {
+        "class": "block-product-warranty",
         "schema": [
+          {
+            "id": "type",
+            "type": "select",
+            "label": "Block type",
+            "options": [
+              {
+                "title": "Badge",
+                "value": "badge"
+              },
+              {
+                "title": "Collapsable",
+                "value": "collapsable"
+              }
+            ],
+            "defaultValue": "collapsable"
+          },
+          {
+            "id": "badge_properties",
+            "type": "header",
+            "content": "Badge properties"
+          },
           {
             "id": "show_in_modal",
             "type": "checkbox",
@@ -7860,12 +8063,12 @@
           {
             "id": "container_border_radius",
             "type": "range",
-            "max": 2,
+            "max": 32,
             "min": 0,
-            "step": 0.25,
-            "unit": "rem",
+            "step": 1,
+            "unit": "px",
             "label": "Border radius",
-            "defaultValue": 0.5
+            "defaultValue": 8
           },
           {
             "id": "container_padding_vert",
@@ -7911,10 +8114,88 @@
             ],
             "defaultValue": "none"
           },
+
           {
-            "id": "header_body",
+            "id": "collapsable_properties",
             "type": "header",
-            "content": "Body text settings"
+            "content": "Collapsable properties"
+          },
+          {
+            "id": "collapsable",
+            "type": "checkbox",
+            "label": "Collapsable",
+            "defaultValue": true
+          },
+
+          {
+            "id": "title_properties",
+            "type": "header",
+            "content": "Title properties"
+          },
+          {
+            "id": "title_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              },
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              }
+            ],
+            "defaultValue": "dark_font_color"
+          },
+          {
+            "id": "title_font_size",
+            "max": 20,
+            "min": 10,
+            "step": 2,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 16
+          },
+          {
+            "id": "title_font_weight",
+            "type": "select",
+            "label": "Font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 500
+          },
+          {
+            "id": "title_line_height",
+            "max": 200,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Line height",
+            "defaultValue": 24
+          },
+          {
+            "id": "body_properties",
+            "type": "header",
+            "content": "Body properties"
           },
           {
             "id": "body_font_color",
@@ -7947,20 +8228,54 @@
             "defaultValue": 14
           },
           {
-            "id": "body_text_align",
+            "id": "body_font_weight",
             "type": "select",
-            "label": "Text align",
+            "label": "Font weight",
             "options": [
               {
-                "title": "Left",
-                "value": "left"
+                "title": "Normal",
+                "value": 400
               },
               {
-                "title": "Center",
-                "value": "center"
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 700
               }
             ],
-            "defaultValue": "left"
+            "defaultValue": 400
+          },
+          {
+            "id": "body_line_height",
+            "max": 200,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Line height",
+            "defaultValue": 20
+          },
+          {
+            "id": "body_padding_vert",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vert",
+            "defaultValue": 0
+          },
+          {
+            "id": "body_padding_horiz",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horiz",
+            "defaultValue": 0
           }
         ]
       }
@@ -7969,6 +8284,7 @@
       "name": "Purchase details",
       "path": "blocks/shop/checkout/purchaseDetails.njk",
       "settings": {
+        "class": "block-purchase-details",
         "schema": [
           {
             "id": "render_mode",
@@ -8067,6 +8383,7 @@
       "name": "Shop statistics: Products quality",
       "path": "blocks/shop/statistics/productsQuality.njk",
       "settings": {
+        "class": "block-shop-statistics-products-quality",
         "schema": [
           {
             "id": "align",
@@ -8231,6 +8548,7 @@
       "name": "Shop statistics: Products sold",
       "path": "blocks/shop/statistics/productsSold.njk",
       "settings": {
+        "class": "block-shop-statistics-products-sold",
         "schema": [
           {
             "id": "align",
@@ -8395,6 +8713,7 @@
       "name": "Shop statistics: Reviews count",
       "path": "blocks/shop/statistics/reviewsCount.njk",
       "settings": {
+        "class": "block-shop-statistics-reviews-count",
         "schema": [
           {
             "id": "align",
@@ -8857,6 +9176,14 @@
       "name": "Icons: Cart",
       "path": "snippets/shared/icons/cart.njk"
     },
+    "Icons: Chevron down": {
+      "name": "Icons: Chevron down",
+      "path": "snippets/shared/icons/chevronDown.njk"
+    },
+    "Icons: Chevron up": {
+      "name": "Icons: Chevron up",
+      "path": "snippets/shared/icons/chevronUp.njk"
+    },
     "Icons: Menu": {
       "name": "Icons: Menu",
       "path": "snippets/shared/icons/menu.njk"
@@ -8869,9 +9196,13 @@
       "name": "Icons: Plus",
       "path": "snippets/shared/icons/plus.njk"
     },
-    "Icons: Warranty": {
-      "name": "Icons: Warranty",
-      "path": "snippets/shared/icons/warranty.njk"
+    "Icons: Warranty yes": {
+      "name": "Icons: Warranty yes",
+      "path": "snippets/shared/icons/warrantyYes.njk"
+    },
+    "Icons: Warranty no": {
+      "name": "Icons: Warranty no",
+      "path": "snippets/shared/icons/warrantyNo.njk"
     },
     "Icons: Zoom glass": {
       "name": "Icons: Zoom glass",
@@ -8941,9 +9272,17 @@
       "name": "Product: Variants",
       "path": "snippets/shop/product/productVariants.njk"
     },
-    "Product: Warranty": {
-      "name": "Product: Warranty",
-      "path": "snippets/shop/product/productWarranty.njk"
+    "Product: Warranty badge": {
+      "name": "Product: Warranty badge",
+      "path": "snippets/shop/product/productWarrantyBadge.njk"
+    },
+    "Product: Warranty collapsable": {
+      "name": "Product: Warranty collapsable",
+      "path": "snippets/shop/product/productWarrantyCollapsable.njk"
+    },
+    "Product: Warranty text": {
+      "name": "Product: Warranty text",
+      "path": "snippets/shop/product/productWarrantyText.njk"
     },
     "Purchase details": {
       "name": "Purchase details",
@@ -9220,6 +9559,10 @@
       "name": "snippet-product-cards.css",
       "path": "assets/css/snippet-product-cards.css"
     },
+    "snippet-product-description.css": {
+      "name": "snippet-product-description.css",
+      "path": "assets/css/snippet-product-description.css"
+    },
     "snippet-product-gallery.css": {
       "name": "snippet-product-gallery.css",
       "path": "assets/css/snippet-product-gallery.css"
@@ -9231,6 +9574,10 @@
     "snippet-product-list.css": {
       "name": "snippet-product-list.css",
       "path": "assets/css/snippet-product-list.css"
+    },
+    "snippet-product-warranty.css": {
+      "name": "snippet-product-warranty.css",
+      "path": "assets/css/snippet-product-warranty.css"
     },
     "snippet-tag.css": {
       "name": "snippet-tag.css",

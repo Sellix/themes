@@ -93,9 +93,11 @@
   <link rel="stylesheet" href="{{ 'snippet-language-selector.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-mobile-sidebar-menu.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-product-cards.css' | asset_url }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-product-description.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-product-gallery.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-product-info.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-product-list.css' | asset_url }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-product-warranty.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-tag.css' | asset_url }}"/>
 
   {% set theme = global.common.shopInfo.theme %}
@@ -159,8 +161,9 @@
 
   <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+  {% if global.request.type in ['product'] %}
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+  {% endif %}
 
   <script src="{{ 'copy-to-clipboard.min.js' | asset_url }}"></script>
   <script src="{{ 'file-saver.min.js' | asset_url }}"></script>

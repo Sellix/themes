@@ -2,9 +2,15 @@
 {% set properties = args.properties %}
 {% set shop = global.common.shopInfo.shop %}
 {% set product = args.product %}
-{% set attachments = product.image_attachments if product.image_attachments else [] %}
 {% set youtubeLink = product.youtube_link %}
-{% set slidesCount = attachments | length + 1 if youtubeLink else 0 %}
+
+{% set showYoutubelinkOnly = shop.description_youtube_only %}
+{% if showYoutubelinkOnly %}
+  {% set attachments = [] %}
+{% else %}
+  {% set attachments = product.image_attachments if product.image_attachments else [] %}
+{% endif %}
+{% set slidesCount = attachments | length + (1 if youtubeLink else 0) %}
 
 {% set sliderLightboxEnabled = safe_get(properties.slider_lightbox_enabled, true) %}
 {% set sliderShowWholeImage = safe_get(properties.slider_show_whole_image, true) %}
@@ -98,7 +104,7 @@
     {% if youtubeLink %}
       <swiper-slide class="{{ localClass }}__slide {{ localClass }}__youtube-slide" data-slide-idx="{{attachments | length}}">
         <div class="{{ localClass }}__youtube-slide-cover"></div>
-        <div id="{{ localClass }}__youtube-player"></div>
+        <div class="{{ localClass }}__youtube-player youtube-player-wrapper"></div>
       </swiper-slide>
     {% endif %}
   </swiper-container>
@@ -118,7 +124,7 @@
       {% if youtubeLink %}
         <swiper-slide class="{{ localClass }}__youtube-slide">
           <div class="{{ localClass }}__youtube-slide-cover"></div>
-          <div id="{{ localClass }}__youtube-thumb-player"></div>
+          <div class="{{ localClass }}__youtube-thumb-player youtub-player-wrapper"></div>
         </swiper-slide>
       {% endif %}
     </swiper-container>
@@ -171,9 +177,9 @@
 
     {% if youtubeLink %}
       const url ="{{youtubeLink}}";
-      activateYoutubePlayer__{{ id }}('{{ localClass }}__youtube-player', url);
+      activateYoutubePlayer__{{ id }}('.{{ localClass }}__youtube-player', url);
       {% if thumbnailsEnabled %}
-        activateYoutubePlayer__{{ id }}('{{ localClass }}__youtube-thumb-player', url);
+        activateYoutubePlayer__{{ id }}('.{{ localClass }}__youtube-thumb-player', url);
       {% endif %}
     {% endif %}
 
@@ -236,7 +242,7 @@
     }
 
     function activateYoutubePlayer__{{ id }}(selector) {
-      const container = document.getElementById(selector, url);
+      const container = document.querySelector(selector);
       renderReactPlayer(container, { url, width: 'auth', height: 'auto' });
     }
   });

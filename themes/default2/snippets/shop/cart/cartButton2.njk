@@ -3,6 +3,7 @@
 {% set product = args.product %}
 {% set subscription = global.common.shopInfo.subscription %}
 {% set cartEnabled = global.common.cartEnabled %}
+{% set isFree = product.price_display | float === 0 %}
 
 {% set globalClass = 'snippet-cart-button-2' %}
 {% set localClass = [globalClass, '-', id] | join %}
@@ -18,7 +19,11 @@
       <div class="{{ globalClass }}__button cart-product-quantity-button unselectable">
         <span class="cart-product-quantity hidden">...</span>
         <span class="cart-product-first-button hidden">
-          {{ 'shop.shared.titles.buy' | t }}
+          {% if isFree %}
+            {{ 'shop.shared.titles.getIt' | t }}
+          {% else %}
+            {{ 'shop.shared.titles.buy' | t }}
+          {% endif %}
         </span>
       </div>
       <div class="{{ globalClass }}__button cart-product-plus-button">
