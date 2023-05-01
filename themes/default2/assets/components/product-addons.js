@@ -8,15 +8,16 @@
       this.addonsMap = Object.fromEntries(addons.map((addon) => [addon.uniqid, addon]));
       this.activeAddonId = undefined;
 
-      this.addButtonContent = `<span>${window.sellixI18Next.t(
+      this.addButtonContent = `<i class="fa-regular fa-plus"></i> <span>${window.sellixI18Next.t(
         'shop.shared.titles.add',
-      )} <i class="fa-regular fa-plus"></i></span>`;
-      this.removeButtonContent = `<span>${window.sellixI18Next.t(
-        'shop.shared.titles.remove',
-      )} <i class="fa-regular fa-xmark"></i></span>`;
+      )}</span>`;
 
-      this.$container.find('.shop-product-info-addon-title').on('click', this.onToggleDescription.bind(this));
-      this.$container.find('.shop-product-info-addon-button').on('click', this.onClickButton.bind(this));
+      this.removeButtonContent = `<i class="fa-regular fa-xmark"></i> <span>${window.sellixI18Next.t(
+        'shop.shared.titles.remove',
+      )} </span>`;
+
+      this.$container.find('[data-addon-title=1]').on('click', this.onToggleDescription.bind(this));
+      this.$container.find('[data-addon-button=1]').on('click', this.onClickButton.bind(this));
     }
 
     onToggleDescription(event) {
@@ -24,28 +25,24 @@
 
       if (this.activeAddonId) {
         this.$container
-          .find(`.shop-product-info-addon-description-collapse`)
+          .find(`[data-collapsable-wrapper]`)
           .animate({ height: '0', overflow: 'hidden' }, { duration: 300, queue: false });
 
         this.$container
-          .find(`.shop-product-info-addon-title i.fa-solid`)
+          .find(`[data-addon-title=1] i.fa-solid`)
           .removeClass('fa-chevron-up')
           .addClass('fa-chevron-down');
       }
 
       if (this.activeAddonId !== addonId) {
-        const $addonDescription = this.$container.find(
-          `.shop-product-info-addon-description-collapse[data-addon-id=${addonId}]`,
-        );
+        const $addonDescription = this.$container.find(`[data-collapsable-wrapper=1][data-addon-id=${addonId}]`);
         this.activeAddonId = addonId;
         $addonDescription.animate(
           { height: $addonDescription.get(0).scrollHeight, overflow: 'initial' },
           { duration: 300, queue: false },
         );
 
-        this.$container
-          .find(`.shop-product-info-addon-title[data-addon-id=${addonId}] i.fa-solid`)
-          .addClass('fa-chevron-up');
+        this.$container.find(`[data-addon-title=1][data-addon-id=${addonId}] i.fa-solid`).addClass('fa-chevron-up');
       } else {
         this.activeAddonId = undefined;
       }
@@ -71,7 +68,7 @@
       const addedAddonsMap = Object.fromEntries(addedAddons.map((addon) => [addon.uniqid, addon]));
       this.addons.forEach((addon) => {
         this.$container
-          .find(`.shop-product-info-addon-button[data-addon-id=${addon.uniqid}]`)
+          .find(`[data-addon-button=1][data-addon-id=${addon.uniqid}]`)
           .html(Boolean(addedAddonsMap[addon.uniqid]) ? this.removeButtonContent : this.addButtonContent);
       });
     }

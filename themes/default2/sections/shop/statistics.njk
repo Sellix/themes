@@ -1,4 +1,3 @@
-{% set id = uid() %}
 {% set colors = themeProperties.current_colors %}
 {% set shop = global.common.shopInfo.shop %}
 
@@ -21,7 +20,7 @@
 {% set localClass = ['section-shop-statistics-', id] | join %}
 
 <style>
-  .sellix-section.section-shop-statistics {
+  .sellix-section.{{ globalClass}}-global-{{ id }} {
     background-color: {{ colors[bgColor] }};
   }
   .{{ localClass }} {

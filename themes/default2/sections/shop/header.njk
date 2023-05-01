@@ -1,4 +1,3 @@
-{% set id = args.layoutId or uid() %}
 {% set menuProps = themeProperties.mobile_menu %}
 {% set shop = global.common.shopInfo.shop %}
 {% set subscription = global.common.shopInfo.subscription %}
@@ -10,8 +9,8 @@
   else 'background_main_color'
 %}
 
-{% set localClass = ['section-header-', id] | join %}
 {% set globalClass =  'sellix-header' %}
+{% set localClass = ['section-header-', id] | join %}
 
 <style>
   .{{ localClass }} {

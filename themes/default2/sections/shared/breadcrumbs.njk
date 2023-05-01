@@ -1,18 +1,17 @@
-{% set id = uid() %}
 {% set colors = themeProperties.current_colors %}
 
-{% set paddingVertTopDesktop = safe_get(properties.padding_vert_top_desktop, 32) %}
-{% set paddingVertBottomDesktop = safe_get(properties.padding_vert_bottom_desktop, 32) %}
+{% set paddingVertTopDesktop = safe_get(properties.padding_top_desktop, 32) %}
+{% set paddingVertBottomDesktop = safe_get(properties.padding_bottom_desktop, 32) %}
 {% set paddingHorizDesktop = safe_get(properties.padding_horiz_desktop, 0) %}
 {% set marginTopDesktop = safe_get(properties.margin_top_desktop, 0) %}
 {% set marginBottomDesktop = safe_get(properties.margin_bottom_desktop, 60) %}
-{% set paddingVertTopTablet = safe_get(properties.padding_vert_top_tablet, 24) %}
-{% set paddingVertBottomTablet = safe_get(properties.padding_vert_bottom_tablet, 24) %}
+{% set paddingVertTopTablet = safe_get(properties.padding_top_tablet, 24) %}
+{% set paddingVertBottomTablet = safe_get(properties.padding_bottom_tablet, 24) %}
 {% set paddingHorizTablet = safe_get(properties.padding_horiz_tablet, 0) %}
 {% set marginTopTablet = safe_get(properties.margin_top_tablet, 0) %}
 {% set marginBottomTablet = safe_get(properties.margin_bottom_tablet, 30) %}
-{% set paddingVertTopMobile = safe_get(properties.padding_vert_top_mobile, 16) %}
-{% set paddingVertBottomMobile = safe_get(properties.padding_vert_bottom_mobile, 16) %}
+{% set paddingVertTopMobile = safe_get(properties.padding_top_mobile, 16) %}
+{% set paddingVertBottomMobile = safe_get(properties.padding_bottom_mobile, 16) %}
 {% set paddingHorizMobile = safe_get(properties.padding_horiz_mobile, 0) %}
 {% set marginTopMobile = safe_get(properties.margin_top_mobile, 0) %}
 {% set marginBottomMobile = safe_get(properties.margin_bottom_mobile, 30) %}
@@ -34,7 +33,7 @@
 {% set localClass = [globalClass, '-', id] | join %}
 
 <style>
-  .sellix-section.{{ globalClass}} {
+  .sellix-section.{{ globalClass}}-global-{{ id }} {
     background-color: {{ colors[bgColor] }};
   }
 

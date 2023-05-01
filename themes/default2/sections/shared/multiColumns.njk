@@ -1,20 +1,22 @@
-{% set id = uid() %}
 {% set colors = themeProperties.current_colors %}
 
 {% set columnGap = safe_get(properties.column_gap, 30) %}
 {% set rowGap = safe_get(properties.row_gap, 30) %}
 {% set columnsPerRowDesktop = safe_get(properties.columns_per_row_desktop, 2) %}
-{% set paddingVertDesktop = safe_get(properties.padding_vert_desktop, 130) %}
+{% set paddingTopDesktop = safe_get(properties.padding_top_desktop, 130) %}
+{% set paddingBottomDesktop = safe_get(properties.padding_bottom_desktop, 130) %}
 {% set paddingHorizDesktop = safe_get(properties.padding_horiz_desktop, 400) %}
 {% set marginTopDesktop = safe_get(properties.margin_top_desktop, 130) %}
 {% set marginBottomDesktop = safe_get(properties.margin_bottom_desktop, 400) %}
 {% set columnsPerRowTablet = safe_get(properties.columns_per_row_tablet, 2) %}
-{% set paddingVertTablet = safe_get(properties.padding_vert_tablet, 115) %}
+{% set paddingTopTablet = safe_get(properties.padding_top_tablet, 115) %}
+{% set paddingBottomTablet = safe_get(properties.padding_bottom_tablet, 115) %}
 {% set paddingHorizTablet = safe_get(properties.padding_horiz_tablet, 200) %}
 {% set marginTopTablet = safe_get(properties.margin_top_tablet, 130) %}
 {% set marginBottomTablet = safe_get(properties.margin_bottom_tablet, 400) %}
 {% set columnsPerRowMobile = safe_get(properties.columns_per_row_mobile, 2) %}
-{% set paddingVertMobile = safe_get(properties.padding_vert_mobile, 96) %}
+{% set paddingTopMobile = safe_get(properties.padding_top_mobile, 96) %}
+{% set paddingBottomtMobile = safe_get(properties.padding_bottom_mobile, 96) %}
 {% set paddingHorizMobile = safe_get(properties.padding_horiz_mobile, 36) %}
 {% set marginTopMobile = safe_get(properties.margin_top_mobile, 130) %}
 {% set marginBottomMobile = safe_get(properties.margin_bottom_mobile, 400) %}
@@ -29,7 +31,7 @@
     grid-template-columns: repeat({{ columnsPerRowDesktop }}, 1fr);
     grid-column-gap: {{ columnGap }}px;
     grid-row-gap: {{ rowGap }}px;
-    padding: {{ paddingVertDesktop }}px {{ paddingHorizDesktop }}px;
+    padding: {{ paddingTopDesktop }}px {{ paddingHorizDesktop }}px {{ paddingBottomDesktop }}px {{ paddingHorizDesktop }}px ;
     margin-top: {{ marginTopDesktop }}px;
     margin-bottom: {{ marginBottomDesktop }}px;
     {% if bgImage %}
@@ -44,7 +46,7 @@
   @media (max-width: 768px) {
     .{{ localClass }} {
       grid-template-columns: repeat({{ columnsPerRowTablet }}, 1fr);
-      padding: {{ paddingVertTablet }}px {{ paddingHorizTablet }}px;
+      padding: {{ paddingTopTablet }}px {{ paddingHorizTablet }}px {{ paddingBottomTablet }}px {{ paddingHorizTablet }}p;
       margin-top: {{ marginTopTablet }}px;
       margin-bottom: {{ marginBottomTablet }}px;
     }
@@ -53,7 +55,7 @@
   @media (max-width: 640px) {
     .{{ localClass }} {
       grid-template-columns: repeat({{ columnsPerRowMobile }}, 1fr);
-      padding: {{ paddingVertMobile }}px {{ paddingHorizMobile }}px;
+      padding: {{ paddingTopMobile }}px {{ paddingHorizMobile }}px {{ paddingBottomMobile }}px {{ paddingHorizMobile }}px;
       margin-top: {{ marginTopTablet }}px;
       margin-bottom: {{ marginBottomTablet }}px;
     }

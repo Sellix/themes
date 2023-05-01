@@ -66,7 +66,7 @@
         this.$bundle.show();
       }
 
-      const $products = this.$bundle.find('.sellix-bundle-product');
+      const $products = this.$bundle.find('[data-product-id]');
       jQuery.each($products, (idx, product) => {
         const $product = jQuery(product);
         if (productIdsLeft.includes($product.data('productId'))) {

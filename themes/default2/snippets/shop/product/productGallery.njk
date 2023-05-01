@@ -54,7 +54,7 @@
 
   .{{ localClass }}__thumbnails {
     height: {{ thumbnailHeight }}px;
-    padding-top: 16px;
+    margin-top: 16px;
   }
 
   .{{ localClass }}__thumbnails swiper-slide img {
@@ -96,15 +96,21 @@
   >
     {% for attachment in attachments %}
       {% set image = cdn_link(attachment.cloudflare_image_id, 'shopItem') %}
-      <swiper-slide class="{{ localClass }}__slide" data-slide-idx="{{loop.index0}}">
+      <swiper-slide class="{{ globalClass }}__slide {{ localClass }}__slide" data-slide-idx="{{loop.index0}}">
         <img src="{{image}}" alt="{{attachment.original_name}}" />
       </swiper-slide>
     {% endfor %}
 
     {% if youtubeLink %}
-      <swiper-slide class="{{ localClass }}__slide {{ localClass }}__youtube-slide" data-slide-idx="{{attachments | length}}">
+      <swiper-slide class="{{ globalClass }}__slide {{ localClass }}__slide {{ localClass }}__youtube-slide" data-slide-idx="{{attachments | length}}">
         <div class="{{ localClass }}__youtube-slide-cover"></div>
         <div class="{{ localClass }}__youtube-player youtube-player-wrapper"></div>
+      </swiper-slide>
+    {% endif %}
+
+    {% if slidesCount == 0 %}
+      <swiper-slide class="{{ globalClass }}__slide {{ localClass }}__slide">
+        {% render_snippet "Icons: No images" %}
       </swiper-slide>
     {% endif %}
   </swiper-container>

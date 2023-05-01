@@ -3,22 +3,34 @@
 {% set product = args.product %}
 {% set subscription = global.common.shopInfo.subscription %}
 {% set cartEnabled = global.common.cartEnabled %}
+{% set colors = themeProperties.current_colors %}
+
+{% set properties = args.properties %}
+{% set bgColor = properties.background_color %}
+{% set color = properties.color %}
 
 {% set globalClass = 'snippet-cart-button-1' %}
 {% set localClass = [globalClass, '-', id] | join %}
 
+<style>
+  .{{ localClass }} .{{ localClass }}__button {
+    background-color: {{ colors[bgColor] if bgColor else 'inherit' }};
+    color: {{ colors[color] if color else 'inherit' }}
+  }
+</style>
+
 {% if product.stock | int === 0 or not cartEnabled or product.on_hold | int !== 0 %}
   {# Do Nothing #}
 {% else %}
-  <div id="cart-button-{{id}}" class="{{ globalClass }} empty {{'static' if args.isGroup else ''}}">
-    <div class="{{ globalClass }}__button cart-product-minus-button">
+  <div id="cart-button-{{id}}" class="{{ globalClass }} {{ localClass }} empty {{'static' if args.isGroup else ''}}">
+    <div class="{{ globalClass }}__button {{ localClass }}__button cart-product-minus-button">
       <i class="fa-regular fa-minus"></i>
     </div>
-    <div class="{{ globalClass }}__button cart-product-quantity-button unselectable">
+    <div class="{{ globalClass }}__button {{ localClass }}__button cart-product-quantity-button unselectable">
       <span class="cart-product-quantity hidden" style="font-weight: 500"></span>
       <i class="cart-product-first-button fa-regular fa-cart-shopping hidden"></i>
     </div>
-    <div class="{{ globalClass }}__button cart-product-plus-button">
+    <div class="{{ globalClass }}__button {{ localClass }}__button cart-product-plus-button">
       <i class="fa-regular fa-plus"></i>
     </div>
   </div>

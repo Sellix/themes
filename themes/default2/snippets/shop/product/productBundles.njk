@@ -8,93 +8,157 @@
 {% set currencyList = global.config.CURRENCY_LIST %}
 {% set colors = themeProperties.current_colors %}
 
+{% set bundleBorderRadius = safe_get(properties.bundle_border_radius, 8) %}
+{% set bundlePaddingVert = safe_get(properties.bundle_padding_vert, 16) %}
+{% set bundlePaddingHoriz = safe_get(properties.bundle_padding_horiz, 16) %}
+{% set bundleShadow = safe_get(properties.bundle_shadow, 'none') %}
+{% set bundleShowBorder = safe_get(properties.bundle_show_border, true) %}
+{% set bundleBackgroundColor = safe_get(properties.bundle_background_color, 'transparent') %}
+
+{% set bundleHeaderPaddingVert = safe_get(properties.bundle_header_padding_vert, 16) %}
+{% set bundleHeaderPaddingHoriz = safe_get(properties.bundle_header_padding_horiz, 16) %}
+
+{% set titleFontColor = safe_get(properties.bundle_title_font_color, 'dark_font_color') %}
+{% set titleFontSize = safe_get(properties.bundle_title_font_size, 14) %}
+{% set titleFontWeight = safe_get(properties.bundle_title_font_weight, 600) %}
+{% set titleLineHeight = safe_get(properties.bundle_title_line_height, 17) %}
+
+{% set descriptionFontColor = safe_get(properties.bundle_description_font_color, 'dark_font_color') %}
+{% set descriptionFontSize = safe_get(properties.bundle_description_font_size, 14) %}
+{% set descriptionFontWeight = safe_get(properties.bundle_description_font_weight, 400) %}
+{% set descriptionLineHeight = safe_get(properties.bundle_description_line_height, 20) %}
+
+{% set productBackgroundColorHover = safe_get(propertis.bundle_product_background_color_hover, 'background_accent_dark') %}
+{% set productPaddingVert = safe_get(properties.bundle_product_padding_vert, 16) %}
+{% set productPaddingHoriz = safe_get(properties.bundle_product_padding_horiz, 16) %}
+
+{% set globalClass = ['snippet-product-bundles'] %}
+{% set localClass = [globalClass, '-', id] | join %}
+
+<style>
+  .{{ localClass }}__bundle {
+    display: none;
+    background: {{ colors[bundleBackgroundColor] }};
+    border: {{ "1px solid var(--borderColor)" if bundleShowBorder else "none" }};
+    box-shadow: {{ bundleShadow }};
+    border-radius: {{ bundleBorderRadius }}px;
+    padding: {{ bundlePaddingVert }}px {{ bundlePaddingHoriz }}px;
+  }
+
+  .{{ localClass }}__product:last-child {
+    border-bottom-left-radius: {{ bundleBorderRadius }}px;
+    border-bottom-right-radius: {{ bundleBorderRadius }}px;
+  }
+
+  .{{ localClass }}__head {
+    padding: {{ bundleHeaderPaddingVert }}px {{ bundleHeaderPaddingHoriz }}px;
+  }
+
+  .{{ localClass }}__head-title {
+    color: {{ colors[titleFontColor] }};
+    font-size: {{ titleFontSize }}px;
+    font-weight: {{ titleFontWeight }};
+    line-height: {{ titleLineHeight }}px;
+  }
+
+  .{{ localClass }}__head-title + div > p > b {
+    font-weight: {{ titleFontWeight + 100 }};
+  }
+
+  .{{ localClass }}__head-description {
+    color: {{ colors[descriptionFontColor] }};
+    font-size: {{ descriptionFontSize }}px;
+    font-weight: {{ descriptionFontWeight }};
+    line-height: {{ descriptionLineHeight }}px;
+
+  }
+
+  .{{ localClass }}__product {
+    padding: {{ productPaddingVert }}px {{ productPaddingHoriz }}px;
+  }
+
+  .{{ localClass }}__product:hover {
+    background: {{ colors[productBackgroundColorHover] }};
+  }
+</style>
 
 {%- if not isInvoice and bundles | length -%}
-  <style>
-    .bundle-hover-{{ id }}:hover {
-      background: {{ colors[properties.bundles_product_background_color_hover] }};
-    }
-  </style>
+  <div class="{{ globalClass }} {{ localClass }}">
+    {% for bundle in bundles %}
+      {% set bundleId = uid() %}
+      {% set title = bundle.title %}
+      {% set discountType = bundle.discount_type  %}
+      {% set discountAmount = bundle.discount_amount %}
+      {% set products_bound = bundle.products_bound %}
 
-  {% for bundle in bundles %}
-    {% set bundleId = uid() %}
-    {% set title = bundle.title %}
-    {% set discountType = bundle.discount_type  %}
-    {% set discountAmount = bundle.discount_amount %}
-    {% set products_bound = bundle.products_bound %}
+      <div
+        id="{{ localClass }}-{{bundleId}}"
+        class="{{ globalClass }}__bundle {{ localClass }}__bundle"
+      >
+        <div class="{{ globalClass }}__head {{ localClass }}__head">
+          <div>
+            <div class="{{ globalClass }}__head-title {{ localClass }}__head-title">
+              {{title}}
+            </div>
 
-    <div
-      id="sellix-bundle-{{bundleId}}"
-      class="shop-product-bundle mb-4"
-      style="display: none; background: {{ colors[properties.bundles_background_color] }};{#
-          #} border: {{ "1px solid var(--borderColor)" if properties.bundles_show_border else "none" }};{#
-          #} box-shadow: {{ properties.container_shadow }};{#
-          #} border-radius: {{ properties.container_border_radius }}rem;{#
-          #} padding: {{ properties.container_padding }}px;{#
-          #} padding-bottom: {{ properties.container_padding - 8 }}px;"
-    >
-      <div class="shop-product-bundle-head">
-        <div>
-          <div class="shop-product-bundle-title">{{title}}</div>
-
-          <div style="color: {{ colors[properties.bundles_description_font_color] }};{#
-              #} font-size: {{ properties.bundles_description_font_size }}px;{#
-              #} justify-content: {{ properties.bundles_description_text_align }};{#
-              #} line-height: {{ properties.bundles_description_line_height }}%;"
-          >
-              <p style="margin: 0; text-align: {{ properties.bundles_description_text_align }};">
-                {{ 'shop.product.bundle.discountTitle.0' | t }}
-                <b style="color: {{ colors[properties.bundles_description_font_color] }};">
-                  {{ currencyList[shop.currency] if discountType === 'FIXED' }}
-                  {{discountAmount}}{{ '%' if discountType === 'PERCENTAGE' }}
-                </b>
-                {{ 'shop.product.bundle.discountTitle.1' | t }}
-              </p>
+            <div class="{{ globalClass }}__head-description {{ localClass }}__head-description">
+                <p>
+                  {{ 'shop.product.bundle.discountTitle.0' | t }}
+                  <b>
+                    {{ currencyList[shop.currency] if discountType === 'FIXED' }}
+                    {{discountAmount}}{{ '%' if discountType === 'PERCENTAGE' }}
+                  </b>
+                  {{ 'shop.product.bundle.discountTitle.1' | t }}
+                </p>
+            </div>
           </div>
+
+          {% render_snippet 'Ripple button',
+            class='medium primary add-all-button',
+            title=('shop.product.bundle.addAllButtonTitle' | t)
+          %}
         </div>
 
-        {% render_snippet 'Ripple button',
-          class='medium primary add-all-button',
-          title=('shop.product.bundle.addAllButtonTitle' | t)
-        %}
+        <div class="{{ globalClass }}__products {{ localClass }}__products">
+          {% for product in products_bound %}
+            <div
+              class="{{ globalClass }}__product {{ localClass }}__product"
+              data-product-id="{{product.uniqid}}"
+              style="display:none"
+            >
+              {%
+                render_snippet 'Product: Bundle product',
+                product=product,
+                cartEnabled=cartEnabled,
+                skipBuyButton=true,
+                redirectToCheckout=false,
+                properties=properties
+              %}
+            </div>
+          {% endfor %}
+        </div>
       </div>
 
-      <div class="shop-product-bundle-line"></div>
-      <div class="shop-product-bundle-products">
-        {% for product in products_bound %}
-          <div class="sellix-bundle-product bundle-hover-{{ id }}" data-product-id="{{product.uniqid}}" style="display:none">
-            {%
-              render_snippet 'Product: Bundle product',
-              product=product,
-              cartEnabled=cartEnabled,
-              skipBuyButton=true,
-              redirectToCheckout=false,
-              properties=properties
-            %}
-          </div>
-        {% endfor %}
-      </div>
-    </div>
+      <script type='application/javascript'>
+        $(document).ready(function () {
+          const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
 
-    <script type='application/javascript'>
-      $(document).ready(function () {
-        const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
-
-        const bundleComponent = new SellixProductBundleComponent(
-          '#sellix-bundle-{{bundleId}}',
-          cart,
-          {
-            id: '{{ bundle.id }}',
-            products_bound: [
-              {% for product in bundle.products_bound %}
-              {{ product | exclude_attributes('shop_terms_of_service') | dump | safe }},
-              {% endfor %}
-            ],
-          },
-          {{isProduct}},
-          {{renderOptions | dump | safe}},
-        );
-      });
-    </script>
-  {% endfor %}
+          const bundleComponent = new SellixProductBundleComponent(
+            '#{{ localClass }}-{{bundleId}}',
+            cart,
+            {
+              id: '{{ bundle.id }}',
+              products_bound: [
+                {% for product in bundle.products_bound %}
+                {{ product | exclude_attributes('shop_terms_of_service') | dump | safe }},
+                {% endfor %}
+              ],
+            },
+            {{isProduct}},
+            {{renderOptions | dump | safe}},
+          );
+        });
+      </script>
+    {% endfor %}
+  </div>
 {% endif %}

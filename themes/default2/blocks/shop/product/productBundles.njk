@@ -8,7 +8,9 @@
   {% set productIds = [] %}
 {% endif %}
 
-{% if properties.render_mode == "backend" %}
+{% set renderMode = safe_get(properties.render_mode, 'backend') %}
+
+{% if renderMode == "backend" %}
 
   {% render_snippet
     'Product: Bundles',
