@@ -48,64 +48,89 @@
     line-height: {{ titleLineHeight }}px;
   }
 
-
   .{{ localClass }}__description {
     color: {{ colors[bodyFontColor] }};
     font-size: {{ bodyFontSize }}px;
     font-weight: {{ bodyFontWeight }};
     line-height: {{ bodyLineHeight }}px;
   }
+
+  .{{ localClass }}__header {
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid var(--borderColor);
+  }
+  .{{ localClass }}__addons-checkbox input {
+
+  }
+  .{{ localClass }}__addons-checkbox label {
+    text-transform: capitalize;
+    color: var(--darkFontColor);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+  }
 </style>
 
 {% if product.type === "SUBSCRIPTION" and product.trial_period %}
   {# Do nothing #}
-{% else %}
+{% elif addons | length > 0 %}
   <div class="{{ globalClass }} {{ localClass }}">
-    {% for addon in addons %}
-      <div class="{{ globalClass}}__addon {{ localClass }}__addon">
-        <div class="{{ globalClass}}__wrapper">
-          <div
-            class="{{ globalClass}}__title {{ localClass}}__title"
-            data-addon-id="{{ addon.uniqid }}"
-            data-addon-title="1"
-          >
-            <div class="{{ globalClass }}__title-text">
-              <span>{{ addon.title }}</span>
-              {% if addon.description %}
-                <i class="fa-solid fa-chevron-down"></i>
+    <div class="{{ globalClass }}__header {{ localClass }}__header">
+      <div class="{{ globalClass }}__addons-checkbox {{ localClass }}__addons-checkbox sellix-checkbox mb-0 mr-0">
+        <input type="checkbox" id="{{ localClass }}__addons-checkbox" data-checkbox-input="1">
+        <label for="{{ localClass }}__addons-checkbox">
+          {{ 'shop.shared.titles.addons' | t }}
+        </label>
+      </div>
+    </div>
+
+    <div class="{{ globalClass }}__addons d-none" data-addons-container="1">
+      {% for addon in addons %}
+        <div class="{{ globalClass}}__addon {{ localClass }}__addon">
+          <div class="{{ globalClass}}__wrapper">
+            <div
+              class="{{ globalClass}}__title {{ localClass}}__title"
+              data-addon-id="{{ addon.uniqid }}"
+              data-addon-title="1"
+            >
+              <div class="{{ globalClass }}__title-text">
+                <span>{{ addon.title }}</span>
+                {% if addon.description %}
+                  <i class="fa-solid fa-chevron-down"></i>
+                {% endif %}
+              </div>
+              <div class="{{ globalClass }}__price">
+                {% render_snippet 'Price', currency=currency, price=addon.price_conversions[currency], digits=2 %}
+              </div>
+            </div>
+
+            <div class="{{ globalClass }}__button">
+              {% if not isInvoice %}
+                <button
+                  type="button"
+                  class="button small"
+                  data-addon-id="{{ addon.uniqid }}"
+                  data-addon-button="1"
+                >
+                  ...
+                </button>
               {% endif %}
             </div>
-            <div class="{{ globalClass }}__price">
-              {% render_snippet 'Price', currency=currency, price=addon.price_conversions[currency], digits=2 %}
+          </div>
+
+          <div
+            class="{{ globalClass }}__collapsable-wrapper"
+            style="height: 0; overflow: hidden;"
+            data-addon-id="{{ addon.uniqid }}"
+            data-collapsable-wrapper="1"
+          >
+            <div class="{{ globalClass }}__description {{ localClass }}__description" data-addon-description="1">
+              {{addon.description | html_sanitize | safe}}
             </div>
           </div>
-
-          <div class="{{ globalClass }}__button">
-            {% if not isInvoice %}
-              <button
-                type="button"
-                class="button small"
-                data-addon-id="{{ addon.uniqid }}"
-                data-addon-button="1"
-              >
-                ...
-              </button>
-            {% endif %}
-          </div>
         </div>
-
-        <div
-          class="{{ globalClass }}__collapsable-wrapper"
-          style="height: 0; overflow: hidden;"
-          data-addon-id="{{ addon.uniqid }}"
-          data-collapsable-wrapper="1"
-        >
-          <div class="{{ globalClass }}__description {{ localClass }}__description" data-addon-description="1">
-            {{addon.description | html_sanitize | safe}}
-          </div>
-        </div>
-      </div>
-    {% endfor %}
+      {% endfor %}
+    </div>
   </div>
 
   <script type="application/javascript">

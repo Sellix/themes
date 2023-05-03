@@ -89,7 +89,7 @@
 
     $('#sellix-product-description-{{ id }} .shop-product-info-collapse').css({ height: 'auto', overflow: 'initial'});
 
-    $(document).on('SellixVariantsUpdateEvent', (event, eventInfo) => {
+    $(document).on('SellixProductVariantsUpdateEvent', (event, eventInfo) => {
       if (!eventInfo || !eventInfo.productId || eventInfo.productId === productId) {
         const activeVariant = productVariantsStore.get(productId);
         if (activeVariant) {

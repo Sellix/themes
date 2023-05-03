@@ -1,17 +1,25 @@
-{% set id = uid() %}
 {% set product = global.common.productInfo.product %}
 
-<div id='price-variants-wrapper-{{ id }}'>
-  {% render_snippet 'Product: Variants', product=product, properties=properties, currency=product.currency %}
+{% set showOnlyInFirstPurchaseStep = safe_get(properties.show_only_on_first_purchase_step, true) %}
+
+{% set localClass = [globalClass, '-', id] | join %}
+
+<div class="{{ globalClass }} {{ localClass }}">
+  {% render_snippet
+    'Product: Variants',
+    product=product,
+    properties=properties,
+    currency=product.currency
+  %}
 </div>
 
 <script type='application/javascript'>
   $(document).on('SellixPurchaseDetailsChangeStep', function(event, eventInfo) {
-    if ({{ properties.show_only_on_first_purchase_step }}) {
+    if ({{ showOnlyInFirstPurchaseStep }}) {
       if (eventInfo && eventInfo.step === 0) {
-        $('#price-variants-wrapper-{{ id }}').removeClass('d-none');
+        $('.{{ localClass }}').removeClass('d-none');
       } else {
-        $('#price-variants-wrapper-{{ id }}').addClass('d-none');
+        $('.{{ localClass }}').addClass('d-none');
       }
     }
   });

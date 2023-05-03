@@ -18,6 +18,21 @@
 
       this.$container.find('[data-addon-title=1]').on('click', this.onToggleDescription.bind(this));
       this.$container.find('[data-addon-button=1]').on('click', this.onClickButton.bind(this));
+      this.$container.find('[data-checkbox-input=1]').on('click', this.onToggleAddons.bind(this));
+
+      const addedAddons = this.store.get(this.productId, []);
+      if (addedAddons.length) {
+        this.$container.find('[data-checkbox-input=1]').prop('checked', true);
+      }
+    }
+
+    onToggleAddons(event) {
+      const addedAddons = this.store.get(this.productId, []);
+      if (addedAddons.length) {
+        event.preventDefault();
+        this.$container.find('[data-checkbox-input=1]').prop('checked', true);
+      }
+      this.render();
     }
 
     onToggleDescription(event) {
@@ -71,6 +86,12 @@
           .find(`[data-addon-button=1][data-addon-id=${addon.uniqid}]`)
           .html(Boolean(addedAddonsMap[addon.uniqid]) ? this.removeButtonContent : this.addButtonContent);
       });
+
+      if (this.$container.find('[data-checkbox-input=1]').prop('checked')) {
+        this.$container.find('[data-addons-container=1]').removeClass('d-none');
+      } else {
+        this.$container.find('[data-addons-container=1]').addClass('d-none');
+      }
     }
   }
   window.SellixProductAddonsComponent = ProductAddonsComponent;
