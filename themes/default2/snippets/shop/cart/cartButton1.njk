@@ -5,6 +5,8 @@
 {% set cartEnabled = global.common.cartEnabled %}
 {% set colors = themeProperties.current_colors %}
 
+{% set isStatic = args.is_static %}
+{% set redirectToCheckout = args.redirect_to_checkout %}
 {% set properties = args.properties %}
 {% set bgColor = properties.background_color %}
 {% set color = properties.color %}
@@ -22,7 +24,7 @@
 {% if product.stock | int === 0 or not cartEnabled or product.on_hold | int !== 0 %}
   {# Do Nothing #}
 {% else %}
-  <div id="cart-button-{{id}}" class="{{ globalClass }} {{ localClass }} empty {{'static' if args.isGroup else ''}}">
+  <div id="cart-button-{{id}}" class="{{ globalClass }} {{ localClass }} empty {{'static' if isStatic else ''}}">
     <div class="{{ globalClass }}__button {{ localClass }}__button cart-product-minus-button">
       <i class="fa-regular fa-minus"></i>
     </div>
@@ -43,7 +45,7 @@
         '#cart-button-{{id}}',
         cart,
         product,
-        {{args.redirectToCheckout | default(false)}},
+        {{redirectToCheckout | default(false)}},
         {{renderOptions | dump | safe}},
       );
     });
