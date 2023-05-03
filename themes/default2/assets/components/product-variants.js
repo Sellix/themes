@@ -44,13 +44,20 @@
       const activeVariant = this.store.get(this.productId);
       if (activeVariant) {
         this.$container.find('[data-variant]').removeClass('active');
-        this.$container.find(`[data-variant='${activeVariant.title}']`).addClass('active');
+        this.$container.find('[data-active-checkbox] input').prop('checked', false);
+
+        const $activeVariant = this.$container.find(`[data-variant='${activeVariant.title}']`);
+        $activeVariant.addClass('active');
+        $activeVariant.find('[data-active-checkbox] input').prop('checked', true);
       }
     };
 
     render() {
       if (this.variants.length) {
-        const firstActive = this.variants.find(({ stock }) => stock !== 0);
+        const firstActive = this.store.get(
+          this.productId,
+          this.variants.find(({ stock }) => stock !== 0),
+        );
 
         if (firstActive) {
           this.store.set(this.productId, firstActive);
