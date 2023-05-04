@@ -24,6 +24,7 @@
       theme,
       renderOptions,
       affiliateConversions,
+      options,
     }) {
       this.domContainer = document.querySelector(selector);
       this.selectorCaptchaV2 = selectorCaptchaV2;
@@ -40,6 +41,7 @@
       this.renderOptions = renderOptions;
       this.isCaptchaV2Visible = false;
       this.shopStore = SellixStoreFactory.getStore(this.shop.name);
+      this.options = options || {};
 
       this.productAddonsStore = new SellixProductAddonsStore(
         shop.name,
@@ -217,6 +219,7 @@
           onFail: this.onFail,
           onChangeData: this.onChangeData,
           options: {
+            ...this.options,
             isCaptchaV2Visible: this.isCaptchaV2Visible,
           },
         }),

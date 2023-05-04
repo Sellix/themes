@@ -6,16 +6,16 @@
       this.renderOptions = renderOptions;
 
       this.$cart = jQuery(selector);
-      this.$cartLength = this.$cart.find('.cart-icon .cart-length');
-      this.$cartBody = this.$cart.find('.cart-dropdown-body');
+      this.$cartLength = this.$cart.find('[data-cart-icon] [data-cart-length]');
+      this.$cartBody = this.$cart.find('[data-cart-dropdown-body]');
 
       this.itemTemplate = jQuery.templates(cartItemTemplateSelector);
 
       sellixHelper.onClickOutside(this.$cart.get(0), (...args) => this.close(...args));
 
-      this.$cart.find('.cart-icon').on('click', (...args) => this.toggle(...args));
-      this.$cart.find('.sellix-cart-checkout-button').on('click', (...args) => this.checkout(...args));
-      this.$cart.find('.sellix-cart-clear-button').on('click', (...args) => this.clear(...args));
+      this.$cart.find('[data-cart-icon]').on('click', (...args) => this.toggle(...args));
+      this.$cart.find('[data-cart-checkout-button]').on('click', (...args) => this.checkout(...args));
+      this.$cart.find('[data-cart-clear-button]').on('click', (...args) => this.clear(...args));
 
       const renderEvent = sellixHelper.getEventName({
         name: 'SellixRenderComponent',
@@ -32,12 +32,12 @@
       let items = this.cart.getItems();
 
       if (items.length) {
-        this.$cart.find('.cart-dropdown').toggleClass('open');
+        this.$cart.find('[data-cart-dropdown]').toggleClass('open');
       }
     }
 
     close() {
-      this.$cart.find('.cart-dropdown').removeClass('open');
+      this.$cart.find('[data-cart-dropdown]').removeClass('open');
     }
 
     add(event) {
@@ -121,8 +121,8 @@
           });
 
           const $body = jQuery(this.itemTemplate.render(itemsForRendering));
-          $body.find('.sellix-cart-add-button').on('click', (...args) => this.add(...args));
-          $body.find('.sellix-cart-remove-button').on('click', (...args) => this.remove(...args));
+          $body.find('[data-cart-add-button]').on('click', (...args) => this.add(...args));
+          $body.find('[data-cart-remove-button]').on('click', (...args) => this.remove(...args));
           this.$cartBody.append($body);
 
           break;
@@ -132,16 +132,16 @@
             updatedProducts = products.filter(({ uniqid }) => uniqid === productId);
           }
           updatedProducts.forEach((item) => {
-            this.$cartBody.find(`#cart-product-${item.uniqid} .cart-product-quantity`).text(item.quantity);
+            this.$cartBody.find(`#cart-product-${item.uniqid} [data-cart-product-quantity]`).text(item.quantity);
           });
           break;
         case 'delete':
           if (productId) {
             const $cartProduct = this.$cartBody.find(`#cart-product-${productId}`);
-            $cartProduct.find('.sellix-cart-add-button,.sellix-cart-remove-button').off('click');
+            $cartProduct.find('[data-cart-add-button],[data-cart-remove-button]').off('click');
             $cartProduct.remove();
           } else {
-            this.$cart.find('.sellix-cart-add-button,.sellix-cart-remove-button').off('click');
+            this.$cart.find('[data-cart-add-button],[data-cart-remove-button]').off('click');
             this.$cartBody.html('');
           }
           break;
