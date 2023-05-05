@@ -5,23 +5,31 @@
 {% set colors = themeProperties.current_colors %}
 {% set properties = args.properties %}
 
-{% render_snippet 'App paypal' %}
+{% set showTitle = safe_get(properties.show_title, true) %}
+{% set containerBgColor = safe_get(properties.container_background_color, 'transparent') %}
+{% set containerShadow = safe_get(properties.container_shadow, 'none') %}
+{% set containerBorderRadius = safe_get(properties.container_border_radius, 0) %}
+{% set containerPaddingVert = safe_get(properties.container_padding_vert, 20) %}
+{% set containerPaddingHoriz = safe_get(properties.container_padding_horiz, 20) %}
+{% set containerShowBorder = safe_get(properties.show_border, true) %}
 
 {% set globalClass = ['snippet-purchase-details'] %}
 {% set localClass = [globalClass, '-', id] | join %}
 
 <style>
   .{{ localClass }} .sellix-product-card {
-    background: {{ colors[properties.container_background_color] }};
-    box-shadow: {{ properties.container_shadow }};
-    border-radius: {{ properties.container_border_radius }}rem;
-    padding: {{ properties.container_padding }}px;
-    border: {{ "1px solid var(--borderColor)" if properties.show_border else "none" }};
+    background: {{ colors[containerBgColor] }};
+    box-shadow: {{ containerShadow }};
+    border-radius: {{ containerBorderRadius }}px;
+    padding: {{ containerPaddingVert }}px {{ containerPaddingHoriz }}px;
+    border: {{ "1px solid var(--borderColor)" if containerShowBorder else "none" }};
   }
   .{{ localClass }} .sellix-product-card .sellix-product-form-field .currency-title {
     background: {{ colors[properties.container_background_color] }};
   }
 </style>
+
+{% render_snippet 'App paypal' %}
 
 <div class="{{ globalClass }} {{ localClass }} purchase-detail-wrapper">
   <div class="purchase-details"></div>
@@ -68,7 +76,7 @@
       theme: { isDark },
       renderOptions: {{renderOptions | dump | safe}},
       options: {
-        showTitle: false
+        showTitle: {{ showTitle }}
       }
     });
   });

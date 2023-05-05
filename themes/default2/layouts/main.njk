@@ -80,7 +80,6 @@
   {# Sections #}
   <link rel="stylesheet" href="{{ 'section-header.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'section-product-list.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'section-product.css' | asset_url }}"/>
 
   {# Blocks #}
   <link rel="stylesheet" href="{{ 'block-cart.css' | asset_url }}"/>
@@ -167,7 +166,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
-  {% if global.request.type in ['product'] %}
+  {% if global.request.type in ['product', 'checkout'] %}
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
   {% endif %}
 
@@ -197,8 +196,11 @@
   <script src="{{ 'sellix-product-variants-store.js' | asset_url }}"></script>
   <script src="{{ 'sellix-cart-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-cart-product-component.js' | asset_url }}"></script>
+  <script src="{{ 'sellix-checkout-product.js' | asset_url }}"></script>
+  <script src="{{ 'sellix-checkout-products.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-addons-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-bundle-component.js' | asset_url }}"></script>
+  <script src="{{ 'sellix-product-count-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-variants-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-purchase-details-component.js' | asset_url }}"></script>
 
