@@ -4,7 +4,10 @@
 {% set products = args.products %}
 {% set properties = args.properties %}
 
-<div id='checkout-products-{{id}}'>
+{% set globalClass = ['snippet-checkout-products'] %}
+{% set localClass = [globalClass, '-', id] | join %}
+
+<div class="{{ globalClass }} {{ localClass }}">
   {% for product in products %}
     {% render_snippet
       'Checkout: Product',
@@ -20,7 +23,7 @@
   $(document).ready(function () {
     const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
     new SellixCheckoutProductsComponent(
-      '#checkout-products-{{id}}',
+      '.{{ localClass }}',
       cart,
       {{renderOptions | dump | safe}},
       {{properties | dump | safe}},

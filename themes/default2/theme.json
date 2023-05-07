@@ -2041,7 +2041,8 @@
                 "padding_bottom_desktop": 24,
                 "padding_bottom_tablet": 24,
                 "padding_bottom_mobile": 24,
-                "title_visible": false
+                "title_visible": true,
+                "title": "Checkout"
               }
             }
           },
@@ -2060,17 +2061,9 @@
                   "settings": {
                     "visible": true,
                     "properties": {
-                      "title_font_color": "light_font_color",
-                      "title_font_size": 16,
-                      "title_line_height": 122,
-                      "body_font_color": "light_font_color",
-                      "body_font_size": 14,
-                      "body_text_align": "left",
-                      "product_background_color": "background_accent_dark",
-                      "product_show_border": true,
-                      "product_title_font_color": "light_font_color",
-                      "product_title_text_align": "left",
-                      "product_title_font_weight": 500
+                      "addons_container_padding_vert": 0,
+                      "addons_container_padding_horiz": 0,
+                      "product_background_color": "background_accent_light"
                     }
                   }
                 },
@@ -2106,6 +2099,8 @@
               },
               "properties": {
                 "sidebar_blocks_count": 1,
+                "sidebar_width": 336,
+                "sidebar_gap": 24,
                 "background_color": "background_accent_light"
               }
             }
@@ -3177,7 +3172,10 @@
                 "Product: Variants": {
                   "name": "Product: Variants",
                   "settings": {
-                    "visible": true
+                    "visible": true,
+                    "properties": {
+                      "show_only_on_first_purchase_step": true
+                    }
                   }
                 },
                 "Purchase details": {
@@ -3186,7 +3184,10 @@
                     "visible": true,
                     "properties": {
                       "render_mode": "frontend",
-                      "show_title": false
+                      "show_title": false,
+                      "container_show_border": false,
+                      "container_padding_vert": 0,
+                      "container_padding_horiz": 0
                     }
                   }
                 },
@@ -5918,6 +5919,42 @@
             "defaultValue": true
           },
           {
+            "id": "sidebar_type",
+            "type": "select",
+            "label": "Sidebar type",
+            "options": [
+              {
+                "title": "Left",
+                "value": "left"
+              },
+              {
+                "title": "Right",
+                "value": "right"
+              }
+            ],
+            "defaultValue": "right"
+          },
+          {
+            "id": "sidebar_width",
+            "type": "range",
+            "max": 640,
+            "min": 200,
+            "step": 1,
+            "unit": "px",
+            "label": "Sidebar width",
+            "defaultValue": 420
+          },
+          {
+            "id": "sidebar_gap",
+            "type": "range",
+            "max": 400,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Sidebar and Content gap",
+            "defaultValue": 60
+          },
+          {
             "id": "background_color",
             "type": "select",
             "label": "Background color",
@@ -7324,13 +7361,12 @@
             "content": "Addons"
           },
           {
-            "id": "container_show_border",
-            "type": "checkbox",
-            "label": "Show border",
-            "defaultValue": true
+            "id": "addons_container_properties",
+            "type": "header",
+            "content": "Container properties"
           },
           {
-            "id": "container_background_color",
+            "id": "addons_container_background_color",
             "type": "select",
             "label": "Background color",
             "options": [
@@ -7351,20 +7387,26 @@
                 "value": "transparent"
               }
             ],
-            "defaultValue": "background_accent_dark"
+            "defaultValue": "background_accent_light"
           },
           {
-            "id": "container_border_radius",
+            "id": "addons_container_show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": true
+          },
+          {
+            "id": "addons_container_border_radius",
             "type": "range",
-            "max": 2,
+            "max": 32,
             "min": 0,
-            "step": 0.25,
-            "unit": "rem",
+            "step": 1,
+            "unit": "px",
             "label": "Border radius",
-            "defaultValue": 0.5
+            "defaultValue": 8
           },
           {
-            "id": "container_padding_horiz",
+            "id": "addons_container_padding_horiz",
             "max": 24,
             "min": 0,
             "step": 1,
@@ -7374,17 +7416,17 @@
             "defaultValue": 16
           },
           {
-            "id": "container_padding_vert",
+            "id": "addons_ontainer_padding_vert",
             "max": 24,
             "min": 0,
             "step": 1,
             "type": "range",
             "unit": "px",
             "label": "Container padding vertical",
-            "defaultValue": 8
+            "defaultValue": 20
           },
           {
-            "id": "container_shadow",
+            "id": "addons_container_shadow",
             "type": "select",
             "label": "Drop shadow",
             "options": [
@@ -7394,7 +7436,229 @@
               },
               {
                 "title": "Variant 1",
+                "value": "0px 1px 2px rgba(16, 24, 40, 0.05)"
+              },
+              {
+                "title": "Variant 2",
                 "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 4",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+              }
+            ],
+            "defaultValue": "none"
+          },
+          {
+            "id": "addons_title_properties",
+            "type": "header",
+            "content": "Title properties"
+          },
+          {
+            "id": "addons_title_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              },
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              }
+            ],
+            "defaultValue": "dark_font_color"
+          },
+          {
+            "id": "addons_title_font_size",
+            "max": 24,
+            "min": 10,
+            "step": 2,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 14
+          },
+          {
+            "id": "addons_title_font_weight",
+            "type": "select",
+            "label": "Font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 600
+              }
+            ],
+            "defaultValue": 600
+          },
+          {
+            "id": "addons_title_line_height",
+            "max": 50,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Line height",
+            "defaultValue": 20
+          },
+          {
+            "id": "addons_body_properties",
+            "type": "header",
+            "content": "Body properties"
+          },
+          {
+            "id": "addons_body_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              },
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              }
+            ],
+            "defaultValue": "dark_font_color"
+          },
+          {
+            "id": "addons_body_font_size",
+            "max": 20,
+            "min": 10,
+            "step": 2,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 14
+          },
+          {
+            "id": "addons_body_font_weight",
+            "type": "select",
+            "label": "Font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 500
+          },
+          {
+            "id": "addons_body_line_height",
+            "max": 50,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Line height",
+            "defaultValue": 20
+          },
+          {
+            "id": "variants_properties",
+            "type": "header",
+            "content": "Variants"
+          },
+          {
+            "id": "variants_show_only_on_first_purchase_step",
+            "type": "checkbox",
+            "label": "Show only on first purchase step",
+            "defaultValue": false
+          },
+          {
+            "id": "variants_container_properties",
+            "type": "header",
+            "content": "Container properties"
+          },
+          {
+            "id": "variants_container_background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_accent_light"
+          },
+          {
+            "id": "variants_container_background_active_color",
+            "type": "select",
+            "label": "Background active color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Active",
+                "value": "background_active"
+              }
+            ],
+            "defaultValue": "background_active"
+          },
+          {
+            "id": "variants_container_shadow",
+            "type": "select",
+            "label": "Drop shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0px 1px 2px rgba(16, 24, 40, 0.05)"
               },
               {
                 "title": "Variant 2",
@@ -7405,53 +7669,58 @@
                 "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
               }
             ],
-            "defaultValue": "none"
+            "defaultValue": "0px 1px 2px rgba(16, 24, 40, 0.05)"
           },
           {
-            "id": "title_font_color",
-            "type": "select",
-            "label": "Title font color",
-            "options": [
-              {
-                "title": "Light",
-                "value": "light_font_color"
-              },
-              {
-                "title": "Dark",
-                "value": "dark_font_color"
-              },
-              {
-                "title": "Brand",
-                "value": "brand_color"
-              }
-            ],
-            "defaultValue": "light_font_color"
+            "id": "variants_container_show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": true
           },
           {
-            "id": "title_font_size",
+            "id": "variants_container_border_radius",
+            "type": "range",
+            "max": 32,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Border radius",
+            "defaultValue": 8
+          },
+          {
+            "id": "variants_container_padding_horiz",
             "max": 24,
-            "min": 10,
-            "step": 2,
+            "min": 0,
+            "step": 1,
             "type": "range",
             "unit": "px",
-            "label": "Title font size",
+            "label": "Container padding horizontal",
             "defaultValue": 16
           },
           {
-            "id": "title_line_height",
-            "max": 200,
-            "min": 50,
+            "id": "variants_container_padding_vert",
+            "max": 24,
+            "min": 0,
             "step": 1,
             "type": "range",
-            "unit": "%",
-            "label": "Title line height",
-            "defaultValue": 100
+            "unit": "px",
+            "label": "Container padding vertical",
+            "defaultValue": 16
           },
           {
-            "id": "body_font_color",
+            "id": "variants_title_properties",
+            "type": "header",
+            "content": "Title properties"
+          },
+          {
+            "id": "variants_title_font_color",
             "type": "select",
-            "label": "Description font color",
+            "label": "Font color",
             "options": [
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              },
               {
                 "title": "Light",
                 "value": "light_font_color"
@@ -7459,43 +7728,179 @@
               {
                 "title": "Dark",
                 "value": "dark_font_color"
+              }
+            ],
+            "defaultValue": "dark_font_color"
+          },
+          {
+            "id": "variants_title_font_size",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 16
+          },
+          {
+            "id": "variants_title_line_height",
+            "max": 50,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Line height",
+            "defaultValue": 20
+          },
+          {
+            "id": "variants_title_font_weight",
+            "type": "select",
+            "label": "Font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
               },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 600
+              }
+            ],
+            "defaultValue": 600
+          },
+          {
+            "id": "variants_info_properties",
+            "type": "header",
+            "content": "Info properties"
+          },
+          {
+            "id": "variants_info_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
               {
                 "title": "Brand",
                 "value": "brand_color"
+              },
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              }
+            ],
+            "defaultValue": "dark_font_color"
+          },
+          {
+            "id": "variants_info_font_size",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 14
+          },
+          {
+            "id": "variants_info_line_height",
+            "max": 50,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Line height",
+            "defaultValue": 20
+          },
+          {
+            "id": "variants_info_font_weight",
+            "type": "select",
+            "label": "Font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 600
+              }
+            ],
+            "defaultValue": 500
+          },
+          {
+            "id": "variants_description_properties",
+            "type": "header",
+            "content": "Description properties"
+          },
+          {
+            "id": "variants_description_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              },
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
               }
             ],
             "defaultValue": "light_font_color"
           },
           {
-            "id": "body_font_size",
-            "max": 20,
-            "min": 10,
-            "step": 2,
+            "id": "variants_description_font_size",
+            "max": 100,
+            "min": 1,
+            "step": 1,
             "type": "range",
             "unit": "px",
-            "label": "Description font size",
+            "label": "Font size",
             "defaultValue": 14
           },
           {
-            "id": "body_text_align",
+            "id": "variants_description_line_height",
+            "max": 50,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Line height",
+            "defaultValue": 20
+          },
+          {
+            "id": "variants_description_font_weight",
             "type": "select",
-            "label": "Description text align",
+            "label": "Font weight",
             "options": [
               {
-                "title": "Left",
-                "value": "left"
+                "title": "Normal",
+                "value": 400
               },
               {
-                "title": "Center",
-                "value": "center"
+                "title": "Medium",
+                "value": 500
               },
               {
-                "title": "Right",
-                "value": "right"
+                "title": "Bold",
+                "value": 600
               }
             ],
-            "defaultValue": "left"
+            "defaultValue": 400
           },
           {
             "id": "product_properties",
@@ -7617,22 +8022,6 @@
             "defaultValue": 18
           },
           {
-            "id": "product_title_text_align",
-            "type": "select",
-            "label": "Text align",
-            "options": [
-              {
-                "title": "Left",
-                "value": "left"
-              },
-              {
-                "title": "Center",
-                "value": "center"
-              }
-            ],
-            "defaultValue": "left"
-          },
-          {
             "id": "product_title_font_weight",
             "type": "select",
             "label": "Font weight",
@@ -7651,6 +8040,16 @@
               }
             ],
             "defaultValue": 500
+          },
+          {
+            "id": "product_title_line_height",
+            "max": 50,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Line height",
+            "defaultValue": 20
           }
         ]
       }
@@ -10102,7 +10501,7 @@
             "id": "container_show_border",
             "type": "checkbox",
             "label": "Show border",
-            "defaultValue": false
+            "defaultValue": true
           },
           {
             "id": "container_border_radius",
@@ -10978,6 +11377,10 @@
       "name": "Icons: Chevron up",
       "path": "snippets/shared/icons/chevronUp.njk"
     },
+    "Icons: Description": {
+      "name": "Icons: Description",
+      "path": "snippets/shared/icons/description.njk"
+    },
     "Icons: Menu": {
       "name": "Icons: Menu",
       "path": "snippets/shared/icons/menu.njk"
@@ -10993,6 +11396,10 @@
     "Icons: Plus": {
       "name": "Icons: Plus",
       "path": "snippets/shared/icons/plus.njk"
+    },
+    "Icons: Trash": {
+      "name": "Icons: Trash",
+      "path": "snippets/shared/icons/trash.njk"
     },
     "Icons: Warranty yes": {
       "name": "Icons: Warranty yes",
@@ -11065,6 +11472,14 @@
     "Product: MinMax note": {
       "name": "Product: MinMax note",
       "path": "snippets/shop/product/productMinMaxNote.njk"
+    },
+    "Product: Price": {
+      "name": "Product: Price",
+      "path": "snippets/shop/product/productPrice.njk"
+    },
+    "Product: Review stat": {
+      "name": "Product: Review stat",
+      "path": "snippets/shop/product/productReviewStat.njk"
     },
     "Product: Terms of Service": {
       "name": "Product: Terms of Service",
@@ -11353,6 +11768,14 @@
       "name": "snippet-cart-button-2.css",
       "path": "assets/css/snippet-cart-button-2.css"
     },
+    "snippet-checkout-product.css": {
+      "name": "snippet-checkout-product.css",
+      "path": "assets/css/snippet-checkout-product.css"
+    },
+    "snippet-checkout-product-count.css": {
+      "name": "snippet-checkout-product-count.css",
+      "path": "assets/css/snippet-checkout-product-count.css"
+    },
     "snippet-language-selector.css": {
       "name": "snippet-language-selector.css",
       "path": "assets/css/snippet-language-selector.css"
@@ -11392,6 +11815,10 @@
     "snippet-product-list.css": {
       "name": "snippet-product-list.css",
       "path": "assets/css/snippet-product-list.css"
+    },
+    "snippet-product-review-stat.css": {
+      "name": "snippet-product-review-stat.css",
+      "path": "assets/css/snippet-product-review-stat.css"
     },
     "snippet-product-variants.css": {
       "name": "snippet-product-variants.css",

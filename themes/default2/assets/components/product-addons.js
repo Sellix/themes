@@ -88,8 +88,10 @@
       });
 
       if (this.$container.find('[data-checkbox-input=1]').prop('checked')) {
+        this.$container.addClass('opened');
         this.$container.find('[data-addons-container=1]').removeClass('d-none');
       } else {
+        this.$container.removeClass('opened');
         this.$container.find('[data-addons-container=1]').addClass('d-none');
       }
     }

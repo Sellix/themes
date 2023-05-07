@@ -22,12 +22,12 @@
 
     renderProduct(productId) {
       const product = this.cart.getItemById(productId);
-      if (product && !this.$products.find(`#sellix-product-checkout-${productId}`).length) {
+      if (product && !this.$products.find(`[data-checkout-product='${productId}']`).length) {
         sellixApi
           .renderComponent(
             {
               ...this.renderOptions,
-              path: [this.renderOptions.path, ['snippet', 'Checkout product'].join(':')].join(';'),
+              path: [this.renderOptions.path, ['snippet', 'Checkout: Product'].join(':')].join(';'),
             },
             { product, quantity: product.quantity, properties: this.properties },
           )

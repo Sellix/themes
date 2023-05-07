@@ -3,8 +3,10 @@
 {% set bgColor = properties.background_color %}
 {% set fullWidth = safe_get(properties.fullwidth, false) %}
 {% set sidebarEnabled = safe_get(properties.sidebar_enabled, true) %}
+{% set sidebarType = safe_get(properties.sidebar_type, 'right') %}
+{% set sidebarWidth = safe_get(properties.sidebar_width, 420) %}
 {% set sidebarBlocksCount = safe_get(properties.sidebar_blocks_count, 3) %}
-{% set sidebarGap = safe_get(properties.right_sidebar_gap, 60) %}
+{% set sidebarGap = safe_get(properties.sidebar_gap, 60) %}
 
 {% set marginTopDesktop = safe_get(properties.margin_top_desktop, 0) %}
 {% set marginBottomDesktop = safe_get(properties.margin_bottom_desktop, 0) %}
@@ -55,8 +57,13 @@
   {% if sidebarEnabled %}
   .{{ localClass }}__container {
     display: grid;
-    grid-template-areas: "content sidebar";
-    grid-template-columns: minmax(360px, 1fr) minmax(300px, 420px);
+    {% if sidebarType == 'left' %}
+      grid-template-areas: "sidebar content";
+      grid-template-columns: minmax(200px, {{ sidebarWidth }}px) minmax(360px, 1fr);
+    {% else %}
+      grid-template-areas: "content sidebar";
+      grid-template-columns: minmax(360px, 1fr) minmax(200px, {{ sidebarWidth }}px);
+    {% endif %}
     grid-column-gap: {{ sidebarGap }}px;
   }
 
@@ -70,9 +77,15 @@
 
   @media (max-width: 768px) {
     .{{ localClass }}__container {
-      grid-template-areas:
-          "content"
-          "sidebar";
+      {% if sidebarType == 'left' %}
+        grid-template-areas:
+            "sidebar"
+            "content";
+      {% else %}
+        grid-template-areas:
+            "content"
+            "sidebar";
+      {% endif %}
       grid-template-columns: minmax(240px, 1fr);
     }
   }

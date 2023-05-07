@@ -11,7 +11,7 @@
 {% set containerBorderRadius = safe_get(properties.container_border_radius, 0) %}
 {% set containerPaddingVert = safe_get(properties.container_padding_vert, 20) %}
 {% set containerPaddingHoriz = safe_get(properties.container_padding_horiz, 20) %}
-{% set containerShowBorder = safe_get(properties.show_border, true) %}
+{% set containerShowBorder = safe_get(properties.container_show_border, true) %}
 
 {% set globalClass = ['snippet-purchase-details'] %}
 {% set localClass = [globalClass, '-', id] | join %}
@@ -21,9 +21,16 @@
     background: {{ colors[containerBgColor] }};
     box-shadow: {{ containerShadow }};
     border-radius: {{ containerBorderRadius }}px;
-    padding: {{ containerPaddingVert }}px {{ containerPaddingHoriz }}px;
+    padding: 0;
     border: {{ "1px solid var(--borderColor)" if containerShowBorder else "none" }};
   }
+  .{{ localClass }} .sellix-product-card .sellix-product-title {
+    padding: {{ containerPaddingVert }}px {{ containerPaddingHoriz }}px;
+  }
+  .{{ localClass }} .sellix-product-card .sellix-product-body {
+    padding: {{ containerPaddingVert }}px {{ containerPaddingHoriz }}px;
+  }
+
   .{{ localClass }} .sellix-product-card .sellix-product-form-field .currency-title {
     background: {{ colors[properties.container_background_color] }};
   }

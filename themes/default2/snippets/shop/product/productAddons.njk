@@ -57,6 +57,8 @@
 
   .{{ localClass }}__header {
     padding: 0.75rem 1.25rem;
+  }
+  .{{ localClass}}.opened .{{ localClass }}__header {
     border-bottom: 1px solid var(--borderColor);
   }
   .{{ localClass }}__addons-checkbox input {
@@ -100,7 +102,12 @@
                 {% endif %}
               </div>
               <div class="{{ globalClass }}__price">
-                {% render_snippet 'Price', currency=currency, price=addon.price_conversions[currency], digits=2 %}
+                {% render_snippet
+                  'Price',
+                  currency=currency,
+                  price=addon.price_conversions[currency],
+                  digits=2
+                %}
               </div>
             </div>
 

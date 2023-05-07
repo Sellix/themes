@@ -8,11 +8,11 @@
       this.renderOptions = renderOptions;
       this.activeProductVariant = null;
 
-      this.$root = jQuery(selector);
+      this.$container = jQuery(selector);
 
-      this.$root.find('.sellix-stock-count-picker.real').on('click', this.onClick);
-      this.$root.find('.sellix-cart-count-quantity input').on('keyup', this.onKeyUp);
-      this.$root.find('.sellix-cart-count-quantity input').on('paste', this.onPaste);
+      this.$container.find('[data-stock-count-picker].real').on('click', this.onClick);
+      this.$container.find('[input-wrapper]').on('keyup', this.onKeyUp);
+      this.$container.find('[input-wrapper]').on('paste', this.onPaste);
 
       const eventNames = ['SellixCartUpdateEvent', 'SellixRenderComponent']
         .map((eventName) => {
@@ -56,7 +56,7 @@
     }
 
     showHideButton(buttonType, isVisible) {
-      const realSelector = this.$root.find(`.sellix-stock-count-picker.${buttonType}.real`);
+      const realSelector = this.$container.find(`[data-stock-count-picker].${buttonType}.real`);
 
       if (isVisible) {
         jQuery(realSelector).css({ opacity: 100, pointerEvents: 'initial' });
@@ -134,7 +134,7 @@
       this.showHideButton('plus', isValidPlus);
       this.showHideButton('minus', isValidMinus);
 
-      this.$root.find('.sellix-cart-count-quantity input').val(quantity);
+      this.$container.find('[data-input-wrapper] input').val(quantity);
 
       const isInfinity = this.stock === -1;
       const isLast = this.stock === 1;
@@ -152,7 +152,7 @@
         )} <div style='margin-left: 0.5rem'>${inStock}</div>`;
       }
 
-      this.$root.find('.sellix-stock-total').html(inStockTitle);
+      this.$container.find('[data-total-value]').html(inStockTitle);
     }
 
     get stock() {

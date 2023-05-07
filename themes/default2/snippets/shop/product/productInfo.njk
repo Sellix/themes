@@ -51,9 +51,6 @@
     font-weight: {{ titleFontWeight }};
     line-height: {{ titleLineHeight }}px;
   }
-  .{{ localClass }}__rating {
-    color: {{ colors[titleFontColor] }};
-  }
   .{{ localClass }}__price {
     color: {{ colors[priceFontColor] }};
     font-size: {{ priceFontSize }}px;
@@ -133,21 +130,5 @@
     </div>
   {% endif %}
 
-  <div class="{{ globalClass }}__rating {{ localClass }}__rating">
-    {% if product.sold_count and product.average_score %}
-      <div class="{{ globalClass }}__rating-stars {{ localClass }}__rating-stars">
-        {% render_snippet
-          'Rating star',
-          rating=product.average_score,
-          size=16,
-          iconsCount=5,
-          color=colors[titleFontColor]
-        %}
-      </div>
-      <div class="{{ globalClass }}__rating-score {{ localClass }}__rating-score">
-        {{ product.average_score | float | round(1) | to_fixed(1) }}
-        <span class="reviews-count">({{ 'shop.shared.reviews.reviewsWithCount' | t({count: product.feedback.total}) }})</span>
-      </div>
-    {% endif %}
-  </div>
+  {% render_snippet 'Product: Review stat', product=product %}
 </div>

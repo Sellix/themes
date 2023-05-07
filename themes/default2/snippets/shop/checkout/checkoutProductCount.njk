@@ -4,40 +4,54 @@
 {% set stock = product.stock %}
 {% set quantity = args.quantity %}
 
-<div id="sellix-product-count-{{id}}" class="d-flex flex-column">
-  <div class="sellix-cart-count">
+{% set showMinMaxNote = safe_get(args.show_min_max_note, true) %}
+{% set showStockInfo = safe_get(args.show_stock_info, true) %}
+
+{% set globalClass = ['snippet-checkout-product-count'] %}
+{% set localClass = [globalClass, '-', id] | join %}
+
+
+
+<div class="{{ globalClass }} {{ localClass }}">
+  <div class="{{ globalClass }}__count-widget">
     <span
-      class="sellix-stock-count-picker minus real unselectable"
+      class="minus real unselectable"
       style="opacity: 0;"
       data-modifier="-1"
+      data-stock-count-picker="1"
     >
       <i class="fa-regular fa-minus"></i>
     </span>
 
-    <div class="sellix-cart-count-quantity unselectable">
+    <div class="{{ globalClass }}__input-wrapper unselectable" data-input-wrapper="1">
       <input type="text" value="{{quantity}}" {{'disabled' if product.quantity_min == product.quantity_max else ''}} />
     </div>
 
     <span
-      class="sellix-stock-count-picker plus real unselectable"
+      class="plus real unselectable"
       style="opacity: 0;"
       data-modifier="1"
+      data-stock-count-picker="1"
     >
       <i class="fa-regular fa-plus"></i>
     </span>
   </div>
 
-  <div class="d-flex align-items-center mt-2 flex-column">
-    <div class="sellix-stock-total unselectable" style="font-size: .8rem;"></div>
-  </div>
+  {% if showStockInfo %}
+    <div class="{{ globalClass}}__total-container">
+      <div class="{{ globalClass}}__total-container unselectable" data-total-value="1"></div>
+    </div>
+  {% endif %}
 
-  {% render_snippet 'Product: MinMax note', product=product %}
+  {% if showMinMaxNote %}
+    {% render_snippet 'Product: MinMax note', product=product %}
+  {% endif %}
 </div>
 
 <script type='application/javascript'>
   $(document).ready(function () {
     new SellixProductCountComponent(
-      '#sellix-product-count-{{id}}',
+      '.{{ localClass }}',
       '{{shop.name}}',
       {{ product | exclude_attributes('shop_terms_of_service') | dump | safe }},
       {{renderOptions | dump | safe}},

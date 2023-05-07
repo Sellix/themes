@@ -1,0 +1,42 @@
+{% set product = args.product %}
+{% set colors = themeProperties.current_colors %}
+{% set properties = args.properties %}
+
+{% set size = safe_get(args.size, 16) %}
+{% set iconsCount = safe_get(args.icons_count, 5) %}
+{% set fontColor = safe_get(properties.font_color, 'dark_font_color') %}
+{% set fontSize = safe_get(properties.font_size, 14) %}
+{% set fontWeight = safe_get(properties.font_weight, 400) %}
+{% set lineHeight = safe_get(properties.line_height, 20) %}
+
+{% set globalClass = ['snippet-product-review-stat'] %}
+{% set localClass = [globalClass, '-', id] | join %}
+
+<style>
+  .{{ localClass }} {
+    color: {{ colors[fontColor] }};
+    font-size: {{ fontSize }}px;
+    font-weight: {{ fontWeight }};
+    line-height: {{ lineHeight }}px;
+  }
+</style>
+
+<div class="{{ globalClass }} {{ localClass }}">
+  {% if product.sold_count and product.average_score %}
+    <div class="{{ globalClass }}__stars {{ localClass }}__stars">
+      {% render_snippet
+        'Rating star',
+        rating=product.average_score,
+        size=size,
+        iconsCount=iconsCount,
+        color=colors[fontColor]
+      %}
+    </div>
+    <div class="{{ globalClass }}__score {{ localClass }}__score">
+      {{ product.average_score | float | round(1) | to_fixed(1) }}
+      <span class="reviews-count">
+          ({{ 'shop.shared.reviews.reviewsWithCount' | t({count: product.feedback.total}) }})
+        </span>
+    </div>
+  {% endif %}
+</div>
