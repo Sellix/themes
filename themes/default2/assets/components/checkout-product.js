@@ -11,7 +11,7 @@
         event.preventDefault();
         this.onClickDescriptionButton();
       });
-      this.$product.find('.checkout-details-item-remove').on('click', this.decreaseProduct);
+      this.$product.find('[data-remove-button]').on('click', this.decreaseProduct);
 
       this.renderEvents = ['SellixCartUpdateEvent', 'SellixRenderComponent'].map((eventName) => {
         return sellixHelper.getEventName({
@@ -76,7 +76,7 @@
       jQuery(document).off(this.renderEvents.join(' '));
       jQuery(document).off(this.showDescriptionEvent);
       this.$product.find('.sellix-cart-description').off('click');
-      this.$product.find('.checkout-details-item-remove').off('click');
+      this.$product.find('[data-remove-button]').off('click');
       this.$product.remove();
     };
 

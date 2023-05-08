@@ -11,8 +11,8 @@
 
 {% set background = safe_get(cardProps.product_card_background_color, 'background_accent_dark') %}
 {% set border = '1px solid var(--borderColor)' if cardProps.product_card_show_border else 'none' %}
-{% set borderRadius = safe_get(cardProps.product_card_border_radius, '0.5') %}
-{% set imageBorderRadius = safe_get(cardProps.product_card_image_border_radius, '0.5') %}
+{% set borderRadius = safe_get(cardProps.product_card_border_radius, 8) %}
+{% set imageBorderRadius = safe_get(cardProps.product_card_image_border_radius, 8) %}
 
 {% set titleFontcolor = safe_get(cardProps.product_card_title_font_color, 'light_font_color') %}
 {% set titleFontSize = safe_get(cardProps.product_card_title_font_size, '16') %}
@@ -34,7 +34,7 @@
 <style>
   .{{ localClass }}__container {
     border: {{ border }};
-    border-radius: {{ borderRadius }}rem;
+    border-radius: {{ borderRadius }}px;
   }
   .{{ localClass }}__card {
     background: {{ colors[background] }};
@@ -68,7 +68,7 @@
     border: 1px solid var(--borderColor)
   }
   .{{ localClass }}__image, .{{ localClass }}__image img {
-    border-radius: {{ imageBorderRadius }}rem;
+    border-radius: {{ imageBorderRadius }}px;
   }
   .{{ localClass }}__stock i {
     margin-left: 0.2rem;

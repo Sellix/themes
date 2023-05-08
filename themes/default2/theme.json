@@ -60,22 +60,22 @@
         {
           "id": "product_card_border_radius",
           "type": "range",
-          "max": 2,
+          "max": 50,
           "min": 0,
-          "step": 0.25,
-          "unit": "rem",
+          "step": 1,
+          "unit": "px",
           "label": "Border radius",
-          "defaultValue": 0.5
+          "defaultValue": 8
         },
         {
           "id": "product_card_image_border_radius",
           "type": "range",
-          "max": 2,
+          "max": 50,
           "min": 0,
-          "step": 0.25,
-          "unit": "rem",
+          "step": 1,
+          "unit": "px",
           "label": "Image border radius",
-          "defaultValue": 0.5
+          "defaultValue": 8
         },
         {
           "id": "product_card_shadow",
@@ -315,12 +315,12 @@
         {
           "id": "feedback_card_border_radius",
           "type": "range",
-          "max": 2,
+          "max": 50,
           "min": 0,
-          "step": 0.25,
-          "unit": "rem",
+          "step": 1,
+          "unit": "px",
           "label": "Border radius",
-          "defaultValue": 0.5
+          "defaultValue": 8
         },
         {
           "id": "feedback_card_shadow",
@@ -1790,8 +1790,8 @@
       "cards": {
         "product_card_background_color": "transparent",
         "product_card_show_border": false,
-        "product_card_border_radius": 0.5,
-        "product_card_image_border_radius": 0.5,
+        "product_card_border_radius": 8,
+        "product_card_image_border_radius": 8,
         "product_card_title_font_color": "dark_font_color",
         "product_card_title_font_size": 16,
         "product_card_title_line_height": 24,
@@ -1804,10 +1804,10 @@
         "product_card_description_font_size": 14,
         "product_card_description_font_weight": 500,
         "feedback_card_background_color": "background_accent_dark",
-        "feedback_card_border_radius": 0.5,
+        "feedback_card_border_radius": 8,
         "feedback_card_show_border": true,
         "feedback_card_shadow": "none",
-        "product_card_border_radius": 0.5,
+        "product_card_border_radius": 8,
         "product_card_shadow": "none",
         "feedback_card_message_text_font_color": "light_font_color",
         "feedback_card_message_text_font_size": 14.4,
@@ -2061,8 +2061,13 @@
                   "settings": {
                     "visible": true,
                     "properties": {
+                      "container_background_color": "background_accent_light",
                       "addons_container_padding_vert": 0,
                       "addons_container_padding_horiz": 0,
+                      "product_show_border": false,
+                      "product_container_border_radius": 0,
+                      "product_container_padding_vert": 0,
+                      "product_container_padding_horiz": 0,
                       "product_background_color": "background_accent_light"
                     }
                   }
@@ -7165,7 +7170,7 @@
           {
             "id": "border_radius",
             "type": "range",
-            "max": 75,
+            "max": 50,
             "min": 0,
             "step": 1,
             "unit": "px",
@@ -7356,9 +7361,99 @@
       "settings": {
         "schema": [
           {
+            "id": "container_properties",
+            "type": "header",
+            "content": "Container properties"
+          },
+          {
+            "id": "container_background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_accent_dark"
+          },
+          {
+            "id": "container_show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": true
+          },
+          {
+            "id": "container_border_radius",
+            "type": "range",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Border radius",
+            "defaultValue": 8
+          },
+          {
+            "id": "container_padding_vert",
+            "type": "range",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 20
+          },
+          {
+            "id": "container_padding_horiz",
+            "type": "range",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 20
+          },
+          {
+            "id": "container_shadow",
+            "type": "select",
+            "label": "Drop shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 2",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+              }
+            ],
+            "defaultValue": "none"
+          },
+
+          {
             "id": "addons_properties",
             "type": "header",
-            "content": "Addons"
+            "content": "Addons properties"
           },
           {
             "id": "addons_container_properties",
@@ -7398,7 +7493,7 @@
           {
             "id": "addons_container_border_radius",
             "type": "range",
-            "max": 32,
+            "max": 50,
             "min": 0,
             "step": 1,
             "unit": "px",
@@ -7586,7 +7681,7 @@
           {
             "id": "variants_properties",
             "type": "header",
-            "content": "Variants"
+            "content": "Variants properties"
           },
           {
             "id": "variants_show_only_on_first_purchase_step",
@@ -7680,7 +7775,7 @@
           {
             "id": "variants_container_border_radius",
             "type": "range",
-            "max": 32,
+            "max": 50,
             "min": 0,
             "step": 1,
             "unit": "px",
@@ -7905,7 +8000,7 @@
           {
             "id": "product_properties",
             "type": "header",
-            "content": "Product"
+            "content": "Products properties"
           },
           {
             "id": "product_background_color",
@@ -7940,12 +8035,12 @@
           {
             "id": "product_container_border_radius",
             "type": "range",
-            "max": 2,
+            "max": 50,
             "min": 0,
-            "step": 0.25,
+            "step": 1,
             "unit": "rem",
             "label": "Border radius",
-            "defaultValue": 0.5
+            "defaultValue": 8
           },
           {
             "id": "product_container_padding_vert",
@@ -8102,12 +8197,12 @@
           {
             "id": "container_border_radius",
             "type": "range",
-            "max": 2,
+            "max": 50,
             "min": 0,
-            "step": 0.25,
-            "unit": "rem",
+            "step": 1,
+            "unit": "px",
             "label": "Border radius",
-            "defaultValue": 0.5
+            "defaultValue": 8
           },
           {
             "id": "container_padding",
@@ -8191,12 +8286,12 @@
           {
             "id": "container_border_radius",
             "type": "range",
-            "max": 2,
+            "max": 50,
             "min": 0,
-            "step": 0.25,
-            "unit": "rem",
+            "step": 1,
+            "unit": "px",
             "label": "Border radius",
-            "defaultValue": 0.5
+            "defaultValue": 8
           },
           {
             "id": "container_padding_horiz",
@@ -8407,7 +8502,7 @@
           {
             "id": "container_border_radius",
             "type": "range",
-            "max": 32,
+            "max": 50,
             "min": 0,
             "step": 1,
             "unit": "px",
@@ -8625,7 +8720,7 @@
           {
             "id": "bundle_border_radius",
             "type": "range",
-            "max": 32,
+            "max": 50,
             "min": 0,
             "step": 1,
             "unit": "px",
@@ -9395,7 +9490,7 @@
           {
             "id": "slider_border_radius",
             "type": "range",
-            "max": 75,
+            "max": 50,
             "min": 0,
             "step": 1,
             "unit": "px",
@@ -9452,7 +9547,7 @@
           {
             "id": "thumbnails_border_radius",
             "type": "range",
-            "max": 75,
+            "max": 50,
             "min": 0,
             "step": 1,
             "unit": "px",
@@ -9535,12 +9630,12 @@
           {
             "id": "container_border_radius",
             "type": "range",
-            "max": 2,
+            "max": 50,
             "min": 0,
-            "step": 0.25,
+            "step": 1,
             "unit": "rem",
             "label": "Border radius",
-            "defaultValue": 0.5
+            "defaultValue": 8
           },
           {
             "id": "container_padding_horiz",
@@ -9645,12 +9740,12 @@
           {
             "id": "terms_container_border_radius",
             "type": "range",
-            "max": 2,
+            "max": 50,
             "min": 0,
-            "step": 0.25,
-            "unit": "rem",
+            "step": 1,
+            "unit": "px",
             "label": "Border radius",
-            "defaultValue": 0.5
+            "defaultValue": 8
           },
           {
             "id": "terms_container_padding_horiz",
@@ -9807,12 +9902,12 @@
           {
             "id": "feedback_card_border_radius",
             "type": "range",
-            "max": 2,
+            "max": 50,
             "min": 0,
-            "step": 0.25,
+            "step": 1,
             "unit": "rem",
             "label": "Border radius",
-            "defaultValue": 0.5
+            "defaultValue": 8
           },
           {
             "id": "feedback_card_shadow",
@@ -9939,7 +10034,7 @@
           {
             "id": "container_border_radius",
             "type": "range",
-            "max": 32,
+            "max": 50,
             "min": 0,
             "step": 1,
             "unit": "px",
@@ -10230,7 +10325,7 @@
           {
             "id": "container_border_radius",
             "type": "range",
-            "max": 32,
+            "max": 50,
             "min": 0,
             "step": 1,
             "unit": "px",
@@ -10506,7 +10601,7 @@
           {
             "id": "container_border_radius",
             "type": "range",
-            "max": 32,
+            "max": 50,
             "min": 0,
             "step": 1,
             "unit": "px",
@@ -11169,7 +11264,7 @@
           {
             "id": "border_radius",
             "type": "range",
-            "max": 75,
+            "max": 50,
             "min": 0,
             "step": 1,
             "unit": "px",
@@ -11768,9 +11863,9 @@
       "name": "snippet-cart-button-2.css",
       "path": "assets/css/snippet-cart-button-2.css"
     },
-    "snippet-checkout-product.css": {
-      "name": "snippet-checkout-product.css",
-      "path": "assets/css/snippet-checkout-product.css"
+    "snippet-checkout-products.css": {
+      "name": "snippet-checkout-products.css",
+      "path": "assets/css/snippet-checkout-products.css"
     },
     "snippet-checkout-product-count.css": {
       "name": "snippet-checkout-product-count.css",

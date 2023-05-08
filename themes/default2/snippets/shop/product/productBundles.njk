@@ -37,7 +37,6 @@
 
 <style>
   .{{ localClass }}__bundle {
-    display: none;
     background: {{ colors[bundleBackgroundColor] }};
     border: {{ "1px solid var(--borderColor)" if bundleShowBorder else "none" }};
     box-shadow: {{ bundleShadow }};
@@ -93,7 +92,7 @@
 
       <div
         id="{{ localClass }}-{{bundleId}}"
-        class="{{ globalClass }}__bundle {{ localClass }}__bundle"
+        class="d-none {{ globalClass }}__bundle {{ localClass }}__bundle"
       >
         <div class="{{ globalClass }}__head {{ localClass }}__head">
           <div>
@@ -122,9 +121,8 @@
         <div class="{{ globalClass }}__products {{ localClass }}__products">
           {% for product in products_bound %}
             <div
-              class="{{ globalClass }}__product {{ localClass }}__product"
+              class="d-none {{ globalClass }}__product {{ localClass }}__product"
               data-product-id="{{product.uniqid}}"
-              style="display:none"
             >
               {%
                 render_snippet 'Product: Bundle product',

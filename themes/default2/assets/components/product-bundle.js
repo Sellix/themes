@@ -61,20 +61,25 @@
       const productIdsLeft = productsLeft.map(({ uniqid }) => uniqid);
 
       if (!productsLeft.length) {
-        this.$bundle.hide();
+        this.$bundle.addClass('d-none');
       } else {
-        this.$bundle.show();
+        this.$bundle.removeClass('d-none');
       }
 
       const $products = this.$bundle.find('[data-product-id]');
+
+      let $lastProduct = null;
       jQuery.each($products, (idx, product) => {
         const $product = jQuery(product);
+        $product.css({ 'border-bottom': '' });
         if (productIdsLeft.includes($product.data('productId'))) {
-          $product.show();
+          $product.removeClass('d-none');
+          $lastProduct = $product;
         } else {
-          $product.hide();
+          $product.addClass('d-none');
         }
       });
+      $lastProduct.css({ 'border-bottom': 'none' });
     }
   }
   window.SellixProductBundleComponent = ProductBundleComponent;

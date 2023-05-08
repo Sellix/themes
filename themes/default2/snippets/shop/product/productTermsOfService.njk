@@ -5,7 +5,7 @@
 
 {% set backgroundColor = properties.container_background_color if properties.container_background_color is defined else 'background_accent_dark' %}
 {% set showBorder = properties.container_show_border if properties.container_show_border is defined else true %}
-{% set borderRadius = properties.container_border_radius if properties.container_border_radius is defined else 0.5 %}
+{% set borderRadius = properties.container_border_radius if properties.container_border_radius is defined else 8 %}
 {% set shadow = properties.container_shadow if properties.container_shadow is defined else 'none' %}
 {% set paddingHoriz = properties.container_padding_horiz if properties.container_padding_horiz is defined else 16 %}
 {% set paddingVert = properties.container_padding_vert if properties.container_padding_vert is defined else 16 %}
@@ -20,7 +20,7 @@
     .sellix-product-terms-of-service-{{ id }} {
       border: {{ '1px solid var(--borderColor)' if showBorder else 'none' }}!important;
       background: {{ colors[backgroundColor] }}!important;
-      border-radius: {{ borderRadius }}rem!important;
+      border-radius: {{ borderRadius }}px!important;
       box-shadow: {{ shadow }}!important;
       padding: {{ paddingVert }}px {{ paddingHoriz }}px!important;
     }

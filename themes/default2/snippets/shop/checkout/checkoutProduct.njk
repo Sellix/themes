@@ -11,12 +11,12 @@
 
 {% set isPlaceholder = not product.cloudflare_image_id %}
 
-{% set backgroundColor = safe_get(properties.product_background_color, 'background_accent_dark') %}
-{% set showBorder = safe_get(properties.product_show_border, true) %}
-{% set containerShadow = safe_get(properties.product_container_shadow, 'none') %}
-{% set containerBorderRadius = safe_get(properties.product_container_border_radius, 0.5) %}
-{% set containerPaddingVert = safe_get(properties.product_container_padding_vert, 16) %}
-{% set containerPaddingHoriz = safe_get(properties.product_container_padding_horiz, 16) %}
+{% set productBgColor = safe_get(properties.product_background_color, 'background_accent_dark') %}
+{% set productShowBorder = safe_get(properties.product_show_border, true) %}
+{% set productShadow = safe_get(properties.product_container_shadow, 'none') %}
+{% set productBorderRadius = safe_get(properties.product_container_border_radius, 8) %}
+{% set productPaddingVert = safe_get(properties.product_container_padding_vert, 16) %}
+{% set productPaddingHoriz = safe_get(properties.product_container_padding_horiz, 16) %}
 {% set titleFontColor = safe_get(properties.product_title_font_color, 'light_font_color') %}
 {% set titleFontSize = safe_get(properties.product_title_font_size, 18) %}
 {% set titleFontWeight = safe_get(properties.product_title_font_weight, 500) %}
@@ -39,11 +39,11 @@
 
 <style>
   .{{ localClass }}__details {
-    background: {{ colors[backgroundColor] }};
-    border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
-    box-shadow: {{ containerShadow }};
-    border-radius: {{ containerBorderRadius }}rem;
-    padding: {{ containerPaddingVert }}px {{ containerPaddingHoriz }}px;
+    background: {{ colors[productBgColor] }};
+    border: {{ "1px solid var(--borderColor)" if productShowBorder else "none" }};
+    box-shadow: {{ productShadow }};
+    border-radius: {{ productBorderRadius }}px;
+    padding: {{ productPaddingVert }}px {{ productPaddingHoriz }}px;
   }
 
   .{{ localClass }}__title {
@@ -82,10 +82,19 @@
 
       {% if not isInvoice and product.stock !== 0 %}
         <div class="{{ globalClass }}__product-count">
-          {% render_snippet 'Checkout: Product count', product=product, quantity=quantity %}
+          {% render_snippet
+            'Checkout: Product count',
+            product=product,
+            quantity=quantity,
+            show_stock_info=false
+          %}
         </div>
 
-        <div class="{{ globalClass }}__remove-icon" data-product-id="{{product.uniqid}}">
+        <div
+          class="{{ globalClass }}__remove-icon"
+          data-product-id="{{product.uniqid}}"
+          data-remove-button="1"
+        >
           {% render_snippet 'Icons: Trash' %}
         </div>
       {% endif %}
