@@ -33,7 +33,7 @@
 {% set productPaddingHoriz = safe_get(properties.bundle_product_padding_horiz, 16) %}
 
 {% set globalClass = ['snippet-product-bundles'] %}
-{% set localClass = [globalClass, '-', id] | join %}
+{% set localClass = id %}
 
 <style>
   .{{ localClass }}__bundle {
@@ -148,7 +148,19 @@
               id: '{{ bundle.id }}',
               products_bound: [
                 {% for product in bundle.products_bound %}
-                {{ product | exclude_attributes('shop_terms_of_service') | dump | safe }},
+                  {{
+                    {
+                      'uniqid': product.uniqid,
+                      'currency': product.currency,
+                      'name': product.name,
+                      'title': product.title,
+                      'type': product.type,
+                      'quantity_min': product.quantity_min,
+                      'quantity_max': product.quantity_max,
+                      'on_hold': product.on_hold,
+                      'stock': product.stock
+                    } | dump | safe
+                  }},
                 {% endfor %}
               ],
             },

@@ -2077,7 +2077,7 @@
                   "settings": {
                     "visible": true,
                     "properties": {
-                      "render_mode": "backend",
+                      "render_mode": "frontend",
                       "bundle_background_color": "background_accent_light",
                       "bundle_padding_horiz": 0,
                       "bundle_padding_vert": 0,
@@ -3286,7 +3286,7 @@
                   "settings": {
                     "visible": true,
                     "properties": {
-                      "render_mode": "backend",
+                      "render_mode": "frontend",
                       "bundle_background_color": "background_accent_light",
                       "bundle_padding_horiz": 0,
                       "bundle_padding_vert": 0,
@@ -3360,6 +3360,7 @@
                     "visible": true,
                     "properties": {
                       "filter_name": "shop-product-grid-filter__main",
+                      "container_border_radius": 0,
                       "grid_show_group": true,
                       "grid_show_info": false,
                       "grid_show_product": true,
@@ -5882,10 +5883,6 @@
             "limit": 1
           },
           {
-            "name": "Product: Details",
-            "limit": 1
-          },
-          {
             "name": "Product: Gallery",
             "limit": 1
           },
@@ -7359,6 +7356,7 @@
       "name": "Checkout: Products",
       "path": "blocks/shop/checkout/checkoutProducts.njk",
       "settings": {
+        "class": "block-checkout-products",
         "schema": [
           {
             "id": "container_properties",
@@ -9344,100 +9342,6 @@
               }
             ],
             "defaultValue": 400
-          }
-        ]
-      }
-    },
-    "Product: Details": {
-      "name": "Product: Details",
-      "path": "blocks/shop/product/productDetails.njk",
-      "settings": {
-        "class": "block-product-details",
-        "schema": [
-          {
-            "id": "container_background_color",
-            "type": "select",
-            "label": "Background color",
-            "options": [
-              {
-                "title": "Main",
-                "value": "background_main_color"
-              },
-              {
-                "title": "Accent (Light)",
-                "value": "background_accent_light"
-              },
-              {
-                "title": "Accent (Dark)",
-                "value": "background_accent_dark"
-              },
-              {
-                "title": "Transparent",
-                "value": "transparent"
-              }
-            ],
-            "defaultValue": "background_accent_dark"
-          },
-          {
-            "id": "container_show_border",
-            "type": "checkbox",
-            "label": "Show border",
-            "defaultValue": true
-          },
-          {
-            "id": "header_title",
-            "type": "header",
-            "content": "Title text settings"
-          },
-          {
-            "id": "title_font_color",
-            "type": "select",
-            "label": "Font color",
-            "options": [
-              {
-                "title": "Light",
-                "value": "light_font_color"
-              },
-              {
-                "title": "Dark",
-                "value": "dark_font_color"
-              },
-              {
-                "title": "Brand",
-                "value": "brand_color"
-              }
-            ],
-            "defaultValue": "light_font_color"
-          },
-          {
-            "id": "title_font_size",
-            "max": 32,
-            "min": 14,
-            "step": 2,
-            "type": "range",
-            "unit": "px",
-            "label": "Font size",
-            "defaultValue": 24
-          },
-          {
-            "id": "title_text_align",
-            "type": "select",
-            "label": "Text align",
-            "options": [
-              {
-                "title": "Left",
-                "value": "left"
-              },
-              {
-                "title": "Center",
-                "value": "center"
-              },
-              {
-                "title": "Right",
-                "value": "right"
-              }
-            ],
-            "defaultValue": "left"
           }
         ]
       }
@@ -11547,10 +11451,6 @@
     "Product: Description": {
       "name": "Product: Description",
       "path": "snippets/shop/product/productDescription.njk"
-    },
-    "Product: Details": {
-      "name": "Product: Details",
-      "path": "snippets/shop/product/productDetails.njk"
     },
     "Product: Gallery": {
       "name": "Product: Gallery",

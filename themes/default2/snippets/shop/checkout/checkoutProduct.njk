@@ -35,7 +35,7 @@
 {% endfor %}
 
 {% set globalClass = ['snippet-checkout-product'] %}
-{% set localClass = [globalClass, '-', id] | join %}
+{% set localClass = id %}
 
 <style>
   .{{ localClass }}__details {
@@ -171,7 +171,7 @@
       const action = (eventInfo && eventInfo.action) || 'update';
 
       if (action === 'delete' && (!productId || id === productId)) {
-        const addonsStore = new SellixAddonsStore('{{ shop.name }}');
+        const addonsStore = new SellixProductAddonsStore('{{ shop.name }}');
         addonsStore.clear(productId);
       }
     });

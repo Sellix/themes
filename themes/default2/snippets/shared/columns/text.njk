@@ -11,7 +11,8 @@
 {% set fontWeight = safe_get(properties.font_weight, 400) %}
 {% set lineHeight = safe_get(properties.line_height, 28) %}
 
-{% set localClass = ['section-multi-columns-', id, '__column-item-text'] | join %}
+{% set globalClass = 'section-multi-columns' %}
+{% set localClass = id %}
 
 <style>
   .{{ localClass }} {

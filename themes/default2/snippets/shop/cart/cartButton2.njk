@@ -36,7 +36,20 @@
     $(document).ready(function () {
       $('#cart-button-{{id}}').removeClass('d-none');
 
-      const product = {{product | exclude_attributes(['shop_terms_of_service']) | dump | safe}};
+      const product = {{
+        {
+          'uniqid': product.uniqid,
+          'currency': product.currency,
+          'name': product.name,
+          'title': product.title,
+          'type': product.type,
+          'quantity_min': product.quantity_min,
+          'quantity_max': product.quantity_max,
+          'on_hold': product.on_hold,
+          'stock': product.stock
+        } | dump | safe
+      }};
+
       let cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
       const cartProdComponent = new SellixCartProductComponent(
         '#cart-button-{{id}}',

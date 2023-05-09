@@ -9,7 +9,7 @@
       this.$bundle = jQuery(selector);
       this.$addAllButton = this.$bundle.find('.add-all-button');
 
-      this.$addAllButton.on('click', () => this.addAllProducts());
+      this.$addAllButton.on('click', this.addAllProducts);
 
       this.renderEvents = ['SellixCartUpdateEvent', 'SellixRenderComponent'].map((eventName) => {
         return sellixHelper.getEventName({
@@ -29,8 +29,11 @@
         .map((product) => {
           const { uniqid, quantity_min, on_hold, stock } = product;
 
-          const quantity = (this.cart.getItemById(product.uniqid) || {}).quantity || 0;
-          const valid = sellixHelper.isValidCount({ ...product, count: parseInt(quantity) + 1 });
+          const quantity = (this.cart.getItemById(uniqid) || {}).quantity || 0;
+          const valid = sellixHelper.isValidCount({
+            ...product,
+            count: parseInt(quantity) + 1,
+          });
 
           if (+stock === 0 || !!+on_hold) {
             return null;

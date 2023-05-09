@@ -14,7 +14,7 @@
 {% set productShowBorder = safe_get(properties.product_show_border, true) %}
 
 {% set globalClass = ['snippet-checkout-products'] %}
-{% set localClass = [globalClass, '-', id] | join %}
+{% set localClass = id %}
 
 <style>
   .{{ localClass }} {
@@ -57,6 +57,7 @@
       cart,
       {{renderOptions | dump | safe}},
       {{properties | dump | safe}},
+      $('<div class="{{ globalClass }}__product-wrapper {{ localClass }}__product-wrapper"></div>'),
     );
   });
 </script>
