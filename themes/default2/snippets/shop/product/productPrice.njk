@@ -1,3 +1,4 @@
+{% set colors = themeProperties.current_colors %}
 {% set product = args.product %}
 {% set isFree = product.price_display | float === 0 %}
 
@@ -30,6 +31,7 @@
   .{{ localClass }}.with-discount span {
     margin-right: 0.25rem;
     text-decoration: line-through;
+    opacity: 0.4;
   }
 </style>
 
@@ -41,7 +43,9 @@
       price=product.price_display,
       discount=product.price_discount
     %}
-    <span>{% render_snippet 'Price', currency=product.currency, price=product.price_display %}</span>
+    <span>
+      {% render_snippet 'Price', currency=product.currency, price=product.price_display %}
+    </span>
   </span>
 {% else %}
   <span class="{{ globalClass }} {{ localClass }}">

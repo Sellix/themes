@@ -33,49 +33,49 @@
 {% set globalClass = ['snippet-product-addons'] %}
 {% set localClass = id %}
 
-<style>
-  .{{ localClass }} {
-    background: {{ colors[bgColor] }};
-    border: {{ '1px solid var(--borderColor)' if showBorder else 'none' }};
-    box-shadow: {{ shadow }};
-    border-radius: {{ borderRadius }}px;
-    padding: {{ paddingVert }}px {{ paddingHoriz }}px;
-  }
-  .{{ localClass }}__title {
-    color: {{ colors[titleFontColor] }};
-    font-size: {{ titleFontSize }}px;
-    font-weight: {{ titleFontWeight }};
-    line-height: {{ titleLineHeight }}px;
-  }
-
-  .{{ localClass }}__description {
-    color: {{ colors[bodyFontColor] }};
-    font-size: {{ bodyFontSize }}px;
-    font-weight: {{ bodyFontWeight }};
-    line-height: {{ bodyLineHeight }}px;
-  }
-
-  .{{ localClass }}__header {
-    padding: 0.75rem 1.25rem;
-  }
-  .{{ localClass}}.opened .{{ localClass }}__header {
-    border-bottom: 1px solid var(--borderColor);
-  }
-  .{{ localClass }}__addons-checkbox input {
-
-  }
-  .{{ localClass }}__addons-checkbox label {
-    text-transform: capitalize;
-    color: var(--darkFontColor);
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 17px;
-  }
-</style>
-
 {% if product.type === "SUBSCRIPTION" and product.trial_period %}
   {# Do nothing #}
-{% elif addons | length > 0 %}
+{% elif addons | length %}
+  <style>
+    .{{ localClass }} {
+      background: {{ colors[bgColor] }};
+      border: {{ '1px solid var(--borderColor)' if showBorder else 'none' }};
+      box-shadow: {{ shadow }};
+      border-radius: {{ borderRadius }}px;
+      padding: {{ paddingVert }}px {{ paddingHoriz }}px;
+    }
+    .{{ localClass }}__title {
+      color: {{ colors[titleFontColor] }};
+      font-size: {{ titleFontSize }}px;
+      font-weight: {{ titleFontWeight }};
+      line-height: {{ titleLineHeight }}px;
+    }
+
+    .{{ localClass }}__description {
+      color: {{ colors[bodyFontColor] }};
+      font-size: {{ bodyFontSize }}px;
+      font-weight: {{ bodyFontWeight }};
+      line-height: {{ bodyLineHeight }}px;
+    }
+
+    .{{ localClass }}__header {
+      padding: 0.75rem 1.25rem;
+    }
+    .{{ localClass}}.opened .{{ localClass }}__header {
+      border-bottom: 1px solid var(--borderColor);
+    }
+    .{{ localClass }}__addons-checkbox input {
+
+    }
+    .{{ localClass }}__addons-checkbox label {
+      text-transform: capitalize;
+      color: var(--darkFontColor);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 17px;
+    }
+  </style>
+
   <div class="{{ globalClass }} {{ localClass }}">
     <div class="{{ globalClass }}__header {{ localClass }}__header">
       <div class="{{ globalClass }}__addons-checkbox {{ localClass }}__addons-checkbox sellix-checkbox mb-0 mr-0">

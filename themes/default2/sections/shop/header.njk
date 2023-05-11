@@ -10,33 +10,40 @@
   else 'background_main_color'
 %}
 
-{% set localClass = [globalClass, '-', id] | join %}
+{% set fullWidth = safe_get(properties.fullwidth, false) %}
+{% set shadow = safe_get(properties.shadow, 'none') %}
+{% set logoImage = safe_get(properties.logo_image, null) %}
+{% set shopName = safe_get(properties.shop_name, null) or shop.name %}
+{% set shopNameFontColor = safe_get(properties.shop_name_font_color, 'dark_font_color') %}
+{% set shopNameFontSize = safe_get(properties.shop_name_font_size, 18) %}
+{% set shopNameFontWeight = safe_get(properties.shop_name_font_weight, 700) %}
+{% set shopNameLineHeight = safe_get(properties.shop_name_line_height, 20) %}
+{% set logoImageHeight = safe_get(properties.logo_image_height, 30) %}
+
+{% set localClass = id %}
 
 <style>
+  .{{ globalClass }} {
+    box-shadow: {{ shadow }};
+  }
   .{{ localClass }} {
     background-color: {{ colors[backgroundColor] }};
   }
-  .{{ localClass }} .sellix-header__shop-name {
-    text-align: {{ properties.shop_name_text_align }};
-    {% if properties.shop_name_text_align == 'center' %}
-      left: 0;
-      position: absolute;
-    {% endif %}
-  }
   .{{ localClass }} .sellix-header__shop-name > a > span {
-    color: {{ colors[properties.shop_name_font_color] if properties.shop_name_font_color else 'inherit' }};
-    font-size: {{ properties.shop_name_font_size }}px;
-    font-weight: {{ properties.shop_name_font_weight }};
+    color: {{ colors[shopNameFontColor] }};
+    font-size: {{ shopNameFontSize }}px;
+    font-weight: {{ shopNameFontWeight }};
+    line-height: {{ shopNameLineHeight }}px;
   }
   .{{ localClass }} .sidebar-toggler {
-    color: {{ colors[properties.shop_name_font_color] if properties.shop_name_font_color else 'inherit' }};
+    color: {{ colors[shopNameFontColor] }};
   }
   .{{ localClass }} .sellix-header__logo-image img {
-    max-height: {{ properties.logo_image_height }}px;
+    max-height: {{ logoImageHeight }}px;
   }
 </style>
 
-<header class="{{ localClass }} {{ 'full-width' if properties.fullwidth else 'content-width' }}">
+<header class="{{ localClass }} {{ 'full-width' if fullWidth else 'content-width' }}">
   <div id="sellix-header-{{ layoutId }}" class="sellix-header {{ localClass }}">
     <div class="sellix-header__logo">
       <div class="sidebar-toggler">
@@ -53,7 +60,7 @@
         <a href="">
           <div class="sellix-header__logo-image">
             <img
-              src="{{ properties.logo_image }}"
+              src="{{ logoImage }}"
               alt="{{ shop.name }}"
             >
           </div>
@@ -63,11 +70,7 @@
       <div class="sellix-header__shop-name">
         <a href="">
           <span>
-            {% if properties.shop_name %}
-              {{ properties.shop_name }}
-            {% else %}
-              {{shop.name}}
-            {% endif %}
+            {{ shopName }}
           </span>
         </a>
       </div>

@@ -1,12 +1,11 @@
 (function (document, window, jQuery, sellixApi, sellixHelper) {
   class CheckoutProductsComponent {
-    constructor(selector, cart, renderOptions, properties, $wrapper) {
+    constructor(selector, cart, renderOptions, properties) {
       this.cart = cart;
       this.renderOptions = renderOptions;
       this.properties = properties;
 
       this.$products = jQuery(selector);
-      this.$wrapper = $wrapper;
 
       this.renderEvents = ['SellixCartUpdateEvent', 'SellixRenderComponent'].map((eventName) => {
         return sellixHelper.getEventName({
@@ -34,10 +33,6 @@
           )
           .then((resp) => {
             let $component = $(resp.html);
-            if (this.$wrapper) {
-              this.$wrapper.html($component);
-              $component = this.$wrapper;
-            }
             this.$products.append($component);
             setTimeout(function () {
               const eventName = sellixHelper.getEventName({

@@ -7,7 +7,7 @@
       this.productId = productId;
       this.isVisibleDescription = false;
 
-      this.$product.find('.sellix-cart-description').on('click', (event) => {
+      this.$product.find('[data-toggle-description-button]').on('click', (event) => {
         event.preventDefault();
         this.onClickDescriptionButton();
       });
@@ -41,7 +41,7 @@
         }
       });
 
-      jQuery(document).on('SellixVariantsUpdateEvent', (event, eventInfo) => {
+      jQuery(document).on('SellixProductVariantsUpdateEvent', (event, eventInfo) => {
         if (!eventInfo || !eventInfo.productId || eventInfo.productId === this.productId) {
           const activeVariant = this.productVariantsStore.get(this.productId);
           if (activeVariant) {
@@ -52,19 +52,40 @@
     }
 
     toggleDescription = (show) => {
-      const $description = this.$product.find('.shop-product-info-collapse'),
-        $label = this.$product.find('.sellix-cart-description .label-show-description'),
-        $button = this.$product.find('.sellix-cart-description .label-click-for-info');
+      console.log('Toggle Description', show);
+      const $description = this.$product.find('[data-description-wrapper]'),
+        $label = this.$product.find('[data-toggle-description-button] .label-show-description'),
+        $button = this.$product.find('[data-toggle-description-button] .label-click-for-info');
 
       if (show) {
         $description.animate(
-          { height: $description.get(0).scrollHeight, overflow: 'initial' },
-          { duration: 300, queue: false },
+          { 'min-height': $description.get(0).scrollHeight },
+          {
+            duration: 300,
+            queue: false,
+            done: () => {
+              $description.css({
+                height: 'initial',
+                overflow: 'initial',
+              });
+            },
+          },
         );
         $label.text(window.sellixI18Next.t('shop.checkout.hideDescription'));
         $button.hide();
       } else {
-        $description.animate({ height: '0px', overflow: 'hidden' }, { duration: 300, queue: false });
+        $description.animate(
+          { 'min-height': 0, height: 0 },
+          {
+            duration: 300,
+            queue: false,
+            done: () => {
+              $description.css({
+                overflow: 'hidden',
+              });
+            },
+          },
+        );
         $label.text(window.sellixI18Next.t('shop.checkout.showDescription'));
         $button.show();
       }
@@ -75,7 +96,7 @@
     removeProduct = () => {
       jQuery(document).off(this.renderEvents.join(' '));
       jQuery(document).off(this.showDescriptionEvent);
-      this.$product.find('.sellix-cart-description').off('click');
+      this.$product.find('[data-toggle-description-button]').off('click');
       this.$product.find('[data-remove-button]').off('click');
       this.$product.remove();
     };

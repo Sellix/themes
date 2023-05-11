@@ -48,12 +48,10 @@
 
 <script type='application/javascript'>
   $(document).ready(function () {
-    const productId = '{{ product.uniqid }}';
-    const product = ((SellixContext.get('common').shopInfo || {}).items || []).filter(p => p.uniqid === productId);
     new SellixProductCountComponent(
       '.{{ localClass }}',
       '{{shop.name}}',
-      product,
+      {{ product | exclude_attributes('shop_terms_of_service') | dump | safe }},
       {{renderOptions | dump | safe}},
     );
   });

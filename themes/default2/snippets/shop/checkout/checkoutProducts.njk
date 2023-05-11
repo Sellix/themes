@@ -3,6 +3,7 @@
 {% set invoice = args.invoice %}
 {% set products = args.products %}
 {% set properties = args.properties %}
+{% set colors = themeProperties.current_colors %}
 
 {% set bgColor = safe_get(properties.container_background_color, 'background_accent_dark') %}
 {% set showBorder = safe_get(properties.container_show_border, true) %}
@@ -11,7 +12,7 @@
 {% set paddingVert = safe_get(properties.container_padding_vert, 16) %}
 {% set paddingHoriz = safe_get(properties.container_padding_horiz, 16) %}
 
-{% set productShowBorder = safe_get(properties.product_show_border, true) %}
+{% set productShowBorder = safe_get(properties.product_container_show_border, true) %}
 
 {% set globalClass = ['snippet-checkout-products'] %}
 {% set localClass = id %}
@@ -22,30 +23,26 @@
     border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
     box-shadow: {{ shadow }};
     border-radius: {{ borderRadius }}px;
-  }
-
-  .{{ localClass }}__product-wrapper {
     padding: {{ paddingVert }}px {{ paddingHoriz }}px;
   }
-
   {% if showBorder and not productShowBorder %}
-  .{{ localClass }}__product-wrapper:not(:last-child) {
-    border-bottom: 1px solid var(--borderColor);
-  }
+    .snippet-checkout-product:not(:last-of-type) {
+      border-bottom: 1px solid var(--borderColor);
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
   {% endif %}
 </style>
 
 <div class="{{ globalClass }} {{ localClass }}">
   {% for product in products %}
-    <div class="{{ globalClass }}__product-wrapper {{ localClass }}__product-wrapper">
-      {% render_snippet
-        'Checkout: Product',
-        product=product,
-        invoice=invoice,
-        quantity=product.quantity,
-        properties=properties
-      %}
-    </div>
+    {% render_snippet
+      'Checkout: Product',
+      product=product,
+      invoice=invoice,
+      quantity=product.quantity,
+      properties=properties
+    %}
   {% endfor %}
 </div>
 
@@ -57,7 +54,6 @@
       cart,
       {{renderOptions | dump | safe}},
       {{properties | dump | safe}},
-      $('<div class="{{ globalClass }}__product-wrapper {{ localClass }}__product-wrapper"></div>'),
     );
   });
 </script>

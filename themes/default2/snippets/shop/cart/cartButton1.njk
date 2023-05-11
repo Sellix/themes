@@ -39,25 +39,12 @@
 
   <script type='application/javascript'>
     $(document).ready(function () {
-      const product = {{
-        {
-          'uniqid': product.uniqid,
-          'currency': product.currency,
-          'name': product.name,
-          'title': product.title,
-          'type': product.type,
-          'quantity_min': product.quantity_min,
-          'quantity_max': product.quantity_max,
-          'on_hold': product.on_hold,
-          'stock': product.stock
-        } | dump | safe
-      }};
-
+      const product = {{product | exclude_attributes(['shop_terms_of_service']) | dump | safe}};
       let cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
       const cartProdComponent = new SellixCartProductComponent(
         '#cart-button-{{id}}',
         cart,
-        {{ product | dump | safe }},
+        product,
         {{redirectToCheckout | default(false)}},
         {{renderOptions | dump | safe}},
       );

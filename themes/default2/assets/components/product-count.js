@@ -11,8 +11,8 @@
       this.$container = jQuery(selector);
 
       this.$container.find('[data-stock-count-picker].real').on('click', this.onClick);
-      this.$container.find('[input-wrapper]').on('keyup', this.onKeyUp);
-      this.$container.find('[input-wrapper]').on('paste', this.onPaste);
+      this.$container.find('[data-input-wrapper] input').on('keyup', this.onKeyUp);
+      this.$container.find('[data-input-wrapper] input').on('paste', this.onPaste);
 
       const eventNames = ['SellixCartUpdateEvent', 'SellixRenderComponent']
         .map((eventName) => {
@@ -23,46 +23,12 @@
         })
         .join(' ');
 
-      jQuery(document).on(eventNames, (e, eventInfo) => {
-        if (!eventInfo || !eventInfo.productId || eventInfo.productId === this.productId) {
-          const product = this.cart.getItemById(this.productId);
-          if (product) {
-            this.activeProductVariant = this.productVariantsStore.get(this.productId);
-            this.render(product);
-          }
-        }
-      });
-
-      jQuery(document).on('SellixVariantsUpdateEvent', (event, eventInfo) => {
-        if (product.type !== 'SERIALS') {
-          return;
-        }
-
-        if (!eventInfo || !eventInfo.productId || eventInfo.productId === this.productId) {
-          const product = this.cart.getItemById(this.productId);
-          if (product) {
-            const newProductVariant = this.productVariantsStore.get(this.productId);
-            if (newProductVariant && newProductVariant.title !== this.activeProductVariant.title) {
-              this.activeProductVariant = newProductVariant;
-              if (product.quantity > 1) {
-                this.cart.remove(product.uniqid, product.quantity - 1);
-              } else {
-                this.render(product);
-              }
-            }
-          }
-        }
-      });
+      jQuery(document).on(eventNames, this.onComponentUpdate);
+      jQuery(document).on('SellixProductVariantsUpdateEvent', this.onChangeActiveVariant);
     }
 
-    showHideButton(buttonType, isVisible) {
-      const realSelector = this.$container.find(`[data-stock-count-picker].${buttonType}.real`);
-
-      if (isVisible) {
-        jQuery(realSelector).css({ opacity: 100, pointerEvents: 'initial' });
-      } else {
-        jQuery(realSelector).css({ opacity: 0, pointerEvents: 'none' });
-      }
+    get stock() {
+      return this.activeProductVariant ? this.activeProductVariant.stock : this.product.stock;
     }
 
     onClick = (event) => {
@@ -87,6 +53,47 @@
       return false;
     };
 
+    onChangeActiveVariant = (event, eventInfo) => {
+      if (this.product.type !== 'SERIALS') {
+        return;
+      }
+
+      if (!eventInfo || !eventInfo.productId || eventInfo.productId === this.productId) {
+        const product = this.cart.getItemById(this.productId);
+        if (product) {
+          const newProductVariant = this.productVariantsStore.get(this.productId);
+          if (newProductVariant && newProductVariant.title !== this.activeProductVariant.title) {
+            this.activeProductVariant = newProductVariant;
+            if (product.quantity > 1) {
+              this.cart.remove(product.uniqid, product.quantity - 1);
+            } else {
+              this.render(product);
+            }
+          }
+        }
+      }
+    };
+
+    onComponentUpdate = (event, eventInfo) => {
+      if (!eventInfo || !eventInfo.productId || eventInfo.productId === this.productId) {
+        const product = this.cart.getItemById(this.productId);
+        if (product) {
+          this.activeProductVariant = this.productVariantsStore.get(this.productId);
+          this.render(product);
+        }
+      }
+    };
+
+    showHideButton(buttonType, isVisible) {
+      const realSelector = this.$container.find(`[data-stock-count-picker].${buttonType}.real`);
+
+      if (isVisible) {
+        jQuery(realSelector).css({ opacity: 100, pointerEvents: 'initial' });
+      } else {
+        jQuery(realSelector).css({ opacity: 0, pointerEvents: 'none' });
+      }
+    }
+
     changeProductQuantity(newQuantity) {
       if (isNaN(newQuantity)) {
         this.cart.add({ uniqid: this.productId }, 0);
@@ -99,23 +106,12 @@
         validatedQuantity = Math.floor(validatedQuantity);
       }
 
-      if (this.stock === -1) {
-        if (this.product.quantity_max !== -1) {
-          if (validatedQuantity >= this.product.quantity_max) {
-            validatedQuantity = +this.product.quantity_max;
-          }
-        }
-      } else {
-        if (this.product.quantity_max === -1) {
-          if (validatedQuantity >= this.stock) {
-            validatedQuantity = +this.stock;
-          }
-        } else {
-          if (validatedQuantity >= this.product.quantity_max) {
-            validatedQuantity = +this.product.quantity_max;
-          }
-        }
-      }
+      const stock = this.stock === -1 ? Infinity : +this.stock;
+      const quantityMax = this.product.quantity_max === -1 ? Infinity : +this.product.quantity_max;
+      validatedQuantity = Math.min(stock, quantityMax, validatedQuantity);
+
+      const quantityMin = +this.product.quantity_min;
+      validatedQuantity = Math.max(quantityMin, validatedQuantity);
 
       const product = this.cart.getItemById(this.productId);
       this.cart.add({ uniqid: this.productId }, validatedQuantity - product.quantity);
@@ -153,10 +149,6 @@
       }
 
       this.$container.find('[data-total-value]').html(inStockTitle);
-    }
-
-    get stock() {
-      return this.activeProductVariant ? this.activeProductVariant.stock : this.product.stock;
     }
   }
 

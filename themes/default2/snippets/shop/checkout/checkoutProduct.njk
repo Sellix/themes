@@ -11,8 +11,10 @@
 
 {% set isPlaceholder = not product.cloudflare_image_id %}
 
-{% set productBgColor = safe_get(properties.product_background_color, 'background_accent_dark') %}
-{% set productShowBorder = safe_get(properties.product_show_border, true) %}
+{% set descriptionEnabled = safe_get(properties.description_enabled, true) %}
+
+{% set productBgColor = safe_get(properties.product_container_background_color, 'background_accent_dark') %}
+{% set productShowBorder = safe_get(properties.product_container_show_border, true) %}
 {% set productShadow = safe_get(properties.product_container_shadow, 'none') %}
 {% set productBorderRadius = safe_get(properties.product_container_border_radius, 8) %}
 {% set productPaddingVert = safe_get(properties.product_container_padding_vert, 16) %}
@@ -38,7 +40,7 @@
 {% set localClass = id %}
 
 <style>
-  .{{ localClass }}__details {
+  .{{ localClass }} {
     background: {{ colors[productBgColor] }};
     border: {{ "1px solid var(--borderColor)" if productShowBorder else "none" }};
     box-shadow: {{ productShadow }};
@@ -46,18 +48,43 @@
     padding: {{ productPaddingVert }}px {{ productPaddingHoriz }}px;
   }
 
-  .{{ localClass }}__title {
-    display: flex;
+  .{{ localClass }}__title-text {
     color: {{ colors[titleFontColor] }};
     font-size: {{ titleFontSize }}px;
     font-weight: {{ titleFontWeight }};
     line-height: {{ titleLineHeight }}px;
   }
+  .{{ globalClass }}__description-container {
+    display: flex;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--borderColor);
+  }
+  .{{ globalClass }}__description-right,
+  .{{ globalClass }}__description-left {
+    width: 50%;
+  }
+  .{{ globalClass }}__description-left {
+    margin-right: 1rem;
+  }
+  .{{ globalClass }}__description-right > div,
+  .{{ globalClass }}__description-left > div {
+    padding-bottom: 1rem;
+  }
+  @media (max-width: 768px) {
+    .{{ globalClass }}__description-container {
+      flex-direction: column;
+    }
+    .{{ globalClass }}__description-right,
+    .{{ globalClass }}__description-left {
+      width: 100%;
+    }
+  }
 </style>
 
 <div class="{{ globalClass }} {{ localClass }}" data-checkout-product="{{ product.uniqid }}">
-  <div class="{{ globalClass }}__details {{ localClass }}__details">
-    <div class="{{ globalClass }}__image {{ localClass }}__image {{'placeholder' if isPlaceholder}}">
+  <div class="{{ globalClass }}__details">
+    <div class="{{ globalClass }}__image {{'placeholder' if isPlaceholder}}">
       {% if isPlaceholder %}
         <i class="fa-light fa-layer-group"></i>
       {% else %}
@@ -65,20 +92,34 @@
       {% endif %}
     </div>
 
-    <div class="{{ globalClass }}__title {{ localClass}}__title unselectable">
-        <span>
+    <div class="{{ globalClass }}__title unselectable">
+      <div class="{{ globalClass }}__title-text {{ localClass }}__title-text">
+        <div>
           {{product.title}}
-        </span>
+        </div>
 
-      {% if isInvoice %}
-        <div class="{{ globalClass }}__product-quantity total unselectable">
-          {{ 'shop.checkout.stock' | t }}: {{product.quantity if product.quantity else product.unit_quantity}}
+        {% if isInvoice %}
+          <div class="{{ globalClass }}__product-quantity total unselectable">
+            {{ 'shop.checkout.stock' | t }}: {{product.quantity if product.quantity else product.unit_quantity}}
+          </div>
+        {% endif %}
+
+        <div class="{{ globalClass }}__product-price">
+          {% render_snippet 'Product: Price', product=product %}
+        </div>
+      </div>
+
+      {% if descriptionEnabled %}
+        <div class="{{ globalClass }}__chevron-icon">
+          <span class="chevron d-none" data-toggle-description-button="1">
+            {% render_snippet 'Icons: Chevron up' %}
+          </span>
+
+          <span class="chevron" data-toggle-description-button="1">
+            {% render_snippet 'Icons: Chevron down' %}
+          </span>
         </div>
       {% endif %}
-
-      <div class="{{ globalClass }}__product-price">
-        {% render_snippet 'Product: Price', product=product %}
-      </div>
 
       {% if not isInvoice and product.stock !== 0 %}
         <div class="{{ globalClass }}__product-count">
@@ -101,57 +142,60 @@
     </div>
   </div>
 
-  <div class="d-none {{ globalClass }}__description {{ localClass }}__description">
-    <div class="checkout-details-item-details {{'is-invoice' if isInvoice else ''}}">
-      <div class="d-flex justify-content-between">
-
-        <div class="unselectable">
-          <div class="sellix-cart-description" data-product-id="{{product.uniqid}}">
-            {% render_snippet 'Icons: Description' %}
-            <div>
-              <div class="label-show-description">
-                {{ 'shop.checkout.showDescription' | t }}
-              </div>
-              <span class="label-click-for-info">
-                {{ 'shop.shared.titles.moreInfo' | t }}
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div class="unselectable">
-          {% render_snippet 'Product: Warranty collapsable',
+  {% if descriptionEnabled %}
+    <div
+      class="{{ globalClass }}__description"
+      style="height: 0; overflow: hidden"
+      data-description-wrapper="1"
+    >
+      <div class="{{ globalClass }}__description-container">
+        <div class="{{ globalClass }}__description-left">
+          {% render_snippet
+            'Product: Gallery',
             product=product,
-            properties=(properties | set_attribute('show_in_modal', true) | set_attribute('show_border', false))
+            properties={'slider_height': 250, 'thumbnails_height': 125}
+          %}
+        </div>
+        <div class="{{ globalClass }}__description-right">
+          {% render_snippet
+            'Product: Description',
+            product=product,
+            properties={'collapsable': true}
+          %}
+          {% render_snippet
+            'Product: Warranty collapsable',
+            product=product,
+            properties={
+              'body_padding_horiz': 0
+            }
           %}
         </div>
       </div>
     </div>
+  {% endif %}
 
-    <div class="shop-product-info-collapse" style="height: 0; overflow: hidden;">
-      <div class="shop-product-info-wrapper">
-        {% render_snippet 'Product: Gallery', product=product %}
-        {% render_snippet 'Product: Description', product=product %}
-      </div>
+  {% if (product.price_variants or []) | length and product.stock %}
+    <div class="{{ globalClass }}__variants">
+      {% render_snippet
+        'Product: Variants',
+        is_cart=true,
+        product=product,
+        properties=variantsProps,
+        currency=shop.currency
+      %}
     </div>
-  </div>
+  {% endif %}
 
-  {% render_snippet
-    'Product: Variants',
-    is_cart=true,
-    product=product,
-    properties=variantsProps,
-    currency=shop.currency
-  %}
-
-  {% if product.stock !== 0 %}
-    {% render_snippet
-      'Product: Addons',
-      product=product,
-      invoice=invoice,
-      properties=addonsProps,
-      currency=shop.currency
-    %}
+  {% if (product.addons or []) | length and product.stock %}
+    <div class="{{ globalClass }}__addons">
+      {% render_snippet
+        'Product: Addons',
+        product=product,
+        invoice=invoice,
+        properties=addonsProps,
+        currency=shop.currency
+      %}
+    </div>
   {% endif %}
 </div>
 
