@@ -7,22 +7,33 @@
 
 {% set limit = safe_get(properties.grid_limit, 0) | int %}
 {% set filterName = safe_get(properties.filter_name, id) %}
+{% set expandGroup = safe_get(properties.grid_expand_group, false) %}
 {% set showGroup = safe_get(properties.grid_show_group, true) %}
 {% set showInfo = safe_get(properties.grid_show_info, true) %}
 {% set showProduct = safe_get(properties.grid_show_product, true) %}
 {% set showSubscription = safe_get(properties.grid_show_subscription, true) %}
 
+{% set products = [] %}
+{% if expandGroup %}
+  {% for productId, product in shopInfo.products %}
+    {% set products = (products.push(product), products) %}
+  {% endfor %}
+{% else %}
+  {% for itemId in shopInfo.items %}
+    {% set products = (products.push(shopInfo.products[itemId]), products) %}
+  {% endfor %}
+{% endif %}
+
 {% set items = [] %}
-{% for itemId in shopInfo.items %}
-  {% set item = shopInfo.products[itemId] %}
-  {% if item.isGroup and showGroup %}
-    {% set items = (items.push(item), items) %}
-  {% elif item.isInfo and showInfo %}
-    {% set items = (items.push(item), items) %}
-  {% elif item.isProduct and showProduct %}
-    {% set items = (items.push(item), items) %}
-  {% elif item.isSubscription and showSubscription %}
-    {% set items = (items.push(item), items) %}
+{% for product in products %}
+  {% if product.isGroup and showGroup %}
+    {% set items = (items.push(product), items) %}
+  {% elif product.isInfo and showInfo %}
+    {% set items = (items.push(product), items) %}
+  {% elif product.isProduct and showProduct %}
+    {% set items = (items.push(product), items) %}
+  {% elif product.isSubscription and showSubscription %}
+    {% set items = (items.push(product), items) %}
   {% else %}
   {% endif %}
 {% endfor %}
