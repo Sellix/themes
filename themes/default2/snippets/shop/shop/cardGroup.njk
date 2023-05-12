@@ -111,7 +111,7 @@
   $(document).ready(function () {
     $('#sellix-card-container-{{id}}').on('click', function () {
       const groupId = $(this).data('group-id');
-      const items = __RENDER_CONTEXT__.common.shopInfo.items;
+      const items = SellixContext.getShopItems();
       const group = items.find(({uniqid}) => String(uniqid) === String(groupId));
 
       if (group && group.products_bound.length) {

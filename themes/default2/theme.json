@@ -2177,6 +2177,7 @@
           "Multi columns 1",
           "Shop statistics",
           "Section title 1",
+          "Container: Simple",
           "Section title 2",
           "Multi columns 2",
           "Multi columns 3",
@@ -2327,7 +2328,44 @@
               "properties": {
                 "fullwidth": false,
                 "title_content": "Shop Our Best Sellers",
-                "subtitle_content": "Design is as much an act of spacing as an act of marking."
+                "subtitle_content": "Design is as much an act of spacing as an act of marking.",
+                "margin_bottom_desktop": 0,
+                "margin_bottom_tablet": 0,
+                "margin_bottom_mobile": 0
+              }
+            }
+          },
+          "Container: Simple": {
+            "name": "Container: Simple",
+            "settings": {
+              "visible": true,
+              "block_order": ["Products grid"],
+              "blocks": {
+                "Products grid" : {
+                  "name": "Products grid",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "container_border_radius": 0,
+                      "grid_background_color": "transparent",
+                      "grid_limit": 8,
+                      "grid_show_group": false,
+                      "grid_show_info": false,
+                      "grid_show_product": true,
+                      "grid_show_subscription": true,
+                      "grid_background_color": "transparent",
+                      "grid_show_border": false,
+                      "grid_column_gap": 30,
+                      "grid_row_gap": 30,
+                      "grid_items_per_row_desktop": 4,
+                      "grid_items_per_row_tablet": 2,
+                      "grid_items_per_row_mobile": 1
+                    }
+                  }
+                }
+              },
+              "properties": {
+                "background_color": "background_accent_light"
               }
             }
           },
@@ -3422,9 +3460,9 @@
                       "grid_show_border": false,
                       "grid_column_gap": 30,
                       "grid_row_gap": 30,
-                      "grid_items_per_row_desktop": "4",
-                      "grid_items_per_row_tablet": "2",
-                      "grid_items_per_row_mobile": "1"
+                      "grid_items_per_row_desktop": 4,
+                      "grid_items_per_row_tablet": 2,
+                      "grid_items_per_row_mobile": 1
                     }
                   }
                 }
@@ -5731,6 +5769,14 @@
       "settings": {
         "class": "section-container--simple",
         "blocks": [
+          {
+            "name": "Products filter",
+            "limit": 1
+          },
+          {
+            "name": "Products grid",
+            "limit": 1
+          },
           {
             "name": "Product: Bundles",
             "limit": 1
@@ -8768,6 +8814,16 @@
             "content": "Desktop screen"
           },
           {
+            "id": "grid_limit",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "",
+            "label": "Items limit on grid",
+            "defaultValue": 0
+          },
+          {
             "id": "grid_show_group",
             "type": "checkbox",
             "label": "Show Group cards",
@@ -8780,13 +8836,13 @@
             "defaultValue": true
           },
           {
-            "id": "grid_show_products",
+            "id": "grid_show_product",
             "type": "checkbox",
             "label": "Show Product cards",
             "defaultValue": true
           },
           {
-            "id": "grid_show_subscriptions",
+            "id": "grid_show_subscription",
             "type": "checkbox",
             "label": "Show Subscription cards",
             "defaultValue": true
@@ -8800,7 +8856,7 @@
             "id": "grid_items_per_row_desktop",
             "type": "text",
             "label": "Items per row (desktop)",
-            "defaultValue": "4"
+            "defaultValue": 4
           },
           {
             "id": "tablet_screen_properties",
@@ -8811,7 +8867,7 @@
             "id": "grid_items_per_row_tablet",
             "type": "text",
             "label": "Items per row (tablet)",
-            "defaultValue": "2"
+            "defaultValue": 2
           },
           {
             "id": "mobile_screen_properties",
@@ -8822,7 +8878,7 @@
             "id": "grid_items_per_row_mobile",
             "type": "text",
             "label": "Items per row (mobile)",
-            "defaultValue": "1"
+            "defaultValue": 1
           }
         ]
       }

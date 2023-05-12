@@ -5,14 +5,16 @@
 {% set centerProduct = shop.center_product_titles %}
 {% set centerGroup = shop.center_group_titles %}
 
-{% set filterName = properties.filter_name %}
-{% set showGroup = properties.grid_show_group %}
-{% set showInfo = properties.grid_show_info %}
-{% set showProduct = properties.grid_show_product %}
-{% set showSubscription = properties.grid_show_subscription %}
+{% set limit = safe_get(properties.grid_limit, 0) | int %}
+{% set filterName = safe_get(properties.filter_name, id) %}
+{% set showGroup = safe_get(properties.grid_show_group, true) %}
+{% set showInfo = safe_get(properties.grid_show_info, true) %}
+{% set showProduct = safe_get(properties.grid_show_product, true) %}
+{% set showSubscription = safe_get(properties.grid_show_subscription, true) %}
 
 {% set items = [] %}
-{% for item in shopInfo.items %}
+{% for itemId in shopInfo.items %}
+  {% set item = shopInfo.products[itemId] %}
   {% if item.isGroup and showGroup %}
     {% set items = (items.push(item), items) %}
   {% elif item.isInfo and showInfo %}
@@ -49,7 +51,7 @@
     border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
     padding: {{ paddingVert }}px {{ paddingHoriz }}px;
     box-shadow: {{ containerShadow }};
-    border-radius: {{ containerBorderRadius }}rem;
+    border-radius: {{ containerBorderRadius }}px;
 
     display: grid;
     grid-template-columns: repeat({{ itemsPerRowDesktop }}, 1fr);
@@ -73,26 +75,32 @@
 </style>
 
 <div class="{{ globalClass }}__container {{ localClass }}__container {{ 'grid-one-column' if items.length == 0 }}">
+  {% set visibleProductsCnt = 0 %}
   {% for item in items %}
-    {% if hideOutOfStock and item.type !== "INFO_CARD" and item.stock === 0 %}
-      {# hide Out of stock products #}
-    {% elif item.unlisted == 1 %}
-      {# hide unlisted products #}
+    {% if limit > 0 and visibleProductsCnt >= limit %}
+      {# Skip items out of limit #}
     {% else %}
-      <div
-        data-product-id="{{item.uniqid}}"
-        class="{{ globalClass }}__cards {{ localClass }}__cards"
-      >
-        {% if item.isInfo %}
-          {% render_snippet 'Card: Info', product=item, theme=theme, centerProduct=centerProduct %}
-        {% elif item.isSubscription %}
-          {% render_snippet 'Card: Subscription', product=item, theme=theme, centerProduct=centerProduct %}
-        {% elif item.isProduct %}
-          {% render_snippet 'Card: Product', product=item, theme=theme, centerProduct=centerProduct %}
-        {% elif item.isGroup %}
-          {% render_snippet 'Card: Group', group=item, theme=theme, centerGroup=centerGroup %}
-        {% endif %}
-      </div>
+      {% if hideOutOfStock and item.type !== "INFO_CARD" and item.stock === 0 %}
+        {# hide Out of stock products #}
+      {% elif item.unlisted == 1 %}
+        {# hide unlisted products #}
+      {% else %}
+        {% set visibleProductsCnt = visibleProductsCnt + 1 %}
+        <div
+          data-product-id="{{item.uniqid}}"
+          class="{{ globalClass }}__cards {{ localClass }}__cards"
+        >
+          {% if item.isInfo %}
+            {% render_snippet 'Card: Info', product=item, theme=theme, centerProduct=centerProduct %}
+          {% elif item.isSubscription %}
+            {% render_snippet 'Card: Subscription', product=item, theme=theme, centerProduct=centerProduct %}
+          {% elif item.isProduct %}
+            {% render_snippet 'Card: Product', product=item, theme=theme, centerProduct=centerProduct %}
+          {% elif item.isGroup %}
+            {% render_snippet 'Card: Group', group=item, theme=theme, centerGroup=centerGroup %}
+          {% endif %}
+        </div>
+      {% endif %}
     {% endif %}
   {% endfor %}
 
@@ -139,9 +147,9 @@
       "STOCK": sortByStock
     };
 
-    const shopInfo = SellixContext.get('common', {}).shopInfo || {};
-    const items = filterItems(shopInfo.items || []);
-    const categories = shopInfo.categories || [];
+    const shopInfo = SellixContext.getShopInfo();
+    const items = filterItems(SellixContext.getShopItems());
+    const categories = SellixContext.getShopCategories();
     const itemsMap = items.reduce((m, item) => ({...m, [item.uniqid]: item}), {});
 
     function filterItems(items) {
