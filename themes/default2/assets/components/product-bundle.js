@@ -21,7 +21,7 @@
       jQuery(document).on(this.renderEvents.join(' '), () => this.render());
     }
 
-    addAllProducts() {
+    addAllProducts = () => {
       const productIds = this.cart.getItems().map(({ uniqid }) => uniqid);
       const productsLeft = this.bundle.products_bound.filter(({ uniqid }) => !productIds.includes(uniqid));
 
@@ -82,7 +82,9 @@
           $product.addClass('d-none');
         }
       });
-      $lastProduct.css({ 'border-bottom': 'none' });
+      if ($lastProduct) {
+        $lastProduct.css({ 'border-bottom': 'none' });
+      }
     }
   }
   window.SellixProductBundleComponent = ProductBundleComponent;

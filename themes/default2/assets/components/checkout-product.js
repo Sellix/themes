@@ -7,7 +7,7 @@
       this.productId = productId;
       this.isVisibleDescription = false;
 
-      this.$product.find('[data-toggle-description-button]').on('click', (event) => {
+      this.$product.find('[data-checkout-product-toggle-description-button]').on('click', (event) => {
         event.preventDefault();
         this.onClickDescriptionButton();
       });
@@ -54,8 +54,8 @@
     toggleDescription = (show) => {
       console.log('Toggle Description', show);
       const $description = this.$product.find('[data-description-wrapper]'),
-        $label = this.$product.find('[data-toggle-description-button] .label-show-description'),
-        $button = this.$product.find('[data-toggle-description-button] .label-click-for-info');
+        $label = this.$product.find('[data-checkout-product-toggle-description-button] .label-show-description'),
+        $button = this.$product.find('[data-checkout-product-toggle-description-button] .label-click-for-info');
 
       if (show) {
         $description.animate(
@@ -96,7 +96,7 @@
     removeProduct = () => {
       jQuery(document).off(this.renderEvents.join(' '));
       jQuery(document).off(this.showDescriptionEvent);
-      this.$product.find('[data-toggle-description-button]').off('click');
+      this.$product.find('[data-checkout-product-toggle-description-button]').off('click');
       this.$product.find('[data-remove-button]').off('click');
       this.$product.remove();
     };

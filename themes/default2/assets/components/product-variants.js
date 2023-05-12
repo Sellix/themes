@@ -12,7 +12,9 @@
 
       jQuery(document).on('SellixProductVariantsUpdateEvent', this.onUpdate);
       this.$container.find('[data-variant]').on('click', this.onClick);
-      this.$container.find('[data-toggle-description-button=1]').on('click', this.onClickToggleDescription);
+      this.$container
+        .find('[data-toggle-product-variant-description-button=1]')
+        .on('click', this.onClickToggleDescription);
     }
 
     onClick = (event) => {
@@ -29,7 +31,7 @@
       const $this = jQuery(event.target);
       const $parent = $this.parents('[data-variant]');
       if ($parent) {
-        $parent.find(`[data-toggle-description-button=1]`).toggleClass('d-none');
+        $parent.find(`[data-toggle-product-variant-description-button=1]`).toggleClass('d-none');
         $parent.find(`[data-variant-description=1]`).toggleClass('d-none');
       }
     };
