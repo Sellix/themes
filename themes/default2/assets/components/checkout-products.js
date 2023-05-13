@@ -29,6 +29,7 @@
               ...this.renderOptions,
               path: [this.renderOptions.path, ['snippet', 'Checkout: Product'].join(':')].join(';'),
             },
+            SellixContext.get('request'),
             { product, quantity: product.quantity, properties: this.properties },
           )
           .then((resp) => {

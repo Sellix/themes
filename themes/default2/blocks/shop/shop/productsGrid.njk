@@ -38,6 +38,8 @@
   {% endif %}
 {% endfor %}
 
+{% set items = items | sort_products({'sortType': 'popularity', 'direction': 'desc'}) %}
+
 {% set colors = themeProperties.current_colors %}
 
 {% set hideOutOfStock = shop.hide_out_of_stock %}
@@ -143,7 +145,7 @@
 </div>
 
 <script type='application/javascript'>
-  $(document).ready(function () {
+  $(document).ready(async function () {
     const sortByDefault = (a, b) => items.findIndex((it) => it.uniqid === a.uniqid) - items.findIndex((it) => it.uniqid === b.uniqid);
     const sortByPrice = (a, b) => (a.minPriceItem ? +a.minPriceItem.price_display : 9999999) - (b.minPriceItem ? +b.minPriceItem.price_display : 9999999);
     const sortByName = (a, b) => a.title < b.title ? -1 : a.title > b.title ? 1 : 0;
@@ -158,8 +160,7 @@
       "STOCK": sortByStock
     };
 
-    const shopInfo = SellixContext.getShopInfo();
-    const items = filterItems(SellixContext.getShopItems());
+    const items = filterItems(await SellixContext.getShopItems());
     const categories = SellixContext.getShopCategories();
     const itemsMap = items.reduce((m, item) => ({...m, [item.uniqid]: item}), {});
 

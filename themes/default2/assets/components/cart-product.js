@@ -7,11 +7,11 @@
       this.renderOptions = renderOptions;
 
       this.$cart = jQuery(selector);
-      this.$cartQuantity = this.$cart.find('.cart-product-quantity');
-      this.$cartCartFirstBtn = this.$cart.find('.cart-product-first-button');
-      this.$cartAddBtn = this.$cart.find('.cart-product-plus-button');
-      this.$cartRemoveBtn = this.$cart.find('.cart-product-minus-button');
-      this.$cartQuantityBtn = this.$cart.find('.cart-product-quantity-button');
+      this.$cartQuantity = this.$cart.find('[data-cart-product-quantity-value]');
+      this.$cartCartFirstBtn = this.$cart.find('[data-cart-product-first-button]');
+      this.$cartAddBtn = this.$cart.find('[data-cart-product-plus-button]');
+      this.$cartRemoveBtn = this.$cart.find('[data-cart-product-minus-button]');
+      this.$cartQuantityBtn = this.$cart.find('[data-cart-product-quantity-button]');
 
       this.$cartAddBtn.on('click', (...args) => this.add(...args));
       this.$cartRemoveBtn.on('click', (...args) => this.remove(...args));
@@ -67,8 +67,8 @@
     render() {
       const quantity = (this.cart.getItemById(this.product.uniqid) || { quantity: 0 }).quantity || 0;
       this.$cart.toggleClass('empty', quantity === 0);
-      this.$cartQuantity.toggleClass('hidden', quantity === 0);
-      this.$cartCartFirstBtn.toggleClass('hidden', quantity !== 0);
+      this.$cartQuantity.toggleClass('d-none', quantity === 0);
+      this.$cartCartFirstBtn.toggleClass('d-none', quantity !== 0);
 
       this.$cartQuantity.text(quantity);
     }

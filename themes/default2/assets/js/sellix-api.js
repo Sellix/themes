@@ -1,4 +1,4 @@
-(function (document, window, jQuery, SellixContext) {
+(function (document, window, jQuery) {
   class Api {
     constructor(apiUrl) {
       this.apiUrl = apiUrl || location.origin;
@@ -14,6 +14,28 @@
       });
     }
 
+    async getCart() {
+      return jQuery.ajax({
+        method: 'GET',
+        url: `${this.apiUrl}/api/shop/cart`,
+      });
+    }
+
+    async getProducts(ids) {
+      return jQuery
+        .ajax({
+          method: 'GET',
+          url: `${this.apiUrl}/api/shop/products/${ids.join(',')}`,
+        })
+        .then((response) => {
+          const { status, error } = response;
+          if (status !== 200) {
+            throw new Error(error);
+          }
+          return response;
+        });
+    }
+
     async checkCoupon(data) {
       return jQuery.ajax({
         method: 'POST',
@@ -21,13 +43,6 @@
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         data: JSON.stringify(data),
-      });
-    }
-
-    async getCart() {
-      return jQuery.ajax({
-        method: 'GET',
-        url: `${this.apiUrl}/api/shop/cart`,
       });
     }
 
@@ -53,7 +68,7 @@
       });
     }
 
-    async renderComponent(renderOptions, args) {
+    async renderComponent(renderOptions, mainRequest, args) {
       const params = new Proxy(new URLSearchParams(window.location.search), {
         get: (searchParams, prop) => searchParams.get(prop),
       });
@@ -64,8 +79,6 @@
       } else {
         url = `${this.apiUrl}/api/render`;
       }
-
-      const mainRequest = SellixContext.get('request');
 
       return jQuery.ajax({
         method: 'POST',
@@ -343,4 +356,4 @@
   }
   window.SellixApiClass = Api;
   window.sellixApi = new Api();
-})(document, window, jQuery, SellixContext);
+})(document, window, jQuery);

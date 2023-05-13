@@ -28,8 +28,8 @@
 </div>
 
 <script type="application/javascript">
-  $(document).ready(function() {
-    const items = SellixContext.getShopItems();
+  $(document).ready(async function() {
+    const items = await SellixContext.getShopItems();
 
     $(document).on('SellixSetActiveModalGroup', function(e, eventInfo) {
       const renderOptions = {{renderOptions | dump | safe}};
@@ -56,6 +56,7 @@
             ...renderOptions,
             path: [renderOptions.path, ['snippet', 'Card: Group products'].join(':')].join(';'),
           },
+          SellixContext.get('request'),
           {
             group: {
               ...group,

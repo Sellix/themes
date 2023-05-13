@@ -6,19 +6,19 @@
 {% set isFree = product.price_display | float === 0 %}
 
 {% set globalClass = 'snippet-cart-button-2' %}
-{% set localClass = [globalClass, '-', id] | join %}
+{% set localClass = id %}
 
 {% if product.stock | int === 0 or not cartEnabled or product.on_hold | int !== 0 %}
   {# Do Nothing #}
 {% else %}
-  <div id="cart-button-{{id}}" class="{{ globalClass }} empty {{'static' if args.isGroup else ''}} d-none">
+  <div class="{{ globalClass }} {{ localClass }} empty {{'static' if args.isGroup else ''}} d-none">
     <div class="{{ globalClass }}__container">
-      <div class="{{ globalClass }}__button cart-product-minus-button">
+      <div class="{{ globalClass }}__button" data-cart-product-minus-button="1">
         {% render_snippet 'Icons: Minus' %}
       </div>
-      <div class="{{ globalClass }}__button cart-product-quantity-button unselectable">
-        <span class="cart-product-quantity hidden">...</span>
-        <span class="cart-product-first-button hidden">
+      <div class="{{ globalClass }}__button unselectable" data-cart-product-quantity-button="1">
+        <span class="d-none" data-cart-product-quantity-value="1">...</span>
+        <span class="d-none" data-cart-product-first-button="cart-product-first-button">
           {% if isFree %}
             {{ 'shop.shared.titles.getIt' | t }}
           {% else %}
@@ -26,25 +26,26 @@
           {% endif %}
         </span>
       </div>
-      <div class="{{ globalClass }}__button cart-product-plus-button">
+      <div class="{{ globalClass }}__button" data-cart-product-plus-button="1">
         {% render_snippet 'Icons: Plus' %}
       </div>
     </div>
   </div>
 
   <script type='application/javascript'>
-    $(document).ready(function () {
-      $('#cart-button-{{id}}').removeClass('d-none');
+    $(document).ready(async function () {
+      $('.{{ localClass  }}').removeClass('d-none');
 
-      const product = {{product | exclude_attributes(['shop_terms_of_service']) | dump | safe}};
+      const product = await SellixContext.getShopProduct('{{ product.uniqid }}');
       let cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
       const cartProdComponent = new SellixCartProductComponent(
-        '#cart-button-{{id}}',
+        '.{{ localClass }}',
         cart,
         product,
         {{args.redirectToCheckout | default(false)}},
         {{renderOptions | dump | safe}},
       );
+      setTimeout(() => cartProdComponent.render(), 0);
     });
   </script>
 {% endif %}

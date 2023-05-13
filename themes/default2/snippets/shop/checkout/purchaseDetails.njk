@@ -43,7 +43,7 @@
 </div>
 
 <script type='application/javascript'>
-  $(document).ready(function () {
+  $(document).ready(async function () {
     const purchaseType = '{{type}}';
     const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
     const isDark = {{args.isDark if args.isDark is defined else themeProperties.color_schema.dark_mode}};
@@ -57,14 +57,16 @@
       }
     }
 
-    let bundles = [], bundle;
+    let bundles = [], bundle, productIds, products;
     {% for bundle in args.bundles %}
       bundle = {{ bundle | exclude_attributes(['products_bound']) | dump | safe }};
-      bundle.products_bound = [
+      productIds = [
         {% for product in bundle.products_bound %}
-          {{ product | exclude_attributes(['shop_terms_of_service', 'description']) | dump | safe }},
+          '{{ product.uniqid }}',
         {% endfor %}
-      ];
+      ]
+      products = await SellixContext.getShopProducts(productIds);
+      bundle.products_bound = products;
       bundles.push(bundle);
     {% endfor %}
 

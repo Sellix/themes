@@ -32,6 +32,7 @@
             ...renderOptions,
             path: [renderOptions.path, ['snippet', 'Product: Bundles'].join(':')].join(';'),
           },
+          SellixContext.get('request'),
           {
             dependencies: [
               {type: 'bundles', productIds : {{ productIds | dump | safe }}},

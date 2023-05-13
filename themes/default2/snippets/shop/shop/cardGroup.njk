@@ -109,9 +109,9 @@
 
 <script type='application/javascript'>
   $(document).ready(function () {
-    $('#sellix-card-container-{{id}}').on('click', function () {
+    $('#sellix-card-container-{{id}}').on('click', async function () {
       const groupId = $(this).data('group-id');
-      const items = SellixContext.getShopItems();
+      const items = await SellixContext.getShopItems();
       const group = items.find(({uniqid}) => String(uniqid) === String(groupId));
 
       if (group && group.products_bound.length) {

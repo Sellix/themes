@@ -47,11 +47,12 @@
 </div>
 
 <script type='application/javascript'>
-  $(document).ready(function () {
+  $(document).ready(async function () {
+    const product = await SellixContext.getShopProduct('{{ product.uniqid }}');
     new SellixProductCountComponent(
       '.{{ localClass }}',
       '{{shop.name}}',
-      {{ product | exclude_attributes('shop_terms_of_service') | dump | safe }},
+      product,
       {{renderOptions | dump | safe}},
     );
   });

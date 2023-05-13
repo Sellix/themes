@@ -1,4 +1,6 @@
-(function (window, context) {
+(function (window, context, SellixApiClass) {
+  const api = new SellixApiClass();
+
   class Context {
     static get(name, defaultValue) {
       return context[name] || defaultValue;
@@ -12,15 +14,40 @@
       return this.get('common', {}).shopInfo || {};
     }
 
-    static getShopItems() {
-      const products = this.getShopProducts();
-      return (this.getShopInfo().items || [])
-        .filter((itemId) => Boolean(products[itemId]))
-        .map((itemId) => products[itemId]);
+    static async getShopItems() {
+      const productIds = this.getShopInfo().items;
+      return await this.getShopProducts(productIds);
     }
 
-    static getShopProducts() {
-      return this.getShopInfo().products || {};
+    static async getShopProducts(ids) {
+      let products = this.getShopInfo().products || {}
+      if (!ids) {
+        return products;
+      }
+
+      const missedIds = ids.filter((id) => !Boolean(products[id]));
+      if (missedIds.length) {
+        const { products: missedProducts } = (await api.getProducts(missedIds)) || [];
+        products = this.updateShopProducts(missedProducts);
+      }
+
+      return ids.filter((id) => Boolean(products[id])).map((id) => products[id]);
+    }
+
+    static async getShopProduct(id) {
+      const products = await this.getShopProducts([id]);
+      return products.find((product) => product.uniqid === id);
+    }
+
+    static updateShopProducts(updatedProducts) {
+      let products = this.getShopInfo().products || {};
+      products = {
+        ...products,
+        ...Object.fromEntries(updatedProducts.map((product) => [product.uniqid, product])),
+      };
+      this.getShopInfo().products = products;
+
+      return products;
     }
 
     static getShopCategories() {
@@ -29,4 +56,4 @@
   }
 
   window.SellixContext = Context;
-})(window, __RENDER_CONTEXT__);
+})(window, __RENDER_CONTEXT__, SellixApiClass);
