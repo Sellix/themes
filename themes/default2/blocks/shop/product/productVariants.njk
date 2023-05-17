@@ -2,9 +2,9 @@
 
 {% set showOnlyInFirstPurchaseStep = safe_get(properties.show_only_on_first_purchase_step, false) %}
 
-{% set localClass = [globalClass, '-', id] | join %}
+{% set localClass = id %}
 
-<div class="{{ globalClass }} {{ localClass }}">
+<div class="{{ globalClass }}__container {{ localClass }}__container">
   {% render_snippet
     'Product: Variants',
     product=product,
@@ -17,9 +17,9 @@
   $(document).on('SellixPurchaseDetailsChangeStep', function(event, eventInfo) {
     if ({{ showOnlyInFirstPurchaseStep }}) {
       if (eventInfo && eventInfo.step === 0) {
-        $('.{{ localClass }}').removeClass('d-none');
+        $('.{{ localClass }}__container').removeClass('d-none');
       } else {
-        $('.{{ localClass }}').addClass('d-none');
+        $('.{{ localClass }}__container').addClass('d-none');
       }
     }
   });
