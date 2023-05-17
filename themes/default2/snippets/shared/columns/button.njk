@@ -1,8 +1,6 @@
 {% set id = uid() %}
 {% set properties = args.properties %}
 
-{% set colors = themeProperties.current_colors %}
-
 {% set bgColor = safe_get(properties.background_color, 'dark_font_color') %}
 {% set label = properties.label %}
 {% set labelColor = properties.label_color %}
@@ -10,21 +8,14 @@
 {% set labelFontWeight = properties.label_font_weight %}
 {% set url = properties.url %}
 
-{% set globalClass = 'section-multi-columns' %}
-{% set localClass = id %}
-
-<style>
-  .{{ localClass }} .button {
-    color: {{ colors[labelColor] }};
-    background-color: {{ colors[bgColor] }};
-    font-size: {{ labelFontSize }}px;
-    font-weight: {{ labelFontWeight }} !important;
-  }
-</style>
-
-<div class="{{ localClass }}">
-  <a href="{{ url }}" class="button">
-    <span class="mr-2">{{ label }}</span>
-    {% render_snippet 'Icons: Arrow right 1' %}
-  </a>
-</div>
+{% render_snippet 'Shared: Link button',
+  properties={
+    'background_color': bgColor,
+    'label': label,
+    'label_color': labelColor,
+    'label_font_size': labelFontSize,
+    'label_font_weight': labelFontWeight,
+    'url': url,
+    'icon_snippet': 'Icons: Arrow right 1'
+}
+%}

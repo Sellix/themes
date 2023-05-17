@@ -1,0 +1,43 @@
+{% set id = uid() %}
+{% set properties = args.properties %}
+
+{% set colors = themeProperties.current_colors %}
+
+{% set iconSnippet = safe_get(properties.icon_snippet, '') %}
+{% set iconPosition = safe_get(properties.icon_position, 'right') %}
+{% set bgColor = safe_get(properties.background_color, 'dark_font_color') %}
+{% set label = properties.label %}
+{% set labelColor = properties.label_color %}
+{% set labelFontSize = properties.label_font_size %}
+{% set labelFontWeight = properties.label_font_weight %}
+{% set url = properties.url %}
+
+{% set globalClass = 'snippet-link_button' %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }} .button {
+    color: {{ colors[labelColor] }};
+    background-color: {{ colors[bgColor] }};
+    font-size: {{ labelFontSize }}px;
+    font-weight: {{ labelFontWeight }} !important;
+  }
+</style>
+
+<div class="{{ localClass }}">
+  <a href="{{ url }}" class="button">
+    {% if iconSnippet and iconPosition == 'left' %}
+      <span class="mr-2 d-flex">
+        {% render_snippet iconSnippet %}
+      </span>
+    {% endif %}
+
+    <span>{{ label | t }}</span>
+
+    {% if iconSnippet and iconPosition == 'right' %}
+      <span class="ml-2 d-flex">
+        {% render_snippet iconSnippet %}
+      </span>
+    {% endif %}
+  </a>
+</div>

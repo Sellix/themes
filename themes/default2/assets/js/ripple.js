@@ -1,6 +1,10 @@
 (function (document, window) {
-  function ripple(selector) {
+  function ripple(selector, options) {
     const buttonRef = document.querySelector(selector);
+
+    options = options || {};
+    const backgroundColor = options.backgroundColor || 'black';
+    const opacity = options.opacity || '0.175';
 
     let isDown = false;
     let added = false;
@@ -23,8 +27,8 @@
 
       ripple.style.left = `${xPos}px`;
       ripple.style.top = `${yPos}px`;
-      ripple.style.backgroundColor = 'black';
-      ripple.style.opacity = '0.175';
+      ripple.style.backgroundColor = backgroundColor;
+      ripple.style.opacity = opacity;
 
       if (!added) {
         added = true;
