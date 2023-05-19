@@ -850,9 +850,9 @@
       ],
       "inputs": [
         {
-          "id": "header_common_settings",
+          "id": "common_properties",
           "type": "header",
-          "content": "Common settings"
+          "content": "Common properties"
         },
         {
           "id": "common_height",
@@ -925,6 +925,22 @@
           "defaultValue": 400
         },
         {
+          "id": "common_line_height",
+          "max": 100,
+          "min": 1,
+          "step": 1,
+          "type": "range",
+          "unit": "px",
+          "label": "Line height",
+          "defaultValue": 24
+        },
+
+        {
+          "id": "label_properties",
+          "type": "header",
+          "content": "Label properties"
+        },
+        {
           "id": "common_label_font_color",
           "type": "select",
           "label": "Label font color",
@@ -955,36 +971,6 @@
           "defaultValue": 14
         },
         {
-          "id": "common_label_line_height",
-          "max": 100,
-          "min": 1,
-          "step": 1,
-          "type": "range",
-          "unit": "px",
-          "label": "Label line height",
-          "defaultValue": 20
-        },
-        {
-          "id": "common_label_text_align",
-          "type": "select",
-          "label": "Label text align",
-          "options": [
-            {
-              "title": "Left",
-              "value": "left"
-            },
-            {
-              "title": "Center",
-              "value": "center"
-            },
-            {
-              "title": "Right",
-              "value": "right"
-            }
-          ],
-          "defaultValue": "left"
-        },
-        {
           "id": "common_label_font_weight",
           "type": "select",
           "label": "Label font weight",
@@ -1009,9 +995,40 @@
           "defaultValue": 500
         },
         {
-          "id": "header_text_field",
+          "id": "common_label_line_height",
+          "max": 100,
+          "min": 1,
+          "step": 1,
+          "type": "range",
+          "unit": "px",
+          "label": "Label line height",
+          "defaultValue": 17
+        },
+        {
+          "id": "common_label_text_align",
+          "type": "select",
+          "label": "Label text align",
+          "options": [
+            {
+              "title": "Left",
+              "value": "left"
+            },
+            {
+              "title": "Center",
+              "value": "center"
+            },
+            {
+              "title": "Right",
+              "value": "right"
+            }
+          ],
+          "defaultValue": "left"
+        },
+
+        {
+          "id": "text_field_properties",
           "type": "header",
-          "content": "Text field"
+          "content": "Text field properties"
         },
         {
           "id": "text_field_background",
@@ -1033,10 +1050,11 @@
           ],
           "defaultValue": "background_accent_dark"
         },
+
         {
-          "id": "header_select",
+          "id": "select_properties",
           "type": "header",
-          "content": "Select"
+          "content": "Select properties"
         },
         {
           "id": "select_background",
@@ -1058,10 +1076,11 @@
           ],
           "defaultValue": "background_accent_dark"
         },
+
         {
-          "id": "header_select_dropdown",
+          "id": "select_dropdown_properties",
           "type": "header",
-          "content": "Select dropdown"
+          "content": "Select dropdown properties"
         },
         {
           "id": "dropdown_background",
@@ -1991,11 +2010,12 @@
         "common_height": 48,
         "common_show_border": true,
         "common_font_color": "light_font_color",
-        "common_font_size": 14,
+        "common_font_size": 16,
         "common_font_weight": 400,
-        "common_label_font_color": "dark_font_color",
-        "common_label_font_size": 14,
-        "common_label_line_height": 20,
+        "common_line_height": 500,
+        "common_label_font_color": "light_font_color",
+        "common_label_font_size": 13,
+        "common_label_line_height": 17,
         "common_label_text_align": "left",
         "common_label_font_weight": 500,
         "text_field_background": "background_accent_light",
@@ -2279,6 +2299,76 @@
         }
       }
     },
+    "Contact/Contact": {
+      "name": "Contact/Contact",
+      "path": "templates/shop/contact.njk",
+      "template_type": "CONTACT",
+      "is_default": 1,
+      "settings": {
+        "section_order": [
+          "Breadcrumbs",
+          "Container: With sidebar 1"
+        ],
+        "sections": {
+          "Breadcrumbs": {
+            "name": "Breadcrumbs",
+            "settings": {
+              "visible": true,
+              "properties": {
+                "crumb_label_1": "shop.shared.menu.home",
+                "crumb_url_1": "",
+                "crumb_label_2": "shop.shared.menu.contact",
+                "crumb_url_2": "contact",
+                "margin_top_desktop": 0,
+                "margin_bottom_desktop": 0,
+                "margin_top_tablet": 0,
+                "margin_bottom_tablet": 0,
+                "margin_top_mobile": 0,
+                "margin_bottom_mobile": 0,
+                "title_visible": true,
+                "title": "shop.contact.title"
+              }
+            }
+          },
+          "Container: With sidebar 1": {
+            "name": "Container: With sidebar",
+            "settings": {
+              "visible": true,
+              "block_order": ["Contact form"],
+              "blocks": {
+                "Contact form": {
+                  "name": "Contact form",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "form_background": "background_accent_light",
+                      "form_show_border": false,
+                      "form_border_radius": 0,
+                      "form_padding_horiz": 0,
+                      "form_padding_vert": 0,
+                      "button_align": "stretch"
+                    }
+                  }
+                }
+              },
+              "properties": {
+                "sidebar_blocks_count": 0,
+                "background_color": "background_accent_light",
+                "padding_top_desktop": 60,
+                "padding_top_tablet": 30,
+                "padding_top_mobile": 30,
+                "padding_bottom_desktop": 120,
+                "padding_bottom_tablet": 60,
+                "padding_bottom_mobile": 60,
+                "margin_bottom_desktop": 0,
+                "margin_bottom_tablet": 0,
+                "margin_bottom_mobile": 0
+              }
+            }
+          }
+        }
+      }
+    },
     "Main/Main Page": {
       "name": "Main/Main Page",
       "path": "templates/shop/main.njk",
@@ -2306,10 +2396,10 @@
             "name": "Multi columns",
             "settings": {
               "visible": true,
-              "block_order": ["Column properties 1" ,"Column item 1", "Column item 2", "Column item 3"],
+              "block_order": ["Column 1" ,"Column item 1", "Column item 2", "Column item 3"],
               "blocks": {
-                "Column properties 1": {
-                  "name": "Column properties",
+                "Column 1": {
+                  "name": "Column",
                   "visible": true,
                   "settings": {
                     "visible": true,
@@ -2549,39 +2639,39 @@
             "settings": {
               "visible": true,
               "block_order": [
-                "Column properties 1",
+                "Column 1",
                 "Column item 1",
                 "Column item 2",
                 "Column item 3",
-                "Column properties 2",
+                "Column 2",
                 "Column item 4",
                 "Column item 5",
                 "Column item 6",
-                "Column properties 3",
+                "Column 3",
                 "Column item 7",
                 "Column item 8",
                 "Column item 9",
-                "Column properties 4",
+                "Column 4",
                 "Column item 10",
                 "Column item 11",
                 "Column item 12",
-                "Column properties 5",
+                "Column 5",
                 "Column item 13",
                 "Column item 14",
                 "Column item 15",
-                "Column properties 6",
+                "Column 6",
                 "Column item 16",
                 "Column item 17",
                 "Column item 18"
               ],
               "blocks": {
-                "Column properties 1": {
-                  "name": "Column properties",
+                "Column 1": {
+                  "name": "Column",
                   "settings": {
                     "visible": true,
                     "properties": {
                       "column_index": "1",
-                      "items_align": "end",
+                      "items_align": "right",
                       "background_color": "background_accent_dark",
                       "border_radius": 8,
                       "padding_vert_desktop": 40,
@@ -2656,13 +2746,13 @@
                     }
                   }
                 },
-                "Column properties 2": {
-                  "name": "Column properties",
+                "Column 2": {
+                  "name": "Column",
                   "settings": {
                     "visible": true,
                     "properties": {
                       "column_index": "2",
-                      "items_align": "end",
+                      "items_align": "right",
                       "background_color": "background_accent_dark",
                       "border_radius": 8,
                       "padding_vert_desktop": 40,
@@ -2734,13 +2824,13 @@
                     }
                   }
                 },
-                "Column properties 3": {
-                  "name": "Column properties",
+                "Column 3": {
+                  "name": "Column",
                   "settings": {
                     "visible": true,
                     "properties": {
                       "column_index": "3",
-                      "items_align": "end",
+                      "items_align": "right",
                       "background_color": "background_accent_dark",
                       "border_radius": 8,
                       "padding_vert_desktop": 40,
@@ -2812,13 +2902,13 @@
                     }
                   }
                 },
-                "Column properties 4": {
-                  "name": "Column properties",
+                "Column 4": {
+                  "name": "Column",
                   "settings": {
                     "visible": true,
                     "properties": {
                       "column_index": "4",
-                      "items_align": "end",
+                      "items_align": "right",
                       "background_color": "background_accent_dark",
                       "border_radius": 8,
                       "padding_vert_desktop": 40,
@@ -2890,13 +2980,13 @@
                     }
                   }
                 },
-                "Column properties 5": {
-                  "name": "Column properties",
+                "Column 5": {
+                  "name": "Column",
                   "settings": {
                     "visible": true,
                     "properties": {
                       "column_index": "5",
-                      "items_align": "end",
+                      "items_align": "right",
                       "background_color": "background_accent_dark",
                       "border_radius": 8,
                       "padding_vert_desktop": 40,
@@ -2968,13 +3058,13 @@
                     }
                   }
                 },
-                "Column properties 6": {
-                  "name": "Column properties",
+                "Column 6": {
+                  "name": "Column",
                   "settings": {
                     "visible": true,
                     "properties": {
                       "column_index": "6",
-                      "items_align": "end",
+                      "items_align": "right",
                       "background_color": "background_accent_dark",
                       "border_radius": 8,
                       "padding_vert_desktop": 40,
@@ -3073,21 +3163,21 @@
             "settings": {
               "visible": true,
               "block_order": [
-                "Column properties 1",
+                "Column 1",
                 "Column item 1",
                 "Column item 2",
                 "Column item 3",
                 "Column item 4",
-                "Column properties 2"
+                "Column 2"
               ],
               "blocks": {
-                "Column properties 1": {
-                  "name": "Column properties",
+                "Column 1": {
+                  "name": "Column",
                   "settings": {
                     "visible": true,
                     "properties": {
                       "column_index": "1",
-                      "items_align": "end",
+                      "items_align": "right",
                       "background_color": "background_accent_dark",
                       "padding_vert_desktop": 126,
                       "padding_horiz_desktop": 120,
@@ -3184,8 +3274,8 @@
                     }
                   }
                 },
-                "Column properties 2": {
-                  "name": "Column properties",
+                "Column 2": {
+                  "name": "Column",
                   "settings": {
                     "visible": true,
                     "properties": {
@@ -3227,10 +3317,10 @@
             "name": "Multi columns",
             "settings": {
               "visible": true,
-              "block_order": ["Column properties 1" ,"Column item 1", "Column item 2"],
+              "block_order": ["Column 1" ,"Column item 1", "Column item 2"],
               "blocks": {
-                "Column properties 1": {
-                  "name": "Column properties",
+                "Column 1": {
+                  "name": "Column",
                   "visible": true,
                   "settings": {
                     "visible": true,
@@ -3412,6 +3502,210 @@
               },
               "properties": {
                 "background_color": "background_accent_light"
+              }
+            }
+          }
+        }
+      }
+    },
+    "Page/Page": {
+      "name": "Page/Page",
+      "path": "templates/shop/page.njk",
+      "template_type": "PAGE",
+      "is_default": 1,
+      "settings": {
+        "section_order": [
+          "Breadcrumbs",
+          "Container: Simple 1",
+          "Section title 2",
+          "Container: Simple 2",
+          "Multi columns 1"
+        ],
+        "sections": {
+          "Breadcrumbs": {
+            "name": "Breadcrumbs",
+            "settings": {
+              "visible": true,
+              "properties": {
+                "crumb_label_1": "shop.shared.menu.home",
+                "crumb_url_1": "",
+                "crumb_label_2": "{{page.name}}",
+                "crumb_url_2": "{{page.slug}}",
+                "margin_top_desktop": 0,
+                "margin_bottom_desktop": 0,
+                "margin_top_tablet": 0,
+                "margin_bottom_tablet": 0,
+                "margin_top_mobile": 0,
+                "margin_bottom_mobile": 0,
+                "title_visible": true,
+                "title": "{{page.name}}"
+              }
+            }
+          },
+          "Container: Simple 1": {
+            "name": "Container: Simple",
+            "settings": {
+              "visible": true,
+              "block_order": ["Custom page"],
+              "blocks": {
+                "Custom page": {
+                  "name": "Custom page",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "background_color": "transparent",
+                      "show_border": false,
+                      "padding_vert": 0,
+                      "padding_horiz": 0
+                    }
+                  }
+                }
+              },
+              "properties": {
+                "background_color": "background_accent_light",
+                "padding_top_desktop": 60,
+                "padding_top_tablet": 30,
+                "padding_top_mobile": 30,
+                "padding_bottom_desktop": 60,
+                "padding_bottom_tablet": 30,
+                "padding_bottom_mobile": 30,
+                "margin_bottom_desktop": 0,
+                "margin_bottom_tablet": 0,
+                "margin_bottom_mobile": 0
+              }
+            }
+          },
+          "Section title 2": {
+            "name": "Section title",
+            "settings": {
+              "visible": true,
+              "block_order": [],
+              "blocks": {},
+              "properties": {
+                "fullwidth": false,
+                "title_content": "Popular Products",
+                "subtitle_content": "Design is as much an act of spacing as an act of marking.",
+                "margin_bottom_desktop": 0,
+                "margin_bottom_tablet": 0,
+                "margin_bottom_mobile": 0
+              }
+            }
+          },
+          "Container: Simple 2": {
+            "name": "Container: Simple",
+            "settings": {
+              "visible": true,
+              "block_order": ["Products grid"],
+              "blocks": {
+                "Products grid" : {
+                  "name": "Products grid",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "container_border_radius": 0,
+                      "grid_background_color": "transparent",
+                      "grid_limit": 4,
+                      "grid_order_type": "popularity",
+                      "grid_order_direction": "desc",
+                      "grid_show_group": false,
+                      "grid_expand_group": true,
+                      "grid_show_info": false,
+                      "grid_show_product": true,
+                      "grid_show_subscription": true,
+                      "grid_show_border": false,
+                      "grid_show_view_all_button": false,
+                      "grid_column_gap": 30,
+                      "grid_row_gap": 30
+                    }
+                  }
+                }
+              },
+              "properties": {
+                "background_color": "background_accent_light",
+                "margin_bottom_desktop": 60,
+                "margin_bottom_tablet": 30,
+                "margin_bottom_mobile": 30
+              }
+            }
+          },
+          "Multi columns 1": {
+            "name": "Multi columns",
+            "settings": {
+              "visible": true,
+              "block_order": ["Column 1" ,"Column item 1", "Column item 2"],
+              "blocks": {
+                "Column 1": {
+                  "name": "Column",
+                  "visible": true,
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "column_index": "1",
+                      "max_width_desktop": 640,
+                      "max_width_tablet": 480,
+                      "max_width_mobile": 343,
+                      "background_color": "transparent"
+                    }
+                  }
+                },
+                "Column item 1": {
+                  "name": "Column item",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "column_index": "1",
+                      "item_type": "text",
+                      "item_background_color": "transparent",
+                      "item_margin_bottom_desktop": 30,
+                      "item_margin_bottom_tablet": 30,
+                      "item_margin_bottom_mobile": 30,
+                      "text_content": "Design is the intermediary between information and understanding",
+                      "text_font_color": "contrast_light_font_color",
+                      "text_font_size": 32,
+                      "text_line_height": 48,
+                      "text_font_weight": 500
+                    }
+                  }
+                },
+                "Column item 2": {
+                  "name": "Column item",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "column_index": "1",
+                      "item_type": "button",
+                      "item_background_color": "transparent",
+                      "item_margin_bottom_desktop": 0,
+                      "item_margin_bottom_tablet": 0,
+                      "item_margin_bottom_mobile": 0,
+                      "button_background_color": "button_text_color",
+                      "button_label_color": "button_color",
+                      "button_label": "Read Our Mission",
+                      "button_label_font_weight": 600,
+                      "button_url": "terms"
+                    }
+                  }
+                }
+              },
+              "properties": {
+                "fullwidth": true,
+                "background_color": "background_dark",
+                "columns_count": 1,
+                "columns_per_row_desktop": 1,
+                "padding_top_desktop": 120,
+                "padding_bottom_desktop": 120,
+                "padding_horiz_desktop": 200,
+                "margin_bottom_desktop": 0,
+                "columns_per_row_tablet": 1,
+                "padding_top_tablet": 110,
+                "padding_bottom_tablet": 110,
+                "padding_horiz_tablet": 100,
+                "margin_bottom_tablet": 0,
+                "columns_per_row_mobile": 1,
+                "padding_top_mobile": 60,
+                "padding_bottom_mobile": 60,
+                "padding_horiz_mobile": 36,
+                "margin_bottom_mobile": 0
               }
             }
           }
@@ -3737,39 +4031,39 @@
             "settings": {
               "visible": true,
               "block_order": [
-                "Column properties 1",
+                "Column 1",
                 "Column item 1",
                 "Column item 2",
                 "Column item 3",
-                "Column properties 2",
+                "Column 2",
                 "Column item 4",
                 "Column item 5",
                 "Column item 6",
-                "Column properties 3",
+                "Column 3",
                 "Column item 7",
                 "Column item 8",
                 "Column item 9",
-                "Column properties 4",
+                "Column 4",
                 "Column item 10",
                 "Column item 11",
                 "Column item 12",
-                "Column properties 5",
+                "Column 5",
                 "Column item 13",
                 "Column item 14",
                 "Column item 15",
-                "Column properties 6",
+                "Column 6",
                 "Column item 16",
                 "Column item 17",
                 "Column item 18"
               ],
               "blocks": {
-                "Column properties 1": {
-                  "name": "Column properties",
+                "Column 1": {
+                  "name": "Column",
                   "settings": {
                     "visible": true,
                     "properties": {
                       "column_index": "1",
-                      "items_align": "end",
+                      "items_align": "right",
                       "background_color": "background_accent_dark",
                       "border_radius": 8,
                       "padding_vert_desktop": 40,
@@ -3844,13 +4138,13 @@
                     }
                   }
                 },
-                "Column properties 2": {
-                  "name": "Column properties",
+                "Column 2": {
+                  "name": "Column",
                   "settings": {
                     "visible": true,
                     "properties": {
                       "column_index": "2",
-                      "items_align": "end",
+                      "items_align": "right",
                       "background_color": "background_accent_dark",
                       "border_radius": 8,
                       "padding_vert_desktop": 40,
@@ -3922,13 +4216,13 @@
                     }
                   }
                 },
-                "Column properties 3": {
-                  "name": "Column properties",
+                "Column 3": {
+                  "name": "Column",
                   "settings": {
                     "visible": true,
                     "properties": {
                       "column_index": "3",
-                      "items_align": "end",
+                      "items_align": "right",
                       "background_color": "background_accent_dark",
                       "border_radius": 8,
                       "padding_vert_desktop": 40,
@@ -4000,13 +4294,13 @@
                     }
                   }
                 },
-                "Column properties 4": {
-                  "name": "Column properties",
+                "Column 4": {
+                  "name": "Column",
                   "settings": {
                     "visible": true,
                     "properties": {
                       "column_index": "4",
-                      "items_align": "end",
+                      "items_align": "right",
                       "background_color": "background_accent_dark",
                       "border_radius": 8,
                       "padding_vert_desktop": 40,
@@ -4078,13 +4372,13 @@
                     }
                   }
                 },
-                "Column properties 5": {
-                  "name": "Column properties",
+                "Column 5": {
+                  "name": "Column",
                   "settings": {
                     "visible": true,
                     "properties": {
                       "column_index": "5",
-                      "items_align": "end",
+                      "items_align": "right",
                       "background_color": "background_accent_dark",
                       "border_radius": 8,
                       "padding_vert_desktop": 40,
@@ -4156,13 +4450,13 @@
                     }
                   }
                 },
-                "Column properties 6": {
-                  "name": "Column properties",
+                "Column 6": {
+                  "name": "Column",
                   "settings": {
                     "visible": true,
                     "properties": {
                       "column_index": "6",
-                      "items_align": "end",
+                      "items_align": "right",
                       "background_color": "background_accent_dark",
                       "border_radius": 8,
                       "padding_vert_desktop": 40,
@@ -4263,10 +4557,10 @@
             "name": "Multi columns",
             "settings": {
               "visible": true,
-              "block_order": ["Column properties 1" ,"Column item 1", "Column item 2"],
+              "block_order": ["Column 1" ,"Column item 1", "Column item 2"],
               "blocks": {
-                "Column properties 1": {
-                  "name": "Column properties",
+                "Column 1": {
+                  "name": "Column",
                   "visible": true,
                   "settings": {
                     "visible": true,
@@ -4466,10 +4760,10 @@
             "name": "Multi columns",
             "settings": {
               "visible": true,
-              "block_order": ["Column properties 1" ,"Column item 1", "Column item 2"],
+              "block_order": ["Column 1" ,"Column item 1", "Column item 2"],
               "blocks": {
-                "Column properties 1": {
-                  "name": "Column properties",
+                "Column 1": {
+                  "name": "Column",
                   "visible": true,
                   "settings": {
                     "visible": true,
@@ -4668,10 +4962,10 @@
             "name": "Multi columns",
             "settings": {
               "visible": true,
-              "block_order": ["Column properties 1" ,"Column item 1", "Column item 2"],
+              "block_order": ["Column 1" ,"Column item 1", "Column item 2"],
               "blocks": {
-                "Column properties 1": {
-                  "name": "Column properties",
+                "Column 1": {
+                  "name": "Column",
                   "visible": true,
                   "settings": {
                     "visible": true,
@@ -5583,11 +5877,11 @@
         "class": "section-multi-columns",
         "blocks": [
           {
-            "name": "Column item",
+            "name": "Column",
             "limit": -1
           },
           {
-            "name": "Column properties",
+            "name": "Column item",
             "limit": -1
           }
         ],
@@ -6428,6 +6722,10 @@
         "class": "section-container--simple",
         "blocks": [
           {
+            "name": "Contact form",
+            "limit": 1
+          },
+          {
             "name": "Products filter",
             "limit": 1
           },
@@ -6685,6 +6983,10 @@
       "settings": {
         "class": "section-container--with-sidebar",
         "blocks": [
+          {
+            "name": "Contact form",
+            "limit": 1
+          },
           {
             "name": "Products filter",
             "limit": 1
@@ -7053,13 +7355,23 @@
             "content": "Desktop screen"
           },
           {
-            "id": "padding_vert_desktop",
+            "id": "padding_top_desktop",
             "type": "range",
             "max": 500,
             "min": 0,
             "step": 1,
             "unit": "px",
-            "label": "Padding vertical (desktop)",
+            "label": "Padding top (desktop)",
+            "defaultValue": 32
+          },
+          {
+            "id": "padding_bottom_desktop",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding bottom (desktop)",
             "defaultValue": 32
           },
           {
@@ -7098,13 +7410,23 @@
             "content": "Tablet screen"
           },
           {
-            "id": "padding_vert_tablet",
+            "id": "padding_top_tablet",
             "type": "range",
             "max": 500,
             "min": 0,
             "step": 1,
             "unit": "px",
-            "label": "Padding vertical (tablet)",
+            "label": "Padding top (tablet)",
+            "defaultValue": 24
+          },
+          {
+            "id": "padding_bottom_tablet",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding bottom (tablet)",
             "defaultValue": 24
           },
           {
@@ -7143,13 +7465,23 @@
             "content": "Mobile screen"
           },
           {
-            "id": "padding_vert_mobile",
+            "id": "padding_top_mobile",
             "type": "range",
             "max": 500,
             "min": 0,
             "step": 1,
             "unit": "px",
-            "label": "Padding vertical (mobile)",
+            "label": "Padding top (mobile)",
+            "defaultValue": 16
+          },
+          {
+            "id": "padding_bottom_mobile",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding bottom (mobile)",
             "defaultValue": 16
           },
           {
@@ -7493,716 +7825,6 @@
             "type": "text",
             "label": "Checkout button label",
             "defaultValue": "Checkout"
-          }
-        ]
-      }
-    },
-    "Column item": {
-      "name": "Column item",
-      "path": "blocks/shared/columnItem.njk",
-      "settings": {
-        "schema": [
-          {
-            "id": "column_index",
-            "type": "text",
-            "label": "Column index (starting from 1)",
-            "defaultValue": "1"
-          },
-          {
-            "id": "item_properties",
-            "type": "header",
-            "content": "Column item properties"
-          },
-          {
-            "id": "item_type",
-            "type": "select",
-            "label": "Item type",
-            "options": [
-              {"title": "Text", "value": "text"},
-              {"title": "Image", "value": "image"},
-              {"title": "Button", "value": "button"},
-              {"title": "Link", "value": "link"}
-            ],
-            "defaultValue": "text"
-          },
-          {
-            "id": "item_background_color",
-            "type": "select",
-            "label": "Background color",
-            "options": [
-              {
-                "title": "Main",
-                "value": "background_main_color"
-              },
-              {
-                "title": "Accent (Light)",
-                "value": "background_accent_light"
-              },
-              {
-                "title": "Accent (Dark)",
-                "value": "background_accent_dark"
-              },
-              {
-                "title": "Transparent",
-                "value": "transparent"
-              }
-            ],
-            "defaultValue": "background_accent_dark"
-          },
-          {
-            "id": "item_background_image",
-            "type": "select-image",
-            "label": "Image",
-            "defaultValue": null
-          },
-          {
-            "id": "desktop_screen_properties",
-            "type": "header",
-            "content": "Desktop screen"
-          },
-          {
-            "id": "item_padding_vert_desktop",
-            "type": "range",
-            "max": 200,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding vertical",
-            "defaultValue": 0
-          },
-          {
-            "id": "item_padding_horiz_desktop",
-            "type": "range",
-            "max": 200,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding horizontal",
-            "defaultValue": 0
-          },
-          {
-            "id": "item_margin_bottom_desktop",
-            "type": "range",
-            "max": 200,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Margin bottom",
-            "defaultValue": 0
-          },
-          {
-            "id": "item_content_align_desktop",
-            "type": "select",
-            "label": "Align",
-            "options": [
-              {
-                "title": "Left",
-                "value": "left"
-              },
-              {
-                "title": "Center",
-                "value": "center"
-              },
-              {
-                "title": "Right",
-                "value": "right"
-              }
-            ],
-            "defaultValue": "center"
-          },
-          {
-            "id": "tablet_screen_properties",
-            "type": "header",
-            "content": "Tablet screen"
-          },
-          {
-            "id": "item_padding_vert_tablet",
-            "type": "range",
-            "max": 200,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding vertical",
-            "defaultValue": 0
-          },
-          {
-            "id": "item_padding_horiz_tablet",
-            "type": "range",
-            "max": 200,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding horizontal",
-            "defaultValue": 0
-          },
-          {
-            "id": "item_margin_bottom_tablet",
-            "type": "range",
-            "max": 200,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Margin bottom",
-            "defaultValue": 0
-          },
-          {
-            "id": "item_content_align_tablet",
-            "type": "select",
-            "label": "Align",
-            "options": [
-              {
-                "title": "Left",
-                "value": "left"
-              },
-              {
-                "title": "Center",
-                "value": "center"
-              },
-              {
-                "title": "Right",
-                "value": "right"
-              }
-            ],
-            "defaultValue": "center"
-          },
-          {
-            "id": "mobile_screen_properties",
-            "type": "header",
-            "content": "Mobile screen"
-          },
-          {
-            "id": "item_padding_vert_mobile",
-            "type": "range",
-            "max": 200,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding vertical",
-            "defaultValue": 0
-          },
-          {
-            "id": "item_padding_horiz_mobile",
-            "type": "range",
-            "max": 200,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding horizontal",
-            "defaultValue": 0
-          },
-          {
-            "id": "item_margin_bottom_mobile",
-            "type": "range",
-            "max": 200,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Margin bottom",
-            "defaultValue": 0
-          },
-          {
-            "id": "item_content_align_mobile",
-            "type": "select",
-            "label": "Align",
-            "options": [
-              {
-                "title": "Left",
-                "value": "left"
-              },
-              {
-                "title": "Center",
-                "value": "center"
-              },
-              {
-                "title": "Right",
-                "value": "right"
-              }
-            ],
-            "defaultValue": "center"
-          },
-          {
-            "id": "text_properties",
-            "type": "header",
-            "content": "Text properties"
-          },
-          {
-            "id": "text_content",
-            "type": "text",
-            "label": "Content",
-            "defaultValue": "Put your text here"
-          },
-          {
-            "id": "text_font_color",
-            "type": "select",
-            "label": "Text font color",
-            "options": [
-              {
-                "title": "Brand",
-                "value": "brand_color"
-              },
-              {
-                "title": "Light",
-                "value": "light_font_color"
-              },
-              {
-                "title": "Dark",
-                "value": "dark_font_color"
-              },
-              {
-                "title": "Contrast light",
-                "value": "contrast_light_font_color"
-              },
-              {
-                "title": "Contrast dark",
-                "value": "contrast_dark_font_color"
-              }
-            ],
-            "defaultValue": "dark_font_color"
-          },
-          {
-            "id": "text_font_size",
-            "max": 100,
-            "min": 1,
-            "step": 1,
-            "type": "range",
-            "unit": "px",
-            "label": "Text font size",
-            "defaultValue": 14
-          },
-          {
-            "id": "text_line_height",
-            "max": 100,
-            "min": 1,
-            "step": 1,
-            "type": "range",
-            "unit": "px",
-            "label": "Text line height",
-            "defaultValue": 28
-          },
-          {
-            "id": "text_font_weight",
-            "type": "select",
-            "label": "Text font weight",
-            "options": [
-              {
-                "title": "Normal",
-                "value": 400
-              },
-              {
-                "title": "Medium",
-                "value": 500
-              },
-              {
-                "title": "Bold",
-                "value": 600
-              },
-              {
-                "title": "Extra Bold",
-                "value": 700
-              }
-            ],
-            "defaultValue": 400
-          },
-          {
-            "id": "image_properties",
-            "type": "header",
-            "content": "Image properties"
-          },
-          {
-            "id": "image_url",
-            "type": "select-image",
-            "label": "Image",
-            "defaultValue": null
-          },
-          {
-            "id": "image_size",
-            "type": "range",
-            "max": 200,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Image size",
-            "defaultValue": 0
-          },
-          {
-            "id": "button_properties",
-            "type": "header",
-            "content": "button properties"
-          },
-          {
-            "id": "button_background_color",
-            "type": "select",
-            "label": "Background color",
-            "options": [
-              {
-                "title": "Main",
-                "value": "background_main_color"
-              },
-              {
-                "title": "Accent (Light)",
-                "value": "background_accent_light"
-              },
-              {
-                "title": "Accent (Dark)",
-                "value": "background_accent_dark"
-              },
-              {
-                "title": "Light",
-                "value": "background_light"
-              },
-              {
-                "title": "Dark",
-                "value": "background_dark"
-              },
-              {
-                "title": "Button color",
-                "value": "button_color"
-              },
-              {
-                "title": "Button text color",
-                "value": "button_text_color"
-              },
-              {
-                "title": "Transparent",
-                "value": "transparent"
-              }
-            ],
-            "defaultValue": "button_color"
-          },
-          {
-            "id": "button_label_color",
-            "type": "select",
-            "label": "Label color",
-            "options": [
-              {
-                "title": "Main",
-                "value": "background_main_color"
-              },
-              {
-                "title": "Accent (Light)",
-                "value": "background_accent_light"
-              },
-              {
-                "title": "Accent (Dark)",
-                "value": "background_accent_dark"
-              },
-              {
-                "title": "Light font color",
-                "value": "light_font_color"
-              },
-              {
-                "title": "Dark font color",
-                "value": "dark_font_color"
-              },
-              {
-                "title": "Button color",
-                "value": "button_color"
-              },
-              {
-                "title": "Button text color",
-                "value": "button_text_color"
-              },
-              {
-                "title": "Transparent",
-                "value": "transparent"
-              }
-            ],
-            "defaultValue": "button_text_color"
-          },
-          {
-            "id": "button_label",
-            "type": "text",
-            "label": "Label",
-            "defaultValue": "Click me →"
-          },
-          {
-            "id": "button_label_font_size",
-            "max": 100,
-            "min": 1,
-            "step": 1,
-            "type": "range",
-            "unit": "px",
-            "label": "Button label font size",
-            "defaultValue": 14
-          },
-          {
-            "id": "button_label_font_weight",
-            "type": "select",
-            "label": "Button label font weight",
-            "options": [
-              {
-                "title": "Normal",
-                "value": 400
-              },
-              {
-                "title": "Medium",
-                "value": 500
-              },
-              {
-                "title": "Bold",
-                "value": 600
-              },
-              {
-                "title": "Extra Bold",
-                "value": 700
-              }
-            ],
-            "defaultValue": 400
-          },
-          {
-            "id": "button_url",
-            "type": "text",
-            "label": "Button url",
-            "defaultValue": null
-          }
-        ]
-      }
-    },
-    "Column properties": {
-      "name": "Column properties",
-      "path": "blocks/shared/columnProperties.njk",
-      "settings": {
-        "schema": [
-          {
-            "id": "column_index",
-            "type": "text",
-            "label": "Column index (starting from 1)",
-            "defaultValue": "1"
-          },
-          {
-            "id": "items_align",
-            "type": "select",
-            "label": "Items align",
-            "options": [
-              {
-                "title": "Left",
-                "value": "start"
-              },
-              {
-                "title": "Center",
-                "value": "center"
-              },
-              {
-                "title": "Right",
-                "value": "end"
-              }
-            ],
-            "defaultValue": "center"
-          },
-          {
-            "id": "background_color",
-            "type": "select",
-            "label": "Background color",
-            "options": [
-              {
-                "title": "Main",
-                "value": "background_main_color"
-              },
-              {
-                "title": "Accent (Light)",
-                "value": "background_accent_light"
-              },
-              {
-                "title": "Accent (Dark)",
-                "value": "background_accent_dark"
-              },
-              {
-                "title": "Transparent",
-                "value": "transparent"
-              }
-            ],
-            "defaultValue": "background_accent_dark"
-          },
-          {
-            "id": "background_image",
-            "type": "select-image",
-            "label": "Image",
-            "defaultValue": null
-          },
-          {
-            "id": "border_radius",
-            "type": "range",
-            "max": 50,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Border radius",
-            "defaultValue": 0
-          },
-          {
-            "id": "desktop_screen_properties",
-            "type": "header",
-            "content": "Desktop screen"
-          },
-          {
-            "id": "min_width_desktop",
-            "type": "range",
-            "max": 1440,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Item min width",
-            "defaultValue": 0
-          },
-          {
-            "id": "max_width_desktop",
-            "type": "range",
-            "max": 1440,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Item max width",
-            "defaultValue": 0
-          },
-          {
-            "id": "min_height_desktop",
-            "type": "range",
-            "max": 1440,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Item min height",
-            "defaultValue": 0
-          },
-          {
-            "id": "max_height_desktop",
-            "type": "range",
-            "max": 1440,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Item max height",
-            "defaultValue": 0
-          },
-          {
-            "id": "padding_vert_desktop",
-            "type": "range",
-            "max": 200,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding vertical",
-            "defaultValue": 0
-          },
-          {
-            "id": "padding_horiz_desktop",
-            "type": "range",
-            "max": 200,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding horizontal",
-            "defaultValue": 0
-          },
-          {
-            "id": "tablet_screen_properties",
-            "type": "header",
-            "content": "Tablet screen"
-          },
-          {
-            "id": "min_width_tablet",
-            "type": "range",
-            "max": 1440,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Item min width",
-            "defaultValue": 0
-          },
-          {
-            "id": "max_width_tablet",
-            "type": "range",
-            "max": 1440,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Item max width",
-            "defaultValue": 0
-          },
-          {
-            "id": "min_height_tablet",
-            "type": "range",
-            "max": 1440,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Item min height",
-            "defaultValue": 0
-          },
-          {
-            "id": "max_height_tablet",
-            "type": "range",
-            "max": 1440,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Item max height",
-            "defaultValue": 0
-          },
-          {
-            "id": "padding_vert_tablet",
-            "type": "range",
-            "max": 200,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding vertical",
-            "defaultValue": 0
-          },
-          {
-            "id": "padding_horiz_tablet",
-            "type": "range",
-            "max": 200,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding horizontal",
-            "defaultValue": 0
-          },
-          {
-            "id": "mobile_screen_properties",
-            "type": "header",
-            "content": "Desktop screen"
-          },
-          {
-            "id": "max_width_mobile",
-            "type": "range",
-            "max": 1440,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Item max width",
-            "defaultValue": 0
-          },
-          {
-            "id": "min_height_mobile",
-            "type": "range",
-            "max": 1440,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Item min height",
-            "defaultValue": 0
-          },
-          {
-            "id": "padding_vert_mobile",
-            "type": "range",
-            "max": 200,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding vertical",
-            "defaultValue": 0
-          },
-          {
-            "id": "padding_horiz_mobile",
-            "type": "range",
-            "max": 200,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding horizontal",
-            "defaultValue": 0
           }
         ]
       }
@@ -9282,6 +8904,1157 @@
         ]
       }
     },
+    "Column": {
+      "name": "Column",
+      "path": "blocks/shared/column.njk",
+      "settings": {
+        "schema": [
+          {
+            "id": "column_index",
+            "type": "text",
+            "label": "Column index (starting from 1)",
+            "defaultValue": "1"
+          },
+          {
+            "id": "items_align",
+            "type": "select",
+            "label": "Items align",
+            "options": [
+              {
+                "title": "Left",
+                "value": "left"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              },
+              {
+                "title": "Right",
+                "value": "right"
+              }
+            ],
+            "defaultValue": "center"
+          },
+          {
+            "id": "background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_accent_dark"
+          },
+          {
+            "id": "background_image",
+            "type": "select-image",
+            "label": "Image",
+            "defaultValue": null
+          },
+          {
+            "id": "border_radius",
+            "type": "range",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Border radius",
+            "defaultValue": 0
+          },
+          {
+            "id": "desktop_screen_properties",
+            "type": "header",
+            "content": "Desktop screen"
+          },
+          {
+            "id": "min_width_desktop",
+            "type": "range",
+            "max": 1440,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Item min width",
+            "defaultValue": 0
+          },
+          {
+            "id": "max_width_desktop",
+            "type": "range",
+            "max": 1440,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Item max width",
+            "defaultValue": 0
+          },
+          {
+            "id": "min_height_desktop",
+            "type": "range",
+            "max": 1440,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Item min height",
+            "defaultValue": 0
+          },
+          {
+            "id": "max_height_desktop",
+            "type": "range",
+            "max": 1440,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Item max height",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_vert_desktop",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_horiz_desktop",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 0
+          },
+          {
+            "id": "tablet_screen_properties",
+            "type": "header",
+            "content": "Tablet screen"
+          },
+          {
+            "id": "min_width_tablet",
+            "type": "range",
+            "max": 1440,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Item min width",
+            "defaultValue": 0
+          },
+          {
+            "id": "max_width_tablet",
+            "type": "range",
+            "max": 1440,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Item max width",
+            "defaultValue": 0
+          },
+          {
+            "id": "min_height_tablet",
+            "type": "range",
+            "max": 1440,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Item min height",
+            "defaultValue": 0
+          },
+          {
+            "id": "max_height_tablet",
+            "type": "range",
+            "max": 1440,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Item max height",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_vert_tablet",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_horiz_tablet",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 0
+          },
+          {
+            "id": "mobile_screen_properties",
+            "type": "header",
+            "content": "Desktop screen"
+          },
+          {
+            "id": "max_width_mobile",
+            "type": "range",
+            "max": 1440,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Item max width",
+            "defaultValue": 0
+          },
+          {
+            "id": "min_height_mobile",
+            "type": "range",
+            "max": 1440,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Item min height",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_vert_mobile",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_horiz_mobile",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 0
+          }
+        ]
+      }
+    },
+    "Column item": {
+      "name": "Column item",
+      "path": "blocks/shared/columnItem.njk",
+      "settings": {
+        "schema": [
+          {
+            "id": "column_index",
+            "type": "text",
+            "label": "Column index (starting from 1)",
+            "defaultValue": "1"
+          },
+          {
+            "id": "item_properties",
+            "type": "header",
+            "content": "Column item properties"
+          },
+          {
+            "id": "item_type",
+            "type": "select",
+            "label": "Item type",
+            "options": [
+              {"title": "Text", "value": "text"},
+              {"title": "Image", "value": "image"},
+              {"title": "Button", "value": "button"},
+              {"title": "Link", "value": "link"}
+            ],
+            "defaultValue": "text"
+          },
+          {
+            "id": "item_background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_accent_dark"
+          },
+          {
+            "id": "item_background_image",
+            "type": "select-image",
+            "label": "Image",
+            "defaultValue": null
+          },
+          {
+            "id": "desktop_screen_properties",
+            "type": "header",
+            "content": "Desktop screen"
+          },
+          {
+            "id": "item_padding_vert_desktop",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 0
+          },
+          {
+            "id": "item_padding_horiz_desktop",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 0
+          },
+          {
+            "id": "item_margin_bottom_desktop",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin bottom",
+            "defaultValue": 0
+          },
+          {
+            "id": "item_content_align_desktop",
+            "type": "select",
+            "label": "Align",
+            "options": [
+              {
+                "title": "Left",
+                "value": "left"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              },
+              {
+                "title": "Right",
+                "value": "right"
+              }
+            ],
+            "defaultValue": "center"
+          },
+          {
+            "id": "tablet_screen_properties",
+            "type": "header",
+            "content": "Tablet screen"
+          },
+          {
+            "id": "item_padding_vert_tablet",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 0
+          },
+          {
+            "id": "item_padding_horiz_tablet",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 0
+          },
+          {
+            "id": "item_margin_bottom_tablet",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin bottom",
+            "defaultValue": 0
+          },
+          {
+            "id": "item_content_align_tablet",
+            "type": "select",
+            "label": "Align",
+            "options": [
+              {
+                "title": "Left",
+                "value": "left"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              },
+              {
+                "title": "Right",
+                "value": "right"
+              }
+            ],
+            "defaultValue": "center"
+          },
+          {
+            "id": "mobile_screen_properties",
+            "type": "header",
+            "content": "Mobile screen"
+          },
+          {
+            "id": "item_padding_vert_mobile",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 0
+          },
+          {
+            "id": "item_padding_horiz_mobile",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 0
+          },
+          {
+            "id": "item_margin_bottom_mobile",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin bottom",
+            "defaultValue": 0
+          },
+          {
+            "id": "item_content_align_mobile",
+            "type": "select",
+            "label": "Align",
+            "options": [
+              {
+                "title": "Left",
+                "value": "left"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              },
+              {
+                "title": "Right",
+                "value": "right"
+              }
+            ],
+            "defaultValue": "center"
+          },
+          {
+            "id": "text_properties",
+            "type": "header",
+            "content": "Text properties"
+          },
+          {
+            "id": "text_content",
+            "type": "text",
+            "label": "Content",
+            "defaultValue": "Put your text here"
+          },
+          {
+            "id": "text_font_color",
+            "type": "select",
+            "label": "Text font color",
+            "options": [
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              },
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              },
+              {
+                "title": "Contrast light",
+                "value": "contrast_light_font_color"
+              },
+              {
+                "title": "Contrast dark",
+                "value": "contrast_dark_font_color"
+              }
+            ],
+            "defaultValue": "dark_font_color"
+          },
+          {
+            "id": "text_font_size",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Text font size",
+            "defaultValue": 14
+          },
+          {
+            "id": "text_line_height",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Text line height",
+            "defaultValue": 28
+          },
+          {
+            "id": "text_font_weight",
+            "type": "select",
+            "label": "Text font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 600
+              },
+              {
+                "title": "Extra Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 400
+          },
+          {
+            "id": "image_properties",
+            "type": "header",
+            "content": "Image properties"
+          },
+          {
+            "id": "image_url",
+            "type": "select-image",
+            "label": "Image",
+            "defaultValue": null
+          },
+          {
+            "id": "image_size",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Image size",
+            "defaultValue": 0
+          },
+          {
+            "id": "button_properties",
+            "type": "header",
+            "content": "button properties"
+          },
+          {
+            "id": "button_background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Light",
+                "value": "background_light"
+              },
+              {
+                "title": "Dark",
+                "value": "background_dark"
+              },
+              {
+                "title": "Button color",
+                "value": "button_color"
+              },
+              {
+                "title": "Button text color",
+                "value": "button_text_color"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "button_color"
+          },
+          {
+            "id": "button_label_color",
+            "type": "select",
+            "label": "Label color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Light font color",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark font color",
+                "value": "dark_font_color"
+              },
+              {
+                "title": "Button color",
+                "value": "button_color"
+              },
+              {
+                "title": "Button text color",
+                "value": "button_text_color"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "button_text_color"
+          },
+          {
+            "id": "button_label",
+            "type": "text",
+            "label": "Label",
+            "defaultValue": "Click me →"
+          },
+          {
+            "id": "button_label_font_size",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Button label font size",
+            "defaultValue": 14
+          },
+          {
+            "id": "button_label_font_weight",
+            "type": "select",
+            "label": "Button label font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 600
+              },
+              {
+                "title": "Extra Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 400
+          },
+          {
+            "id": "button_url",
+            "type": "text",
+            "label": "Button url",
+            "defaultValue": null
+          }
+        ]
+      }
+    },
+    "Contact form": {
+      "name": "Contact form",
+      "path": "blocks/shop/contact/contactForm.njk",
+      "settings": {
+        "class": "block-contact-form",
+        "schema": [
+          {
+            "id": "form_properties",
+            "type": "header",
+            "content": "Form properties"
+          },
+          {
+            "id": "form_background",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_accent_dark"
+          },
+          {
+            "id": "form_show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": true
+          },
+          {
+            "id": "form_border_radius",
+            "type": "range",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Border radius",
+            "defaultValue": 8
+          },
+          {
+            "id": "form_padding_horiz",
+            "type": "range",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 16
+          },
+          {
+            "id": "form_padding_vert",
+            "type": "range",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 16
+          },
+          {
+            "id": "form_shadow",
+            "type": "select",
+            "label": "Drop shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 2",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+              }
+            ],
+            "defaultValue": "none"
+          },
+          {
+            "id": "form_size",
+            "type": "select",
+            "label": "Size",
+            "options": [
+              {
+                "title": "Compact",
+                "value": 65
+              },
+              {
+                "title": "Wide",
+                "value": 100
+              }
+            ],
+            "defaultValue": 100
+          },
+          {
+            "id": "form_align",
+            "type": "select",
+            "label": "Align",
+            "options": [
+              {
+                "title": "Left",
+                "value": "left"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              },
+              {
+                "title": "Right",
+                "value": "right"
+              }
+            ],
+            "defaultValue": "left"
+          },
+          {
+            "id": "button_properties",
+            "type": "header",
+            "content": "Button properties"
+          },
+          {
+            "id": "button_title",
+            "type": "text",
+            "label": "Title",
+            "defaultValue": "shop.contact.buttonTitle"
+          },
+          {
+            "id": "button_align",
+            "type": "select",
+            "label": "Align",
+            "options": [
+              {
+                "title": "Left",
+                "value": "left"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              },
+              {
+                "title": "Right",
+                "value": "right"
+              },
+              {
+                "title": "Full width",
+                "value": "stretch"
+              }
+            ],
+            "defaultValue": "left"
+          }
+        ]
+      }
+    },
+    "Custom page": {
+      "name": "Custom page",
+      "path": "blocks/shop/customPage/page.njk",
+      "settings": {
+        "blocks": [],
+        "class": "block-custom-page",
+        "schema": [
+          {
+            "id": "background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_accent_dark"
+          },
+          {
+            "id": "show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": true
+          },
+          {
+            "id": "border_radius",
+            "type": "range",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Border radius",
+            "defaultValue": 8
+          },
+          {
+            "id": "padding_vert",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 16
+          },
+          {
+            "id": "padding_horiz",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 16
+          },
+          {
+            "id": "shadow",
+            "type": "select",
+            "label": "Drop shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 2",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+              }
+            ],
+            "defaultValue": "none"
+          },
+          {
+            "id": "title_properties",
+            "type": "header",
+            "content": "Title properties"
+          },
+          {
+            "id": "title_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              },
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              }
+            ],
+            "defaultValue": "dark_font_color"
+          },
+          {
+            "id": "title_font_size",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 16
+          },
+          {
+            "id": "title_font_weight",
+            "type": "select",
+            "label": "Font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 600
+              },
+              {
+                "title": "Extra Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 600
+          },
+          {
+            "id": "title_line_height",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Line height",
+            "defaultValue": 24
+          },
+          {
+            "id": "title_align",
+            "type": "select",
+            "label": "Align",
+            "options": [
+              {
+                "title": "Left",
+                "value": "left"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              },
+              {
+                "title": "Right",
+                "value": "right"
+              }
+            ],
+            "defaultValue": "left"
+          },
+          {
+            "id": "content_properties",
+            "type": "header",
+            "content": "Content properties"
+          },
+          {
+            "id": "content_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              },
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              }
+            ],
+            "defaultValue": "dark_font_color"
+          },
+          {
+            "id": "content_font_size",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 14
+          },
+          {
+            "id": "content_font_weight",
+            "type": "select",
+            "label": "Font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 600
+              },
+              {
+                "title": "Extra Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 400
+          },
+          {
+            "id": "content_line_height",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Line height",
+            "defaultValue": 20
+          },
+          {
+            "id": "content_align",
+            "type": "select",
+            "label": "Align",
+            "options": [
+              {
+                "title": "Left",
+                "value": "left"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              },
+              {
+                "title": "Right",
+                "value": "right"
+              }
+            ],
+            "defaultValue": "left"
+          }
+        ]
+      }
+    },
     "Horizontal delimiter": {
       "name": "Horizontal delimiter",
       "path": "blocks/shared/horizontalDelimiter.njk",
@@ -9295,7 +10068,7 @@
             "options": [
               {
                 "title": "Left",
-                "value": "start"
+                "value": "left"
               },
               {
                 "title": "Center",
@@ -9303,7 +10076,7 @@
               },
               {
                 "title": "Right",
-                "value": "end"
+                "value": "right"
               }
             ],
             "defaultValue": "center"
@@ -12889,7 +13662,6 @@
       "name": "Shop terms",
       "path": "blocks/shop/terms/terms.njk",
       "settings": {
-        "blocks": [],
         "class": "block-shop-terms",
         "schema": [
           {
@@ -13063,7 +13835,6 @@
       "name": "Trust",
       "path": "blocks/shop/trust/trust.njk",
       "settings": {
-        "blocks": [],
         "class": "block-trusted-advisor",
         "schema": [
           {
@@ -13695,17 +14466,25 @@
       "name": "Purchase details",
       "path": "snippets/shop/checkout/purchaseDetails.njk"
     },
-    "Rating star": {
-      "name": "Rating star",
+    "Shared: Rating star": {
+      "name": "Shared: Rating star",
       "path": "snippets/shared/ratingStar.njk"
+    },
+    "Shared: Link button": {
+      "name": "Shared: Link button",
+      "path": "snippets/shared/linkButton.njk"
     },
     "Shared: Ripple button": {
       "name": "Shared: Ripple button",
       "path": "snippets/shared/rippleButton.njk"
     },
-    "Shared: Link button": {
-      "name": "Shared: Link button",
-      "path": "snippets/shared/linkButton.njk"
+    "Shared: Text": {
+      "name": "Shared: Text",
+      "path": "snippets/shared/text.njk"
+    },
+    "Shared: Text area": {
+      "name": "Shared: Text area",
+      "path": "snippets/shared/textArea.njk"
     },
     "Root css variables": {
       "name": "Root css variables",
@@ -13921,6 +14700,10 @@
     "sellix-checkout-products.js": {
       "name": "sellix-checkout-products.js",
       "path": "assets/components/checkout-products.js"
+    },
+    "sellix-contact-form-component.js": {
+      "name": "sellix-contact-form-component.js",
+      "path": "assets/components/contact-form.js"
     },
     "sellix-product-addons-component.js": {
       "name": "sellix-product-addons-component.js",

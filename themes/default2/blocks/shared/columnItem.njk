@@ -1,138 +1,126 @@
 {% set id = uid() %}
-{% set sectionId = args.sectionId or id %}
-{% set columnIdx = args.columnIdx or 1 %}
 
-{% if properties.column_index | int === columnIdx %}
-  {% set colors = themeProperties.current_colors %}
-  {% set backgroundColor = safe_get(properties.item_background_color, 'transparent') %}
-  {# Desktop #}
-  {% set contentAlignDesktop = safe_get(properties.item_content_align_desktop, 'center') %}
-  {% set paddingVertDesktop = safe_get(properties.item_padding_vert_desktop, 0) %}
-  {% set paddingHorizDesktop = safe_get(properties.item_padding_horiz_desktop, 0) %}
-  {% set marginBottomDesktop = safe_get(properties.item_margin_bottom_desktop, 0) %}
-  {# Tablet #}
-  {% set contentAlignTablet = safe_get(properties.item_content_align_tablet, 'center') %}
-  {% set paddingVertTablet = safe_get(properties.item_padding_vert_tablet, 0) %}
-  {% set paddingHorizTablet = safe_get(properties.item_padding_horiz_tablet, 0) %}
-  {% set marginBottomTablet = safe_get(properties.item_margin_bottom_tablet, 0) %}
-  {# Mobile #}
-  {% set contentAlignMobile = safe_get(properties.item_content_align_mobile, 'center') %}
-  {% set paddingVertMobile = safe_get(properties.item_padding_vert_mobile, 0) %}
-  {% set paddingHorizMobile = safe_get(properties.item_padding_horiz_mobile, 0) %}
-  {% set marginBottomMobile = safe_get(properties.item_margin_bottom_mobile, 0) %}
+{% set colors = themeProperties.current_colors %}
+{% set backgroundColor = safe_get(properties.item_background_color, 'transparent') %}
+{# Desktop #}
+{% set contentAlignDesktop = safe_get(properties.item_content_align_desktop, 'center') %}
+{% set paddingVertDesktop = safe_get(properties.item_padding_vert_desktop, 0) %}
+{% set paddingHorizDesktop = safe_get(properties.item_padding_horiz_desktop, 0) %}
+{% set marginBottomDesktop = safe_get(properties.item_margin_bottom_desktop, 0) %}
+{# Tablet #}
+{% set contentAlignTablet = safe_get(properties.item_content_align_tablet, 'center') %}
+{% set paddingVertTablet = safe_get(properties.item_padding_vert_tablet, 0) %}
+{% set paddingHorizTablet = safe_get(properties.item_padding_horiz_tablet, 0) %}
+{% set marginBottomTablet = safe_get(properties.item_margin_bottom_tablet, 0) %}
+{# Mobile #}
+{% set contentAlignMobile = safe_get(properties.item_content_align_mobile, 'center') %}
+{% set paddingVertMobile = safe_get(properties.item_padding_vert_mobile, 0) %}
+{% set paddingHorizMobile = safe_get(properties.item_padding_horiz_mobile, 0) %}
+{% set marginBottomMobile = safe_get(properties.item_margin_bottom_mobile, 0) %}
 
-  {% set localClass = ['section-multi-columns-', id, '__column-item'] | join %}
+{% set localClass = id %}
 
-  <style>
+<style>
+  .{{ localClass }} {
+    display: flex;
+    align-items: center;
+    background-color: {{ colors[backgroundColor] }};
+    {% if contentAlignDesktop === 'left' %}
+      justify-content: flex-start;
+    {% elif contentAlignDektop === 'right' %}
+      justify-content: flex-end;
+    {% else %}
+      justify-content: space-around;
+    {% endif %}
+    padding: {{ paddingVertDesktop }}px {{ paddingHorizDesktop }}px;
+    margin: 0 auto {{ marginBottomDesktop }}px auto;
+  }
+
+  @media (max-width: 768px) {
     .{{ localClass }} {
-      display: flex;
-      align-items: center;
-      background-color: {{ colors[backgroundColor] }};
-      {% if contentAlignDesktop === 'left' %}
+      {% if contentAlignTablet === 'left' %}
         justify-content: flex-start;
-      {% elif contentAlignDektop === 'right' %}
+      {% elif contentAlignTablet === 'right' %}
         justify-content: flex-end;
       {% else %}
         justify-content: space-around;
       {% endif %}
-      padding: {{ paddingVertDesktop }}px {{ paddingHorizDesktop }}px;
-      margin: 0 auto {{ marginBottomDesktop }}px auto;
+      padding: {{ paddingVertTablet }}px {{ paddingHorizTablet }}px;
+      margin: 0 auto {{ marginBottomTablet }}px auto;
     }
+  }
 
-    @media (max-width: 768px) {
-      .{{ localClass }} {
-        {% if contentAlignTablet === 'left' %}
-          justify-content: flex-start;
-        {% elif contentAlignTablet === 'right' %}
-          justify-content: flex-end;
-        {% else %}
-          justify-content: space-around;
-        {% endif %}
-        padding: {{ paddingVertTablet }}px {{ paddingHorizTablet }}px;
-        margin: 0 auto {{ marginBottomTablet }}px auto;
+  @media (max-width: 640px) {
+    .{{ localClass }} {
+      {% if contentAlignMobile === 'left' %}
+        justify-content: flex-start;
+      {% elif contentAlignMobile === 'right' %}
+        justify-content: flex-end;
+      {% else %}
+        justify-content: space-around;
+      {% endif %}
+      padding: {{ paddingVertMobile }}px {{ paddingHorizMobile }}px;
+      margin: 0 auto {{ marginBottomMobile }}px auto;
+    }
+  }
+</style>
+
+<div class="{{ localClass }}">
+  {% if properties.item_type === 'text' %}
+    {% render_snippet
+      'Column item: Text',
+      properties={
+        'content_align_desktop': contentAlignDesktop,
+        'content_align_tablet': contentAlignTablet,
+        'content_align_mobile': contentAlignMobile,
+        'content': properties.text_content,
+        'font_color': properties.text_font_color,
+        'font_size': properties.text_font_size,
+        'line_height': properties.text_line_height,
+        'font_weight': properties.text_font_weight
       }
-    }
-
-    @media (max-width: 640px) {
-      .{{ localClass }} {
-        {% if contentAlignMobile === 'left' %}
-          justify-content: flex-start;
-        {% elif contentAlignMobile === 'right' %}
-          justify-content: flex-end;
-        {% else %}
-          justify-content: space-around;
-        {% endif %}
-        padding: {{ paddingVertMobile }}px {{ paddingHorizMobile }}px;
-        margin: 0 auto {{ marginBottomMobile }}px auto;
+    %}
+  {% elif properties.item_type === 'image' %}
+    {% render_snippet
+      'Column item: Image',
+      properties={
+        'content_align_desktop': contentAlignDesktop,
+        'content_align_tablet': contentAlignTablet,
+        'content_align_mobile': contentAlignMobile,
+        'url': properties.image_url,
+        'size': properties.image_size
       }
-    }
-  </style>
+    %}
+  {% elif properties.item_type === 'button' %}
+    {% render_snippet
+      'Column item: Button',
+      properties={
+        'content_align_desktop': contentAlignDesktop,
+        'content_align_tablet': contentAlignTablet,
+        'content_align_mobile': contentAlignMobile,
+        'background_color': properties.button_background_color,
+        'label': properties.button_label,
+        'label_color': properties.button_label_color,
+        'label_font_size': properties.button_label_font_size,
+        'label_font_weight': properties.button_label_font_weight,
+        'url': properties.button_url
+      }
+    %}
+  {% elif properties.item_type === 'link' %}
+    {% render_snippet
+      'Column item: Link',
+      properties={
+        'content_align_desktop': contentAlignDesktop,
+        'content_align_tablet': contentAlignTablet,
+        'content_align_mobile': contentAlignMobile,
+        'background_color': properties.button_background_color,
+        'label_color': properties.button_label_color,
+        'label': properties.button_label,
+        'url': properties.button_url
+      }
+    %}
+  {% else %}
+    Unknown column item type: {{ properties.item_type }}
+  {% endif %}
 
-  <div class="{{ localClass }}">
-    {% if properties.item_type === 'text' %}
-      {% render_snippet
-        'Column item: Text',
-        sectionId=id,
-        columnIdx=columnIdx,
-        properties={
-          'content_align_desktop': contentAlignDesktop,
-          'content_align_tablet': contentAlignTablet,
-          'content_align_mobile': contentAlignMobile,
-          'content': properties.text_content,
-          'font_color': properties.text_font_color,
-          'font_size': properties.text_font_size,
-          'line_height': properties.text_line_height,
-          'font_weight': properties.text_font_weight
-        }
-      %}
-    {% elif properties.item_type === 'image' %}
-      {% render_snippet
-        'Column item: Image',
-        sectionId=id,
-        columnIdx=columnIdx,
-        properties={
-          'content_align_desktop': contentAlignDesktop,
-          'content_align_tablet': contentAlignTablet,
-          'content_align_mobile': contentAlignMobile,
-          'url': properties.image_url,
-          'size': properties.image_size
-        }
-      %}
-    {% elif properties.item_type === 'button' %}
-      {% render_snippet
-        'Column item: Button',
-        sectionId=id,
-        columnIdx=columnIdx,
-        properties={
-          'content_align_desktop': contentAlignDesktop,
-          'content_align_tablet': contentAlignTablet,
-          'content_align_mobile': contentAlignMobile,
-          'background_color': properties.button_background_color,
-          'label': properties.button_label,
-          'label_color': properties.button_label_color,
-          'label_font_size': properties.button_label_font_size,
-          'label_font_weight': properties.button_label_font_weight,
-          'url': properties.button_url
-        }
-      %}
-    {% elif properties.item_type === 'link' %}
-      {% render_snippet
-        'Column item: Link',
-        sectionId=id,
-        columnIdx=columnIdx,
-        properties={
-          'content_align_desktop': contentAlignDesktop,
-          'content_align_tablet': contentAlignTablet,
-          'content_align_mobile': contentAlignMobile,
-          'background_color': properties.button_background_color,
-          'label_color': properties.button_label_color,
-          'label': properties.button_label,
-          'url': properties.button_url
-        }
-      %}
-    {% else %}
-      Unknown column item type: {{ properties.item_type }}
-    {% endif %}
-
-  </div>
-{% endif %}
+</div>

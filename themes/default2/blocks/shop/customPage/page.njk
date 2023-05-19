@@ -1,0 +1,67 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set colors = themeProperties.current_colors %}
+
+{% set bgColor = safe_get(properties.background_color, 'background_accent_light') %}
+{% set showBorder = safe_get(properties.show_border, true) %}
+{% set borderRadius = safe_get(properties.border_radius, 8) %}
+{% set paddingVert = safe_get(properties.padding_vert, 16) %}
+{% set paddingHoriz = safe_get(properties.padding_horiz, 16) %}
+{% set shadow = safe_get(properties.shadow, 'none') %}
+
+{% set titleAlign = safe_get(properties.title_align, 'left') %}
+{% set titleFontColor = safe_get(properties.title_font_color, 'dark_font_color') %}
+{% set titleFontSize = safe_get(properties.title_font_size, 16) %}
+{% set titleFontWeight = safe_get(properties.title_font_weight, 600) %}
+{% set titleLineHeight = safe_get(properties.title_line_height, 24) %}
+
+{% set contentAlign = safe_get(properties.content_align, 'left') %}
+{% set contentFontColor = safe_get(properties.content_font_color, 'dark_font_color') %}
+{% set contentFontSize = safe_get(properties.content_font_size, 14) %}
+{% set contentFontWeight = safe_get(properties.content_font_weight, 400) %}
+{% set contentLineHeight = safe_get(properties.content_line_height, 20) %}
+
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }}__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .{{ localClass }}__wrapper {
+    width: 100%;
+    background: {{ colors[bgColor] }};
+    border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
+    border-radius: {{ borderRadius }}px;
+    padding: {{ paddingVert }}px {{ paddingHoriz }}px;
+    box-shadow: {{ shadow }};
+  }
+  .{{ localClass }}__title {
+    display: flex;
+    justify-content: {{ titleAlign }};
+    color: {{ colors[titleFontColor] }};
+    font-size: {{ titleFontSize }}px;
+    font-weight: {{ titleFontWeight }};
+    line-height: {{ titleLineHeight }}px;
+  }
+  .{{ localClass }}__content {
+    display: flex;
+    justify-content: {{ contentAlign }};
+    color: {{ colors[contentFontColor] }};
+    font-size: {{ contentFontSize }}px;
+    font-weight: {{ contentFontWeight }};
+    line-height: {{ contentLineHeight }}px;
+  }
+</style>
+
+<div class="{{ globalClass }}__container {{ localClass }}__container">
+  <div class="{{ globalClass }}__wrapper {{ localClass }}__wrapper">
+    <div class="{{ globalClass }}__title {{ localClass }}__title">
+      {{ page.name }}
+    </div>
+    <div class="{{ globalClass }}__content {{ localClass }}__content">
+      {{ page.content | html_sanitize | safe }}
+    </div>
+  </div>
+</div>

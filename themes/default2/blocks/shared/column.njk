@@ -1,0 +1,70 @@
+{% set id = args.id or uid() %}
+
+{% set colors = themeProperties.current_colors %}
+{% set itemsAlign = safe_get(properties.items_align, 'center') %}
+{% set minWidthDesktop = properties.min_width_desktop %}
+{% set maxWidthDesktop = properties.max_width_desktop %}
+{% set minHeightDesktop = properties.min_height_desktop %}
+{% set maxHeightDesktop = properties.max_height_desktop %}
+{% set paddingVertDesktop = safe_get(properties.padding_vert_desktop, 130) %}
+{% set paddingHorizDesktop = safe_get(properties.padding_horiz_desktop, 400) %}
+{% set minWidthTablet = properties.min_width_tablet %}
+{% set maxWidthTablet = properties.max_width_tablet %}
+{% set minHeightTablet = properties.min_height_tablet %}
+{% set maxHeightTablet = properties.max_height_tablet %}
+{% set paddingVertTablet = safe_get(properties.padding_vert_tablet, 115) %}
+{% set paddingHorizTablet = safe_get(properties.padding_horiz_tablet, 200) %}
+{% set minWidthMobile = properties.min_width_mobile %}
+{% set maxWidthMobile = properties.max_width_mobile %}
+{% set minHeightMobile = properties.min_height_mobile %}
+{% set maxHeightMobile = properties.max_height_mobile %}
+{% set paddingVertMobile = safe_get(properties.padding_vert_mobile, 96) %}
+{% set paddingHorizMobile = safe_get(properties.padding_horiz_mobile, 36) %}
+
+{% set bgImage = properties.background_image %}
+{% set bgColor = properties.background_color %}
+{% set borderRadius = safe_get(properties.border_radius, 0) %}
+
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }} {
+    padding: {{ paddingVertDesktop }}px {{ paddingHorizDesktop }}px;
+    justify-self: {{ itemsAlign }};
+    border-radius: {{ borderRadius }}px;
+    {% if bgImage %}
+      background: url({{bgImage | asset_url}});
+      background-repeat: no-repeat, no-repeat;
+      background-position: top;
+      background-size: cover;
+    {% elif bgColor %}
+      background-color: {{ colors[bgColor] }};
+    {% endif %}
+
+    width: 100%;
+    min-width: {{ [minWidthDesktop, 'px'] | join if minWidthDesktop | int > 0 else 'auto' }};
+    max-width: {{ [maxWidthDesktop, 'px'] | join if maxWidthDesktop | int > 0 else 'none' }};
+    min-height: {{ [minHeightDesktop, 'px'] | join if minHeightDesktop | int > 0 else 'auto' }};
+    max-height: {{ [maxHeightDesktop, 'px'] | join if maxHeightDesktop | int > 0 else 'none' }};
+  }
+
+  @media (max-width: 768px) {
+    .{{ localClass }} {
+      padding: {{ paddingVertTablet }}px {{ paddingHorizTablet }}px;
+      min-width: {{ [minWidthTablet, 'px'] | join if minWidthTablet | int > 0 else 'auto' }};
+      max-width: {{ [maxWidthTablet, 'px'] | join if maxWidthTablet | int > 0 else 'none' }};
+      min-height: {{ [minHeightTablet, 'px'] | join if minHeightTablet | int > 0 else 'auto' }};
+      max-height: {{ [maxHeightTablet, 'px'] | join if maxHeightTablet | int > 0 else 'none' }};
+    }
+  }
+
+  @media (max-width: 640px) {
+    .{{ localClass }} {
+      padding: {{ paddingVertMobile }}px {{ paddingHorizMobile }}px;
+      min-width: {{ [minWidthMobile, 'px'] | join if minWidthMobile | int > 0 else 'auto' }};
+      max-width: {{ [maxWidthMobile, 'px'] | join if maxWidthMobile | int > 0 else 'none' }};
+      min-height: {{ [minHeightMobile, 'px'] | join if minHeightMobile | int > 0 else 'auto' }};
+      max-height: {{ [maxHeightMobile, 'px'] | join if maxHeightMobile | int > 0 else 'none' }};
+    }
+  }
+</style>

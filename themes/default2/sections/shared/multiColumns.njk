@@ -63,14 +63,21 @@
 </style>
 
 <div class="{{ localClass }} {{ 'full-width' if properties.fullwidth else 'content-width' }}">
-  {% for columnIdx in safe_range(1, properties.columns_count | int + 1) %}
-    <div class="{{ localClass }}__{{ columnIdx }}__column">
-      {% for block_name in settings.block_order %}
-        {% set block = settings.blocks[block_name] %}
-        {% if block.settings.properties.column_index | int === columnIdx %}
-          {%- render_block block_name, sectionId=id, columnIdx=columnIdx -%}
-        {% endif %}
-      {% endfor%}
-    </div>
-  {% endfor %}
+  {% for block_name in settings.block_order %}
+    {% set block = settings.blocks[block_name] %}
+
+    {% if block.name == 'Column' %}
+      {% set columnId = uid() %}
+      <div class="{{ columnId }}">
+        {%- render_block block_name, id=columnId -%}
+
+        {% for blk_name in settings.block_order %}
+          {% set blk = settings.blocks[blk_name] %}
+          {% if blk.name != 'Column' and blk.settings.properties.column_index == block.settings.properties.column_index %}
+            {%- render_block blk_name -%}
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endfor%}
 </div>

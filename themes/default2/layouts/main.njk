@@ -168,6 +168,10 @@
 
   <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
+  {% if global.request.type in ['contact'] %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+  {% endif %}
+
   {% if global.request.type in ['product', 'checkout'] %}
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
   {% endif %}
@@ -198,6 +202,7 @@
   <script src="{{ 'sellix-product-variants-store.js' | asset_url }}"></script>
   <script src="{{ 'sellix-cart-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-cart-product-component.js' | asset_url }}"></script>
+  <script src="{{ 'sellix-contact-form-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-checkout-product.js' | asset_url }}"></script>
   <script src="{{ 'sellix-checkout-products.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-addons-component.js' | asset_url }}"></script>
