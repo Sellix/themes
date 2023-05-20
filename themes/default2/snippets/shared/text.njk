@@ -1,18 +1,18 @@
 {% set id = args.id or uid() %}
-{% set selector = args.selector if args.selector else '' %}
-{% set showPassword = args.showPassword if args.showPassword else false %}
-{% set label = args.label if args.label else '' %}
-{% set name = args.name if args.name else '' %}
-{% set note = args.note if args.note else '' %}
-{% set noteUnder = args.noteUnder if args.noteUnder else true %}
-{% set type = args.type if args.type else "text" %}
-{% set isVisible = false %}
-{% set style = args.style if args.style else "" %}
-{% set disabled = args.disabled if args.disabled else false %}
-{% set placeholder = args.placeholder if args.placeholder else "" %}
 {% set colors = themeProperties.current_colors %}
 {% set inputsProps = themeProperties.inputs %}
 
+{% set showPassword = safe_get(args.show_password, false) %}
+{% set label = safe_get(args.label, '') %}
+{% set name = safe_get(args.name, id) %}
+{% set type = safe_get(args.type, text) %}
+{% set isVisible = false %}
+{% set style = safe_get(args.style, '') %}
+{% set disabled = safe_get(args.disabled, false) %}
+{% set placeholder = safe_get(args.placeholder, '') %}
+
+{% set commonHeight = safe_get(inputsProps.common_height, 48) %}
+{% set commonShowBorder = safe_get(inputsProps.common_show_border, true) %}
 {% set commonFontColor = safe_get(inputsProps.common_font_color, 'light_font_color') %}
 {% set commonFontSize = safe_get(inputsProps.common_font_size, 16) %}
 {% set commonFontWeight = safe_get(inputsProps.common_font_weight, 400) %}
@@ -23,6 +23,8 @@
 {% set labelFontWeight = safe_get(inputsProps.common_label_font_weight, 500) %}
 {% set labelLineHeight = safe_get(inputsProps.common_label_line_height, 17) %}
 {% set labelAlign = safe_get(inputsProps.common_label_text_align, 'left') %}
+
+{% set textFieldBackground = safe_get(inputsProps.text_field_background, background_accent_dark) %}
 
 {% set globalClass = 'snippet-input-text' %}
 {% set localClass = id %}
@@ -36,15 +38,31 @@
     font-weight: {{ labelFontWeight }};
     line-height: {{ labelLineHeight }}px;
   }
-  .{{ localClass }}__input::placeholder {
+  .{{ localClass }}__input-wrapper {
+    position: relative;
+  }
+  .{{ localClass }}__input {
+    height: {{ commonHeight }}px;
+    background: {{ colors[textFieldBackground] }};
+    border: {{ "1px solid var(--borderColor)" if commonShowBorder else "none" }};
     color: {{ colors[commonFontColor] }};
+    font-size: {{ commonFontSize }}px;
+    font-weight: {{ commonFontWeight }};
+  }
+  .{{ localClass }}__input::placeholder {
     font-size: {{ commonFontSize }}px;
     font-weight: {{ commonFontWeight }};
     line-height: {{ commonLineHeight }}px;
   }
+  .{{ localClass }}__show-hide-password-icon {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.75rem;
+    color: {{ colors[commonFontColor] }};
+  }
 </style>
 
-<div class="{{ globalClass }} {{ localClass}} {{'position-relative' if showPassword else ''}} mb-3">
+<div class="{{ globalClass }} {{ localClass}}">
   {% if label %}
     <label
       class="sellix-label {{ globalClass }}__label {{ localClass }}__label"
@@ -54,34 +72,30 @@
     </label>
   {% endif %}
 
-  {% if note and not noteUnder %}
-    <p class="sellix-note">{{note}}</p>
-  {% endif %}
-
-  <input
-    class="sellix-input {{ globalClass}}__input {{ localClass }}__input"
-    autoComplete="{{'' if type == 'email' else 'off'}}"
-    type="{{'text' if showPassword and isVisible}}{{'password' if showPassword and not isVisible}}{{type if not showPassword and type}}{{'text' if not type and not showPassword}}"
-    id="{{name}}"
-    name="{{name}}"
-    {{'disabled' if disabled}}
-    placeholder="{{placeholder }}"
-    style="{{style}}; height: {{ inputsProps.common_height }}px; background: {{ colors[inputsProps.text_field_background] }}; border: {{ "1px solid var(--borderColor)" if inputsProps.common_show_border else "none" }}; color: {{ colors[inputsProps.common_font_color] }}; font-size: {{ inputsProps.common_font_size }}px; font-weight: {{ inputsProps.common_font_weight }};"
-  >
-
-  {% if showPassword  %}
-    {% render_snippet 'Hide Password Icon', id=id, class="sellix-input-visible" %}
-  {% endif %}
-
-  {% if note and noteUnder %}
-    <p class="sellix-note">{{note}}</p>
-  {% endif %}
+  <div class="{{ globalClass}}__input-wrapper {{ localClass }}__input-wrapper">
+    <input
+      class="sellix-input {{ globalClass}}__input {{ localClass }}__input"
+      autoComplete="{{'' if type == 'email' else 'off'}}"
+      type="{{'text' if showPassword and isVisible}}{{'password' if showPassword and not isVisible}}{{type if not showPassword and type}}{{'text' if not type and not showPassword}}"
+      id="{{name}}"
+      name="{{name}}"
+      {{'disabled' if disabled}}
+      placeholder="{{placeholder }}"
+      style="{{ style }};"
+    >
+    {% if showPassword  %}
+      <div class="{{ localClass }}__show-hide-password-icon">
+        {% render_snippet 'Icons: Crossed eye' %}
+      </div>
+    {% endif %}
+  </div>
 </div>
 
+{% if showPassword  %}
 <script type='application/javascript'>
   $(document).ready(function () {
     const $input = $('.{{ localClass }}__input');
-    $('#sellix-input-visible-{{id}}').on('click', function () {
+    $('.{{ localClass }}__show-hide-password-icon').on('click', function () {
       const type = $input.attr('type');
       if( type === 'password' ){
         $input.attr('type', 'text');
@@ -91,3 +105,4 @@
     });
   });
 </script>
+{% endif %}

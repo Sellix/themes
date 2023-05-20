@@ -32,6 +32,9 @@
     padding: {{ formPaddingVert }}px {{ formPaddingHoriz }}px;
     box-shadow: {{ formShadow }};
   }
+  .{{ localClass }}__field {
+    margin-bottom: 1rem;
+  }
   .{{ localClass }}__button-container {
     display: flex;
     justify-content: {{ buttonAlign }};
@@ -45,42 +48,44 @@
 
 <div class="{{ globalClass }}__container {{ localClass }}__container">
   <form
-    class="sellix-contact-form"
-    id="contact-form-{{id}}"
+    class="{{ globalClass }}__form {{ localClass }}__form"
     onsubmit="return false"
   >
-    <div>
-      <div>
-        {% render_snippet 'Shared: Text',
-          id=titleId,
-          name="title",
-          label=('shop.contact.fields.title.title' | t),
-          placeholder=('shop.contact.fields.title.placeholder' | t)
-        %}
+    <div class="{{ globalClass }}__field {{ localClass }}__field">
+      {% render_snippet 'Shared: Text',
+        id=titleId,
+        name="title",
+        label=('shop.contact.fields.title.title' | t),
+        placeholder=('shop.contact.fields.title.placeholder' | t),
+        show_password=true
+      %}
+    </div>
 
-        {% render_snippet 'Shared: Text',
-          id=emailId,
-          name="email",
-          label=('shop.contact.fields.email.title' | t),
-          placeholder=('shop.contact.fields.email.placeholder' | t)
-        %}
+    <div class="{{ globalClass }}__field {{ localClass }}__field">
+      {% render_snippet 'Shared: Text',
+        id=emailId,
+        name="email",
+        label=('shop.contact.fields.email.title' | t),
+        placeholder=('shop.contact.fields.email.placeholder' | t)
+      %}
+    </div>
 
-        {% render_snippet 'Shared: Text',
-          id=invoiceId,
-          name="invoice_id",
-          label=('shop.contact.fields.invoiceId.title' | t),
-          placeholder=('shop.contact.fields.invoiceId.placeholder' | t)
-        %}
-      </div>
+    <div class="{{ globalClass }}__field {{ localClass }}__field">
+      {% render_snippet 'Shared: Text',
+        id=invoiceId,
+        name="invoice_id",
+        label=('shop.contact.fields.invoiceId.title' | t),
+        placeholder=('shop.contact.fields.invoiceId.placeholder' | t)
+      %}
+    </div>
 
-      <div>
-        {% render_snippet 'Shared: Text area',
-          id=messageId,
-          name="message",
-          label=('shop.contact.fields.message.title' | t),
-          placeholder=('shop.contact.fields.message.placeholder' | t)
-        %}
-      </div>
+    <div class="{{ globalClass }}__field {{ localClass }}__field">
+      {% render_snippet 'Shared: Text area',
+        id=messageId,
+        name="message",
+        label=('shop.contact.fields.message.title' | t),
+        placeholder=('shop.contact.fields.message.placeholder' | t)
+      %}
     </div>
 
     <div class="{{ globalClass }}__button-container {{ localClass }}__button-container">
@@ -97,14 +102,14 @@
 <script type='application/javascript'>
   $(document).ready(function () {
     const formComponent = new SellixFormComponent(
-      '#contact-form-{{id}}',
+      '.{{ localClass }}__form',
       '{{titleId}}',
       '{{emailId}}',
       '{{messageId}}',
       '{{invoiceId}}',
       '{{shop.name}}',
     );
-    $('#contact-form-{{id}}').validate({
+    $('.{{ localClass }}__form').validate({
       errorElement: 'div',
       errorClass: 'invalid-feedback',
       rules: {
