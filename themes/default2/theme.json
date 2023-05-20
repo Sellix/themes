@@ -2334,7 +2334,13 @@
             "name": "Container: With sidebar",
             "settings": {
               "visible": true,
-              "block_order": ["Contact form"],
+              "block_order": [
+                "Contact form",
+                "Text with image 1",
+                "Text with image 2",
+                "Text with image 3",
+                "Text with image 4"
+              ],
               "blocks": {
                 "Contact form": {
                   "name": "Contact form",
@@ -2349,10 +2355,63 @@
                       "button_align": "stretch"
                     }
                   }
+                },
+                "Text with image 1": {
+                  "name": "Text with image",
+                  "settings": {
+                    "visible": "true",
+                    "properties": {
+                      "padding_bottom": 18,
+                      "font_color": "dark_font_color",
+                      "font_size": 16,
+                      "font_weight": 500,
+                      "line_height": 24,
+                      "text_content": "Sellix S.R.L."
+                    }
+                  }
+                },
+                "Text with image 2": {
+                  "name": "Text with image",
+                  "settings": {
+                    "visible": "true",
+                    "properties": {
+                      "font_color": "light_font_color",
+                      "image_url": "icon-map-pin.png",
+                      "padding_top": 6,
+                      "padding_bottom": 6,
+                      "text_content": "Via del Monte 1, Bologna, Italy 40126"
+                    }
+                  }
+                },
+                "Text with image 3": {
+                  "name": "Text with image",
+                  "settings": {
+                    "visible": "true",
+                    "properties": {
+                      "font_color": "light_font_color",
+                      "image_url": "icon-email.png",
+                      "padding_top": 6,
+                      "padding_bottom": 6,
+                      "text_content": "example@sellix.io"
+                    }
+                  }
+                },
+                "Text with image 4": {
+                  "name": "Text with image",
+                  "settings": {
+                    "visible": "true",
+                    "properties": {
+                      "font_color": "light_font_color",
+                      "image_url": "icon-phone.png",
+                      "padding_top": 6,
+                      "padding_bottom": 6,
+                      "text_content": "(406) 555-0120"
+                    }
+                  }
                 }
               },
               "properties": {
-                "sidebar_blocks_count": 0,
+                "sidebar_blocks_count": 4,
                 "background_color": "background_accent_light",
                 "padding_top_desktop": 60,
                 "padding_top_tablet": 30,
@@ -13512,7 +13571,7 @@
             "defaultValue": "center"
           },
           {
-            "id": "Value_properties",
+            "id": "value_properties",
             "type": "header",
             "content": "Value properties"
           },
@@ -13826,6 +13885,238 @@
             "type": "range",
             "unit": "px",
             "label": "Title line height",
+            "defaultValue": 20
+          }
+        ]
+      }
+    },
+    "Text with image": {
+      "name": "Text with image",
+      "path": "blocks/shared/textWithImage.njk",
+      "settings": {
+        "class": "block-text-with-image",
+        "schema": [
+          {
+            "id": "container_properties",
+            "type": "header",
+            "content": "Container properties"
+          },
+          {
+            "id": "background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "transparent"
+          },
+          {
+            "id": "show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": false
+          },
+          {
+            "id": "border_radius",
+            "type": "range",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Border radius",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_top",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding top",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_bottom",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding top",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_horiz",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 0
+          },
+          {
+            "id": "text_properties",
+            "type": "header",
+            "content": "Text properties"
+          },
+          {
+            "id": "show_text",
+            "type": "checkbox",
+            "label": "Show text",
+            "defaultValue": true
+          },
+          {
+            "id": "text_content",
+            "type": "text",
+            "label": "Content",
+            "defaultValue": "Put your text here"
+          },
+          {
+            "id": "font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              },
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              }
+            ],
+            "defaultValue": "dark_font_color"
+          },
+          {
+            "id": "font_size",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 14
+          },
+          {
+            "id": "font_weight",
+            "type": "select",
+            "label": "Font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 600
+              },
+              {
+                "title": "Extra Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 400
+          },
+          {
+            "id": "line_height",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Title line height",
+            "defaultValue": 20
+          },
+          {
+            "id": "align_horiz",
+            "type": "select",
+            "label": "Text align horizontal",
+            "options": [
+              {
+                "title": "Left",
+                "value": "left"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              },
+              {
+                "title": "Right",
+                "value": "right"
+              }
+            ],
+            "defaultValue": "left"
+          },
+          {
+            "id": "align_vert",
+            "type": "select",
+            "label": "Text align vertical",
+            "options": [
+              {
+                "title": "Top",
+                "value": "start"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              },
+              {
+                "title": "Bottom",
+                "value": "end"
+              }
+            ],
+            "defaultValue": "center"
+          },
+          {
+            "id": "image_properties",
+            "type": "header",
+            "content": "Image properties"
+          },
+          {
+            "id": "show_image",
+            "type": "checkbox",
+            "label": "Show image",
+            "defaultValue": true
+          },
+          {
+            "id": "image_url",
+            "type": "select-image",
+            "label": "Image",
+            "defaultValue": null
+          },
+          {
+            "id": "image_size",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Image size",
             "defaultValue": 20
           }
         ]
@@ -14585,6 +14876,10 @@
       "name": "icon-gear.svg",
       "path": "assets/media/icons/icon-gear.svg"
     },
+    "icon-email.png": {
+      "name": "icon-email.png",
+      "path": "assets/media/icons/icon-email.png"
+    },
     "icon-magic-wand.svg": {
       "name": "icon-magic-wand.svg",
       "path": "assets/media/icons/icon-magic-wand.svg"
@@ -14592,6 +14887,14 @@
     "icon-magnifier.svg": {
       "name": "icon-magnifier.svg",
       "path": "assets/media/icons/icon-magnifier.svg"
+    },
+    "icon-map-pin.png": {
+      "name": "icon-map-pin.png",
+      "path": "assets/media/icons/icon-map-pin.png"
+    },
+    "icon-phone.png": {
+      "name": "icon-phone.png",
+      "path": "assets/media/icons/icon-phone.png"
     },
     "invoice.js": {
       "name": "invoice.js",
