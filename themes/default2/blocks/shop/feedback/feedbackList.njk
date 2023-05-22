@@ -1,0 +1,41 @@
+{% set shop = global.common.shopInfo.shop %}
+{% set feedbacks = global.common.feedbacksInfo.feedbacks %}
+{% set offset = args.offset if args.offset else 0 %}
+{% set limit = args.limit if args.limit else 12 * (offset + 1) %}
+{% set colors = themeProperties.current_colors %}
+{% set isEmpty = feedbacks | length == 0 %}
+
+{% set bgColor = safe_get(properties.background_color, 'background_accent_ligth') %}
+{% set showBorder = safe_get(properties.show_border, false) %}
+{% set paddingVert = safe_get(properties.padding_vert, 0) %}
+{% set paddingHoriz = safe_get(properties.padding_horiz, 0) %}
+{% set shadow = safe_get(properties.shadow, 'none') %}
+{% set borderRadius = safe_get(properties.border_radius, 0) %}
+
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }}__container {
+    background: {{ colors[bgColor] }};
+    border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
+    padding: {{ paddingVert }}px {{ paddingHoriz }}px;
+    box-shadow: {{ shadow }};
+    border-radius: {{ borderRadius }}px;
+  }
+</style>
+
+<div class="{{ globalClass }}__container {{ localClass }}__container">
+  {% if feedbacks.length === 0 %}
+    <div class="empty-shop-container">
+      {% render_snippet 'Empty feedbacks icon' %}
+
+      <span class="empty-shop-title">
+        {{ 'shop.feedback.noFeedbacks' | t({shopName: ['<b>', shop.name, '</b>'] | join('')}) | safe }}
+      </span>
+    </div>
+  {% endif %}
+
+  {% for item in feedbacks.slice(offset, limit) %}
+    {% render_snippet 'Feedback: Card', feedback=item %}
+  {% endfor %}
+</div>

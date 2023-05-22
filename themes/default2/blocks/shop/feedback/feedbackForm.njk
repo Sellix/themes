@@ -1,0 +1,8 @@
+{% if global.request.type == 'delivery' %}
+  {% set feedbackId = global.common.invoiceInfo.info.feedback_uniqid %}
+  {% set feedback = global.common.invoiceInfo.feedback %}
+{% endif %}
+
+{% if feedback %}
+  {% render_snippet 'Feedback form', feedbackId=feedbackId, feedback=feedback, properties=properties %}
+{% endif %}

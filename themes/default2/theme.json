@@ -24,7 +24,7 @@
     "schema": {
       "cards": [
         {
-          "id": "header_product_card",
+          "id": "product_card_properties",
           "type": "header",
           "content": "Product card"
         },
@@ -324,8 +324,9 @@
           ],
           "defaultValue": 400
         },
+
         {
-          "id": "header_feedback_card",
+          "id": "feedback_card_properties",
           "type": "header",
           "content": "Feedback card"
         },
@@ -390,6 +391,26 @@
           "defaultValue": "none"
         },
         {
+          "id": "feedback_card_padding_horiz",
+          "max": 50,
+          "min": 0,
+          "step": 1,
+          "type": "range",
+          "unit": "px",
+          "label": "Padding horizontal",
+          "defaultValue": 24
+        },
+        {
+          "id": "feedback_card_padding_vert",
+          "max": 50,
+          "min": 0,
+          "step": 1,
+          "type": "range",
+          "unit": "px",
+          "label": "Padding vertical",
+          "defaultValue": 24
+        },
+        {
           "id": "feedback_card_message_text_font_color",
           "type": "select",
           "label": "Message font color",
@@ -407,7 +428,7 @@
               "value": "brand_color"
             }
           ],
-          "defaultValue": "light_font_color"
+          "defaultValue": "dark_font_color"
         },
         {
           "id": "feedback_card_message_text_font_size",
@@ -427,27 +448,7 @@
           "type": "range",
           "unit": "px",
           "label": "Message line height",
-          "defaultValue": 24
-        },
-        {
-          "id": "feedback_card_message_text_text_align",
-          "type": "select",
-          "label": "Message text align",
-          "options": [
-            {
-              "title": "Left",
-              "value": "left"
-            },
-            {
-              "title": "Center",
-              "value": "center"
-            },
-            {
-              "title": "Right",
-              "value": "right"
-            }
-          ],
-          "defaultValue": "left"
+          "defaultValue": 20
         },
         {
           "id": "feedback_card_message_text_font_weight",
@@ -471,7 +472,27 @@
               "value": 700
             }
           ],
-          "defaultValue": 400
+          "defaultValue": 600
+        },
+        {
+          "id": "feedback_card_message_text_align",
+          "type": "select",
+          "label": "Message text align",
+          "options": [
+            {
+              "title": "Left",
+              "value": "left"
+            },
+            {
+              "title": "Center",
+              "value": "center"
+            },
+            {
+              "title": "Right",
+              "value": "right"
+            }
+          ],
+          "defaultValue": "left"
         },
         {
           "id": "feedback_card_reply_background_color",
@@ -489,6 +510,10 @@
             {
               "title": "Accent (Dark)",
               "value": "background_accent_dark"
+            },
+            {
+              "title": "Transparent",
+              "value": "transparent"
             }
           ],
           "defaultValue": "background_accent_light"
@@ -530,36 +555,6 @@
           "defaultValue": 14
         },
         {
-          "id": "feedback_card_reply_text_line_height",
-          "max": 100,
-          "min": 1,
-          "step": 1,
-          "type": "range",
-          "unit": "px",
-          "label": "Reply line height",
-          "defaultValue": 24
-        },
-        {
-          "id": "feedback_card_reply_text_text_align",
-          "type": "select",
-          "label": "Reply text align",
-          "options": [
-            {
-              "title": "Left",
-              "value": "left"
-            },
-            {
-              "title": "Center",
-              "value": "center"
-            },
-            {
-              "title": "Right",
-              "value": "right"
-            }
-          ],
-          "defaultValue": "left"
-        },
-        {
           "id": "feedback_card_reply_text_font_weight",
           "type": "select",
           "label": "Reply font weight",
@@ -582,6 +577,36 @@
             }
           ],
           "defaultValue": 400
+        },
+        {
+          "id": "feedback_card_reply_text_line_height",
+          "max": 100,
+          "min": 1,
+          "step": 1,
+          "type": "range",
+          "unit": "px",
+          "label": "Reply line height",
+          "defaultValue": 20
+        },
+        {
+          "id": "feedback_card_reply_text_align",
+          "type": "select",
+          "label": "Reply text align",
+          "options": [
+            {
+              "title": "Left",
+              "value": "left"
+            },
+            {
+              "title": "Center",
+              "value": "center"
+            },
+            {
+              "title": "Right",
+              "value": "right"
+            }
+          ],
+          "defaultValue": "left"
         }
       ],
       "color_schema": [
@@ -1949,17 +1974,19 @@
         "feedback_card_border_radius": 8,
         "feedback_card_show_border": true,
         "feedback_card_shadow": "none",
-        "feedback_card_message_text_font_color": "light_font_color",
+        "feedback_card_padding_horiz": 24,
+        "feedback_card_padding_vert": 24,
+        "feedback_card_message_text_font_color": "dark_font_color",
         "feedback_card_message_text_font_size": 14,
-        "feedback_card_message_text_line_height": 24,
-        "feedback_card_message_text_text_align": "left",
-        "feedback_card_message_text_font_weight": 400,
-        "feedback_card_reply_background_color": "background_accent_light",
+        "feedback_card_message_text_font_weight": 600,
+        "feedback_card_message_text_line_height": 20,
+        "feedback_card_message_text_align": "left",
+        "feedback_card_reply_background_color": "transparent",
         "feedback_card_reply_show_border": false,
         "feedback_card_reply_text_font_color": "dark_font_color",
         "feedback_card_reply_text_font_size": 14,
-        "feedback_card_reply_text_line_height": 24,
-        "feedback_card_reply_text_text_align": "left",
+        "feedback_card_reply_text_line_height": 20,
+        "feedback_card_reply_text_align": "left",
         "feedback_card_reply_text_font_weight": 400
       },
       "color_schema": {
@@ -2154,42 +2181,6 @@
   },
 
   "templates": {
-    "Not found/404": {
-      "name": "Not found/404",
-      "path": "templates/shop/notFound.njk",
-      "template_type": "NOT_FOUND",
-      "is_default": 1,
-      "settings": {
-        "section_order": [
-          "404"
-        ],
-        "sections": {
-          "404": {
-            "name": "404",
-            "settings": {
-              "visible": true,
-              "properties": {
-                "404_heading_text": "shop.404.header",
-                "404_heading_font_color": "dark_font_color",
-                "404_heading_font_size": 21,
-                "404_heading_line_height": 120,
-                "404_heading_text_align": "center",
-                "404_heading_font_weight": 500,
-                "404_description_text": "shop.404.description",
-                "404_description_font_color": "dark_font_color",
-                "404_description_font_size": 18,
-                "404_description_line_height": 120,
-                "404_description_text_align": "center",
-                "404_description_font_weight": 400,
-                "404_button_title": "shop.shared.titles.goBack",
-                "404_button_position": "center"
-              },
-              "block_order": []
-            }
-          }
-        }
-      }
-    },
     "Checkout/Checkout": {
       "name": "Checkout/Checkout",
       "path": "templates/shop/checkout.njk",
@@ -2421,6 +2412,353 @@
                 "padding_bottom_mobile": 60,
                 "margin_bottom_desktop": 0,
                 "margin_bottom_tablet": 0,
+                "margin_bottom_mobile": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "Feedback/Feedback": {
+      "name": "Feedback/Feedback",
+      "path": "templates/shop/feedback.njk",
+      "template_type": "FEEDBACK",
+      "is_default": 1,
+      "settings": {
+        "section_order": [
+          "Banner",
+          "Menu",
+          "Feedback"
+        ],
+        "sections": {
+          "Banner": {
+            "name": "Banner",
+            "settings": {
+              "blocks": {
+                "Banner stats": {
+                  "name": "Banner stats",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "show_banner_products_sold": true,
+                      "show_banner_product_quality": true
+                    }
+                  }
+                },
+                "Banner divider": {
+                  "name": "Banner divider",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "show_on_small_screen": false
+                    }
+                  }
+                },
+                "Banner shop info": {
+                  "name": "Banner shop info",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "banner_shop_info_font_size": 13,
+                      "banner_shop_info_font_color": "dark_font_color",
+                      "banner_shop_info_custom_text": "",
+                      "banner_shop_info_font_weight": 300,
+                      "show_banner_shop_info_avatar": true,
+                      "banner_shop_info_avatar_color": "brand_color",
+                      "banner_shop_info_custom_avatar": null,
+                      "show_banner_shop_info_subscription": true
+                    }
+                  }
+                }
+              },
+              "visible": true,
+              "properties": {
+                "show_banner_border": true,
+                "banner_background_color": "background_accent_dark"
+              },
+              "block_order": [
+                "Banner shop info",
+                "Banner divider",
+                "Banner stats"
+              ]
+            }
+          },
+          "Menu": {
+            "name": "Menu",
+            "settings": {
+              "visible": true,
+              "properties": {
+                "menu": "Main Menu"
+              },
+              "block_order": []
+            }
+          },
+          "Feedback": {
+            "name": "Feedback",
+            "settings": {
+              "visible": true,
+              "properties": {
+                "leave_feedback_form_background": "background_accent_light",
+                "leave_feedback_form_show_border": false,
+                "leave_feedback_form_size": "427px",
+                "leave_feedback_form_button_title": "shop.feedback.buttonTitle",
+                "leave_feedback_form_button_position": "flex-start",
+                "leave_feedback_form_title": "shop.feedback.formTitle",
+                "leave_feedback_form_title_font_color": "light_font_color",
+                "leave_feedback_form_title_font_size": 20,
+                "leave_feedback_form_title_line_height": 120,
+                "leave_feedback_form_title_text_align": "left",
+                "leave_feedback_form_title_font_weight": 500,
+                "leave_feedback_form_sub_title": "shop.feedback.formSubtitle",
+                "leave_feedback_form_sub_title_font_color": "dark_font_color",
+                "leave_feedback_form_sub_title_font_size": 14,
+                "leave_feedback_form_sub_title_line_height": 120,
+                "leave_feedback_form_sub_title_text_align": "left",
+                "leave_feedback_form_sub_title_font_weight": 400
+              },
+              "block_order": []
+            }
+          }
+        }
+      }
+    },
+    "Feedback/Feedback list": {
+      "name": "Feedback/Feedback list",
+      "path": "templates/shop/feedbackList.njk",
+      "template_type": "FEEDBACK_LIST",
+      "is_default": 1,
+      "settings": {
+        "section_order": [
+          "Breadcrumbs",
+          "Section title 1",
+          "Container: Simple 1",
+          "Section title 2",
+          "Container: Simple 2",
+          "Multi columns 1"
+        ],
+        "sections": {
+          "Breadcrumbs": {
+            "name": "Breadcrumbs",
+            "settings": {
+              "visible": true,
+              "properties": {
+                "crumb_label_1": "shop.shared.menu.home",
+                "crumb_url_1": "",
+                "crumb_label_2": "shop.shared.menu.feedback",
+                "crumb_url_2": "FAQ",
+                "margin_top_desktop": 0,
+                "margin_bottom_desktop": 0,
+                "margin_top_tablet": 0,
+                "margin_bottom_tablet": 0,
+                "margin_top_mobile": 0,
+                "margin_bottom_mobile": 0,
+                "title_visible": true,
+                "title": "shop.feedback.title"
+              }
+            }
+          },
+          "Section title 1": {
+            "name": "Section title",
+            "settings": {
+              "visible": true,
+              "properties": {
+                "fullwidth": false,
+                "title_content": "shop.feedback.title",
+                "subtitle_content": "Accessible design is good design.",
+                "margin_bottom_desktop": 0,
+                "margin_bottom_tablet": 0,
+                "margin_bottom_mobile": 0,
+                "padding_bottom_desktop": 24,
+                "padding_bottom_tablet": 12,
+                "padding_bottom_mobile": 12
+              }
+            }
+          },
+          "Container: Simple 1": {
+            "name": "Container: Simple",
+            "settings": {
+              "visible": true,
+              "block_order": [
+                "Feedback: Shop stat",
+                "Horizontal delimiter 1",
+                "Feedback: List",
+                "Feedback: Pagination"
+              ],
+              "blocks": {
+                "Feedback: Shop stat": {
+                  "name": "Feedback: Shop stat",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                    }
+                  }
+                },
+                "Horizontal delimiter 1": {
+                  "name": "Horizontal delimiter",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "color": "gray_shade_1",
+                      "margin_top_desktop": 24,
+                      "margin_bottom_desktop": 24,
+                      "margin_top_tablet": 24,
+                      "margin_bottom_tablet": 24,
+                      "margin_top_mobile": 24,
+                      "margin_bottom_mobile": 24
+                    }
+                  }
+                },
+                "Feedback: List": {
+                  "name": "Feedback: List",
+                  "settings": {
+                    "visible": true
+                  }
+                },
+                "Feedback: Pagination": {
+                  "name": "Feedback: Pagination",
+                  "settings": {
+                    "visible": true
+                  }
+                }
+              },
+              "properties": {
+                "background_color": "background_accent_light",
+                "margin_bottom_desktop": 60,
+                "margin_bottom_tablet": 30,
+                "margin_bottom_mobile": 30
+              }
+            }
+          },
+          "Section title 2": {
+            "name": "Section title",
+            "settings": {
+              "visible": true,
+              "block_order": [],
+              "blocks": {},
+              "properties": {
+                "fullwidth": false,
+                "title_content": "Popular Products",
+                "subtitle_content": "Design is as much an act of spacing as an act of marking.",
+                "margin_bottom_desktop": 0,
+                "margin_bottom_tablet": 0,
+                "margin_bottom_mobile": 0
+              }
+            }
+          },
+          "Container: Simple 2": {
+            "name": "Container: Simple",
+            "settings": {
+              "visible": true,
+              "block_order": ["Products grid"],
+              "blocks": {
+                "Products grid" : {
+                  "name": "Products grid",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "container_border_radius": 0,
+                      "grid_background_color": "transparent",
+                      "grid_limit": 4,
+                      "grid_order_type": "popularity",
+                      "grid_order_direction": "desc",
+                      "grid_show_group": false,
+                      "grid_expand_group": true,
+                      "grid_show_info": false,
+                      "grid_show_product": true,
+                      "grid_show_subscription": true,
+                      "grid_show_border": false,
+                      "grid_show_view_all_button": false,
+                      "grid_column_gap": 30,
+                      "grid_row_gap": 30
+                    }
+                  }
+                }
+              },
+              "properties": {
+                "background_color": "background_accent_light",
+                "margin_bottom_desktop": 60,
+                "margin_bottom_tablet": 30,
+                "margin_bottom_mobile": 30
+              }
+            }
+          },
+          "Multi columns 1": {
+            "name": "Multi columns",
+            "settings": {
+              "visible": true,
+              "block_order": ["Column 1" ,"Column item 1", "Column item 2"],
+              "blocks": {
+                "Column 1": {
+                  "name": "Column",
+                  "visible": true,
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "column_index": "1",
+                      "max_width_desktop": 640,
+                      "max_width_tablet": 480,
+                      "max_width_mobile": 343,
+                      "background_color": "transparent"
+                    }
+                  }
+                },
+                "Column item 1": {
+                  "name": "Column item",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "column_index": "1",
+                      "item_type": "text",
+                      "item_background_color": "transparent",
+                      "item_margin_bottom_desktop": 30,
+                      "item_margin_bottom_tablet": 30,
+                      "item_margin_bottom_mobile": 30,
+                      "text_content": "Design is the intermediary between information and understanding",
+                      "text_font_color": "contrast_light_font_color",
+                      "text_font_size": 32,
+                      "text_line_height": 48,
+                      "text_font_weight": 500
+                    }
+                  }
+                },
+                "Column item 2": {
+                  "name": "Column item",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "column_index": "1",
+                      "item_type": "button",
+                      "item_background_color": "transparent",
+                      "item_margin_bottom_desktop": 0,
+                      "item_margin_bottom_tablet": 0,
+                      "item_margin_bottom_mobile": 0,
+                      "button_background_color": "button_text_color",
+                      "button_label_color": "button_color",
+                      "button_label": "Read Our Mission",
+                      "button_label_font_weight": 600,
+                      "button_url": "terms"
+                    }
+                  }
+                }
+              },
+              "properties": {
+                "fullwidth": true,
+                "background_color": "background_dark",
+                "columns_count": 1,
+                "columns_per_row_desktop": 1,
+                "padding_top_desktop": 120,
+                "padding_bottom_desktop": 120,
+                "padding_horiz_desktop": 200,
+                "margin_bottom_desktop": 0,
+                "columns_per_row_tablet": 1,
+                "padding_top_tablet": 110,
+                "padding_bottom_tablet": 110,
+                "padding_horiz_tablet": 100,
+                "margin_bottom_tablet": 0,
+                "columns_per_row_mobile": 1,
+                "padding_top_mobile": 60,
+                "padding_bottom_mobile": 60,
+                "padding_horiz_mobile": 36,
                 "margin_bottom_mobile": 0
               }
             }
@@ -3567,6 +3905,42 @@
         }
       }
     },
+    "Not found/404": {
+      "name": "Not found/404",
+      "path": "templates/shop/notFound.njk",
+      "template_type": "NOT_FOUND",
+      "is_default": 1,
+      "settings": {
+        "section_order": [
+          "404"
+        ],
+        "sections": {
+          "404": {
+            "name": "404",
+            "settings": {
+              "visible": true,
+              "properties": {
+                "404_heading_text": "shop.404.header",
+                "404_heading_font_color": "dark_font_color",
+                "404_heading_font_size": 21,
+                "404_heading_line_height": 120,
+                "404_heading_text_align": "center",
+                "404_heading_font_weight": 500,
+                "404_description_text": "shop.404.description",
+                "404_description_font_color": "dark_font_color",
+                "404_description_font_size": 18,
+                "404_description_line_height": 120,
+                "404_description_text_align": "center",
+                "404_description_font_weight": 400,
+                "404_button_title": "shop.shared.titles.goBack",
+                "404_button_position": "center"
+              },
+              "block_order": []
+            }
+          }
+        }
+      }
+    },
     "Page/Page": {
       "name": "Page/Page",
       "path": "templates/shop/page.njk",
@@ -3769,6 +4143,252 @@
             }
           }
         }
+      }
+    },
+    "Page/FAQ": {
+      "name": "Page/FAQ",
+      "path": "templates/shop/faq.njk",
+      "template_type": "FAQ",
+      "is_default": 1,
+      "settings": {
+        "properties": {
+          "title": "Hello world",
+          "title2": "It demo"
+        },
+        "sections": {
+          "Breadcrumbs": {
+            "name": "Breadcrumbs",
+            "settings": {
+              "visible": true,
+              "properties": {
+                "crumb_label_1": "shop.shared.menu.home",
+                "crumb_url_1": "",
+                "crumb_label_2": "shop.shared.menu.faq",
+                "crumb_url_2": "FAQ",
+                "margin_top_desktop": 0,
+                "margin_bottom_desktop": 0,
+                "margin_top_tablet": 0,
+                "margin_bottom_tablet": 0,
+                "margin_top_mobile": 0,
+                "margin_bottom_mobile": 0,
+                "title_visible": true,
+                "title": "shop.faq.title"
+              }
+            }
+          },
+          "FAQ": {
+            "name": "FAQ",
+            "settings": {
+              "blocks": {
+                "Q&A_1": {
+                  "name": "Q&A",
+                  "settings": {
+                    "properties": {
+                      "question": "shop.faq.items.0.question",
+                      "answer": "shop.faq.items.0.answer"
+                    }
+                  }
+                },
+                "Q&A_2": {
+                  "name": "Q&A",
+                  "settings": {
+                    "properties": {
+                      "question": "shop.faq.items.1.question",
+                      "answer": "shop.faq.items.1.answer"
+                    }
+                  }
+                },
+                "Q&A_3": {
+                  "name": "Q&A",
+                  "settings": {
+                    "properties": {
+                      "question": "shop.faq.items.2.question",
+                      "answer": "shop.faq.items.2.answer"
+                    }
+                  }
+                },
+                "Q&A_4": {
+                  "name": "Q&A",
+                  "settings": {
+                    "properties": {
+                      "question": "shop.faq.items.3.question",
+                      "answer": "shop.faq.items.3.answer"
+                    }
+                  }
+                },
+                "Q&A_5": {
+                  "name": "Q&A",
+                  "settings": {
+                    "properties": {
+                      "question": "shop.faq.items.4.question",
+                      "answer": "shop.faq.items.4.answer"
+                    }
+                  }
+                }
+              },
+              "block_order": [
+                "Q&A_1",
+                "Q&A_2",
+                "Q&A_3",
+                "Q&A_4",
+                "Q&A_5"
+              ],
+              "properties": {
+                "background_color": "accent_light",
+                "margin_bottom_desktop": 0,
+                "margin_bottom_tablet": 0,
+                "margin_bottom_mobile": 0,
+                "padding_top_desktop": 60,
+                "padding_top_tablet": 30,
+                "padding_top_mobile": 30,
+                "padding_bottom_desktop": 60,
+                "padding_bottom_tablet": 30,
+                "padding_bottom_mobile": 30
+              }
+            }
+          },
+          "Section title 1": {
+            "name": "Section title",
+            "settings": {
+              "visible": true,
+              "block_order": [],
+              "blocks": {},
+              "properties": {
+                "fullwidth": false,
+                "title_content": "Popular Products",
+                "subtitle_content": "Design is as much an act of spacing as an act of marking.",
+                "margin_bottom_desktop": 0,
+                "margin_bottom_tablet": 0,
+                "margin_bottom_mobile": 0
+              }
+            }
+          },
+          "Container: Simple 1": {
+            "name": "Container: Simple",
+            "settings": {
+              "visible": true,
+              "block_order": ["Products grid"],
+              "blocks": {
+                "Products grid" : {
+                  "name": "Products grid",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "container_border_radius": 0,
+                      "grid_background_color": "transparent",
+                      "grid_limit": 4,
+                      "grid_order_type": "popularity",
+                      "grid_order_direction": "desc",
+                      "grid_show_group": false,
+                      "grid_expand_group": true,
+                      "grid_show_info": false,
+                      "grid_show_product": true,
+                      "grid_show_subscription": true,
+                      "grid_show_border": false,
+                      "grid_show_view_all_button": false,
+                      "grid_column_gap": 30,
+                      "grid_row_gap": 30
+                    }
+                  }
+                }
+              },
+              "properties": {
+                "background_color": "background_accent_light",
+                "margin_bottom_desktop": 60,
+                "margin_bottom_tablet": 30,
+                "margin_bottom_mobile": 30
+              }
+            }
+          },
+          "Multi columns 1": {
+            "name": "Multi columns",
+            "settings": {
+              "visible": true,
+              "block_order": ["Column 1" ,"Column item 1", "Column item 2"],
+              "blocks": {
+                "Column 1": {
+                  "name": "Column",
+                  "visible": true,
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "column_index": "1",
+                      "max_width_desktop": 640,
+                      "max_width_tablet": 480,
+                      "max_width_mobile": 343,
+                      "background_color": "transparent"
+                    }
+                  }
+                },
+                "Column item 1": {
+                  "name": "Column item",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "column_index": "1",
+                      "item_type": "text",
+                      "item_background_color": "transparent",
+                      "item_margin_bottom_desktop": 30,
+                      "item_margin_bottom_tablet": 30,
+                      "item_margin_bottom_mobile": 30,
+                      "text_content": "Design is the intermediary between information and understanding",
+                      "text_font_color": "contrast_light_font_color",
+                      "text_font_size": 32,
+                      "text_line_height": 48,
+                      "text_font_weight": 500
+                    }
+                  }
+                },
+                "Column item 2": {
+                  "name": "Column item",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "column_index": "1",
+                      "item_type": "button",
+                      "item_background_color": "transparent",
+                      "item_margin_bottom_desktop": 0,
+                      "item_margin_bottom_tablet": 0,
+                      "item_margin_bottom_mobile": 0,
+                      "button_background_color": "button_text_color",
+                      "button_label_color": "button_color",
+                      "button_label": "Read Our Mission",
+                      "button_label_font_weight": 600,
+                      "button_url": "terms"
+                    }
+                  }
+                }
+              },
+              "properties": {
+                "fullwidth": true,
+                "background_color": "background_dark",
+                "columns_count": 1,
+                "columns_per_row_desktop": 1,
+                "padding_top_desktop": 120,
+                "padding_bottom_desktop": 120,
+                "padding_horiz_desktop": 200,
+                "margin_bottom_desktop": 0,
+                "columns_per_row_tablet": 1,
+                "padding_top_tablet": 110,
+                "padding_bottom_tablet": 110,
+                "padding_horiz_tablet": 100,
+                "margin_bottom_tablet": 0,
+                "columns_per_row_mobile": 1,
+                "padding_top_mobile": 60,
+                "padding_bottom_mobile": 60,
+                "padding_horiz_mobile": 36,
+                "margin_bottom_mobile": 0
+              }
+            }
+          }
+        },
+        "section_order": [
+          "Breadcrumbs",
+          "FAQ",
+          "Section title 1",
+          "Container: Simple 1",
+          "Multi columns 1"
+        ]
       }
     },
     "Product/Product": {
@@ -4908,7 +5528,7 @@
         "section_order": [
           "Breadcrumbs",
           "Container: Simple 1",
-          "Section title 2",
+          "Section title 1",
           "Container: Simple 2",
           "Multi columns 1"
         ],
@@ -4964,7 +5584,7 @@
               }
             }
           },
-          "Section title 2": {
+          "Section title 1": {
             "name": "Section title",
             "settings": {
               "visible": true,
@@ -5751,6 +6371,231 @@
             "type": "text",
             "label": "Url 5",
             "defaultValue": ""
+          }
+        ]
+      }
+    },
+    "Faq": {
+      "name": "FAQ",
+      "path": "sections/shop/faq.njk",
+      "settings": {
+        "class": "section_faq",
+        "blocks": [
+          {
+            "name": "Q&A"
+          }
+        ],
+        "schema": [
+          {
+            "id": "fullwidth",
+            "type": "checkbox",
+            "label": "Fullwidth",
+            "defaultValue": false
+          },
+          {
+            "id": "background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_accent_dark"
+          },
+          {
+            "id": "desktop_screen_properties",
+            "type": "header",
+            "content": "Desktop screen"
+          },
+          {
+            "id": "margin_top_desktop",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin top (desktop)",
+            "defaultValue": 0
+          },
+          {
+            "id": "margin_bottom_desktop",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin bottom (desktop)",
+            "defaultValue": 120
+          },
+          {
+            "id": "padding_top_desktop",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding top (desktop)",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_bottom_desktop",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding bottom (desktop)",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_horiz_desktop",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal (desktop)",
+            "defaultValue": 0
+          },
+          {
+            "id": "tablet_screen_properties",
+            "type": "header",
+            "content": "Tablet screen"
+          },
+          {
+            "id": "margin_top_tablet",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin top (tablet)",
+            "defaultValue": 0
+          },
+          {
+            "id": "margin_bottom_tablet",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin bottom (tablet)",
+            "defaultValue": 60
+          },
+          {
+            "id": "padding_top_tablet",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding top (tablet)",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_bottom_tablet",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding bottom (tablet)",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_horiz_tablet",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal (tablet)",
+            "defaultValue": 0
+          },
+          {
+            "id": "mobile_screen_properties",
+            "type": "header",
+            "content": "Mobile screen"
+          },
+          {
+            "id": "margin_top_mobile",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin top (mobile)",
+            "defaultValue": 0
+          },
+          {
+            "id": "margin_bottom_mobile",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin bottom (mobile)",
+            "defaultValue": 60
+          },
+          {
+            "id": "padding_top_mobile",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding top (mobile)",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_bottom_mobile",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding bottom (mobile)",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_horiz_mobile",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal (mobile)",
+            "defaultValue": 0
+          },
+
+          {
+            "id": "faq_properties",
+            "type": "header",
+            "content": "FAQ properties"
+          },
+          {
+            "id": "items_gap",
+            "type": "range",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Items gap",
+            "defaultValue": 8
           }
         ]
       }
@@ -6785,6 +7630,26 @@
             "limit": 1
           },
           {
+            "name": "Feedback: List",
+            "limit": 1
+          },
+          {
+            "name": "Feedback: Pagination",
+            "limit": 1
+          },
+          {
+            "name": "Feedback: Form",
+            "limit": 1
+          },
+          {
+            "name": "Feedback: Shop stat",
+            "limit": 1
+          },
+          {
+            "name": "Horizontal delimiter",
+            "limit": -1
+          },
+          {
             "name": "Products filter",
             "limit": 1
           },
@@ -7045,6 +7910,26 @@
           {
             "name": "Contact form",
             "limit": 1
+          },
+          {
+            "name": "Feedback: List",
+            "limit": 1
+          },
+          {
+            "name": "Feedback: Pagination",
+            "limit": 1
+          },
+          {
+            "name": "Feedback: Form",
+            "limit": 1
+          },
+          {
+            "name": "Feedback: Shop stat",
+            "limit": 1
+          },
+          {
+            "name": "Horizontal delimiter",
+            "limit": -1
           },
           {
             "name": "Products filter",
@@ -10114,6 +10999,726 @@
         ]
       }
     },
+    "Feedback: List": {
+      "name": "Feedback: List",
+      "path": "blocks/shop/feedback/feedbackList.njk",
+      "settings": {
+        "class": "block-feedback-list",
+        "schema": [
+          {
+            "id": "container_properties",
+            "type": "header",
+            "content": "Title properties"
+          },
+          {
+            "id": "background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_accent_light"
+          },
+          {
+            "id": "show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": false
+          },
+          {
+            "id": "border_radius",
+            "type": "range",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Border radius",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_horiz",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_vert",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 0
+          },
+          {
+            "id": "shadow",
+            "type": "select",
+            "label": "Drop shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 2",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+              }
+            ],
+            "defaultValue": "none"
+          }
+        ]
+      }
+    },
+    "Feedback: Pagination": {
+      "name": "Feedback: Pagination",
+      "path": "blocks/shop/feedback/feedbackPagination.njk",
+      "settings": {
+        "class": "block-feedback-pagination",
+        "schema": [
+          {
+            "id": "background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              }
+            ],
+            "defaultValue": "background_accent_dark"
+          },
+          {
+            "id": "show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": true
+          },
+          {
+            "id": "border_radius",
+            "type": "range",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Border radius",
+            "defaultValue": 0
+          },
+          {
+            "id": "shadow",
+            "type": "select",
+            "label": "Drop shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 2",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+              }
+            ],
+            "defaultValue": "none"
+          },
+          {
+            "id": "container_margin_y",
+            "max": 48,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container margin vertical",
+            "defaultValue": 24
+          }
+        ]
+      }
+    },
+    "Feedback: Form": {
+      "name": "Feedback: Form",
+      "path": "blocks/shop/feedback/feedbackForm.njk",
+      "settings": {
+        "class": "block-feedback-form",
+        "schema": [
+          {
+            "id": "header_leave_feedback_form",
+            "type": "header",
+            "content": "Leave Feedback Form"
+          },
+          {
+            "id": "container_background",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_accent_dark"
+          },
+          {
+            "id": "container_show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": true
+          },
+          {
+            "id": "container_border_radius",
+            "type": "range",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Border radius",
+            "defaultValue": 0
+          },
+          {
+            "id": "container_padding_horiz",
+            "type": "range",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 16
+          },
+          {
+            "id": "container_padding_vert",
+            "type": "range",
+            "max": 48,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 16
+          },
+          {
+            "id": "container_shadow",
+            "type": "select",
+            "label": "Drop shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 2",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+              }
+            ],
+            "defaultValue": "none"
+          },
+          {
+            "id": "leave_feedback_form_size",
+            "type": "select",
+            "label": "Size",
+            "options": [
+              {
+                "title": "Compact",
+                "value": "427px"
+              },
+              {
+                "title": "Wide",
+                "value": "100%"
+              }
+            ],
+            "defaultValue": "100%"
+          },
+          {
+            "id": "header_leave_feedback_form_title",
+            "type": "header",
+            "content": "Form Title"
+          },
+          {
+            "id": "leave_feedback_form_title",
+            "type": "text",
+            "label": "Title",
+            "defaultValue": "shop.feedback.formTitle"
+          },
+          {
+            "id": "leave_feedback_form_title_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              },
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              }
+            ],
+            "defaultValue": "light_font_color"
+          },
+          {
+            "id": "leave_feedback_form_title_font_size",
+            "max": 30,
+            "min": 18,
+            "step": 2,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 20
+          },
+          {
+            "id": "leave_feedback_form_title_line_height",
+            "max": 200,
+            "min": 50,
+            "step": 1,
+            "type": "range",
+            "unit": "%",
+            "label": "Line height",
+            "defaultValue": 100
+          },
+          {
+            "id": "leave_feedback_form_title_text_align",
+            "type": "select",
+            "label": "Text align",
+            "options": [
+              {
+                "title": "Left",
+                "value": "left"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              },
+              {
+                "title": "Right",
+                "value": "right"
+              }
+            ],
+            "defaultValue": "left"
+          },
+          {
+            "id": "leave_feedback_form_title_font_weight",
+            "type": "select",
+            "label": "Font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 500
+          },
+          {
+            "id": "header_leave_feedback_form_sub_title",
+            "type": "header",
+            "content": "Form SubTitle"
+          },
+          {
+            "id": "leave_feedback_form_sub_title",
+            "type": "text",
+            "label": "Title",
+            "defaultValue": "shop.feedback.formSubtitle"
+          },
+          {
+            "id": "leave_feedback_form_sub_title_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              },
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              }
+            ],
+            "defaultValue": "dark_font_color"
+          },
+          {
+            "id": "leave_feedback_form_sub_title_font_size",
+            "max": 20,
+            "min": 12,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 14
+          },
+          {
+            "id": "leave_feedback_form_sub_title_line_height",
+            "max": 200,
+            "min": 50,
+            "step": 1,
+            "type": "range",
+            "unit": "%",
+            "label": "Line height",
+            "defaultValue": 100
+          },
+          {
+            "id": "leave_feedback_form_sub_title_text_align",
+            "type": "select",
+            "label": "Text align",
+            "options": [
+              {
+                "title": "Left",
+                "value": "left"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              },
+              {
+                "title": "Right",
+                "value": "right"
+              }
+            ],
+            "defaultValue": "left"
+          },
+          {
+            "id": "leave_feedback_form_sub_title_font_weight",
+            "type": "select",
+            "label": "Font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 400
+          },
+          {
+            "id": "header_leave_feedback_form_button",
+            "type": "header",
+            "content": "Button"
+          },
+          {
+            "id": "leave_feedback_form_button_title",
+            "type": "text",
+            "label": "Title",
+            "defaultValue": "shop.feedback.buttonTitle"
+          },
+          {
+            "id": "leave_feedback_form_button_position",
+            "type": "select",
+            "label": "Position",
+            "options": [
+              {
+                "title": "Left",
+                "value": "flex-start"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              },
+              {
+                "title": "Right",
+                "value": "flex-end"
+              }
+            ],
+            "defaultValue": "flex-start"
+          }
+        ]
+      }
+    },
+    "Feedback: Shop stat": {
+      "name": "Feedback: Shop stat",
+      "path": "blocks/shop/feedback/feedbackShopStat.njk",
+      "settings": {
+        "class": "block-feedback-shop-stat",
+        "schema":  [
+          {
+            "id": "score_properties",
+            "type": "header",
+            "content": "Score properties"
+          },
+          {
+            "id": "score_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              },
+              {
+                "title": "Contrast light",
+                "value": "contrast_light_font_color"
+              },
+              {
+                "title": "Contrast dark",
+                "value": "contrast_dark_font_color"
+              },
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              }
+            ],
+            "defaultValue": "dark_font_color"
+          },
+          {
+            "id": "score_font_size",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 24
+          },
+          {
+            "id": "score_font_weight",
+            "type": "select",
+            "label": "Font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 600
+              },
+              {
+                "title": "Extra Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 600
+          },
+          {
+            "id": "score_line_height",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Line height",
+            "defaultValue": 30
+          },
+          {
+            "id": "reviews_properties",
+            "type": "header",
+            "content": "Reviews title properties"
+          },
+          {
+            "id": "reviews_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              },
+              {
+                "title": "Contrast light",
+                "value": "contrast_light_font_color"
+              },
+              {
+                "title": "Contrast dark",
+                "value": "contrast_dark_font_color"
+              },
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              }
+            ],
+            "defaultValue": "light_font_color"
+          },
+          {
+            "id": "reviews_font_size",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 14
+          },
+          {
+            "id": "reviews_font_weight",
+            "type": "select",
+            "label": "Font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 600
+              },
+              {
+                "title": "Extra Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 400
+          },
+          {
+            "id": "reviews_line_height",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Line height",
+            "defaultValue": 16
+          },
+          {
+            "id": "star_properties",
+            "type": "header",
+            "content": "Star properties"
+          },
+          {
+            "id": "star_size",
+            "max": 50,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "",
+            "defaultValue": 16
+          },
+          {
+            "id": "stars_count",
+            "max": 20,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "",
+            "label": "Count",
+            "defaultValue": 5
+          },
+          {
+            "id": "star_color",
+            "type": "select",
+            "label": "Color",
+            "options": [
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              },
+              {
+                "title": "Contrast light",
+                "value": "contrast_light_font_color"
+              },
+              {
+                "title": "Contrast dark",
+                "value": "contrast_dark_font_color"
+              },
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              }
+            ],
+            "defaultValue": "dark_font_color"
+          }
+        ]
+      }
+    },
     "Horizontal delimiter": {
       "name": "Horizontal delimiter",
       "path": "blocks/shared/horizontalDelimiter.njk",
@@ -10462,7 +12067,7 @@
           },
           {
             "id": "container_padding_horiz",
-            "max": 24,
+            "max": 50,
             "min": 0,
             "step": 1,
             "type": "range",
@@ -13198,6 +14803,309 @@
         ]
       }
     },
+    "Q&A": {
+      "name": "Q&A",
+      "path": "blocks/shop/faq/q&a.njk",
+      "settings": {
+        "class": "block-faq-item",
+        "schema": [
+          {
+            "id": "container_properties",
+            "type": "header",
+            "content": "Container properties"
+          },
+
+          {
+            "id": "background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_accent_dark"
+          },
+          {
+            "id": "show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": false
+          },
+          {
+            "id": "border_radius",
+            "type": "range",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Border radius",
+            "defaultValue": 8
+          },
+          {
+            "id": "padding_vert",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 24
+          },
+          {
+            "id": "padding_horiz",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 24
+          },
+          {
+            "id": "shadow",
+            "type": "select",
+            "label": "Drop shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 2",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+              }
+            ],
+            "defaultValue": "none"
+          },
+          {
+            "id": "question_and_answer_properties",
+            "type": "header",
+            "content": "Q&A properties"
+          },
+          {
+            "id": "question",
+            "type": "text",
+            "label": "Question",
+            "defaultValue": "Put the Question here"
+          },
+          {
+            "id": "answer",
+            "type": "text",
+            "label": "Answer",
+            "defaultValue": "Put the Answer here"
+          },
+          {
+            "id": "question_properties",
+            "type": "header",
+            "content": "Question properties"
+          },
+          {
+            "id": "question_font_size",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 16
+          },
+          {
+            "id": "question_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Default",
+                "value": null
+              },
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              },
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              }
+            ],
+            "defaultValue": "dark_font_color"
+          },
+          {
+            "id": "question_font_weight",
+            "type": "select",
+            "label": "Font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 600
+              },
+              {
+                "title": "Extra Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 500
+          },
+          {
+            "id": "question_line_height",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Line height",
+            "defaultValue": 24
+          },
+          {
+            "id": "question_text_align",
+            "type": "select",
+            "label": "Text align",
+            "options": [
+              {
+                "title": "Left",
+                "value": "left"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              },
+              {
+                "title": "Right",
+                "value": "right"
+              }
+            ],
+            "defaultValue": "left"
+          },
+
+          {
+            "id": "answer_properties",
+            "type": "header",
+            "content": "Answer properties"
+          },
+          {
+            "id": "answer_font_size",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 15
+          },
+          {
+            "id": "answer_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Default",
+                "value": null
+              },
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              },
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              }
+            ],
+            "defaultValue": "dark_font_color"
+          },
+          {
+            "id": "answer_font_weight",
+            "type": "select",
+            "label": "Font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 600
+              },
+              {
+                "title": "Extra Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 400
+          },
+          {
+            "id": "answer_line_height",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Line height",
+            "defaultValue": 20
+          },
+          {
+            "id": "answer_text_align",
+            "type": "select",
+            "label": "Text align",
+            "options": [
+              {
+                "title": "Left",
+                "value": "left"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              },
+              {
+                "title": "Right",
+                "value": "right"
+              }
+            ],
+            "defaultValue": "left"
+          }
+        ]
+      }
+    },
     "Shop statistics: Products quality": {
       "name": "Shop statistics: Products quality",
       "path": "blocks/shop/statistics/productsQuality.njk",
@@ -14545,10 +16453,6 @@
       "name": "Cart button 2",
       "path": "snippets/shop/cart/cartButton2.njk"
     },
-    "Card: Feedback": {
-      "name": "Card: Feedback",
-      "path": "snippets/shop/feedback/cardFeedback.njk"
-    },
     "Card: Group": {
       "name": "Card: Group",
       "path": "snippets/shop/shop/cardGroup.njk"
@@ -14605,6 +16509,18 @@
       "name": "Discount badge",
       "path": "snippets/shared/discountBadge.njk"
     },
+    "Feedback: Card": {
+      "name": "Feedback: Card",
+      "path": "snippets/shop/feedback/feedbackCard.njk"
+    },
+    "Feedback: Form": {
+      "name": "Feedback: Form",
+      "path": "snippets/shop/feedback/feedbackForm.njk"
+    },
+    "Feedback: Shop stat": {
+      "name": "Feedback: Shop stat",
+      "path": "snippets/shop/feedback/feedbackShopStat.njk"
+    },
     "Heart beat": {
       "name": "Heart beat",
       "path": "snippets/shop/common/heartBeat.njk"
@@ -14624,6 +16540,10 @@
     "Icons: Cart": {
       "name": "Icons: Cart",
       "path": "snippets/shared/icons/cart.njk"
+    },
+    "Icons: Check circular": {
+      "name": "Icons: Check circular",
+      "path": "snippets/shared/icons/checkCircular.njk"
     },
     "Icons: Chevron down": {
       "name": "Icons: Chevron down",
@@ -14956,6 +16876,10 @@
       "name": "root-styles.css",
       "path": "assets/css/root-styles.css"
     },
+    "section-faq.css": {
+      "name": "section-faq.css",
+      "path": "assets/css/section-faq.css"
+    },
     "section-header.css": {
       "name": "section-header.css",
       "path": "assets/css/section-header.css"
@@ -14996,6 +16920,10 @@
       "name": "sellix-context.js",
       "path": "assets/js/sellix-context.js"
     },
+    "sellix-faq-component.js": {
+      "name": "sellix-faq-component.js",
+      "path": "assets/components/faq.js"
+    },
     "sellix-helper.js": {
       "name": "sellix-helper.js",
       "path": "assets/js/sellix-helper.js"
@@ -15011,6 +16939,14 @@
     "sellix-contact-form-component.js": {
       "name": "sellix-contact-form-component.js",
       "path": "assets/components/contact-form.js"
+    },
+    "sellix-feedback-pagination.js": {
+      "name": "sellix-feedback-pagination.js",
+      "path": "assets/js/sellix-feedback-pagination.js"
+    },
+    "sellix-feedback-pagination-component.js": {
+      "name": "sellix-feedback-pagination-component.js",
+      "path": "assets/components/feedback-pagination.js"
     },
     "sellix-product-addons-component.js": {
       "name": "sellix-product-addons-component.js",

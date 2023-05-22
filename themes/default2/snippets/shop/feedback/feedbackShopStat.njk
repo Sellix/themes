@@ -1,0 +1,54 @@
+{% set shop = global.common.shopInfo.shop %}
+{% set averageScore = safe_get(shop.average_score, 0) %}
+{% set colors = themeProperties.current_colors %}
+{% set properties = args.properties %}
+
+{% set starsCount = safe_get(properties.stars_count, 5) %}
+{% set starSize = safe_get(properties.star_size, 16) %}
+{% set starColor = safe_get(properties.star_color, 'dark_font_color') %}
+{% set scoreFontColor = safe_get(properties.score_font_color, 'dark_font_color') %}
+{% set scoreFontSize = safe_get(properties.score_font_size, 24) %}
+{% set scoreFontWeight = safe_get(properties.score_font_weight, 600) %}
+{% set scoreLineHeight = safe_get(properties.score_line_height, 30) %}
+{% set reviewsFontColor = safe_get(properties.reviews_font_color, 'light_font_color') %}
+{% set reviewsFontSize = safe_get(properties.reviews_font_size, 14) %}
+{% set reviewsFontWeight = safe_get(properties.reviews_font_weight, 400) %}
+{% set reviewsLineHeight = safe_get(properties.reviews_line_height, 20) %}
+
+{% set globalClass = ['snippet-feedback-shop-stat'] %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }} {
+    color: {{ colors[scoreFontColor] }};
+    font-size: {{ scoreFontSize }}px;
+    font-weight: {{ scoreFontWeight }};
+    line-height: {{ scoreLineHeight }}px;
+  }
+  .{{ localClass }}__stars {
+    display: flex;
+    align-items: center;
+    color: {{ colors[reviewsFontColor] }};
+    font-size: {{ reviewsFontSize }}px;
+    font-weight: {{ reviewsFontWeight }};
+    line-height: {{ reviewsLineHeight }}px;
+  }
+</style>
+
+<div class="{{ globalClass }} {{ localClass }}">
+  <div>
+    {{ averageScore | float | round(1) | to_fixed(1) }}
+  </div>
+  <div class="{{ globalClass }}__stars {{ localClass }}__stars">
+    {% render_snippet
+      'Shared: Rating star',
+      rating=averageScore,
+      size=starSize,
+      iconsCount=starsCount,
+      color=colors[starColor]
+    %}
+    <span class="{{ globalClass }}__reviews {{ localClass }}__reviews">
+      ({{ 'shop.shared.reviews.reviewsWithCount' | t({count: shop.feedback.total}) if shop.feedback else 'shop.shared.reviews.noReviews' | t}})
+    </span>
+  </div>
+</div>

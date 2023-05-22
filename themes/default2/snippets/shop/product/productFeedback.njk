@@ -22,7 +22,7 @@
   {% for feedback in product.feedback.list %}
     {% set page = (loop.index0 / pageSize) | int %}
     <div class="sellix-product-feedback-card-{{ id}} {{ 'hidden' if page > 0 else '' }}" data-feedback-page="{{ page }}">
-      {% render_snippet 'Card: Feedback', feedback=feedback, properties=properties %}
+      {% render_snippet 'Feedback: Card', feedback=feedback, properties=properties %}
     </div>
   {% endfor %}
 
