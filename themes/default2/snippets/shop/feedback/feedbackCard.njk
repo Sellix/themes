@@ -34,11 +34,6 @@
 
 <style>
   .{{ localClass }} {
-    display: grid;
-    grid-auto-flow: row;
-    grid-template-rows: auto 1fr auto;
-    min-height: inherit;
-    overflow: hidden;
     background: {{ colors[containerBackgroundColor] }};
     border-radius: {{ containerBorderRadius }}px;
     box-shadow: {{ containerShadow }};
@@ -55,7 +50,6 @@
   }
 
   .{{ localClass }}__reply {
-    margin-top: 0.5rem;
     background: {{ colors[replyBgColor] }};
     border: {{ "1px solid var(--borderColor)" if replyShowBorder else "none" }};
     color: {{ colors[replyColor] }};
@@ -66,25 +60,11 @@
   }
 
   .{{ localClass }}__header {
-    grid-row: 1;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom: 0.75rem;
-    color: var(--lightFontColor);
   }
 
   .{{ localClass }}__verification {
-    grid-row: 3;
-    margin-top: 0.75rem;
-    display: flex;
-    align-items: start;
-    color: var(--green6);
   }
   .{{ localClass }}__rating {
-    display: flex;
-    margin-right: 0.625rem;
   }
 </style>
 

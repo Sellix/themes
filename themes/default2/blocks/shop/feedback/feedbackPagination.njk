@@ -12,12 +12,23 @@
 {% set paddingHoriz = safe_get(properties.padding_horiz, 0) %}
 {% set paddingVert = safe_get(properties.padding_vert, 0) %}
 
-{% set buttonBgColor = safe_get(properties.button_background_color, 'background_accent_light') %}
-{% set buttonShowBorder = safe_get(properties.button_show_border, false) %}
-{% set buttonBorderRadius = safe_get(properties.button_border_radius, 0) %}
-{% set buttonShadow = safe_get(properties.button_shadow, 'none') %}
-{% set buttonPaddingHoriz = safe_get(properties.button_padding_horiz, 0) %}
-{% set buttonPaddingVert = safe_get(properties.button_padding_vert, 0) %}
+{% set btnBgColor = safe_get(properties.button_background_color, 'background_accent_light') %}
+{% set btnShowBorder = safe_get(properties.button_show_border, false) %}
+{% set btnBorderRadius = safe_get(properties.button_border_radius, 0) %}
+{% set btnShadow = safe_get(properties.button_shadow, 'none') %}
+{% set btnPaddingHoriz = safe_get(properties.button_padding_horiz, 0) %}
+{% set btnPaddingVert = safe_get(properties.button_padding_vert, 0) %}
+
+{% set btnFontColor = safe_get(properties.button_text_font_color, 'dark_font_color') %}
+{% set btnFontSize = safe_get(properties.button_text_font_size, 14) %}
+{% set btnFontWeight = safe_get(properties.button_text_font_weight, 400) %}
+{% set btnLineHeight = safe_get(properties.button_text_line_height, 20) %}
+
+{% set activeBtnBgColor = safe_get(properties.active_button_background_color, 'background_accent_dark') %}
+{% set activeBtnFontColor = safe_get(properties.active_button_text_font_color, 'brand_color') %}
+{% set activeBtnFontSize = safe_get(properties.active_button_text_font_size, 15) %}
+{% set activeBtnFontWeight = safe_get(properties.active_button_text_font_weight, 500) %}
+
 
 {% set localClass = id %}
 
@@ -37,24 +48,31 @@
     .{{ localClass}}__container .prev,
     .{{ localClass}}__container .next {
       cursor: pointer;
-      padding: {{ buttonPaddingVert }}px {{ buttonPaddingHoriz }}px;
-      background: {{ colors[buttonBgColor] }};
-      border: {{ "1px solid var(--borderColor)" if buttonShowBorder else "none" }};
-      box-shadow: {{ buttonShadow }};
-      border-radius: {{ buttonBorderRadius }}px;
+      padding: {{ btnPaddingVert }}px {{ btnPaddingHoriz }}px;
+      background: {{ colors[btnBgColor] }};
+      border: {{ "1px solid var(--borderColor)" if btnShowBorder else "none" }};
+      box-shadow: {{ btnShadow }};
+      border-radius: {{ btnBorderRadius }}px;
+
+      color: {{ colors[btnFontColor] }};
+      font-size: {{ btnFontSize }}px;
+      font-weight: {{ btnFontWeight }};
+      line-height: {{ btnLineHeight }}px;
     }
     .{{ localClass }}__container .item.active {
-      background: var(--backgroundAccentDark);
-      color: var(--lightFontColor);
+      background: {{ colors[activeBtnBgColor] }};
+      color: {{ colors[activeBtnFontColor] }};
+      font-size: {{ activeBtnFontSize }}px;
+      font-weight: {{ activeBtnFontWeight }};
     }
   </style>
   <div class="{{ globalClass }}__container {{ localClass }}__container">
     <div class="prev d-none">
-      <i class="fa-solid fa-chevron-left" style="color: var(--lightFontColor); font-size: 16px;"></i>
+      <i class="fa-solid fa-chevron-left"></i>
     </div>
 
     <div class="next d-none">
-      <i class="fa-solid fa-chevron-right" style="color: var(--lightFontColor); font-size: 16px;"></i>
+      <i class="fa-solid fa-chevron-right"></i>
     </div>
   </div>
 
