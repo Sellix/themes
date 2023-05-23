@@ -36,17 +36,14 @@
     background-color: {{ colors[bgColor] }};
   }
 
-  .{{ localClass }} {
-    display: grid;
-    grid-template-columns: auto 1fr;
+  .{{ localClass }}__container {
     padding: {{ paddingTopDesktop }}px {{ paddingHorizDesktop }}px {{ paddingBottomDesktop }}px {{ paddingHorizDesktop }}px;
     margin-top: {{ marginTopDesktop }}px;
     margin-bottom: {{ marginBottomDesktop }}px;
   }
 
   @media (max-width: 768px) {
-    .{{ localClass }} {
-      grid-template-columns: 1fr;
+    .{{ localClass }}__container {
       padding: {{ paddingTopTablet }}px {{ paddingHorizTablet }}px {{ paddingBottomTablet }}px {{ paddingHorizTablet }}px;
       margin-top: {{ marginTopTablet }}px;
       margin-bottom: {{ marginBottomTablet }}px;
@@ -54,7 +51,7 @@
   }
 
   @media (max-width: 640px) {
-    .{{ localClass }} {
+    .{{ localClass }}__container {
       padding: {{ paddingTopMobile }}px {{ paddingHorizMobile }}px {{ paddingBottomMobile }}px {{ paddingHorizMobile }}px;
       margin-top: {{ marginTopMobile }}px;
       margin-bottom: {{ marginBottomMobile }}px;
@@ -62,61 +59,25 @@
   }
 
   .{{ localClass }}__title {
-    display: flex;
-    justify-content: start;
-    align-items: center;
     color: {{ colors[titleFontColor] }};
     font-size: {{ titleFontSize }}px;
     font-weight: {{ titleFontWeight }};
     line-height: {{ titleLineHeight }}px;
   }
 
-  @media (max-width: 768px) {
-    .{{ localClass }}__title {
-      justify-content: space-around;
-      margin-bottom: 8px;
-    }
-  }
-
-  .{{ localClass }}__title::after {
-    content: "";
-    display: block;
-    height: 1.5rem;
-    width: 1px;
-    background-color: var(--black2);
-    margin-left: 1.5rem;
-  }
-
-  @media (max-width: 768px) {
-    .{{ localClass }}__title::after {
-      display: none;
-    }
-  }
-
   .{{ localClass }}__subtitle {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    padding: 0 1.5rem;
     color: {{ colors[subtitleFontColor] }};
     font-size: {{ subtitleFontSize }}px;
     font-weight: {{ subtitleFontWeight }};
     line-height: {{ subtitleLineHeight }}px;
   }
-
-  @media (max-width: 768px) {
-    .{{ localClass }}__subtitle {
-      justify-content: space-around;
-      padding: 0;
-    }
-  }
 </style>
 
-<div class="{{ localClass }} {{ 'full-width' if fullWidth else 'content-width' }}">
-  <div class="{{ localClass }}__title">
+<div class="{{ globalClass }}__container {{ localClass }}__container {{ 'full-width' if fullWidth else 'content-width' }}">
+  <div class="{{ globalClass }}__title {{ localClass }}__title">
     {{ properties.title_content | t }}
   </div>
-  <div class="{{ localClass }}__subtitle">
+  <div class="{{ globalClass }}__subtitle {{ localClass }}__subtitle">
     {{ properties.subtitle_content | t }}
   </div>
 </div>

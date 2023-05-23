@@ -4,37 +4,71 @@
 {% set currentPage = 1 %}
 {% set colors = themeProperties.current_colors %}
 
+{% set pageSize = safe_get(properties.page_size, 12) %}
+{% set bgColor = safe_get(properties.background_color, 'background_accent_light') %}
+{% set showBorder = safe_get(properties.show_border, false) %}
+{% set borderRadius = safe_get(properties.border_radius, 0) %}
+{% set shadow = safe_get(properties.shadow, 'none') %}
+{% set paddingHoriz = safe_get(properties.padding_horiz, 0) %}
+{% set paddingVert = safe_get(properties.padding_vert, 0) %}
+
+{% set buttonBgColor = safe_get(properties.button_background_color, 'background_accent_light') %}
+{% set buttonShowBorder = safe_get(properties.button_show_border, false) %}
+{% set buttonBorderRadius = safe_get(properties.button_border_radius, 0) %}
+{% set buttonShadow = safe_get(properties.button_shadow, 'none') %}
+{% set buttonPaddingHoriz = safe_get(properties.button_padding_horiz, 0) %}
+{% set buttonPaddingVert = safe_get(properties.button_padding_vert, 0) %}
+
 {% set localClass = id %}
 
-{% if feedbacks.length > 12 %}
+{% if feedbacks.length > pageSize %}
   <style>
-    .{{ localClass }}__container {
-      margin: {{ properties.container_margin_y }}px auto;
-      background: {{ colors[properties.background_color] }};
-      border: {{ "1px solid var(--borderColor)" if properties.show_border else "none" }};
-      box-shadow: {{ properties.shadow }};
-      border-radius: {{ properties.border_radius }}rem;
+    .{{ localClass}}__container {
+      display: flex;
+      margin: 0 auto;
+      padding: {{ paddingVert }}px {{ paddingHoriz }}px;
+      background: {{ colors[bgColor] }};
+      border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
+      box-shadow: {{ shadow }};
+      border-radius: {{ borderRadius }}px;
+    }
+
+    .{{ localClass}}__container .item,
+    .{{ localClass}}__container .prev,
+    .{{ localClass}}__container .next {
+      cursor: pointer;
+      padding: {{ buttonPaddingVert }}px {{ buttonPaddingHoriz }}px;
+      background: {{ colors[buttonBgColor] }};
+      border: {{ "1px solid var(--borderColor)" if buttonShowBorder else "none" }};
+      box-shadow: {{ buttonShadow }};
+      border-radius: {{ buttonBorderRadius }}px;
+    }
+    .{{ localClass }}__container .item.active {
+      background: var(--backgroundAccentDark);
+      color: var(--lightFontColor);
     }
   </style>
-  <div class="{{ globalClass }}__container {{ localClass }}__container"">
-    <button class="prev">
+  <div class="{{ globalClass }}__container {{ localClass }}__container">
+    <div class="prev d-none">
       <i class="fa-solid fa-chevron-left" style="color: var(--lightFontColor); font-size: 16px;"></i>
-    </button>
+    </div>
 
-    <button class="next">
+    <div class="next d-none">
       <i class="fa-solid fa-chevron-right" style="color: var(--lightFontColor); font-size: 16px;"></i>
-    </button>
+    </div>
   </div>
 
   <script type='application/javascript'>
     $(document).ready(function () {
       let feedbackPaginationInstance = new window.SellixFeedbackPagination(
-        {{currentPage}},
-        {{pageLimit}},
-        {{feedbacks.length}},
+        {{ currentPage }},
+        {{ feedbacks.length }},
+        {{ pageLimit }},
+        {{ pageSize }}
       );
       const feedbackComponent = new SellixFeedbackPaginationComponent(
         '.{{ localClass }}__container',
+        '.sellix-block.block-feedback-list',
         feedbackPaginationInstance,
         '{{id}}',
         {{renderOptions | dump | safe}},

@@ -1,12 +1,12 @@
 (function (document, window, jQuery) {
   class FeedbackPagination {
-    constructor(page, pageLimit, feedbacksLength) {
+    constructor(page, itemsCount, pageLimit, pageSize = 12) {
       this.page = page;
       this.paginationGroup = this.getPaginationGroup();
       this.pageLimit = pageLimit;
-      this.dataLimit = 12;
-      this.feedbacksLength = feedbacksLength;
-      this.pages = Math.ceil(this.feedbacksLength / this.dataLimit);
+      this.pageSize = pageSize;
+      this.itemsCount = itemsCount;
+      this.pages = Math.ceil(this.itemsCount / this.pageSize);
     }
 
     useMobile(paginationId) {
@@ -59,8 +59,8 @@
     }
 
     getPaginatedData() {
-      const startIndex = this.page * this.dataLimit - this.dataLimit;
-      const endIndex = startIndex + this.dataLimit;
+      const startIndex = this.page * this.pageSize - this.pageSize;
+      const endIndex = startIndex + this.pageSize;
       return { startIndex, endIndex };
     }
   }

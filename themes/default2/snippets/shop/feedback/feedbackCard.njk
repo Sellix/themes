@@ -34,8 +34,11 @@
 
 <style>
   .{{ localClass }} {
-    margin-bottom: 1rem;
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-rows: auto 1fr auto;
     min-height: inherit;
+    overflow: hidden;
     background: {{ colors[containerBackgroundColor] }};
     border-radius: {{ containerBorderRadius }}px;
     box-shadow: {{ containerShadow }};
@@ -63,18 +66,21 @@
   }
 
   .{{ localClass }}__header {
+    grid-row: 1;
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 0.75rem;
     color: var(--lightFontColor);
   }
 
   .{{ localClass }}__verification {
+    grid-row: 3;
     margin-top: 0.75rem;
     display: flex;
-    align-items: center;
-    color: #239F51;
+    align-items: start;
+    color: var(--green6);
   }
   .{{ localClass }}__rating {
     display: flex;

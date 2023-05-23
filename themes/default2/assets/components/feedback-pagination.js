@@ -1,7 +1,8 @@
 (function (document, window, jQuery, sellixApi) {
   class FeedbackPaginationComponent {
-    constructor(selector, pagination, id, renderOptions) {
+    constructor(selector, listSelector, pagination, id, renderOptions) {
       this.id = id;
+      this.listSelector = listSelector;
       this.renderOptions = renderOptions;
       this.pagination = pagination;
       this.$pagination = jQuery(selector);
@@ -31,11 +32,12 @@
             ...this.renderOptions,
             path: [this.renderOptions.path, ['block', 'Feedback: List'].join(':')].join(';'),
           },
+          SellixContext.get('request'),
           { offset: startIndex, limit: endIndex },
         )
         .then((resp) => {
           const $component = jQuery(resp.html);
-          jQuery('.sellix-block.feedback_items').replaceWith($component);
+          jQuery(this.listSelector).replaceWith($component);
           setTimeout(function () {
             jQuery(document).trigger('SellixFeedbackPaginationUpdateEvent', { paginationId: this.id });
           });
@@ -63,15 +65,15 @@
       const pageLimit = this.pagination.pageLimit || 0;
 
       if (pages > 10 && page > 10) {
-        this.$paginationPrevButton.show();
+        this.$paginationPrevButton.removeClass('d-none');
       } else {
-        this.$paginationPrevButton.hide();
+        this.$paginationPrevButton.addClass('d-none');
       }
 
       if (Math.floor((page - 1) / pageLimit) * pageLimit + 10 < pages) {
-        this.$paginationNextButton.show();
+        this.$paginationNextButton.removeClass('d-none');
       } else {
-        this.$paginationNextButton.hide();
+        this.$paginationNextButton.addClass('d-none');
       }
 
       if (page === 1) {
@@ -93,7 +95,7 @@
       const paginationGroup = this.pagination.getPaginationGroup();
       this.$pagination.find('.item').remove();
       for (let item of paginationGroup) {
-        const button = jQuery('<button></button>').addClass('item');
+        const button = jQuery('<div></div>').addClass('item');
         button.toggleClass('active', page === item);
         button.prop('disabled', page === item);
         button.on('click', () => {

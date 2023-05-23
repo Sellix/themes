@@ -1,7 +1,7 @@
 {% set shop = global.common.shopInfo.shop %}
 {% set feedbacks = global.common.feedbacksInfo.feedbacks %}
 {% set offset = args.offset if args.offset else 0 %}
-{% set limit = args.limit if args.limit else 12 * (offset + 1) %}
+{% set limit = safe_get(args.limit, safe_get(properties.page_size, 12)) %}
 {% set colors = themeProperties.current_colors %}
 {% set isEmpty = feedbacks | length == 0 %}
 
@@ -12,6 +12,10 @@
 {% set shadow = safe_get(properties.shadow, 'none') %}
 {% set borderRadius = safe_get(properties.border_radius, 0) %}
 
+{% set itemsPerRowDesktop = safe_get(properties.items_per_row_desktop, 4) | int %}
+{% set itemsPerRowTablet = safe_get(properties.items_per_row_tablet, 2) | int %}
+{% set itemsPerRowMobile = safe_get(properties.items_per_row_mobile, 1) | int %}
+
 {% set localClass = id %}
 
 <style>
@@ -21,6 +25,21 @@
     padding: {{ paddingVert }}px {{ paddingHoriz }}px;
     box-shadow: {{ shadow }};
     border-radius: {{ borderRadius }}px;
+
+    display: grid;
+    grid-template-columns: repeat({{ itemsPerRowDesktop }}, minmax(50px, 1fr));
+    grid-column-gap: 1.5rem;
+    grid-row-gap: 1.5rem;
+  }
+  @media (max-width: 768px) {
+    .{{ localClass }}__container {
+      grid-template-columns: repeat({{ itemsPerRowTablet }}, minmax(50px, 1fr));
+    }
+  }
+  @media (max-width: 640px) {
+    .{{ localClass }}__container {
+      grid-template-columns: repeat({{ itemsPerRowMobile }}, minmax(50px, 1fr));
+    }
   }
 </style>
 
