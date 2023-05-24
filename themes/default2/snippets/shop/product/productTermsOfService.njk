@@ -3,31 +3,40 @@
 {% set properties = args.properties %}
 {% set colors = themeProperties.current_colors %}
 
-{% set backgroundColor = properties.container_background_color if properties.container_background_color is defined else 'background_accent_dark' %}
-{% set showBorder = properties.container_show_border if properties.container_show_border is defined else true %}
-{% set borderRadius = properties.container_border_radius if properties.container_border_radius is defined else 8 %}
-{% set shadow = properties.container_shadow if properties.container_shadow is defined else 'none' %}
-{% set paddingHoriz = properties.container_padding_horiz if properties.container_padding_horiz is defined else 16 %}
-{% set paddingVert = properties.container_padding_vert if properties.container_padding_vert is defined else 16 %}
+{% set bgColor = safe_get(properties.container_background_color, 'background_accent_dark') %}
+{% set showBorder = safe_get(properties.container_show_border, true) %}
+{% set borderRadius = safe_get(properties.container_border_radius, 8) %}
+{% set shadow = safe_get(properties.container_shadow, 'none') %}
+{% set paddingHoriz = safe_get(properties.container_padding_horiz, 16) %}
+{% set paddingVert = safe_get(properties.container_padding_vert, 16) %}
 
-{% if not product.terms_of_service %}
-  <div class="empty-shop-container" style="padding: 1rem 0;">
-    {% render_snippet 'Empty feedbacks icon' %}
-    <span class="empty-shop-title">Product <b>{{ product.title }}</b> has no Terms of Service.</span>
-  </div>
-{% else %}
-  <style>
-    .sellix-product-terms-of-service-{{ id }} {
-      border: {{ '1px solid var(--borderColor)' if showBorder else 'none' }}!important;
-      background: {{ colors[backgroundColor] }}!important;
-      border-radius: {{ borderRadius }}px!important;
-      box-shadow: {{ shadow }}!important;
-      padding: {{ paddingVert }}px {{ paddingHoriz }}px!important;
-    }
-  </style>
-  <div class="sellix-product-terms-of-service-{{ id }}">
+{% set globalClass = 'snippet-product-terms' %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }} {
+    border: {{ '1px solid var(--borderColor)' if showBorder else 'none' }}!important;
+    background: {{ colors[backgroundColor] }}!important;
+    border-radius: {{ borderRadius }}px!important;
+    box-shadow: {{ shadow }}!important;
+    padding: {{ paddingVert }}px {{ paddingHoriz }}px!important;
+  }
+  .{{ localClass }}__empty {
+    padding: 1rem 0;
+  }
+</style>
+
+<div class="{{ globalClass }} {{ localClass }}">
+  {% if true or not product.terms_of_service %}
+    <div class="empty-message-container {{ globalClass }}__empty {{ localClass }}__empty">
+      {% render_snippet 'Icons: Empty feedback' %}
+      <span class="empty-message-title {{ globalClass }}__empty-title {{ localClass }}__empty-title">
+        Product <b>{{ product.title }}</b> has no Terms of Service.
+      </span>
+    </div>
+  {% else %}
     <div class="sellix-text">
       {{product.terms_of_service | html_sanitize | safe}}
     </div>
-  </div>
-{% endif %}
+  {% endif %}
+</div>

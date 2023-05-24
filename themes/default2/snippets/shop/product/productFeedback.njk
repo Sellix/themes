@@ -5,47 +5,62 @@
 
 {% set pageCount = (product.feedback.list | length / pageSize) | int + 1 %}
 
+{% set globalClass = 'snippet-product-feedback' %}
+{% set localClass = id %}
+
 <style>
-  .view-more-button-{{ id }} a {
+  .{{ localClass }}__btn-view-more {
+    cursor: pointer;
     width: 100%;
     display: flex;
     justify-content: space-around;
   }
+  .{{ localClass }}__feedback-card {
+    margin-bottom: 1rem;
+  }
+  .{{ localClass }}__empty {
+    padding: 1rem 0;
+  }
 </style>
 
-{% if product.feedback.list | length == 0 %}
-  <div class="empty-shop-container" style="padding: 1rem 0;">
-    {% render_snippet 'Empty feedbacks icon' %}
-    <span class="empty-shop-title">Product <b>{{ product.title }}</b> has no feedback.</span>
-  </div>
-{% else %}
-  {% for feedback in product.feedback.list %}
-    {% set page = (loop.index0 / pageSize) | int %}
-    <div class="sellix-product-feedback-card-{{ id}} {{ 'hidden' if page > 0 else '' }}" data-feedback-page="{{ page }}">
-      {% render_snippet 'Feedback: Card', feedback=feedback, properties=properties %}
+<div class="{{ globalClass }} {{ localClass }}">
+  {% if product.feedback.list | length == 0 %}
+    <div class="empty-message-container {{ globalClass }}__empty {{ localClass }}__empty">
+      {% render_snippet 'Icons: Empty feedback' %}
+      <span class="empty-message-title {{ globalClass }}__empty-title {{ localClass }}__empty-title">
+        Product <b>{{ product.title }}</b> has no feedback.
+      </span>
     </div>
-  {% endfor %}
+  {% else %}
+    {% for feedback in product.feedback.list %}
+      {% set page = (loop.index0 / pageSize) | int %}
+      <div
+        class="{{ globalClass}}__feedback-card {{ localClass }}__feedback-card {{ 'd-none' if page > 0 else '' }}"
+        data-feedback-page="{{ page }}"
+      >
+        {% render_snippet 'Feedback: Card', feedback=feedback, properties=properties %}
+      </div>
+    {% endfor %}
 
-  {% if pageCount > 1 %}
-    <div class="view-more-button-{{ id }}">
-      <a href="javascript:void(0);">
-        View more
-      </a>
-    </div>
+    {% if pageCount > 1 %}
+      <div class="{{ globalClass }}__btn-view-more {{ localClass }}__btn-view-more">
+        {{ 'shop.shared.titles.viewMore' | t }}
+      </div>
+    {% endif %}
   {% endif %}
-{% endif %}
+</div>
 
 <script type="application/javascript">
   $(document).ready(function() {
     const pageCount = {{ pageCount }};
     let activePage = 0;
-    const $viewMoreBtn = $('.view-more-button-{{ id }} a');
+    const $viewMoreBtn = $('.{{ localClass }}__btn-view-more');
     $viewMoreBtn.on('click', function() {
       activePage += 1;
-      $(`.sellix-product-feedback-card-{{ id}}[data-feedback-page=${activePage}]`).removeClass('hidden');
+      $(`.sellix-product-feedback-card-{{ id}}[data-feedback-page=${activePage}]`).removeClass('d-none');
 
       if ((activePage + 1) >= pageCount) {
-        $viewMoreBtn.addClass('hidden');
+        $viewMoreBtn.addClass('d-none');
       }
     });
   });

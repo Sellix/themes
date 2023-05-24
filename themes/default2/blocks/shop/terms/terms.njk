@@ -44,10 +44,10 @@
       {{shop.terms_of_service | html_sanitize | safe}}
     </div>
   {% else %}
-    <div class="empty-shop-container">
+    <div class="empty-message-container {{ globalClass }}__empty {{ localClass }}__empty">
       <i class="fa-regular fa-gavel"></i>
 
-      <span class="empty-shop-title">
+      <span class="empty-message-title {{ globalClass }}__empty-title {{ localClass }}__empty-title">
         {{ 'shop.terms.noTerms' | t({shopName: ['<b>', shop.name, '</b>'] | join(' ')}) | safe }}
       </span>
     </div>

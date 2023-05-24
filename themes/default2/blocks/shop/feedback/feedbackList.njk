@@ -45,10 +45,10 @@
 
 <div class="{{ globalClass }}__container {{ localClass }}__container">
   {% if feedbacks.length === 0 %}
-    <div class="empty-shop-container">
-      {% render_snippet 'Empty feedbacks icon' %}
+    <div class="empty-message-container {{ globalClass }}__empty {{ localClass }}__empty">
+      {% render_snippet 'Icons: Empty feedback' %}
 
-      <span class="empty-shop-title">
+      <span class="empty-message-title {{ globalClass }}__empty-title {{ localClass }}__empty-title">
         {{ 'shop.feedback.noFeedbacks' | t({shopName: ['<b>', shop.name, '</b>'] | join('')}) | safe }}
       </span>
     </div>

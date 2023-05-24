@@ -14,41 +14,49 @@
   {% set activeTab = 'terms' %}
 {% endif %}
 
-{% set backgroundColor = properties.container_background_color if properties.container_background_color is defined else 'background_accent_dark' %}
-{% set showBorder = properties.container_show_border if properties.container_show_border is defined else true %}
-{% set borderRadius = properties.container_border_radius if properties.container_border_radius is defined else 0.5 %}
-{% set shadow = properties.container_shadow if properties.container_shadow is defined else 'none' %}
-{% set paddingVert = properties.container_padding_vert if properties.container_padding_vert is defined else '16' %}
-{% set paddingHoriz = properties.container_padding_horiz if properties.container_padding_horiz is defined else '16' %}
+{% set countVisibleTabs = 0 %}
+{% set countVisibleTabs = countVisibleTabs + (1 if feedbackVisible else 0) %}
+{% set countVisibleTabs = countVisibleTabs + (1 if termsVisible else 0) %}
 
-{% if termsVisible or feedbackVisible %}
+{% set bgColor = safe_get(properties.container_background_color, 'background_accent_dark') %}
+{% set showBorder = safe_get(properties.container_show_border, false) %}
+{% set borderRadius = safe_get(properties.container_border_radius, 0) %}
+{% set shadow = safe_get(properties.container_shadow, 'none') %}
+{% set paddingVert = safe_get(properties.container_padding_vert, 0) %}
+{% set paddingHoriz = safe_get(properties.container_padding_horiz, 0) %}
+
+{% set localClass = id %}
+
+{% if countVisibleTabs > 0 %}
   <style>
-    .sellix-product-relations-{{ id }} {
-      border: {{ '1px solid var(--borderColor)' if showBorder else 'none' }}!important;
-      background: {{ colors[backgroundColor] }}!important;
-      border-radius: {{ borderRadius }}rem!important;
-      box-shadow: {{ shadow }}!important;
-      padding: {{ paddingVert }}px {{ paddingHoriz }}px!important;
+    .{{ localClass }}__container {
+      border: {{ '1px solid var(--borderColor)' if showBorder else 'none' }};
+      background: {{ colors[bgColor] }};
+      border-radius: {{ borderRadius }}px;
+      box-shadow: {{ shadow }};
+      padding: {{ paddingVert }}px {{ paddingHoriz }}px;
     }
   </style>
 
-  <div class="sellix-product-relations-{{ id }} sellix-product-relations">
-    <div class="tabs">
-      {% if feedbackVisible %}
-      <a class="tab {{ 'active' if activeTab == 'feedback' else '' }}" href="javascript:void(0);" data-tab-name="feedback">
-        {{ 'shop.product.relations.feedback.title' | t }}
-      </a>
-      {% endif %}
+  <div class="{{ globalClass }}__container {{ localClass }}__container">
+    {% if countVisibleTabs > 1 %}
+      <div class="tabs {{ globalClass }}__tabs {{ localClass }}__tabs">
+        {% if feedbackVisible %}
+        <a class="tab {{ 'active' if activeTab == 'feedback' else '' }}" href="javascript:void(0);" data-tab-name="feedback">
+          {{ 'shop.product.relations.feedback.title' | t }}
+        </a>
+        {% endif %}
 
-      {% if termsVisible %}
-      <a class="tab {{ 'active' if activeTab == 'terms' else '' }}" href="javascript:void(0);" data-tab-name="terms">
-        {{ 'shop.product.relations.termsOfService.title' | t }}
-      </a>
-      {% endif %}
-    </div>
+        {% if termsVisible %}
+        <a class="tab {{ 'active' if activeTab == 'terms' else '' }}" href="javascript:void(0);" data-tab-name="terms">
+          {{ 'shop.product.relations.termsOfService.title' | t }}
+        </a>
+        {% endif %}
+      </div>
+    {% endif %}
 
     {% if feedbackVisible %}
-    <div class="tab-content {{ 'hidden' if activeTab != 'feedback' else '' }}" data-tab-name="feedback">
+    <div class="tab-content {{ 'd-non' if activeTab != 'feedback' else '' }}" data-tab-name="feedback">
       {% render_snippet 'Product: Feedback',
         product=product,
         properties={
@@ -64,7 +72,7 @@
     {% endif %}
 
     {% if termsVisible %}
-    <div class="tab-content {{ 'hidden' if activeTab != 'terms' else '' }}" data-tab-name="terms">
+    <div class="tab-content {{ 'd-none' if activeTab != 'terms' else '' }}" data-tab-name="terms">
       {% render_snippet 'Product: Terms of Service',
         product=product,
         properties={
@@ -84,12 +92,12 @@
     $(document).ready(function() {
       let activeTabName = '{{ activeTab }}';
 
-      const $container = $('.sellix-product-relations-{{ id }}');
+      const $container = $('.{{ localClass }}__container');
       const $tabs = $container.find('.tabs');
 
       if (activeTabName) {
         $tabs.find(`.tab[data-tab-name=${activeTabName}]`).addClass('active');
-        $container.find(`.tab-content[data-tab-name=${activeTabName}]`).removeClass('hidden');
+        $container.find(`.tab-content[data-tab-name=${activeTabName}]`).removeClass('d-none');
       }
 
       $tabs.find('.tab').on('click', function(event) {
@@ -100,8 +108,8 @@
           $tabs.find(`.tab[data-tab-name=${activeTabName}]`).removeClass('active');
           $tabs.find(`.tab[data-tab-name=${tabName}]`).addClass('active');
 
-          $container.find(`.tab-content[data-tab-name=${activeTabName}]`).addClass('hidden');
-          $container.find(`.tab-content[data-tab-name=${tabName}]`).removeClass('hidden');
+          $container.find(`.tab-content[data-tab-name=${activeTabName}]`).addClass('d-none');
+          $container.find(`.tab-content[data-tab-name=${tabName}]`).removeClass('d-none');
           activeTabName = tabName;
         }
       });

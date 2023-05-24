@@ -1,5 +1,5 @@
-{% set shop = global.common.shopInfo.shop %}
-{% set averageScore = safe_get(shop.average_score, 0) %}
+{% set averageScore = safe_get(args.average_score, 0) %}
+{% set reviewsCount = safe_get(args.reviews_count, 0) %}
 {% set colors = themeProperties.current_colors %}
 {% set properties = args.properties %}
 
@@ -48,7 +48,7 @@
       color=colors[starColor]
     %}
     <span class="{{ globalClass }}__reviews {{ localClass }}__reviews">
-      ({{ 'shop.shared.reviews.reviewsWithCount' | t({count: shop.feedback.total}) if shop.feedback else 'shop.shared.reviews.noReviews' | t}})
+      ({{ 'shop.shared.reviews.reviewsWithCount' | t({count: reviewsCount}) }})
     </span>
   </div>
 </div>

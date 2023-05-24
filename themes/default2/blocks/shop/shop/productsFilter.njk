@@ -7,10 +7,10 @@
 
 {% set filterName = properties.filter_name %}
 
-{% set localClass = [globalClass, '-', id] | join %}
+{% set localClass = id %}
 
 <style>
-  .{{ localClass}} {
+  .{{ localClass}}__container {
     {% if properties.container_background_color %}background: {{ colors[properties.container_background_color] }};{% endif %}
     border: {% if properties.show_border %}1px solid var(--borderColor){% else %}none{% endif %};
     box-shadow: {{ properties.container_shadow }};
@@ -18,7 +18,7 @@
     {% if properties.container_padding %}padding: {{ properties.container_padding }}px;{% endif %}
   }
 
-  .{{ globalClass}}__search input {
+  .{{ localClass}}__search input {
     border-radius: 0.5rem;
     padding: 1rem 2.5rem 1rem 1rem;
     font-size: {{ inputsProps.common_font_size }}px;
@@ -35,23 +35,23 @@
     font-family: inherit;
   }
 
-  .{{ globalClass }}__search input:focus {
+  .{{ localClass }}__search input:focus {
     outline: none;
     border: {{ "1px solid var(--brandColor)" if inputsProps.common_show_border else "none" }};
   }
 
-  .{{ globalClass }}__search input::placeholder {
+  .{{ localClass }}__search input::placeholder {
+    opacity: 0.7;
     font-size: {{ inputsProps.common_font_size }}px;
     font-weight: {{ inputsProps.common_font_weight }};
     color: {{ colors[inputsProps.common_font_color] }};
-    opacity: 0.7;
   }
 
-  .{{ globalClass }}__search .fas {
+  .{{ localClass }}__search .fas {
     color: {{ colors[inputsProps.common_font_color] }} !important;
   }
 
-  {{ globalClass }}__categories-dropdown select {
+  {{ localClass }}__categories-dropdown select {
     background: {{ colors[inputsProps.select_background] }}
   }
 
@@ -95,7 +95,7 @@
   }
 
   .select2-container--sellix .select2-dropdown {
-    border: {{ "1px solid var(--borderColor)" if inputsProps.show_dropdown_border else "none" }} !important;
+    border: {{ "1px solid var(--borderColor)" if inputsProps.dropdown_show_border else "none" }} !important;
     margin-top: 8px;
     margin-bottom: 8px;
     box-shadow: none;
@@ -125,9 +125,9 @@
   }
 </style>
 
-<div class="{{ globalClass }}__container {{ localClass }}">
+<div class="{{ globalClass }}__container {{ localClass }}__container">
   {% if shop.search_enabled %}
-    <label for="shop-search-{{id}}" class="{{ globalClass }}__item {{ globalClass }}__search">
+    <label for="shop-search-{{id}}" class="{{ globalClass }}__item {{ globalClass }}__search {{ localClass }}__search">
       <i class="fa-regular fas fa-search"></i>
       <input
         type="text"
@@ -139,13 +139,13 @@
   {% endif %}
 
   {% if categories | length %}
-    <div class="sellix-dropdown {{ globalClass }}__item {{ globalClass }}__categories-dropdown d-none">
+    <div class="sellix-dropdown {{ globalClass }}__item {{ globalClass }}__categories-dropdown {{ localClass }}__categories-dropdown d-none">
       <select id="category-select-{{id}}" class="category-select"></select>
     </div>
   {% endif %}
 
   {% if shop.sort_enabled %}
-    <div class="sellix-dropdown {{ globalClass }}__item {{ globalClass }}__sort-dropdown d-none">
+    <div class="sellix-dropdown {{ globalClass }}__item {{ globalClass }}__sort-dropdown {{ globalClass }}__local-dropdown d-none">
       <select id="sort-select-{{id}}" class="sort-select">
         <option value="DEFAULT">{{ 'shop.main.productList.filter.default' | t }}</option>
         <option value="PRICE">{{ 'shop.main.productList.filter.price' | t }}</option>

@@ -220,11 +220,11 @@
   {% endif %}
 
   <div
-    class="{{ localClass}}__empty-container {{ globalClass}}__empty-container empty-search {{ 'd-none' if items.length > 0 }}"
+    class="empty-message-container empty-search {{ localClass}}__empty-container {{ globalClass}}__empty-container {{ 'd-none' if items.length > 0 }}"
   >
     {% render_snippet 'Icons: Zoom glass' %}
 
-    <div class="empty-shop-info">
+    <div class="empty-message-info {{ globalClass }}__empty-info {{ localClass }}__empty-info">
       {{ 'shop.main.productList.items.noProductFound' | t }}.
 
       <button class="button button-primary">
@@ -233,10 +233,10 @@
     </div>
   </div>
 
-  <div class="{{ localClass}}__empty-container {{ globalClass}}__empty-container empty-category d-none">
+  <div class="empty-message-container {{ localClass}}__empty-container {{ globalClass}}__empty-container empty-category d-none">
     {% render_snippet 'Icons: Zoom glass' %}
 
-    <div class="empty-shop-info">
+    <div class="empty-message-info {{ globalClass }}__empty-info {{ localClass }}__empty-info">
       {{ 'shop.main.productList.items.categoryNoProducts' | t }}.
 
       <button class="button button-primary">
