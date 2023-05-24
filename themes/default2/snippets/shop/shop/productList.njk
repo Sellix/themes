@@ -5,11 +5,6 @@
 {% set globalClass =  'snippet-product-list' %}
 {% set localClass = id %}
 
-<style>
-  .{{ localClass }} {
-  }
-</style>
-
 <div class="{{ globalClass }} {{ localClass }}">
   {% for product in products %}
     {% set onHold = product.on_hold | int %}
@@ -26,7 +21,7 @@
     {% else %}
       <div class="{{ globalClass }}__option {{'is-disabled' if isDisabled}} {{'' if cartEnabled}}">
         <a
-          href="{{'javascript:void' if isDisabled else ['product/', product.uniqid] | join}}"
+          href="{{'javascript:void(0)' if isDisabled else ['product/', product.uniqid] | join}}"
           class="{{ globalClass }}__option-description"
         >
           <div class="{{ globalClass }}__option-image {{'placeholder' if isPlaceholder else ''}}">
@@ -65,7 +60,9 @@
                 {% else %}
                   <span class="{{ globalClass }}__option-info-price" >
                     {% if isFree%}
-                      {{ 'shop.shared.titles.free' | t }}
+                      <span style='color: var(--green6)'>
+                        {{ 'shop.shared.titles.free' | t }}
+                      </span>
                     {% else %}
                       {% render_snippet 'Price',
                         currency=product.currency,
@@ -97,19 +94,19 @@
 
         <div class="{{ globalClass }}__option-buttons unselectable {{'with-cart' if cartEnabled else ''}}">
           {% if not isDisabled and not isFree and product.type != 'SUBSCRIPTION' %}
-            {% render_snippet 'Cart button 1', product=product, is_static=true %}
+            <div class="{{ globalClass }}__quantity-button">
+              {% render_snippet 'Cart button 1', product=product, is_static=true %}
+            </div>
           {% else %}
             <div></div>
           {% endif %}
 
-          <a href="{{'javascript:void' if isDisabled else ['product/', product.uniqid] | join}}" class="button">
-            <div class="buy-button {{ 'disabled' if isDisabled else '' }}">
-              {% if isFree %}
-                {{ 'shop.shared.titles.getIt' | t }}
-              {% else %}
-                {{ 'shop.shared.titles.buy' | t }}
-              {% endif %}
-            </div>
+          <a href="{{'javascript:void(0)' if isDisabled else ['product/', product.uniqid] | join}}" class="button {{ 'disabled' if isDisabled }}">
+            {% if isFree %}
+              {{ 'shop.shared.titles.getIt' | t }}
+            {% else %}
+              {{ 'shop.shared.titles.buy' | t }}
+            {% endif %}
           </a>
         </div>
       </div>

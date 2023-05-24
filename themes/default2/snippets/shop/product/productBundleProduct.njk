@@ -36,7 +36,7 @@
 
 <style>
   .{{ localClass }}__title {
-    color: {{ colors[titleFontColor] }}!important;
+    color: {{ colors[titleFontColor] }};
     font-size: {{ titleFontSize }}px;
     font-weight: {{ titleFontWeight }};
     line-height: {{ titleLineHeight }}px;
@@ -133,7 +133,7 @@
     {% if args.skipBuyButton %}
       <div></div>
     {% else %}
-      <a href="{{'javascript:void' if isDisabled else ['product/', product.uniqid] | join}}" style="color: white;">
+      <a href="{{'javascript:void(0)' if isDisabled else ['product/', product.uniqid] | join}}" style="color: white;">
         <div class="{{'disabled' if isDisabled else ''}} buy-button">
           {% if isFree %}
             {{ 'shop.shared.titles.getIt' | t }}

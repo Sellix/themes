@@ -82,15 +82,12 @@
     border-top-right-radius: {{ imageBorderRadius or borderRadius }}px;
   }
   .{{ localClass }}__text * {
-    /*overflow: hidden;*/
-    /*text-overflow: ellipsis;*/
-    /*white-space: nowrap;*/
     margin: 0;
     padding: 0;
   }
 </style>
 
-<div id="sellix-card-container-{{id}}" class="{{ globalClass }}__container {{ localClass }}__container">
+<div class="{{ globalClass }}__container {{ localClass }}__container">
   <div class="{{ globalClass }}__card {{ localClass}}__card unselectable">
     <div class="{{ globalClass }}__image {{ localClass}}__image {{'placeholder' if isPlaceholder else ''}}">
       {% if isPlaceholder %}
@@ -136,7 +133,7 @@
 
 <script type='application/javascript'>
   $(document).ready(function () {
-    $('#sellix-card-container-{{id}}').on('click', function () {
+    $('.{{ localClass }}__container').on('click', function () {
       $('#info-card-modal-{{id}}').modal({
         modalClass: '',
         blockerClass: '',
