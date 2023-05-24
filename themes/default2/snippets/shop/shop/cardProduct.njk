@@ -119,6 +119,14 @@
     id="sellix-card-container-{{id}}"
     class="{{ globalClass }}__container {{ localClass }}__container"
   >
+    {% if onHold or isOut %}
+      <div class="{{ globalClass }}__badge-container">
+        <div class="{{ globalClass }}__badge icon-badge">
+          {% render_snippet 'Icons: Hand' %}
+        </div>
+      </div>
+    {% endif %}
+
     <div class="{{ globalClass}}__card {{ localClass }}__card unselectable">
       <div class="{{ globalClass}}__image {{ localClass }}__image {{'placeholder' if isPlaceholder else ''}}">
         <div class="{{ localClass }}__cart">
@@ -132,67 +140,65 @@
       </div>
 
       <div class="{{ globalClass }}__info {{ localClass }}__info">
+        <div class="{{ globalClass }}__description {{ localClass }}__description">
+          {% if product.price_discount and not isFree %}
+            <span class="{{ globalClass }}__price-with-discount {{ localClass }}__price-with-discount">
+              {% render_snippet
+                'Price',
+                currency=product.currency,
+                price=product.price_display,
+                discount=product.price_discount
+              %}
+              <i>{% render_snippet 'Price', currency=product.currency, price=product.price_display %}</i>
+            </span>
+          {% else %}
+            <div class="{{ globalClass }}__group-description-info">
+              {% if product.price_variants %}
+                <span>{{ 'shop.shared.titles.startingAt' | t }} </span>
+              {% endif %}
+
+              <span class="{{ globalClass }}__price {{ localClass }}__price">
+                {% if isFree %}
+                  {% render_snippet 'Tag', tag=('shop.shared.titles.free' | t) %}
+                {% elif isPayWhatYouWant %}
+                  {% render_snippet 'Tag', tag=('shop.main.cards.product.yourPrice' | t) %}
+                {% else %}
+                  {% render_snippet 'Price',
+                    currency=product.currency,
+                    price=product.price_display,
+                    priceVariants=product.price_variants
+                  %}
+                {% endif %}
+              </span>
+            </div>
+          {% endif %}
+
+          <span class="{{ globalClass }}__stock {{ localClass }}__stock">
+            {% if get_stock(product.stock) === '∞' %}
+              {{ 'shop.shared.titles.stock' | t }}<i class="fa-solid fa-infinity"></i>
+            {% else %}
+              {{ 'shop.shared.titles.stock' | t }}<span>{{get_stock(product.stock)}}</span>
+            {% endif %}
+          </span>
+
+          {# TODO: Add a tax #}
+        </div>
+
+        <div class="{{ globalClass }}__title {{ localClass }}__title">
+          {{product.title}}
+        </div>
+
         {% if onHold %}
-          <span class="{{ globalClass }}__description {{ localClass }}__description">
+          <span class="{{ globalClass }}__info-comment {{ localClass }}__info-comment">
             {{ 'shop.main.cards.product.onHold' | t }}
           </span>
         {% endif %}
 
         {% if isOut %}
-          <span class="{{ globalClass }}__description {{ localClass }}__description">
+          <span class="{{ globalClass }}__info-comment {{ localClass }}__info-comment">
             {{ 'shop.main.cards.product.soldOut' | t }}
           </span>
         {% endif %}
-
-        {% if not onHold and not isOut %}
-          <div class="{{ globalClass }}__description {{ localClass }}__description">
-            {% if product.price_discount and not isFree %}
-              <span class="{{ globalClass }}__price-with-discount {{ localClass }}__price-with-discount">
-                {% render_snippet
-                  'Price',
-                  currency=product.currency,
-                  price=product.price_display,
-                  discount=product.price_discount
-                %}
-                <i>{% render_snippet 'Price', currency=product.currency, price=product.price_display %}</i>
-              </span>
-            {% else %}
-              <div class="{{ globalClass }}__group-description-info">
-                {% if product.price_variants %}
-                  <span>{{ 'shop.shared.titles.startingAt' | t }} </span>
-                {% endif %}
-
-                <span class="{{ globalClass }}__price {{ localClass }}__price">
-                  {% if isFree %}
-                    {% render_snippet 'Tag', tag=('shop.shared.titles.free' | t) %}
-                  {% elif isPayWhatYouWant %}
-                    {% render_snippet 'Tag', tag=('shop.main.cards.product.yourPrice' | t) %}
-                  {% else %}
-                    {% render_snippet 'Price',
-                      currency=product.currency,
-                      price=product.price_display,
-                      priceVariants=product.price_variants
-                    %}
-                  {% endif %}
-                </span>
-              </div>
-            {% endif %}
-
-            <span class="{{ globalClass }}__stock {{ localClass }}__stock">
-              {% if get_stock(product.stock) === '∞' %}
-                {{ 'shop.shared.titles.stock' | t }}<i class="fa-solid fa-infinity"></i>
-              {% else %}
-                {{ 'shop.shared.titles.stock' | t }}<span>{{get_stock(product.stock)}}</span>
-              {% endif %}
-            </span>
-
-            {# TODO: Add a tax #}
-          </div>
-        {% endif %}
-
-        <div class="{{ globalClass }}__title {{ localClass }}__title">
-          {{product.title}}
-        </div>
       </div>
     </div>
   </a>

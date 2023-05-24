@@ -76,49 +76,49 @@
   }
 </style>
 
-<div
-  id="sellix-card-container-{{id}}"
-  class="{{ globalClass }}__container {{ localClass }}__container"
-  data-group-id="{{group.uniqid}}"
->
-  {% if showBadge %}
-    <div class="{{ globalClass }}__badge">
-      {{ 'shop.shared.titles.productType.group' | t }}
-    </div>
-  {% endif %}
+<div class="{{ globalClass }} {{ localClass }}">
+  <div class="{{ globalClass }}__container {{ localClass }}__container" data-group-id="{{group.uniqid}}">
+    {% if showBadge %}
+      <div class="{{ globalClass }}__badge-container">
+        <div class="{{ globalClass }}__badge">
+          {{ 'shop.shared.titles.productType.group' | t }}
+        </div>
+      </div>
+    {% endif %}
 
-  <div class="{{ globalClass }}__card {{ localClass }}__card unselectable">
-    <div class="{{ globalClass }}__image {{ localClass }}__image {{'placeholder' if isPlaceholder else ''}}">
-      {% if isPlaceholder %}
-        <i class="fa-light fa-layer-group"></i>
-      {% else %}
-        <img src="{{image}}" alt="{{group.title}}" loading="lazy" />
-      {% endif %}
-    </div>
-
-    <div class="{{ globalClass }}__info {{ localClass }}__info">
-      <div class="{{ globalClass }}__description {{ localClass }}__description">
-        {% if group.minPriceItem %}
-          <div class="{{ globalClass }}__group-description-info">
-            <span>{{ 'shop.shared.titles.startingAt' | t }} </span>
-
-            <span class="{{ globalClass }}__price {{ localClass }}__price">
-              {% render_snippet
-                'Price',
-                currency=group.minPriceItem.currency,
-                price=group.minPriceItem.price_display
-              %}
-            </span>
-          </div>
+    <div class="{{ globalClass }}__card {{ localClass }}__card unselectable">
+      <div class="{{ globalClass }}__image {{ localClass }}__image {{'placeholder' if isPlaceholder else ''}}">
+        {% if isPlaceholder %}
+          <i class="fa-light fa-layer-group"></i>
         {% else %}
-          <span>
-            {{ 'shop.main.cards.group.outOfProducts' | t }}
-          </span>
+          <img src="{{image}}" alt="{{group.title}}" loading="lazy" />
         {% endif %}
       </div>
 
-      <div class="{{ globalClass }}__title {{ localClass }}__title">
-        {{group.title}}
+      <div class="{{ globalClass }}__info {{ localClass }}__info">
+        <div class="{{ globalClass }}__description {{ localClass }}__description">
+          {% if group.minPriceItem %}
+            <div class="{{ globalClass }}__group-description-info">
+              <span>{{ 'shop.shared.titles.startingAt' | t }} </span>
+
+              <span class="{{ globalClass }}__price {{ localClass }}__price">
+                {% render_snippet
+                  'Price',
+                  currency=group.minPriceItem.currency,
+                  price=group.minPriceItem.price_display
+                %}
+              </span>
+            </div>
+          {% else %}
+            <span>
+              {{ 'shop.main.cards.group.outOfProducts' | t }}
+            </span>
+          {% endif %}
+        </div>
+
+        <div class="{{ globalClass }}__title {{ localClass }}__title">
+          {{group.title}}
+        </div>
       </div>
     </div>
   </div>
@@ -126,7 +126,7 @@
 
 <script type='application/javascript'>
   $(document).ready(function () {
-    $('#sellix-card-container-{{id}}').on('click', async function () {
+    $('.{{ localClass }}__container').on('click', async function () {
       const groupId = $(this).data('group-id');
       const items = await SellixContext.getShopItems();
       const group = items.find(({uniqid}) => String(uniqid) === String(groupId));
@@ -143,7 +143,7 @@
 
     {% if global.request.type === 'group' and global.request.options.itemId === group.uniqid %}
       setTimeout(function() {
-        $('#sellix-card-container-{{id}}').click();
+        $('.{{ localClass }}__container').click();
       }, 0);
     {% endif %}
   });

@@ -2,6 +2,7 @@
 {% set product = args.product %}
 {% set isPlaceholder = not product.image_name %}
 {% set image = cdn_link(product.cloudflare_image_id, 'shopItem') %}
+{% set onHold = product.on_hold | int %}
 {% set colors = themeProperties.current_colors %}
 {% set cardProps = themeProperties.cards %}
 {% set properties = args.properties %}
@@ -78,14 +79,24 @@
 
 <div class="{{ globalClass }} d-flex w-100 position-relative">
   <a
-    href="{{'javascript:void' if product.on_hold | int else ['product/', product.uniqid] | join}}"
+    href="{{'javascript:void' if onHold else ['product/', product.uniqid] | join}}"
     id="sellix-card-container-{{id}}"
     class="{{ globalClass }}__container {{ localClass }}__container"
   >
     <div class="{{ globalClass}}__card {{ localClass }}__card unselectable">
-      {% if showBadge %}
-        <div class="{{ globalClass }}__badge">
-          {{ 'shop.shared.titles.productType.subscription' | t }}
+      {% if showBadge or onHold %}
+        <div class="{{ globalClass }}__badge-container">
+          {% if onHold %}
+            <div class="{{ globalClass }}__badge icon-badge" style="margin-right: {{ '0.5rem' if showBadge else '0' }}">
+              {% render_snippet 'Icons: Hand' %}
+            </div>
+          {% endif %}
+
+          {% if showBadge %}
+            <div class="{{ globalClass }}__badge {{ 'icon-badge' if onHold }}">
+              {{ 'shop.shared.titles.productType.subscription' | t }}
+            </div>
+          {% endif %}
         </div>
       {% endif %}
 
@@ -98,26 +109,26 @@
       </div>
 
       <div class="{{ globalClass }}__info {{ localClass }}__info">
-        {% if product.on_hold | int %}
-          <span class="{{ globalClass }}__description {{ localClass }}__description">
-            {{ 'shop.main.cards.subscription.onHold' | t }}
-          </span>
-        {% else %}
-          <div class="{{ globalClass }}__description {{ localClass }}__description">
-            <div class="{{ globalClass }}__group-description-info">
-              <span class="{{ globalClass }}__stock">
-                {{ 'shop.shared.titles.startingAt' | t }}
-              </span>
-              <span class="{{ localClass }}__price">
-                {% render_snippet 'Price', currency=product.currency, price=product.price_display %}
-              </span>
-            </div>
+        <div class="{{ globalClass }}__description {{ localClass }}__description">
+          <div class="{{ globalClass }}__group-description-info">
+            <span class="{{ globalClass }}__stock">
+              {{ 'shop.shared.titles.startingAt' | t }}
+            </span>
+            <span class="{{ localClass }}__price">
+              {% render_snippet 'Price', currency=product.currency, price=product.price_display %}
+            </span>
           </div>
-        {% endif %}
+        </div>
 
         <div class="{{ globalClass }}__title {{ localClass }}__title">
           {{product.title}}
         </div>
+
+        {% if onHold %}
+          <span class="{{ globalClass }}__info-comment {{ localClass }}__info-comment">
+            {{ 'shop.main.cards.subscription.onHold' | t }}
+          </span>
+        {% endif %}
       </div>
     </div>
   </a>
