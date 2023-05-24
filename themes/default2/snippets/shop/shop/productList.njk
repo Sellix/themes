@@ -85,21 +85,6 @@
                     {% endif %}
                   </span>
                 {% endif %}
-
-                <span class="{{ globalClass }}__option-dot">  ●  </span>
-
-                <span class="stock {{ globalClass }}__stock">
-                  <span
-                    class="{{'text-red' if productStock | int === 0 else 'text-green'}}"
-                    style="color: {{'#dc3545' if productStock == 0 else '#28a745'}}; position: {{'relative' if productStock === '∞' else 'static'}}; top: {{'auto' if productStock === '∞' else 'auto'}}"
-                  >
-                    {% if productStock === '∞' %}
-                      <i class="fa-solid fa-infinity" style="font-size: 10px; color: {{'#dc3545' if productStock === 0 else '#28a745'}}"></i>
-                    {% else %}
-                      {{productStock}}
-                    {% endif %}
-                  </span> {{ 'shop.main.cards.group.inStock' | t }}
-                </span>
               </div>
             {% endif %}
           </div>

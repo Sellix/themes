@@ -41,19 +41,22 @@
       const $modalBody = $('#group-card-modal .sellix-modal-body');
 
       const productsCount = group.products_bound.length;
-      const headerHtml = `<span>${group.title}</span> ` +
+      const headerHtml = `<div>${group.title}</div> ` +
         (productsCount > 0
           ? (
-            '<span class="{{ globalClass }}__modal__header-small">(' +
+            '<div class="sellix-modal-header-subtitle">' +
             String(productsCount) + ' ' +
             window.sellixI18Next.t('shared.product.quantity', { 'count': +productsCount }) +
-            ')</span>'
+            '</div>'
           )
           : '');
 
       $('#group-card-modal .sellix-modal-header').html(headerHtml);
 
-      $modalBody.html(`${window.sellixI18Next.t('shop.main.cards.group.loading')}...`);
+      $modalBody.html(`<div class="w-100 d-flex justify-content-center align-items-center">` +
+        `${window.sellixI18Next.t('shop.main.cards.group.loading')}`+
+      `</div>`);
+
       sellixApi
         .renderComponent(
           {
