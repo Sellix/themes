@@ -8,16 +8,16 @@
 {% set isStatic = args.is_static %}
 {% set redirectToCheckout = args.redirect_to_checkout %}
 {% set properties = args.properties %}
-{% set bgColor = properties.background_color %}
-{% set color = properties.color %}
+{% set bgColor = safe_get(properties.background_color, 'background_accent_dark') %}
+{% set color = safe_get(properties.color, 'dark_font_color') %}
 
 {% set globalClass = 'snippet-cart-button-1' %}
 {% set localClass = id %}
 
 <style>
   .{{ localClass }} .{{ localClass }}__button {
-    background-color: {{ colors[bgColor] if bgColor else 'inherit' }};
-    color: {{ colors[color] if color else 'inherit' }}
+    background-color: {{ colors[bgColor] }};
+    color: {{ colors[color] }}
   }
 </style>
 
@@ -33,7 +33,10 @@
       data-cart-product-quantity-button="cart-product-quantity-button"
     >
       <span class="d-none" style="font-weight: 500" data-cart-product-quantity-value="1"></span>
-      <i class="fa-regular fa-cart-shopping d-none" data-cart-product-first-button="1"></i>
+      <span class="d-none" style="line-height: 0" data-cart-product-first-button="1">
+        {% render_snippet 'Icons: Cart add' %}
+      </span>
+
     </div>
     <div class="{{ globalClass }}__button {{ localClass }}__button" data-cart-product-plus-button="1">
       <i class="fa-regular fa-plus"></i>
