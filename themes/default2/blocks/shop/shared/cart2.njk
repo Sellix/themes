@@ -1,0 +1,77 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+
+{% set localClass = id %}
+
+<div class="{{ globalClass }}__container {{ localClass }}__container">
+  <div class="box">
+    <div class="{{ globalClass }}__cart-icon" data-cart-icon="1">
+      {% render_snippet 'Icons: Cart' %}
+      <span class="{{ globalClass }}__cart-length" data-cart-length="1"></span>
+    </div>
+  </div>
+
+{#  <div class="{{ globalClass }}__dropdown {{ localClass }}__dropdown customFadeIn" data-cart-dropdown="1">#}
+{#    <div class="{{ globalClass }}__dropdown-header unselectable">#}
+{#      <h6 class="{{ globalClass }}__dropdown-header-title {{ localClass }}__dropdown-header-title">#}
+{#        {{ properties.title | t }}#}
+{#      </h6>#}
+
+{#      <p class="{{ globalClass }}__dropdown-header-description {{ localClass }}__dropdown-header-description">#}
+{#        {{ properties.description | t }}#}
+{#      </p>#}
+{#    </div>#}
+
+{#    <div class="{{ globalClass }}__dropdown-body {{ localClass }}__dropdown-body" data-cart-dropdown-body="1"></div>#}
+
+{#    <div class="{{ globalClass }}__dropdown-footer">#}
+{#      <button class="back unselectable {{ globalClass }}__clear-button" data-cart-clear-button="1">#}
+{#        {{ properties.clear_button_label | t }}#}
+{#      </button>#}
+
+{#      <button class="unselectable {{ globalClass }}__checkout-button" data-cart-checkout-button="1">#}
+{#        {{ properties.checkout_button_label | t }}#}
+{#      </button>#}
+{#    </div>#}
+{#  </div>#}
+
+  <div class="sliding-panel sliding-panel--from-right {{ globalClass }}__dropdown {{ localClass }}__dropdown" data-cart-dropdown="1">
+    <div class="sliding-panel__container {{ globalClass }}__dropdown-body {{ localClass }}__dropdown-body" data-cart-dropdown-body="1">
+      <header class="sliding-panel__header {{ globalClass }}__dropdown-header">
+        <h1>Title Goes Here</h1>
+        <a href="javascript:void(0)" class="sliding-panel__close js-cd-close">Close</a>
+      </header>
+
+      <div>
+        Cart Products
+      </div>
+
+      <div class="sliding-panel__footer {{ globalClass }}__dropdown-footer">
+        <button class="back unselectable {{ globalClass }}__clear-button" data-cart-clear-button="1">
+          {{ properties.clear_button_label | t }}
+        </button>
+
+        <button class="unselectable {{ globalClass }}__checkout-button" data-cart-checkout-button="1">
+          {{ properties.checkout_button_label | t }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script id="cart-item-template-{{id}}" type="text/x-jsrender">
+  Template
+</script>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
+    const cartComponent = new SellixCartComponent(
+      '.{{ localClass }}__container',
+      cart,
+      '#cart-item-template-{{id}}',
+      {{renderOptions | dump | safe}},
+    );
+    cartComponent.render();
+  });
+</script>

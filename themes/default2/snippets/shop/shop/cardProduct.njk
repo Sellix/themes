@@ -77,9 +77,6 @@
     min-height: {{ imageHeight }}px;
     height: {{ imageHeight }}px;
   }
-  .{{ localClass }}__image.placeholder {
-    border: 1px solid var(--borderColor)
-  }
   .{{ localClass }}__image, .{{ localClass }}__image img {
     border-radius: {{ imageBorderRadius }}px;
     border-top-left-radius: {{ imageBorderRadius or borderRadius }}px;
@@ -128,12 +125,12 @@
     {% endif %}
 
     <div class="{{ globalClass}}__card {{ localClass }}__card unselectable">
-      <div class="{{ globalClass}}__image {{ localClass }}__image {{'placeholder' if isPlaceholder else ''}}">
+      <div class="{{ globalClass}}__image {{ localClass }}__image {{'image-placeholder' if isPlaceholder else ''}}">
         <div class="{{ localClass }}__cart">
           {% render_snippet 'Cart button 2', product=product %}
         </div>
         {% if isPlaceholder %}
-          <i class="fa-light fa-box-taped"></i>
+          {% render_snippet 'Product: Placeholder icon', product=product %}
         {% else %}
           <img src="{{image}}" alt="{{product.title}}" loading="lazy" />
         {% endif %}

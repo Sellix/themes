@@ -67,9 +67,6 @@
     min-height: {{ imageHeight }}px;
     height: {{ imageHeight }}px;
   }
-  .{{ localClass }}__image.placeholder {
-    border: 1px solid var(--borderColor)
-  }
   .{{ localClass }}__image, .{{ localClass }}__image img {
     border-radius: {{ imageBorderRadius }}px;
     border-top-left-radius: {{ imageBorderRadius or borderRadius }}px;
@@ -100,9 +97,9 @@
         </div>
       {% endif %}
 
-      <div class="{{ globalClass }}__image {{ localClass }}__image {{'placeholder' if isPlaceholder else ''}}">
+      <div class="{{ globalClass }}__image {{ localClass }}__image {{'image-placeholder' if isPlaceholder else ''}}">
         {% if isPlaceholder %}
-          <i class="fa-light fa-recycle"></i>
+          {% render_snippet 'Product: Placeholder icon', product=product %}
         {% else %}
           <img src="{{image}}" alt="{{title}}" loading="lazy" />
         {% endif %}

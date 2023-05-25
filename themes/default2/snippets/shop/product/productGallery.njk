@@ -15,6 +15,7 @@
 {% set sliderLightboxEnabled = safe_get(properties.slider_lightbox_enabled, true) %}
 {% set sliderShowWholeImage = safe_get(properties.slider_show_whole_image, true) %}
 {% set sliderHeight = safe_get(properties.slider_height, 400) %}
+{% set sliderHeightNoThumbnails = safe_get(properties.slider_height_without_thumbnails, 600) %}
 {% set sliderBorderRadius = safe_get(properties.slider_border_radius, 8) %}
 {% set sliderItemsPerView = safe_get(properties.slider_items_per_view, 1) %}
 {% set sliderSpaceBetween = safe_get(properties.slider_space_between, 16) %}
@@ -33,7 +34,7 @@
 
 <style>
   .{{ localClass }}__slides {
-    height: {{ sliderHeight }}px;
+    height: {{ sliderHeight if thumbnailsEnabled else sliderHeightNoThumbnails }}px;
     width: 100%;
   }
 
@@ -109,8 +110,8 @@
     {% endif %}
 
     {% if slidesCount == 0 %}
-      <swiper-slide class="{{ globalClass }}__slide {{ localClass }}__slide">
-        {% render_snippet "Icons: No images" %}
+      <swiper-slide class="image-placeholder {{ globalClass }}__slide {{ localClass }}__slide">
+        {% render_snippet 'Product: Placeholder icon', product=product %}
       </swiper-slide>
     {% endif %}
   </swiper-container>

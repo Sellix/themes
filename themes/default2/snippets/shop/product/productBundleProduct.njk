@@ -51,9 +51,9 @@
   {{ productStoc }}
 
   <a class="{{ globalClass }}__description {{ localClass }}__description" href='/product/{{ product.uniqid }}' target="_blank">
-    <div class="{{ globalClass }}__image {{ localClass }}__image {{'placeholder' if isPlaceholder}}">
+    <div class="{{ globalClass }}__image {{ localClass }}__image {{'image-placeholder' if isPlaceholder}}">
       {% if isPlaceholder %}
-        <i class="fa-light fa-layer-group"></i>
+        {% render_snippet 'Product: Placeholder icon', product=product %}
       {% else %}
         <img src="{{image}}" alt="{{product.title}}" loading="lazy" />
       {% endif %}

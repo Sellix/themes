@@ -24,9 +24,9 @@
           href="{{'javascript:void(0)' if isDisabled else ['product/', product.uniqid] | join}}"
           class="{{ globalClass }}__option-description"
         >
-          <div class="{{ globalClass }}__option-image {{'placeholder' if isPlaceholder else ''}}">
+          <div class="{{ globalClass }}__option-image {{'image-placeholder' if isPlaceholder else ''}}">
             {% if isPlaceholder %}
-              <i class="fa-light fa-layer-group"></i>
+              {% render_snippet 'Product: Placeholder icon', product=product %}
             {% else %}
               <img src="{{image}}" alt="{{product.title}}" loading="lazy" />
             {% endif %}
@@ -101,7 +101,7 @@
 
           <a href="{{'javascript:void(0)' if isDisabled else ['product/', product.uniqid] | join}}" class="button {{ 'disabled' if isDisabled }}">
             {% if isFree %}
-              {{ 'shop.shared.titles.getIt' | t }}
+              {{ 'shop.shared.titles.download' | t }}
             {% else %}
               {{ 'shop.shared.titles.buy' | t }}
             {% endif %}
