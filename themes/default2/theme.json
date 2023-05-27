@@ -2164,10 +2164,17 @@
             "settings": {
               "visible": true,
               "properties": {},
-              "block_order": ["Menu", "Cart 2"],
+              "block_order": ["Menu", "Cart"],
               "blocks": {
-                "Cart 2": {
-                  "name": "Cart 2"
+                "Cart": {
+                  "name": "Cart",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "title": "Your Cart",
+                      "description": ""
+                    }
+                  }
                 },
                 "Menu": {
                   "name": "Menu"
@@ -8527,320 +8534,11 @@
   },
 
   "blocks": {
-    "Cart 1": {
-      "name": "Cart 1",
-      "path": "blocks/shop/shared/cart1.njk",
+    "Cart": {
+      "name": "Cart",
+      "path": "blocks/shop/shared/cart.njk",
       "settings": {
-        "class": "block-cart1",
-        "schema": [
-          {
-            "id": "background_color",
-            "type": "select",
-            "label": "Background color",
-            "options": [
-              {
-                "title": "Main",
-                "value": "background_main_color"
-              },
-              {
-                "title": "Accent (Light)",
-                "value": "background_accent_light"
-              },
-              {
-                "title": "Accent (Dark)",
-                "value": "background_accent_dark"
-              },
-              {
-                "title": "Transparent",
-                "value": "transparent"
-              }
-            ],
-            "defaultValue": "background_accent_dark"
-          },
-          {
-            "id": "show_border",
-            "type": "checkbox",
-            "label": "Show border",
-            "defaultValue": true
-          },
-          {
-            "id": "shadow",
-            "type": "select",
-            "label": "Drop shadow",
-            "options": [
-              {
-                "title": "None",
-                "value": "none"
-              },
-              {
-                "title": "Variant 1",
-                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
-              },
-              {
-                "title": "Variant 2",
-                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
-              },
-              {
-                "title": "Variant 3",
-                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
-              }
-            ],
-            "defaultValue": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
-          },
-          {
-            "id": "title",
-            "type": "text",
-            "label": "Title",
-            "defaultValue": "Shopping Cart"
-          },
-          {
-            "id": "title_font_color",
-            "type": "select",
-            "label": "Title font color",
-            "options": [
-              {
-                "title": "Brand",
-                "value": "brand_color"
-              },
-              {
-                "title": "Light",
-                "value": "light_font_color"
-              },
-              {
-                "title": "Dark",
-                "value": "dark_font_color"
-              }
-            ],
-            "defaultValue": "light_font_color"
-          },
-          {
-            "id": "title_font_size",
-            "max": 100,
-            "min": 1,
-            "step": 1,
-            "type": "range",
-            "unit": "px",
-            "label": "Title font size",
-            "defaultValue": 16
-          },
-          {
-            "id": "title_font_weight",
-            "type": "select",
-            "label": "Title font weight",
-            "options": [
-              {
-                "title": "Normal",
-                "value": 400
-              },
-              {
-                "title": "Medium",
-                "value": 500
-              },
-              {
-                "title": "Bold",
-                "value": 600
-              },
-              {
-                "title": "Extra Bold",
-                "value": 700
-              }
-            ],
-            "defaultValue": 700
-          },
-          {
-            "id": "description",
-            "type": "text",
-            "label": "Description",
-            "defaultValue": "Add, remove products or go to the checkout page to proceed with the purchase."
-          },
-          {
-            "id": "description_font_color",
-            "type": "select",
-            "label": "Description font color",
-            "options": [
-              {
-                "title": "Brand",
-                "value": "brand_color"
-              },
-              {
-                "title": "Light",
-                "value": "light_font_color"
-              },
-              {
-                "title": "Dark",
-                "value": "dark_font_color"
-              }
-            ],
-            "defaultValue": "light_font_color"
-          },
-          {
-            "id": "description_font_size",
-            "max": 100,
-            "min": 1,
-            "step": 1,
-            "type": "range",
-            "unit": "px",
-            "label": "Description font size",
-            "defaultValue": 12
-          },
-          {
-            "id": "description_line_height",
-            "max": 100,
-            "min": 1,
-            "step": 1,
-            "type": "range",
-            "unit": "px",
-            "label": "Description line height",
-            "defaultValue": 100
-          },
-          {
-            "id": "description_text_align",
-            "type": "select",
-            "label": "Description text align",
-            "options": [
-              {
-                "title": "Left",
-                "value": "left"
-              },
-              {
-                "title": "Center",
-                "value": "center"
-              },
-              {
-                "title": "Right",
-                "value": "right"
-              }
-            ],
-            "defaultValue": "left"
-          },
-          {
-            "id": "description_font_weight",
-            "type": "select",
-            "label": "Description font weight",
-            "options": [
-              {
-                "title": "Normal",
-                "value": 400
-              },
-              {
-                "title": "Medium",
-                "value": 500
-              },
-              {
-                "title": "Bold",
-                "value": 600
-              },
-              {
-                "title": "Extra Bold",
-                "value": 700
-              }
-            ],
-            "defaultValue": 400
-          },
-          {
-            "id": "item_font_color",
-            "type": "select",
-            "label": "Item font color",
-            "options": [
-              {
-                "title": "Brand",
-                "value": "brand_color"
-              },
-              {
-                "title": "Light",
-                "value": "light_font_color"
-              },
-              {
-                "title": "Dark",
-                "value": "dark_font_color"
-              }
-            ],
-            "defaultValue": "dark_font_color"
-          },
-          {
-            "id": "item_font_size",
-            "max": 100,
-            "min": 1,
-            "step": 1,
-            "type": "range",
-            "unit": "px",
-            "label": "Item font size",
-            "defaultValue": 14
-          },
-          {
-            "id": "item_line_height",
-            "max": 100,
-            "min": 1,
-            "step": 1,
-            "type": "range",
-            "unit": "px",
-            "label": "Item line height",
-            "defaultValue": 100
-          },
-          {
-            "id": "item_text_align",
-            "type": "select",
-            "label": "Item text align",
-            "options": [
-              {
-                "title": "Left",
-                "value": "left"
-              },
-              {
-                "title": "Center",
-                "value": "center"
-              },
-              {
-                "title": "Right",
-                "value": "right"
-              }
-            ],
-            "defaultValue": "left"
-          },
-          {
-            "id": "item_font_weight",
-            "type": "select",
-            "label": "Item font weight",
-            "options": [
-              {
-                "title": "Normal",
-                "value": 400
-              },
-              {
-                "title": "Medium",
-                "value": 500
-              },
-              {
-                "title": "Bold",
-                "value": 600
-              },
-              {
-                "title": "Extra Bold",
-                "value": 700
-              }
-            ],
-            "defaultValue": 400
-          },
-          {
-            "id": "clear_button_label",
-            "type": "text",
-            "label": "Clear button label",
-            "defaultValue": "Clear"
-          },
-          {
-            "id": "checkout_button_label",
-            "type": "text",
-            "label": "Checkout button label",
-            "defaultValue": "Checkout"
-          }
-        ]
-      }
-    },
-    "Cart 2": {
-      "name": "Cart 2",
-      "path": "blocks/shop/shared/cart2.njk",
-      "settings": {
-        "class": "block-cart2",
+        "class": "block-cart",
         "schema": [
           {
             "id": "background_color",
@@ -17469,6 +17167,10 @@
       "name": "Icons: Chevron up",
       "path": "snippets/shared/icons/chevronUp.njk"
     },
+    "Icons: Close": {
+      "name": "Icons: Close",
+      "path": "snippets/shared/icons/close.njk"
+    },
     "Icons: Crossed eye": {
       "name": "Icons: Crossed eye",
       "path": "snippets/shared/icons/crossedEye.njk"
@@ -17680,13 +17382,9 @@
       "name": "auth.css",
       "path": "assets/packages/widgets/customer/auth.css"
     },
-    "block-cart1.css": {
-      "name": "block-cart1.css",
-      "path": "assets/css/block-cart1.css"
-    },
-    "block-cart2.css": {
-      "name": "block-cart2.css",
-      "path": "assets/css/block-cart2.css"
+    "block-cart.css": {
+      "name": "block-cart.css",
+      "path": "assets/css/block-cart.css"
     },
     "block-products-filter.css": {
       "name": "block-products-filter.css",

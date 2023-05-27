@@ -52,7 +52,6 @@
     }
 
     toggleDescription = (show) => {
-      console.log('Toggle Description', show);
       const $description = this.$product.find('[data-description-wrapper]'),
         $label = this.$product.find('[data-checkout-product-toggle-description-button] .label-show-description'),
         $button = this.$product.find('[data-checkout-product-toggle-description-button] .label-click-for-info');

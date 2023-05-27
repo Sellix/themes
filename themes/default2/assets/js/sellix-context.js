@@ -20,7 +20,7 @@
     }
 
     static async getShopProducts(ids) {
-      let products = this.getShopInfo().products || {}
+      let products = this.getShopInfo().products || {};
       if (!ids) {
         return products;
       }
@@ -52,6 +52,10 @@
 
     static getShopCategories() {
       return this.getShopInfo().categories || {};
+    }
+
+    static getCurrencyList() {
+      return this.get('config', {}).CURRENCY_LIST || {};
     }
   }
 

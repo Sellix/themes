@@ -144,9 +144,17 @@
                 'Price',
                 currency=product.currency,
                 price=product.price_display,
-                discount=product.price_discount
+                discount=product.price_discount,
+                priceVariants=product.price_variants
               %}
-              <i>{% render_snippet 'Price', currency=product.currency, price=product.price_display %}</i>
+              <i>
+                {% render_snippet
+                  'Price',
+                  currency=product.currency,
+                  price=product.price_display,
+                  priceVariants=product.price_variants
+                %}
+              </i>
             </span>
           {% else %}
             <div class="{{ globalClass }}__group-description-info">

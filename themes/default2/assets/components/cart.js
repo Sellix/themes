@@ -7,15 +7,18 @@
 
       this.$cart = jQuery(selector);
       this.$cartLength = this.$cart.find('[data-cart-icon] [data-cart-length]');
+      this.$cartDropdown = this.$cart.find('[data-cart-dropdown]');
       this.$cartBody = this.$cart.find('[data-cart-dropdown-body]');
 
       this.itemTemplate = jQuery.templates(cartItemTemplateSelector);
 
-      sellixHelper.onClickOutside(this.$cart.get(0), (...args) => this.close(...args));
+      this.isOpened = false;
 
-      this.$cart.find('[data-cart-icon]').on('click', (...args) => this.toggle(...args));
-      this.$cart.find('[data-cart-checkout-button]').on('click', (...args) => this.checkout(...args));
-      this.$cart.find('[data-cart-clear-button]').on('click', (...args) => this.clear(...args));
+      this.$cart.find('[data-cart-icon]').on('click', this.open.bind(this));
+      this.$cart.find('[data-cart-checkout-button]').on('click', this.checkout.bind(this));
+      this.$cart.find('[data-cart-clear-button]').on('click', this.clear.bind(this));
+      this.$cart.find('[data-close-icon]').on('click', this.close.bind(this));
+      sellixHelper.onClickOutside(this.$cartDropdown.get(0), (...args) => this.close(...args));
 
       const renderEvent = sellixHelper.getEventName({
         name: 'SellixRenderComponent',
@@ -28,31 +31,35 @@
       });
     }
 
-    toggle() {
+    open(event) {
+      event.stopPropagation();
+
       let items = this.cart.getItems();
 
       if (items.length) {
-        this.$cart.find('[data-cart-dropdown]').toggleClass('open');
+        this.$cart.find('[data-cart-dropdown]').addClass('open');
+        this.isOpened = true;
       }
     }
 
-    close() {
-      this.$cart.find('[data-cart-dropdown]').removeClass('open');
+    close(event) {
+      if (this.isOpened) {
+        this.$cart.find('[data-cart-dropdown]').removeClass('open');
+        this.isOpened = false;
+      }
     }
 
     add(event) {
-      let items = this.cart.getItems();
-      let data = jQuery(event.delegateTarget).data();
-      let productId = data.productId;
-      let product = items.find((item) => item.uniqid === productId);
+      const items = this.cart.getItems();
+      const productId = jQuery(event.delegateTarget).data('product-id');
+      const product = items.find((item) => item.uniqid === productId);
       this.cart.add(product);
     }
 
     remove(event) {
-      let items = this.cart.getItems();
-      let data = jQuery(event.delegateTarget).data();
-      let productId = data.productId;
-      let product = items.find((item) => item.uniqid === productId);
+      const items = this.cart.getItems();
+      const productId = jQuery(event.delegateTarget).data('product-id');
+      const product = items.find((item) => item.uniqid === productId);
 
       if (product.quantity === product.quantity_min) {
         this.cart.remove(productId, product.quantity_min);
@@ -60,8 +67,20 @@
         this.cart.remove(productId);
       }
 
-      items = this.cart.getItems();
+      this.checkItems();
+    }
+
+    removeProduct(event) {
+      const productId = jQuery(event.delegateTarget).data('product-id');
+      console.log('Remove Product', productId);
+      this.cart.remove(productId, 0);
+      this.checkItems();
+    }
+
+    checkItems() {
+      const items = this.cart.getItems();
       if (!items.length) {
+        this.$cartBody.html('');
         this.close();
       }
     }
@@ -100,8 +119,10 @@
           let itemsForRendering = newProducts.map((product, key) => {
             const hasImage = !!product.cloudflare_image_id;
             const equalQuantity = product.quantity_min === product.quantity_max;
+            const price = +product.price_display;
             const inStock = product.stock === -1 ? '∞' : product.stock;
             const isValidPlus = sellixHelper.isValidCount({ ...product, count: product.quantity + 1 });
+            const isFree = +product.price_display === 0 && product.pay_what_you_want !== 1;
             return {
               id: this.selector,
               key,
@@ -112,17 +133,23 @@
                   'productImageCart',
                   SellixContext.get('theme', {}).isDark,
                 ),
+                currency_title: SellixContext.getCurrencyList()[product.currency],
+                price: `${price.toFixed(2)}`,
+                price_with_discount: `${product.price_with_discount.toFixed(2)}`,
               },
               isValidPlus,
               equalQuantity,
               inStock,
               hasImage,
+              isFree,
+              isPriceDiscount: product.price_discount && !isFree,
             };
           });
 
           const $body = jQuery(this.itemTemplate.render(itemsForRendering));
-          $body.find('[data-cart-add-button]').on('click', (...args) => this.add(...args));
-          $body.find('[data-cart-remove-button]').on('click', (...args) => this.remove(...args));
+          $body.find('[data-cart-add-button]').on('click', this.add.bind(this));
+          $body.find('[data-cart-remove-button]').on('click', this.remove.bind(this));
+          $body.find('[data-cart-remove-product-button]').on('click', this.removeProduct.bind(this));
           this.$cartBody.append($body);
 
           break;
@@ -133,15 +160,27 @@
           }
           updatedProducts.forEach((item) => {
             this.$cartBody.find(`#cart-product-${item.uniqid} [data-cart-product-quantity]`).text(item.quantity);
+
+            const isValidPlus = sellixHelper.isValidCount({ ...item, count: item.quantity + 1 });
+            const $plusButton = this.$cartBody.find(`#cart-product-${item.uniqid} [data-cart-add-button]`);
+            if (isValidPlus) {
+              $plusButton.css('visibility', 'initial');
+            } else {
+              $plusButton.css('visibility', 'hidden');
+            }
           });
           break;
         case 'delete':
           if (productId) {
             const $cartProduct = this.$cartBody.find(`#cart-product-${productId}`);
-            $cartProduct.find('[data-cart-add-button],[data-cart-remove-button]').off('click');
+            $cartProduct
+              .find('[data-cart-add-button],[data-cart-remove-button],[data-cart-remove-product-button]')
+              .off('click');
             $cartProduct.remove();
           } else {
-            this.$cart.find('[data-cart-add-button],[data-cart-remove-button]').off('click');
+            this.$cart
+              .find('[data-cart-add-button],[data-cart-remove-button],[data-cart-remove-product-button]')
+              .off('click');
             this.$cartBody.html('');
           }
           break;

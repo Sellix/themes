@@ -249,7 +249,7 @@
 <script type='application/javascript'>
   $(document).ready(async function () {
     const sortByDefault = (a, b) => items.findIndex((it) => it.uniqid === a.uniqid) - items.findIndex((it) => it.uniqid === b.uniqid);
-    const sortByPrice = (a, b) => (a.minPriceItem ? +a.minPriceItem.price_display : 9999999) - (b.minPriceItem ? +b.minPriceItem.price_display : 9999999);
+    const sortByPrice = (a, b) => (a.min_price_item ? +a.min_price_item.price_display : 9999999) - (b.min_price_item ? +b.min_price_item.price_display : 9999999);
     const sortByName = (a, b) => a.title < b.title ? -1 : a.title > b.title ? 1 : 0;
     const sortByType = (a, b) => b.isGroup - a.isGroup;
     const sortByStock = (a, b) => b.stock - a.stock;
