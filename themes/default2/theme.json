@@ -2171,8 +2171,6 @@
                   "settings": {
                     "visible": true,
                     "properties": {
-                      "title": "Your Cart",
-                      "description": ""
                     }
                   }
                 },
@@ -8541,7 +8539,12 @@
         "class": "block-cart",
         "schema": [
           {
-            "id": "background_color",
+            "id": "header_properties",
+            "type": "header",
+            "content": "Header properties"
+          },
+          {
+            "id": "header_background_color",
             "type": "select",
             "label": "Background color",
             "options": [
@@ -8562,16 +8565,16 @@
                 "value": "transparent"
               }
             ],
-            "defaultValue": "background_accent_dark"
+            "defaultValue": "background_accent_light"
           },
           {
-            "id": "show_border",
+            "id": "header_show_border",
             "type": "checkbox",
             "label": "Show border",
             "defaultValue": true
           },
           {
-            "id": "shadow",
+            "id": "header_shadow",
             "type": "select",
             "label": "Drop shadow",
             "options": [
@@ -8592,16 +8595,16 @@
                 "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
               }
             ],
-            "defaultValue": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+            "defaultValue": "none"
           },
           {
-            "id": "title",
+            "id": "header_title",
             "type": "text",
             "label": "Title",
-            "defaultValue": "Shopping Cart"
+            "defaultValue": "Your Cart"
           },
           {
-            "id": "title_font_color",
+            "id": "header_title_font_color",
             "type": "select",
             "label": "Title font color",
             "options": [
@@ -8618,20 +8621,20 @@
                 "value": "dark_font_color"
               }
             ],
-            "defaultValue": "light_font_color"
+            "defaultValue": "dark_font_color"
           },
           {
-            "id": "title_font_size",
+            "id": "header_title_font_size",
             "max": 100,
             "min": 1,
             "step": 1,
             "type": "range",
             "unit": "px",
             "label": "Title font size",
-            "defaultValue": 16
+            "defaultValue": 24
           },
           {
-            "id": "title_font_weight",
+            "id": "header_title_font_weight",
             "type": "select",
             "label": "Title font weight",
             "options": [
@@ -8652,16 +8655,46 @@
                 "value": 700
               }
             ],
-            "defaultValue": 700
+            "defaultValue": 500
           },
           {
-            "id": "description",
+            "id": "header_title_line_height",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Description line height",
+            "defaultValue": 30
+          },
+          {
+            "id": "header_title_text_align",
+            "type": "select",
+            "label": "Description align",
+            "options": [
+              {
+                "title": "Left",
+                "value": "left"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              },
+              {
+                "title": "Right",
+                "value": "right"
+              }
+            ],
+            "defaultValue": "left"
+          },
+          {
+            "id": "header_description",
             "type": "text",
             "label": "Description",
-            "defaultValue": "Add, remove products or go to the checkout page to proceed with the purchase."
+            "defaultValue": ""
           },
           {
-            "id": "description_font_color",
+            "id": "header_description_font_color",
             "type": "select",
             "label": "Description font color",
             "options": [
@@ -8681,47 +8714,27 @@
             "defaultValue": "light_font_color"
           },
           {
-            "id": "description_font_size",
+            "id": "header_description_font_size",
             "max": 100,
             "min": 1,
             "step": 1,
             "type": "range",
             "unit": "px",
             "label": "Description font size",
-            "defaultValue": 12
+            "defaultValue": 16
           },
           {
-            "id": "description_line_height",
+            "id": "header_description_line_height",
             "max": 100,
             "min": 1,
             "step": 1,
             "type": "range",
             "unit": "px",
             "label": "Description line height",
-            "defaultValue": 100
+            "defaultValue": 20
           },
           {
-            "id": "description_text_align",
-            "type": "select",
-            "label": "Description text align",
-            "options": [
-              {
-                "title": "Left",
-                "value": "left"
-              },
-              {
-                "title": "Center",
-                "value": "center"
-              },
-              {
-                "title": "Right",
-                "value": "right"
-              }
-            ],
-            "defaultValue": "left"
-          },
-          {
-            "id": "description_font_weight",
+            "id": "header_description_font_weight",
             "type": "select",
             "label": "Description font weight",
             "options": [
@@ -8745,9 +8758,160 @@
             "defaultValue": 400
           },
           {
-            "id": "item_font_color",
+            "id": "header_description_text_align",
             "type": "select",
-            "label": "Item font color",
+            "label": "Description align",
+            "options": [
+              {
+                "title": "Left",
+                "value": "left"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              },
+              {
+                "title": "Right",
+                "value": "right"
+              }
+            ],
+            "defaultValue": "left"
+          },
+
+          {
+            "id": "body_properties",
+            "type": "header",
+            "content": "Body properties"
+          },
+          {
+            "id": "body_background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_accent_light"
+          },
+          {
+            "id": "body_show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": true
+          },
+          {
+            "id": "body_border_radius",
+            "type": "range",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Border radius",
+            "defaultValue": 8
+          },
+          {
+            "id": "body_shadow",
+            "type": "select",
+            "label": "Drop shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 2",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+              }
+            ],
+            "defaultValue": "none"
+          },
+          {
+            "id": "body_padding_vert",
+            "type": "range",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 20
+          },
+          {
+            "id": "body_padding_horiz",
+            "type": "range",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 20
+          },
+          {
+            "id": "image_properties",
+            "type": "header",
+            "content": "Image properties"
+          },
+          {
+            "id": "image_height",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "image_height",
+            "defaultValue": 100
+          },
+          {
+            "id": "image_width",
+            "type": "range",
+            "max": 200,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "image_width",
+            "defaultValue": 100
+          },
+          {
+            "id": "image_border_radius",
+            "type": "range",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Border radius",
+            "defaultValue": 8
+          },
+
+          {
+            "id": "item_properties",
+            "type": "header",
+            "content": "Item properties"
+          },
+          {
+            "id": "item_title_font_color",
+            "type": "select",
+            "label": "Title font color",
             "options": [
               {
                 "title": "Brand",
@@ -8765,49 +8929,19 @@
             "defaultValue": "dark_font_color"
           },
           {
-            "id": "item_font_size",
+            "id": "item_title_font_size",
             "max": 100,
             "min": 1,
             "step": 1,
             "type": "range",
             "unit": "px",
-            "label": "Item font size",
+            "label": "Title font size",
             "defaultValue": 14
           },
           {
-            "id": "item_line_height",
-            "max": 100,
-            "min": 1,
-            "step": 1,
-            "type": "range",
-            "unit": "px",
-            "label": "Item line height",
-            "defaultValue": 100
-          },
-          {
-            "id": "item_text_align",
+            "id": "item_title_font_weight",
             "type": "select",
-            "label": "Item text align",
-            "options": [
-              {
-                "title": "Left",
-                "value": "left"
-              },
-              {
-                "title": "Center",
-                "value": "center"
-              },
-              {
-                "title": "Right",
-                "value": "right"
-              }
-            ],
-            "defaultValue": "left"
-          },
-          {
-            "id": "item_font_weight",
-            "type": "select",
-            "label": "Item font weight",
+            "label": "Title font weight",
             "options": [
               {
                 "title": "Normal",
@@ -8826,19 +8960,221 @@
                 "value": 700
               }
             ],
-            "defaultValue": 400
+            "defaultValue": 600
+          },
+          {
+            "id": "item_title_line_height",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Title line height",
+            "defaultValue": 20
+          },
+          {
+            "id": "item_title_text_align",
+            "type": "select",
+            "label": "Title text align",
+            "options": [
+              {
+                "title": "Left",
+                "value": "left"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              },
+              {
+                "title": "Right",
+                "value": "right"
+              }
+            ],
+            "defaultValue": "left"
+          },
+          {
+            "id": "item_price_font_color",
+            "type": "select",
+            "label": "Price font color",
+            "options": [
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              },
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              }
+            ],
+            "defaultValue": "dark_font_color"
+          },
+          {
+            "id": "item_price_font_size",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Price font size",
+            "defaultValue": 14
+          },
+          {
+            "id": "item_price_font_weight",
+            "type": "select",
+            "label": "Price font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 600
+              },
+              {
+                "title": "Extra Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 500
+          },
+          {
+            "id": "item_price_line_height",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Price line height",
+            "defaultValue": 20
+          },
+          {
+            "id": "item_price_text_align",
+            "type": "select",
+            "label": "Price text align",
+            "options": [
+              {
+                "title": "Left",
+                "value": "left"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              },
+              {
+                "title": "Right",
+                "value": "right"
+              }
+            ],
+            "defaultValue": "left"
+          },
+
+          {
+            "id": "footer_properties",
+            "type": "header",
+            "content": "Footer properties"
+          },
+          {
+            "id": "footer_background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_accent_dark"
+          },
+          {
+            "id": "footer_show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": true
+          },
+          {
+            "id": "footer_shadow",
+            "type": "select",
+            "label": "Drop shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 2",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+              }
+            ],
+            "defaultValue": "none"
+          },
+
+          {
+            "id": "buttons_properties",
+            "type": "header",
+            "content": "Button properties"
+          },
+          {
+            "id": "show_clear_button",
+            "type": "checkbox",
+            "label": "Show Clear button",
+            "defaultValue": true
+          },
+          {
+            "id": "buttons_width",
+            "type": "select",
+            "label": "Buttons width",
+            "options": [
+              {
+                "title": "Normal",
+                "value": "normal"
+              },
+              {
+                "title": "Full-width",
+                "value": "full_width"
+              }
+            ],
+            "defaultValue": "full_width"
           },
           {
             "id": "clear_button_label",
             "type": "text",
             "label": "Clear button label",
-            "defaultValue": "Clear"
+            "defaultValue": "shop.cart.clear"
           },
           {
             "id": "checkout_button_label",
             "type": "text",
             "label": "Checkout button label",
-            "defaultValue": "Checkout"
+            "defaultValue": "shop.cart.checkout"
           }
         ]
       }
@@ -17653,6 +17989,10 @@
     "snippet-checkout-product-count.css": {
       "name": "snippet-checkout-product-count.css",
       "path": "assets/css/snippet-checkout-product-count.css"
+    },
+    "snippet-burger-button.css": {
+      "name": "snippet-burger-button.css",
+      "path": "assets/css/snippet-burger-button.css"
     },
     "snippet-feedback-cards.css": {
       "name": "snippet-feedback-cards.css",

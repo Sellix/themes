@@ -37,6 +37,13 @@
       let items = this.cart.getItems();
 
       if (items.length) {
+        // close menu if it is opened
+        jQuery('.snippet-mobile-sidebar-menu').removeClass('open');
+        jQuery('.sidebar-toggler').removeClass('open');
+        const $burgerButton = jQuery('.snippet-burger-button__burger-button');
+        $burgerButton.removeClass('toggled');
+        $burgerButton.addClass('untoggled');
+
         this.$cart.find('[data-cart-dropdown]').addClass('open');
         this.isOpened = true;
       }

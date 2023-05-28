@@ -9,18 +9,21 @@
   {% set locale_prefix = "" %}
 {% endif %}
 
+{% set globalClass = 'snippet-mobile-sidebar-menu' %}
+{% set localClass = id %}
+
 <style>
-  .mobile-sidebar-menu-{{ id }} {
+  .{{ localClass }} {
     background-color: {{ colors[menuProps.menu_item_background] }};
   }
 
-  .mobile-sidebar-menu-{{ id }} .mobile-menu-item {
+  .{{ localClass }}__item {
     color: {{ colors[menuProps.menu_item_font_color] }} !important;
     font-size: {{ menuProps.menu_item_font_size }}px !important;
     font-weight: {{ menuProps.menu_item_font_weight }} !important;
   }
 
-  .mobile-sidebar-menu-{{ id }} .mobile-menu-item.active {
+  .{{ localClass }}__item.active {
     color: {{ colors[menuProps.menu_active_item_font_color] }} !important;
     border-bottom: 2px solid {{ colors[menuProps.menu_active_item_font_color] }};
     font-size: {{ menuProps.menu_active_item_font_size }}px !important;
@@ -30,12 +33,12 @@
     position: relative;
   }
 
-  .mobile-sidebar-menu-{{ id }} .mobile-menu-item:hover {
+  .{{ localClass }}__item:hover {
     background: {{ colors[menuProps.menu_item_background_hover] }} !important;
   }
 </style>
 
-<div class="mobile-sidebar-menu mobile-sidebar-menu-{{ id }}">
+<div class="mobile-sidebar-menu {{ globalClass }} {{ localClass }}">
   {% for item in menu.items %}
     {% set active = item.page_slug == slug %}
     {% if item.page_slug != "/" %}
@@ -46,7 +49,7 @@
     {% endif %}
     <a
       href="{{ locale_prefix }}{{item.page_slug}}"
-      class="mobile-menu-item {{'active' if active else ''}}"
+      class="{{ globalClass }}__item {{ localClass }}__item {{'active' if active else ''}}"
     >
       {{item.title | t}}
     </a>

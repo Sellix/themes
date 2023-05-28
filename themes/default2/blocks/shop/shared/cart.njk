@@ -1,7 +1,136 @@
 {% set id = uid() %}
 {% set shop = global.common.shopInfo.shop %}
+{% set colors = themeProperties.current_colors %}
+
+{% set headerBgColor = safe_get(properties.header_background_color, 'background_accent_light') %}
+{% set headerShowBorder = safe_get(properties.header_show_border, true) %}
+{% set headerShadow = safe_get(properties.header_shadow, 'none') %}
+
+{% set headerTitle = safe_get(properties.header_title, 'Your Cart') %}
+{% set headerTitleFontColor = safe_get(properties.header_title_font_color, 'dark_font_color') %}
+{% set headerTitleFontSize = safe_get(properties.header_title_font_size, 24) %}
+{% set headerTitleFontWeight = safe_get(properties.header_title_font_weight, 500) %}
+{% set headerTitleLineHeight = safe_get(properties.header_title_line_height, 30) %}
+{% set headerTitleTextAlign = safe_get(properties.header_title_text_align, 'left') %}
+
+{% set headerDescription = safe_get(properties.header_description, '123') %}
+{% set headerDescriptionFontColor = safe_get(properties.header_description_font_color, 'light_font_color') %}
+{% set headerDescriptionFontSize = safe_get(properties.header_description_font_size, 16) %}
+{% set headerDescriptionFontWeight = safe_get(properties.header_description_font_weight, 400) %}
+{% set headerDescriptionLineHeight = safe_get(properties.header_description_line_height, 20) %}
+{% set headerDescriptionTextAlign = safe_get(properties.header_description_text_align, 'left') %}
+
+{% set bodyBgColor = safe_get(properties.body_background_color, 'background_accent_light') %}
+{% set bodyShowBorder = safe_get(properties.body_show_border, true) %}
+{% set bodyBorderRadius = safe_get(properties.body_border_radius, 8) %}
+{% set bodyShadow = safe_get(properties.body_shadow, 'none') %}
+{% set bodyPaddingHoriz = safe_get(properties.body_padding_horiz, 20) %}
+{% set bodyPaddingVert = safe_get(properties.body_padding_vert, 20) %}
+
+{% set imageHeight = safe_get(properties.image_height, 100) %}
+{% set imageWidth = safe_get(properties.image_width, 100) %}
+{% set imageBorderRadius = safe_get(properties.image_border_radius, 8) %}
+
+{% set itemTitleFontColor = safe_get(properties.item_title_font_color, 'dark_font_color') %}
+{% set itemTitleFontSize = safe_get(properties.item_title_font_size, 24) %}
+{% set itemTitleFontWeight = safe_get(properties.item_title_font_weight, 500) %}
+{% set itemTitleLineHeight = safe_get(properties.item_title_line_height, 30) %}
+{% set itemTitleTextAlign = safe_get(properties.item_title_text_align, 'left') %}
+
+{% set itemPriceFontColor = safe_get(properties.item_price_font_color, 'dark_font_color') %}
+{% set itemPriceFontSize = safe_get(properties.item_price_font_size, 24) %}
+{% set itemPriceFontWeight = safe_get(properties.item_price_font_weight, 500) %}
+{% set itemPriceLineHeight = safe_get(properties.item_price_line_height, 30) %}
+{% set itemPriceTextAlign = safe_get(properties.item_price_text_align, 'left') %}
+
+{% set footerBgColor = safe_get(properties.footer_background_color, 'background_accent_dark') %}
+{% set footerShowBorder = safe_get(properties.footer_show_border, true) %}
+{% set footerShadow = safe_get(properties.footer_shadow, 'none') %}
+
+{% set showClearButton = safe_get(properties.show_clear_button, true) %}
+{% set buttonsWidth = safe_get(properties.buttons_width, 'full_width') %}
+
 
 {% set localClass = id %}
+
+<style>
+  .{{ localClass }}__dropdown-header {
+    background: {{ colors[headerBgColor] }};
+    border-bottom: {{ '1px solid var(--borderColor)' if headerShowBorder else 'none' }};
+    box-shadow: {{ headerShadow }};
+  }
+
+  .{{ localClass }}__dropdown-header-title {
+    text-align: {{ headerTitleTextAlign }};
+    color: {{ colors[headerTitleFontColor] }};
+    font-weight: {{ headerTitleFontWeight }};
+    font-size: {{ headerTitleFontSize }}px;
+    line-height: {{ headerTitleLineHeight }}px;
+  }
+  .{{ localClass }}__dropdown-header-description {
+    text-align: {{ headerDescriptionTextAlign }};
+    color: {{ colors[headerDescriptionFontColor] }};
+    font-weight: {{ headerDescriptionFontWeight }};
+    font-size: {{ headerDescriptionFontSize }}px;
+    line-height: {{ headerDescriptionLineHeight }}px;
+  }
+
+  .{{ localClass }}__dropdown-body {
+    background: {{ colors[bodyBgColor] }};
+  }
+
+  .{{ localClass }}__dropdown-products {
+    border: {{ '1px solid var(--borderColor)' if bodyShowBorder else 'none' }};
+    border-radius: {{ bodyBorderRadius }}px;
+    box-shadow: {{ bodyShadow }};
+  }
+  .{{ localClass }}__dropdown-item {
+    padding: {{ bodyPaddingVert }}px {{ bodyPaddingHoriz }}px;
+  }
+  .{{ localClass }}__dropdown-item:not(:last-of-type) {
+    border-bottom: {{ '1px solid var(--borderColor)' if bodyShowBorder else 'none' }};
+  }
+  .{{ localClass }}__dropdown-item-image img {
+    width: {{ imageWidth }}px;
+    height: {{ imageHeight }}px;
+    object-fit: cover;
+    border-radius: {{ imageBorderRadius }}px;
+  }
+  .{{ localClass }}__dropdown-item-title {
+    text-align: {{ itemTitleTextAlign }};
+    color: {{ colors[itemTitleFontColor] }};
+    font-weight: {{ itemTitleFontWeight }};
+    font-size: {{ itemTitleFontSize }}px;
+    line-height: {{ itemTitleLineHeight }}px;
+  }
+  .{{ localClass }}__dropdown-item-price {
+    text-align: {{ itemPriceTextAlign }};
+    color: {{ colors[itemPriceFontColor] }};
+    font-weight: {{ itemPriceFontWeight }};
+    font-size: {{ itemPriceFontSize }}px;
+    line-height: {{ itemPriceLineHeight }}px;
+  }
+
+  .{{ localClass }}__dropdown-footer {
+    background: {{ colors[footerBgColor] }};
+    border-top: {{ '1px solid var(--borderColor)' if footerShowBorder else 'none' }};
+    box-shadow: {{ footerShadow }};
+  }
+  {% if buttonsWidth == 'full_width' %}
+    .{{ localClass }}__clear-button {
+      flex: 1;
+      margin-right: 1rem;
+    }
+    .{{ localClass }}__checkout-button {
+      flex: 1;
+    }
+    @media (max-width: 640px) {
+      .{{ localClass }}__clear-button {
+        margin-right: 0;
+      }
+    }
+  {% endif %}
+</style>
 
 <div class="{{ globalClass }}__container {{ localClass }}__container">
   <div class="box">
@@ -15,16 +144,16 @@
     class="sliding-panel sliding-panel--from-right {{ globalClass }}__dropdown {{ localClass }}__dropdown"
     data-cart-dropdown="1"
   >
-    <div class="sliding-panel__container {{ globalClass }}__dropdown-container">
-      <header class="sliding-panel__header {{ globalClass }}__dropdown-header">
+    <div class="sliding-panel__container {{ globalClass }}__dropdown-container {{ localClass }}__dropdown-container">
+      <header class="sliding-panel__header {{ globalClass }}__dropdown-header {{ localClass }}__dropdown-header">
         <div class="{{ globalClass }}__dropdown-header-info">
           <h6 class="{{ globalClass }}__dropdown-header-title {{ localClass }}__dropdown-header-title">
-            {{ properties.title | t }}
+            {{ headerTitle | t }}
           </h6>
 
-          {% if properties.description %}
+          {% if headerDescription %}
             <p class="{{ globalClass }}__dropdown-header-description {{ localClass }}__dropdown-header-description">
-              {{ properties.description | t }}
+              {{ headerDescription | t }}
             </p>
           {% endif %}
         </div>
@@ -34,13 +163,29 @@
         </div>
       </header>
 
-      <div class="{{ globalClass }}__dropdown-body">
-        <div class="{{ globalClass }}__dropdown-products" data-cart-dropdown-body="1">
+      <div class="{{ globalClass }}__dropdown-body {{ localClass }}__dropdown-body">
+        <div
+          class="{{ globalClass }}__dropdown-products {{ localClass }}__dropdown-products"
+          data-cart-dropdown-body="1"
+        >
         </div>
       </div>
 
-      <div class="sliding-panel__footer {{ globalClass }}__dropdown-footer">
-        <div class="unselectable {{ globalClass }}__checkout-button" data-cart-checkout-button="1">
+      <div class="sliding-panel__footer {{ globalClass }}__dropdown-footer {{ localClass }}__dropdown-footer">
+        {% if showClearButton %}
+          <div class="unselectable {{ globalClass }}__clear-button {{ localClass }}__clear-button" data-cart-clear-button="1">
+            {% render_snippet 'Shared: Link button',
+              properties={
+              'label': properties.clear_button_label | t,
+              'url': 'javascript:void(0);',
+              'icon_snippet': 'Icons: Close',
+              'background_color': 'button_text_color',
+              'label_color': 'button_color'
+            }
+            %}
+          </div>
+        {% endif %}
+        <div class="unselectable {{ globalClass }}__checkout-button {{ localClass }}__checkout-button" data-cart-checkout-button="1">
           {% render_snippet 'Shared: Link button',
             properties={
             'label': properties.checkout_button_label | t,
@@ -55,8 +200,11 @@
 </div>
 
 <script id="cart-item-template-{{id}}" type="text/x-jsrender">
-  <div id="{% raw %}cart-product-{{:product.uniqid}}{% endraw %}" class="{{ globalClass }}__dropdown-item">
-    <div class="{{ globalClass }}__dropdown-item-image {% raw %}{{if !hasImage }}image-placeholder{{/if}}{% endraw %}">
+  <div
+    id="{% raw %}cart-product-{{:product.uniqid}}{% endraw %}"
+    class="{{ globalClass }}__dropdown-item {{ localClass }}__dropdown-item"
+  >
+    <div class="{{ globalClass }}__dropdown-item-image {{ localClass}}__dropdown-item-image {% raw %}{{if !hasImage }}image-placeholder{{/if}}{% endraw %}">
       {% raw %}
         {{if hasImage }}
           <img src="{{:product.cdn_image_url}}" alt="{{:product.title}}" />
@@ -71,13 +219,13 @@
     </div>
 
     <div class="{{ globalClass }}__dropdown-item-info">
-      <div class="{{ globalClass }}__dropdown-item-title">
+      <div class="{{ globalClass }}__dropdown-item-title {{ localClass }}__dropdown-item-title">
         {% raw %}
           {{:product.title}}
         {% endraw %}
       </div>
 
-      <div class="{{ globalClass }}__dropdown-item-price">
+      <div class="{{ globalClass }}__dropdown-item-price {{ localClass }}__dropdown-item-price">
         {% raw %}
           {{if isFree}}
         {% endraw %}

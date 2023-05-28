@@ -1,134 +1,33 @@
+{% set id = uid() %}
 {% set colors = themeProperties.current_colors %}
 {% set localClass = args.localClass %}
 {% set properties = args.properties %}
 
 {% set color = safe_get(properties.color, 'light_font_color') %}
 
-<style>
-  .{{ localClass}}__burger-button {
-    cursor: pointer;
-  }
-  .{{ localClass}}__burger-button > div {
-    width: 16px;
-    height: 2px;
-    border-radius: 1em;
-    background: {{ colors[color] }};
-  }
-  .{{ localClass}}__burger-button > div::before, .{{ localClass}}__burger-button > div::after {
-    transition: font-size 0s;
-    content: "";
-    display: block;
-    position: absolute;
-    width: 16px;
-    height: 2px;
-    background: {{ colors[color] }};
-    border-radius: 1em;
-  }
-  .{{ localClass}}__burger-button > div::before {
-    margin-top: -6px;
-  }
-  .{{ localClass}}__burger-button > div::after {
-    margin-top: 6px;
-  }
+{% set globalClass = 'snippet-burger-button' %}
 
-  .{{ localClass}}__burger-button > div {
-    transition: background 0.4s, font-size 0s;
-  }
-  .{{ localClass}}__burger-button > div::before, .{{ localClass}}__burger-button2 > div::after {
-    transition: font-size 0s;
-    transform-origin: center center;
-  }
-  .{{ localClass}}__burger-button.toggled > div::before {
-    animation: burg2top 0.4s linear forwards;
-  }
-  .{{ localClass}}__burger-button.toggled > div {
-    background: transparent;
-  }
-  .{{ localClass}}__burger-button.toggled > div::after {
-    animation: burg2bottom 0.4s linear forwards;
-  }
-  .{{ localClass}}__burger-button.unToggled > div::before {
-    animation: burg2topReset 0.4s linear forwards;
-  }
-  .{{ localClass}}__burger-button.unToggled > div {
+<style>
+  .{{ localClass }}__burger-button > div {
     background: {{ colors[color] }};
   }
-  .{{ localClass}}__burger-button.unToggled > div::after {
-    animation: burg2bottomReset 0.4s linear forwards;
+  .snippet-burger-button__burger-button > div::before, .snippet-burger-button__burger-button > div::after {
+    background: {{ colors[color] }};
   }
-  @keyframes burg2top {
-    20% {
-      margin-top: 0;
-      transform: rotate(0deg);
-    }
-    60% {
-      margin-top: 0;
-      transform: rotate(55deg);
-    }
-    100% {
-      margin-top: 0;
-      transform: rotate(45deg);
-    }
-  }
-  @keyframes burg2bottom {
-    20% {
-      margin-top: 0;
-      transform: rotate(0deg);
-    }
-    60% {
-      margin-top: 0;
-      transform: rotate(-55deg);
-    }
-    100% {
-      margin-top: 0;
-      transform: rotate(-45deg);
-    }
-  }
-  @keyframes burg2topReset {
-    0% {
-      margin-top: 0;
-      transform: rotate(45deg);
-    }
-    20% {
-      transform: rotate(0deg);
-    }
-    60% {
-      margin-top: 8px;
-      transform: rotate(0deg);
-    }
-    100% {
-      margin-top: 6px;
-      transform: rotate(0deg);
-    }
-  }
-  @keyframes burg2bottomReset {
-    0% {
-      margin-top: 0;
-      transform: rotate(-45deg);
-    }
-    20% {
-      transform: rotate(0deg);
-    }
-    60% {
-      margin-top: -8px;
-      transform: rotate(0deg);
-    }
-    100% {
-      margin-top: -6px;
-      transform: rotate(0deg);
-    }
+  .snippet-burger-button__burger-button.untoggled > div {
+    background: {{ colors[color] }};
   }
 </style>
 
-<div class="{{ localClass }}__burger-button unToggled">
+<div class="{{ globalClass }}__burger-button {{ localClass }}__burger-button untoggled">
   <div></div>
 </div>
 
 <script type="application/javascript">
   $(document).ready(function() {
-    $('.{{ localClass }}__burger-button').click(function() {
+    $('.{{ globalClass }}__burger-button').click(function() {
       $(this).toggleClass("toggled");
-      $(this).toggleClass("unToggled");
+      $(this).toggleClass("untoggled");
     })
   });
 </script>
