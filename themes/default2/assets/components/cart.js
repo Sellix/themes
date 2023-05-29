@@ -37,6 +37,8 @@
       let items = this.cart.getItems();
 
       if (items.length) {
+        $('html').addClass('no-scroll');
+
         // close menu if it is opened
         jQuery('.snippet-mobile-sidebar-menu').removeClass('open');
         jQuery('.sidebar-toggler').removeClass('open');
@@ -51,6 +53,7 @@
 
     close(event) {
       if (this.isOpened) {
+        $('html').removeClass('no-scroll');
         this.$cart.find('[data-cart-dropdown]').removeClass('open');
         this.isOpened = false;
       }
