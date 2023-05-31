@@ -1,0 +1,33 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set invoiceInfo = global.common.invoiceInfo %}
+{% set colors = themeProperties.current_colors %}
+{% set properties = args.properties %}
+
+{% set globalClass = ['snippet-invoice-checkout'] %}
+{% set localClass = id %}
+
+{% render_snippet 'App paypal' %}
+
+<div class="{{ globalClass }} {{ localClass }}">
+  <div class="{{ globalClass }}__container {{ localClass }}__container"></div>
+</div>
+
+<script type='application/javascript'>
+  $(document).ready(async function () {
+    const shopInfo = SellixContext.getShopInfo();
+    const theme = SellixContext.getTheme();
+    const component = new SellixInvoiceCheckoutComponent({
+      selector: '.{{ localClass }}__container',
+      config: SellixContext.getConfig(),
+      theme: theme,
+      shop: shopInfo.shop,
+      invoiceId: '{{ invoiceInfo.invoice.uniqid }}',
+      invoice: SellixContext.getInvoiceInfo().invoice,
+      options: {}
+    });
+    setTimeout(function() {
+      component.render();
+    }, 0);
+  });
+</script>

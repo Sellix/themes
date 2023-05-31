@@ -1,5 +1,8 @@
 {% if global.request.type in ['product', 'checkout'] %}
   {% set id = uid() %}
+
+  {% set localClass = id %}
+
   {% if global.request.type == 'product' %}
     {% set product = global.common.productInfo.product %}
     {% set productIds = [product.uniqid] if product.type != 'INFO_CARD' else [] %}
@@ -23,11 +26,11 @@
         properties=properties
       %}
     {% else %}
-      <div id="sellix-purchase-details-{{ id }}" style="display: none; margin-bottom: 1rem"></div>
+      <div class="{{ globalClass }}__container {{ localClass }}__container" style="display: none; margin-bottom: 1rem"></div>
 
       <script type='application/javascript'>
         $(document).ready(function () {
-          const $container = $('#sellix-purchase-details-{{ id }}');
+          const $container = $('.{{ localClass }}__container');
           const renderOptions = {{ renderOptions | dump | safe }};
           sellixApi
             .renderComponent(

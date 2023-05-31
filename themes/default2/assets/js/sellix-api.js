@@ -150,6 +150,14 @@
       });
     }
 
+    async getInvoiceInfo(id, secret) {
+      return jQuery.ajax({
+        method: 'GET',
+        url: `${this.apiUrl}/api/shop/invoices/info/${id}/${secret}`,
+        contentType: 'application/json; charset=utf-8',
+      });
+    }
+
     async customerAuthEmail(data, options) {
       const onSuccess = (captcha) => {
         return jQuery.ajax({
@@ -255,6 +263,13 @@
       return jQuery.ajax({
         method: 'GET',
         url: `${this.apiUrl}/api/shop/ticket/${id}`,
+      });
+    }
+
+    async getFeedback(id) {
+      return jQuery.ajax({
+        method: 'GET',
+        url: `${this.apiUrl}/api/shop/feedback/${id}`,
       });
     }
 

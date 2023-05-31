@@ -230,7 +230,48 @@
     "template_type": "INVOICE",
     "settings": {
       "title": "{{ 'pages.shop.invoice.title' | t({invoiceId: global.common.invoiceInfo.invoice.uniqid}) | safe }}",
-      "meta_tags": []
+      "meta_tags": [
+        {
+          "name": "og:title",
+          "content": "{{ 'pages.shop.invoice.metaTags.title' | t({invoiceId: global.common.invoiceInfo.invoice.uniqid}) | safe }}"
+        },
+        {
+          "name": "twitter:title",
+          "content": "{{ 'pages.shop.invoice.metaTags.title' | t({invoiceId: global.common.invoiceInfo.invoice.uniqid}) | safe }}"
+        },
+        {
+          "name": "description",
+          "content": "{{ 'pages.shop.invoice.metaTags.description' | t | safe }}"
+        },
+        {
+          "name": "og:description",
+          "content": "{{ 'pages.shop.invoice.metaTags.description' | t | safe }}"
+        },
+        {
+          "name": "twitter:description",
+          "content": "{{ 'pages.shop.invoice.metaTags.description' | t | safe }}"
+        },
+        {
+          "name": "twitter:site",
+          "content": "https://sellix.io/invoice/{{global.common.invoiceInfo.invoice.uniqid}}"
+        },
+        {
+          "name": "og:image",
+          "content": "https://cdn.sellix.io/static/previews/landing/new/payments.png"
+        },
+        {
+          "name": "twitter:image",
+          "content": "https://cdn.sellix.io/static/previews/landing/new/payments.png"
+        },
+        {
+          "name": "twitter:card",
+          "content": "summary_large_image"
+        },
+        {
+          "name": "robots",
+          "content": "noindex"
+        }
+      ]
     }
   },
   "customer_auth": {

@@ -2769,6 +2769,38 @@
         }
       }
     },
+    "Invoice/Invoice": {
+      "name": "Invoice/Invoice",
+      "path": "templates/shop/invoice.njk",
+      "template_type": "INVOICE",
+      "is_default": 1,
+      "settings": {
+        "section_order": [
+          "Container: Simple"
+        ],
+        "sections": {
+          "Container: Simple": {
+            "name": "Container: Simple",
+            "settings": {
+              "visible": true,
+              "block_order": ["Invoice: Checkout"],
+              "blocks": {
+                "Invoice: Checkout" : {
+                  "name": "Invoice: Checkout",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                    }
+                  }
+                }
+              },
+              "properties": {
+              }
+            }
+          }
+        }
+      }
+    },
     "Main/Main Page": {
       "name": "Main/Main Page",
       "path": "templates/shop/main.njk",
@@ -12641,6 +12673,14 @@
         ]
       }
     },
+    "Invoice: Checkout": {
+      "name": "Invoice: Checkout",
+      "path": "blocks/shop/invoice/invoiceCheckout.njk",
+      "settings": {
+        "class": "block-invoice-checkout",
+        "schema": []
+      }
+    },
     "Menu": {
       "name": "Menu",
       "path": "blocks/shop/shared/menu.njk",
@@ -17575,6 +17615,10 @@
       "name": "Icons: Zoom glass",
       "path": "snippets/shared/icons/zoomGlass.njk"
     },
+    "Invoice: Checkout" : {
+      "name": "Invoice: Checkout",
+      "path": "snippets/shop/invoice/invoiceCheckout.njk"
+    },
     "Language selector": {
       "name": "Language selector",
       "path": "snippets/shared/languageSelector.njk"
@@ -17802,14 +17846,6 @@
       "name": "icon-phone.png",
       "path": "assets/media/icons/icon-phone.png"
     },
-    "invoice.js": {
-      "name": "invoice.js",
-      "path": "assets/packages/widgets/invoice/invoice.js"
-    },
-    "invoice.css": {
-      "name": "invoice.css",
-      "path": "assets/packages/widgets/invoice/invoice.css"
-    },
     "jquery.js": {
       "name": "jquery.js",
       "path": "assets/packages/jquery/jquery.3.6.4.js"
@@ -17838,21 +17874,9 @@
       "name": "pace.min.js",
       "path": "assets/packages/pace/pace.min.js"
     },
-    "purchase.js": {
-      "name": "purchase.js",
-      "path": "assets/packages/widgets/purchase/purchase.js"
-    },
-    "purchase.css": {
-      "name": "purchase.css",
-      "path": "assets/packages/widgets/purchase/purchase.css"
-    },
     "react-player.standalone.js": {
       "name": "react-player.standalone.js",
       "path": "assets/packages/react-player/ReactPlayer.2.11.0.standalone.js"
-    },
-    "react-simple-star-rating.js": {
-      "name": "react-simple-star-rating.js",
-      "path": "assets/packages/widgets/react-simple-star-rating/react-simple-star-rating.js"
     },
     "ripple.js": {
       "name": "ripple.js",
@@ -17937,6 +17961,10 @@
     "sellix-feedback-pagination-component.js": {
       "name": "sellix-feedback-pagination-component.js",
       "path": "assets/components/feedback-pagination.js"
+    },
+    "sellix-invoice-checkout-component.js": {
+      "name": "sellix-invoice-checkout-component.js",
+      "path": "assets/components/invoice-checkout.js"
     },
     "sellix-product-addons-component.js": {
       "name": "sellix-product-addons-component.js",
@@ -18069,6 +18097,26 @@
     "ui-elements.css": {
       "name": "ui-elements.css",
       "path": "assets/css/ui-elements.css"
+    },
+    "widget-invoice-checkout.js": {
+      "name": "widget-invoice-checkout.js",
+      "path": "assets/packages/widgets/invoice-checkout/invoice-checkout.js"
+    },
+    "widget-invoice-checkout.css": {
+      "name": "widget-invoice-checkout.css",
+      "path": "assets/packages/widgets/invoice-checkout/invoice-checkout.css"
+    },
+    "widget-purchase-details.js": {
+      "name": "widget-purchase-details.js",
+      "path": "assets/packages/widgets/purchase/purchase.js"
+    },
+    "widget-purchase-details.css": {
+      "name": "widget-purchase-details.css",
+      "path": "assets/packages/widgets/purchase/purchase.css"
+    },
+    "widget-react-simple-star-rating.js": {
+      "name": "widget-react-simple-star-rating.js",
+      "path": "assets/packages/widgets/react-simple-star-rating/react-simple-star-rating.js"
     }
   },
 

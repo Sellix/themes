@@ -16,6 +16,7 @@
         const script = document.createElement('script');
         script.src = `https://www.paypal.com/sdk/js?client-id=${client}&merchant-id=${merchantId}&components=buttons,funding-eligibility&currency=${currency}&commit=true&vault=${vault}`;
         script.async = true;
+        script.id = 'paypal-sdk';
         document.body.appendChild(script);
       }
     });

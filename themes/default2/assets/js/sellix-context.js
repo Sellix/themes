@@ -10,6 +10,10 @@
       context[name] = value;
     }
 
+    static getConfig() {
+      return this.get('config', {});
+    }
+
     static getShopInfo() {
       return this.get('common', {}).shopInfo || {};
     }
@@ -56,6 +60,14 @@
 
     static getCurrencyList() {
       return this.get('config', {}).CURRENCY_LIST || {};
+    }
+
+    static getTheme() {
+      return this.get('theme', {});
+    }
+
+    static getInvoiceInfo() {
+      return this.get('common', {}).invoiceInfo || {};
     }
   }
 
