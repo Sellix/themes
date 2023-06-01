@@ -1,4 +1,4 @@
-(function (document, window, jQuery, React, ReactDOM) {
+(function (document, window, jQuery, React, ReactDOM, SellixStoreFactory, sellixApi, sellixHelper) {
   class InvoiceCheckoutComponent {
     constructor({ selector, config, theme, shop, invoiceId, invoice, options }) {
       this.domContainer = document.querySelector(selector);
@@ -16,6 +16,12 @@
 
     onUpdateInvoice = (data) => {
       return sellixApi.updateInvoice(data);
+    };
+
+    onGetInvoiceSecret = (shopName, id) => {
+      const shopStore = SellixStoreFactory.getStore(shopName);
+      const invoices = shopStore.get('invoices') || {};
+      return (invoices[id] || {}).secret;
     };
 
     onGetInvoiceInfo = (id, secret) => {
@@ -42,6 +48,10 @@
       return sellixApi.leaveFeedback(data);
     };
 
+    onSaveInvoiceToFile = (shopName, id, productType) => {
+      sellixHelper.saveInvoiceToFile(shopName, id, productType);
+    };
+
     onShowMessage = ({ type, text }) => {
       jQuery(document).trigger('SellixToastify', { type, text });
     };
@@ -57,12 +67,14 @@
           options: this.options,
           onGetInvoice: this.onGetInvoice,
           onUpdateInvoice: this.onUpdateInvoice,
+          onGetInvoiceSecret: this.onGetInvoiceSecret,
           onGetInvoiceInfo: this.onGetInvoiceInfo,
           onGetFeedback: this.onGetFeedback,
           onCreateFeedback: this.onCreateFeedback,
           onPostCashAppIdentifier: this.onPostCashAppIdentifier,
           onGetStripeLink: this.onGetStripeLink,
           onGetProductStripeLink: this.onGetProductStripeLink,
+          onSaveInvoiceToFile: this.onSaveInvoiceToFile,
           onShowMessage: this.onShowMessage,
         }),
         this.domContainer,
@@ -71,4 +83,4 @@
   }
 
   window.SellixInvoiceCheckoutComponent = InvoiceCheckoutComponent;
-})(document, window, jQuery, React, ReactDOM);
+})(document, window, jQuery, React, ReactDOM, SellixStoreFactory, sellixApi, sellixHelper);
