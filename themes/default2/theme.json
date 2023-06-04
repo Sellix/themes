@@ -2141,6 +2141,15 @@
   },
 
   "layouts": {
+    "Invoice": {
+      "name": "Invoice",
+      "path": "layouts/invoice.njk",
+      "is_default": 0,
+      "settings": {
+        "section_order": [],
+        "sections": {}
+      }
+    },
     "Main": {
       "name": "Main",
       "path": "layouts/main.njk",
@@ -2773,8 +2782,10 @@
       "name": "Invoice/Invoice",
       "path": "templates/shop/invoice.njk",
       "template_type": "INVOICE",
+      "layout_name": "Invoice",
       "is_default": 1,
       "settings": {
+        "class": "template-invoice",
         "section_order": [
           "Container: Simple"
         ],
@@ -2795,6 +2806,10 @@
                 }
               },
               "properties": {
+                "fullwidth": true,
+                "margin_bottom_desktop": 0,
+                "margin_bottom_tablet": 0,
+                "margin_bottom_mobile": 0
               }
             }
           }
@@ -3918,7 +3933,6 @@
                       "grid_show_info": false,
                       "grid_show_product": true,
                       "grid_show_subscription": true,
-                      "grid_background_color": "transparent",
                       "grid_show_border": false
                     }
                   }
@@ -18089,6 +18103,10 @@
     "swiper.css": {
       "name": "swiper.css",
       "path": "assets/css/swiper.css"
+    },
+    "template-invoice.css": {
+      "name": "template-invoice.css",
+      "path": "assets/css/template-invoice.css"
     },
     "toastify.css": {
       "name": "toastify.css",
