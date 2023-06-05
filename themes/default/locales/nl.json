@@ -886,78 +886,356 @@
     }
   },
   "customer": {
-    "affiliateLinks": {
-      "columns": {
-        "price": "Prijs",
-        "link": "Link",
-        "product": "Product",
-        "commission": "Commissie"
-      },
-      "isEmpty": {
-        "title": "Affiliate links",
-        "message": "Merchant heeft nog geen affiliate links op producten ingeschakeld."
-      },
-      "row": {
-        "copyLink": "Link kopiëren",
-        "subscription": "Abonnement",
-        "startingAt": "Vanaf:",
-        "chooseYourPrice": "Kies uw prijs"
-      }
-    },
-    "dashboard": {
-      "sales": {
+
+    "commissions": {
+      "pageTitle": "Dashboard",
+      "table": {
+        "title": "Recent Commissions",
         "columns": {
-          "count": "Graaf",
+          "invoices": "Facturen",
+          "product": "Product",
+          "quantity": "Hoeveelheid",
           "price": "Prijs",
-          "date": "Datum",
-          "commission": "Commissie",
-          "revenue": "Inkomsten",
-          "invoice": "Factuur",
-          "product": "Product"
-        },
-        "isEmpty": {
-          "title": "Recente opdrachten",
-          "message": "Je hebt nog geen affiliate commissie"
+          "percentage": "Percentage",
+          "created": "Aangemaakt",
+          "commission": "Commissie"
         }
       },
       "analytics": {
         "titles": {
-          "totalReferrals": "Totaal verwijzingen",
-          "totalCommission": "Totaal Commissie",
-          "currentBalance": "Huidige balans",
-          "revenuePercentage": "Inkomsten Percentage",
-          "referralLink": "Referentie koppeling"
+          "totalReferrals": "Totaalverwijzingen",
+          "totalCommission": "Totale Commissie",
+          "currentBalance": "Huidige Balans",
+          "revenuePercentage": "Omzetpercentage",
+          "referralLink": "Verwijzingslink"
         }
+      },
+      "empty": {
+        "title": "Recente Commissies",
+        "message": "Je hebt nog geen affiliatecommissie"
       }
     },
-    "menu": {
-      "affiliateLinks": "Affiliate links",
-      "dashboard": "Dashboard",
-      "payouts": "Uitbetalingen"
+
+    "affiliates": {
+      "pageTitle": "Affiliateproducten",
+      "table": {
+        "columns": {
+          "product": "Product",
+          "commission": "Commissie",
+          "youWillReceive": "Je ontvangt",
+          "link": "Link"
+        }
+      },
+      "empty": {
+        "title": "Affiliatelinks",
+        "message": "De verkoper heeft nog geen affiliatelinks ingeschakeld voor producten."
+      },
+      "row": {
+        "getLink": "Krijg Link",
+        "subscription": "Abonnement",
+        "startingAt": "Beginnend bij:",
+        "chooseYourPrice": "Kies je prijs"
+      }
     },
+
     "payouts": {
-      "message": "Neem contact op met de handelaar voor een handmatige uitbetaling van het commissiesaldo.",
-      "title": "Handmatige uitbetalingen"
+      "pageTitle": "Handmatige Uitbetalingen",
+      "title": "Handmatige Uitbetalingen",
+      "message": "Neem contact op met de verkoper voor een handmatige uitbetaling van het commissiesaldo.",
+      "button": "Neem contact op met de verkoper"
     },
-    "auth": {
-      "customerAuth": {
-        "pageTitle": "Customer Auth | Sellix",
-        "email": {
-          "valid": {
-            "title": "Voer de 2FA code in",
-            "message": "Twee-factor authenticatie (2FA) is ingeschakeld voor uw account. Voer een code in om in te loggen."
-          },
-          "title": "Email",
-          "invalid": {
-            "message": "Krijg toegang tot het dashboard van het klantenportaal om uw aangesloten saldi te beheren en meer.",
-            "title": "Klantenportaal"
-          },
-          "placeholder": "example@email.com",
-          "isRequired": "E-mail is vereist"
+
+    "table": {
+      "nothingToShow": "We hebben niets om weer te geven",
+      "shiftForMultiSort": "Druk op \"Shift\" voor meervoudig sorteren",
+      "page": "Pagina",
+      "rows": "Rijen",
+      "of": "van",
+      "nothing": {
+        "title": "Geen resultaten gevonden",
+        "message": "Maak je filters leeg en probeer opnieuw",
+        "button": "Filters wissen"
+      }
+    },
+
+    "menu": {
+      "commissions": "Commissies",
+      "affiliates": "Affiliatelinks",
+      "payouts": "Uitbetalingen",
+      "subscriptions": "Mijn Abonnementen",
+      "invoices": "Mijn Facturen",
+      "licenses": "Mijn Licenties",
+      "profile": "Mijn Profiel",
+      "signOut": "Uitloggen"
+    },
+
+    "subscriptions": {
+      "pageTitle": "Mijn Abonnementen",
+      "filters": {
+        "statuses": {
+          "all": "Alle Statussen",
+          "trialing": "Proefperiode",
+          "active": "Actief",
+          "canceled": "Geannuleerd"
+        }
+      },
+      "table": {
+        "columns": {
+          "name": "Productnaam",
+          "gateway": "Betaalmethode",
+          "status": "Status",
+          "end": "Einddatum"
         },
-        "login": "Inloggen",
-        "continue": "Ga verder"
+        "row": {
+          "notSelected": "Niet Geselecteerd"
+        }
+      },
+      "empty": {
+        "title": "Abonnementen",
+        "message": "Je hebt nog geen abonnementen om weer te geven"
+      },
+      "details": {
+        "breadcrumbs": "Mijn Abonnementen",
+        "cancelButton": "Abonnement Annuleren",
+        "cancelModal": {
+          "title": "Je gaat deze terugkerende factuur (abonnement) annuleren.",
+          "message": "Je gaat deze terugkerende factuur (abonnement) annuleren. Zodra het geannuleerd is, ontvang je een e-mail en wordt er niet meer gefactureerd.",
+          "closeButton": "Sluiten",
+          "confirmButton": "Bevestig Annulering"
+        },
+        "header": {
+          "idCopied": "Factuur-ID gekopieerd",
+          "paidInvoices": "Betaalde Facturen"
+        },
+        "overview": {
+          "title": "Overzicht",
+          "product": "Product",
+          "paid": "Betaalde keren",
+          "renewal": "Verlengingsfactuur aangemaakt",
+          "created": "Aangemaakt op",
+          "currentPeriodEnd": "Einddatum huidige periode",
+          "cancelled": "Geannuleerd op",
+          "id": "Klant-ID",
+          "phone": "Klanttelefoon"
+        },
+        "customFields": {
+          "title": "Verstrekte Aangepaste Velden",
+          "field": "Veld",
+          "value": "Waarde"
+        },
+        "invoicesTable": "Facturen"
+      }
+    },
+
+    "invoices": {
+      "pageTitle": "Mijn Facturen",
+      "filters": {
+        "statuses": {
+          "all": "Alle Statussen",
+          "PENDING": "In afwachting",
+          "PARTIAL": "Gedeeltelijk",
+          "COMPLETED": "Voltooid",
+          "VOIDED": "Geannuleerd",
+          "CANCELED": "Geannuleerd",
+          "CANCELLED": "Geannuleerd",
+          "WAITING_FOR_CONFIRMATIONS": "Bevestiging",
+          "WAITING_SHOP_ACTION": "Wachten op winkelactie",
+          "REVERSED": "Teruggedraaid",
+          "REFUNDED": "Terugbetaald",
+          "CUSTOMER_DISPUTE_ONGOING": "Lopend geschil klant"
+        },
+        "gateways": {
+          "all": "Alle Betaalmethoden"
+        }
+      },
+      "table": {
+        "columns": {
+          "info": "Informatie",
+          "gateway": "Betaalmethode",
+          "value": "Bedrag",
+          "status": "Status",
+          "update": "Laatste update"
+        },
+        "row": {
+          "soldOut": "Product Uitverkocht",
+          "cartSoldOut": "Producten in Winkelwagen Uitverkocht",
+          "free": "Gratis",
+          "shoppingCart": "Aankoop winkelwagen",
+          "noProduct": "Geen product verstrekt",
+          "partialOut": "Winkelwagen gedeeltelijk uitverkocht"
+        }
+      },
+      "empty": {
+        "title": "Facturen",
+        "message": "Je hebt nog geen facturen om weer te geven"
+      },
+
+      "details": {
+        "breadcrumbs": "Mijn Facturen",
+        "header": {
+          "idCopied": "Factuur-ID gekopieerd",
+          "badges": {
+            "of": "van",
+            "soldOut": "Product Uitverkocht",
+            "cartSoldOut": "Producten in Winkelwagen Uitverkocht",
+            "partialOut": "Winkelwagen gedeeltelijk uitverkocht"
+          }
+        },
+        "products": {
+          "title": "Titel",
+          "price": "Prijs",
+          "quantity": "Aantal",
+          "percent": "Affiliate Percentage",
+          "status": "Status",
+          "priceByCustomer": "Prijs ingesteld door klant",
+          "idCopied": "Product-ID gekopieerd",
+          "subscription": "Abonnement"
+        },
+        "overview": {
+          "title": "Overzicht",
+          "value": "Bedrag",
+          "free": "Gratis",
+          "created": "Aangemaakt op",
+          "gateway": "Betaalmethode",
+          "blockchain": "Blockchain",
+          "cashappNote": "Opmerking",
+          "cashappCashtag": "Cashtag",
+          "paypalPayerEmail": "PayPal Betaler E-mail",
+          "shippedToPaypalPayerEmail": "Verzonden naar PayPal Betaler E-mail",
+          "coupon": "Coupon",
+          "noCoupon": "Geen Coupon",
+          "fraudScore": "Fraudscores",
+          "IP": "IP-adres",
+          "country": "Land",
+          "device": "Apparaat",
+          "proxy": "Proxy",
+          "VPN": "VPN",
+          "TOR": "TOR",
+          "ISP": "Internetprovider"
+        },
+        "addons": {
+          "mainTitle": "Add-ons",
+          "title": "Titel",
+          "product": "Product",
+          "price": "Prijs"
+        },
+        "customFields": {
+          "title": "Verstrekte Aangepaste Velden",
+          "field": "Veld",
+          "value": "Waarde"
+        },
+        "payouts": {
+          "title": "Betalingsinformatie",
+          "address": "Adres",
+          "needed": "Nodig",
+          "received": "Ontvangen",
+          "amount": "Bedrag",
+          "transactions": "Transacties",
+          "payout": "Uitbetaling",
+          "scheduled": "Gepland",
+          "here": "hier",
+          "scheduledText1": "Uw ontvangen transactie is nu gepland voor uitbetaling, u kunt meer lezen over limieten ",
+          "scheduledText2": "Om uw uitbetaling te bekijken, gebruik het \"Uitbetaling\" menu in de linker zijbalk.",
+          "sent": "Verzonden",
+          "transaction": "Transactie",
+          "cut": "Uw Aandeel",
+          "transactionFee": "Transactiekosten",
+          "serviceFee": "Servicekosten"
+        },
+        "tax": {
+          "title": "Belastinginformatie",
+          "total": "Totaal",
+          "preVAT": "Totaal vóór BTW",
+          "type": "Type",
+          "percentage": "Percentage",
+          "country": "Land"
+        },
+        "goods": {
+          "title": "Geleverde Goederen",
+          "fileName": "Bestandsnaam",
+          "noProduct": "Er is geen product geleverd"
+        },
+        "affiliates": {
+          "title": "Affiliate-informatie",
+          "amount": "Bedrag",
+          "ID": "Klant-ID",
+          "created": "Aangemaakt op"
+        },
+        "invoicesTable": "Facturen"
+
+      }
+    },
+
+    "licenses": {
+      "pageTitle": "Mijn Licenties",
+      "filters": {
+        "statuses": {
+          "all": "Alle Statussen",
+          "active": "Actief",
+          "expired": "Verlopen"
+        }
+      },
+      "table": {
+        "columns": {
+          "info": "Informatie",
+          "id": "Licentie-ID",
+          "purchased": "Gekocht",
+          "expired": "Verlopen op",
+          "status": "Status"
+        },
+        "row": {
+          "soldOut": "Product Uitverkocht",
+          "cartSoldOut": "Producten in Winkelwagen Uitverkocht",
+          "free": "Gratis"
+        }
+      },
+      "empty": {
+        "title": "Licenties",
+        "message": "Je hebt nog geen licenties om weer te geven"
+      }
+    },
+
+    "profile": {
+      "mainTitle": "Profiel",
+      "title": "Overzicht",
+      "created": "Aangemaakt",
+      "email": "E-mail",
+      "address": "Adres",
+      "phone": "Telefoon",
+      "id": "ID",
+      "name": "Naam"
+    },
+
+    "shared": {
+      "search": "Zoeken"
+    },
+
+    "auth": {
+      "pageTitle": "Klant Authenticatie | Sellix",
+      "email": {
+        "valid": {
+          "title": "Voer de 2FA-code in",
+          "message": "Tweestapsverificatie (2FA) is ingeschakeld voor je account. Voer een code in om in te loggen."
+        },
+        "title": "E-mail",
+        "invalid": {
+          "message": "Ga naar het klantenportaal-dashboard om je affiliate-saldi en meer te beheren.",
+          "title": "Klantenportaal"
+        },
+        "placeholder": "voorbeeld@email.com",
+        "isRequired": "E-mail is vereist"
+      },
+      "login": "Inloggen",
+      "continue": "Doorgaan",
+      "code": {
+        "title": "Verificatiecode",
+        "message": "We hebben een unieke code naar je e-mailadres gestuurd, voer deze hieronder in.",
+        "firstName": "Voornaam",
+        "lastName": "Achternaam",
+        "firstNamePlaceholder": "Buba",
+        "lastNamePlaceholder": "Pavlenko"
       }
     }
+
   }
 }
