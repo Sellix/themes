@@ -65,6 +65,7 @@
           invoiceId: this.invoiceId,
           invoice: this.invoice,
           options: this.options,
+          sellixI18Next: window.sellixI18Next,
           onGetInvoice: this.onGetInvoice,
           onUpdateInvoice: this.onUpdateInvoice,
           onGetInvoiceSecret: this.onGetInvoiceSecret,
