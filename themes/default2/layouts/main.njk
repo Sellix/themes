@@ -80,6 +80,7 @@
 
   {# Sections #}
   <link rel="stylesheet" href="{{ 'section-faq.css' | asset_url }}"/>
+  <link rel="stylesheet" href="{{ 'section-footer.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'section-header.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'section-product-list.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'section-title.css' | asset_url }}"/>
@@ -110,6 +111,7 @@
   <link rel="stylesheet" href="{{ 'snippet-product-variants.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-product-warranty.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-purchase-details.css' | asset_url }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-social-links-floating.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-tag.css' | asset_url }}"/>
 
   {% set theme = global.common.shopInfo.theme %}
@@ -154,7 +156,9 @@
   </script>
 
   {% render_snippet 'Page loader' %}
-  {# {% render_snippet 'Social Links' %} #}
+  {% if themeProperties.common.show_floating_social_links %}
+    {% render_snippet 'Social Links: Floating' %}
+  {% endif %}
   {% render_snippet 'Toastify' %}
   {% render_snippet 'Heart beat' %}
   {% render_snippet 'App crisp chat' %}

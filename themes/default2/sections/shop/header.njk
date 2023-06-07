@@ -5,10 +5,7 @@
 {% set colors = themeProperties.current_colors %}
 
 {% set fullWidth = safe_get(properties.fullwidth, false) %}
-{% set backgroundColor = properties.background_color
-  if properties.background_color is defined
-  else 'background_main_color'
-%}
+{% set bgColor = safe_get(properties.background_color, 'background_main_color') %}
 
 {% set fullWidth = safe_get(properties.fullwidth, false) %}
 {% set shadow = safe_get(properties.shadow, 'none') %}
@@ -27,7 +24,7 @@
     box-shadow: {{ shadow }};
   }
   .{{ localClass }} {
-    background-color: {{ colors[backgroundColor] }};
+    background-color: {{ colors[bgColor] }};
   }
   .{{ localClass }} .sellix-header__shop-name > a > span {
     color: {{ colors[shopNameFontColor] }};

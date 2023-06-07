@@ -9,6 +9,7 @@
 
   "settings": {
     "schema_order": [
+      "common",
       "color_schema",
       "light_colors",
       "dark_colors",
@@ -615,6 +616,19 @@
           "type": "checkbox",
           "label": "Enable Dark mode",
           "defaultValue": false
+        }
+      ],
+      "common": [
+        {
+          "id": "common_properties",
+          "type": "header",
+          "content": "Common properties"
+        },
+        {
+          "id": "show_floating_social_links",
+          "type": "checkbox",
+          "label": "Show floating social links",
+          "defaultValue": true
         }
       ],
       "dark_colors": [
@@ -1991,6 +2005,9 @@
       },
       "color_schema": {
         "dark_mode": false
+      },
+      "common": {
+        "show_floating_social_links": true
       },
       "dark_colors": {
         "background_accent_dark": "#192843",
@@ -7311,9 +7328,159 @@
       "name": "Footer",
       "path": "sections/shop/footer.njk",
       "settings": {
-        "class": "footer",
+        "class": "section-footer",
         "blocks": [],
         "schema": [
+          {
+            "id": "fullwidth",
+            "type": "checkbox",
+            "label": "Fullwidth",
+            "defaultValue": false
+          },
+          {
+            "id": "background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_accent_light"
+          },
+
+          {
+            "id": "copyright_properties",
+            "type": "header",
+            "content": "Copyright properties"
+          },
+          {
+            "id": "copyright",
+            "type": "text",
+            "label": "Copy right",
+            "defaultValue": "shop.main.copyright"
+          },
+          {
+            "id": "copyright_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Default",
+                "value": null
+              },
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              },
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              }
+            ],
+            "defaultValue": "light_font_color"
+          },
+          {
+            "id": "copyright_font_size",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 14
+          },
+          {
+            "id": "copyright_font_weight",
+            "type": "select",
+            "label": "Font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 600
+              },
+              {
+                "title": "Extra Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 400
+          },
+          {
+            "id": "copyright_line_height",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Line height",
+            "defaultValue": 20
+          },
+
+          {
+            "id": "icons_properties",
+            "type": "header",
+            "content": "Icons properties"
+          },
+          {
+            "id": "icon_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Default",
+                "value": null
+              },
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              },
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              }
+            ],
+            "defaultValue": "light_font_color"
+          },
+          {
+            "id": "icon_size",
+            "max": 50,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Size",
+            "defaultValue": 16
+          }
         ]
       }
     },
@@ -7321,7 +7488,7 @@
       "name": "Header",
       "path": "sections/shop/header.njk",
       "settings": {
-        "class": "header",
+        "class": "section-header",
         "blocks": [
           {
             "name": "Menu",
@@ -17531,103 +17698,103 @@
     },
     "Icons: Arrow right 1": {
       "name": "Icons: Arrow right 1",
-      "path": "snippets/shared/icons/arrowRight1.njk"
+      "path": "snippets/shared/icons/iconArrowRight1.njk"
     },
     "Icons: Arrow right 2": {
       "name": "Icons: Arrow right 2",
-      "path": "snippets/shared/icons/arrowRight2.njk"
+      "path": "snippets/shared/icons/iconArrowRight2.njk"
     },
     "Icons: Cart": {
       "name": "Icons: Cart",
-      "path": "snippets/shared/icons/cart.njk"
+      "path": "snippets/shared/icons/iconCart.njk"
     },
     "Icons: Cart add": {
       "name": "Icons: Cart add",
-      "path": "snippets/shared/icons/cartAdd.njk"
+      "path": "snippets/shared/icons/iconCartAdd.njk"
     },
     "Icons: Check circular": {
       "name": "Icons: Check circular",
-      "path": "snippets/shared/icons/checkCircular.njk"
+      "path": "snippets/shared/icons/iconCheckCircular.njk"
     },
     "Icons: Chevron down": {
       "name": "Icons: Chevron down",
-      "path": "snippets/shared/icons/chevronDown.njk"
+      "path": "snippets/shared/icons/iconChevronDown.njk"
     },
     "Icons: Chevron up": {
       "name": "Icons: Chevron up",
-      "path": "snippets/shared/icons/chevronUp.njk"
+      "path": "snippets/shared/icons/iconChevronUp.njk"
     },
     "Icons: Close": {
       "name": "Icons: Close",
-      "path": "snippets/shared/icons/close.njk"
+      "path": "snippets/shared/icons/iconClose.njk"
     },
     "Icons: Crossed eye": {
       "name": "Icons: Crossed eye",
-      "path": "snippets/shared/icons/crossedEye.njk"
+      "path": "snippets/shared/icons/iconCrossedEye.njk"
     },
     "Icons: Description": {
       "name": "Icons: Description",
-      "path": "snippets/shared/icons/description.njk"
+      "path": "snippets/shared/icons/iconDescription.njk"
     },
     "Icons: Empty feedback": {
       "name": "Icons: Empty feedback",
-      "path": "snippets/shared/icons/emptyFeedback.njk"
+      "path": "snippets/shared/icons/iconEmptyFeedback.njk"
     },
     "Icons: Hand": {
       "name": "Icons: Hand",
-      "path": "snippets/shared/icons/hand.njk"
+      "path": "snippets/shared/icons/iconHand.njk"
     },
     "Icons: Menu": {
       "name": "Icons: Menu",
-      "path": "snippets/shared/icons/menu.njk"
+      "path": "snippets/shared/icons/iconMenu.njk"
     },
     "Icons: Minus": {
       "name": "Icons: Minus",
-      "path": "snippets/shared/icons/minus.njk"
+      "path": "snippets/shared/icons/iconMinus.njk"
     },
     "Icons: No images": {
       "name": "Icons: No images",
-      "path": "snippets/shared/icons/noImages.njk"
+      "path": "snippets/shared/icons/iconNoImages.njk"
     },
     "Icons: No image Default": {
       "name": "Icons: No image Default",
-      "path": "snippets/shared/icons/noImageDefault.njk"
+      "path": "snippets/shared/icons/iconNoImageDefault.njk"
     },
     "Icons: No image Service": {
       "name": "Icons: No image Service",
-      "path": "snippets/shared/icons/noImageService.njk"
+      "path": "snippets/shared/icons/iconNoImageService.njk"
     },
     "Icons: No image File": {
       "name": "Icons: No image File",
-      "path": "snippets/shared/icons/noImageFile.njk"
+      "path": "snippets/shared/icons/iconNoImageFile.njk"
     },
     "Icons: No image Subscription": {
       "name": "Icons: No image Subscription",
-      "path": "snippets/shared/icons/noImageSubscription.njk"
+      "path": "snippets/shared/icons/iconNoImageSubscription.njk"
     },
     "Icons: No image Serials": {
       "name": "Icons: No image Serials",
-      "path": "snippets/shared/icons/noImageSerials.njk"
+      "path": "snippets/shared/icons/iconNoImageSerials.njk"
     },
     "Icons: Plus": {
       "name": "Icons: Plus",
-      "path": "snippets/shared/icons/plus.njk"
+      "path": "snippets/shared/icons/iconPlus.njk"
     },
     "Icons: Trash": {
       "name": "Icons: Trash",
-      "path": "snippets/shared/icons/trash.njk"
+      "path": "snippets/shared/icons/iconTrash.njk"
     },
     "Icons: Warranty yes": {
       "name": "Icons: Warranty yes",
-      "path": "snippets/shared/icons/warrantyYes.njk"
+      "path": "snippets/shared/icons/iconWarrantyYes.njk"
     },
     "Icons: Warranty no": {
       "name": "Icons: Warranty no",
-      "path": "snippets/shared/icons/warrantyNo.njk"
+      "path": "snippets/shared/icons/iconWarrantyNo.njk"
     },
     "Icons: Zoom glass": {
       "name": "Icons: Zoom glass",
-      "path": "snippets/shared/icons/zoomGlass.njk"
+      "path": "snippets/shared/icons/iconZoomGlass.njk"
     },
     "Invoice: Checkout" : {
       "name": "Invoice: Checkout",
@@ -17749,6 +17916,10 @@
       "name": "Shared: Text area",
       "path": "snippets/shared/textArea.njk"
     },
+    "Shared: Social link": {
+      "name": "Shared: Social link",
+      "path": "snippets/shared/socialLink.njk"
+    },
     "Root css variables": {
       "name": "Root css variables",
       "path": "snippets/shop/common/rootCssVariables.njk"
@@ -17757,9 +17928,9 @@
       "name": "Shop message",
       "path": "snippets/shop/common/shopMessage.njk"
     },
-    "Social Links": {
-      "name": "Social Links",
-      "path": "snippets/shop/common/socialLinks.njk"
+    "Social Links: Floating": {
+      "name": "Social Links: Floating",
+      "path": "snippets/shop/common/socialLinksFloating.njk"
     },
     "Tag": {
       "name": "Tag",
@@ -17907,6 +18078,10 @@
     "section-faq.css": {
       "name": "section-faq.css",
       "path": "assets/css/section-faq.css"
+    },
+    "section-footer.css": {
+      "name": "section-footer.css",
+      "path": "assets/css/section-footer.css"
     },
     "section-header.css": {
       "name": "section-header.css",
@@ -18099,6 +18274,10 @@
     "snippet-purchase-details.css": {
       "name": "snippet-purchase-details.css",
       "path": "assets/css/snippet-purchase-details.css"
+    },
+    "snippet-social-links-floating.css": {
+      "name": "snippet-social-links-floating.css",
+      "path": "assets/css/snippet-social-links-floating.css"
     },
     "snippet-tag.css": {
       "name": "snippet-tag.css",
