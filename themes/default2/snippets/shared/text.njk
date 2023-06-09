@@ -6,6 +6,8 @@
 {% set label = safe_get(args.label, '') %}
 {% set name = safe_get(args.name, id) %}
 {% set type = safe_get(args.type, text) %}
+{% set iconName = args.icon_name %}
+{% set iconOnClick = args.icon_on_click %}
 {% set isVisible = false %}
 {% set style = safe_get(args.style, '') %}
 {% set disabled = safe_get(args.disabled, false) %}
@@ -74,7 +76,7 @@
 
   <div class="{{ globalClass}}__input-wrapper {{ localClass }}__input-wrapper">
     <input
-      class="sellix-input {{ globalClass}}__input {{ localClass }}__input"
+      class="sellix-input {{ globalClass}}__input {{ localClass }}__input {{ 'right-icon' if iconName }}"
       autoComplete="{{'' if type == 'email' else 'off'}}"
       type="{{'text' if showPassword and isVisible}}{{'password' if showPassword and not isVisible}}{{type if not showPassword and type}}{{'text' if not type and not showPassword}}"
       id="{{name}}"
@@ -83,26 +85,40 @@
       placeholder="{{placeholder }}"
       style="{{ style }};"
     >
+    {% if iconName %}
+      <div class="sellix_input-icon {{ globalClass }}__input-icon {{ localClass }}__input-icon">
+        {% render_snippet iconName %}
+      </div>
+    {% endif %}
+
     {% if showPassword  %}
-      <div class="{{ localClass }}__show-hide-password-icon">
+      <div class="{{ globalClass }}__show-hide-password-icon {{ localClass }}__show-hide-password-icon">
         {% render_snippet 'Icons: Crossed eye' %}
       </div>
     {% endif %}
   </div>
 </div>
 
-{% if showPassword  %}
 <script type='application/javascript'>
   $(document).ready(function () {
     const $input = $('.{{ localClass }}__input');
-    $('.{{ localClass }}__show-hide-password-icon').on('click', function () {
-      const type = $input.attr('type');
-      if( type === 'password' ){
-        $input.attr('type', 'text');
-      } else {
-        $input.attr('type', 'password');
-      }
+
+    {% if showPassword  %}
+      $('.{{ localClass }}__show-hide-password-icon').on('click', function () {
+        const type = $input.attr('type');
+        if( type === 'password' ){
+          $input.attr('type', 'text');
+        } else {
+          $input.attr('type', 'password');
+        }
+      });
+    {% endif %}
+
+    $('.{{ localClass }}__input-icon').on('click', function (event) {
+      event.stopPropagation();
+      {% if iconOnClick %}
+        {{ iconOnClick }}($input.val());
+      {% endif %}
     });
   });
 </script>
-{% endif %}

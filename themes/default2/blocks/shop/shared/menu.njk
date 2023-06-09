@@ -2,12 +2,6 @@
 {% set colors = themeProperties.current_colors %}
 {% set menuProps = themeProperties.menu %}
 
-{% if global.locales.defaultLocale != global.locales.locale %}
-  {% set locale_prefix = ["/", global.locales.locale] | join %}
-{% else %}
-  {% set locale_prefix = "" %}
-{% endif %}
-
 <style>
   .menu-tab {
     margin-left: 1.25rem;
@@ -35,11 +29,13 @@
       {% if item.page_slug == "/contact" and "/ticket" in slug %}
         {% set active = true %}
       {% endif %}
-      <a
-        href="{{ locale_prefix }}{{item.page_slug}}"
-        class="menu-tab {{'active' if active else ''}}"
-      >
-        {{item.title | t}}
-      </a>
+
+      {% render_snippet
+        'Menu item',
+        url=item.page_slug,
+        title=item.title,
+        is_active=active,
+        class='menu-tab'
+      %}
     {% endfor %}
 </div>

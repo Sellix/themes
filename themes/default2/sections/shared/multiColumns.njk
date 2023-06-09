@@ -60,6 +60,27 @@
       margin-bottom: {{ marginBottomTablet }}px;
     }
   }
+
+  {% for block_name in settings.block_order %}
+    {% set block = settings.blocks[block_name] %}
+    {% set columnClass = [localClass, '__col__', loop.index0] | join %}
+
+    {% if block.name == 'Column' %}
+      .{{ columnClass }} {
+        grid-column: span {{ min(block.settings.properties.col_span_desktop or 1, columnsPerRowDesktop) }};
+      }
+      @media (max-width: 768px) {
+        .{{ columnClass }} {
+          grid-column: span {{ min(block.settings.properties.col_span_tablet or 1, columnsPerRowTablet) }};
+        }
+      }
+      @media (max-width: 640px) {
+        .{{ columnClass }} {
+          grid-column: span {{ min(block.settings.properties.col_span_mobile or 1, columnsPerRowMobile) }};
+        }
+      }
+    {%- endif -%}
+  {% endfor %}
 </style>
 
 <div class="{{ localClass }} {{ 'full-width' if properties.fullwidth else 'content-width' }}">
@@ -68,7 +89,7 @@
 
     {% if block.name == 'Column' %}
       {% set columnId = uid() %}
-      <div class="{{ columnId }}">
+      <div class="{{ localClass }}__col__{{ loop.index0}} {{ columnId }}">
         {%- render_block block_name, id=columnId -%}
 
         {% for blk_name in settings.block_order %}
