@@ -203,7 +203,7 @@
           bundles: this.bundles,
           affiliateConversions: this.affiliateConversions,
           priceVariants: this.productVariantsStore.getAll(),
-          theme: { isDark: this.theme.isDark },
+          theme: { ...this.theme },
           sellixHelper: window.sellixHelper,
           sellixI18Next: window.sellixI18Next,
           onAddToCart: this.onAddToCart,

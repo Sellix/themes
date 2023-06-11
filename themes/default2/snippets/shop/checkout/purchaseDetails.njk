@@ -1,4 +1,5 @@
 {% set id = uid() %}
+{% set theme = global.theme %}
 {% set type = args.type if args.type else 'checkout' %}
 {% set shop = global.common.shopInfo.shop %}
 {% set cartEnabled = global.common.cartEnabled %}
@@ -82,7 +83,12 @@
       cart,
       product: (product || {}),
       bundles,
-      theme: { isDark },
+      theme: {
+        isDark,
+        name: '{{ theme.name }}',
+        scheme: '{{ theme.scheme }}',
+        version: '{{ theme.version }}',
+      },
       renderOptions: {{renderOptions | dump | safe}},
       options: {
         showTitle: {{ showTitle }}
