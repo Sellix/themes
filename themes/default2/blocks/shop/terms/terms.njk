@@ -44,11 +44,14 @@
       {{shop.terms_of_service | html_sanitize | safe}}
     </div>
   {% else %}
-    <div class="empty-message-container {{ globalClass }}__empty {{ localClass }}__empty">
-      <i class="fa-regular fa-gavel"></i>
+    <div class="empty-message-container {{ globalClass }}__empty">
+      {% render_snippet 'Icons: No terms' %}
 
-      <span class="empty-message-title {{ globalClass }}__empty-title {{ localClass }}__empty-title">
-        {{ 'shop.terms.noTerms' | t({shopName: ['<b>', shop.name, '</b>'] | join(' ')}) | safe }}
+      <span class="empty-message-title {{ globalClass }}__empty-title">
+        {{ 'shop.terms.noTermsTitle' | t({shopName: ['<b>', shop.name, '</b>'] | join(' ')}) | safe }}
+      </span>
+      <span class="empty-message-subtitle {{ globalClass }}__empty-title">
+        {{ 'shop.terms.noTermsSubtitle' | t }}
       </span>
     </div>
   {% endif %}

@@ -3877,7 +3877,7 @@
                     "properties": {
                       "container_border_radius": 0,
                       "grid_background_color": "transparent",
-                      "grid_limit": 0,
+                      "grid_limit": 4,
                       "grid_show_product_type_badge": false,
                       "grid_show_group": true,
                       "grid_expand_group": false,
@@ -3887,7 +3887,7 @@
                       "grid_show_border": false,
                       "grid_show_view_all_button": false,
                       "grid_items_per_row_type": "dynamic",
-                      "grid_items_per_row_desktop": 3,
+                      "grid_items_per_row_desktop": 4,
                       "grid_items_per_row_tablet": 2,
                       "grid_items_per_row_mobile": 1,
                       "grid_card_properties_enabled": true,
@@ -4472,7 +4472,9 @@
           "Container: With sidebar",
           "Container: Simple 1",
           "Section title 1",
-          "Container: Simple 2"
+          "Container: Simple 2",
+          "Section title 2",
+          "Container: Simple 3"
         ],
         "sections": {
           "Breadcrumbs": {
@@ -4750,6 +4752,59 @@
                     }
                   }
                 }
+              }
+            }
+          },
+          "Section title 2": {
+            "name": "Section title",
+            "settings": {
+              "visible": true,
+              "properties": {
+                "fullwidth": false,
+                "title_content": "You Might Also Like",
+                "subtitle_content": "Design is as much an act of spacing as an act of marking.",
+                "margin_bottom_desktop": 0,
+                "margin_bottom_tablet": 0,
+                "margin_bottom_mobile": 0,
+                "padding_bottom_desktop": 24,
+                "padding_bottom_tablet": 12,
+                "padding_bottom_mobile": 12
+              }
+            }
+          },
+          "Container: Simple 3": {
+            "name": "Container: Simple",
+            "settings": {
+              "visible": true,
+              "block_order": ["Products grid"],
+              "blocks": {
+                "Products grid" : {
+                  "name": "Products grid",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "grid_filter_type": "product_group_or_category",
+                      "container_border_radius": 0,
+                      "grid_background_color": "transparent",
+                      "grid_limit": 4,
+                      "grid_order_type": "popularity",
+                      "grid_order_direction": "desc",
+                      "grid_show_group": false,
+                      "grid_expand_group": true,
+                      "grid_show_info": false,
+                      "grid_show_product": true,
+                      "grid_show_subscription": true,
+                      "grid_show_border": false,
+                      "grid_show_view_all_button": false
+                    }
+                  }
+                }
+              },
+              "properties": {
+                "background_color": "background_accent_light",
+                "margin_bottom_desktop": 0,
+                "margin_bottom_tablet": 0,
+                "margin_bottom_mobile": 0
               }
             }
           }
@@ -14426,6 +14481,30 @@
             "defaultValue": "asc"
           },
           {
+            "id": "grid_filter_type",
+            "type": "select",
+            "label": "Filtering type",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Same category",
+                "value": "product_category"
+              },
+              {
+                "title": "Same group",
+                "value": "product_group"
+              },
+              {
+                "title": "Same category or group",
+                "value": "product_group_or_category"
+              }
+            ],
+            "defaultValue": "none"
+          },
+          {
             "id": "grid_show_product_type_badge",
             "type": "checkbox",
             "label": "Show Product type Badge",
@@ -19048,6 +19127,18 @@
     "Icons: No image Serials": {
       "name": "Icons: No image Serials",
       "path": "snippets/shared/icons/iconNoImageSerials.njk"
+    },
+    "Icons: No terms": {
+      "name": "Icons: No terms",
+      "path": "snippets/shared/icons/iconNoTerms.njk"
+    },
+    "Icons: No products": {
+      "name": "Icons: No products",
+      "path": "snippets/shared/icons/iconNoProducts.njk"
+    },
+    "Icons: No feedback": {
+      "name": "Icons: No feedback",
+      "path": "snippets/shared/icons/iconNoFeedback.njk"
     },
     "Icons: Plus": {
       "name": "Icons: Plus",

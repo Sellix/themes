@@ -12,9 +12,9 @@
 {% set shadow = safe_get(properties.shadow, 'none') %}
 {% set borderRadius = safe_get(properties.border_radius, 0) %}
 
-{% set itemsPerRowDesktop = safe_get(properties.items_per_row_desktop, 4) | int %}
-{% set itemsPerRowTablet = safe_get(properties.items_per_row_tablet, 2) | int %}
-{% set itemsPerRowMobile = safe_get(properties.items_per_row_mobile, 1) | int %}
+{% set itemsPerRowDesktop = 1 if isEmpty else safe_get(properties.items_per_row_desktop, 4) | int %}
+{% set itemsPerRowTablet = 1 if isEmpty else safe_get(properties.items_per_row_tablet, 2) | int %}
+{% set itemsPerRowMobile = 1 if isEmpty else safe_get(properties.items_per_row_mobile, 1) | int %}
 
 {% set localClass = id %}
 
@@ -44,12 +44,15 @@
 </style>
 
 <div class="{{ globalClass }}__container {{ localClass }}__container">
-  {% if feedbacks.length === 0 %}
-    <div class="empty-message-container {{ globalClass }}__empty {{ localClass }}__empty">
-      {% render_snippet 'Icons: Empty feedback' %}
+  {% if isEmpty %}
+    <div class="empty-message-container {{ globalClass }}__empty">
+      {% render_snippet 'Icons: No feedback' %}
 
-      <span class="empty-message-title {{ globalClass }}__empty-title {{ localClass }}__empty-title">
-        {{ 'shop.feedback.noFeedbacks' | t({shopName: ['<b>', shop.name, '</b>'] | join('')}) | safe }}
+      <span class="empty-message-title {{ globalClass }}__empty-title">
+        <b>{{ 'shop.feedback.noFeedbacks' | t({shopName: shop.name}) }}</b>
+      </span>
+      <span class="empty-message-subtitle {{ globalClass }}__empty-title">
+        {{ 'shop.feedback.noFeedbacksSubtitle' | t }}
       </span>
     </div>
   {% endif %}

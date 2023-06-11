@@ -2,10 +2,12 @@
 {% set shopInfo = global.common.shopInfo %}
 {% set shop = shopInfo.shop %}
 {% set theme = global.common.theme %}
+{% set product = global.common.productInfo.product %}
 
 {% set limit = safe_get(properties.grid_limit, 0) | int %}
 {% set orderType = safe_get(properties.grid_order_type, 'none') %}
 {% set orderDirection = safe_get(properties.grid_order_direction, 'asc') %}
+{% set filterType = safe_get(properties.grid_filter_type, 'none') %}
 {% set filterName = safe_get(properties.grid_filter_name, id) %}
 {% set expandGroup = safe_get(properties.grid_expand_group, false) %}
 {% set showGroup = safe_get(properties.grid_show_group, true) %}
@@ -41,6 +43,14 @@
 
 {% if orderType %}
   {% set items = items | sort_products({'sortType': orderType, 'direction': orderDirection}) %}
+{% endif %}
+
+{% if filterType and product %}
+  {% set items = items | filter_products({
+    'filterType': filterType,
+    'productId': product.uniqid,
+    'excludeProductIds': [product.uniqid]
+  }) %}
 {% endif %}
 
 {% set colors = themeProperties.current_colors %}
@@ -222,26 +232,15 @@
   <div
     class="empty-message-container empty-search {{ localClass}}__empty-container {{ globalClass}}__empty-container {{ 'd-none' if items.length > 0 }}"
   >
-    {% render_snippet 'Icons: Zoom glass' %}
+    {% render_snippet 'Icons: No products' %}
 
-    <div class="empty-message-info {{ globalClass }}__empty-info {{ localClass }}__empty-info">
-      {{ 'shop.main.productList.items.noProductFound' | t }}.
-
-      <button class="button button-primary">
-        {{ 'shop.main.productList.items.clear' | t }}
-      </button>
-    </div>
-  </div>
-
-  <div class="empty-message-container {{ localClass}}__empty-container {{ globalClass}}__empty-container empty-category d-none">
-    {% render_snippet 'Icons: Zoom glass' %}
-
-    <div class="empty-message-info {{ globalClass }}__empty-info {{ localClass }}__empty-info">
-      {{ 'shop.main.productList.items.categoryNoProducts' | t }}.
-
-      <button class="button button-primary">
-        {{ 'shop.main.productList.items.clear' | t }}
-      </button>
+    <div class="empty-message-info {{ globalClass }}__empty-info">
+      <div class="empty-message-title">
+        <b>{{ 'shop.main.productList.items.noProductsTitle' | t }}</b>
+      </div>
+      <div class="empty-message-subtitle">
+        {{ 'shop.main.productList.items.noProductsSubtitle' | t }}
+      </div>
     </div>
   </div>
 </div>
@@ -287,9 +286,11 @@
 
       filteredItems = filteredItems.filter(item => {
         let hasProduct = false;
-        if(item.isGroup) {
-          if(item.products_bound && item.products_bound.length) {
-            hasProduct = item.products_bound.find(({ title }) => title.toLowerCase().includes(search.toLowerCase()));
+        if (item.isGroup) {
+          if (item.products_bound && item.products_bound.length) {
+            hasProduct = item.products_bound.find(
+              ({ title }) => title.toLowerCase().includes(search.toLowerCase())
+            );
           }
         }
 
@@ -306,12 +307,7 @@
 
       if (filteredItemIds.length === 0) {
         $('.{{ localClass }}__products').addClass('grid-one-column')
-        if (category) {
-          $('.{{ localClass }}__empty-container.empty-category .category-name').text(category.title);
-          $('.{{ localClass }}__empty-container.empty-category').removeClass('d-none');
-        } else {
-          $('.{{ localClass }}__empty-container.empty-search').removeClass('d-none');
-        }
+        $('.{{ localClass }}__empty-container.empty-search').removeClass('d-none');
       } else {
         $('.{{ localClass }}__products').removeClass('grid-one-column')
         $('.{{ localClass }}__empty-container').addClass('d-none');
