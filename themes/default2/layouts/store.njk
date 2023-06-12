@@ -1,0 +1,236 @@
+<!DOCTYPE>
+<html
+  lang="{{ global.locales.language }}"
+  style="background-color: var(--backgroundColor);"
+  class="scroll-hidden"
+>
+  <head>
+    <base id='main-base-tag' href="/{{ global.locales.locale }}/">
+    <meta charset="utf-8"/>
+
+    <script src='{{ 'js.cookie.min.js' | asset_url }}'></script>
+    {% render_snippet 'App google analytics' %}
+    {% render_snippet 'Main meta' %}
+
+    <link rel="icon" type="image/x-icon" href="{{ 'favicon.ico' | asset_url }}"/>
+    <link rel="icon" href="{{ 'favicon.ico' | asset_url }}"/>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ 'favicon.ico' | asset_url }}">
+    <link rel="apple-touch-icon" href="{{ 'favicon.ico' | asset_url }}"/>
+    <link rel="shortcut icon" href="{{ 'favicon.ico' | asset_url }}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="preconnect" href="https://cdn.sellix.io/"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+{#    <link rel="preload" href="{{ 'loader.css' | asset_url }}" as="style"/>#}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com/"/>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" >
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    {% set font = themeProperties.typography.font %}
+    {% set backgroundImage = themeProperties.background.background_image %}
+
+    <link href="{{ font.href }}" rel="stylesheet">
+
+    <style>
+      @font-face {
+        font-family: "Inter var";
+        font-weight: 100 900;
+        font-display: swap;
+        font-style: normal;
+        font-named-instance: "Regular";
+        src: url({{ 'Inter.woff2' | asset_url }}) format("woff2");
+      }
+
+      body {
+        transition: background 0.9s;
+        background-color: #0000;
+        font-size: 14px;
+        -webkit-font-smoothing: antialiased;
+        margin: 0;
+        font-family: {{ "Inter var" if font.fontFamily == "Inter" else font.fontFamily }},
+          {% if font.systemFont == "sans-serif" %}
+            sans-serif
+          {% elif font.systemFont == "serif" %}
+            serif
+          {% else %}
+            monospace
+          {% endif %} !important;
+      }
+    </style>
+
+    <link rel="stylesheet" href="{{ 'ui-elements.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'fa-icons.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'font-awesome.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'modal.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'root-styles.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'shop.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'sliding-panel.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'swiper.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'toastify.css' | asset_url }}"/>
+
+    {# Sections #}
+    <link rel="stylesheet" href="{{ 'section-header.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'section-footer.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'section-menu.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'section-contact-form.css' | asset_url }}"/>
+
+    {# Blocks #}
+    <link rel="stylesheet" href="{{ 'block-table-pagination.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'block-store-code.css' | asset_url }}"/>
+
+    {# Snippets #}
+    <link rel="stylesheet" href="{{ 'snippet-customer-menu.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-text-text-area.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-product-cards.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-price-variants.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-shop-info.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-alert.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-language-selector.css' | asset_url }}"/>
+
+    {% set theme = global.common.shopInfo.theme %}
+    <style>
+      {% render_snippet 'Root css variables' %}
+    </style>
+
+    <link rel="stylesheet" href="{{ 'select2.css' | asset_url }}"/>
+
+    <link rel="stylesheet" href="{{ 'magnific-popup.1.1.0.css' | asset_url }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css" />
+
+    <script src="{{ 'jquery.js' | asset_url}}"></script>
+    <script src="{{ 'quicklink.umd.js' | asset_url}}"></script>
+  </head>
+
+  <body>
+
+    <div id="app">
+      <div class="sellix-store">
+        <div id="content">
+          {% render_template 'default' %}
+        </div>
+      </div>
+    </div>
+
+    <div id="modal">
+
+    </div>
+
+    <script>
+      window.__RENDER_CONTEXT__ = {{ global | dump | safe | replace('\u003c', '<') }};
+      window.RECAPTCHA_PUBLIC_KEY = window.__RENDER_CONTEXT__.config.CAPTCHA_SITE_KEY_V3;
+      window.RECAPTCHA_PUBLIC_KEY_V2 = window.__RENDER_CONTEXT__.config.RECAPTCHA;
+    </script>
+
+    {% if themeProperties.page_loader.enabled %}
+      <link rel="stylesheet" href="{{ 'pace-theme.css' | asset_url }}"/>
+
+      <style>
+        .pace .pace-progress {
+          height: {{ themeProperties.page_loader.height }}px;
+          background: {{ themeProperties.page_loader.color }};
+        }
+      </style>
+      <script src="{{ 'pace.min.js' | asset_url }}"></script>
+    {% endif %}
+
+    <script type='application/javascript'>
+      (function() {
+        $(document).ready(function () {
+          setTimeout(function () {
+            const html = document.documentElement.classList;
+            const $loader = $('#loader');
+            if($loader) {
+              $loader.remove();
+            }
+            html.remove('scroll-hidden');
+          }, 500);
+        });
+      })();
+    </script>
+
+    <script type='application/javascript'>
+      // Simple toastify handler
+      $(document).ready(function () {
+        $(document).on('SellixToastify', function(e, eventInfo) {
+          const toastifyContainer = $(`
+            <div class="toastify-container">
+              <div class="toastify-container-title ${eventInfo.type}">
+                <i class="toastify-container-title-icon fa-solid ${eventInfo.type === 'success' ? "fa-check" : "fa-xmark"}"></i>
+                <div class="toastify-container-message">
+                  ${eventInfo.text}
+                </div>
+              </div>
+              <div class="toastify-container-note">
+                ${eventInfo.type === 'success'
+                  ? "{{ 'shop.shared.toastify.success' | t }}"
+                  : "{{ 'shop.shared.toastify.fail' | t }}"
+                }
+              </div>
+            </div>
+          `)[0];
+
+          const toast = Toastify({
+            duration: 5000,
+            selector: 'content',
+            offset: {
+              x: '1rem',
+              y: '70px',
+            },
+            node: toastifyContainer,
+            gravity: "top",
+            position: "right",
+            onClick: function() {
+              if (toast) {
+                toast.hideToast();
+              }
+            }
+          }).showToast();
+        });
+      });
+    </script>
+
+    <script type='application/javascript'>
+      $(document).ready(function() {
+        const name = '{{ global.common.shopInfo.shop.name }}';
+        sellixApi.ping(name);
+      });
+    </script>
+
+    <script src="https://www.google.com/recaptcha/api.js?render={{global.config.CAPTCHA_SITE_KEY_V3}}"></script>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.8.1/prop-types.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrender/1.0.11/jsrender.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.waitforimages/1.5.0/jquery.waitforimages.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js"></script>
+
+    <script src="{{ 'copy-to-clipboard.min.js' | asset_url }}"></script>
+    <script src="{{ 'ripple.js' | asset_url }}"></script>
+    <script src="{{ 'react-simple-star-rating.js' | asset_url }}"></script>
+    <script src="{{ 'select2.js' | asset_url }}"></script>
+    <script src="{{ 'magnific-popup.1.1.0.min.js' | asset_url }}"></script>
+    <script src="{{ 'ReactPlayer.standalone.js' | asset_url }}"></script>
+
+    <script src="{{ 'sellix-store.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-api.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-context.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-helper.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-store-code-component.js' | asset_url }}"></script>
+
+    {% render_snippet 'App cookie modal' %}
+    {% render_snippet 'I18Next' %}
+
+  </body>
+</html>
