@@ -1,79 +1,4 @@
 {
-  "customer": {
-    "affiliateLinks": {
-      "columns": {
-        "commission": "Прайс",
-        "link": "Ссылка",
-        "price": "Цена",
-        "product": "Продукт"
-      },
-      "isEmpty": {
-        "message": "Продавец еще не активировал партнерские ссылки ни для одного продукта.",
-        "title": "Партнерские ссылки"
-      },
-      "row": {
-        "chooseYourPrice": "Выберите свою цену",
-        "copyLink": "Копировать ссылку",
-        "startingAt": "От",
-        "subscription": "Подписка"
-      }
-    },
-    "auth": {
-      "customerAuth": {
-        "continue": "Продолжить",
-        "email": {
-          "invalid": {
-            "message": "Получите доступ к Customer Portal дашбоарду, чтобы управлять балансами своих партнеров и т.д.",
-            "title": "Customer Portal"
-          },
-          "isRequired": "Email обязателен",
-          "placeholder": "example@email.com",
-          "title": "Email",
-          "valid": {
-            "message": "Для вашей учетной записи включена двухфакторная аутентификация (2FA). Пожалуйста, введите код для входа.",
-            "title": "Пожалуйста введить 2FA код"
-          }
-        },
-        "login": "Войти",
-        "pageTitle": "Customer Auth | Sellix"
-      }
-    },
-    "dashboard": {
-      "analytics": {
-        "titles": {
-          "currentBalance": "Текущий баланс",
-          "referralLink": "Реферальная ссылка",
-          "revenuePercentage": "Процент дохода",
-          "totalCommission": "Общая комиссия",
-          "totalReferrals": "Всего рефералов"
-        }
-      },
-      "sales": {
-        "columns": {
-          "commission": "Комиссия",
-          "count": "Число",
-          "date": "Дата",
-          "invoice": "Заказ",
-          "price": "Цена",
-          "product": "Продукт",
-          "revenue": "Доход %"
-        },
-        "isEmpty": {
-          "message": "У вас еще нет партнерской комиссии",
-          "title": "Недавние комиссии"
-        }
-      }
-    },
-    "menu": {
-      "affiliateLinks": "Партнерские ссылки",
-      "dashboard": "Дашбоард",
-      "payouts": "Выплаты"
-    },
-    "payouts": {
-      "message": "Свяжитесь с продавцом для ручной выплаты остатка комиссионных.",
-      "title": "Ручные выплаты"
-    }
-  },
   "pages": {
     "customer": {
       "affiliateLinks": {
@@ -778,7 +703,7 @@
     }
   },
   "widgets": {
-    "invoice-checkout": {
+    "InvoiceCheckout": {
       "Amount": "Сумма",
       "Hash": "Хэш",
       "Payment Request": "Запрос на оплату",
@@ -804,10 +729,10 @@
       "Счет помечен как завершенный, и товар отправлен.",
       "The invoice has been created using a 100% discount coupon, no further action is required.":
       "Счет создан с использованием купона на скидку в 100%, дальнейшие действия не требуются.",
-      "The invoice has been created (PARENTHESES_0) and we are now waiting to receive a payment.":
-      "Счет создан ({{PARENTHESES_0}}), сейчас мы ждем получения оплаты.",
-      "The invoice has been updated PARENTHESES_0, we are waiting for a transaction through the new payment method.":
-      "Счет обновлен ({{PARENTHESES_0}}), мы ждем транзакцию через новый способ оплаты.",
+      "The invoice has been created ({{parentheses_0}}) and we are now waiting to receive a payment.":
+      "Счет создан ({{parentheses_0}}), сейчас мы ждем получения оплаты.",
+      "The invoice has been updated ({{parentheses_0}}), we are waiting for a transaction through the new payment method.":
+      "Счет обновлен ({{parentheses_0}}), мы ждем транзакцию через новый способ оплаты.",
       "The subscription invoice has been created and we are now waiting to receive a payment.":
       "Счет на подписку создан, сейчас мы ждем получения оплаты.",
       "The invoice has been manually processed by the Sellix Support Team and is now flagged as COMPLETED.":
@@ -899,9 +824,86 @@
       "Details": "Подробности",
       "No service text": "Отсутствует текст обслуживания",
       "This product has no service text, please wait further actions by the seller or open a ticket on his page.":
-        "У этого продукта нет текста обслуживания. Пожалуйста, дождитесь дальнейших действий продавца или откройте тикет на его странице."
+        "У этого продукта нет текста обслуживания. Пожалуйста, дождитесь дальнейших действий продавца или откройте тикет на его странице.",
+      "Due to security reasons, your product has been delivered to your email linked with the PayPal account you have used to complete the purchase. This is done to avoid fraud attempts.": "По соображениям безопасности ваш продукт был доставлен на вашу электронную почту, связанную с вашей учетной записью PayPal, которую вы использовали для завершения покупки. Это сделано для предотвращения попыток мошенничества.",
+      "Searching your product?": "Ищете свой продукт?",
+      "of": "из",
+      "Transaction": "Транзакция",
+      "The payments": "Платежи",
+      "We haven't received the full amount": "Мы не получили полную сумму",
+      "{{name}} has been received but it's not enough. We only received {{receivedMessage}}, please send the remaining amount in order to fulfill the invoice": "{{name}} была получена, но ее недостаточно. Мы получили только {receivedMessage}, пожалуйста, отправьте оставшуюся сумму, чтобы выполнить счет-фактуру",
+      "Invoice Voided": "Счет-фактура аннулирована",
+      "This invoice has been voided. This may be due to an unexpected change in payment processing or the expiration of the allotted time. Please review your transaction history and contact us if you require further assistance.": "Этот счет-фактура был аннулирован. Это может быть вызвано непредвиденными изменениями в обработке платежей или истечением отведенного времени. Пожалуйста, ознакомьтесь с историей транзакций и свяжитесь с нами, если вам требуется дополнительная помощь.",
+      "Payment Refunded": "Платеж возвращен",
+      "The transaction has been refunded. Your payment has been returned, and the associated invoice has been canceled. Please check your account to confirm the reimbursement, which will happen within 14 days. If you have any questions or need further assistance, feel free to contact us.": "Транзакция была возвращена. Ваш платеж был возвращен, и связанный счет-фактура был отменен. Пожалуйста, проверьте свой аккаунт, чтобы подтвердить возмещение, которое произойдет в течение 14 дней. Если у вас есть вопросы или вам требуется дополнительная помощь, не стесняйтесь обращаться к нам.",
+      "Payment Reverse": "Отмена платежа",
+      "PayPal has reversed this transaction. Your payment has been refunded, and the associated invoice has been canceled. Please verify the reimbursement in your PayPal account. If you have any questions or require further assistance, don't hesitate to contact us.": "PayPal отменил эту транзакцию. Ваш платеж был возвращен, и связанный счет-фактура был отменен. Пожалуйста, проверьте возмещение на своем аккаунте PayPal. Если у вас есть вопросы или вам требуется дополнительная помощь, не стесняйтесь обращаться к нам.",
+      "Back to": "Назад к",
+      "Close Payment": "Закрыть платеж",
+      "Invoice Under Dispute": "Счет-фактура на рассмотрении",
+      "This invoice is currently under a dispute from the customer.": "Данный счет-фактура в настоящее время находится на рассмотрении клиента.",
+      "Merchant must now accept your Cash App transaction": "Торговец теперь должен принять вашу транзакцию в Cash App",
+      "Awaiting Confirmation": "Ожидание подтверждения",
+      "The merchant must now accept your": "Теперь торговец должен принять вашу",
+      "transaction": "транзакцию",
+      "The invoice has been flagged as completed and the product has been shipped. Manually processed by the merchant.":
+        "Счет-фактура был помечен как выполненный, и товар был отправлен. Обработано вручную продавцом.",
+      "Once this action has been processed, you will automatically receive an email with the product you bought.": "После обработки данного действия вы автоматически получите электронное письмо с продуктом, который вы купили.",
+      "This action may require a few hours, you can close this page.": "Данное действие может занять несколько часов, вы можете закрыть эту страницу.",
+      "We have received your transaction.": "Мы получили вашу транзакцию.",
+      "Once it reaches the required confirmations, the product you bought will be shipped to your email.": "Как только будет достигнуто необходимое количество подтверждений, продукт, который вы купили, будет отправлен на вашу электронную почту.",
+      "Payment Processing": "Обработка платежа",
+      "The invoice is currently being processed, this might take up to 5 minutes. Bear with us for a while whilst we get your digital good ASAP!":
+      "Счет-фактура в настоящее время обрабатывается, это может занять до 5 минут. Подождите немного, пока мы не получим ваш цифровой товар как можно скорее!",
+      "Your subscription is now active. You will receive an email with the confirmation of your purchase and a receipt soon. You can also access customer billing portal to manage the active subscriptions in your name.":
+      "Ваша подписка теперь активна. Вы скоро получите электронное письмо с подтверждением покупки и квитанцией. Вы также можете получить доступ к порталу клиентской биллинговой системы, чтобы управлять активными подписками на ваше имя.",
+      "Your purchase has been completed. Your subscription has been added to your account automatically.":
+      "Покупка завершена. Ваша подписка была автоматически добавлена в ваш аккаунт.",
+      "Your invoice has been paid. A confirmation email will be delivered to you shortly.":
+      "Ваш счет-фактура был оплачен. Вам скоро будет доставлено письмо с подтверждением.",
+      "Manage Subscription": "Управление подпиской",
+      "You are purchasing a service by {{productTitle}}.": "Вы приобретаете услугу от {{productTitle}}.",
+      "Once your payment is completed and this invoice flagged as paid, you will be redirected back to {{productTitle}}'s site.":
+      "После завершения платежа и пометки данного счет-фактура как оплаченного, вы будете перенаправлены обратно на сайт {{productTitle}}.",
+      "If you have any issue, please refer directly to {{productTitle}}'s support.":
+      "Если у вас возникнут проблемы, обратитесь напрямую в службу поддержки {{productTitle}}.",
+      "Your purchase has succeeded, you will be redirected to": "Покупка прошла успешно, вы будете перенаправлены на",
+      "in": "через",
+      "seconds": "секунд",
+      "Go to the Customer Billing Portal": "Перейти в портал клиентской биллинговой системы",
+      "Payment Completed": "Платеж завершен",
+      "Trial Started": "Начало пробного периода",
+      "Order completed!": "Заказ выполнен!",
+      "Your invoice has been paid.": "Ваш счет-фактура был оплачен.",
+      "We will send a confirmation email to your address and you will be redirected to the seller's website":
+      "Мы отправим подтверждающее письмо на ваш адрес, и вы будете перенаправлены на сайт продавца",
+      "Your trial has been started.": "Ваш пробный период начат.",
+      "You will receive the product within minutes, check your email!":
+      "Вы получите продукт в течение нескольких минут, проверьте свою электронную почту!",
+      "Discord Connected": "Discord подключен",
+      "Your discord was connected.": "Ваш Discord был подключен.",
+      "You can close this page.": "Вы можете закрыть эту страницу.",
+      "Discord Connecting Error: {{status}}": "Ошибка подключения Discord: {{status}}",
+      "Logs: {{log}}": "Журналы: {{log}}"
     },
-    "gateway-selector" : {
+    "GatewaySelector" : {
+    },
+    "StripeForm": {
+      "Details requested by Stripe": "Требуемые данные от Stripe",
+      "Name": "Имя",
+      "Name is required": "Имя является обязательным",
+      "Surname": "Фамилия",
+      "Surname is required": "Фамилия является обязательной",
+      "Address": "Адрес",
+      "Address is required": "Адрес является обязательным",
+      "City": "Город",
+      "City is required": "Город является обязательным",
+      "Country": "Страна",
+      "Country is required": "Страна является обязательной",
+      "Postal Code": "Почтовый индекс",
+      "Postal Code is required": "Почтовый индекс является обязательным",
+      "State": "Штат",
+      "State is required": "Штат является обязательным"
     }
   }
 }
