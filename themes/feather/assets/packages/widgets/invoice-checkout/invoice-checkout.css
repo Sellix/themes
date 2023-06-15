@@ -614,9 +614,6 @@
   font-size: 1rem;
   margin-bottom: 0.75rem;
 }
-.invoice-waiting-alert b .lds-ellipsis > div {
-  background-color: white !important;
-}
 .invoice-waiting-alert b > div {
   margin-right: 0.5rem;
   width: 3rem;
@@ -1146,6 +1143,81 @@
   background-color: rgba(3, 10, 22, 0.768627451) !important;
 }
 
+.button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+  border-radius: 0.25rem;
+  border: 1px solid var(--gridLine);
+}
+.button:focus {
+  box-shadow: none !important;
+  outline: none;
+}
+.button .ripple-effect {
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.sellix-select {
+  cursor: pointer;
+  padding: 0 2rem 0 14px;
+  height: 40px;
+  max-height: 40px;
+  width: 100%;
+  transition: border 0.3s ease;
+  outline: none;
+  border-radius: 0.25rem;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  color: var(--darkFontColor);
+  border: 1px solid var(--borderColor);
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  background: var(--backgroundAccentLight);
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNSA3LjVMMTAgMTIuNUwxNSA3LjUiIHN0cm9rZT0iI0EyQUFCNCIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==");
+  background-repeat: no-repeat;
+  background-position-x: calc(100% - 1rem);
+  background-position-y: 0.5rem;
+}
+.sellix-select[disabled] {
+  background: var(--backgroundAccentDark);
+  border-color: var(--backgroundAccentDark);
+  cursor: default;
+}
+.sellix-select:active {
+  border-color: var(--inputBorderHover) !important;
+}
+.sellix-select:focus {
+  border-color: var(--inputBorderHover) !important;
+}
+.sellix-select:hover {
+  border-color: var(--inputBorderHover) !important;
+}
+.sellix-select::-ms-expand {
+  display: none;
+}
+.sellix-select.is-invalid {
+  border: 1px solid red !important;
+}
+.sellix-select.is-invalid:hover {
+  border-color: red !important;
+}
+.sellix-select.is-invalid:focus {
+  border-color: red !important;
+}
+
 .sellix-widget.alert {
   position: relative;
   padding: 1.5rem;
@@ -1214,6 +1286,388 @@
   margin-right: 0.5rem;
 }
 
+.default-mode-message-container {
+  border-radius: 3px;
+  padding: 0;
+  text-align: center;
+  margin: 0;
+  position: relative;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+.default-mode-message-container.BITCOIN .copy-icon path, .default-mode-message-container.BITCOIN_LN .copy-icon path {
+  fill: var(--gateway-bitcoin);
+}
+.default-mode-message-container.POLYGON .copy-icon path {
+  fill: var(--gateway-polygon);
+}
+.default-mode-message-container.PLZ .copy-icon path {
+  fill: var(--gateway-plz);
+}
+.default-mode-message-container.CONCORDIUM .copy-icon path {
+  fill: black;
+}
+.default-mode-message-container.LITECOIN .copy-icon path {
+  fill: var(--gateway-litecoin);
+}
+.default-mode-message-container.TRON .copy-icon path {
+  fill: var(--gateway-tron);
+}
+.default-mode-message-container.BINANCE .copy-icon path {
+  fill: var(--gateway-binance);
+}
+.default-mode-message-container.NANO .copy-icon path {
+  fill: var(--gateway-nano);
+}
+.default-mode-message-container.MONERO .copy-icon path {
+  fill: var(--gateway-monero);
+}
+.default-mode-message-container.SOLANA .copy-icon path {
+  fill: var(--gateway-solana);
+}
+.default-mode-message-container.RIPPLE .copy-icon path {
+  fill: var(--gateway-ripple);
+}
+.default-mode-message-container.ETHEREUM .copy-icon path {
+  fill: var(--gateway-ethereum);
+}
+.default-mode-message-container.CRONOS .copy-icon path {
+  fill: var(--gateway-cronos);
+}
+.default-mode-message-container.USDC .copy-icon path {
+  fill: var(--gateway-usdc);
+}
+.default-mode-message-container.USDT .copy-icon path {
+  fill: var(--gateway-usdt);
+}
+.default-mode-message-container.BINANCE_COIN .copy-icon path {
+  fill: var(--gateway-binance);
+}
+.default-mode-message-container.BITCOIN_CASH .copy-icon path {
+  fill: var(--gateway-bitcoin-cash);
+}
+
+.default-mode-message {
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+  color: var(--black4);
+}
+.default-mode-message-badge {
+  width: auto;
+  padding: 0.125rem 0.25rem;
+  color: white !important;
+  white-space: nowrap;
+  font-size: 12px;
+  border-radius: 0.25rem;
+  font-weight: 500;
+}
+.default-mode-message-badge.POLYGON {
+  background-color: var(--gateway-polygon);
+}
+.default-mode-message-badge.PLZ {
+  background-color: var(--gateway-plz);
+}
+.default-mode-message-badge.PLZ.blockchain-MATIC {
+  background-color: var(--gateway-polygon);
+}
+.default-mode-message-badge.PLZ.blockchain-ERC20 {
+  background-color: var(--gateway-ethereum);
+  color: black !important;
+}
+.default-mode-message-badge.PLZ.blockchain-BEP20 {
+  background-color: var(--gateway-binance);
+  color: black !important;
+}
+.default-mode-message-badge.PLZ.blockchain-TRC20 {
+  background-color: var(--gateway-tron);
+}
+.default-mode-message-badge.BITCOIN, .default-mode-message-badge.BITCOIN_LN {
+  background-color: var(--gateway-bitcoin);
+}
+.default-mode-message-badge.CONCORDIUM {
+  background-color: white;
+  color: black !important;
+}
+.default-mode-message-badge.LITECOIN {
+  background-color: var(--gateway-litecoin);
+}
+.default-mode-message-badge.TRON {
+  background-color: var(--gateway-tron);
+}
+.default-mode-message-badge.BINANCE {
+  background-color: var(--gateway-binance);
+  color: black !important;
+}
+.default-mode-message-badge.NANO {
+  background-color: var(--gateway-nano);
+}
+.default-mode-message-badge.MONERO {
+  background-color: var(--gateway-monero);
+}
+.default-mode-message-badge.SOLANA {
+  background-color: var(--gateway-solana);
+}
+.default-mode-message-badge.RIPPLE {
+  background-color: var(--gateway-ripple);
+}
+.default-mode-message-badge.ETHEREUM {
+  background-color: var(--gateway-ethereum);
+  color: black !important;
+}
+.default-mode-message-badge.BINANCE_COIN {
+  background-color: var(--gateway-binance);
+}
+.default-mode-message-badge.CRONOS {
+  background-color: var(--gateway-cronos);
+  color: white !important;
+}
+.default-mode-message-badge.USDC {
+  background-color: var(--gateway-usdc);
+}
+.default-mode-message-badge.USDC.blockchain-MATIC {
+  background-color: var(--gateway-polygon);
+}
+.default-mode-message-badge.USDC.blockchain-ERC20 {
+  background-color: var(--gateway-ethereum);
+  color: black !important;
+}
+.default-mode-message-badge.USDC.blockchain-BEP20 {
+  background-color: var(--gateway-binance);
+  color: black !important;
+}
+.default-mode-message-badge.USDC.blockchain-TRC20 {
+  background-color: var(--gateway-tron);
+}
+.default-mode-message-badge.USDT {
+  background-color: var(--gateway-usdt);
+}
+.default-mode-message-badge.USDT.blockchain-MATIC {
+  background-color: var(--gateway-polygon);
+}
+.default-mode-message-badge.USDT.blockchain-ERC20 {
+  background-color: var(--gateway-ethereum);
+  color: black !important;
+}
+.default-mode-message-badge.USDT.blockchain-BEP20 {
+  background-color: var(--gateway-binance);
+  color: black !important;
+}
+.default-mode-message-badge.USDT.blockchain-TRC20 {
+  background-color: var(--gateway-tron);
+}
+.default-mode-message-badge.BITCOIN_CASH {
+  background-color: var(--gateway-bitcoin-cash);
+}
+.default-mode-exactly {
+  color: var(--black9);
+  font-weight: 500;
+  font-size: 1rem;
+  text-align: center;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 0;
+  margin: 0.5rem 0;
+  position: relative;
+}
+.default-mode-exactly.success .default-mode-copy {
+  display: flex;
+}
+.default-mode-exactly-badge {
+  font-weight: 600;
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.25rem;
+  margin: 0 0.125rem;
+}
+.default-mode-container {
+  border-radius: 3px;
+  text-align: center;
+  margin: 0;
+  position: relative;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.2s ease;
+  height: auto;
+  opacity: 1;
+  background: var(--white);
+  padding: 0;
+}
+.default-mode-divider {
+  border-top: 1px solid var(--black2);
+  margin: 1.25rem 0;
+}
+.default-mode-wrapper {
+  border-radius: 0.5rem;
+  will-change: max-height;
+  transition: all 0.2s ease-out;
+  text-align: center;
+  position: relative;
+  margin-bottom: 1.25rem;
+  color: var(--black9);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+}
+@media (max-width: 500px) {
+  .default-mode-wrapper {
+    width: 100% !important;
+  }
+}
+.default-mode-address {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 0.85rem 1rem;
+  margin: 1.5rem 0;
+  background-color: var(--black0);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  position: relative;
+}
+.default-mode-address span {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.default-mode-address.success .default-mode-copy {
+  display: flex;
+}
+.default-mode-copy {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: none;
+  left: 0;
+  top: 0;
+  background: var(--green4);
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+}
+.default-mode-copy span {
+  width: auto;
+  margin-left: 0.5rem;
+}
+
+.qr-wrapper {
+  overflow: hidden;
+  width: auto;
+  padding: 0;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+  position: relative;
+}
+.qr-wrapper canvas {
+  cursor: pointer;
+  width: auto;
+}
+.qr-wrapper > img {
+  cursor: pointer;
+}
+.qr-wrapper .qr-logo {
+  background: white;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  padding: 0 !important;
+  border-radius: 0.25rem;
+}
+.qr-wrapper .qr-corner {
+  background: white;
+  position: absolute;
+  padding: 3px;
+}
+
+button.secondary .lds-ellipsis div {
+  background: var(--black9);
+}
+
+.lds-ellipsis {
+  display: flex;
+  position: relative;
+  width: 50px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+}
+.lds-ellipsis.black > div {
+  background: var(--black9);
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis.purple > div {
+  background: var(--black9);
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis > div {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--white);
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis > div:nth-child(1) {
+  left: 5px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis > div:nth-child(2) {
+  left: 5px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis > div:nth-child(3) {
+  left: 20px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis > div:nth-child(4) {
+  left: 56px;
+  left: 35px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(15px, 0);
+  }
+}
 /* Config */
 :root {
   --sk-size: 40px;
@@ -2041,465 +2495,8 @@
   background-color: white !important;
 }
 
-.button {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  outline: none;
-  font-weight: 400;
-  font-family: "Inter", sans-serif;
-  border-radius: 0.25rem;
-  border: 1px solid var(--gridLine);
-}
-.button:focus {
-  box-shadow: none !important;
-  outline: none;
-}
-.button .ripple-effect {
-  position: absolute;
-  height: 10px;
-  width: 10px;
-  border-radius: 50%;
-  transform: translate3d(-50%, -50%, 0);
-}
-
-.sellix-select {
-  cursor: pointer;
-  padding: 0 2rem 0 14px;
-  height: 40px;
-  max-height: 40px;
-  width: 100%;
-  transition: border 0.3s ease;
-  outline: none;
-  border-radius: 0.25rem;
-  appearance: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  margin: 0;
-  color: var(--darkFontColor);
-  border: 1px solid var(--borderColor);
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  background: var(--backgroundAccentLight);
-  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNSA3LjVMMTAgMTIuNUwxNSA3LjUiIHN0cm9rZT0iI0EyQUFCNCIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==");
-  background-repeat: no-repeat;
-  background-position-x: calc(100% - 1rem);
-  background-position-y: 0.5rem;
-}
-.sellix-select[disabled] {
-  background: var(--backgroundAccentDark);
-  border-color: var(--backgroundAccentDark);
-  cursor: default;
-}
-.sellix-select:active {
-  border-color: var(--inputBorderHover) !important;
-}
-.sellix-select:focus {
-  border-color: var(--inputBorderHover) !important;
-}
-.sellix-select:hover {
-  border-color: var(--inputBorderHover) !important;
-}
-.sellix-select::-ms-expand {
-  display: none;
-}
-.sellix-select.is-invalid {
-  border: 1px solid red !important;
-}
-.sellix-select.is-invalid:hover {
-  border-color: red !important;
-}
-.sellix-select.is-invalid:focus {
-  border-color: red !important;
-}
-
-button.secondary .lds-ellipsis div {
-  background: var(--black9);
-}
-
-.lds-ellipsis {
-  display: flex;
-  position: relative;
-  width: 50px;
-  height: 30px;
-  align-items: center;
-  justify-content: center;
-}
-.lds-ellipsis.black > div {
-  background: var(--black9);
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
-}
-.lds-ellipsis.purple > div {
-  background: var(--black9);
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
-}
-.lds-ellipsis > div {
-  position: absolute;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--white);
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
-}
-.lds-ellipsis > div:nth-child(1) {
-  left: 5px;
-  animation: lds-ellipsis1 0.6s infinite;
-}
-.lds-ellipsis > div:nth-child(2) {
-  left: 5px;
-  animation: lds-ellipsis2 0.6s infinite;
-}
-.lds-ellipsis > div:nth-child(3) {
-  left: 20px;
-  animation: lds-ellipsis2 0.6s infinite;
-}
-.lds-ellipsis > div:nth-child(4) {
-  left: 56px;
-  left: 35px;
-  animation: lds-ellipsis3 0.6s infinite;
-}
-
-@keyframes lds-ellipsis1 {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-@keyframes lds-ellipsis3 {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0);
-  }
-}
-@keyframes lds-ellipsis2 {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(15px, 0);
-  }
-}
-.qr-wrapper {
-  overflow: hidden;
-  width: auto;
-  padding: 0;
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0;
-  position: relative;
-}
-.qr-wrapper canvas {
-  cursor: pointer;
-  width: auto;
-}
-.qr-wrapper > img {
-  cursor: pointer;
-}
-.qr-wrapper .qr-logo {
-  background: white;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 48px;
-  padding: 0 !important;
-  border-radius: 0.25rem;
-}
-.qr-wrapper .qr-corner {
-  background: white;
-  position: absolute;
-  padding: 3px;
-}
-
 .ReactCollapse--collapse {
   transition: height 0.5s;
-}
-
-.default-mode-message-container {
-  border-radius: 3px;
-  padding: 0;
-  text-align: center;
-  margin: 0;
-  position: relative;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
-}
-.default-mode-message-container.BITCOIN .copy-icon path, .default-mode-message-container.BITCOIN_LN .copy-icon path {
-  fill: var(--gateway-bitcoin);
-}
-.default-mode-message-container.POLYGON .copy-icon path {
-  fill: var(--gateway-polygon);
-}
-.default-mode-message-container.PLZ .copy-icon path {
-  fill: var(--gateway-plz);
-}
-.default-mode-message-container.CONCORDIUM .copy-icon path {
-  fill: black;
-}
-.default-mode-message-container.LITECOIN .copy-icon path {
-  fill: var(--gateway-litecoin);
-}
-.default-mode-message-container.TRON .copy-icon path {
-  fill: var(--gateway-tron);
-}
-.default-mode-message-container.BINANCE .copy-icon path {
-  fill: var(--gateway-binance);
-}
-.default-mode-message-container.NANO .copy-icon path {
-  fill: var(--gateway-nano);
-}
-.default-mode-message-container.MONERO .copy-icon path {
-  fill: var(--gateway-monero);
-}
-.default-mode-message-container.SOLANA .copy-icon path {
-  fill: var(--gateway-solana);
-}
-.default-mode-message-container.RIPPLE .copy-icon path {
-  fill: var(--gateway-ripple);
-}
-.default-mode-message-container.ETHEREUM .copy-icon path {
-  fill: var(--gateway-ethereum);
-}
-.default-mode-message-container.CRONOS .copy-icon path {
-  fill: var(--gateway-cronos);
-}
-.default-mode-message-container.USDC .copy-icon path {
-  fill: var(--gateway-usdc);
-}
-.default-mode-message-container.USDT .copy-icon path {
-  fill: var(--gateway-usdt);
-}
-.default-mode-message-container.BINANCE_COIN .copy-icon path {
-  fill: var(--gateway-binance);
-}
-.default-mode-message-container.BITCOIN_CASH .copy-icon path {
-  fill: var(--gateway-bitcoin-cash);
-}
-
-.default-mode-message {
-  font-size: 13px;
-  line-height: 18px;
-  font-weight: 400;
-  color: var(--black4);
-}
-.default-mode-message-badge {
-  width: auto;
-  padding: 0.125rem 0.25rem;
-  color: white !important;
-  white-space: nowrap;
-  font-size: 12px;
-  border-radius: 0.25rem;
-  font-weight: 500;
-}
-.default-mode-message-badge.POLYGON {
-  background-color: var(--gateway-polygon);
-}
-.default-mode-message-badge.PLZ {
-  background-color: var(--gateway-plz);
-}
-.default-mode-message-badge.PLZ.blockchain-MATIC {
-  background-color: var(--gateway-polygon);
-}
-.default-mode-message-badge.PLZ.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-message-badge.PLZ.blockchain-BEP20 {
-  background-color: var(--gateway-binance);
-  color: black !important;
-}
-.default-mode-message-badge.PLZ.blockchain-TRC20 {
-  background-color: var(--gateway-tron);
-}
-.default-mode-message-badge.BITCOIN, .default-mode-message-badge.BITCOIN_LN {
-  background-color: var(--gateway-bitcoin);
-}
-.default-mode-message-badge.CONCORDIUM {
-  background-color: white;
-  color: black !important;
-}
-.default-mode-message-badge.LITECOIN {
-  background-color: var(--gateway-litecoin);
-}
-.default-mode-message-badge.TRON {
-  background-color: var(--gateway-tron);
-}
-.default-mode-message-badge.BINANCE {
-  background-color: var(--gateway-binance);
-  color: black !important;
-}
-.default-mode-message-badge.NANO {
-  background-color: var(--gateway-nano);
-}
-.default-mode-message-badge.MONERO {
-  background-color: var(--gateway-monero);
-}
-.default-mode-message-badge.SOLANA {
-  background-color: var(--gateway-solana);
-}
-.default-mode-message-badge.RIPPLE {
-  background-color: var(--gateway-ripple);
-}
-.default-mode-message-badge.ETHEREUM {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-message-badge.BINANCE_COIN {
-  background-color: var(--gateway-binance);
-}
-.default-mode-message-badge.CRONOS {
-  background-color: var(--gateway-cronos);
-  color: white !important;
-}
-.default-mode-message-badge.USDC {
-  background-color: var(--gateway-usdc);
-}
-.default-mode-message-badge.USDC.blockchain-MATIC {
-  background-color: var(--gateway-polygon);
-}
-.default-mode-message-badge.USDC.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-message-badge.USDC.blockchain-BEP20 {
-  background-color: var(--gateway-binance);
-  color: black !important;
-}
-.default-mode-message-badge.USDC.blockchain-TRC20 {
-  background-color: var(--gateway-tron);
-}
-.default-mode-message-badge.USDT {
-  background-color: var(--gateway-usdt);
-}
-.default-mode-message-badge.USDT.blockchain-MATIC {
-  background-color: var(--gateway-polygon);
-}
-.default-mode-message-badge.USDT.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-message-badge.USDT.blockchain-BEP20 {
-  background-color: var(--gateway-binance);
-  color: black !important;
-}
-.default-mode-message-badge.USDT.blockchain-TRC20 {
-  background-color: var(--gateway-tron);
-}
-.default-mode-message-badge.BITCOIN_CASH {
-  background-color: var(--gateway-bitcoin-cash);
-}
-.default-mode-exactly {
-  color: var(--black9);
-  font-weight: 500;
-  font-size: 1rem;
-  text-align: center;
-  white-space: nowrap;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.5rem 0;
-  margin: 0.5rem 0;
-  position: relative;
-}
-.default-mode-exactly.success .default-mode-copy {
-  display: flex;
-}
-.default-mode-exactly-badge {
-  font-weight: 600;
-  border-radius: 0.25rem;
-  padding: 0.125rem 0.25rem;
-  margin: 0 0.125rem;
-}
-.default-mode-container {
-  border-radius: 3px;
-  text-align: center;
-  margin: 0;
-  position: relative;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: all 0.2s ease;
-  height: auto;
-  opacity: 1;
-  background: var(--white);
-  padding: 0;
-}
-.default-mode-divider {
-  border-top: 1px solid var(--black2);
-  margin: 1.25rem 0;
-}
-.default-mode-wrapper {
-  border-radius: 0.5rem;
-  will-change: max-height;
-  transition: all 0.2s ease-out;
-  text-align: center;
-  position: relative;
-  margin-bottom: 1.25rem;
-  color: var(--black9);
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 17px;
-}
-@media (max-width: 500px) {
-  .default-mode-wrapper {
-    width: 100% !important;
-  }
-}
-.default-mode-address {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: all 0.2s ease;
-  cursor: pointer;
-  border-radius: 0.5rem;
-  padding: 0.85rem 1rem;
-  margin: 1.5rem 0;
-  background-color: var(--black0);
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 17px;
-  position: relative;
-}
-.default-mode-address span {
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.default-mode-address.success .default-mode-copy {
-  display: flex;
-}
-.default-mode-copy {
-  position: absolute;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  display: none;
-  left: 0;
-  top: 0;
-  background: var(--green4);
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 500;
-  font-size: 1rem;
-  border-radius: 0.5rem;
-}
-.default-mode-copy span {
-  width: auto;
-  margin-left: 0.5rem;
 }
 
 .sellix-widget-invoice-checkout--getaway {
@@ -2663,51 +2660,6 @@ button.secondary .lds-ellipsis div {
   color: var(--purple6);
 }
 
-.sellix-widget-invoice-checkout--footer {
-  background: var(--black0);
-  width: 100%;
-  padding: 1rem 1rem;
-  border-radius: 0 0 0.5rem 0.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: var(--black9);
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  border-top: 1px solid var(--black2);
-}
-.sellix-widget-invoice-checkout--footer:empty {
-  background: var(--white);
-  position: relative;
-  top: 0;
-}
-.sellix-widget-invoice-checkout--footer svg {
-  margin-right: 0.5rem;
-  width: 1.3rem;
-  height: 1.3rem;
-}
-.sellix-widget-invoice-checkout--footer-more {
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--black4);
-  display: flex;
-  align-items: center;
-}
-.sellix-widget-invoice-checkout--footer-more.open svg {
-  transform: rotate(180deg);
-}
-.sellix-widget-invoice-checkout--footer-more svg {
-  transition: transform 0.3s ease;
-  margin-left: 0.25rem;
-  width: 1rem;
-  height: 1rem;
-}
-.sellix-widget-invoice-checkout--footer-more svg * {
-  stroke: var(--black4);
-}
-
 .custom-loader {
   position: absolute;
   top: 50%;
@@ -2746,34 +2698,6 @@ button.secondary .lds-ellipsis div {
     transform: rotate(360deg);
   }
 }
-.embed-loader {
-  display: flex;
-  opacity: 1;
-  z-index: 99999999;
-  width: 100vw;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-  transition: opacity 1s ease-in;
-  overflow: hidden;
-}
-.embed-loader-wrapper {
-  padding: 1rem 0;
-}
-.embed-loader-circle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 100%;
-  width: 68px;
-  height: 68px;
-  margin: 0 auto;
-  position: relative;
-}
-.embed-loader-sellix {
-  position: absolute;
-}
-
 .stripe-additional-form {
   padding: 0.5rem;
   padding-bottom: 0;
@@ -2861,6 +2785,79 @@ button.secondary .lds-ellipsis div {
 }
 .select-container .select.sellix-input::-ms-expand {
   display: none;
+}
+
+.embed-loader {
+  display: flex;
+  opacity: 1;
+  z-index: 99999999;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1s ease-in;
+  overflow: hidden;
+}
+.embed-loader-wrapper {
+  padding: 1rem 0;
+}
+.embed-loader-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  width: 68px;
+  height: 68px;
+  margin: 0 auto;
+  position: relative;
+}
+.embed-loader-sellix {
+  position: absolute;
+}
+
+.sellix-widget-invoice-checkout--footer {
+  background: var(--black0);
+  width: 100%;
+  padding: 1rem 1rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--black9);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border-top: 1px solid var(--black2);
+}
+.sellix-widget-invoice-checkout--footer:empty {
+  background: var(--white);
+  position: relative;
+  top: 0;
+}
+.sellix-widget-invoice-checkout--footer svg {
+  margin-right: 0.5rem;
+  width: 1.3rem;
+  height: 1.3rem;
+}
+.sellix-widget-invoice-checkout--footer-more {
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--black4);
+  display: flex;
+  align-items: center;
+}
+.sellix-widget-invoice-checkout--footer-more.open svg {
+  transform: rotate(180deg);
+}
+.sellix-widget-invoice-checkout--footer-more svg {
+  transition: transform 0.3s ease;
+  margin-left: 0.25rem;
+  width: 1rem;
+  height: 1rem;
+}
+.sellix-widget-invoice-checkout--footer-more svg * {
+  stroke: var(--black4);
 }
 
 .status-title {
@@ -3613,33 +3610,6 @@ button.secondary .lds-ellipsis div {
   line-height: 17px;
 }
 
-.skrill-button {
-  margin-top: 1.5rem;
-  display: flex;
-}
-.skrill-button img {
-  margin: 0 auto;
-  width: 100%;
-  min-width: 100%;
-  background: var(--gateway-skrill);
-  border-radius: 0.5rem;
-}
-
-.paypal-btn.light .sk-circle-fade-dot:before {
-  background-color: var(--purple6) !important;
-}
-.paypal-btn .sk-circle-fade-dot {
-  width: 1.25rem;
-  height: 1.25rem;
-}
-
-.paypal-note {
-  display: flex;
-  justify-content: center;
-  margin-top: 0.25rem;
-  color: var(--black4) !important;
-}
-
 .perfectmoney {
   margin-top: 1.5rem;
   display: flex;
@@ -3669,6 +3639,21 @@ button.secondary .lds-ellipsis div {
 }
 .perfectmoney > form > button.medium:hover {
   background-color: #f35c5b;
+}
+
+.paypal-btn.light .sk-circle-fade-dot:before {
+  background-color: var(--purple6) !important;
+}
+.paypal-btn .sk-circle-fade-dot {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.paypal-note {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.25rem;
+  color: var(--black4) !important;
 }
 
 .dark .stripe-form > .sk-circle-fade .sk-circle-fade-dot:before {
@@ -3772,12 +3757,28 @@ button.secondary .lds-ellipsis div {
   color: var(--black4);
 }
 
+.skrill-button {
+  margin-top: 1.5rem;
+  display: flex;
+}
+.skrill-button img {
+  margin: 0 auto;
+  width: 100%;
+  min-width: 100%;
+  background: var(--gateway-skrill);
+  border-radius: 0.5rem;
+}
+
 .sellix-widget-invoice-checkout--delivery-feedback {
   background: var(--black0);
   border: 1px solid var(--black2);
   margin: 1rem 0 0 0;
   padding: 1rem;
   border-radius: 0.5rem;
+}
+.sellix-widget-invoice-checkout--delivery-feedback-loader {
+  display: flex;
+  justify-content: center;
 }
 .sellix-widget-invoice-checkout--delivery-feedback-title {
   display: flex;
