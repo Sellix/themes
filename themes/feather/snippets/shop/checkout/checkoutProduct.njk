@@ -86,7 +86,7 @@
   <div class="{{ globalClass }}__details">
     <div class="{{ globalClass }}__image {{'image-placeholder' if isPlaceholder}}">
       {% if isPlaceholder %}
-        <i class="fa-light fa-layer-group"></i>
+        {% render_snippet 'Product: Placeholder icon', product=product %}
       {% else %}
         <img src="{{image}}" alt="{{product.title}}" loading="lazy" />
       {% endif %}
