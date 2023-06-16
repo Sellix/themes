@@ -11,9 +11,15 @@
 
 {% set globalClass = 'snippet-menu-item' %}
 
+{% set translationPrefix = 'menu' %}
+
 <a
   href="{{ localePrefix }}{{url}}"
   class="{{ globalClass }} {{ class }} {{'active' if isActive else ''}}"
 >
-  {{title | t}}
+  {% if [translationPrefix, title] | join('.') | t === [translationPrefix, title] | join('.') %}
+    {{ title }}
+  {% else %}
+    {{[translationPrefix, title] | join('.') | t}}
+  {% endif %}
 </a>
