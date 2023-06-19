@@ -886,78 +886,359 @@
     }
   },
   "customer": {
-    "affiliateLinks": {
-      "columns": {
-        "price": "价格",
-        "link": "链接",
-        "product": "产品",
-        "commission": "委员会"
-      },
-      "isEmpty": {
-        "title": "关联链接",
-        "message": "商家还没有在任何产品上启用任何联盟链接。"
-      },
-      "row": {
-        "copyLink": "复制链接",
-        "subscription": "订阅",
-        "startingAt": "始于。",
-        "chooseYourPrice": "选择你的价格"
-      }
-    },
-    "dashboard": {
-      "sales": {
+
+    "commissions": {
+      "pageTitle": "仪表盘",
+      "table": {
+        "title": "最近佣金",
         "columns": {
-          "count": "计数",
+          "invoices": "发票",
+          "product": "产品",
+          "quantity": "数量",
           "price": "价格",
-          "date": "日期",
-          "commission": "委员会",
-          "revenue": "收入",
-          "invoice": "发票",
-          "product": "产品"
-        },
-        "isEmpty": {
-          "title": "最近的委托项目",
-          "message": "你还没有任何联盟佣金"
+          "percentage": "百分比",
+          "created": "创建时间",
+          "commission": "佣金"
         }
       },
       "analytics": {
         "titles": {
-          "totalReferrals": "推荐人总数",
-          "totalCommission": "佣金总额",
+          "totalReferrals": "总推荐数",
+          "totalCommission": "总佣金",
           "currentBalance": "当前余额",
           "revenuePercentage": "收入百分比",
           "referralLink": "推荐链接"
         }
+      },
+      "empty": {
+        "title": "最近佣金",
+        "message": "您还没有任何联盟佣金"
       }
     },
-    "menu": {
-      "affiliateLinks": "关联链接",
-      "dashboard": "仪表板",
-      "payouts": "赔付"
+
+    "affiliates": {
+      "pageTitle": "联盟产品",
+      "table": {
+        "columns": {
+          "product": "产品",
+          "commission": "佣金",
+          "youWillReceive": "您将获得",
+          "link": "链接"
+        }
+      },
+      "empty": {
+        "title": "联盟链接",
+        "message": "商家尚未在任何产品上启用任何联盟链接。"
+      },
+      "row": {
+        "getLink": "获取链接",
+        "subscription": "订阅",
+        "startingAt": "起价：",
+        "chooseYourPrice": "选择您的价格"
+      }
     },
+
     "payouts": {
-      "message": "与商户取得联系，手动支付佣金余额。",
-      "title": "人工赔付"
+      "pageTitle": "手动支付",
+      "title": "手动支付",
+      "message": "与商家联系以手动支付佣金余额。",
+      "button": "联系商家"
     },
-    "auth": {
-      "customerAuth": {
-        "pageTitle": "客户授权｜Sellix",
-        "email": {
-          "valid": {
-            "title": "请输入2FA代码",
-            "message": "您的账户已启用双因素认证（2FA）。请输入一个代码来登录。"
-          },
-          "title": "电子邮件",
-          "invalid": {
-            "message": "进入客户门户仪表板，管理你的联盟余额和更多。",
-            "title": "客户门户"
-          },
-          "placeholder": "example@email.com",
-          "isRequired": "需要电子邮件"
+
+    "table": {
+      "nothingToShow": "暂无内容显示",
+      "shiftForMultiSort": "按下“Shift”进行多重排序",
+      "page": "页",
+      "rows": "行",
+      "of": "/",
+      "nothing": {
+        "title": "未找到结果",
+        "message": "清除筛选条件，然后重试",
+        "button": "清除筛选条件"
+      }
+    },
+
+    "menu": {
+      "commissions": "佣金",
+      "affiliates": "联盟链接",
+      "payouts": "支付",
+      "subscriptions": "我的订阅",
+      "invoices": "我的发票",
+      "licenses": "我的许可证",
+      "profile": "我的个人资料",
+      "signOut": "退出"
+    },
+
+    "subscriptions": {
+      "pageTitle": "我的订阅",
+      "filters": {
+        "statuses": {
+          "all": "所有状态",
+          "trialing": "试用中",
+          "active": "有效",
+          "canceled": "已取消"
+        }
+      },
+      "table": {
+        "columns": {
+          "name": "产品名称",
+          "gateway": "支付网关",
+          "status": "状态",
+          "end": "结束日期"
         },
-        "login": "登录",
-        "continue": "继续"
+        "row": {
+          "notSelected": "未选择"
+        }
+      },
+      "empty": {
+        "title": "订阅",
+        "message": "您还没有任何订阅"
+      },
+      "details": {
+        "breadcrumbs": "我的订阅",
+        "cancelButton": "取消订阅",
+        "cancelModal": {
+          "title": "您将取消此重复账单（订阅）。",
+          "message": "您将取消此重复账单（订阅）。一旦取消，您将收到一封电子邮件，并且不再收取费用。",
+          "closeButton": "关闭",
+          "confirmButton": "确认取消"
+        },
+        "header": {
+          "idCopied": "发票ID已复制",
+          "paidInvoices": "已支付的发票"
+        },
+        "overview": {
+          "title": "概览",
+          "product": "产品",
+          "paid": "支付次数",
+          "renewal": "续订发票已创建",
+          "created": "创建时间",
+          "currentPeriodEnd": "当前周期结束",
+          "cancelled": "取消时间",
+          "id": "客户ID",
+          "phone": "客户电话"
+        },
+        "customFields": {
+          "title": "提供的自定义字段",
+          "field": "字段",
+          "value": "值"
+        },
+        "invoicesTable": "发票"
+      }
+    },
+
+    "invoices": {
+      "pageTitle": "我的发票",
+      "filters": {
+        "statuses": {
+          "all": "所有状态",
+          "PENDING": "待处理",
+          "PARTIAL": "部分",
+          "COMPLETED": "已完成",
+          "VOIDED": "已取消",
+          "CANCELED": "已取消",
+          "CANCELLED": "已取消",
+          "WAITING_FOR_CONFIRMATIONS": "等待确认",
+          "WAITING_SHOP_ACTION": "等待商家处理",
+          "REVERSED": "已冲销",
+          "REFUNDED": "已退款",
+          "CUSTOMER_DISPUTE_ONGOING": "进行中的纠纷"
+        },
+        "gateways": {
+          "all": "所有支付渠道"
+        }
+      },
+      "table": {
+        "columns": {
+          "info": "信息",
+          "gateway": "支付渠道",
+          "value": "金额",
+          "status": "状态",
+          "update": "最后更新"
+        },
+        "row": {
+          "soldOut": "产品已售罄",
+          "cartSoldOut": "购物车中的产品已售罄",
+          "free": "免费",
+          "shoppingCart": "购物车购买",
+          "noProduct": "未提供产品",
+          "partialOut": "购物车中的产品部分缺货"
+        }
+      },
+      "empty": {
+        "title": "发票",
+        "message": "暂无待显示的发票"
+      },
+
+      "details": {
+        "details": {
+          "breadcrumbs": "我的发票",
+          "header": {
+            "idCopied": "发票号已复制",
+            "badges": {
+              "of": "的",
+              "soldOut": "产品已售罄",
+              "cartSoldOut": "购物车中的产品已售罄",
+              "partialOut": "购物车中的产品部分缺货"
+            }
+          },
+          "products": {
+            "title": "标题",
+            "price": "价格",
+            "quantity": "数量",
+            "percent": "佣金百分比",
+            "status": "状态",
+            "priceByCustomer": "由客户设置的价格",
+            "idCopied": "产品号已复制",
+            "subscription": "订阅"
+          },
+          "overview": {
+            "title": "概览",
+            "value": "金额",
+            "free": "免费",
+            "created": "创建时间",
+            "gateway": "支付渠道",
+            "blockchain": "区块链",
+            "cashappNote": "备注",
+            "cashappCashtag": "Cashtag",
+            "paypalPayerEmail": "PayPal付款人邮箱",
+            "shippedToPaypalPayerEmail": "发货至PayPal付款人邮箱",
+            "coupon": "优惠券",
+            "noCoupon": "无优惠券",
+            "fraudScore": "欺诈评分",
+            "IP": "IP地址",
+            "country": "国家",
+            "device": "设备",
+            "proxy": "代理",
+            "VPN": "VPN",
+            "TOR": "TOR",
+            "ISP": "ISP"
+          },
+          "addons": {
+            "mainTitle": "附加产品",
+            "title": "标题",
+            "product": "产品",
+            "price": "价格"
+          },
+          "customFields": {
+            "title": "提供的自定义字段",
+            "field": "字段",
+            "value": "值"
+          },
+          "payouts": {
+            "title": "支付信息",
+            "address": "地址",
+            "needed": "需要",
+            "received": "已收到",
+            "amount": "金额",
+            "transactions": "交易",
+            "payout": "支付",
+            "scheduled": "已计划",
+            "here": "此处",
+            "scheduledText1": "您的收到的交易现已计划进行支付，请阅读更多关于限额的信息",
+            "scheduledText2": "要查看您的支付，请使用左侧侧边栏中的'支付'菜单。",
+            "sent": "已发送",
+            "transaction": "交易",
+            "cut": "您的所得",
+            "transactionFee": "交易费",
+            "serviceFee": "服务费"
+          },
+          "tax": {
+            "title": "税务信息",
+            "total": "总计",
+            "preVAT": "税前总计",
+            "type": "类型",
+            "percentage": "百分比",
+            "country": "国家"
+          },
+
+          "goods": {
+            "title": "已交付的商品",
+            "fileName": "文件名",
+            "noProduct": "未交付任何产品"
+          },
+          "affiliates": {
+            "title": "联盟信息",
+            "amount": "金额",
+            "ID": "客户ID",
+            "created": "创建时间"
+          },
+          "invoicesTable": "发票"
+      }
+    },
+
+    "licenses": {
+      "pageTitle": "我的许可证",
+      "filters": {
+        "statuses": {
+          "all": "所有状态",
+          "active": "有效",
+          "expired": "已过期"
+        }
+      },
+      "table": {
+        "columns": {
+          "info": "信息",
+          "id": "许可证ID",
+          "purchased": "购买时间",
+          "expired": "到期时间",
+          "status": "状态"
+        },
+        "row": {
+          "soldOut": "产品已售罄",
+          "cartSoldOut": "购物车中的产品已售罄",
+          "free": "免费"
+        }
+      },
+      "empty": {
+        "title": "许可证",
+        "message": "您还没有任何许可证"
+      }
+    },
+
+    "profile": {
+      "mainTitle": "个人资料",
+      "title": "概览",
+      "created": "创建时间",
+      "email": "电子邮件",
+      "address": "地址",
+      "phone": "电话",
+      "id": "ID",
+      "name": "名称"
+    },
+
+    "shared": {
+      "search": "搜索"
+    },
+
+    "auth": {
+      "pageTitle": "客户认证 | Sellix",
+      "email": {
+        "valid": {
+          "title": "请输入2FA验证码",
+          "message": "您的账户已启用双因素身份验证（2FA）。请输入验证码以登录。"
+        },
+        "title": "电子邮件",
+        "invalid": {
+          "message": "访问客户门户仪表板，管理您的联盟余额等。",
+          "title": "客户门户"
+        },
+        "placeholder": "示例@电子邮件.com",
+        "isRequired": "电子邮件是必填项"
+      },
+      "login": "登录",
+      "continue": "继续",
+      "code": {
+        "title": "身份验证码",
+        "message": "我们已向您的电子邮件地址发送了一个唯一的验证码，请在下方输入。",
+        "firstName": "名字",
+        "lastName": "姓氏",
+        "firstNamePlaceholder": "布巴",
+        "lastNamePlaceholder": "帕夫连科"
       }
     }
+
+  }
+
   }
 }

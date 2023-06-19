@@ -309,6 +309,13 @@
               if (onSuccess) {
                 captchaRequest
                   .then(onSuccess)
+                  .then((resp) => {
+                    const { status } = resp;
+                    if (status === 403) {
+                      throw new Error('Captcha V3 back end request error.');
+                    }
+                    return resp;
+                  })
                   .then(resolve)
                   .catch(() => {
                     this.requestWithCaptchaV2(action, onSuccess, onError, options)

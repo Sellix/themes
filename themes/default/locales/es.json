@@ -885,79 +885,365 @@
       }
     }
   },
+
   "customer": {
-    "affiliateLinks": {
-      "columns": {
-        "price": "Precio",
-        "link": "Enlace",
-        "product": "Producto",
-        "commission": "Comisión"
-      },
-      "isEmpty": {
-        "title": "Enlaces afiliados",
-        "message": "El comerciante aún no ha habilitado ningún enlace de afiliado en ningún producto."
-      },
-      "row": {
-        "copyLink": "Copiar enlace",
-        "subscription": "Suscripción",
-        "startingAt": "A partir de:",
-        "chooseYourPrice": "Elija su precio"
-      }
-    },
-    "dashboard": {
-      "sales": {
+
+    "commissions": {
+      "pageTitle": "Panel de control",
+      "table": {
+        "title": "Comisiones recientes",
         "columns": {
-          "count": "Cuenta",
+          "invoices": "Facturas",
+          "product": "Producto",
+          "quantity": "Cantidad",
           "price": "Precio",
-          "date": "Fecha",
-          "commission": "Comisión",
-          "revenue": "Ingresos",
-          "invoice": "Factura",
-          "product": "Producto"
-        },
-        "isEmpty": {
-          "title": "Comisiones recientes",
-          "message": "Aún no tienes ninguna comisión de afiliado"
+          "percentage": "Porcentaje",
+          "created": "Creado",
+          "commission": "Comisión"
         }
       },
       "analytics": {
         "titles": {
-          "totalReferrals": "Total de remisiones",
+          "totalReferrals": "Total de referencias",
           "totalCommission": "Comisión total",
           "currentBalance": "Saldo actual",
           "revenuePercentage": "Porcentaje de ingresos",
           "referralLink": "Enlace de referencia"
         }
+      },
+      "empty": {
+        "title": "Comisiones recientes",
+        "message": "Aún no tienes ninguna comisión de afiliado"
       }
     },
-    "menu": {
-      "affiliateLinks": "Enlaces afiliados",
-      "dashboard": "Cuadro de mandos",
-      "payouts": "Pagos"
+
+    "affiliates": {
+      "pageTitle": "Productos de afiliados",
+      "table": {
+        "columns": {
+          "product": "Producto",
+          "commission": "Comisión",
+          "youWillReceive": "Recibirás",
+          "link": "Enlace"
+        }
+      },
+      "empty": {
+        "title": "Enlaces de afiliados",
+        "message": "El comerciante aún no ha habilitado enlaces de afiliados en ningún producto."
+      },
+      "row": {
+        "getLink": "Obtener enlace",
+        "subscription": "Suscripción",
+        "startingAt": "A partir de:",
+        "chooseYourPrice": "Elige tu precio"
+      }
     },
+
     "payouts": {
-      "message": "Póngase en contacto con el comerciante para el pago manual del saldo de comisiones.",
-      "title": "Pagos manuales"
+      "pageTitle": "Pagos manuales",
+      "title": "Pagos manuales",
+      "message": "Ponte en contacto con el comerciante para solicitar un pago manual del saldo de comisiones.",
+      "button": "Contactar al comerciante"
     },
-    "auth": {
-      "customerAuth": {
-        "pageTitle": "Autenticación de clientes | Sellix",
-        "email": {
-          "valid": {
-            "title": "Introduzca el código 2FA",
-            "message": "La autenticación de dos factores (2FA) está activada para su cuenta. Introduzca un código para iniciar sesión."
-          },
-          "title": "Correo electrónico",
-          "invalid": {
-            "message": "Acceda al panel del portal del cliente para gestionar sus saldos de afiliado y mucho más.",
-            "title": "Portal del cliente"
-          },
-          "placeholder": "example@email.com",
-          "isRequired": "Correo electrónico obligatorio"
+
+    "table": {
+      "nothingToShow": "No tenemos nada que mostrarte",
+      "shiftForMultiSort": "Presiona \"Shift\" para ordenar múltiples columnas",
+      "page": "Página",
+      "rows": "Filas",
+      "of": "de",
+      "nothing": {
+        "title": "No se encontraron resultados",
+        "message": "Borra tus filtros e intenta nuevamente",
+        "button": "Borrar filtros"
+      }
+    },
+
+    "menu": {
+      "commissions": "Comisiones",
+      "affiliates": "Enlaces de afiliados",
+      "payouts": "Pagos",
+      "subscriptions": "Mis suscripciones",
+      "invoices": "Mis facturas",
+      "licenses": "Mis licencias",
+      "profile": "Mi perfil",
+      "signOut": "Cerrar sesión"
+    },
+
+    "subscriptions": {
+      "pageTitle": "Mis suscripciones",
+      "filters": {
+        "statuses": {
+          "all": "Todos los estados",
+          "trialing": "Prueba",
+          "active": "Activa",
+          "canceled": "Cancelada"
+        }
+      },
+      "table": {
+        "columns": {
+          "name": "Nombre del producto",
+          "gateway": "Pasarela",
+          "status": "Estado",
+          "end": "Fin del período"
         },
-        "login": "Inicio de sesión",
-        "continue": "Continúe en"
+        "row": {
+          "notSelected": "No seleccionado"
+        }
+      },
+      "empty": {
+        "title": "Suscripciones",
+        "message": "Aún no tienes ninguna suscripción para mostrar"
+      },
+      "details": {
+        "breadcrumbs": "Mis suscripciones",
+        "cancelButton": "Cancelar suscripción",
+        "cancelModal": {
+          "title": "Vas a cancelar esta factura recurrente (suscripción).",
+          "message": "Vas a cancelar esta factura recurrente (suscripción). Una vez cancelada, recibirás un correo electrónico y no se te facturará más.",
+          "closeButton": "Cerrar",
+          "confirmButton": "Confirmar cancelación"
+        },
+        "header": {
+          "idCopied": "ID de factura copiado",
+          "paidInvoices": "Facturas pagadas"
+        },
+        "overview": {
+          "title": "Resumen",
+          "product": "Producto",
+          "paid": "Veces pagadas",
+          "renewal": "Factura de renovación creada",
+          "created": "Creada en",
+          "currentPeriodEnd": "Fin del período actual",
+          "cancelled": "Cancelada en",
+          "id": "ID de cliente",
+          "phone": "Teléfono del cliente"
+        },
+        "customFields": {
+          "title": "Campos personalizados proporcionados",
+          "field": "Campo",
+          "value": "Valor"
+        },
+        "invoicesTable": "Facturas"
+      }
+    },
+
+    "invoices": {
+      "pageTitle": "Mis facturas",
+      "filters": {
+        "statuses": {
+          "all": "Todos los estados",
+          "PENDING": "Pendiente",
+          "PARTIAL": "Parcial",
+          "COMPLETED": "Completada",
+          "VOIDED": "Cancelada",
+          "CANCELED": "Cancelada",
+          "CANCELLED": "Cancelada",
+          "WAITING_FOR_CONFIRMATIONS": "Confirmación",
+          "WAITING_SHOP_ACTION": "Acción de tienda",
+          "REVERSED": "Reversada",
+          "REFUNDED": "Reembolsada",
+          "CUSTOMER_DISPUTE_ONGOING": "Disputa en curso"
+        },
+        "gateways": {
+          "all": "Todas las pasarelas"
+        }
+      },
+      "table": {
+        "columns": {
+          "info": "Información",
+          "gateway": "Pasarela",
+          "value": "Valor",
+          "status": "Estado",
+          "update": "Última actualización"
+        },
+        "row": {
+          "soldOut": "Producto agotado",
+          "cartSoldOut": "Productos del carrito agotados",
+          "free": "Gratis",
+          "shoppingCart": "Compra de carrito de compras",
+          "noProduct": "Producto no proporcionado",
+          "partialOut": "Carrito agotado parcialmente"
+        }
+      },
+      "empty": {
+        "title": "Facturas",
+        "message": "Aún no tienes ninguna factura para mostrar"
+      },
+
+
+
+
+
+
+
+      "details": {
+        "breadcrumbs": "Mis facturas",
+        "header": {
+          "idCopied": "ID de factura copiado",
+          "badges": {
+            "of": "de",
+            "soldOut": "Producto agotado",
+            "cartSoldOut": "Productos del carrito agotados",
+            "partialOut": "Carrito agotado parcialmente"
+          }
+        },
+        "products": {
+          "title": "Título",
+          "price": "Precio",
+          "quantity": "Cantidad",
+          "percent": "Porcentaje de afiliado",
+          "status": "Estado",
+          "priceByCustomer": "Precio establecido por el cliente",
+          "idCopied": "ID de producto copiado",
+          "subscription": "Suscripción"
+        },
+        "overview": {
+          "title": "Resumen",
+          "value": "Valor",
+          "free": "Gratis",
+          "created": "Creada el",
+          "gateway": "Pasarela",
+          "blockchain": "Blockchain",
+          "cashappNote": "Nota",
+          "cashappCashtag": "Cashtag",
+          "paypalPayerEmail": "Correo electrónico del pagador de PayPal",
+          "shippedToPaypalPayerEmail": "Enviado al correo electrónico del pagador de PayPal",
+          "coupon": "Cupón",
+          "noCoupon": "Sin cupón",
+          "fraudScore": "Puntuación de fraude",
+          "IP": "Dirección IP",
+          "country": "País",
+          "device": "Dispositivo",
+          "proxy": "Proxy",
+          "VPN": "VPN",
+          "TOR": "TOR",
+          "ISP": "ISP"
+        },
+        "addons": {
+          "mainTitle": "Extras",
+          "title": "Título",
+          "product": "Producto",
+          "price": "Precio"
+        },
+        "customFields": {
+          "title": "Campos personalizados proporcionados",
+          "field": "Campo",
+          "value": "Valor"
+        },
+        "payouts": {
+          "title": "Información de pago",
+          "address": "Dirección",
+          "needed": "Necesario",
+          "received": "Recibido",
+          "amount": "Monto",
+          "transactions": "Transacciones",
+          "payout": "Pago",
+          "scheduled": "Programado",
+          "here": "aquí",
+          "scheduledText1": "Tu transacción recibida ahora está programada para el pago, puedes obtener más información sobre los límites ",
+          "scheduledText2": "Para ver tu pago, utiliza el menú \"Pago\" en la barra lateral izquierda.",
+          "sent": "Enviado",
+          "transaction": "Transacción",
+          "cut": "Tu parte",
+          "transactionFee": "Tarifa de transacción",
+          "serviceFee": "Tarifa de servicio"
+        },
+
+        "tax": {
+          "title": "Información de impuestos",
+          "total": "Total",
+          "preVAT": "Total antes de impuestos",
+          "type": "Tipo",
+          "percentage": "Porcentaje",
+          "country": "País"
+        },
+
+        "goods": {
+          "title": "Productos entregados",
+          "fileName": "Nombre de archivo",
+          "noProduct": "No se ha entregado ningún producto"
+        },
+        "affiliates": {
+          "title": "Información de afiliados",
+          "amount": "Monto",
+          "ID": "ID del cliente",
+          "created": "Creado el"
+        },
+        "invoicesTable": "Facturas"
+      }
+    },
+
+    "licenses": {
+      "pageTitle": "Mis licencias",
+      "filters": {
+        "statuses": {
+          "all": "Todos los estados",
+          "active": "Activa",
+          "expired": "Caducada"
+        }
+      },
+      "table": {
+        "columns": {
+          "info": "Información",
+          "id": "ID de licencia",
+          "purchased": "Comprada",
+          "expired": "Caduca en",
+          "status": "Estado"
+        },
+        "row": {
+          "soldOut": "Producto agotado",
+          "cartSoldOut": "Productos del carrito agotados",
+          "free": "Gratis"
+        }
+      },
+      "empty": {
+        "title": "Licencias",
+        "message": "Aún no tienes ninguna licencia para mostrar"
+      }
+    },
+
+    "profile": {
+      "mainTitle": "Perfil",
+      "title": "Resumen",
+      "created": "Creado",
+      "email": "Correo electrónico",
+      "address": "Dirección",
+      "phone": "Teléfono",
+      "id": "ID",
+      "name": "Nombre"
+    },
+
+    "shared": {
+      "search": "Buscar"
+    },
+
+    "auth": {
+      "pageTitle": "Autenticación de cliente | Sellix",
+      "email": {
+        "valid": {
+          "title": "Ingresa el código de 2FA",
+          "message": "La autenticación de dos factores (2FA) está habilitada para tu cuenta. Por favor, ingresa un código para iniciar sesión."
+        },
+        "title": "Correo electrónico",
+        "invalid": {
+          "message": "Accede al panel de control del portal del cliente para administrar tus saldos de afiliado y más.",
+          "title": "Portal del cliente"
+        },
+        "placeholder": "ejemplo@correo.com",
+        "isRequired": "Se requiere un correo electrónico"
+      },
+      "login": "Iniciar sesión",
+      "continue": "Continuar",
+      "code": {
+        "title": "Código de autenticación",
+        "message": "Hemos enviado un código único a tu dirección de correo electrónico, por favor ingrésalo a continuación.",
+        "firstName": "Nombre",
+        "lastName": "Apellido",
+        "firstNamePlaceholder": "Buba",
+        "lastNamePlaceholder": "Pavlenko"
       }
     }
+
   }
 }

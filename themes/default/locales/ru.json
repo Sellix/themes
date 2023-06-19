@@ -994,79 +994,358 @@
       }
     }
   },
+
   "customer": {
-    "auth": {
-      "customerAuth": {
-        "pageTitle": "Customer Auth | Sellix",
-        "continue": "Продолжить",
-        "login": "Войти",
-        "email": {
-          "title": "Email",
-          "placeholder": "example@email.com",
-          "isRequired": "Email обязателен",
-          "valid": {
-            "title": "Пожалуйста введить 2FA код",
-            "message": "Для вашей учетной записи включена двухфакторная аутентификация (2FA). Пожалуйста, введите код для входа."
-          },
-          "invalid": {
-            "title": "Customer Portal",
-            "message": "Получите доступ к Customer Portal дашбоарду, чтобы управлять балансами своих партнеров и т.д."
-          }
+
+    "commissions": {
+      "pageTitle": "Панель управления",
+      "table": {
+        "title": "Недавние комиссии",
+        "columns": {
+          "invoices": "Счета",
+          "product": "Продукт",
+          "quantity": "Количество",
+          "price": "Цена",
+          "percentage": "Процент",
+          "created": "Создано",
+          "commission": "Комиссия"
         }
-      }
-    },
-    "menu": {
-      "dashboard": "Дашбоард",
-      "affiliateLinks": "Партнерские ссылки",
-      "payouts": "Выплаты"
-    },
-    "affiliateLinks": {
-      "isEmpty": {
-        "title": "Партнерские ссылки",
-        "message": "Продавец еще не активировал партнерские ссылки ни для одного продукта."
       },
-      "columns": {
-        "product": "Продукт",
-        "price": "Цена",
-        "commission": "Прайс",
-        "link": "Ссылка"
-      },
-      "row": {
-        "chooseYourPrice": "Выберите свою цену",
-        "subscription": "Подписка",
-        "startingAt": "Начинается от:",
-        "copyLink": "Копировать ссылку"
-      }
-    },
-    "dashboard": {
       "analytics": {
         "titles": {
+          "totalReferrals": "Общее количество рефералов",
+          "totalCommission": "Общая комиссия",
           "currentBalance": "Текущий баланс",
           "revenuePercentage": "Процент дохода",
-          "totalCommission": "Общая комиссия",
-          "totalReferrals": "Всего рефералов",
           "referralLink": "Реферальная ссылка"
         }
       },
-      "sales": {
-        "isEmpty": {
-          "title": "Недавние комиссии",
-          "message": "У вас еще нет партнерской комиссии"
-        },
-        "columns": {
-          "invoice": "Заказ",
-          "date": "Дата",
-          "commission": "Комиссия",
-          "product": "Продукт",
-          "count": "Число",
-          "price": "Цена",
-          "revenue": "Доход %"
-        }
+      "empty": {
+        "title": "Недавние комиссии",
+        "message": "У вас еще нет аффилиатской комиссии"
       }
     },
+
+    "affiliates": {
+      "pageTitle": "Партнерские продукты",
+      "table": {
+        "columns": {
+          "product": "Продукт",
+          "commission": "Комиссия",
+          "youWillReceive": "Вы получите",
+          "link": "Ссылка"
+        }
+      },
+      "empty": {
+        "title": "Партнерские ссылки",
+        "message": "Торговец еще не активировал партнерские ссылки на какие-либо продукты."
+      },
+      "row": {
+        "getLink": "Получить ссылку",
+        "subscription": "Подписка",
+        "startingAt": "Начиная с:",
+        "chooseYourPrice": "Выберите свою цену"
+      }
+    },
+
     "payouts": {
-      "title": "Ручные выплаты",
-      "message": "Свяжитесь с продавцом для ручной выплаты остатка комиссионных."
+      "pageTitle": "Выплаты",
+      "title": "Выплаты",
+      "message": "Свяжитесь с торговцем для ручной выплаты комиссии.",
+      "button": "Связаться с торговцем"
+    },
+
+    "table": {
+      "nothingToShow": "Нет данных для отображения",
+      "shiftForMultiSort": "Нажмите \"Shift\" для множественной сортировки",
+      "page": "Страница",
+      "rows": "Строки",
+      "of": "из",
+      "nothing": {
+        "title": "Результат не найден",
+        "message": "Сбросьте фильтры и попробуйте снова",
+        "button": "Сбросить фильтры"
+      }
+    },
+
+    "menu": {
+      "commissions": "Комиссии",
+      "affiliates": "Партнерские ссылки",
+      "payouts": "Выплаты",
+      "subscriptions": "Мои подписки",
+      "invoices": "Мои счета",
+      "licenses": "Мои лицензии",
+      "profile": "Мой профиль",
+      "signOut": "Выйти"
+    },
+
+    "subscriptions": {
+      "pageTitle": "Мои подписки",
+      "filters": {
+        "statuses": {
+          "all": "Все статусы",
+          "trialing": "Испытание",
+          "active": "Активно",
+          "canceled": "Отменено"
+        }
+      },
+      "table": {
+        "columns": {
+          "name": "Название продукта",
+          "gateway": "Шлюз",
+          "status": "Статус",
+          "end": "Окончание периода"
+        },
+        "row": {
+          "notSelected": "Не выбрано"
+        }
+      },
+      "empty": {
+        "title": "Подписки",
+        "message": "У вас пока нет подписок для отображения"
+      },
+      "details": {
+        "breadcrumbs": "Мои подписки",
+        "cancelButton": "Отменить подписку",
+        "cancelModal": {
+          "title": "Вы собираетесь отменить этот регулярный счет (подписку).",
+          "message": "Вы собираетесь отменить этот регулярный счет (подписку). После отмены вы получите электронное письмо и больше не будете выставляться счета.",
+          "closeButton": "Закрыть",
+          "confirmButton": "Подтвердить отмену"
+        },
+        "header": {
+          "idCopied": "ID счета скопирован",
+          "paidInvoices": "Оплаченные счета"
+        },
+        "overview": {
+          "title": "Обзор",
+          "product": "Продукт",
+          "paid": "Оплачено раз",
+          "renewal": "Счет на продление создан",
+          "created": "Создано",
+          "currentPeriodEnd": "Окончание текущего периода",
+          "cancelled": "Отменено",
+          "id": "ID клиента",
+          "phone": "Телефон клиента"
+        },
+        "customFields": {
+          "title": "Предоставленные пользовательские поля",
+          "field": "Поле",
+          "value": "Значение"
+        },
+        "invoicesTable": "Счета"
+      }
+    },
+
+    "invoices": {
+      "pageTitle": "Мои счета-фактуры",
+      "filters": {
+        "statuses": {
+          "all": "Все статусы",
+          "PENDING": "Ожидание",
+          "PARTIAL": "Частичный",
+          "COMPLETED": "Завершен",
+          "VOIDED": "Отменен",
+          "CANCELED": "Отменен",
+          "CANCELLED": "Отменен",
+          "WAITING_FOR_CONFIRMATIONS": "Ожидание подтверждения",
+          "WAITING_SHOP_ACTION": "Действие магазина",
+          "REVERSED": "Отклонен",
+          "REFUNDED": "Возвращено",
+          "CUSTOMER_DISPUTE_ONGOING": "Текущий спор"
+        },
+        "gateways": {
+          "all": "Все шлюзы"
+        }
+      },
+      "table": {
+        "columns": {
+          "info": "Информация",
+          "gateway": "Шлюз",
+          "value": "Сумма",
+          "status": "Статус",
+          "update": "Последнее обновление"
+        },
+        "row": {
+          "soldOut": "Товар распродан",
+          "cartSoldOut": "Товары в корзине распроданы",
+          "free": "Бесплатно",
+          "shoppingCart": "Покупка корзины",
+          "noProduct": "Товар не указан",
+          "partialOut": "Частичное отсутствие товара в корзине"
+        }
+      },
+      "empty": {
+        "title": "Счета-фактуры",
+        "message": "У вас пока нет счетов-фактур для отображения"
+      },
+
+      "details": {
+        "breadcrumbs": "Мои счета-фактуры",
+        "header": {
+          "idCopied": "ID счета скопирован",
+          "badges": {
+            "of": "из",
+            "soldOut": "Товар распродан",
+            "cartSoldOut": "Товары в корзине распроданы",
+            "partialOut": "Частичное отсутствие товара в корзине"
+          }
+        },
+        "products": {
+          "title": "Название",
+          "price": "Цена",
+          "quantity": "Количество",
+          "percent": "Процент аффилиата",
+          "status": "Статус",
+          "priceByCustomer": "Цена, установленная клиентом",
+          "idCopied": "ID товара скопирован",
+          "subscription": "Подписка"
+        },
+        "overview": {
+          "title": "Обзор",
+          "value": "Сумма",
+          "free": "Бесплатно",
+          "created": "Дата создания",
+          "gateway": "Шлюз",
+          "blockchain": "Блокчейн",
+          "cashappNote": "Примечание",
+          "cashappCashtag": "Cashtag",
+          "paypalPayerEmail": "Email плательщика PayPal",
+          "shippedToPaypalPayerEmail": "Отправлено на email плательщика PayPal",
+          "coupon": "Купон",
+          "noCoupon": "Без купона",
+          "fraudScore": "Оценка мошенничества",
+          "IP": "IP-адрес",
+          "country": "Страна",
+          "device": "Устройство",
+          "proxy": "Прокси",
+          "VPN": "VPN",
+          "TOR": "TOR",
+          "ISP": "Провайдер"
+        },
+        "addons": {
+          "mainTitle": "Дополнения",
+          "title": "Название",
+          "product": "Товар",
+          "price": "Цена"
+        },
+        "customFields": {
+          "title": "Дополнительные поля",
+          "field": "Поле",
+          "value": "Значение"
+        },
+
+        "payouts": {
+          "title": "Информация о выплате",
+          "address": "Адрес",
+          "needed": "Необходимо",
+          "received": "Получено",
+          "amount": "Сумма",
+          "transactions": "Транзакции",
+          "payout": "Выплата",
+          "scheduled": "Запланировано",
+          "here": "здесь",
+          "scheduledText1": "Ваша полученная транзакция теперь запланирована для выплаты, вы можете узнать больше о лимитах ",
+          "scheduledText2": "Чтобы просмотреть выплату, воспользуйтесь меню \"Выплаты\" в боковой панели слева.",
+          "sent": "Отправлено",
+          "transaction": "Транзакция",
+          "cut": "Ваша доля",
+          "transactionFee": "Комиссия за транзакцию",
+          "serviceFee": "Сервисная комиссия"
+        },
+        "tax": {
+          "title": "Налоговая информация",
+          "total": "Итого",
+          "preVAT": "Итого без НДС",
+          "type": "Тип",
+          "percentage": "Процент",
+          "country": "Страна"
+        },
+        "goods": {
+          "title": "Доставленные товары",
+          "fileName": "Имя файла",
+          "noProduct": "Товар не был доставлен"
+        },
+        "affiliates": {
+          "title": "Информация об аффилиатах",
+          "amount": "Сумма",
+          "ID": "ID клиента",
+          "created": "Дата создания"
+        },
+        "invoicesTable": "Счета-фактуры"
+      }
+    },
+
+    "licenses": {
+      "pageTitle": "Мои лицензии",
+      "filters": {
+        "statuses": {
+          "all": "Все статусы",
+          "active": "Активна",
+          "expired": "Истекла"
+        }
+      },
+      "table": {
+        "columns": {
+          "info": "Информация",
+          "id": "ID лицензии",
+          "purchased": "Дата покупки",
+          "expired": "Истекает",
+          "status": "Статус"
+        },
+        "row": {
+          "soldOut": "Товар распродан",
+          "cartSoldOut": "Товары в корзине распроданы",
+          "free": "Бесплатно"
+        }
+      },
+      "empty": {
+        "title": "Лицензии",
+        "message": "У вас пока нет лицензий для отображения"
+      }
+    },
+
+    "profile": {
+      "mainTitle": "Профиль",
+      "title": "Обзор",
+      "created": "Дата создания",
+      "email": "Email",
+      "address": "Адрес",
+      "phone": "Телефон",
+      "id": "ID",
+      "name": "Имя"
+    },
+
+    "shared": {
+      "search": "Поиск"
+    },
+
+    "auth": {
+      "pageTitle": "Аутентификация клиента | Sellix",
+      "email": {
+        "valid": {
+          "title": "Пожалуйста, введите код 2FA",
+          "message": "Для вашей учетной записи включена двухфакторная аутентификация (2FA). Пожалуйста, введите код для входа."
+        },
+        "title": "Email",
+        "invalid": {
+          "message": "Доступ к панели управления клиента для управления балансами партнеров и другими функциями.",
+          "title": "Портал клиента"
+        },
+        "placeholder": "example@email.com",
+        "isRequired": "Требуется указать Email"
+      },
+      "login": "Войти",
+      "continue": "Продолжить",
+      "code": {
+        "title": "Код аутентификации",
+        "message": "Мы отправили уникальный код на ваш адрес электронной почты. Пожалуйста, введите его ниже.",
+        "firstName": "Имя",
+        "lastName": "Фамилия",
+        "firstNamePlaceholder": "Буба",
+        "lastNamePlaceholder": "Павленко"
+      }
     }
+
   }
 }

@@ -4,6 +4,7 @@
 {% set shop = shopInfo.shop %}
 {% set hideOutOfStock = shop.hide_out_of_stock | int %}
 {% set cartEnabled = args.cartEnabled or global.common.cartEnabled %}
+{% set hideStockCounter = shop.hide_stock_counter %}
 
 {% for product in group.products_bound %}
   {% set onHold = product.on_hold | int %}
@@ -76,10 +77,13 @@
                   class="{{'text-red' if productStock | int === 0 else 'text-green'}}"
                   style="color: {{'#dc3545' if productStock == 0 else '#28a745'}}; position: {{'relative' if productStock === '∞' else 'static'}}; top: {{'auto' if productStock === '∞' else 'auto'}}"
                 >
-                  {% if productStock === '∞' %}
-                    <i class="fa-solid fa-infinity" style="font-size: 10px; color: {{'#dc3545' if productStock === 0 else '#28a745'}}"></i>
+                  {% if hideStockCounter %}
                   {% else %}
-                    {{productStock}}
+                    {% if productStock === '∞' %}
+                      <i class="fa-solid fa-infinity" style="font-size: 10px; color: {{'#dc3545' if productStock === 0 else '#28a745'}}"></i>
+                    {% else %}
+                      {{productStock}}
+                    {% endif %}
                   {% endif %}
                 </span> {{ 'shop.main.cards.group.inStock' | t }}
               </span>

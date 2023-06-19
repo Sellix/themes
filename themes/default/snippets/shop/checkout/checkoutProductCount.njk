@@ -36,11 +36,16 @@
 
 <script type='application/javascript'>
   $(document).ready(function () {
+    const { shopInfo } = window.SellixContext.get('common');
+
+    let hideStockCounter = shopInfo && shopInfo.shop && shopInfo.shop.hide_stock_counter;
+
     new SellixProductCountComponent(
       '#sellix-product-count-{{id}}',
       '{{shop.name}}',
       {{ product | exclude_attributes('shop_terms_of_service') | dump | safe }},
       {{renderOptions | dump | safe}},
+      hideStockCounter
     );
   });
 </script>
