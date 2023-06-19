@@ -75,11 +75,11 @@
         "title": "Erkunden Sie den digitalen Laden von {{shopName}}"
       },
       "invoice": {
-        "title": "Sellix Rechnung: {{invoiceId}}",
         "metaTags": {
           "description": "Erfüllen Sie eine Rechnung, um das Produkt sofort zu erhalten. Rechnungen können mit vielen verschiedenen Zahlungsmethoden beglichen werden, die vom Verkäufer ausgewählt wurden.",
           "title": "Rechnung: {{invoiceId}}"
-        }
+        },
+        "title": "Sellix Rechnung: {{invoiceId}}"
       },
       "main": {
         "metaTags": {
@@ -98,6 +98,13 @@
         "title": "Liste der Zahlungen"
       },
       "product": {},
+      "shop": {
+        "metaTags": {
+          "description": "Schauen Sie sich den digitalen Shop von {{shopName}} an: Erhalten Sie die digitalen Güter, die Sie benötigen, sofort mit unseren vielen Zahlungsgateways in nur wenigen Klicks oder kontaktieren Sie uns, wenn Sie Hilfe benötigen.",
+          "title": "Erkunden Sie den digitalen Shop von {{shopName}}"
+        },
+        "title": "Erkunden Sie den digitalen Shop von {{shopName}}"
+      },
       "subscription": {},
       "terms": {
         "metaTags": {
@@ -115,13 +122,6 @@
           "title": "Metriken für vertrauenswürdige Berater"
         },
         "title": "Metriken für vertrauenswürdige Berater"
-      },
-      "shop": {
-        "metaTags": {
-          "description": "Schauen Sie sich den digitalen Shop von {{shopName}} an: Erhalten Sie die digitalen Güter, die Sie benötigen, sofort mit unseren vielen Zahlungsgateways in nur wenigen Klicks oder kontaktieren Sie uns, wenn Sie Hilfe benötigen.",
-          "title": "Erkunden Sie den digitalen Shop von {{shopName}}"
-        },
-        "title": "Erkunden Sie den digitalen Shop von {{shopName}}"
       }
     }
   },
@@ -416,10 +416,6 @@
               "isRequired": "Name ist erforderlich",
               "title": "Name"
             },
-            "surname": {
-              "isRequired": "Nachname ist erforderlich",
-              "title": "Nachname"
-            },
             "postalCode": {
               "isRequired": "Postleitzahl ist erforderlich",
               "title": "Postleitzahl"
@@ -427,6 +423,10 @@
             "state": {
               "isRequired": "Bundesland/Provinz ist erforderlich",
               "title": "Bundesland/Provinz"
+            },
+            "surname": {
+              "isRequired": "Nachname ist erforderlich",
+              "title": "Nachname"
             }
           },
           "title": "Zahlungsinformationen"
@@ -528,12 +528,12 @@
       },
       "formSubtitle": "War das Produkt gut? Schreiben Sie hier Ihr Feedback dazu.",
       "formTitle": "Hinterlassen Sie Ihr Feedback",
-      "textPlaceholder": "Hinterlassen Sie einen Text für Ihr Feedback",
-      "tooLongMessage": "Das Feedback muss 256 Zeichen lang sein.",
       "noFeedbacks": "Noch kein Feedback",
       "noFeedbacksSubtitle": "Kein Feedback hier anzuzeigen",
       "subtitle": "Barrierefreies Design ist gutes Design!",
-      "title": "Bewertungen"
+      "textPlaceholder": "Hinterlassen Sie einen Text für Ihr Feedback",
+      "title": "Bewertungen",
+      "tooLongMessage": "Das Feedback muss 256 Zeichen lang sein."
     },
     "main": {
       "cards": {
@@ -555,6 +555,7 @@
           "onHold": "Dieses Produkt ist in der Warteschleife und kann ab sofort nicht mehr gekauft werden."
         }
       },
+      "copyright": "Urheberrecht {{ year }}, Sellix SRL. Alle Rechte vorbehalten.",
       "productList": {
         "filter": {
           "allCategories": "Alle Kategorien",
@@ -569,13 +570,12 @@
         "items": {
           "categoryNoProductsTitle": "Kategorie hat keine Produkte",
           "clear": "Klar",
-          "noProductsTitle": "Kein Produkt gefunden",
-          "noProductsSubtitle": "Keine Produkte zum Anzeigen vorhanden"
+          "noProductsSubtitle": "Keine Produkte zum Anzeigen vorhanden",
+          "noProductsTitle": "Kein Produkt gefunden"
         }
       },
-      "title": "Hauptseite",
-      "copyright": "Urheberrecht {{ year }}, Sellix SRL. Alle Rechte vorbehalten."
-      },
+      "title": "Hauptseite"
+    },
     "product": {
       "bundle": {
         "addAllButtonTitle": "Alle Produkte hinzufügen",
@@ -585,6 +585,7 @@
         ]
       },
       "developerInvoiceDescription": "Sie kaufen eine Dienstleistung von {{productTitle}}. <br /> Sobald Ihre Zahlung abgeschlossen ist und diese Rechnung als bezahlt gekennzeichnet ist, werden Sie zurück auf die Seite von {{productTitle}} geleitet. <br /> Wenn Sie ein Problem haben, wenden Sie sich bitte direkt an den Support von {{productTitle}}.",
+      "noWarrantyTitle": "Keine Garantie",
       "onHold": "Produkt in der Warteschleife",
       "productMinMaxNote": {
         "addMore": [
@@ -611,8 +612,7 @@
         "Verkauftes Produkt",
         "mal"
       ],
-      "warrantyTitle": "Produkt-Garantie",
-      "noWarrantyTitle": "Keine Garantie"
+      "warrantyTitle": "Produkt-Garantie"
     },
     "shared": {
       "banner": {
@@ -655,6 +655,8 @@
         "totalReview": "Gesamtanzahl der Bewertungen"
       },
       "titles": {
+        "Explore shop": "Shop erkunden",
+        "Read Our Mission": "Unsere Mission lesen",
         "add": "Hinzufügen",
         "addons": "Erweiterungen",
         "buy": "Kaufen",
@@ -683,9 +685,7 @@
         "startingAt": "Ab",
         "stock": "Bestand",
         "viewAllProducts": "Alle Produkte anzeigen",
-        "viewMore": "Mehr anzeigen",
-        "Explore shop": "Shop erkunden",
-        "Read Our Mission": "Unsere Mission lesen"
+        "viewMore": "Mehr anzeigen"
       },
       "toastify": {
         "fail": "Beim Zugriff auf eine Ihrer Ressourcen ist ein Fehler aufgetreten.",
@@ -724,6 +724,7 @@
         "yes": "Überprüfte Identität"
       },
       "low": "Niedrig",
+      "medium": "Mittel",
       "paypalAccepted": {
         "no": "PayPal oder Kredit-/Debitkarten werden nicht akzeptiert",
         "yes": "PayPal oder Kreditkarten werden akzeptiert"
@@ -734,8 +735,7 @@
       ],
       "sales": "Verkäufe in den letzten 14 Tagen",
       "salesText": "Diese Kennzahl berücksichtigt die Menge der Verkäufe, die das Unternehmen in den letzten 14 Tagen getätigt hat. Hohe und mittlere Verkäufe bedeuten, dass das Unternehmen proaktiv Waren verkauft und täglich mindestens einen Auftrag erteilt hat.",
-      "title": "Vertrauensvoller Berater",
-      "medium": "Mittel"
+      "title": "Vertrauensvoller Berater"
     }
   },
   "widgets": {
@@ -755,7 +755,6 @@
       "Pay Later": "Später bezahlen",
       "Pay through Cash App using your mobile device for instant payments": "Zahlen Sie über Cash App mit Ihrem Mobilgerät für sofortige Zahlungen",
       "Pay with": "Bezahlen mit",
-      "payments take 2 to 14 days for the transaction to be processed and completed, depending on your bank.": "zahlungen dauern je nach Bank 2 bis 14 Tage, bis die Transaktion verarbeitet und abgeschlossen ist.",
       "Please note that you will not be able to change the payment method after the subscription is created but only cancel it.": "Bitte beachten Sie, dass Sie die Zahlungsmethode nach Erstellung des Abonnements nicht mehr ändern können, sondern es nur stornieren können.",
       "Please note that you will not be able to change the payment method to": "Bitte beachten Sie, dass Sie die Zahlungsmethode nicht ändern können auf",
       "Proceed with the purchase using your Skrill wallet": "Fahren Sie mit dem Kauf fort und verwenden Sie Ihr Skrill-Konto",
@@ -776,6 +775,7 @@
       "if they are enabled on your device.": "sofern sie auf Ihrem Gerät aktiviert sind.",
       "or": "oder",
       "or use": "oder verwenden Sie",
+      "payments take 2 to 14 days for the transaction to be processed and completed, depending on your bank.": "zahlungen dauern je nach Bank 2 bis 14 Tage, bis die Transaktion verarbeitet und abgeschlossen ist.",
       "register here": "registrieren Sie sich hier"
     },
     "InvoiceCheckout": {

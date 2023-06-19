@@ -75,11 +75,11 @@
         "title": "Explorez la boutique numérique de {{shopName}}."
       },
       "invoice": {
-        "title": "Facture Sellix : {{invoiceId}}",
         "metaTags": {
           "description": "Régler une facture pour recevoir le produit immédiatement. Les factures peuvent être payées avec de nombreux modes de paiement différents, choisis par le vendeur.",
           "title": "Facture : {{invoiceId}}"
-        }
+        },
+        "title": "Facture Sellix : {{invoiceId}}"
       },
       "main": {
         "metaTags": {
@@ -98,6 +98,13 @@
         "title": "Liste des paiements"
       },
       "product": {},
+      "shop": {
+        "metaTags": {
+          "description": "Consultez la boutique en ligne de {{shopName}} : obtenez les biens numériques dont vous avez besoin instantanément grâce à nos nombreux passerelles de paiement en seulement quelques clics, ou contactez-nous si vous avez besoin d'aide.",
+          "title": "Explorez la boutique en ligne de {{shopName}}"
+        },
+        "title": "Explorez la boutique en ligne de {{shopName}}"
+      },
       "subscription": {},
       "terms": {
         "metaTags": {
@@ -115,13 +122,6 @@
           "title": "Paramètres des conseillers de confiance"
         },
         "title": "Paramètres des conseillers de confiance"
-      },
-      "shop": {
-        "metaTags": {
-          "description": "Consultez la boutique en ligne de {{shopName}} : obtenez les biens numériques dont vous avez besoin instantanément grâce à nos nombreux passerelles de paiement en seulement quelques clics, ou contactez-nous si vous avez besoin d'aide.",
-          "title": "Explorez la boutique en ligne de {{shopName}}"
-        },
-        "title": "Explorez la boutique en ligne de {{shopName}}"
       }
     }
   },
@@ -416,10 +416,6 @@
               "isRequired": "Le nom est requis",
               "title": "Nom"
             },
-            "surname": {
-              "isRequired": "Le nom de famille est requis",
-              "title": "Nom de famille"
-            },
             "postalCode": {
               "isRequired": "Le code postal est requis",
               "title": "Code postal"
@@ -427,6 +423,10 @@
             "state": {
               "isRequired": "L'État est requis",
               "title": "État"
+            },
+            "surname": {
+              "isRequired": "Le nom de famille est requis",
+              "title": "Nom de famille"
             }
           },
           "title": "Informations de paiement"
@@ -528,12 +528,12 @@
       },
       "formSubtitle": "Le produit était-il bon ? Donnez votre avis sur le produit ici.",
       "formTitle": "Laissez vos commentaires",
-      "textPlaceholder": "Laissez un texte pour vos commentaires",
-      "tooLongMessage": "Les commentaires doivent comporter 256 caractères",
       "noFeedbacks": "Aucun commentaire pour le moment",
       "noFeedbacksSubtitle": "Aucun commentaire à afficher ici",
       "subtitle": "Un design accessible est un bon design !",
-      "title": "Avis"
+      "textPlaceholder": "Laissez un texte pour vos commentaires",
+      "title": "Avis",
+      "tooLongMessage": "Les commentaires doivent comporter 256 caractères"
     },
     "main": {
       "cards": {
@@ -555,6 +555,7 @@
           "onHold": "Ce produit est en attente et ne peut être acheté pour le moment."
         }
       },
+      "copyright": "Droits d'auteur {{ year }}, Sellix SRL. Tous droits réservés.",
       "productList": {
         "filter": {
           "allCategories": "Toutes les catégories",
@@ -569,11 +570,10 @@
         "items": {
           "categoryNoProductsTitle": "La catégorie n'a pas de produits",
           "clear": "Clair",
-          "noProductsTitle": "Aucun produit trouvé",
-          "noProductsSubtitle": "Aucun produit à afficher ici"
+          "noProductsSubtitle": "Aucun produit à afficher ici",
+          "noProductsTitle": "Aucun produit trouvé"
         }
       },
-      "copyright": "Droits d'auteur {{ year }}, Sellix SRL. Tous droits réservés.",
       "title": "Principal"
     },
     "product": {
@@ -585,6 +585,7 @@
         ]
       },
       "developerInvoiceDescription": "Vous achetez un service de {{productTitle}}. <br />Une fois votre paiement effectué et cette facture marquée comme payée, vous serez redirigé vers le site de {{productTitle}}. <br />En cas de problème, veuillez vous adresser directement au support de {{productTitle}}.",
+      "noWarrantyTitle": "Sans garantie",
       "onHold": "Produit en attente",
       "productMinMaxNote": {
         "addMore": [
@@ -611,8 +612,7 @@
         "Produit vendu",
         "temps"
       ],
-      "warrantyTitle": "Garantie du produit",
-      "noWarrantyTitle": "Sans garantie"
+      "warrantyTitle": "Garantie du produit"
     },
     "shared": {
       "banner": {
@@ -655,6 +655,8 @@
         "totalReview": "Total des avis"
       },
       "titles": {
+        "Explore shop": "Explorer la boutique",
+        "Read Our Mission": "Lire notre mission",
         "add": "Ajouter",
         "addons": "Extensions",
         "buy": "Acheter",
@@ -683,14 +685,15 @@
         "startingAt": "À partir de",
         "stock": "Stock",
         "viewAllProducts": "Voir tous les produits",
-        "viewMore": "Voir plus",
-        "Explore shop": "Explorer la boutique",
-        "Read Our Mission": "Lire notre mission"
+        "viewMore": "Voir plus"
       },
       "toastify": {
         "fail": "Une erreur s'est produite lors de l'accès à l'une de vos ressources.",
         "success": "Votre action a été effectuée avec succès. Les ressources ont été mises à jour."
       }
+    },
+    "shop": {
+      "title": "Boutique"
     },
     "terms": {
       "noTermsSubtitle": "Le propriétaire n'a ajouté aucune condition à la boutique",
@@ -721,6 +724,7 @@
         "yes": "Identité vérifiée"
       },
       "low": "Faible",
+      "medium": "Moyen",
       "paypalAccepted": {
         "no": "PayPal ou les cartes de crédit/débit ne sont pas acceptés.",
         "yes": "PayPal ou cartes de crédit acceptées"
@@ -731,11 +735,7 @@
       ],
       "sales": "ventes au cours des 14 derniers jours",
       "salesText": "Cette métrique prend en compte la quantité de ventes que cette entreprise a réalisées au cours des 14 derniers jours. Des ventes élevées et moyennes signifient que l'entreprise a vendu de manière proactive des biens avec au moins une commande par jour.",
-      "title": "Conseiller de confiance",
-      "medium": "Moyen"
-    },
-    "shop": {
-      "title": "Boutique"
+      "title": "Conseiller de confiance"
     }
   },
   "widgets": {
