@@ -9,8 +9,13 @@
 {% set labelColor = safe_get(properties.label_color, 'button_text_color') %}
 {% set labelFontSize = safe_get(properties.label_font_size, 14) %}
 {% set labelFontWeight = safe_get(properties.label_font_weight, 600) %}
-{% set label = properties.label %}
 {% set url = properties.url %}
+
+{% set sharedTranslationKey = ['shop.shared.titles', properties.label] | join('.')  %}
+{% set label = sharedTranslationKey | t %}
+{% if label == sharedTranslationKey %}
+  {% set label = properties.label | t %}
+{% endif %}
 
 {% set globalClass = 'snippet-link_button' %}
 {% set localClass = id %}
@@ -32,7 +37,7 @@
       </span>
     {% endif %}
 
-    <span>{{ label | t }}</span>
+    <span>{{ label }}</span>
 
     {% if iconSnippet and iconPosition == 'right' %}
       <span class="ml-2 d-flex">

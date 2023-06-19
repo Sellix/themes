@@ -75,7 +75,11 @@
         "title": "{{shopName}}のデジタルストアを探索する"
       },
       "invoice": {
-        "title": "Sellixインボイス：{{invoiceId}}。"
+        "title": "Sellixインボイス：{{invoiceId}}。",
+        "metaTags": {
+          "description": "請求書を満たすことで即座に製品を受け取ることができます。請求書は販売者が選んださまざまな支払い方法で支払うことができます。",
+          "title": "請求書: {{invoiceId}}"
+        }
       },
       "main": {
         "metaTags": {
@@ -111,6 +115,13 @@
           "title": "トラステッド・アドバイザーの評価指標"
         },
         "title": "トラステッド・アドバイザーの評価指標"
+      },
+      "shop": {
+        "metaTags": {
+          "description": "{{shopName}}のデジタルストアをご覧ください。さまざまな支払いゲートウェイを利用して、必要なデジタル商品をすぐに入手するか、お困りの場合はお問い合わせください。",
+          "title": "{{shopName}}のデジタルストアを探索する"
+        },
+        "title": "{{shopName}}のデジタルストアを探索する"
       }
     }
   },
@@ -328,77 +339,136 @@
             "typeHere": "ここに入力"
           },
           "addToCart": "カートに追加",
-          "applyCoupon": "クーポンを適用する",
+          "applyCoupon": "クーポンを適用",
           "back": "戻る",
           "buyNow": "今すぐ購入",
           "continue": "続ける",
           "coupon": "クーポン",
           "customPrice": {
-            "title": "希望の価格で支払う",
+            "title": "希望価格で支払う",
             "validationMessages": {
               "isEmpty": "価格フィールドは空にできません",
               "isNotNumber": "価格フィールドの値は数値である必要があります",
-              "toLow": "この商品を購入するには{{- currency}}{{- price}}以上を支払ってください。"
+              "toLow": "{{- currency}}{{- price}}以上支払ってこの商品を購入してください。"
             }
           },
           "free": "無料",
-          "getIt": "入手する",
+          "getIt": "入手",
           "noPaymentOptions": "この商品には支払いオプションがありません。",
           "pay": "支払う",
           "price": {
-            "balanceAmount": "残高から使用",
+            "balanceAmount": "残高から利用",
             "bundleDiscount": "バンドルディスカウント",
             "couponDiscount": "クーポン",
             "gatewayFee": "ゲートウェイ手数料",
-            "productDiscount": "商品ディスカウント",
+            "productDiscount": "製品ディスカウント",
             "subtotal": "小計",
             "tax": "税金",
             "taxIncludedIntoPrice": "価格に含まれています",
-            "taxNotice": "パーセンテージは、あなたの国{{delimiter1}}{{country}}{{delimiter2}}に基づいています。他の場所から購入する場合は後で変更できます。",
-            "tooltip": "価格の計算方法は？",
+            "taxNotice": "パーセンテージはお住まいの国{{delimiter1}}{{country}}{{delimiter2}}に基づいています。別の場所で購入する場合は後で変更できます。",
+            "tooltip": "価格はどのように計算されますか？",
             "total": "合計",
-            "volumeDiscount": "ボリュームディスカウント"
+            "volumeDiscount": "数量割引"
           },
-          "priceCalculated": "価格の計算方法は？",
-          "selectGateway": "ゲートウェイを選択する",
+          "priceCalculated": "価格はどのように計算されますか？",
+          "selectGateway": "ゲートウェイを選択",
           "tax": "税金",
           "titles": {
             "paymentMethod": "支払い方法",
-            "product": "商品",
-            "quantity": "数量",
-            "subtotal": "小計",
-            "total": "合計"
+            "productDelivery": "商品配送",
+            "purchase": "注文の概要"
           },
-          "updateCart": "カートを更新",
-          "updateQuantity": "数量を更新"
+          "useYourBalance": "残高を利用"
         },
-        "quantitySelector": {
-          "selectQuantity": "数量を選択",
-          "singleItem": "単品"
+        "productMinMaxNote": {
+          "addMore": [
+            "追加 ",
+            "「さらに取得するには」",
+            "割引"
+          ],
+          "maxQuantity": "購入可能な最大数量",
+          "minQuantity": "必要な最小数量",
+          "purchaseLimit": [
+            "1注文あたり最大",
+            "アイテムを購入できます"
+          ]
         },
-        "subscriptions": {
-          "billingFrequency": {
-            "month": "月",
-            "year": "年"
+        "productQuantity": {
+          "lastProduct": "最後の製品",
+          "stock": "在庫"
+        },
+        "selectPaymentMethodError": "支払い方法を選択してください！",
+        "stripeForm": {
+          "fields": {
+            "address": {
+              "isRequired": "住所は必須です",
+              "title": "住所"
+            },
+            "city": {
+              "isRequired": "市区町村は必須です",
+              "title": "市区町村"
+            },
+            "country": {
+              "isRequired": "国名は必須です",
+              "title": "国名"
+            },
+            "name": {
+              "isRequired": "名前は必須です",
+              "title": "名前"
+            },
+            "postalCode": {
+              "isRequired": "郵便番号は必須です",
+              "title": "郵便番号"
+            },
+            "state": {
+              "isRequired": "都道府県は必須です",
+              "title": "都道府県"
+            },
+            "surname": {
+              "isRequired": "姓は必須です",
+              "title": "姓"
+            }
           },
-          "billingInterval": {
-            "onetime": "ワンタイム",
-            "subscription": "サブスクリプション"
+          "title": "Stripeによって要求される詳細"
+        },
+        "subscription": {
+          "applyACoupon": "クーポンを適用する",
+          "back": "戻る",
+          "billedEvery": "毎回請求",
+          "changeEmail": "メールアドレスを変更する",
+          "chargedAddon": "アドオンの支払いは最初の支払いのみです",
+          "continue": "続ける",
+          "coupon": "クーポン",
+          "goToPortal": "顧客請求ポータルに移動する",
+          "noPaymentOptions": "この商品には支払いオプションがありません。",
+          "pay": "支払う",
+          "paymentMethod": "支払いゲートウェイを選択する",
+          "paymentRenewal": "更新ごとの支払い",
+          "proceed": "進む",
+          "startSubscription": "購読を開始する",
+          "subtitles": {
+            "billingInfo": "",
+            "email": "",
+            "paymentMethod": "",
+            "paymentMethodTrial": "これらのゲートウェイは現在選択できません。トライアル期間終了後の支払い方法をご確認いただくための情報です。",
+            "subscription": ""
           },
-          "quantitySelector": {
-            "selectQuantity": "数量を選択",
-            "singleItem": "単品"
+          "tax": "税金",
+          "taxNotice": "パーセンテージはお住まいの国{{delimiter1}}{{country}}{{delimiter2}}に基づいています。別の場所で購入する場合は後で変更できます。",
+          "titles": {
+            "billingInfo": "請求先情報",
+            "email": "購読メールアドレス",
+            "paymentMethod": "支払い方法",
+            "paymentMethodTrial": "トライアル期間終了後の利用可能なゲートウェイ",
+            "subscription": "購読"
           },
-          "trial": {
-            "days": "日間のトライアル",
-            "none": "トライアルなし"
-          },
-          "trialDays": "{{count}}日間のトライアル",
-          "trialNotice": "トライアル期間中にいつでもキャンセルできます。",
-          "trialWithAmount": "{{count}}日間のトライアル（{{price}}）",
-          "trialWithPrice": "{{count}}日間のトライアル（{{price}}）"
+          "trialPeriod": "トライアル期間"
         }
-      }
+      },
+      "showDescription": "説明を表示する",
+      "stock": "在庫",
+      "subtitle": "カート内のアイテム数: {{ count }}",
+      "title": "チェックアウト"
     },
     "contact": {
       "buttonTitle": "チケットの作成",
@@ -499,9 +569,12 @@
         "items": {
           "categoryNoProductsTitle": "カテゴリーに商品はありません",
           "clear": "クリア",
-          "noProductsTitle": "該当する製品はありません"
+          "noProductsTitle": "該当する製品はありません",
+          "noProductsSubtitle": "ここに表示する製品はありません"
         }
-      }
+      },
+      "copyright": "© {{ year }} Sellix SRL。全著作権保有。",
+      "title": "メイン"
     },
     "product": {
       "bundle": {
@@ -538,7 +611,8 @@
         "製品販売",
         "倍"
       ],
-      "warrantyTitle": "製品保証"
+      "warrantyTitle": "製品保証",
+      "noWarrantyTitle": "保証なし"
     },
     "shared": {
       "banner": {
@@ -609,7 +683,9 @@
         "startingAt": "開始価格",
         "stock": "在庫",
         "viewAllProducts": "すべての製品を表示",
-        "viewMore": "さらに表示"
+        "viewMore": "さらに表示",
+        "Explore shop": "ショップを探索する",
+        "Read Our Mission": "私たちのミッションを読む"
       },
       "toastify": {
         "fail": "リソースへのアクセス中にエラーが発生しました。",
@@ -655,7 +731,11 @@
       ],
       "sales": "14日販売",
       "salesText": "この指標は、このビジネスが過去14日間に行った売上高を考慮したものです。高」「中」の売上は、毎日少なくとも1件の注文があり、積極的に商品を販売していることを意味します。",
-      "title": "信頼できるアドバイザー"
+      "title": "信頼できるアドバイザー",
+      "medium": "中"
+    },
+    "shop": {
+      "title": "ショップ"
     }
   },
   "widgets": {

@@ -75,7 +75,11 @@
         "title": "استكشف متجر {{shopName}} الرقمي"
       },
       "invoice": {
-        "title": "فاتورة Sellix: {{invoiceId}}"
+        "title": "فاتورة Sellix: {{invoiceId}}",
+        "metaTags": {
+          "description": "أكمل الفاتورة لتحصل على المنتج فورًا. يمكن دفع الفواتير بواسطة العديد من وسائل الدفع المختلفة التي يختارها البائع.",
+          "title": "الفاتورة: {{invoiceId}}"
+        }
       },
       "main": {
         "metaTags": {
@@ -111,6 +115,13 @@
           "title": "مقاييس المستشار الموثوق"
         },
         "title": "مقاييس المستشار الموثوق"
+      },
+      "shop": {
+        "metaTags": {
+          "description": "عرض متجر {{shopName}} الرقمي: احصل على السلع الرقمية التي تحتاجها فورًا مع عدة بوابات دفع في بضع نقرات فقط، أو تواصل معنا إذا كنت بحاجة إلى مساعدة.",
+          "title": "استكشف متجر {{shopName}} الرقمي"
+        },
+        "title": "استكشف متجر {{shopName}} الرقمي"
       }
     }
   },
@@ -224,33 +235,6 @@
           "message": "لقد قمنا بإرسال رمز فريد إلى عنوان بريدك الإلكتروني، يرجى إدخاله أدناه.",
           "title": "رمز التوثيق"
         },
-        "customFields": {
-          "byClickingPay": [
-            "بالنقر على الدفع، فإنك توافق على",
-            "شروط الخدمة"
-          ],
-          "discordMessage": [
-            "قم بتوصيل حسابك",
-            "اختياري"
-          ],
-          "emailInputPlaceholder": "البريد الإلكتروني لتحديثات الفاتورة",
-          "emailIsRequired": "البريد الإلكتروني مطلوب",
-          "optional": "اختياري",
-          "paypal": {
-            "alertTitle": "يرجى الملاحظة",
-            "deliverCheckboxTitle": "تسليم الى بريد PayPal.",
-            "info": [
-              "لن تكون قادرًا أيضًا على عرض المنتج هنا على الموقع بعد الشراء.",
-              "هذا لتجنب عمليات الشراء الاحتيالية باستخدام PayPal."
-            ],
-            "moreInfo": "مزيد من المعلومات",
-            "text": "سيتم توصيل رسائل الإكمال من Sellix إلى بريدك الإلكتروني في PayPal."
-          },
-          "termsOfServiceMessage": [
-            "بالنقر على الدفع، فإنك توافق على شروط الخدمة لـ {{name}}",
-            ""
-          ]
-        },
         "customerBalance": {
           "balance": "الرصيد"
         },
@@ -325,47 +309,166 @@
             "add": "إضافة",
             "typeHere": "اكتب هنا"
           },
-          "bundleOf": "حزمة من",
-          "description": "وصف",
-          "downloadLimit": "حد التنزيل",
-          "fileSize": "حجم الملف",
-          "files": "ملفات",
-          "productType": "نوع المنتج",
-          "quantity": "الكمية",
-          "singlePurchase": "شراء فردي",
-          "total": "الإجمالي"
-        },
-        "refundDetails": {
-          "alertText": "يرجى ملاحظة أن سياسة استرداد الأموال تختلف حسب المنتج والبائع. للحصول على مزيد من المعلومات، يُرجى الاتصال بالبائع المعني.",
-          "title": "تفاصيل استرداد الأموال"
-        },
-        "shipping": {
-          "address": {
-            "additionalInfo": "معلومات إضافية",
-            "address": "عنوان",
-            "city": "المدينة",
-            "country": "الدولة",
-            "postalCode": "الرمز البريدي",
-            "state": "الولاية"
+          "addToCart": "أضف إلى السلة",
+          "applyCoupon": "تطبيق الكوبون",
+          "back": "رجوع",
+          "buyNow": "اشتر الآن",
+          "continue": "متابعة",
+          "coupon": "كوبون",
+          "customPrice": {
+            "title": "ادفع ما تريد",
+            "validationMessages": {
+              "isEmpty": "حقل السعر لا يمكن أن يكون فارغًا",
+              "isNotNumber": "قيمة حقل السعر يجب أن تكون رقمية",
+              "toLow": "ادفع {{- currency}}{{- price}} أو أكثر لشراء هذا المنتج."
+            }
           },
-          "carrier": "شركة الشحن",
-          "method": "طريقة الشحن",
-          "pickup": {
-            "additionalInfo": "معلومات إضافية",
-            "address": "عنوان الاستلام",
-            "city": "المدينة",
-            "country": "الدولة",
-            "pickupInstructions": "تعليمات الاستلام",
-            "postalCode": "الرمز البريدي",
-            "state": "الولاية"
+          "free": "مجاناً",
+          "getIt": "احصل عليه",
+          "noPaymentOptions": "هذا المنتج ليس لديه خيارات دفع.",
+          "pay": "ادفع",
+          "price": {
+            "balanceAmount": "مستخدم من الرصيد",
+            "bundleDiscount": "خصم الحزمة",
+            "couponDiscount": "كوبون",
+            "gatewayFee": "رسوم البوابة",
+            "productDiscount": "خصم المنتج",
+            "subtotal": "المجموع الفرعي",
+            "tax": "الضريبة",
+            "taxIncludedIntoPrice": "مضمن في السعر",
+            "taxNotice": "النسبة المئوية تستند إلى بلدك{{delimiter1}}{{country}}{{delimiter2}}. يمكنك تغييرها لاحقًا إذا كنت تشتري من مكان آخر.",
+            "tooltip": "كيف يتم حساب السعر؟",
+            "total": "الإجمالي",
+            "volumeDiscount": "خصم الحجم"
           },
-          "title": "الشحن"
+          "priceCalculated": "كيف يتم حساب السعر؟",
+          "selectGateway": "اختر بوابة الدفع",
+          "tax": "الضريبة",
+          "titles": {
+            "paymentMethod": "طريقة الدفع",
+            "productDelivery": "توصيل المنتج",
+            "purchase": "ملخص الطلب"
+          },
+          "useYourBalance": "استخدم رصيدك"
         },
-        "trialDetails": {
-          "message": "تفاصيل الفترة التجريبية",
-          "title": "فترة تجريبية"
+        "productMinMaxNote": {
+          "addMore": [
+            "أضف ",
+            "المزيد للحصول على ",
+            "خصم"
+          ],
+          "maxQuantity": "الحد الأقصى للكمية المتاحة للشراء",
+          "minQuantity": "الحد الأدنى للكمية المطلوبة",
+          "purchaseLimit": [
+            "يمكنك شراء ",
+            "عناصر فقط في الطلب الواحد"
+          ]
+        },
+        "productQuantity": {
+          "lastProduct": "آخر منتج",
+          "stock": "المخزون"
+        },
+        "stripeForm": {
+          "fields": {
+            "address": {
+              "isRequired": "العنوان مطلوب",
+              "title": "العنوان"
+            },
+            "city": {
+              "isRequired": "المدينة مطلوبة",
+              "title": "المدينة"
+            },
+            "country": {
+              "isRequired": "البلد مطلوب",
+              "title": "البلد"
+            },
+            "name": {
+              "isRequired": "الاسم مطلوب",
+              "title": "الاسم"
+            },
+            "postalCode": {
+              "isRequired": "الرمز البريدي مطلوب",
+              "title": "الرمز البريدي"
+            },
+            "state": {
+              "isRequired": "المنطقة مطلوبة",
+              "title": "المنطقة"
+            },
+            "surname": {
+              "isRequired": "اللقب مطلوب",
+              "title": "اللقب"
+            }
+          },
+          "title": "تفاصيل مطلوبة من قبل سترايب"
+        },
+        "subscription": {
+          "applyACoupon": "تطبيق القسيمة",
+          "back": "رجوع",
+          "billedEvery": "يتم تحصيل الرسوم كل",
+          "changeEmail": "تغيير البريد الإلكتروني",
+          "chargedAddon": "يتم تحصيل الدفعة الإضافية فقط في المرة الأولى",
+          "continue": "متابعة",
+          "coupon": "قسيمة",
+          "goToPortal": "الانتقال إلى بوابة الفوترة للعملاء",
+          "noPaymentOptions": "هذا المنتج لا يحتوي على خيارات دفع.",
+          "pay": "دفع",
+          "paymentMethod": "اختيار بوابة الدفع",
+          "paymentRenewal": "الدفع عند كل تجديد",
+          "proceed": "متابعة",
+          "startSubscription": "بدء الاشتراك",
+          "subtitles": {
+            "billingInfo": "",
+            "email": "",
+            "paymentMethod": "",
+            "paymentMethodTrial": "لا يمكنك تحديد هذه البوابات الآن، فهي متاحة للإطلاع فقط لمعرفة كيفية الدفع بعد انتهاء فترة التجربة.",
+            "subscription": ""
+          },
+          "tax": "الضريبة",
+          "taxNotice": "نسبة الضريبة مستندة إلى بلدك{{delimiter1}}{{country}}{{delimiter2}}. يمكنك تغييرها لاحقًا إذا كنت تشتري من مكان آخر.",
+          "titles": {
+            "billingInfo": "معلومات الفوترة",
+            "email": "البريد الإلكتروني للاشتراك",
+            "paymentMethod": "طريقة الدفع",
+            "paymentMethodTrial": "بوابات الدفع المتاحة بعد انتهاء فترة التجربة",
+            "subscription": "الاشتراك"
+          },
+          "trialPeriod": "فترة تجريبية"
+        },
+        "selectPaymentMethodError": "الرجاء اختيار طريقة الدفع!",
+        "customFields": {
+          "byClickingPay": [
+            "بالنقر على الدفع، فإنك توافق على ",
+            "شروط الخدمة"
+          ],
+          "discordMessage": [
+            "قم بربط",
+            "حساب",
+            "اختياري"
+          ],
+          "emailInputPlaceholder": "البريد الإلكتروني لتحديثات الفاتورة",
+          "emailIsRequired": "البريد الإلكتروني مطلوب",
+          "optional": "اختياري",
+          "paypal": {
+            "alertTitle": "يرجى الملاحظة",
+            "deliverCheckboxTitle": "تسليم إلى بريد PayPal الإلكتروني.",
+            "info": [
+              "لن تتمكن أيضًا من عرض المنتج هنا على الموقع بعد الشراء.",
+              "ذلك لتجنب عمليات الشراء الاحتيالية باستخدام PayPal."
+            ],
+            "moreInfo": "مزيد من المعلومات",
+            "text": "سيتم توصيل رسائل إكمال الشراء من سيليكس إلى بريدك الإلكتروني في PayPal."
+          },
+          "termsOfServiceMessage": [
+            "بالنقر على الدفع، فإنك توافق على",
+            "شروط الخدمة",
+            ""
+          ]
         }
-      }
+      },
+      "showDescription": "عرض الوصف",
+      "stock": "المخزون",
+      "subtitle": "{{ count }} عنصر في سلة التسوق الخاصة بك",
+      "title": "الدفع"
     },
     "contact": {
       "buttonTitle": "إنشاء تذكرة",
@@ -466,9 +569,12 @@
         "items": {
           "categoryNoProductsTitle": "قسم غير مصنف في الرياض",
           "clear": "واضح",
-          "noProductsTitle": "لم يتم العثور على منتج"
+          "noProductsTitle": "لم يتم العثور على منتج",
+          "noProductsSubtitle": "لا توجد منتجات لعرضها هنا"
         }
-      }
+      },
+      "copyright": "حقوق النشر {{ year }}, Sellix SRL محفوظة.",
+      "title": "الرئيسية"
     },
     "product": {
       "bundle": {
@@ -505,7 +611,8 @@
         "بيع المنتج",
         "مرات"
       ],
-      "warrantyTitle": "ضمان المنتج"
+      "warrantyTitle": "ضمان المنتج",
+      "noWarrantyTitle": "لا يوجد ضمان"
     },
     "shared": {
       "banner": {
@@ -576,12 +683,17 @@
         "startingAt": "ابتداءً من",
         "stock": "مخزون",
         "viewAllProducts": "عرض جميع المنتجات",
-        "viewMore": "عرض المزيد"
+        "viewMore": "عرض المزيد",
+        "Explore shop": "استكشف المتجر",
+        "Read Our Mission": "اقرأ مهمتنا"
       },
       "toastify": {
         "fail": "حدث خطأ أثناء محاولة الوصول إلى أحد الموارد الخاصة بك.",
         "success": "تم اكتمال إجراءك، تم تحديث الموارد."
       }
+    },
+    "shop": {
+      "title": "المتجر"
     },
     "terms": {
       "noTermsSubtitle": "لم يقم المالك بإضافة أي شروط إلى المتجر",
@@ -622,7 +734,8 @@
       ],
       "sales": "المبيعات في آخر 14 يومًا",
       "salesText": "يأخذ هذا المقياس في الاعتبار كمية المبيعات التي حققها هذا النشاط التجاري في آخر 14 يومًا. تعني المبيعات المرتفعة والمتوسطة أن النشاط التجاري كان يبيع السلع بشكل استباقي بطلب واحد على الأقل يوميًا.",
-      "title": "ناصح موثوق"
+      "title": "ناصح موثوق",
+      "medium": "متوسط"
     }
   },
   "widgets": {

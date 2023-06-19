@@ -75,7 +75,11 @@
         "title": "Esplora il negozio digitale di {{shopName}}"
       },
       "invoice": {
-        "title": "Fattura Sellix: {{invoiceId}}"
+        "title": "Fattura Sellix: {{invoiceId}}",
+        "metaTags": {
+          "description": "Completa una fattura per ricevere il prodotto immediatamente. Le fatture possono essere pagate con molti metodi di pagamento diversi, scelti dal venditore.",
+          "title": "Fattura: {{invoiceId}}"
+        }
       },
       "main": {
         "metaTags": {
@@ -111,6 +115,13 @@
           "title": "Metriche del consulente di fiducia"
         },
         "title": "Metriche del consulente di fiducia"
+      },
+      "shop": {
+        "metaTags": {
+          "description": "Visualizza il negozio digitale di {{shopName}}: ottieni immediatamente i beni digitali di cui hai bisogno con le nostre molte opzioni di pagamento in pochi clic, o contattaci se hai bisogno di aiuto.",
+          "title": "Esplora il negozio digitale di {{shopName}}"
+        },
+        "title": "Esplora il negozio digitale di {{shopName}}"
       }
     }
   },
@@ -405,6 +416,10 @@
               "isRequired": "Il nome è obbligatorio",
               "title": "Nome"
             },
+            "surname": {
+              "isRequired": "Il cognome è obbligatorio",
+              "title": "Cognome"
+            },
             "postalCode": {
               "isRequired": "Il codice postale è obbligatorio",
               "title": "Codice Postale"
@@ -414,32 +429,46 @@
               "title": "Stato"
             }
           },
-          "postalCodePlaceholder": "Es. 12345"
+          "title": "Dettagli richiesti da Stripe"
         },
-        "trialDetails": {
-          "trialDuration": "Durata del Periodo di Prova",
-          "trialPrice": "Prezzo del Periodo di Prova"
-        },
-        "volumeDiscountNote": {
-          "text": [
-            "Ricevi uno sconto sul prezzo di questo prodotto quando acquisti più di un articolo.",
-            "Per ricevere uno sconto, aggiungi più articoli al carrello e lo sconto sarà automaticamente applicato."
-          ],
-          "title": "Sconto di Volume"
-        },
-        "voucher": {
-          "apply": "Applica",
-          "codeInputPlaceholder": "Codice Voucher",
-          "invalidCode": "Codice Voucher non valido",
-          "notApplicable": "Questo voucher non è applicabile a questo prodotto.",
-          "remove": "Rimuovi",
-          "validCode": "Codice Voucher Valido"
-        },
-        "wizard": {
-          "continueToPayment": "Continua con il Pagamento",
-          "step": "Passo {{step}} di {{totalSteps}}"
+        "subscription": {
+          "applyACoupon": "Applica un coupon",
+          "back": "Indietro",
+          "billedEvery": "Fatturato ogni",
+          "changeEmail": "Cambia email",
+          "chargedAddon": "Il pagamento dell'addon viene addebitato solo la prima volta",
+          "continue": "Continua",
+          "coupon": "Coupon",
+          "goToPortal": "Vai al portale di fatturazione del cliente",
+          "noPaymentOptions": "Questo prodotto non ha opzioni di pagamento.",
+          "pay": "Paga",
+          "paymentMethod": "Seleziona il metodo di pagamento",
+          "paymentRenewal": "Pagamento ad ogni rinnovo",
+          "proceed": "Procedi",
+          "startSubscription": "Avvia abbonamento",
+          "subtitles": {
+            "billingInfo": "",
+            "email": "",
+            "paymentMethod": "",
+            "paymentMethodTrial": "Al momento non puoi selezionare queste opzioni di pagamento, è solo a scopo informativo per sapere come potrai pagare dopo la fine del periodo di prova.",
+            "subscription": ""
+          },
+          "tax": "Imposta",
+          "taxNotice": "La percentuale si basa sul tuo paese{{delimiter1}}{{country}}{{delimiter2}}. Puoi modificarla in seguito se stai acquistando da un'altra località.",
+          "titles": {
+            "billingInfo": "Informazioni di fatturazione",
+            "email": "Email dell'abbonamento",
+            "paymentMethod": "Metodo di pagamento",
+            "paymentMethodTrial": "Gateway disponibili dopo la fine del periodo di prova",
+            "subscription": "Abbonamento"
+          },
+          "trialPeriod": "Periodo di prova"
         }
-      }
+      },
+      "showDescription": "Mostra descrizione",
+      "stock": "Disponibilità",
+      "subtitle": "{{ count }} articoli nel tuo carrello",
+      "title": "Pagamento"
     },
     "contact": {
       "buttonTitle": "Creare un Biglietto",
@@ -540,9 +569,12 @@
         "items": {
           "categoryNoProductsTitle": "La categoria non ha prodotti",
           "clear": "Libero",
-          "noProductsTitle": "Nessun prodotto trovato"
+          "noProductsTitle": "Nessun prodotto trovato",
+          "noProductsSubtitle": "Nessun prodotto da visualizzare qui"
         }
-      }
+      },
+      "copyright": "Diritti d'autore {{ year }}, Sellix SRL. Tutti i diritti riservati.",
+      "title": "Principale"
     },
     "product": {
       "bundle": {
@@ -579,7 +611,8 @@
         "Prodotto venduto",
         "tempi"
       ],
-      "warrantyTitle": "Garanzia del prodotto"
+      "warrantyTitle": "Garanzia del prodotto",
+      "noWarrantyTitle": "Nessuna garanzia"
     },
     "shared": {
       "banner": {
@@ -650,7 +683,9 @@
         "startingAt": "A partire da",
         "stock": "Disponibilità",
         "viewAllProducts": "Visualizza tutti i prodotti",
-        "viewMore": "Visualizza di più"
+        "viewMore": "Visualizza di più",
+        "Explore shop": "Esplora il negozio",
+        "Read Our Mission": "Leggi la nostra missione"
       },
       "toastify": {
         "fail": "Si è verificato un errore durante l'accesso a una delle risorse.",
@@ -696,7 +731,11 @@
       ],
       "sales": "vendite negli ultimi 14 giorni",
       "salesText": "Questa metrica prende in considerazione la quantità di vendite effettuate dall'azienda negli ultimi 14 giorni. Vendite alte e medie significano che l'azienda ha venduto in modo proattivo con almeno un ordine al giorno.",
-      "title": "Consulente di fiducia"
+      "title": "Consulente di fiducia",
+      "medium": "Medio"
+    },
+    "shop": {
+      "title": "Negozio"
     }
   },
   "widgets": {

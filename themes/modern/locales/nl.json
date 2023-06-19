@@ -75,7 +75,11 @@
         "title": "Ontdek de digitale winkel van {{shopName}}"
       },
       "invoice": {
-        "title": "Sellix Factuur: {{invoiceId}}"
+        "title": "Sellix Factuur: {{invoiceId}}",
+        "metaTags": {
+          "description": "Voldoe aan een factuur om het product direct te ontvangen. Facturen kunnen betaald worden met verschillende betaalmethoden, gekozen door de verkoper.",
+          "title": "Factuur: {{invoiceId}}"
+        }
       },
       "main": {
         "metaTags": {
@@ -111,6 +115,13 @@
           "title": "Trusted Advisor Metrics"
         },
         "title": "Trusted Advisor Metrics"
+      },
+      "shop": {
+        "metaTags": {
+          "description": "Bekijk de digitale winkel van {{shopName}}: krijg direct de digitale producten die je nodig hebt met behulp van onze vele betaalmethoden in slechts een paar klikken, of neem contact met ons op als je hulp nodig hebt.",
+          "title": "Verken de digitale winkel van {{shopName}}"
+        },
+        "title": "Verken de digitale winkel van {{shopName}}"
       }
     }
   },
@@ -418,50 +429,46 @@
               "title": "Achternaam"
             }
           },
-          "message": "Vul uw factuurgegevens in",
           "title": "Facturatiegegevens"
         },
         "subscription": {
-          "billingCycle": "Betalingstermijn",
-          "billingPeriod": {
-            "day": "Dag",
-            "month": "Maand",
-            "week": "Week",
-            "year": "Jaar"
+          "applyACoupon": "Coupon toepassen",
+          "back": "Terug",
+          "billedEvery": "Geïncasseerd elke",
+          "changeEmail": "E-mail wijzigen",
+          "chargedAddon": "Betaling voor de add-on wordt alleen de eerste keer in rekening gebracht",
+          "continue": "Doorgaan",
+          "coupon": "Coupon",
+          "goToPortal": "Ga naar het Klantfactureringsportaal",
+          "noPaymentOptions": "Dit product heeft geen betaalopties.",
+          "pay": "Betalen",
+          "paymentMethod": "Selecteer Gateway",
+          "paymentRenewal": "Betaling bij elke vernieuwing",
+          "proceed": "Verdergaan",
+          "startSubscription": "Abonnement starten",
+          "subtitles": {
+            "billingInfo": "",
+            "email": "",
+            "paymentMethod": "",
+            "paymentMethodTrial": "Op dit moment kunt u deze gateways niet selecteren. Dit is alleen ter informatie, zodat u weet hoe u kunt betalen nadat de proefperiode is afgelopen.",
+            "subscription": ""
           },
-          "buyNow": "Nu kopen",
-          "cancelSubscription": "Abonnement annuleren",
-          "currentPlan": "Huidig plan",
-          "manageSubscription": "Beheer abonnement",
-          "newPlan": "Nieuw plan",
-          "plan": "Plan",
-          "quantity": "Hoeveelheid",
-          "subscribe": "Abonneren",
-          "total": "Totaal",
+          "tax": "Belasting",
+          "taxNotice": "Het percentage is gebaseerd op uw land{{delimiter1}}{{country}}{{delimiter2}}. U kunt dit later wijzigen als u vanuit een andere plaats koopt.",
+          "titles": {
+            "billingInfo": "Facturatiegegevens",
+            "email": "Abonnement E-mail",
+            "paymentMethod": "Betalingsmethode",
+            "paymentMethodTrial": "Beschikbare Gateways Na Einde Proefperiode",
+            "subscription": "Abonnement"
+          },
           "trialPeriod": "Proefperiode"
-        },
-        "totalAmount": "Totaalbedrag",
-        "trial": {
-          "startTrial": "Start proefperiode",
-          "trialDuration": "Proefperiode",
-          "trialNotice": "Uw creditcard wordt pas na de proefperiode in rekening gebracht.",
-          "trialUnit": {
-            "day": "dag",
-            "month": "maand",
-            "week": "week",
-            "year": "jaar"
-          }
-        },
-        "updateCart": {
-          "addToCart": "Toevoegen aan winkelwagen",
-          "continueShopping": "Verder winkelen",
-          "items": "items",
-          "noItems": "Geen items in winkelwagen",
-          "remove": "Verwijderen",
-          "title": "Winkelwagen bijgewerkt",
-          "update": "Bijwerken"
         }
-      }
+      },
+      "showDescription": "Toon omschrijving",
+      "stock": "Voorraad",
+      "subtitle": "{{ count }} items in je winkelwagen",
+      "title": "Afrekenen"
     },
     "contact": {
       "buttonTitle": "Ticket Aanmaken",
@@ -562,9 +569,12 @@
         "items": {
           "categoryNoProductsTitle": "Categorie heeft geen producten",
           "clear": "Duidelijk",
-          "noProductsTitle": "Geen product gevonden"
+          "noProductsTitle": "Geen product gevonden",
+          "noProductsSubtitle": "Er zijn geen producten om hier weer te geven"
         }
-      }
+      },
+      "copyright": "Auteursrecht {{ year }}, Sellix SRL Alle rechten voorbehouden.",
+      "title": "Hoofdpagina"
     },
     "product": {
       "bundle": {
@@ -601,7 +611,8 @@
         "Verkocht product",
         "keer"
       ],
-      "warrantyTitle": "Productgarantie"
+      "warrantyTitle": "Productgarantie",
+      "noWarrantyTitle": "Geen garantie"
     },
     "shared": {
       "banner": {
@@ -672,7 +683,9 @@
         "startingAt": "Vanaf",
         "stock": "Voorraad",
         "viewAllProducts": "Bekijk alle producten",
-        "viewMore": "Bekijk meer"
+        "viewMore": "Bekijk meer",
+        "Explore shop": "Verken winkel",
+        "Read Our Mission": "Lees onze missie"
       },
       "toastify": {
         "fail": "Er is een fout opgetreden bij het openen van een van uw bronnen.",
@@ -718,7 +731,11 @@
       ],
       "sales": "verkopen in de laatste 14 dagen",
       "salesText": "Deze metriek houdt rekening met de hoeveelheid verkopen die dit bedrijf in de laatste 14 dagen had. Een hoge en gemiddelde verkoop betekent dat het bedrijf proactief goederen heeft verkocht met dagelijks minstens één bestelling.",
-      "title": "Vertrouwde adviseur"
+      "title": "Vertrouwde adviseur",
+      "medium": "Gemiddeld"
+    },
+    "shop": {
+      "title": "Winkel"
     }
   },
   "widgets": {

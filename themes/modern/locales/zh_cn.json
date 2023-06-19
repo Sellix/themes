@@ -75,7 +75,11 @@
         "title": "探索{{shopName}}的数字商店"
       },
       "invoice": {
-        "title": "Sellix的发票：{{invoiceId}}。"
+        "title": "Sellix的发票：{{invoiceId}}。",
+        "metaTags": {
+          "description": "完成发票以立即收到产品。发票可以通过卖方选择的多种不同支付方式支付。",
+          "title": "发票：{{invoiceId}}"
+        }
       },
       "main": {
         "metaTags": {
@@ -111,6 +115,13 @@
           "title": "值得信赖的顾问指标"
         },
         "title": "值得信赖的顾问指标"
+      },
+      "shop": {
+        "metaTags": {
+          "description": "查看{{shopName}}的数字商店：通过我们的多种支付网关，在几个点击之间即可立即获得您所需的数字商品，或者如果需要帮助，请与我们联系。",
+          "title": "探索{{shopName}}的数字商店"
+        },
+        "title": "探索{{shopName}}的数字商店"
       }
     }
   },
@@ -421,47 +432,43 @@
           "title": "Stripe 请求的详细信息"
         },
         "subscription": {
-          "applyCoupon": "应用优惠券",
+          "applyACoupon": "应用优惠券",
           "back": "返回",
+          "billedEvery": "每次计费",
+          "changeEmail": "更改电子邮件",
+          "chargedAddon": "附加组件的付款仅在第一次收费时进行",
           "continue": "继续",
-          "free": "免费",
-          "noPaymentOptions": "此订阅没有付款选项。",
+          "coupon": "优惠券",
+          "goToPortal": "前往客户计费门户",
+          "noPaymentOptions": "此产品没有付款选项。",
           "pay": "支付",
-          "price": {
-            "balanceAmount": "从余额使用",
-            "couponDiscount": "优惠券",
-            "gatewayFee": "网关费用",
-            "subtotal": "小计",
-            "tax": "税费",
-            "taxIncludedIntoPrice": "包含在价格中",
-            "taxNotice": "百分比是基于您的国家{{delimiter1}}{{country}}{{delimiter2}}。如果您从其他地方购买，您可以稍后更改它。",
-            "tooltip": "价格如何计算？",
-            "total": "总计"
+          "paymentMethod": "选择支付方式",
+          "paymentRenewal": "每次续订付款",
+          "proceed": "继续",
+          "startSubscription": "开始订阅",
+          "subtitles": {
+            "billingInfo": "",
+            "email": "",
+            "paymentMethod": "",
+            "paymentMethodTrial": "您现在无法选择这些支付方式，这仅供您了解，在试用期结束后您将能够如何付款。",
+            "subscription": ""
           },
-          "selectGateway": "选择网关",
           "tax": "税费",
+          "taxNotice": "百分比基于您的国家{{delimiter1}}{{country}}{{delimiter2}}。如果您从其他地方购买，您可以稍后更改它。",
           "titles": {
-            "paymentMethod": "付款方式",
-            "purchase": "订单摘要"
+            "billingInfo": "账单信息",
+            "email": "订阅电子邮件",
+            "paymentMethod": "支付方式",
+            "paymentMethodTrial": "试用结束后可用的支付方式",
+            "subscription": "订阅"
           },
-          "useYourBalance": "使用您的余额"
-        },
-        "subscriptionDetails": {
-          "billingPeriod": "结算周期",
-          "billingPeriodYear": "每年",
-          "cancelSubscription": "取消订阅",
-          "currentPlan": "当前计划",
-          "manageSubscription": "管理订阅",
-          "nextBillingDate": "下一个结算日期",
-          "trialExpired": "试用已过期"
-        },
-        "termsAndConditions": {
-          "accept": "接受",
-          "agree": "同意",
-          "error": "您必须同意服务条款才能继续",
-          "termsOfService": "服务条款"
+          "trialPeriod": "试用期"
         }
-      }
+      },
+      "showDescription": "显示描述",
+      "stock": "库存",
+      "subtitle": "您的购物车中有{{ count }}件商品",
+      "title": "结算"
     },
     "contact": {
       "buttonTitle": "创建票据",
@@ -562,9 +569,12 @@
         "items": {
           "categoryNoProductsTitle": "类别没有产品",
           "clear": "清楚",
-          "noProductsTitle": "没有找到产品"
+          "noProductsTitle": "没有找到产品",
+          "noProductsSubtitle": "此处无任何产品可展示"
         }
-      }
+      },
+      "copyright": "版权所有 {{ year }}，Sellix SRL。",
+      "title": "主页"
     },
     "product": {
       "bundle": {
@@ -601,7 +611,8 @@
         "已售出的产品",
         "次"
       ],
-      "warrantyTitle": "产品保修"
+      "warrantyTitle": "产品保修",
+      "noWarrantyTitle": "无保修"
     },
     "shared": {
       "banner": {
@@ -672,7 +683,9 @@
         "startingAt": "起价",
         "stock": "库存",
         "viewAllProducts": "查看所有产品",
-        "viewMore": "查看更多"
+        "viewMore": "查看更多",
+        "Explore shop": "探索商店",
+        "Read Our Mission": "阅读我们的使命"
       },
       "toastify": {
         "fail": "访问资源时出现错误。",
@@ -718,7 +731,11 @@
       ],
       "sales": "过去14天的销售情况",
       "salesText": "这个指标考虑到该企业在过去14天的销售数量。高销量和中等销量意味着该企业一直在积极主动地销售商品，每天至少有一个订单。",
-      "title": "值得信赖的顾问"
+      "title": "值得信赖的顾问",
+      "medium": "中等"
+    },
+    "shop": {
+      "title": "商店"
     }
   },
   "widgets": {

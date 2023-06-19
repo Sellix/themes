@@ -75,7 +75,11 @@
         "title": "Explorez la boutique numérique de {{shopName}}."
       },
       "invoice": {
-        "title": "Facture Sellix : {{invoiceId}}"
+        "title": "Facture Sellix : {{invoiceId}}",
+        "metaTags": {
+          "description": "Régler une facture pour recevoir le produit immédiatement. Les factures peuvent être payées avec de nombreux modes de paiement différents, choisis par le vendeur.",
+          "title": "Facture : {{invoiceId}}"
+        }
       },
       "main": {
         "metaTags": {
@@ -111,6 +115,13 @@
           "title": "Paramètres des conseillers de confiance"
         },
         "title": "Paramètres des conseillers de confiance"
+      },
+      "shop": {
+        "metaTags": {
+          "description": "Consultez la boutique en ligne de {{shopName}} : obtenez les biens numériques dont vous avez besoin instantanément grâce à nos nombreux passerelles de paiement en seulement quelques clics, ou contactez-nous si vous avez besoin d'aide.",
+          "title": "Explorez la boutique en ligne de {{shopName}}"
+        },
+        "title": "Explorez la boutique en ligne de {{shopName}}"
       }
     }
   },
@@ -177,14 +188,6 @@
       "title": "Votre panier"
     },
     "checkout": {
-      "productPage": {
-        "addToCart": "Ajouter au panier",
-        "description": "Description",
-        "details": "Détails",
-        "emptyCart": "Votre panier est vide.",
-        "outOfStock": "Épuisé",
-        "price": "Prix"
-      },
       "hideDescription": "Masquer la description",
       "purchaseDetails": {
         "addToCart": {
@@ -413,6 +416,10 @@
               "isRequired": "Le nom est requis",
               "title": "Nom"
             },
+            "surname": {
+              "isRequired": "Le nom de famille est requis",
+              "title": "Nom de famille"
+            },
             "postalCode": {
               "isRequired": "Le code postal est requis",
               "title": "Code postal"
@@ -422,29 +429,46 @@
               "title": "État"
             }
           },
-          "messages": {
-            "cardDecline": "La carte a été refusée.",
-            "cardVerification": "La vérification de la carte a échoué.",
-            "invalidRequest": "Requête invalide.",
-            "paymentFailure": "Le paiement a échoué.",
-            "processingError": "Erreur de traitement.",
-            "retry": "Veuillez réessayer."
-          },
           "title": "Informations de paiement"
+        },
+        "subscription": {
+          "applyACoupon": "Appliquer un coupon",
+          "back": "Retour",
+          "billedEvery": "Facturé tous les",
+          "changeEmail": "Changer d'e-mail",
+          "chargedAddon": "Le paiement de l'addon est facturé uniquement la première fois",
+          "continue": "Continuer",
+          "coupon": "Coupon",
+          "goToPortal": "Accéder au portail de facturation client",
+          "noPaymentOptions": "Ce produit n'a pas d'options de paiement.",
+          "pay": "Payer",
+          "paymentMethod": "Sélectionner une passerelle de paiement",
+          "paymentRenewal": "Paiement à chaque renouvellement",
+          "proceed": "Procéder",
+          "startSubscription": "Commencer l'abonnement",
+          "subtitles": {
+            "billingInfo": "",
+            "email": "",
+            "paymentMethod": "",
+            "paymentMethodTrial": "Vous ne pouvez pas sélectionner ces passerelles de paiement maintenant, c'est juste pour votre information afin de savoir comment vous pourrez payer après la fin de la période d'essai.",
+            "subscription": ""
+          },
+          "tax": "Taxes",
+          "taxNotice": "Le pourcentage est basé sur votre pays{{delimiter1}}{{country}}{{delimiter2}}. Vous pouvez le modifier ultérieurement si vous achetez d'un autre endroit.",
+          "titles": {
+            "billingInfo": "Informations de facturation",
+            "email": "E-mail d'abonnement",
+            "paymentMethod": "Méthode de paiement",
+            "paymentMethodTrial": "Passerelles disponibles après la fin de l'essai",
+            "subscription": "Abonnement"
+          },
+          "trialPeriod": "Période d'essai"
         }
       },
-      "support": {
-        "chat": "Chat",
-        "contact": "Contact",
-        "email": "E-mail",
-        "faq": "FAQ",
-        "phone": "Téléphone",
-        "searchPlaceholder": "Recherche",
-        "title": "Support"
-      },
-      "tags": {
-        "title": "Tags"
-      }
+      "showDescription": "Afficher la description",
+      "stock": "Stock",
+      "subtitle": "{{ count }} articles dans votre panier",
+      "title": "Paiement"
     },
     "contact": {
       "buttonTitle": "Créer un Ticket",
@@ -545,9 +569,12 @@
         "items": {
           "categoryNoProductsTitle": "La catégorie n'a pas de produits",
           "clear": "Clair",
-          "noProductsTitle": "Aucun produit trouvé"
+          "noProductsTitle": "Aucun produit trouvé",
+          "noProductsSubtitle": "Aucun produit à afficher ici"
         }
-      }
+      },
+      "copyright": "Droits d'auteur {{ year }}, Sellix SRL. Tous droits réservés.",
+      "title": "Principal"
     },
     "product": {
       "bundle": {
@@ -584,7 +611,8 @@
         "Produit vendu",
         "temps"
       ],
-      "warrantyTitle": "Garantie du produit"
+      "warrantyTitle": "Garantie du produit",
+      "noWarrantyTitle": "Sans garantie"
     },
     "shared": {
       "banner": {
@@ -655,7 +683,9 @@
         "startingAt": "À partir de",
         "stock": "Stock",
         "viewAllProducts": "Voir tous les produits",
-        "viewMore": "Voir plus"
+        "viewMore": "Voir plus",
+        "Explore shop": "Explorer la boutique",
+        "Read Our Mission": "Lire notre mission"
       },
       "toastify": {
         "fail": "Une erreur s'est produite lors de l'accès à l'une de vos ressources.",
@@ -701,7 +731,11 @@
       ],
       "sales": "ventes au cours des 14 derniers jours",
       "salesText": "Cette métrique prend en compte la quantité de ventes que cette entreprise a réalisées au cours des 14 derniers jours. Des ventes élevées et moyennes signifient que l'entreprise a vendu de manière proactive des biens avec au moins une commande par jour.",
-      "title": "Conseiller de confiance"
+      "title": "Conseiller de confiance",
+      "medium": "Moyen"
+    },
+    "shop": {
+      "title": "Boutique"
     }
   },
   "widgets": {

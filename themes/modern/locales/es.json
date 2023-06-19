@@ -75,7 +75,11 @@
         "title": "Explorar la tienda digital de {{shopName}}"
       },
       "invoice": {
-        "title": "Factura Sellix: {{invoiceId}}"
+        "title": "Factura Sellix: {{invoiceId}}",
+        "metaTags": {
+          "description": "Completa una factura para recibir el producto de inmediato. Las facturas se pueden pagar con diferentes métodos de pago, elegidos por el vendedor.",
+          "title": "Factura: {{invoiceId}}"
+        }
       },
       "main": {
         "metaTags": {
@@ -111,6 +115,13 @@
           "title": "Métricas de los asesores de confianza"
         },
         "title": "Métricas de los asesores de confianza"
+      },
+      "shop": {
+        "metaTags": {
+          "description": "Mira la tienda digital de {{shopName}}: obtén los productos digitales que necesitas al instante con nuestras múltiples pasarelas de pago con solo unos clics, o ponte en contacto con nosotros si necesitas ayuda.",
+          "title": "Explora la tienda digital de {{shopName}}"
+        },
+        "title": "Explora la tienda digital de {{shopName}}"
       }
     }
   },
@@ -230,7 +241,8 @@
             "Términos de servicio"
           ],
           "discordMessage": [
-            "Conecta tu cuenta de",
+            "Conecta tu",
+            "cuenta",
             "opcional"
           ],
           "emailInputPlaceholder": "Correo electrónico para recibir actualizaciones de la factura",
@@ -424,64 +436,39 @@
           "back": "Volver",
           "billedEvery": "Cobrado cada",
           "changeEmail": "Cambiar correo electrónico",
-          "chargedAddon": "El pago del complemento se cobra por separado",
-          "checkout": "Realizar pedido",
-          "choosePlan": "Elegir plan",
-          "discountNotice": "El descuento se aplicará a la siguiente factura.",
-          "gift": "Regalo",
-          "manageSubscriptions": "Administrar suscripciones",
-          "monthly": "mensual",
-          "nextBillingDate": "Próxima fecha de facturación",
-          "on": "activado",
+          "chargedAddon": "El pago del complemento solo se cobra la primera vez",
+          "continue": "Continuar",
+          "coupon": "Cupón",
+          "goToPortal": "Ir al portal de facturación del cliente",
+          "noPaymentOptions": "Este producto no tiene opciones de pago.",
           "pay": "Pagar",
-          "paymentMethod": "Método de pago",
-          "plan": "Plan",
-          "price": "Precio",
-          "processingPeriodMessage": "El pago de {{paymentName}} demora de 2 a 14 días para que se procese y se complete, según tu banco. Una vez que hayas realizado el pago, espera que la factura se marque como pagada.",
-          "quantity": "Cantidad",
-          "renewalDate": "Fecha de renovación",
-          "trialPeriod": "Período de prueba",
-          "yearly": "anual"
+          "paymentMethod": "Seleccionar método de pago",
+          "paymentRenewal": "Pago en cada renovación",
+          "proceed": "Proceder",
+          "startSubscription": "Iniciar suscripción",
+          "subtitles": {
+            "billingInfo": "",
+            "email": "",
+            "paymentMethod": "",
+            "paymentMethodTrial": "No puedes seleccionar estos métodos de pago ahora, es solo para tu información sobre cómo podrás pagar después del período de prueba.",
+            "subscription": ""
+          },
+          "tax": "Impuesto",
+          "taxNotice": "El porcentaje se basa en tu país{{delimiter1}}{{country}}{{delimiter2}}. Puedes cambiarlo más tarde si compras desde otro lugar.",
+          "titles": {
+            "billingInfo": "Información de facturación",
+            "email": "Correo electrónico de la suscripción",
+            "paymentMethod": "Método de pago",
+            "paymentMethodTrial": "Pasarelas disponibles después del período de prueba",
+            "subscription": "Suscripción"
+          },
+          "trialPeriod": "Período de prueba"
         }
       },
-      "checkoutPage": {
-        "back": "Volver",
-        "continue": "Continuar",
-        "notFound": {
-          "description": "Lo sentimos, la página de pago que estás buscando no se encontró.",
-          "title": "Página no encontrada"
-        },
-        "orderCompleted": {
-          "description": "¡Tu pedido se ha completado con éxito! Recibirás un correo electrónico de confirmación con los detalles de tu compra.",
-          "title": "Pedido completado"
-        },
-        "paymentFailed": {
-          "description": "Lo sentimos, ha habido un problema al procesar tu pago. Por favor, inténtalo de nuevo más tarde.",
-          "title": "Pago fallido"
-        },
-        "paymentProcessing": {
-          "description": "Estamos procesando tu pago. Por favor, espera un momento...",
-          "title": "Procesando el pago"
-        },
-        "processingError": {
-          "description": "Ha ocurrido un error durante el procesamiento de tu pedido. Por favor, inténtalo de nuevo más tarde.",
-          "title": "Error de procesamiento"
-        }
-      },
-      "common": {
-        "cancel": "Cancelar",
-        "close": "Cerrar",
-        "continueShopping": "Continuar comprando",
-        "copy": "Copiar",
-        "copySuccess": "¡Copiado!",
-        "learnMore": "Saber más",
-        "no": "No",
-        "ok": "Aceptar",
-        "remove": "Eliminar",
-        "search": "Buscar",
-        "submit": "Enviar",
-        "yes": "Sí"
-      }
+      "showDescription": "Mostrar descripción",
+      "stock": "Stock",
+      "subtitle": "{{ count }} artículos en tu carrito",
+      "title": "Pagar"
     },
     "contact": {
       "buttonTitle": "Crear Billete",
@@ -582,9 +569,12 @@
         "items": {
           "categoryNoProductsTitle": "La categoría no tiene productos",
           "clear": "Claro",
-          "noProductsTitle": "No se ha encontrado ningún producto"
+          "noProductsTitle": "No se ha encontrado ningún producto",
+          "noProductsSubtitle": "No hay productos para mostrar aquí"
         }
-      }
+      },
+      "copyright": "Derechos de autor {{ year }}, Sellix SRL. Todos los derechos reservados.",
+      "title": "Principal"
     },
     "product": {
       "bundle": {
@@ -621,7 +611,8 @@
         "Producto vendido",
         "veces"
       ],
-      "warrantyTitle": "Garantía del producto"
+      "warrantyTitle": "Garantía del producto",
+      "noWarrantyTitle": "Sin garantía"
     },
     "shared": {
       "banner": {
@@ -692,7 +683,9 @@
         "startingAt": "Desde",
         "stock": "Inventario",
         "viewAllProducts": "Ver todos los productos",
-        "viewMore": "Ver más"
+        "viewMore": "Ver más",
+        "Explore shop": "Explorar tienda",
+        "Read Our Mission": "Leer nuestra misión"
       },
       "toastify": {
         "fail": "Se produjo un error al intentar acceder a uno de sus recursos.",
@@ -738,7 +731,11 @@
       ],
       "sales": "ventas en los últimos 14 días",
       "salesText": "Esta métrica tiene en cuenta la cantidad de ventas que esta empresa ha realizado en los últimos 14 días. Las ventas altas y medias significan que la empresa ha estado vendiendo productos de forma proactiva con al menos un pedido diario.",
-      "title": "Asesor de confianza"
+      "title": "Asesor de confianza",
+      "medium": "Medio"
+    },
+    "shop": {
+      "title": "Tienda"
     }
   },
   "widgets": {
