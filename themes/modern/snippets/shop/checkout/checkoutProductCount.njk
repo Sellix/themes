@@ -48,12 +48,16 @@
 
 <script type='application/javascript'>
   $(document).ready(async function () {
+    const shopInfo = SellixContext.getShopInfo();
+    let hideStockCounter = shopInfo.shop && shopInfo.shop.hide_stock_counter;
     const product = await SellixContext.getShopProduct('{{ product.uniqid }}');
+
     new SellixProductCountComponent(
       '.{{ localClass }}',
       '{{shop.name}}',
       product,
       {{renderOptions | dump | safe}},
+      hideStockCounter,
     );
   });
 </script>

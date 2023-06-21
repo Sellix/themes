@@ -108,13 +108,15 @@
       <div class="{{ globalClass }}__info {{ localClass }}__info">
         <div class="{{ globalClass }}__description {{ localClass }}__description">
           <div class="{{ globalClass }}__group-description-info">
-            <span class="{{ globalClass }}__stock">
-              {{ 'shop.shared.titles.startingAt' | t }}
-            </span>
+            <span>{{ 'shop.shared.titles.startingAt' | t }}</span>
             <span class="{{ localClass }}__price">
               {% render_snippet 'Price', currency=product.currency, price=product.price_display %}
             </span>
           </div>
+
+          {% if not onHold %}
+            <span class="{{ globalClass }}__tax {{ localClass }}__tax"></span>
+          {% endif %}
         </div>
 
         <div class="{{ globalClass }}__title {{ localClass }}__title">
@@ -130,3 +132,25 @@
     </div>
   </a>
 </div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const shopInfo = SellixContext.getShopInfo();
+    const ipcountry = Cookies.get('ipcountry') || 'BUGO';;
+
+    let taxAmount = shopInfo.shop.vat_percentage ? shopInfo.shop.vat_percentage : '';
+    if (shopInfo.shop.tax_configuration === 'EU' || shopInfo.shop.tax_configuration === 'CUSTOM') {
+      if (shopInfo.shop.tax_configuration_data && ipcountry) {
+        const countryTaxData = shopInfo.shop.tax_configuration_data.find(({ country, type }) => country === ipcountry);
+        if (countryTaxData) {
+          taxAmount = countryTaxData.tax_percentage;
+        }
+      }
+    }
+
+    if (shopInfo.shop.display_tax_on_storefront && taxAmount) {
+      taxAmount = parseFloat(Number(taxAmount).toFixed(2));
+        $('.{{ localClass }}__tax').append(`<span>${taxAmount}% {{ 'shop.main.cards.product.tax' | t }}</span>`);
+      }
+  });
+</script>

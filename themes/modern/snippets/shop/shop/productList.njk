@@ -1,6 +1,11 @@
-{% set hideOutOfStock = args.hideOutOfStock or shop.hide_out_of_stock | int %}
-{% set cartEnabled = args.cartEnabled or global.common.cartEnabled %}
+{% set shopInfo = global.common.shopInfo %}
+{% set shop = shopInfo.shop %}
 {% set products = args.products %}
+
+{% set hideOutOfStock = args.hide_out_of_stock or shop.hide_out_of_stock | int %}
+{% set hideStockCounter = args.hide_stock_counter or shop.hide_stock_counter | int %}
+{% set cartEnabled = args.cart_enabled or global.common.cartEnabled %}
+{% set showStockInfo = safe_get(themeProperties.common.show_stock_info, false) %}
 
 {% set globalClass =  'snippet-product-list' %}
 {% set localClass = id %}
@@ -14,7 +19,7 @@
     {% set image = cdn_link(product.cloudflare_image_id, 'shopItem') %}
     {% set rating = (product.average_score if product.average_score else 0) | float %}
     {% set isRatingGold = rating | float > 4 %}
-    {% set productStock = ('∞' if product.stock === -1 else get_stock(product.stock)) %}
+    {% set productStock = product.stock %}
 
     {% if hideOutOfStock and product.stock == 0 %}
       {# hide Out of stock products #}
@@ -84,6 +89,17 @@
                       %}
                     {% endif %}
                   </span>
+                {% endif %}
+
+                {% if showStockInfo %}
+                  <span class="{{ globalClass }}__option-dot">  ●  </span>
+
+                  {% render_snippet
+                    'Product: Stock',
+                    stock=productStock,
+                    hide_stock_counter=hideStockCounter,
+                    reverse=true
+                  %}
                 {% endif %}
               </div>
             {% endif %}

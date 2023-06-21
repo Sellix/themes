@@ -19,7 +19,7 @@
 
     onClick = (event) => {
       const clickedTitle = jQuery(event.currentTarget).data('variant');
-      const variant = this.variants.find(({ title }) => title === clickedTitle);
+      const variant = this.variants.find(({ title }) => title === `${clickedTitle}`);
       if (variant) {
         this.store.set(this.productId, variant);
       }

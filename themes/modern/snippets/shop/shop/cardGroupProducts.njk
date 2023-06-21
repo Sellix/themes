@@ -3,6 +3,7 @@
 {% set shopInfo = global.common.shopInfo %}
 {% set shop = shopInfo.shop %}
 {% set hideOutOfStock = shop.hide_out_of_stock | int %}
+{% set hideStockCounter = shop.hide_stock_counter %}
 {% set cartEnabled = args.cartEnabled or global.common.cartEnabled %}
 
 {% set globalClass =  'sellix-group-card-products' %}
@@ -11,8 +12,9 @@
 <div class="{{ globalClass }}">
   {% render_snippet
     'Product list',
-    cartEnabled=cartEnabled,
-    hideOutOfStock=hideOutOfStock,
-    products=group.products_bound
+    cart_enabled=cartEnabled,
+    products=group.products_bound,
+    hide_out_of_stock=hideOutOfStock,
+    hide_stock_counter=hideStockCounter
   %}
 </div>

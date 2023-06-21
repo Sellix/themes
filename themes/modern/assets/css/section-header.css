@@ -10,12 +10,6 @@
   min-height: 72px;
 }
 
-@media (max-width: 1080px) {
-  .sellix-header {
-    min-height: 64px;
-  }
-}
-
 .sidebar-toggler {
   display: none;
   cursor: pointer;
@@ -28,12 +22,6 @@
   height: 100%;
   align-items: center;
   justify-content: center;
-}
-
-@media (max-width: 1080px) {
-  .sidebar-toggler {
-    display: flex;
-  }
 }
 
 .sellix-header__logo {
@@ -54,22 +42,10 @@
   border-right: 1px solid var(--black2);
 }
 
-@media (max-width: 1080px) {
-  .sellix-header__shop-name {
-    border-right: inherit;
-  }
-}
-
 .sellix-header__main-menu {
   height: 100%;
   display: flex;
   align-items: center;
-}
-
-@media (max-width: 1080px) {
-  .sellix-header__main-menu .sellix-menu {
-    display: none!important;
-  }
 }
 
 .sellix-header__main-menu .sellix-menu {
@@ -100,12 +76,30 @@
 }
 
 @media (max-width: 1080px) {
+  .sellix-header {
+    min-height: 64px;
+  }
+
+  .sidebar-toggler {
+    display: flex;
+  }
+
   .sellix-header__logo-image {
     margin-right: 5px;
   }
 
   .sellix-header__shop-name {
+    border-right: inherit;
     text-align: center;
+  }
+
+  .sellix-header__main-menu .sellix-menu {
+    display: none!important;
   }
 }
 
+@media (max-width: 768px) {
+  .sellix-header__shop-name {
+    white-space: nowrap;
+  }
+}

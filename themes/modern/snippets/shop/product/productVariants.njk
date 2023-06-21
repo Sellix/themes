@@ -6,6 +6,8 @@
 {% set currency = args.currency %}
 {% set isCart = args.is_cart or false %}
 {% set productVariants = product.price_variants or [] %}
+{% set hideStockCounter = shop.hide_stock_counter %}
+{% set showStockInfo = safe_get(themeProperties.common.show_stock_info, false) %}
 
 {% set bgColor = safe_get(properties.container_background_color, 'background_accent_light') %}
 {% set bgActiveColor = safe_get(properties.container_background_active_color, 'background_accent_light') %}
@@ -71,6 +73,8 @@
 
   <div class="{{ globalClass }} {{ localClass }}">
   {% for variant in productVariants %}
+    {% set variantStock = (variant if product.type === 'SERIALS' else product).stock %}
+
     {% if variant.stock === 0 %}
     {% else %}
       <div
@@ -87,9 +91,9 @@
 
           <div class="{{ globalClass }}__title-wrapper">
             <div class="{{ globalClass }}__title {{ localClass }}__title">
-            <span>
-              {{ variant.title }}
-            </span>
+              <span>
+                {{ variant.title }}
+              </span>
 
               {% if variant.description %}
                 <span class="chevron d-none" data-toggle-product-variant-description-button="1">
@@ -107,6 +111,14 @@
                 <span>{{ 'shop.shared.titles.startingAt' | t }} </span>
                 {% render_snippet 'Price', currency=currency, price=variant.price %}
               </div>
+
+              {% if showStockInfo %}
+                {% render_snippet
+                  'Product: Stock',
+                  stock=variantStock,
+                  hide_stock_counter=hideStockCounter
+                %}
+              {% endif %}
             </div>
           </div>
         </div>

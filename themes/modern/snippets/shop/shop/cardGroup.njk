@@ -106,6 +106,12 @@
                 %}
               </span>
             </div>
+
+            <div class="{{ globalClass }}__description-additional">
+              {% if group.min_price_item %}
+                <span class="{{ globalClass }}__tax {{ localClass }}__tax"></span>
+              {% endif %}
+            </div>
           {% else %}
             <span>
               {{ 'shop.main.cards.group.outOfProducts' | t }}
@@ -143,5 +149,27 @@
         $('.{{ localClass }}__container').click();
       }, 0);
     {% endif %}
+  });
+</script>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const shopInfo = SellixContext.getShopInfo();
+    const ipcountry = Cookies.get('ipcountry') || 'BUGO';
+
+    let taxAmount = shopInfo.shop.vat_percentage ? shopInfo.shop.vat_percentage : '';
+    if (shopInfo.shop.tax_configuration === 'EU' || shopInfo.shop.tax_configuration === 'CUSTOM') {
+      if (shopInfo.shop.tax_configuration_data && ipcountry) {
+        const countryTaxData = shopInfo.shop.tax_configuration_data.find(({ country, type }) => country === ipcountry);
+        if (countryTaxData) {
+          taxAmount = countryTaxData.tax_percentage;
+        }
+      }
+    }
+
+    if (shopInfo.shop.display_tax_on_storefront && taxAmount) {
+      taxAmount = parseFloat(Number(taxAmount).toFixed(2));
+      $('.{{ localClass }}__tax').append(`<span>${taxAmount}% {{ 'shop.main.cards.product.tax' | t }}</span>`);
+    }
   });
 </script>

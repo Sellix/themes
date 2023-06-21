@@ -1,4 +1,6 @@
 {% set id = uid() %}
+{% set shopInfo = global.common.shopInfo %}
+{% set shop = shopInfo.shop %}
 {% set product = args.product %}
 {% set isPlaceholder = not product.image_name %}
 {% set image = cdn_link(product.cloudflare_image_id, 'shopItem') %}
@@ -9,6 +11,9 @@
 {% set colors = themeProperties.current_colors %}
 {% set cardProps = themeProperties.cards %}
 {% set properties = args.properties %}
+
+{% set showStockInfo = safe_get(themeProperties.common.show_stock_info, false) %}
+{% set hideStockCounter = shop.hide_stock_counter %}
 
 {% set background = safe_get(properties.background_color, cardProps.product_card_background_color) %}
 {% set border = '1px solid var(--borderColor)' if safe_get(properties.show_border, cardProps.product_card_show_border) else 'none' %}
@@ -81,16 +86,6 @@
     border-radius: {{ imageBorderRadius }}px;
     border-top-left-radius: {{ imageBorderRadius or borderRadius }}px;
     border-top-right-radius: {{ imageBorderRadius or borderRadius }}px;
-  }
-  .{{ localClass }}__stock i {
-    margin-left: 0.2rem;
-    font-size: 10px;
-    color: {{'#28a745' if product.stock == -1 or product.stock > 1 else '#dc3545'}};
-  }
-  .{{ localClass}}__stock span {
-    font-size: 1rem;
-    margin-left:.2rem;
-    color:{{'#28a745' if product.stock == -1 or product.stock > 1 else '#dc3545'}};
   }
 
   .{{ localClass }} .{{ localClass }}__cart {
@@ -178,15 +173,19 @@
             </div>
           {% endif %}
 
-          <span class="{{ globalClass }}__stock {{ localClass }}__stock">
-            {% if get_stock(product.stock) === '∞' %}
-              {{ 'shop.shared.titles.stock' | t }}<i class="fa-solid fa-infinity"></i>
-            {% else %}
-              {{ 'shop.shared.titles.stock' | t }}<span>{{get_stock(product.stock)}}</span>
+          <div class="{{ globalClass }}__description-additional">
+            {% if showStockInfo %}
+              {% render_snippet
+                'Product: Stock',
+                stock=product.stock,
+                hide_stock_counter=hideStockCounter
+              %}
             {% endif %}
-          </span>
 
-          {# TODO: Add a tax #}
+            {% if not isFree and not isOut and not onHold %}
+              <span class="{{ globalClass }}__tax {{ localClass }}__tax"></span>
+            {% endif %}
+          </div>
         </div>
 
         <div class="{{ globalClass }}__title {{ localClass }}__title">
@@ -208,3 +207,25 @@
     </div>
   </a>
 </div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const shopInfo = SellixContext.getShopInfo();
+    const ipcountry = Cookies.get('ipcountry') || 'BUGO';
+
+    let taxAmount = shopInfo.shop.vat_percentage ? shopInfo.shop.vat_percentage : '';
+    if (shopInfo.shop.tax_configuration === 'EU' || shopInfo.shop.tax_configuration === 'CUSTOM') {
+      if (shopInfo.shop.tax_configuration_data && ipcountry) {
+        const countryTaxData = shopInfo.shop.tax_configuration_data.find(({ country, type }) => country === ipcountry);
+        if (countryTaxData) {
+          taxAmount = countryTaxData.tax_percentage;
+        }
+      }
+    }
+
+    if (shopInfo.shop.display_tax_on_storefront && taxAmount) {
+      taxAmount = parseFloat(Number(taxAmount).toFixed(2));
+      $('.{{ localClass }}__tax').append(`<span>${taxAmount}% {{ 'shop.main.cards.product.tax' | t }}</span>`);
+    }
+  });
+</script>
