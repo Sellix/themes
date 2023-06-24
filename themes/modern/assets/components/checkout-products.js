@@ -44,6 +44,7 @@
             });
           })
           .catch((resp) => {
+            console.log(resp);
             const respJson = resp.responseJSON || {};
             jQuery(document).trigger('SellixToastify', {
               type: 'error',

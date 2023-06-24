@@ -355,19 +355,23 @@
                     return resp;
                   })
                   .then(resolve)
-                  .catch(() => {
+                  .catch((e) => {
+                    console.log('CaptchaV3', e);
                     this.requestWithCaptchaV2(action, onSuccess, onError, options)
                       .then(resolve)
                       .catch((e) => {
+                        console.log('CaptchaV2', e);
                         const message = (e && e.message) || 'Captcha request error.';
                         reject(onError(message));
                       });
                   });
               }
             } catch (e) {
+              console.log('CaptchaV3', e);
               this.requestWithCaptchaV2(action, onSuccess, onError, options)
                 .then(resolve)
                 .catch((e) => {
+                  console.log('CaptchaV2', e);
                   const message = (e && e.message) || 'Captcha request error.';
                   reject(onError(message));
                 });

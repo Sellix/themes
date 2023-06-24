@@ -5,6 +5,7 @@
 {% set iconsCount = safe_get(args.iconsCount, 5) %}
 {% set color = safe_get(args.color, '#FCAB06') %}
 {% set readonly = safe_get(args.readonly, true) %}
+{% set onClickFuncName = safe_get(args.on_click, false) %}
 
 <div id='rating-widget-{{id}}'></div>
 
@@ -21,6 +22,11 @@
         iconsCount: {{ iconsCount or 5 }},
         readonly: {{ readonly }},
         iconName: 'smooth',
+        onClick: (value) => {
+          {% if onClickFuncName %}
+            {{ onClickFuncName }}(value / 20);
+          {% endif %}
+        }
       }),
       domContainer,
     );

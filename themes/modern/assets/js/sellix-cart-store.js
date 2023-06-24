@@ -30,6 +30,7 @@
           jQuery(document).trigger('SellixCartUpdateEvent', { action: 'insert' });
         })
         .catch((resp) => {
+          console.log(resp);
           if (resp.responseJSON) {
             const respJson = resp.responseJSON;
             jQuery(document).trigger('SellixToastify', {
@@ -37,6 +38,7 @@
               text: respJson.message || 'Internal server error',
             });
           } else {
+            console.log(resp);
             throw resp;
           }
         });
@@ -45,6 +47,7 @@
     update() {
       const products = this.getItems().map(({ uniqid, quantity }) => ({ uniqid, quantity }));
       return sellixApi.updateCart(products).catch((resp) => {
+        console.log(resp);
         if (resp.responseJSON) {
           const respJson = resp.responseJSON || {};
           jQuery(document).trigger('SellixToastify', {

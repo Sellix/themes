@@ -5,11 +5,13 @@
 
 {% set iconSnippet = safe_get(properties.icon_snippet, '') %}
 {% set iconPosition = safe_get(properties.icon_position, 'right') %}
-{% set bgColor = safe_get(properties.background_color, 'button_color') %}
-{% set labelColor = safe_get(properties.label_color, 'button_text_color') %}
-{% set labelFontSize = safe_get(properties.label_font_size, 14) %}
-{% set labelFontWeight = safe_get(properties.label_font_weight, 600) %}
+{% set bgColor = safe_get(colors[properties.background_color], 'inherit') %}
+{% set labelColor = safe_get(colors[properties.label_color], 'inherit') %}
+{% set labelFontSize = safe_get(properties.label_font_size, false) %}
+{% set labelFontSize = [labelFontSize, 'px'] | join if labelFontSize else 'inherit' %}
+{% set labelFontWeight = safe_get(properties.label_font_weight, 'inherit') %}
 {% set url = properties.url %}
+{% set isLink = safe_get(properties.is_link, false) %}
 
 {% set sharedTranslationKey = ['shop.shared.titles', properties.label] | join('.')  %}
 {% set label = sharedTranslationKey | t %}
@@ -21,16 +23,16 @@
 {% set localClass = id %}
 
 <style>
-  .{{ localClass }} .button {
-    color: {{ colors[labelColor] }};
-    background-color: {{ colors[bgColor] }};
-    font-size: {{ labelFontSize }}px;
-    font-weight: {{ labelFontWeight }} !important;
+  .{{ globalClass }}.{{ localClass }} .button {
+    color: {{ labelColor }};
+    background-color: {{ bgColor }};
+    font-size: {{ labelFontSize }};
+    font-weight: {{ labelFontWeight }};
   }
 </style>
 
-<div class="{{ localClass }}">
-  <a href="{{ url }}" class="button">
+<div class="{{ globalClass }} {{ localClass }}">
+  <a href="{{ url }}" class="button {{ 'button-link' if isLink }}">
     {% if iconSnippet and iconPosition == 'left' %}
       <span class="mr-2 d-flex">
         {% render_snippet iconSnippet %}
