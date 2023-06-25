@@ -18,16 +18,19 @@
 {% set paddingHoriz = safe_get(properties.container_padding_horiz, 16) %}
 
 {% set titleFontColor = safe_get(properties.title_font_color, 'dark_font_color') %}
+{% set titleActiveFontColor = safe_get(properties.title_active_font_color, 'gray_shade_9') %}
 {% set titleFontSize = safe_get(properties.title_font_size, 16) %}
 {% set titleFontWeight = safe_get(properties.title_font_weight, 600) %}
 {% set titleLineHeight = safe_get(properties.title_line_height, 20) %}
 
 {% set infoFontColor = safe_get(properties.info_font_color, 'dark_font_color') %}
+{% set infoActiveFontColor = safe_get(properties.info_active_font_color, 'gray_shade_9') %}
 {% set infoFontSize = safe_get(properties.info_font_size, 14) %}
 {% set infoFontWeight = safe_get(properties.info_font_weight, 500) %}
 {% set infoLineHeight = safe_get(properties.info_line_height, 20) %}
 
 {% set descriptionFontColor = safe_get(properties.description_font_color, 'light_font_color') %}
+{% set descriptionActiveFontColor = safe_get(properties.description_active_font_color, 'light_font_color') %}
 {% set descriptionFontSize = safe_get(properties.description_font_size, 14) %}
 {% set descriptionFontWeight = safe_get(properties.description_font_weight, 400) %}
 {% set descriptionLineHeight = safe_get(properties.description_line_height, 20) %}
@@ -47,6 +50,18 @@
 
     .{{ localClass }}__variant.active {
       background: {{ colors[bgActiveColor] }};
+    }
+
+    .{{ localClass }}__variant.active .{{ localClass }}__title {
+      color: {{ colors[titleActiveFontColor] }};
+    }
+
+    .{{ localClass }}__variant.active .{{ localClass }}__info {
+      color: {{ colors[infoActiveFontColor] }};
+    }
+
+    .{{ localClass }}__variant.active .{{ localClass }}__description {
+      color: {{ colors[descriptionActiveFontColor] }};
     }
 
     .{{ localClass }}__title {

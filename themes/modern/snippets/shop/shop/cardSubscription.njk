@@ -72,9 +72,18 @@
     border-top-left-radius: {{ imageBorderRadius or borderRadius }}px;
     border-top-right-radius: {{ imageBorderRadius or borderRadius }}px;
   }
+
+  @media (hover: hover) {
+    .{{ localClass }} .{{ localClass }}__cart {
+      display: none;
+    }
+    .{{ localClass }}:hover .{{ localClass }}__cart {
+      display: block!important;
+    }
+  }
 </style>
 
-<div class="{{ globalClass }} d-flex w-100 position-relative">
+<div class="{{ globalClass }} {{ localClass}} d-flex w-100 position-relative">
   <a
     href="{{'javascript:void(0)' if onHold else ['product/', product.uniqid] | join}}"
     id="sellix-card-container-{{id}}"
@@ -98,6 +107,9 @@
       {% endif %}
 
       <div class="{{ globalClass }}__image {{ localClass }}__image {{'image-placeholder' if isPlaceholder else ''}}">
+        <div class="{{ localClass }}__cart">
+          {% render_snippet 'Cart button 2', product=product %}
+        </div>
         {% if isPlaceholder %}
           {% render_snippet 'Product: Placeholder icon', product=product %}
         {% else %}

@@ -25,6 +25,7 @@
 {% set bgColor = properties.background_color %}
 
 {% set crumbFontColor = safe_get(properties.crumb_font_color, 'gray_shade_4') %}
+{% set lastCrumbFontColor = safe_get(properties.last_crumb_font_color, 'dark_font_color') %}
 {% set crumbFontSize = safe_get(properties.crumb_font_size, 40) %}
 {% set crumbFontWeight = safe_get(properties.crumb_font_weight, 500) %}
 {% set crumbLineHeight = safe_get(properties.crumb_line_height, 48) %}
@@ -63,7 +64,7 @@
     text-transform: capitalize;
     display: flex;
     align-items: center;
-    {#color: {{ colors[crumbFontColor] }};#}
+    color: {{ colors[crumbFontColor] }};
     font-size: {{ crumbFontSize }}px;
     font-weight: {{ crumbFontWeight }};
     line-height: {{ crumbLineHeight }}px;
@@ -75,8 +76,12 @@
     margin-right: 0.625rem;
   }
 
-  .{{ localClass }}__link-crumb span {
+  .{{ localClass }}__link-crumb svg {
     margin-right: 0.75rem;
+  }
+
+  .{{ localClass }}__last-link-crumb {
+    color: {{ colors[lastCrumbFontColor] }};
   }
 
   @media (max-width: 768px) {
@@ -111,23 +116,23 @@
       {% set crumbUrl = properties[['crumb_url_', idx] | join] %}
 
       {% if crumbLabel %}
-        <div class="{{ localClass }}__link-crumb">
+        <div class="{{ globalClass }}__link-crumb {{ localClass }}__link-crumb">
           {% if idx != lastItemIdx %}
             <a href="{{ crumbUrl }}">
               <span>{{ crumbLabel | t }}</span>
             </a>
-            <span>
-              {% render_snippet 'Icons: Arrow right 2' %}
-            </span>
+            {% render_snippet 'Icons: Arrow right 2' %}
           {% else %}
-            {{ crumbLabel | t }}
+            <span class="{{ globalClass }}__last-link-crumb {{ localClass }}__last-link-crumb">
+              {{ crumbLabel | t }}
+            </span>
           {% endif %}
         </div>
       {% endif %}
 
     {% endfor %}
   </div>
-  <div class="{{ localClass }}__title">
+  <div class="{{ globalClass }}__title {{ localClass }}__title">
     {{ title | t }}
   </div>
 </div>

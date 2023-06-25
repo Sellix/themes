@@ -1,26 +1,32 @@
+{% set id = uid() %}
+
 {% set slug = global.request.slug %}
 {% set colors = themeProperties.current_colors %}
 {% set menuProps = themeProperties.menu %}
 
+{% set localClass = id %}
+
 <style>
-  .menu-tab {
-    margin-left: 1.25rem;
-    color: {{ colors[menuProps.menu_item_font_color] }} !important;
-    font-size: {{ menuProps.menu_item_font_size }}px !important;
-    font-weight: {{ menuProps.menu_item_font_weight }} !important;
+  .{{ localClass }}__menu-tab {
+    color: {{ colors[menuProps.menu_item_font_color] }};
+    font-size: {{ menuProps.menu_item_font_size }}px;
+    font-weight: {{ menuProps.menu_item_font_weight }};
   }
-  .menu-tab.active {
-    color: {{ colors[menuProps.menu_active_item_font_color] }} !important;
-    border-bottom: 2px solid {{ colors[menuProps.menu_active_item_font_color] }};
-    font-size: {{ menuProps.menu_active_item_font_size }}px !important;
-    font-weight: {{ menuProps.menu_active_item_font_weight }} !important;
+  .{{ localClass }}__menu-tab.active {
+    color: {{ colors[menuProps.menu_active_item_font_color] }};
+    {#border-bottom: 2px solid {{ colors[menuProps.menu_active_item_font_color] }};#}
+    font-size: {{ menuProps.menu_active_item_font_size }}px;
+    font-weight: {{ menuProps.menu_active_item_font_weight }};
     background: {{ colors[menuProps.menu_active_item_background] }};
-    border-radius: 0.25rem 0.25rem 0 0;
-    position: relative;
+    /*position: relative;*/
+  }
+  .{{ localClass }}__menu-tab:hover {
+    background: {{ colors[menuProps.menu_item_background_hover] }};
+    color: {{ colors[menuProps.menu_item_font_color_hover] }};
   }
 </style>
 
-<div class="sellix-menu">
+<div class="sellix-menu {{ localClass }}">
     {% for item in menu.items %}
       {% set active = item.page_slug == slug %}
       {% if item.page_slug != "/" %}
@@ -35,7 +41,7 @@
         url=item.page_slug,
         title=item.title,
         is_active=active,
-        class='menu-tab'
+        class=['menu-tab ', localClass, '__menu-tab'] | join('')
       %}
     {% endfor %}
 </div>

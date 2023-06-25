@@ -10,6 +10,8 @@
 {% set description = [product.description.slice(0, 100), '...'] | join('') | html_sanitize %}
 
 {% set formSize = safe_get(properties.form_size, '100%') %}
+{% set imageSize = safe_get(properties.image_size, '100') %}
+{% set imageBorderRadius = safe_get(properties.image_border_radius, 8) %}
 {% set bgColor = safe_get(properties.container_background, 'background_accent_light') %}
 {% set showBorder = safe_get(properties.container_show_border, true) %}
 {% set shadow = safe_get(properties.container_shadow, 'none') %}
@@ -29,6 +31,11 @@
     box-shadow: {{ shadow }};
     border-radius: {{ borderRadius }}px;
     padding: {{ paddingVert }}px {{ paddingHoriz }}px;
+  }
+  .{{ localClass }}__image img {
+    width: {{ imageSize }}px;
+    height: {{ imageSize }}px;
+    border-radius: {{ imageBorderRadius }}px;
   }
 </style>
 
