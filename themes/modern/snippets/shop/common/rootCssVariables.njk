@@ -1,4 +1,5 @@
 {% set colors = themeProperties.current_colors %}
+{% set isDark = global.theme.isDark %}
 
 :root {
 --brandColor: {{colors.brand_color}};
@@ -81,6 +82,15 @@
 --green2: #bbf7d0;
 --green1: #E3F5E9;
 --green0: #f0fdf4;
+
+{% if isDark %}
+  --purple0: #43248e57;
+  --purple1: #43248e57;
+
+  --red0: #381E1D;
+  --orange0: #35241E;
+  --green0: #143120;
+{% endif %}
 
 --contentWidth: {{ themeProperties.page.content_width }}px;
 }
