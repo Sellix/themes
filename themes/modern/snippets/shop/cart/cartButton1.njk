@@ -1,9 +1,9 @@
 {% set id = uid() %}
 {% set shop = global.common.shopInfo.shop %}
 {% set product = args.product %}
-{% set subscription = global.common.shopInfo.subscription %}
 {% set cartEnabled = global.common.cartEnabled %}
 {% set colors = themeProperties.current_colors %}
+{% set isSubscription = product.type === 'SUBSCRIPTION' %}
 
 {% set isStatic = args.is_static %}
 {% set redirectToCheckout = args.redirect_to_checkout %}
@@ -21,7 +21,7 @@
   }
 </style>
 
-{% if product.stock | int === 0 or not cartEnabled or product.on_hold | int !== 0 %}
+{% if isSubscription or product.stock | int === 0 or not cartEnabled or product.on_hold | int !== 0 %}
   {# Do Nothing #}
 {% else %}
   <div class="{{ globalClass }} {{ localClass }} empty {{'static' if isStatic else ''}}">

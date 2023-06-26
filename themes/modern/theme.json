@@ -6474,6 +6474,100 @@
         }
       }
     },
+    "Ticket/Ticket": {
+      "name": "Ticket/Ticket",
+      "path": "templates/shop/ticket.njk",
+      "template_type": "TICKET",
+      "is_default": 1,
+      "settings": {
+        "section_order": [
+          "Breadcrumbs",
+          "Container: With sidebar 1",
+          "Footer menu"
+        ],
+        "sections": {
+          "Breadcrumbs": {
+            "name": "Breadcrumbs",
+            "settings": {
+              "visible": true,
+              "properties": {
+                "crumb_label_1": "Home",
+                "crumb_url_1": "",
+                "crumb_label_2": "Ticket",
+                "crumb_url_2": "ticket",
+                "margin_top_desktop": 0,
+                "margin_bottom_desktop": 0,
+                "margin_top_tablet": 0,
+                "margin_bottom_tablet": 0,
+                "margin_top_mobile": 0,
+                "margin_bottom_mobile": 0,
+                "title_visible": true,
+                "title": "shop.ticket.title"
+              }
+            }
+          },
+          "Container: With sidebar 1": {
+            "name": "Container: With sidebar",
+            "settings": {
+              "visible": true,
+              "properties": {
+                "background_color": "background_accent_light",
+                "margin_bottom_desktop": 0,
+                "margin_bottom_tablet": 0,
+                "margin_bottom_mobile": 0,
+                "sidebar_type": "left",
+                "sidebar_blocks_count": 0,
+                "sidebar_width": 328,
+                "sidebar_gap": 16
+              },
+              "block_order": ["Ticket chat"],
+              "blocks": {
+                "Ticket chat": {
+                  "name": "Ticket chat",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "ticket_container_background_color": "background_main_color",
+                      "ticket_container_show_border": false,
+                      "ticket_container_padding": 0,
+                      "ticket_title_font_color": "light_font_color",
+                      "ticket_title_font_size": 24,
+                      "ticket_title_text_align": "left",
+                      "ticket_title_font_weight": 700,
+                      "ticket_chat_background": "background_accent_dark",
+                      "ticket_chat_show_border": true,
+                      "ticket_message_background": "background_main_color",
+                      "ticket_message_show_border": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Footer menu": {
+            "name": "Footer menu",
+            "settings": {
+              "visible": true,
+              "block_order": [],
+              "blocks": {
+              },
+              "properties": {
+                "background_color": "background_accent_dark",
+                "padding_top_desktop": 80,
+                "padding_top_tablet": 60,
+                "padding_top_mobile": 60,
+                "padding_bottom_desktop": 80,
+                "padding_bottom_tablet": 60,
+                "padding_bottom_mobile": 60,
+                "margin_bottom_desktop": 0,
+                "margin_bottom_tablet": 0,
+                "margin_bottom_mobile": 0
+              }
+            }
+          }
+        }
+      }
+    },
     "Trust/Trusted Advisor": {
       "name": "Trust/Trusted Advisor",
       "path": "templates/shop/trust.njk",
@@ -19097,6 +19191,200 @@
         ]
       }
     },
+    "Ticket chat": {
+      "name": "Ticket chat",
+      "path": "blocks/shop/ticket/ticketChat.njk",
+      "settings": {
+        "blocks": [],
+        "schema": [
+          {
+            "id": "ticket_container_background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_main_color"
+          },
+          {
+            "id": "ticket_container_show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": false
+          },
+          {
+            "id": "ticket_container_padding",
+            "max": 16,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding (px)",
+            "defaultValue": 0
+          },
+          {
+            "id": "header_ticket_title",
+            "type": "header",
+            "content": "Title"
+          },
+          {
+            "id": "ticket_title_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              },
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              }
+            ],
+            "defaultValue": "light_font_color"
+          },
+          {
+            "id": "ticket_title_font_size",
+            "max": 30,
+            "min": 20,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 24
+          },
+          {
+            "id": "ticket_title_text_align",
+            "type": "select",
+            "label": "Text align",
+            "options": [
+              {
+                "title": "Left",
+                "value": "left"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              },
+              {
+                "title": "Right",
+                "value": "right"
+              }
+            ],
+            "defaultValue": "left"
+          },
+          {
+            "id": "ticket_title_font_weight",
+            "type": "select",
+            "label": "Font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 500
+          },
+          {
+            "id": "header_ticket_chat",
+            "type": "header",
+            "content": "Chat"
+          },
+          {
+            "id": "ticket_chat_background",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_accent_dark"
+          },
+          {
+            "id": "ticket_chat_show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": true
+          },
+          {
+            "id": "header_ticket_message",
+            "type": "header",
+            "content": "Message"
+          },
+          {
+            "id": "ticket_message_background",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_main_color"
+          },
+          {
+            "id": "ticket_message_show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": true
+          }
+        ]
+      }
+    },
     "Trust": {
       "name": "Trust",
       "path": "blocks/shop/trust/trust.njk",
@@ -19864,6 +20152,10 @@
       "name": "Tag",
       "path": "snippets/shared/tag.njk"
     },
+    "Ticket Message": {
+      "name": "Ticket Message",
+      "path": "snippets/shop/ticket/ticketMessage.njk"
+    },
     "Toastify": {
       "name": "Toastify",
       "path": "snippets/shop/common/toastify.njk"
@@ -20122,6 +20414,10 @@
     "sellix-store-code-component.js": {
       "name": "sellix-store-code-component.js",
       "path": "assets/components/store-code.js"
+    },
+    "sellix-ticket-component.js": {
+      "name": "sellix-ticket-component.js",
+      "path": "assets/components/ticket.js"
     },
     "shop.css": {
       "name": "shop.css",

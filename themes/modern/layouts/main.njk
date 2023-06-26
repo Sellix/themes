@@ -138,7 +138,7 @@
 {% set layoutId = uid() %}
 
 <body>
-  <div id="app">
+  <div id="app" class="{{ 'isDark' if global.theme.isDark }}">
     <div class="sellix-store sellix-ui-container">
       {% render_section 'header', layoutId=layoutId %}
 
@@ -229,6 +229,7 @@
   <script src="{{ 'sellix-product-count-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-variants-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-purchase-details-component.js' | asset_url }}"></script>
+  <script src="{{ 'sellix-ticket-component.js' | asset_url }}"></script>
 
   {% render_snippet 'App cookie modal' %}
   {% render_snippet 'Card: Group modal' %}

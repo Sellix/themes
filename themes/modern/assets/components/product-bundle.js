@@ -22,41 +22,14 @@
     }
 
     addAllProducts = () => {
-      const productIds = this.cart.getItems().map(({ uniqid }) => uniqid);
-      const productsLeft = this.bundle.products_bound.filter(({ uniqid }) => !productIds.includes(uniqid));
-
-      const productsToAdd = productsLeft
-        .map((product) => {
-          const { uniqid, quantity_min, on_hold, stock } = product;
-
-          const quantity = (this.cart.getItemById(uniqid) || {}).quantity || 0;
-          const valid = sellixHelper.isValidCount({
-            ...product,
-            count: parseInt(quantity) + 1,
-          });
-
-          if (+stock === 0 || !!+on_hold) {
-            return null;
-          }
-
-          if (quantity_min > 1 && (quantity === 0 || quantity === undefined)) {
-            return { product, quantity: quantity_min };
-          }
-
-          if (valid) {
-            return { product, quantity: 1 };
-          }
-
-          return null;
-        })
-        .filter((data) => Boolean(data));
+      const productsToAdd = this.getProductsToAdd();
 
       this.cart.addMany(productsToAdd).then(() => {
         if (this.isProduct) {
           location.href = 'checkout';
         }
       });
-    }
+    };
 
     render() {
       const productIds = this.cart.getItems().map(({ uniqid }) => uniqid);
@@ -85,6 +58,37 @@
       if ($lastProduct) {
         $lastProduct.css({ 'border-bottom': 'none' });
       }
+    }
+
+    getProductsToAdd() {
+      const productIds = this.cart.getItems().map(({ uniqid }) => uniqid);
+      const productsLeft = this.bundle.products_bound.filter(({ uniqid }) => !productIds.includes(uniqid));
+
+      return productsLeft
+        .map((product) => {
+          const { uniqid, quantity_min, on_hold, stock } = product;
+
+          const quantity = (this.cart.getItemById(uniqid) || {}).quantity || 0;
+          const valid = sellixHelper.isValidCount({
+            ...product,
+            count: parseInt(quantity) + 1,
+          });
+
+          if (+stock === 0 || !!+on_hold || +product.price_display === 0 || product.type === 'SUBSCRIPTION') {
+            return null;
+          }
+
+          if (quantity_min > 1 && (quantity === 0 || quantity === undefined)) {
+            return { product, quantity: quantity_min };
+          }
+
+          if (valid) {
+            return { product, quantity: 1 };
+          }
+
+          return null;
+        })
+        .filter((data) => Boolean(data));
     }
   }
   window.SellixProductBundleComponent = ProductBundleComponent;

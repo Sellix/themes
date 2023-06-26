@@ -52,7 +52,6 @@
       if (!quantity) {
         this.add(event);
       }
-
     }
 
     remove(event) {
