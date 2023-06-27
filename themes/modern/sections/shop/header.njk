@@ -9,9 +9,11 @@
 
 {% set fullWidth = safe_get(properties.fullwidth, false) %}
 {% set shadow = safe_get(properties.shadow, 'none') %}
-{% set logoImage = safe_get(properties.logo_image, null) %}
-{% set logoImageHeight = safe_get(properties.logo_image_height, 30) %}
-{% set shopName = safe_get(properties.shop_name, null) or shop.name %}
+{% set logoImage = safe_get(themeProperties.common.logo_image, null) %}
+{% set logoType = safe_get(properties.logo_type, 'logo') %}
+{% set logoImageSize = safe_get(properties.logo_image_size, 30) %}
+{% set logoImageBorderRadisu = safe_get(properties.logo_image_border_radius, 8) %}
+{% set shopName = safe_get(themeProperties.common.shop_name, null) or shop.name %}
 {% set shopNameFontColor = safe_get(properties.shop_name_font_color, 'dark_font_color') %}
 {% set shopNameFontSize = safe_get(properties.shop_name_font_size, 18) %}
 {% set shopNameFontWeight = safe_get(properties.shop_name_font_weight, 700) %}
@@ -26,7 +28,7 @@
   .{{ localClass }} {
     background-color: {{ colors[bgColor] }};
   }
-  .{{ localClass }} .sellix-header__shop-name > a > span {
+  .{{ localClass }}__shop-name {
     color: {{ colors[shopNameFontColor] }};
     font-size: {{ shopNameFontSize }}px;
     font-weight: {{ shopNameFontWeight }};
@@ -35,14 +37,16 @@
   .{{ localClass }} .sidebar-toggler {
     color: {{ colors[shopNameFontColor] }};
   }
-  .{{ localClass }} .sellix-header__logo-image img {
-    max-height: {{ logoImageHeight }}px;
+  .{{ localClass }}__logo-image img {
+    height: {{ logoImageSize }}px;
+    width: {{ logoImageSize }}px;
+    border-radius: {{ logoImageBorderRadisu }}px;
   }
 </style>
 
-<header class="{{ localClass }} {{ 'full-width' if fullWidth else 'content-width' }}">
-  <div id="sellix-header-{{ layoutId }}" class="sellix-header {{ localClass }}">
-    <div class="sellix-header__logo">
+<header class="{{ globalClass }}__header {{ localClass }}__header {{ 'full-width' if fullWidth else 'content-width' }}">
+  <div id="sellix-header-{{ layoutId }}" class="{{ globalClass }}__container {{ localClass }}__container">
+    <div class="{{ globalClass }}__logo">
       <div class="sidebar-toggler">
         {% render_snippet
           'Burger button',
@@ -53,35 +57,35 @@
         %}
       </div>
 
-      {% if properties.logo_image %}
-        <a href="">
-          <div class="sellix-header__logo-image">
+      <div class="{{ globalClass }}__logo-wrapper">
+        {% if logoImage and logoType in ['logo', 'logo_or_name', 'logo_and_name'] %}
+          <a href="" class="{{ globalClass }}__logo-image {{ localClass }}__logo-image">
             <img
               src="{{ logoImage }}"
               alt="{{ shop.name }}"
             >
-          </div>
-        </a>
-      {% endif %}
+          </a>
+        {% endif %}
 
-      <div class="sellix-header__shop-name">
-        <a href="">
-          <span>
-            {{ shopName }}
-          </span>
-        </a>
+        {% if shopName and (logoType in ['name', 'logo_and_name'] or (not logoImage and logoType in ['logo_or_name'])) %}
+          <a href="" class="{{ globalClass }}__shop-name {{ localClass }}__shop-name">
+            <span>
+              {{ shopName }}
+            </span>
+          </a>
+        {% endif %}
       </div>
     </div>
 
-    <div class="sellix-header__main-menu">
+    <div class="{{ globalClass }}__main-menu">
       {% render_block 'Menu' %}
     </div>
 
-    <div class="sellix-header__language-selector">
+    <div class="{{ globalClass }}__language-selector">
       {% render_snippet 'Language selector', properties=properties %}
     </div>
 
-    <div class="sellix-header__cart">
+    <div class="{{ globalClass }}__cart">
       {% if global.common.cartEnabled %}
         {% render_block 'Cart' %}
       {% endif %}

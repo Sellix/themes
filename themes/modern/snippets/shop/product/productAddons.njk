@@ -7,6 +7,7 @@
 {% set currency = args.currency %}
 
 {% set properties = args.properties %}
+{% set hideUnderCheckbox = safe_get(properties.hide_under_checkbox, false) %}
 {% set bgColor = safe_get(properties.container_background_color, 'background_accent_light') %}
 {% set showBorder = safe_get(properties.container_show_border, true) %}
 {% set shadow = safe_get(properties.container_shadow, 'none') %}
@@ -57,36 +58,19 @@
       font-weight: {{ bodyFontWeight }};
       line-height: {{ bodyLineHeight }}px;
     }
-
-    .{{ localClass }}__header {
-      padding: 0.75rem 1.25rem;
-    }
-    .{{ localClass}}.opened .{{ localClass }}__header {
-      border-bottom: 1px solid var(--borderColor);
-    }
-    .{{ localClass }}__addons-checkbox input {
-
-    }
-    .{{ localClass }}__addons-checkbox label {
-      text-transform: capitalize;
-      color: var(--darkFontColor);
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 17px;
-    }
   </style>
 
   <div class="{{ globalClass }} {{ localClass }}">
-    <div class="{{ globalClass }}__header {{ localClass }}__header">
+    <div class="{{ globalClass }}__header {{ localClass }}__header {{ 'd-none' if not hideUnderCheckbox }}">
       <div class="{{ globalClass }}__addons-checkbox {{ localClass }}__addons-checkbox sellix-checkbox mb-0 mr-0">
-        <input type="checkbox" id="{{ localClass }}__addons-checkbox" data-checkbox-input="1">
+        <input type="checkbox" id="{{ localClass }}__addons-checkbox" data-checkbox-input="1" {{ 'checked' if not hideUnderCheckbox else 1 }}>
         <label for="{{ localClass }}__addons-checkbox">
           {{ 'shop.shared.titles.addons' | t }}
         </label>
       </div>
     </div>
 
-    <div class="{{ globalClass }}__addons d-none" data-addons-container="1">
+    <div class="{{ globalClass }}__addons {{ 'd-none' if hideUnderCheckbox }}" data-addons-container="1">
       {% for addon in addons %}
         <div class="{{ globalClass}}__addon {{ localClass }}__addon">
           <div class="{{ globalClass}}__wrapper">

@@ -1,12 +1,12 @@
-.section-header {
+.section-header__header {
   margin-bottom: 0;
 }
 
-.isDark .section-header {
+.isDark .section-header__header {
   border-bottom: 1px solid var(--black1);
 }
 
-.sellix-header {
+.section-header__container {
   position: relative;
   display: grid;
   grid-template-columns: auto 1fr auto auto;
@@ -28,18 +28,30 @@
   justify-content: center;
 }
 
-.sellix-header__logo {
+.section-header__logo {
   display: flex;
   align-items: center;
   height: 100%;
   margin-right: 0.625rem;
 }
 
-.sellix-header__logo-image {
+.section-header__logo-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.section-header__logo-image {
+  display: flex;
   margin-right: 10px;
 }
 
-.sellix-header__shop-name {
+.section-header__logo-image img {
+  height: 30px;
+  width: 30px;
+  border-radius: 0.5rem;
+}
+
+.section-header__shop-name {
   display: flex;
   align-items: center;
   height: 1rem;
@@ -47,26 +59,26 @@
   border-right: 1px solid var(--black2);
 }
 
-.sellix-header__main-menu {
+.section-header__main-menu {
   height: 100%;
   display: flex;
   align-items: center;
 }
 
-.sellix-header__main-menu .block-menu {
+.section-header__main-menu .block-menu {
   height: 100%;
 }
 
-.sellix-header__main-menu .sellix-menu {
+.section-header__main-menu .sellix-menu {
   height: 100%;
   display: flex;
 }
 
-.sellix-header__main-menu .sellix-menu .menu-tab {
+.section-header__main-menu .sellix-menu .menu-tab {
   padding: 0 0.625rem;
 }
 
-.sellix-header__main-menu .sellix-menu a {
+.section-header__main-menu .sellix-menu a {
   height: 100%;
   display: flex;
   align-items: center;
@@ -78,18 +90,18 @@
   line-height: 20px;
 }
 
-.sellix-header__language-selector {
+.section-header__language-selector {
   min-width: 150px;
   display: flex;
   justify-content: end;
 }
 
-.sellix-header__cart {
+.section-header__cart {
   z-index: 12;
 }
 
 @media (max-width: 1080px) {
-  .sellix-header {
+  .section-header__container {
     min-height: 64px;
   }
 
@@ -97,22 +109,22 @@
     display: flex;
   }
 
-  .sellix-header__logo-image {
+  .section-header__logo-image {
     margin-right: 5px;
   }
 
-  .sellix-header__shop-name {
+  .section-header__shop-name {
     border-right: inherit;
     text-align: center;
   }
 
-  .sellix-header__main-menu .sellix-menu {
+  .section-header__main-menu .sellix-menu {
     display: none!important;
   }
 }
 
 @media (max-width: 768px) {
-  .sellix-header__shop-name {
+  .section-header__shop-name {
     white-space: nowrap;
   }
 }
