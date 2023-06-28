@@ -2,6 +2,7 @@
 {% set colors = themeProperties.current_colors %}
 {% set fullWidth = safe_get(properties.fullwidth, false) %}
 {% set bgColor = safe_get(properties.background_color, 'background_main_color') %}
+{% set shopName = safe_get(themeProperties.common.shop_name, null) or shop.name or 'Sellix SRL' %}
 
 {% set copyright = safe_get(properties.copyright, 'shop.main.copyright') %}
 {% set copyrightFontColor = safe_get(properties.copyright_font_color, 'light_font_color') %}
@@ -75,7 +76,7 @@
 
 <footer class="{{ globalClass }}__container {{ localClass }}__container {{ 'full-width' if fullWidth else 'content-width' }}">
   <div class="{{ globalClass }}__copyright {{ localClass }}__copyright">
-    {{ copyright | t({year: (undefined | date_format('YYYY')) }) }}
+    {{ copyright | t({year: (undefined | date_format('YYYY')), storeName: shopName }) }}
   </div>
   <div class="{{ globalClass }}__links">
     {% for item in links %}

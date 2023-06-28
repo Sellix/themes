@@ -53,9 +53,11 @@
 
     close(event) {
       if (this.isOpened) {
-        $('html').removeClass('no-scroll');
         this.$cart.find('[data-cart-dropdown]').removeClass('open');
-        this.isOpened = false;
+        setTimeout(() => {
+          this.isOpened = false;
+          $('html').removeClass('no-scroll');
+        }, 500);
       }
     }
 
