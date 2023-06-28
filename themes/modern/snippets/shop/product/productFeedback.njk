@@ -57,7 +57,7 @@
     const $viewMoreBtn = $('.{{ localClass }}__btn-view-more');
     $viewMoreBtn.on('click', function() {
       activePage += 1;
-      $(`.sellix-product-feedback-card-{{ id}}[data-feedback-page=${activePage}]`).removeClass('d-none');
+      $(`.{{ localClass }}__feedback-card[data-feedback-page=${activePage}]`).removeClass('d-none');
 
       if ((activePage + 1) >= pageCount) {
         $viewMoreBtn.addClass('d-none');

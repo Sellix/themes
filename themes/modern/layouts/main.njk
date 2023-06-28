@@ -140,13 +140,17 @@
 <body>
   <div id="app" class="{{ 'isDark' if global.theme.isDark }}">
     <div class="sellix-store sellix-ui-container">
-      {% render_section 'header', layoutId=layoutId %}
+      {% render_section 'Header', layoutId=layoutId %}
 
       <div id="content" class="template">
         {% render_template 'default' %}
       </div>
 
-      {% render_section 'footer' %}
+      <div class="sellix-footer">
+        {% render_section 'Footer menu' %}
+
+        {% render_section 'Footer' %}
+      </div>
     </div>
   </div>
 
