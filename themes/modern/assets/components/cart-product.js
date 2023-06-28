@@ -34,10 +34,15 @@
       event.preventDefault();
 
       const quantity = (this.cart.getItemById(this.product.uniqid) || { quantity: 0 }).quantity || 0;
-      const valid = sellixHelper.isValidCount({ ...this.product, count: quantity + 1 });
+
+      const isValid = sellixHelper.isValidCount({
+        ...this.product,
+        count: quantity + 1,
+      });
+
       if (this.product.quantity_min > 1 && (quantity === 0 || quantity === undefined)) {
         this.cart.add(this.product, this.product.quantity_min);
-      } else if (valid) {
+      } else if (isValid) {
         this.cart.add(this.product);
       }
 
@@ -67,9 +72,15 @@
 
     render() {
       const quantity = (this.cart.getItemById(this.product.uniqid) || { quantity: 0 }).quantity || 0;
+      const isValidPlus = sellixHelper.isValidCount({ ...this.product, count: quantity + 1 });
+      const isValidMinus = sellixHelper.isValidCount({ ...this.product, count: quantity });
+
       this.$cart.toggleClass('empty', quantity === 0);
       this.$cartQuantity.toggleClass('d-none', quantity === 0);
       this.$cartCartFirstBtn.toggleClass('d-none', quantity !== 0);
+
+      this.$cartAddBtn.toggleClass('invisible', !isValidPlus);
+      this.$cartRemoveBtn.toggleClass('invisible', !isValidMinus);
 
       this.$cartQuantity.text(quantity);
     }

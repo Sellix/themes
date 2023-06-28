@@ -5,12 +5,13 @@
 {% set localClass = id %}
 
 <style>
-  .{{ localClass }} {
+  .{{ localClass }} img {
     width: {{ properties.size }}px;
     height: {{ properties.size }}px;
+    border-radius: {{ properties.border_radius }}px;
   }
 </style>
 
-<div>
-  <img class="{{ localClass }}" src='{{properties.url | asset_url}}' alt=''>
+<div class="{{ globalClass }} {{ localClass }}">
+  <img src='{{properties.url | asset_url}}' alt=''>
 </div>
