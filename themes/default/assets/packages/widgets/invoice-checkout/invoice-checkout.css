@@ -589,12 +589,7 @@
   --gateway-bitcoin-cash: #8dc351;
   --gateway-cashapp: #00d81e;
   --gateway-perfect-money: #e73c3c;
-  --gateway-skrill: #6a3494;
-  --gateway-pepe: #20672c;
-  --gateway-ape: #175ee4;
-  --gateway-weth: white;
-  --gateway-shib: #f00601;
-  --gateway-dai: #faba33;
+  --gateway-skrill: #6a3494 ;
 }
 
 .invoice-waiting-alert {
@@ -756,25 +751,6 @@
     margin-bottom: 0;
   }
 }
-.checkout-details-blockchain {
-  width: 1rem !important;
-  height: 1rem !important;
-  position: absolute;
-  left: 1.5rem;
-  bottom: -0.25rem;
-  padding: 2px;
-  background: var(--white);
-  border-radius: 0.25rem;
-  margin-right: 0 !important;
-}
-@media (max-width: 768px) {
-  .checkout-details-blockchain {
-    width: 0.85rem !important;
-    height: 0.85rem !important;
-    left: 1rem;
-    margin-right: 0 !important;
-  }
-}
 
 .sellix-widget-invoice-checkout--info-header {
   display: flex;
@@ -831,6 +807,122 @@
 }
 .sellix-widget-invoice-checkout--info-modal .sellix-modal-close {
   display: none;
+}
+
+.checkout-footer {
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 768px) {
+  .checkout-footer {
+    margin-top: 0;
+    padding: 0 1rem;
+    width: 100%;
+  }
+}
+.checkout-footer-copyright {
+  display: flex;
+  align-items: center;
+  margin-top: 1.5rem;
+  color: var(--black4);
+  font-size: 12px;
+  white-space: nowrap;
+}
+@media (max-width: 768px) {
+  .checkout-footer-copyright {
+    justify-content: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 260px) {
+  .checkout-footer-copyright {
+    flex-direction: column;
+  }
+  .checkout-footer-copyright div {
+    line-height: 2.5rem;
+  }
+  .checkout-footer-copyright div span {
+    display: none;
+  }
+}
+.checkout-footer-copyright a {
+  padding: 0 0.5rem;
+  font-weight: 400;
+  color: var(--black4);
+}
+.checkout-footer-copyright a:first-child {
+  padding-left: 0;
+}
+
+.is-checkout footer.sellix-widget-invoice-checkout--footer {
+  box-shadow: 0px 1px 3px rgba(7, 14, 35, 0.06), 0px 2px 8px -1px rgba(7, 14, 35, 0.05);
+  border-radius: 0.5rem;
+  border: none;
+  background: var(--white);
+  padding: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+@media (max-width: 768px) {
+  .is-checkout footer.sellix-widget-invoice-checkout--footer:first-child {
+    padding-bottom: 1rem;
+    margin-bottom: 0.5rem;
+  }
+}
+@media (max-width: 360px) {
+  .is-checkout footer.sellix-widget-invoice-checkout--footer-more span {
+    display: none;
+  }
+}
+.is-checkout footer.sellix-widget-invoice-checkout--footer-more svg {
+  margin-right: 0;
+}
+
+.calculation {
+  margin-bottom: 1rem;
+  color: var(--black9);
+}
+.calculation-line {
+  width: 100%;
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--black2);
+}
+.calculation-item {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 0.75rem;
+  color: var(--black9);
+  display: flex;
+  justify-content: space-between;
+}
+.calculation-item.total {
+  padding-top: 1.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+  border-top: 1px solid var(--black2);
+}
+.calculation-item.total div:first-child {
+  font-weight: 500;
+  color: var(--black9);
+}
+.calculation-item div:last-child {
+  font-weight: 500;
+  padding-left: 1rem;
+  white-space: nowrap;
+}
+.calculation-item div:first-child {
+  font-weight: 400;
+  color: var(--black4);
+  font-size: 14px;
+}
+.calculation-item span {
+  color: var(--black4);
+  margin-right: 0;
 }
 
 .modal {
@@ -1049,372 +1141,6 @@
   bottom: 0;
   z-index: 9999999;
   background-color: rgba(3, 10, 22, 0.768627451) !important;
-}
-
-.checkout-footer {
-  display: flex;
-  flex-direction: column;
-}
-@media (max-width: 768px) {
-  .checkout-footer {
-    margin-top: 0;
-    padding: 0 1rem;
-    width: 100%;
-  }
-}
-.checkout-footer-copyright {
-  display: flex;
-  align-items: center;
-  margin-top: 1.5rem;
-  color: var(--black4);
-  font-size: 12px;
-  white-space: nowrap;
-}
-@media (max-width: 768px) {
-  .checkout-footer-copyright {
-    justify-content: center;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-  }
-}
-@media (max-width: 260px) {
-  .checkout-footer-copyright {
-    flex-direction: column;
-  }
-  .checkout-footer-copyright div {
-    line-height: 2.5rem;
-  }
-  .checkout-footer-copyright div span {
-    display: none;
-  }
-}
-.checkout-footer-copyright a {
-  padding: 0 0.5rem;
-  font-weight: 400;
-  color: var(--black4);
-}
-.checkout-footer-copyright a:first-child {
-  padding-left: 0;
-}
-
-.is-checkout footer.sellix-widget-invoice-checkout--footer {
-  box-shadow: 0px 1px 3px rgba(7, 14, 35, 0.06), 0px 2px 8px -1px rgba(7, 14, 35, 0.05);
-  border-radius: 0.5rem;
-  border: none;
-  background: var(--white);
-  padding: 1rem;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-}
-@media (max-width: 768px) {
-  .is-checkout footer.sellix-widget-invoice-checkout--footer:first-child {
-    padding-bottom: 1rem;
-    margin-bottom: 0.5rem;
-  }
-}
-@media (max-width: 360px) {
-  .is-checkout footer.sellix-widget-invoice-checkout--footer-more span {
-    display: none;
-  }
-}
-.is-checkout footer.sellix-widget-invoice-checkout--footer-more svg {
-  margin-right: 0;
-}
-
-.calculation {
-  margin-bottom: 1rem;
-  color: var(--black9);
-}
-.calculation-line {
-  width: 100%;
-  padding-bottom: 1.25rem;
-  margin-bottom: 1.25rem;
-  border-bottom: 1px solid var(--black2);
-}
-.calculation-item {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  margin-bottom: 0.75rem;
-  color: var(--black9);
-  display: flex;
-  justify-content: space-between;
-}
-.calculation-item.total {
-  padding-top: 1.25rem;
-  margin-top: 1.25rem;
-  margin-bottom: 0;
-  border-top: 1px solid var(--black2);
-}
-.calculation-item.total div:first-child {
-  font-weight: 500;
-  color: var(--black9);
-}
-.calculation-item div:last-child {
-  font-weight: 500;
-  padding-left: 1rem;
-  white-space: nowrap;
-}
-.calculation-item div:first-child {
-  font-weight: 400;
-  color: var(--black4);
-  font-size: 14px;
-}
-.calculation-item span {
-  color: var(--black4);
-  margin-right: 0;
-}
-
-button.secondary .lds-ellipsis div {
-  background: var(--black9);
-}
-
-.lds-ellipsis {
-  display: flex;
-  position: relative;
-  width: 50px;
-  height: 30px;
-  align-items: center;
-  justify-content: center;
-}
-.lds-ellipsis.black > div {
-  background: var(--black9);
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
-}
-.lds-ellipsis.purple > div {
-  background: var(--black9);
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
-}
-.lds-ellipsis > div {
-  position: absolute;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--white);
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
-}
-.lds-ellipsis > div:nth-child(1) {
-  left: 5px;
-  animation: lds-ellipsis1 0.6s infinite;
-}
-.lds-ellipsis > div:nth-child(2) {
-  left: 5px;
-  animation: lds-ellipsis2 0.6s infinite;
-}
-.lds-ellipsis > div:nth-child(3) {
-  left: 20px;
-  animation: lds-ellipsis2 0.6s infinite;
-}
-.lds-ellipsis > div:nth-child(4) {
-  left: 56px;
-  left: 35px;
-  animation: lds-ellipsis3 0.6s infinite;
-}
-
-@keyframes lds-ellipsis1 {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-@keyframes lds-ellipsis3 {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0);
-  }
-}
-@keyframes lds-ellipsis2 {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(15px, 0);
-  }
-}
-.button {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  outline: none;
-  font-weight: 400;
-  font-family: "Inter", sans-serif;
-  border-radius: 0.25rem;
-  border: 1px solid var(--gridLine);
-}
-.button:focus {
-  box-shadow: none !important;
-  outline: none;
-}
-.button .ripple-effect {
-  position: absolute;
-  height: 10px;
-  width: 10px;
-  border-radius: 50%;
-  transform: translate3d(-50%, -50%, 0);
-}
-
-.sellix-select {
-  cursor: pointer;
-  padding: 0 2rem 0 14px;
-  height: 40px;
-  max-height: 40px;
-  width: 100%;
-  transition: border 0.3s ease;
-  outline: none;
-  border-radius: 0.25rem;
-  appearance: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  margin: 0;
-  color: var(--darkFontColor);
-  border: 1px solid var(--borderColor);
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  background: var(--backgroundAccentLight);
-  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNSA3LjVMMTAgMTIuNUwxNSA3LjUiIHN0cm9rZT0iI0EyQUFCNCIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==");
-  background-repeat: no-repeat;
-  background-position-x: calc(100% - 1rem);
-  background-position-y: 0.5rem;
-}
-.sellix-select[disabled] {
-  background: var(--backgroundAccentDark);
-  border-color: var(--backgroundAccentDark);
-  cursor: default;
-}
-.sellix-select:active {
-  border-color: var(--inputBorderHover) !important;
-}
-.sellix-select:focus {
-  border-color: var(--inputBorderHover) !important;
-}
-.sellix-select:hover {
-  border-color: var(--inputBorderHover) !important;
-}
-.sellix-select::-ms-expand {
-  display: none;
-}
-.sellix-select.is-invalid {
-  border: 1px solid red !important;
-}
-.sellix-select.is-invalid:hover {
-  border-color: red !important;
-}
-.sellix-select.is-invalid:focus {
-  border-color: red !important;
-}
-
-.sellix-widget.alert {
-  position: relative;
-  padding: 1.5rem;
-  margin-bottom: 1rem;
-  border: 2px solid #fcab0a;
-  border-radius: 0.5rem;
-  text-align: left;
-  flex-direction: column;
-  font-size: 14px;
-  color: var(--darkFontColor);
-  line-height: 24px;
-  display: none;
-  background: rgba(252, 171, 10, 0.1607843137);
-}
-.sellix-widget.alert.red {
-  border: 2px solid #dc3545;
-  background: rgba(220, 53, 69, 0.1607843137);
-}
-.sellix-widget.alert.red svg {
-  fill: #dc3545;
-}
-.sellix-widget.alert.blue {
-  border: 2px solid lightskyblue;
-  background: rgba(135, 206, 250, 0.1607843137);
-}
-.sellix-widget.alert.blue svg {
-  fill: lightskyblue;
-}
-.sellix-widget.alert svg {
-  fill: #fcab0a;
-}
-.sellix-widget.alert a {
-  color: var(--buttonColor) !important;
-}
-.sellix-widget.alert.show {
-  display: flex;
-}
-.sellix-widget.alert.small {
-  font-size: 12px;
-  line-height: 16px;
-  padding: 0.75rem;
-  border-radius: 0.25rem;
-}
-.sellix-widget.alert.small b {
-  font-size: 0.9rem;
-  margin-bottom: 0.25rem;
-}
-.sellix-widget.alert.small b svg {
-  width: 1rem;
-}
-@media (max-width: 768px) {
-  .sellix-widget.alert {
-    padding: 1rem;
-    line-height: 1.3rem;
-  }
-}
-.sellix-widget.alert b {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-  font-size: 18px;
-  font-weight: 500;
-  color: var(--lightFontColor);
-}
-.sellix-widget.alert b svg {
-  margin-right: 0.5rem;
-}
-
-.ReactCollapse--collapse {
-  transition: height 0.5s;
-}
-
-.qr-wrapper {
-  overflow: hidden;
-  width: auto;
-  padding: 0;
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0;
-  position: relative;
-}
-.qr-wrapper canvas {
-  cursor: pointer;
-  width: auto;
-}
-.qr-wrapper > img {
-  cursor: pointer;
-}
-.qr-wrapper .qr-logo {
-  background: white;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 48px;
-  padding: 0 !important;
-  border-radius: 0.25rem;
-}
-.qr-wrapper .qr-corner {
-  background: white;
-  position: absolute;
-  padding: 3px;
 }
 
 /* Config */
@@ -2243,6 +1969,256 @@ button.secondary .lds-ellipsis div {
   background-color: white !important;
 }
 
+.button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+  border-radius: 0.25rem;
+  border: 1px solid var(--gridLine);
+}
+.button:focus {
+  box-shadow: none !important;
+  outline: none;
+}
+.button .ripple-effect {
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.sellix-select {
+  cursor: pointer;
+  padding: 0 2rem 0 14px;
+  height: 40px;
+  max-height: 40px;
+  width: 100%;
+  transition: border 0.3s ease;
+  outline: none;
+  border-radius: 0.25rem;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  color: var(--darkFontColor);
+  border: 1px solid var(--borderColor);
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  background: var(--backgroundAccentLight);
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNSA3LjVMMTAgMTIuNUwxNSA3LjUiIHN0cm9rZT0iI0EyQUFCNCIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==");
+  background-repeat: no-repeat;
+  background-position-x: calc(100% - 1rem);
+  background-position-y: 0.5rem;
+}
+.sellix-select[disabled] {
+  background: var(--backgroundAccentDark);
+  border-color: var(--backgroundAccentDark);
+  cursor: default;
+}
+.sellix-select:active {
+  border-color: var(--inputBorderHover) !important;
+}
+.sellix-select:focus {
+  border-color: var(--inputBorderHover) !important;
+}
+.sellix-select:hover {
+  border-color: var(--inputBorderHover) !important;
+}
+.sellix-select::-ms-expand {
+  display: none;
+}
+.sellix-select.is-invalid {
+  border: 1px solid red !important;
+}
+.sellix-select.is-invalid:hover {
+  border-color: red !important;
+}
+.sellix-select.is-invalid:focus {
+  border-color: red !important;
+}
+
+.sellix-widget.alert {
+  position: relative;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border: 2px solid #fcab0a;
+  border-radius: 0.5rem;
+  text-align: left;
+  flex-direction: column;
+  font-size: 14px;
+  color: var(--darkFontColor);
+  line-height: 24px;
+  display: none;
+  background: rgba(252, 171, 10, 0.1607843137);
+}
+.sellix-widget.alert.red {
+  border: 2px solid #dc3545;
+  background: rgba(220, 53, 69, 0.1607843137);
+}
+.sellix-widget.alert.red svg {
+  fill: #dc3545;
+}
+.sellix-widget.alert.blue {
+  border: 2px solid lightskyblue;
+  background: rgba(135, 206, 250, 0.1607843137);
+}
+.sellix-widget.alert.blue svg {
+  fill: lightskyblue;
+}
+.sellix-widget.alert svg {
+  fill: #fcab0a;
+}
+.sellix-widget.alert a {
+  color: var(--buttonColor) !important;
+}
+.sellix-widget.alert.show {
+  display: flex;
+}
+.sellix-widget.alert.small {
+  font-size: 12px;
+  line-height: 16px;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+}
+.sellix-widget.alert.small b {
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+.sellix-widget.alert.small b svg {
+  width: 1rem;
+}
+@media (max-width: 768px) {
+  .sellix-widget.alert {
+    padding: 1rem;
+    line-height: 1.3rem;
+  }
+}
+.sellix-widget.alert b {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--lightFontColor);
+}
+.sellix-widget.alert b svg {
+  margin-right: 0.5rem;
+}
+
+.ReactCollapse--collapse {
+  transition: height 0.5s;
+}
+
+.qr-wrapper {
+  overflow: hidden;
+  width: auto;
+  padding: 0;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+  position: relative;
+}
+.qr-wrapper canvas {
+  cursor: pointer;
+  width: auto;
+}
+.qr-wrapper > img {
+  cursor: pointer;
+}
+.qr-wrapper .qr-logo {
+  background: white;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  padding: 0 !important;
+  border-radius: 0.25rem;
+}
+.qr-wrapper .qr-corner {
+  background: white;
+  position: absolute;
+  padding: 3px;
+}
+
+button.secondary .lds-ellipsis div {
+  background: var(--black9);
+}
+
+.lds-ellipsis {
+  display: flex;
+  position: relative;
+  width: 50px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+}
+.lds-ellipsis.black > div {
+  background: var(--black9);
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis.purple > div {
+  background: var(--black9);
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis > div {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--white);
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis > div:nth-child(1) {
+  left: 5px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis > div:nth-child(2) {
+  left: 5px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis > div:nth-child(3) {
+  left: 20px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis > div:nth-child(4) {
+  left: 56px;
+  left: 35px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(15px, 0);
+  }
+}
 .sellix-widget-invoice-checkout--getaway {
   border: none;
   width: calc(50% - 5px);
@@ -2292,64 +2268,6 @@ button.secondary .lds-ellipsis div {
   flex-direction: column;
 }
 
-.update-gateway {
-  max-width: 500px !important;
-}
-
-.update-gateway-modal {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1.5rem;
-  font-family: "Inter", sans-serif;
-  font-style: normal;
-}
-.update-gateway-modal-title {
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 19px;
-  color: var(--black9);
-  margin-bottom: 1rem;
-  text-align: center;
-}
-.update-gateway-modal-text {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  color: var(--black5);
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-.update-gateway-modal-button {
-  width: 100%;
-  gap: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-}
-.update-gateway-modal-button button {
-  width: calc(70% - 1rem);
-}
-@media (max-width: 768px) {
-  .update-gateway-modal-button button {
-    width: 100%;
-  }
-}
-.update-gateway-modal-button .close {
-  width: 30%;
-}
-@media (max-width: 768px) {
-  .update-gateway-modal-button .close {
-    width: 100%;
-  }
-}
-.update-gateway-modal-wrapper {
-  background: var(--white);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
 .default-mode-message-container {
   border-radius: 3px;
   padding: 0;
@@ -2437,7 +2355,6 @@ button.secondary .lds-ellipsis div {
 }
 .default-mode-message-badge.PLZ.blockchain-MATIC {
   background-color: var(--gateway-polygon);
-  color: white !important;
 }
 .default-mode-message-badge.PLZ.blockchain-ERC20 {
   background-color: var(--gateway-ethereum);
@@ -2449,7 +2366,6 @@ button.secondary .lds-ellipsis div {
 }
 .default-mode-message-badge.PLZ.blockchain-TRC20 {
   background-color: var(--gateway-tron);
-  color: white !important;
 }
 .default-mode-message-badge.BITCOIN, .default-mode-message-badge.BITCOIN_LN {
   background-color: var(--gateway-bitcoin);
@@ -2496,7 +2412,6 @@ button.secondary .lds-ellipsis div {
 }
 .default-mode-message-badge.USDC.blockchain-MATIC {
   background-color: var(--gateway-polygon);
-  color: white !important;
 }
 .default-mode-message-badge.USDC.blockchain-ERC20 {
   background-color: var(--gateway-ethereum);
@@ -2508,14 +2423,12 @@ button.secondary .lds-ellipsis div {
 }
 .default-mode-message-badge.USDC.blockchain-TRC20 {
   background-color: var(--gateway-tron);
-  color: white !important;
 }
 .default-mode-message-badge.USDT {
   background-color: var(--gateway-usdt);
 }
 .default-mode-message-badge.USDT.blockchain-MATIC {
   background-color: var(--gateway-polygon);
-  color: white !important;
 }
 .default-mode-message-badge.USDT.blockchain-ERC20 {
   background-color: var(--gateway-ethereum);
@@ -2527,63 +2440,6 @@ button.secondary .lds-ellipsis div {
 }
 .default-mode-message-badge.USDT.blockchain-TRC20 {
   background-color: var(--gateway-tron);
-  color: white !important;
-}
-.default-mode-message-badge.PEPE {
-  background-color: var(--gateway-pepe);
-}
-.default-mode-message-badge.PEPE.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-message-badge.APE {
-  background-color: var(--gateway-ape);
-}
-.default-mode-message-badge.APE.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-message-badge.DAI {
-  background-color: var(--gateway-dai);
-}
-.default-mode-message-badge.DAI.blockchain-MATIC {
-  background-color: var(--gateway-polygon);
-  color: white !important;
-}
-.default-mode-message-badge.DAI.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-message-badge.DAI.blockchain-BEP20 {
-  background-color: var(--gateway-binance);
-  color: black !important;
-}
-.default-mode-message-badge.SHIB {
-  background-color: var(--gateway-shib);
-}
-.default-mode-message-badge.SHIB.blockchain-MATIC {
-  background-color: var(--gateway-polygon);
-  color: white !important;
-}
-.default-mode-message-badge.SHIB.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-message-badge.SHIB.blockchain-BEP20 {
-  background-color: var(--gateway-binance);
-  color: black !important;
-}
-.default-mode-message-badge.WETH {
-  background-color: var(--gateway-weth);
-  color: black !important;
-}
-.default-mode-message-badge.WETH.blockchain-MATIC {
-  background-color: var(--gateway-polygon);
-  color: white !important;
-}
-.default-mode-message-badge.WETH.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
 }
 .default-mode-message-badge.BITCOIN_CASH {
   background-color: var(--gateway-bitcoin-cash);
@@ -2685,165 +2541,6 @@ button.secondary .lds-ellipsis div {
   font-weight: 500;
   font-size: 1rem;
   border-radius: 0.5rem;
-}
-.default-mode-copy.POLYGON {
-  background-color: var(--gateway-polygon);
-}
-.default-mode-copy.PLZ {
-  background-color: var(--gateway-plz);
-}
-.default-mode-copy.PLZ.blockchain-MATIC {
-  background-color: var(--gateway-polygon);
-  color: white !important;
-}
-.default-mode-copy.PLZ.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-copy.PLZ.blockchain-BEP20 {
-  background-color: var(--gateway-binance);
-  color: black !important;
-}
-.default-mode-copy.PLZ.blockchain-TRC20 {
-  background-color: var(--gateway-tron);
-  color: white !important;
-}
-.default-mode-copy.BITCOIN, .default-mode-copy.BITCOIN_LN {
-  background-color: var(--gateway-bitcoin);
-}
-.default-mode-copy.CONCORDIUM {
-  background-color: white;
-  color: black !important;
-}
-.default-mode-copy.LITECOIN {
-  background-color: var(--gateway-litecoin);
-}
-.default-mode-copy.TRON {
-  background-color: var(--gateway-tron);
-}
-.default-mode-copy.BINANCE {
-  background-color: var(--gateway-binance);
-  color: black !important;
-}
-.default-mode-copy.NANO {
-  background-color: var(--gateway-nano);
-}
-.default-mode-copy.MONERO {
-  background-color: var(--gateway-monero);
-}
-.default-mode-copy.SOLANA {
-  background-color: var(--gateway-solana);
-}
-.default-mode-copy.RIPPLE {
-  background-color: var(--gateway-ripple);
-}
-.default-mode-copy.ETHEREUM {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-copy.BINANCE_COIN {
-  background-color: var(--gateway-binance);
-}
-.default-mode-copy.CRONOS {
-  background-color: var(--gateway-cronos);
-  color: white !important;
-}
-.default-mode-copy.USDC {
-  background-color: var(--gateway-usdc);
-}
-.default-mode-copy.USDC.blockchain-MATIC {
-  background-color: var(--gateway-polygon);
-  color: white !important;
-}
-.default-mode-copy.USDC.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-copy.USDC.blockchain-BEP20 {
-  background-color: var(--gateway-binance);
-  color: black !important;
-}
-.default-mode-copy.USDC.blockchain-TRC20 {
-  background-color: var(--gateway-tron);
-  color: white !important;
-}
-.default-mode-copy.PEPE {
-  background-color: var(--gateway-pepe);
-}
-.default-mode-copy.PEPE.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-copy.APE {
-  background-color: var(--gateway-ape);
-}
-.default-mode-copy.APE.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-copy.DAI {
-  background-color: var(--gateway-dai);
-}
-.default-mode-copy.DAI.blockchain-MATIC {
-  background-color: var(--gateway-polygon);
-  color: white !important;
-}
-.default-mode-copy.DAI.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-copy.DAI.blockchain-BEP20 {
-  background-color: var(--gateway-binance);
-  color: black !important;
-}
-.default-mode-copy.SHIB {
-  background-color: var(--gateway-shib);
-}
-.default-mode-copy.SHIB.blockchain-MATIC {
-  background-color: var(--gateway-polygon);
-  color: white !important;
-}
-.default-mode-copy.SHIB.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-copy.SHIB.blockchain-BEP20 {
-  background-color: var(--gateway-binance);
-  color: black !important;
-}
-.default-mode-copy.WETH {
-  background-color: var(--gateway-weth);
-  color: black !important;
-}
-.default-mode-copy.WETH.blockchain-MATIC {
-  background-color: var(--gateway-polygon);
-  color: white !important;
-}
-.default-mode-copy.WETH.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-copy.USDT {
-  background-color: var(--gateway-usdt);
-}
-.default-mode-copy.USDT.blockchain-MATIC {
-  background-color: var(--gateway-polygon);
-  color: white !important;
-}
-.default-mode-copy.USDT.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-copy.USDT.blockchain-BEP20 {
-  background-color: var(--gateway-binance);
-  color: black !important;
-}
-.default-mode-copy.USDT.blockchain-TRC20 {
-  background-color: var(--gateway-tron);
-  color: white !important;
-}
-.default-mode-copy.BITCOIN_CASH {
-  background-color: var(--gateway-bitcoin-cash);
 }
 .default-mode-copy span {
   width: auto;
@@ -2962,72 +2659,6 @@ button.secondary .lds-ellipsis div {
   color: var(--purple6);
 }
 
-.embed-loader {
-  display: flex;
-  opacity: 1;
-  z-index: 99999999;
-  width: 100vw;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-  transition: opacity 1s ease-in;
-  overflow: hidden;
-}
-.embed-loader-wrapper {
-  padding: 1rem 0;
-}
-.embed-loader-circle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 100%;
-  width: 68px;
-  height: 68px;
-  margin: 0 auto;
-  position: relative;
-}
-.embed-loader-sellix {
-  position: absolute;
-}
-
-.custom-loader {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.custom-loader svg {
-  animation-name: spin;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-  animation-delay: 0s;
-  width: 35px !important;
-  height: 35px !important;
-  z-index: 9;
-}
-.custom-loader img {
-  animation-name: spin;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-  animation-delay: 0s;
-  width: 35px !important;
-  height: 35px !important;
-  z-index: 9;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(360deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
 .sellix-widget-invoice-checkout--footer {
   background: var(--white);
   width: 100%;
@@ -3071,6 +2702,72 @@ button.secondary .lds-ellipsis div {
 }
 .sellix-widget-invoice-checkout--footer-more svg * {
   stroke: var(--black4);
+}
+
+.custom-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.custom-loader svg {
+  animation-name: spin;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0s;
+  width: 35px !important;
+  height: 35px !important;
+  z-index: 9;
+}
+.custom-loader img {
+  animation-name: spin;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0s;
+  width: 35px !important;
+  height: 35px !important;
+  z-index: 9;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.embed-loader {
+  display: flex;
+  opacity: 1;
+  z-index: 99999999;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1s ease-in;
+  overflow: hidden;
+}
+.embed-loader-wrapper {
+  padding: 1rem 0;
+}
+.embed-loader-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  width: 68px;
+  height: 68px;
+  margin: 0 auto;
+  position: relative;
+}
+.embed-loader-sellix {
+  position: absolute;
 }
 
 .stripe-form {
@@ -3621,10 +3318,6 @@ button.secondary .lds-ellipsis div {
   }
 }
 
-.cashapp-guide-list-icon circle {
-  fill: rgba(203, 255, 215, 0.768627451);
-}
-
 .cashapp-guide {
   width: 100%;
   display: flex;
@@ -3634,7 +3327,7 @@ button.secondary .lds-ellipsis div {
 .cashapp-guide-line {
   height: calc(100% - 3rem);
   width: 1px;
-  background: rgba(203, 255, 215, 0.768627451);
+  background: var(--purple2);
   position: absolute;
   left: 1.25rem;
   z-index: -1;
@@ -3737,12 +3430,24 @@ button.secondary .lds-ellipsis div {
   text-align: center;
   margin: 0;
 }
-.cashapp-mode-countdown .lds-ellipsis {
-  margin-top: -0.5rem;
-  margin-bottom: 1rem;
+.cashapp-mode-countdown img {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: 1.5rem;
+  margin-top: 0.5rem;
+  flex-direction: column;
+  align-items: center;
+  animation: 3s ease 0.5s infinite normal none running cashAppAwait;
 }
-.cashapp-mode-countdown .lds-ellipsis > div {
-  background: var(--gateway-cashapp);
+@keyframes cashAppAwait {
+  0%, 20% {
+    transition: transform 3s ease;
+    transform: translate(0) rotate(0deg);
+  }
+  80%, 100% {
+    transition: transform 3s ease;
+    transform: translate(0) rotate(360deg);
+  }
 }
 .cashapp-mode-input {
   outline: none;
@@ -3797,24 +3502,6 @@ button.secondary .lds-ellipsis div {
   color: white;
 }
 
-.wallets-placeholder {
-  animation: pulse1 2.3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  height: 36px;
-  background: var(--black0);
-  width: 100%;
-  margin-top: 2rem;
-  margin-bottom: 1.5rem;
-  border-radius: 0.5rem;
-}
-
-@keyframes pulse1 {
-  0%, 100% {
-    opacity: 0.1;
-  }
-  50% {
-    opacity: 0.3;
-  }
-}
 .wallets-dropdown {
   display: none;
   position: absolute;
@@ -3928,19 +3615,11 @@ button.secondary .lds-ellipsis div {
   border: 1px solid var(--black2);
   box-shadow: 0 1px 2px rgba(18, 20, 23, 0.06);
   border-radius: 0.5rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
   font-family: "Inter";
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
-}
-.wallets-button-address {
-  max-width: 400px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .perfectmoney {
@@ -3972,6 +3651,33 @@ button.secondary .lds-ellipsis div {
 }
 .perfectmoney > form > button.medium:hover {
   background-color: #f35c5b;
+}
+
+.skrill-button {
+  margin-top: 1.5rem;
+  display: flex;
+}
+.skrill-button img {
+  margin: 0 auto;
+  width: 100%;
+  min-width: 100%;
+  background: var(--gateway-skrill);
+  border-radius: 0.5rem;
+}
+
+.paypal-btn.light .sk-circle-fade-dot:before {
+  background-color: var(--purple6) !important;
+}
+.paypal-btn .sk-circle-fade-dot {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.paypal-note {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.25rem;
+  color: var(--black4) !important;
 }
 
 .dark .stripe-form > .sk-circle-fade .sk-circle-fade-dot:before {
@@ -4073,33 +3779,6 @@ button.secondary .lds-ellipsis div {
   line-height: 18px;
   font-weight: 400;
   color: var(--black4);
-}
-
-.paypal-btn.light .sk-circle-fade-dot:before {
-  background-color: var(--purple6) !important;
-}
-.paypal-btn .sk-circle-fade-dot {
-  width: 1.25rem;
-  height: 1.25rem;
-}
-
-.paypal-note {
-  display: flex;
-  justify-content: center;
-  margin-top: 0.25rem;
-  color: var(--black4) !important;
-}
-
-.skrill-button {
-  margin-top: 1.5rem;
-  display: flex;
-}
-.skrill-button img {
-  margin: 0 auto;
-  width: 100%;
-  min-width: 100%;
-  background: var(--gateway-skrill);
-  border-radius: 0.5rem;
 }
 
 .sellix-widget-invoice-checkout--delivery-feedback {
