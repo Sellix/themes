@@ -1,0 +1,37 @@
+{% set id = uid() %}
+
+{% set properties = args.properties %}
+{% set colors = themeProperties.current_colors %}
+
+{% set fontSize = safe_get(properties.icon_size, 16) %}
+{% set fontColor = safe_get(properties.icon_color, 'light_font_color') %}
+
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }} {
+    font-size: {{ fontSize }}px;
+    color: {{ colors[fontColor] }};
+  }
+
+  .{{ localClass }} svg {
+    width: {{ fontSize }}px;
+    height: {{ fontSize }}px;
+  }
+</style>
+
+<a
+  href="javascript:void(0);"
+  class="social-share-button {{ localClass }} {{ args.class }}"
+  data-sharer="{{ args.name }}"
+  data-url="https://ellisonleao.github.io/sharer.js/"
+  data-title="{{ args.title }}"
+>
+  {% if args.name == 'instapaper' %}
+    {% render_snippet 'Icons: Instapaper' %}
+  {% elif args.name == 'baidu' %}
+    {% render_snippet 'Icons: Baidu' %}
+  {% else %}
+    <i class="{{ args.icon_class }}"></i>
+  {% endif %}
+</a>

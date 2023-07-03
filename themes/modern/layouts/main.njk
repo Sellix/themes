@@ -111,6 +111,7 @@
   <link rel="stylesheet" href="{{ 'snippet-product-list.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-product-review-stat.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-product-shortcut.css' | asset_url }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-product-share.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-product-stock.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-product-variants.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-product-warranty.css' | asset_url }}"/>
@@ -201,6 +202,7 @@
   <script src="{{ 'select2.js' | asset_url }}"></script>
   <script src="{{ 'magnific-popup.1.1.0.min.js' | asset_url }}"></script>
   <script src="{{ 'react-player.standalone.js' | asset_url }}"></script>
+  <script src="{{ 'sharer.min.js' | asset_url }}"></script>
   {% if global.request.type in ['checkout', 'product', 'subscription'] %}
     <script src="{{ 'widget-purchase-details.js' | asset_url }}"></script>
   {% endif %}
@@ -242,5 +244,11 @@
   {% if global.request.type in ['main', 'shop', 'group', 'contact', 'terms', 'trust', 'feedbacks', 'feedback', 'category'] %}
     {% render_snippet 'Shop message', container_selector=["sellix-header-", layoutId] | join %}
   {% endif %}
+
+  <script type="application/javascript">
+    $(document).ready(function () {
+      window.Sharer.init();
+    });
+  </script>
 </body>
 </html>

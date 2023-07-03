@@ -1,0 +1,153 @@
+{% set id = uid() %}
+{% set properties = args.properties %}
+{% set colors = themeProperties.current_colors %}
+
+{% set links = [
+  {
+    name: 'twitter',
+    class: 'twitter-share-button',
+    icon: 'fa-brands fa-twitter'
+  },
+  {
+    name: 'facebook',
+    class: 'facebook-share-button',
+    icon: 'fa-brands fa-facebook'
+  },
+  {
+    name: 'linkedin',
+    class: 'linkedin-share-button',
+    icon: 'fa-brands fa-linkedin'
+  },
+  {
+    name: 'email',
+    class: 'email-share-button',
+    icon: 'fa fa-envelope'
+  },
+  {
+    name: 'whatsapp',
+    class: 'whatsapp-share-button',
+    icon: 'fa-brands fa-whatsapp'
+  },
+  {
+    name: 'telegram',
+    class: 'telegram-share-button',
+    icon: 'fa-brands fa-telegram'
+  },
+  {
+    name: 'viber',
+    class: 'viber-share-button',
+    icon: 'fa-brands fa-viber'
+  },
+  {
+    name: 'pinterest',
+    class: 'pinterest-share-button',
+    icon: 'fa-brands fa-pinterest'
+  },
+  {
+    name: 'tumblr',
+    class: 'tumblr-share-button',
+    icon: 'fa-brands fa-tumblr'
+  },
+  {
+    name: 'hackernews',
+    class: 'hackernews-share-button',
+    icon: 'fa-brands fa-hacker-news'
+  },
+  {
+    name: 'reddit',
+    class: 'reddit-share-button',
+    icon: 'fa-brands fa-reddit'
+  },
+  {
+    name: 'vk',
+    class: 'vk-share-button',
+    icon: 'fa-brands fa-vk'
+  },
+  {
+    name: 'buffer',
+    class: 'buffer-share-button',
+    icon: 'fa-brands fa-buffer'
+  },
+  {
+    name: 'xing',
+    class: 'xing-share-button',
+    icon: 'fa-brands fa-xing'
+  },
+  {
+    name: 'line',
+    class: 'line-share-button',
+    icon: 'fa-brands fa-line'
+  },
+  {
+    name: 'instapaper',
+    class: 'instapaper-share-button',
+    icon: 'fa-brands fa-instapaper'
+  },
+  {
+    name: 'pocket',
+    class: 'pocket-share-button',
+    icon: 'fa-brands fa-get-pocket'
+  },
+  {
+    name: 'flipboard',
+    class: 'flipboard-share-button',
+    icon: 'fa-brands fa-flipboard'
+  },
+  {
+    name: 'weibo',
+    class: 'weibo-share-button',
+    icon: 'fa-brands fa-weibo'
+  },
+  {
+    name: 'blogger',
+    class: 'blogger-share-button',
+    icon: 'fa-brands fa-blogger'
+  },
+  {
+    name: 'baidu',
+    class: 'baidu-share-button',
+    icon: 'fa-brands fa-baidu'
+  },
+  {
+    name: 'okru',
+    class: 'ok-share-button',
+    icon: 'fa-brands fa-odnoklassniki'
+  },
+  {
+    name: 'evernote',
+    class: 'evernote-share-button',
+    icon: 'fa-brands fa-evernote'
+  },
+  {
+    name: 'skype',
+    class: 'skype-share-button',
+    icon: 'fa-brands fa-skype'
+  },
+  {
+    name: 'trello',
+    class: 'trello-share-button',
+    icon: 'fa-brands fa-trello'
+  }
+] %}
+
+{% set globalClass = 'snippet-product-share' %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }}__title {
+    color: {{ colors[properties.icon_color] }};
+  }
+</style>
+
+<div class="{{ globalClass }}">
+  <span class="{{ globalClass }}__title {{ localClass }}__title">Share</span>
+  {% for item in links %}
+    {% render_snippet
+      'Shared: Social share',
+      name=item.name,
+      class=item.class,
+      icon_class=item.icon,
+      properties=properties
+    %}
+  {% endfor %}
+</div>
