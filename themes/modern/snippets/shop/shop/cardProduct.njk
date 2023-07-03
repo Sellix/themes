@@ -153,7 +153,7 @@
             </span>
           {% else %}
             <div class="{{ globalClass }}__group-description-info">
-              {% if product.price_variants %}
+              {% if not isFree and product.price_variants %}
                 <span>{{ 'shop.shared.titles.startingAt' | t }} </span>
               {% endif %}
 
