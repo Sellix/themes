@@ -7,6 +7,7 @@
       this.productId = productId;
       this.variants = variants;
       this.isCart = isCart;
+      this.activeDescriptionId = undefined;
 
       this.$container = jQuery(this.selector);
 
@@ -26,13 +27,34 @@
     };
 
     onClickToggleDescription = (event) => {
-      event.stopPropagation();
+      // event.stopPropagation();
 
       const $this = jQuery(event.target);
       const $parent = $this.parents('[data-variant]');
       if ($parent) {
-        $parent.find(`[data-toggle-product-variant-description-button=1]`).toggleClass('d-none');
-        $parent.find(`[data-variant-description=1]`).toggleClass('d-none');
+        const descriptionId = $parent.data('variant');
+        if (this.activeDescriptionId) {
+          this.$container
+            .find(`[data-variant-description]`)
+            .animate({ height: '0', overflow: 'hidden' }, { duration: 300, queue: false });
+
+          $parent.find('[data-toggle-product-variant-description-button]').removeClass('fa-chevron-up');
+          this.$container.find('[data-toggle-product-variant-description-button]').addClass('fa-chevron-down');
+        }
+
+        if (this.activeDescriptionId !== descriptionId) {
+          const $description = $parent.find(`[data-variant-description]`);
+          $description.animate(
+            { height: $description.get(0).scrollHeight, overflow: 'initial' },
+            { duration: 300, queue: false },
+          );
+
+          this.activeDescriptionId = descriptionId;
+          $parent.find('[data-toggle-product-variant-description-button]').removeClass('fa-chevron-down');
+          $parent.find('[data-toggle-product-variant-description-button]').addClass('fa-chevron-up');
+        } else {
+          this.activeDescriptionId = undefined;
+        }
       }
     };
 

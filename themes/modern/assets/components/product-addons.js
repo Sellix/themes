@@ -18,7 +18,16 @@
 
       this.$container.find('[data-addon-title=1]').on('click', this.onToggleDescription.bind(this));
       this.$container.find('[data-addon-button=1]').on('click', this.onClickButton.bind(this));
-      this.$container.find('[data-checkbox-input=1]').on('click', this.onToggleAddons.bind(this));
+      this.$container.find('[data-checkbox-input=1]').on('click', (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+        this.onToggleAddons();
+      });
+      this.$container.find('[data-checkbox-header=1]').on('click', (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+        this.$container.find('[data-checkbox-input=1]').click();
+      });
 
       const addedAddons = this.store.get(this.productId, []);
       if (addedAddons.length) {
@@ -27,9 +36,14 @@
     }
 
     onToggleAddons(event) {
+      // event.stopPropagation();
+
+      console.log('Toggle Addons');
+
       const addedAddons = this.store.get(this.productId, []);
+      console.log(addedAddons);
       if (addedAddons.length) {
-        event.preventDefault();
+        // event.preventDefault();
         this.$container.find('[data-checkbox-input=1]').prop('checked', true);
       }
       this.render();

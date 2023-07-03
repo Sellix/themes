@@ -111,13 +111,7 @@
               </span>
 
               {% if variant.description %}
-                <span class="chevron d-none" data-toggle-product-variant-description-button="1">
-                  {% render_snippet 'Icons: Chevron up' %}
-                </span>
-
-                <span class="chevron" data-toggle-product-variant-description-button="1">
-                  {% render_snippet 'Icons: Chevron down' %}
-                </span>
+                <i class="chevron fa-solid fa-chevron-down" data-toggle-product-variant-description-button="1"></i>
               {% endif %}
             </div>
 
@@ -138,7 +132,11 @@
           </div>
         </div>
 
-        <div class="{{ globalClass }}__description {{ localClass }}__description d-none" data-variant-description="1">
+        <div
+          class="{{ globalClass }}__description {{ localClass }}__description"
+          style="height: 0; overflow: hidden;"
+          data-variant-description="1"
+        >
           {{ variant.description }}
         </div>
       </div>

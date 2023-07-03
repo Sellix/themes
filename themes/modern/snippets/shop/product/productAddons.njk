@@ -61,9 +61,16 @@
   </style>
 
   <div class="{{ globalClass }} {{ localClass }}">
-    <div class="{{ globalClass }}__header {{ localClass }}__header {{ 'd-none' if not hideUnderCheckbox }}">
+    <div
+      class="{{ globalClass }}__header {{ localClass }}__header {{ 'd-none' if not hideUnderCheckbox }}"
+      data-checkbox-header="1"
+    >
       <div class="{{ globalClass }}__addons-checkbox {{ localClass }}__addons-checkbox sellix-checkbox mb-0 mr-0">
-        <input type="checkbox" id="{{ localClass }}__addons-checkbox" data-checkbox-input="1" {{ 'checked' if not hideUnderCheckbox else 1 }}>
+        <input
+          type="checkbox"
+          id="{{ localClass }}__addons-checkbox"
+          data-checkbox-input="1" {{ 'checked' if not hideUnderCheckbox else 1 }}
+        >
         <label for="{{ localClass }}__addons-checkbox">
           {{ 'shop.shared.titles.addons' | t }}
         </label>
