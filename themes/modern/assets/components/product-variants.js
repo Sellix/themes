@@ -38,7 +38,7 @@
             .find(`[data-variant-description]`)
             .animate({ height: '0', overflow: 'hidden' }, { duration: 300, queue: false });
 
-          $parent.find('[data-toggle-product-variant-description-button]').removeClass('fa-chevron-up');
+          this.$container.find('[data-toggle-product-variant-description-button]').removeClass('fa-chevron-up');
           this.$container.find('[data-toggle-product-variant-description-button]').addClass('fa-chevron-down');
         }
 

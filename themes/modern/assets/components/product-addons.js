@@ -36,14 +36,8 @@
     }
 
     onToggleAddons(event) {
-      // event.stopPropagation();
-
-      console.log('Toggle Addons');
-
       const addedAddons = this.store.get(this.productId, []);
-      console.log(addedAddons);
       if (addedAddons.length) {
-        // event.preventDefault();
         this.$container.find('[data-checkbox-input=1]').prop('checked', true);
       }
       this.render();
@@ -101,12 +95,16 @@
           .html(Boolean(addedAddonsMap[addon.uniqid]) ? this.removeButtonContent : this.addButtonContent);
       });
 
+      const $addonsContainer = this.$container.find('[data-addons-container=1]');
       if (this.$container.find('[data-checkbox-input=1]').prop('checked')) {
         this.$container.addClass('opened');
-        this.$container.find('[data-addons-container=1]').removeClass('d-none');
+        $addonsContainer.animate(
+          { height: $addonsContainer.get(0).scrollHeight, overflow: 'initial' },
+          { duration: 300, queue: false },
+        );
       } else {
         this.$container.removeClass('opened');
-        this.$container.find('[data-addons-container=1]').addClass('d-none');
+        $addonsContainer.animate({ height: '0', overflow: 'hidden' }, { duration: 300, queue: false });
       }
     }
   }

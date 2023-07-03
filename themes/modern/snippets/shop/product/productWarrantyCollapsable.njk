@@ -61,7 +61,7 @@
     </span>
   </div>
 
-  <div class="{{ globalClass }}__body {{ localClass }}__body {{ 'd-none' if collapsable }}">
+  <div class="{{ globalClass }}__body {{ localClass }}__body" style="height: 0; overflow: hidden;">
     {% if warranty %}
       {% render_snippet 'Product: Warranty text', properties=warrnatyBodyProps, product=product %}
     {% else %}
@@ -74,9 +74,19 @@
   $(document).ready(function() {
     const collapsable = {{ collapsable }};
     if (collapsable) {
+      let opened = false;
+      const $body = $('.{{ localClass}}__body');
       $('.{{ localClass }}__header').on('click', function() {
         $('.{{ localClass }}__header .chevron').toggleClass('d-none');
-        $('.{{ localClass }}__body').toggleClass('d-none');
+        if (opened) {
+          $body.animate({ height: '0', overflow: 'hidden' }, { duration: 300, queue: false });
+        } else {
+          $body.animate(
+            { height: $body.get(0).scrollHeight, overflow: 'initial' },
+            { duration: 300, queue: false },
+          );
+        }
+        opened = !opened;
       });
     }
   });

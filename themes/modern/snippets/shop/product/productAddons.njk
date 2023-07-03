@@ -77,7 +77,11 @@
       </div>
     </div>
 
-    <div class="{{ globalClass }}__addons {{ 'd-none' if hideUnderCheckbox }}" data-addons-container="1">
+    <div
+      class="{{ globalClass }}__addons"
+      style="{{ 'height: 0; overflow: hidden' if hideUnderCheckbox }}"
+      data-addons-container="1"
+    >
       {% for addon in addons %}
         <div class="{{ globalClass}}__addon {{ localClass }}__addon">
           <div class="{{ globalClass}}__wrapper">
