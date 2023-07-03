@@ -1,12 +1,13 @@
 (function (window, jQuery, SellixProductAddonsStore) {
   class ProductAddonsComponent {
-    constructor(selector, shop, productId, addons) {
+    constructor(selector, shop, productId, addons, hideUnderCheckbox) {
       this.$container = jQuery(selector);
       this.store = new SellixProductAddonsStore(shop, { [productId]: addons });
       this.productId = productId;
       this.addons = addons;
       this.addonsMap = Object.fromEntries(addons.map((addon) => [addon.uniqid, addon]));
       this.activeAddonId = undefined;
+      this.hideUnderCheckbox = hideUnderCheckbox;
 
       this.addButtonContent = `<i class="fa-regular fa-plus"></i> <span>${window.sellixI18Next.t(
         'shop.shared.titles.add',
@@ -95,16 +96,24 @@
           .html(Boolean(addedAddonsMap[addon.uniqid]) ? this.removeButtonContent : this.addButtonContent);
       });
 
-      const $addonsContainer = this.$container.find('[data-addons-container=1]');
-      if (this.$container.find('[data-checkbox-input=1]').prop('checked')) {
-        this.$container.addClass('opened');
-        $addonsContainer.animate(
-          { height: $addonsContainer.get(0).scrollHeight, overflow: 'initial' },
-          { duration: 300, queue: false },
-        );
-      } else {
-        this.$container.removeClass('opened');
-        $addonsContainer.animate({ height: '0', overflow: 'hidden' }, { duration: 300, queue: false });
+      if (this.hideUnderCheckbox) {
+        const $addonsContainer = this.$container.find('[data-addons-container=1]');
+        if (this.$container.find('[data-checkbox-input=1]').prop('checked')) {
+          this.$container.addClass('opened');
+          $addonsContainer
+            .css({
+              height: 'initial',
+              overflow: 'initial',
+            })
+            .animate({ 'min-height': $addonsContainer.get(0).scrollHeight }, { duration: 300, queue: false });
+        } else {
+          this.$container.removeClass('opened');
+          $addonsContainer
+            .css({
+              overflow: 'hidden',
+            })
+            .animate({ height: '0', 'min-height': '0' }, { duration: 300, queue: false });
+        }
       }
     }
   }

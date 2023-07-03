@@ -126,7 +126,7 @@
             data-addon-id="{{ addon.uniqid }}"
             data-collapsable-wrapper="1"
           >
-            <div class="{{ globalClass }}__description {{ localClass }}__description" data-addon-description="1">
+            <div class="{{ globalClass }}__description {{ localClass }}__description">
               {{addon.description | html_sanitize | safe}}
             </div>
           </div>
@@ -143,6 +143,7 @@
         '{{ shop.name }}',
         productId,
         {{ (product.addons or []) | dump | safe }},
+        {{ hideUnderCheckbox }}
       );
       component.render();
 
