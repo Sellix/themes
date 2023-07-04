@@ -26,14 +26,7 @@
 {% set localClass = [globalClass, '-', id] | join %}
 
 <style>
-  .{{ localClass }} {
-    display: grid;
-    grid-template-columns: repeat({{ columnsPerRowDesktop }}, 1fr);
-    grid-column-gap: {{ columnGap }}px;
-    grid-row-gap: {{ rowGap }}px;
-    padding: {{ paddingTopDesktop }}px {{ paddingHorizDesktop }}px {{ paddingBottomDesktop }}px {{ paddingHorizDesktop }}px ;
-    margin-top: {{ marginTopDesktop }}px;
-    margin-bottom: {{ marginBottomDesktop }}px;
+  .sellix-section.{{ globalClass}}-global-{{ id }} {
     {% if bgImage %}
       background: url({{bgImage | asset_url}});
       background-repeat: no-repeat, no-repeat;
@@ -42,6 +35,16 @@
     {% elif bgColor %}
       background-color: {{ colors[bgColor] }};
     {% endif %}
+  }
+
+  .{{ localClass }} {
+    display: grid;
+    grid-template-columns: repeat({{ columnsPerRowDesktop }}, 1fr);
+    grid-column-gap: {{ columnGap }}px;
+    grid-row-gap: {{ rowGap }}px;
+    padding: {{ paddingTopDesktop }}px {{ paddingHorizDesktop }}px {{ paddingBottomDesktop }}px {{ paddingHorizDesktop }}px ;
+    margin-top: {{ marginTopDesktop }}px;
+    margin-bottom: {{ marginBottomDesktop }}px;
   }
   @media (max-width: 768px) {
     .{{ localClass }} {
