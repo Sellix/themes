@@ -48,14 +48,7 @@
       const addonId = jQuery(event.currentTarget).data('addon-id');
 
       if (this.activeAddonId) {
-        this.$container
-          .find(`[data-collapsable-wrapper]`)
-          .animate({ height: '0', overflow: 'hidden' }, { duration: 300, queue: false });
-
-        this.$container
-          .find(`[data-addon-title=1] i.fa-solid`)
-          .removeClass('fa-chevron-up')
-          .addClass('fa-chevron-down');
+        this.closeAllDescriptions();
       }
 
       if (this.activeAddonId !== addonId) {
@@ -101,11 +94,18 @@
         if (this.$container.find('[data-checkbox-input=1]').prop('checked')) {
           this.$container.addClass('opened');
           $addonsContainer
-            .css({
-              height: 'initial',
-              overflow: 'initial',
-            })
-            .animate({ 'min-height': $addonsContainer.get(0).scrollHeight }, { duration: 300, queue: false });
+            // .css()
+            .animate(
+              { 'min-height': $addonsContainer.get(0).scrollHeight },
+              {
+                duration: 300,
+                queue: false,
+                complete: () => $addonsContainer.css({
+                  height: '',
+                  overflow: '',
+                })
+              },
+            );
         } else {
           this.$container.removeClass('opened');
           $addonsContainer
@@ -113,8 +113,19 @@
               overflow: 'hidden',
             })
             .animate({ height: '0', 'min-height': '0' }, { duration: 300, queue: false });
+
+          this.closeAllDescriptions();
+          this.activeAddonId = undefined;
         }
       }
+    }
+
+    closeAllDescriptions() {
+      this.$container
+        .find(`[data-collapsable-wrapper]`)
+        .animate({ height: '0', overflow: 'hidden' }, { duration: 300, queue: false });
+
+      this.$container.find(`[data-addon-title=1] i.fa-solid`).removeClass('fa-chevron-up').addClass('fa-chevron-down');
     }
   }
   window.SellixProductAddonsComponent = ProductAddonsComponent;
