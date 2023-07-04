@@ -9,6 +9,7 @@
 
 {% set fullWidth = safe_get(properties.fullwidth, false) %}
 {% set shadow = safe_get(properties.shadow, 'none') %}
+{% set showBorder = safe_get(properties.show_border, true) %}
 {% set logoImage = safe_get(themeProperties.common.logo_image, null) %}
 {% set logoType = safe_get(properties.logo_type, 'logo') %}
 {% set logoImageSize = safe_get(properties.logo_image_size, 30) %}
@@ -24,6 +25,7 @@
 <style>
   .{{ globalClass }} {
     box-shadow: {{ shadow }};
+    border: {{ "1px solid var(--borderColorLight)" if showBorder else "none" }};
   }
   .{{ localClass }} {
     background-color: {{ colors[bgColor] }};

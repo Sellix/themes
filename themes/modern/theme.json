@@ -1,6 +1,6 @@
 {
   "id": "modern",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "is_active": 0,
   "name": "Modern",
   "scheme": "modern",
@@ -762,7 +762,13 @@
           "defaultValue": "#E8E8E8"
         },
         {
-          "id": "border_active_color",
+          "id": "border_color_light",
+          "type": "color-picker",
+          "label": "Border",
+          "defaultValue": "#262A30"
+        },
+        {
+          "id": "border_color_active",
           "type": "color-picker",
           "label": "Border active",
           "defaultValue": "#6A3CE2"
@@ -1417,7 +1423,19 @@
           "defaultValue": "#E8E8E8"
         },
         {
-          "id": "border_active_color",
+          "id": "border_color",
+          "type": "color-picker",
+          "label": "Border",
+          "defaultValue": "#E8E8E8"
+        },
+        {
+          "id": "border_color_light",
+          "type": "color-picker",
+          "label": "Border",
+          "defaultValue": "#E9EDF0"
+        },
+        {
+          "id": "border_color_active",
           "type": "color-picker",
           "label": "Border active",
           "defaultValue": "#6A3CE2"
@@ -2088,8 +2106,9 @@
         "background_light": "#121417",
         "background_hover": "#DEDEDE",
         "background_main_color": "#1B1F23",
-        "border_color": "#233453",
-        "border_active_color": "#6A3CE2",
+        "border_color": "#262A30",
+        "border_color_light": "#262A30",
+        "border_color_active": "#6A3CE2",
         "brand_color": "#6A3CE2",
         "button_color": "#FFFFFF",
         "button_text_color": "#121417",
@@ -2153,7 +2172,8 @@
         "background_hover": "#DEDEDE",
         "background_main_color": "#FFFFFF",
         "border_color": "#DFE5E9",
-        "border_active_color": "#6A3CE2",
+        "border_color_light": "#E9EDF0",
+        "border_color_active": "#6A3CE2",
         "brand_color": "#6A3CE2",
         "button_color": "#121417",
         "button_text_color": "#FFFFFF",
@@ -2231,6 +2251,75 @@
   },
 
   "layouts": {
+    "Checkout": {
+      "name": "Checkout",
+      "path": "layouts/main.njk",
+      "is_default": 0,
+      "settings": {
+        "section_order": [
+          "Header",
+          "Footer menu",
+          "Footer"
+        ],
+        "sections": {
+          "Footer": {
+            "name": "Footer",
+            "settings": {
+              "visible": true,
+              "properties": {},
+              "block_order": []
+            }
+          },
+          "Footer menu": {
+            "name": "Footer menu",
+            "settings": {
+              "visible": true,
+              "block_order": [],
+              "blocks": {
+              },
+              "properties": {
+                "background_color": "background_accent_dark",
+                "padding_top_desktop": 80,
+                "padding_top_tablet": 60,
+                "padding_top_mobile": 60,
+                "padding_bottom_desktop": 80,
+                "padding_bottom_tablet": 60,
+                "padding_bottom_mobile": 60,
+                "margin_bottom_desktop": 0,
+                "margin_bottom_tablet": 0,
+                "margin_bottom_mobile": 0
+              }
+            }
+          },
+          "Header": {
+            "name": "Header",
+            "settings": {
+              "visible": true,
+              "properties": {},
+              "block_order": ["Menu", "Cart"],
+              "blocks": {
+                "Cart": {
+                  "name": "Cart",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                    }
+                  }
+                },
+                "Menu": {
+                  "name": "Menu",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "Invoice": {
       "name": "Invoice",
       "path": "layouts/invoice.njk",
@@ -2284,7 +2373,10 @@
             "name": "Header",
             "settings": {
               "visible": true,
-              "properties": {},
+              "properties": {
+                "shadow": "0px 2px 4px -1px rgba(7, 14, 35, 0.08)",
+                "show_border": false
+              },
               "block_order": ["Menu", "Cart"],
               "blocks": {
                 "Cart": {
@@ -2296,7 +2388,12 @@
                   }
                 },
                 "Menu": {
-                  "name": "Menu"
+                  "name": "Menu",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                    }
+                  }
                 }
               }
             }
@@ -2315,6 +2412,7 @@
     "Checkout/Checkout": {
       "name": "Checkout/Checkout",
       "path": "templates/shop/checkout.njk",
+      "layout_name": "Checkout",
       "template_type": "CHECKOUT",
       "is_default": 1,
       "settings": {
@@ -8991,7 +9089,13 @@
                 "value": "0px 3px 5px -1px rgba(0,0,0,0.2)"
               }
             ],
-            "defaultValue": "0px 2px 4px -1px rgba(7, 14, 35, 0.08)"
+            "defaultValue": "none"
+          },
+          {
+            "id": "show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": true
           },
           {
             "id": "background_color",
