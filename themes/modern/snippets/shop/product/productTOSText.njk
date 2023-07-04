@@ -31,7 +31,7 @@
     <div class="empty-message-container {{ globalClass }}__empty {{ localClass }}__empty">
       {% render_snippet 'Icons: Empty feedback' %}
       <span class="empty-message-title {{ globalClass }}__empty-title {{ localClass }}__empty-title">
-        Product <b>{{ product.title }}</b> has no Terms of Service.
+        {{ 'shop.terms.noProductTerms' | t({productName: ['<b>', product.title, '</b>'] | join('')}) | safe }}
       </span>
     </div>
   {% else %}

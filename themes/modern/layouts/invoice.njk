@@ -33,6 +33,7 @@
 
   {% set font = themeProperties.typography.font %}
   {% set backgroundImage = themeProperties.page.background_image %}
+  {% set backgroundAttachment = themeProperties.page.background_attachment %}
 
   <link href="{{ font.href }}" rel="stylesheet">
 
@@ -57,6 +58,7 @@
 
       {% if backgroundImage %}
         background-image: url({{ backgroundImage }});
+        background-attachment: {{ backgroundAttachment }};
         background-repeat: no-repeat, no-repeat;
         background-position: top;
         background-size: cover;
