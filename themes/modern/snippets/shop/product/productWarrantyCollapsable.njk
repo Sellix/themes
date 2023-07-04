@@ -8,7 +8,7 @@
 {% set collapsable = safe_get(properties.collapsable, true) %}
 {% set warranty = product.warranty | int %}
 
-{% set warrnatyBodyProps = {
+{% set bodyProps = {
   "padding_vert": properties.body_padding_vert,
   "padding_horiz": properties.body_padding_horiz,
   "font_color": properties.body_font_color,
@@ -46,8 +46,8 @@
   }
 </style>
 
-<div class="{{ globalClass }} {{ localClass }}">
-  <div class="{{ globalClass }}__header {{ localClass }}__header">
+<div class="sellix-collapsable {{ globalClass }} {{ localClass }}">
+  <div class="sellix-collapsable__header {{ globalClass }}__header {{ localClass }}__header">
     <span>
       {{ 'shop.shared.titles.productWarranty' | t }}
     </span>
@@ -61,9 +61,11 @@
     </span>
   </div>
 
-  <div class="{{ globalClass }}__body {{ localClass }}__body" style="height: 0; overflow: hidden;">
+  <div
+    class="sellix-collapsable__body {{ globalClass }}__body {{ localClass }}__body  {{ 'visible' if not collapsable }}"
+  >
     {% if warranty %}
-      {% render_snippet 'Product: Warranty text', properties=warrnatyBodyProps, product=product %}
+      {% render_snippet 'Product: Warranty text', properties=bodyProps, product=product %}
     {% else %}
       {{ 'shop.shared.titles.noProductWarranty' | t }}
     {% endif %}
@@ -74,20 +76,7 @@
   $(document).ready(function() {
     const collapsable = {{ collapsable }};
     if (collapsable) {
-      let opened = false;
-      const $body = $('.{{ localClass}}__body');
-      $('.{{ localClass }}__header').on('click', function() {
-        $('.{{ localClass }}__header .chevron').toggleClass('d-none');
-        if (opened) {
-          $body.animate({ height: '0', overflow: 'hidden' }, { duration: 300, queue: false });
-        } else {
-          $body.animate(
-            { height: $body.get(0).scrollHeight, overflow: 'initial' },
-            { duration: 300, queue: false },
-          );
-        }
-        opened = !opened;
-      });
+      (new window.SellixCollapsableComponent('.{{ localClass }}__header', '.{{ localClass}}__body'));
     }
   });
 </script>

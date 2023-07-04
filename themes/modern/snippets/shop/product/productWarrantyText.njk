@@ -10,8 +10,6 @@
 {% set name = product.name %}
 {% set warrantyText = product.warrantyText %}
 
-{% set paddingVert = safe_get(properties.padding_vert, 20) %}
-{% set paddingHoriz = safe_get(properties.padding_horiz, 24) %}
 {% set fontColor = safe_get(properties.font_color, 'dark_font_color') %}
 {% set fontSize = safe_get(properties.font_size, 14) %}
 {% set fontWeight = safe_get(properties.font_weight, 400) %}
@@ -22,7 +20,6 @@
 
 <style>
   .{{ localClass }} {
-    padding: {{ paddingVert }}px {{ paddingHoriz or '0' }}px;
     color: {{ colors[fontColor] }}!important;
     font-size: {{ fontSize }}px!important;
     font-weight: {{ fontWeight }}!important;
@@ -56,7 +53,9 @@
     {% if warrantyText %}
       Unless stated otherwise in the Terms of Service.
     {% else %}
-      This warranty, as described by the seller, covers any type of occasions unless stated otherwise in the Terms of Service.
+      This warranty, as described by the seller,
+      covers any type of occasions unless stated
+      otherwise in the Terms of Service.
     {% endif %}
   </p>
 </div>

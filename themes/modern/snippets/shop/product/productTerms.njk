@@ -1,0 +1,33 @@
+{% set id = uid() %}
+{% set product = args.product %}
+{% set properties = args.properties %}
+{% set colors = themeProperties.current_colors %}
+
+{% set productTerms = product.terms_of_service %}
+
+{% set bgColor = safe_get(properties.container_background_color, 'background_accent_dark') %}
+{% set showBorder = safe_get(properties.container_show_border, true) %}
+{% set borderRadius = safe_get(properties.container_border_radius, 8) %}
+{% set shadow = safe_get(properties.container_shadow, 'none') %}
+{% set paddingHoriz = safe_get(properties.container_padding_horiz, 16) %}
+{% set paddingVert = safe_get(properties.container_padding_vert, 16) %}
+
+{% set globalClass = 'snippet-product-terms' %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }} {
+    border: {{ '1px solid var(--borderColor)' if showBorder else 'none' }};
+    background: {{ colors[bgColor] }};
+    border-radius: {{ borderRadius }}px;
+    box-shadow: {{ shadow }};
+    padding: {{ paddingVert }}px {{ paddingHoriz }}px;
+  }
+  .{{ localClass }} .empty-message-container {
+    padding: 1rem 0;
+  }
+</style>
+
+<div class="{{ globalClass }} {{ localClass }}">
+  {% render_snippet 'Product: TOS Text', product=product %}
+</div>

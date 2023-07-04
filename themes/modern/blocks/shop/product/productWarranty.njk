@@ -2,10 +2,8 @@
 {% set product = global.common.productInfo.product %}
 {% set type = properties.type %}
 
-<div>
-  {% if type | lower == 'badge' %}
-    {% render_snippet 'Product: Warranty badge', product=product, properties=properties %}
-  {% else %}
-    {% render_snippet 'Product: Warranty collapsable', product=product, properties=properties %}
-  {% endif %}
-</div>
+{% if type | lower == 'badge' %}
+  {% render_snippet 'Product: Warranty badge', product=product, properties=properties %}
+{% else %}
+  {% render_snippet 'Product: Warranty collapsable', product=product, properties=properties %}
+{% endif %}

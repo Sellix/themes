@@ -4,7 +4,7 @@
 {% set colors = themeProperties.current_colors %}
 
 {% set product = args.product or global.common.productInfo.product %}
-{% set warranty = product.warranty | int %}
+{% set terms = product.terms_of_service %}
 {% set title = product.title %}
 {% set name = product.name %}
 {% set warranty_text = product.warranty_text %}
@@ -22,7 +22,7 @@
 {% set titleFontWeight = safe_get(properties.title_font_weight, 500) %}
 {% set titleLineHeight = safe_get(properties.title_line_height, 24) %}
 
-{% set globalClass = ['snippet-product-warranty-badge'] %}
+{% set globalClass = ['snippet-product-terms-badge'] %}
 {% set localClass = id %}
 
 <style>
@@ -57,6 +57,12 @@
     fill: {{ colors[titleFontColor] }};
   }
 
+  .{{ localClass }}__head i.fa {
+    margin-right: 1rem;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
   .{{ localClass }}__head-title {
     display: flex;
     flex-direction: column;
@@ -76,32 +82,30 @@
 
 <div class="{{ globalClass }} {{ localClass }}">
   <div class="{{ globalClass }}__head {{ localClass }}__head">
-    {% if warranty %}
-      {% render_snippet 'Icons: Warranty yes' %}
+    {% if terms %}
+      <i class='mt-1 fa fa-light fa-message'></i>
       <div class="{{ globalClass }}__head-title {{ localClass }}__head-title">
         <div>
-          {{ 'shop.product.warrantyTitle' | t }}
+          {{ 'shop.product.termsTitle' | t }}
         </div>
         <span class="{{ globalClass }}__head-hint {{ localClass }}__head-hint">
           {{ 'shop.shared.titles.moreInfo' | t }}
         </span>
       </div>
     {% else %}
-      {% render_snippet 'Icons: Warranty no' %}
+      <i class='fa fa-light fa-message-slash'></i>
       <div class="{{ globalClass }}__head-title {{ localClass }}__head-title">
-        <div>
-          {{ 'shop.product.noWarrantyTitle' | t }}
-        </div>
+        {{ 'shop.product.noTermsTitle' | t }}
       </div>
-      {% endif %}
+    {% endif %}
   </div>
 </div>
 
-{% if warranty %}
+{% if terms %}
   <script type='application/javascript'>
     $(document).ready(function () {
       $('.{{ localClass }}').on('click', function () {
-        $('#product-warranty-modal').modal({
+        $('#product-terms-modal').modal({
           modalClass: '',
           blockerClass: '',
           showClose: false
