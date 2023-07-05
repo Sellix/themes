@@ -1,6 +1,7 @@
 {% set id = uid() %}
 {% set shop = global.common.shopInfo.shop %}
 {% set product = args.product %}
+{% set productTerms = product.terms_of_service %}
 {% set invoice = args.invoice %}
 {% set properties = args.properties %}
 {% set colors = themeProperties.current_colors %}
@@ -60,13 +61,12 @@
     </span>
   </div>
 
-  <div
-    class="sellix-collapsable__body {{ globalClass }}__body {{ localClass }}__body {{ 'visible' if not collapsable }}"
-  >
-    {% render_snippet
-      'Product: TOS Text',
-      product=product
-    %}
+  <div class="sellix-collapsable__body {{ globalClass }}__body {{ localClass }}__body {{ 'visible' if not collapsable }}">
+    {% if productTerms %}
+      {% render_snippet 'Product: TOS Text', product=product %}
+    {% else %}
+      {{ 'shop.shared.titles.noProductTerms' | t }}
+    {% endif %}
   </div>
 </div>
 
