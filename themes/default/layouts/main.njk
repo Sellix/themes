@@ -79,6 +79,10 @@
     <link rel="stylesheet" href="{{ 'badge.css' | asset_url }}"/>
     <link rel="stylesheet" href="{{ 'sellix-text.css' | asset_url }}"/>
 
+
+    {# Template #}
+    <link rel="stylesheet" href="{{ 'template-invoice.css' | asset_url }}"/>
+
     {# Sections #}
     <link rel="stylesheet" href="{{ 'section-header.css' | asset_url }}"/>
     <link rel="stylesheet" href="{{ 'section-footer.css' | asset_url }}"/>
@@ -137,8 +141,11 @@
     {% if global.request.type in ['checkout', 'product', 'subscription'] %}
     <link rel="stylesheet" href="{{ 'purchase.css' | asset_url }}" />
     {% endif %}
+{#    {% if global.request.type in ['invoice'] %}#}
+{#      <link rel="stylesheet" href="{{ 'invoice.css' | asset_url }}" />#}
+{#    {% endif %}#}
     {% if global.request.type in ['invoice'] %}
-      <link rel="stylesheet" href="{{ 'invoice.css' | asset_url }}" />
+      <link rel="stylesheet" href="{{ 'widget-invoice-checkout.css' | asset_url }}" />
     {% endif %}
     <link rel="stylesheet" href="{{ 'magnific-popup.1.1.0.css' | asset_url }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
@@ -286,8 +293,11 @@
     {% if global.request.type in ['checkout', 'product', 'subscription'] %}
       <script src="{{ 'purchase.js' | asset_url }}"></script>
     {% endif %}
+{#    {% if global.request.type in ['invoice'] %}#}
+{#      <script src="{{ 'invoice.js' | asset_url }}"></script>#}
+{#    {% endif %}#}
     {% if global.request.type in ['invoice'] %}
-      <script src="{{ 'invoice.js' | asset_url }}"></script>
+      <script src="{{ 'widget-invoice-checkout.js' | asset_url }}"></script>
     {% endif %}
     <script src="{{ 'sellix-context.js' | asset_url }}"></script>
     <script src="{{ 'sellix-store.js' | asset_url }}"></script>
@@ -302,8 +312,10 @@
     <script src="{{ 'sellix-bundle-component.js' | asset_url }}"></script>
     <script src="{{ 'sellix-checkout-products-component.js' | asset_url }}"></script>
     <script src="{{ 'sellix-checkout-product-component.js' | asset_url }}"></script>
-    <script src="{{ 'sellix-feedback-pagination-component.js' | asset_url }}"></script>
     <script src="{{ 'sellix-feedback-pagination.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-feedback-pagination-component.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-invoice-checkout-component.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-invoice-checkout.js' | asset_url }}"></script>
     <script src="{{ 'sellix-invoice-products-info-component.js' | asset_url }}"></script>
     <script src="{{ 'sellix-product-count-component.js' | asset_url }}"></script>
     <script src="{{ 'sellix-price-variants-component.js' | asset_url }}"></script>

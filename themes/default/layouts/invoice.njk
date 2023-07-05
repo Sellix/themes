@@ -33,7 +33,6 @@
 
   {% set font = themeProperties.typography.font %}
   {% set backgroundImage = themeProperties.page.background_image %}
-  {% set backgroundAttachment = themeProperties.page.background_attachment %}
 
   <link href="{{ font.href }}" rel="stylesheet">
 
@@ -58,7 +57,6 @@
 
       {% if backgroundImage %}
         background-image: url({{ backgroundImage }});
-        background-attachment: {{ backgroundAttachment }};
         background-repeat: no-repeat, no-repeat;
         background-position: top;
         background-size: cover;
@@ -79,6 +77,9 @@
   <link rel="stylesheet" href="{{ 'sliding-panel.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'swiper.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'toastify.css' | asset_url }}"/>
+
+  {# Template #}
+  <link rel="stylesheet" href="{{ 'template-invoice.css' | asset_url }}"/>
 
   {# Sections #}
   <link rel="stylesheet" href="{{ 'section-faq.css' | asset_url }}"/>
@@ -107,14 +108,15 @@
   <link rel="stylesheet" href="{{ 'snippet-product-bundles.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-product-bundle-product.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-product-cards.css' | asset_url }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-product-description.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-product-gallery.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-product-info.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-product-list.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-product-review-stat.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-product-shortcut.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-product-share.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-product-stock.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-product-variants.css' | asset_url }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-product-warranty.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-purchase-details.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-social-links-floating.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-tag.css' | asset_url }}"/>
@@ -128,10 +130,6 @@
   {% if global.request.type in ['invoice'] %}
     <link rel="stylesheet" href="{{ 'widget-invoice-checkout.css' | asset_url }}" />
   {% endif %}
-  {% if global.request.type in ['invoice'] %}
-    <link rel="stylesheet" href="{{ 'template-invoice.css' | asset_url }}"/>
-  {% endif %}
-
   <link rel="stylesheet" href="{{ 'magnific-popup.1.1.0.css' | asset_url }}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
@@ -143,24 +141,20 @@
 {% set layoutId = uid() %}
 
 <body>
-  <div id="app" class="{{ 'isDark' if global.theme.isDark }}">
+  <div id="app">
     <div class="sellix-store sellix-ui-container">
-      {% render_section 'Header', layoutId=layoutId %}
+      {# {% render_section 'header', layoutId=layoutId %} #}
 
       <div id="content" class="template">
         {% render_template 'default' %}
       </div>
 
-      <div class="sellix-footer {{ 'with-border' if global.request.type in ['invoice'] }}">
-        {% render_section 'Footer menu' %}
-
-        {% render_section 'Footer' %}
-      </div>
+      {# {% render_section 'footer' %} #}
     </div>
   </div>
 
   <div id="modal"></div>
-  {% render_snippet 'Mobile sidebar menu', menu='Modern: Main Menu' %}
+  {% render_snippet 'Mobile sidebar menu', menu='Main Menu' %}
 
   <script>
     window.__RENDER_CONTEXT__ = {{ global | dump | safe | replace('\u003c', '<') }};
@@ -169,9 +163,7 @@
   </script>
 
   {% render_snippet 'Page loader' %}
-  {% if themeProperties.common.show_floating_social_links %}
-    {% render_snippet 'Social Links: Floating' %}
-  {% endif %}
+  {# {% render_snippet 'Social Links' %} #}
   {% render_snippet 'Toastify' %}
   {% render_snippet 'Heart beat' %}
   {% render_snippet 'App crisp chat' %}
@@ -206,7 +198,6 @@
   <script src="{{ 'select2.js' | asset_url }}"></script>
   <script src="{{ 'magnific-popup.1.1.0.min.js' | asset_url }}"></script>
   <script src="{{ 'react-player.standalone.js' | asset_url }}"></script>
-  <script src="{{ 'sharer.min.js' | asset_url }}"></script>
   {% if global.request.type in ['checkout', 'product', 'subscription'] %}
     <script src="{{ 'widget-purchase-details.js' | asset_url }}"></script>
   {% endif %}
@@ -222,7 +213,6 @@
   <script src="{{ 'sellix-helper.js' | asset_url }}"></script>
 
   <script src="{{ 'sellix-cart-store.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-collapsable-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-addons-store.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-variants-store.js' | asset_url }}"></script>
   <script src="{{ 'sellix-cart-component.js' | asset_url }}"></script>
@@ -234,13 +224,12 @@
   <script src="{{ 'sellix-feedback-pagination.js' | asset_url }}"></script>
   <script src="{{ 'sellix-feedback-pagination-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-invoice-checkout-component.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-leave-feedback-component.js' | asset_url }}"></script>
+  <script src="{{ 'sellix-invoice-checkout' | asset_url }}"></script>
   <script src="{{ 'sellix-product-addons-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-bundle-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-count-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-variants-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-purchase-details-component.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-ticket-component.js' | asset_url }}"></script>
 
   {% render_snippet 'App cookie modal' %}
   {% render_snippet 'Card: Group modal' %}
@@ -249,11 +238,5 @@
   {% if global.request.type in ['main', 'shop', 'group', 'contact', 'terms', 'trust', 'feedbacks', 'feedback', 'category'] %}
     {% render_snippet 'Shop message', container_selector=["sellix-header-", layoutId] | join %}
   {% endif %}
-
-  <script type="application/javascript">
-    $(document).ready(function () {
-      window.Sharer.init();
-    });
-  </script>
 </body>
 </html>

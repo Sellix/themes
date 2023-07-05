@@ -14,7 +14,6 @@
     }
 
     setScore(score) {
-      console.log(score);
       this.score = score;
     }
 

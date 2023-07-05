@@ -89,7 +89,7 @@
     </div>
 
     <div class="{{ globalClass }}__cart">
-      {% if global.common.cartEnabled %}
+      {% if global.common.cartEnabled and global.request.type !== 'invoice' %}
         {% render_block 'Cart' %}
       {% endif %}
     </div>

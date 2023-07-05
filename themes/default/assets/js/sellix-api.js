@@ -14,6 +14,28 @@
       });
     }
 
+    async getCart() {
+      return jQuery.ajax({
+        method: 'GET',
+        url: `${this.apiUrl}/api/shop/cart`,
+      });
+    }
+
+    async getProducts(ids) {
+      return jQuery
+        .ajax({
+          method: 'GET',
+          url: `${this.apiUrl}/api/shop/products/${ids.join(',')}`,
+        })
+        .then((response) => {
+          const { status, error } = response;
+          if (status !== 200) {
+            throw new Error(error);
+          }
+          return response;
+        });
+    }
+
     async checkCoupon(data) {
       return jQuery.ajax({
         method: 'POST',
@@ -21,13 +43,6 @@
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         data: JSON.stringify(data),
-      });
-    }
-
-    async getCart() {
-      return jQuery.ajax({
-        method: 'GET',
-        url: `${this.apiUrl}/api/shop/cart`,
       });
     }
 
@@ -134,6 +149,14 @@
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         data: JSON.stringify(data),
+      });
+    }
+
+    async getInvoiceInfo(id, secret) {
+      return jQuery.ajax({
+        method: 'GET',
+        url: `${this.apiUrl}/api/shop/invoices/info/${id}/${secret}`,
+        contentType: 'application/json; charset=utf-8',
       });
     }
 
@@ -245,6 +268,13 @@
       });
     }
 
+    async getFeedback(id) {
+      return jQuery.ajax({
+        method: 'GET',
+        url: `${this.apiUrl}/api/shop/feedback/${id}`,
+      });
+    }
+
     async leaveFeedback(data) {
       return jQuery.ajax({
         method: 'POST',
@@ -317,19 +347,23 @@
                     return resp;
                   })
                   .then(resolve)
-                  .catch(() => {
+                  .catch((e) => {
+                    console.log('CaptchaV3', e);
                     this.requestWithCaptchaV2(action, onSuccess, onError, options)
                       .then(resolve)
                       .catch((e) => {
+                        console.log('CaptchaV2', e);
                         const message = (e && e.message) || 'Captcha request error.';
                         reject(onError(message));
                       });
                   });
               }
             } catch (e) {
+              console.log('CaptchaV3', e);
               this.requestWithCaptchaV2(action, onSuccess, onError, options)
                 .then(resolve)
                 .catch((e) => {
+                  console.log('CaptchaV2', e);
                   const message = (e && e.message) || 'Captcha request error.';
                   reject(onError(message));
                 });

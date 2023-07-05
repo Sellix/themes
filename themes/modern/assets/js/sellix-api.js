@@ -56,16 +56,6 @@
       });
     }
 
-    async checkStoreCode(code, shopName) {
-      return jQuery.ajax({
-        method: 'POST',
-        url: `${this.apiUrl}/api/shop/store/code/check`,
-        contentType: 'application/json; charset=utf-8',
-        dataType: 'json',
-        data: JSON.stringify({ code, shopName, store_domain: `${shopName}.mysellix.io` }),
-      });
-    }
-
     async updateCart(products) {
       return jQuery.ajax({
         method: 'PUT',

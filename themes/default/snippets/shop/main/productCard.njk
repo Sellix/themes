@@ -50,6 +50,8 @@
 <div class="d-flex w-100 position-relative">
   {% if isFree %}
     <div class="sellix-card-badge">{{ 'shop.shared.titles.free' | t }}</div>
+  {% elif product.licensing_enabled %}
+    <div class="sellix-card-badge">License</div>
   {% elif isPayWhatYouWant %}
     <div class="sellix-card-badge">{{ 'shop.main.cards.product.yourPrice' | t }}</div>
   {% else %}
@@ -149,7 +151,7 @@
 <script type='application/javascript'>
   $(document).ready(function () {
     const { shopInfo } = window.SellixContext.get('common');
-    const ipcountry = Cookies.get('ipcountry') || "BUGO";
+    const ipcountry = Cookies.get('ipcountry') || "";
 
     let taxAmount = shopInfo.shop.vat_percentage ? shopInfo.shop.vat_percentage : '';
     if(shopInfo.shop.tax_configuration === "EU" || shopInfo.shop.tax_configuration === "CUSTOM") {
@@ -160,10 +162,10 @@
       }
     }
 
-
     if(shopInfo.shop.display_tax_on_storefront && taxAmount) {
       taxAmount = parseFloat(Number(taxAmount).toFixed(2));
       $('.sellix-card-container-{{ id }} .sellix-card .sellix-card-tax').append(`<span>${taxAmount}% {{ 'shop.main.cards.product.tax' | t }}</span>`);
     }
   });
 </script>
+

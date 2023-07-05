@@ -40,7 +40,7 @@
 </style>
 
 <div class="language-selector-{{ id }} d-none">
-  <select id="language-selector" class="testetetes">
+  <select id="language-selector" class="">
     {% for localeInfo in localesList | sort(false, false, 'title') %}
       <option
         value="{{ localeInfo.code }}"
@@ -54,27 +54,44 @@
 </div>
 
 <script type='application/javascript'>
-  function optionFactory(state) {
+  function optionFactory(state, isResult) {
     const $element = $(state.element);
     const imgUrl = $element.data("imgUrl");
+
     if (!state.id) {
       return state.text;
     }
 
-    return $(`<span style="display: flex; align-items: center; overflow: hidden;">
-        ${imgUrl ? `<img style="height:18px;width: 18px; margin-right: 8px;" src="${imgUrl}" />` : ''}
-        ${state.text}
-      </span>`);
+    let isMobile = (window || {}).innerWidth < 768;
+    let title =  state.text;
+
+    return $(`
+        <div style="display: flex; align-items: center;">
+          ${isMobile ?
+            imgUrl ?
+              `<img alt="${title}" style="height:18px;width: 18px; margin-right: 8px;" src="${imgUrl}" />` :
+              '':
+            !isResult && imgUrl ?
+              `<img alt="${title}" style="height:18px;width: 18px; margin-right: 8px;" src="${imgUrl}" />` :
+              ''
+          }
+          ${isMobile && isResult ? '' : title}
+          ${isResult ? `<svg style="margin-left: 5px; min-width: 21px" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.5 12.5L10.5 7.5L15.5 12.5" stroke="#555D67" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>` : ''}
+        </div>
+    `);
   }
 
   $(document).ready(function() {
     $('#language-selector').select2({
+      dropdownAutoWidth: true,
+      width: 'auto',
+      dropdownParent: $('.language-selector-{{ id }}'),
       minimumResultsForSearch: Infinity,
-      templateSelection: optionFactory,
-      templateResult: optionFactory,
-      escapeMarkup: function(m) {
-        return m;
-      },
+      templateSelection: (state) => optionFactory(state, true),
+      templateResult: (state) => optionFactory(state),
+      escapeMarkup: (m) => m,
       theme: 'sellix-lng-selector',
     })
     .on('select2:select', (e) => {
@@ -92,6 +109,12 @@
 
         window.location.href = `/${pathParts.join('/')}` + (pathParts.length === 1 ? '/' : '');
       }
+    })
+    .on('select2:open', (e) => {
+        $('.language-selector-{{ id }}').find('.select2-dropdown').addClass('animated ' + 'flipIn');
+      })
+    .on('select2:closing', (e) => {
+        $('.language-selector-{{ id }}').find('.select2-dropdown').removeClass('animated ' + 'flipIn');
     });
 
     $('.language-selector-{{ id }}').removeClass('d-none');

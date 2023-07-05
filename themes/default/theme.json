@@ -1470,6 +1470,15 @@
   },
 
   "layouts": {
+    "Invoice": {
+      "name": "Invoice",
+      "path": "layouts/invoice.njk",
+      "is_default": 0,
+      "settings": {
+        "section_order": [],
+        "sections": {}
+      }
+    },
     "Main": {
       "name": "Main",
       "path": "layouts/main.njk",
@@ -2602,64 +2611,31 @@
       "template_type": "INVOICE",
       "is_default": 1,
       "settings": {
+        "class": "template-invoice",
         "section_order": [
-          "Shop info",
-          "Invoice info"
+          "Container: Simple"
         ],
         "sections": {
-          "Shop info": {
-            "name": "Shop info",
+          "Container: Simple": {
+            "name": "Container: Simple",
             "settings": {
               "visible": true,
-              "properties": {
-                "shop_info_font_size": 14,
-                "shop_info_font_color": "brand_color",
-                "shop_name": "",
-                "shop_info_font_weight": 400,
-                "show_shop_info_logo": true,
-                "shop_info_logo_color": "brand_color",
-                "shop_info_custom_logo": null
-              }
-            }
-          },
-          "Invoice info": {
-            "name": "Invoice info",
-            "settings": {
-              "visible": true,
-              "properties": {
-                "right_sidebar_blocks_count": 3
-              },
-              "block_order": [
-                "Invoice products info",
-                "Invoice details",
-                "Invoice product badge",
-                "Invoice track badge"
-              ],
+              "block_order": ["Invoice: Checkout"],
               "blocks": {
-                "Invoice details": {
-                  "name": "Invoice details",
+                "Invoice: Checkout" : {
+                  "name": "Invoice: Checkout",
                   "settings": {
-                    "visible": true
-                  }
-                },
-                "Invoice products info": {
-                  "name": "Invoice products info",
-                  "settings": {
-                    "visible": true
-                  }
-                },
-                "Invoice product badge": {
-                  "name": "Invoice product badge",
-                  "settings": {
-                    "visible": true
-                  }
-                },
-                "Invoice track badge": {
-                  "name": "Invoice track badge",
-                  "settings": {
-                    "visible": true
+                    "visible": true,
+                    "properties": {
+                    }
                   }
                 }
+              },
+              "properties": {
+                "fullwidth": true,
+                "margin_bottom_desktop": 0,
+                "margin_bottom_tablet": 0,
+                "margin_bottom_mobile": 0
               }
             }
           }
@@ -5627,6 +5603,288 @@
           }
         ]
       }
+    },
+    "Container: Simple": {
+      "name": "Container: Simple",
+      "path": "sections/shop/containerSimple.njk",
+      "settings": {
+        "class": "section-container--simple",
+        "blocks": [
+          {
+            "name": "Contact form",
+            "limit": 1
+          },
+          {
+            "name": "Feedback: List",
+            "limit": 1
+          },
+          {
+            "name": "Feedback: Pagination",
+            "limit": 1
+          },
+          {
+            "name": "Feedback: Form",
+            "limit": 1
+          },
+          {
+            "name": "Feedback: Shop stat",
+            "limit": 1
+          },
+          {
+            "name": "Horizontal delimiter",
+            "limit": -1
+          },
+          {
+            "name": "Products filter",
+            "limit": 1
+          },
+          {
+            "name": "Products grid",
+            "limit": 1
+          },
+          {
+            "name": "Product: Addons",
+            "limit": 1
+          },
+          {
+            "name": "Product: Bundles",
+            "limit": 1
+          },
+          {
+            "name": "Product: Description",
+            "limit": 1
+          },
+          {
+            "name": "Product: Gallery",
+            "limit": 1
+          },
+          {
+            "name": "Product: Info",
+            "limit": 1
+          },
+          {
+            "name": "Product: Relations",
+            "limit": 1
+          },
+          {
+            "name": "Product: Warranty",
+            "limit": 1
+          },
+          {
+            "name": "Product: Variants",
+            "limit": 1
+          },
+          {
+            "name": "Purchase details",
+            "limit": 1
+          },
+          {
+            "name": "Shop terms",
+            "limit": 1
+          },
+          {
+            "name": "Trust",
+            "limit": 1
+          }
+        ],
+        "schema": [
+          {
+            "id": "fullwidth",
+            "type": "checkbox",
+            "label": "Fullwidth",
+            "defaultValue": false
+          },
+          {
+            "id": "background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_accent_dark"
+          },
+          {
+            "id": "desktop_screen_properties",
+            "type": "header",
+            "content": "Desktop screen"
+          },
+          {
+            "id": "margin_top_desktop",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin top (desktop)",
+            "defaultValue": 0
+          },
+          {
+            "id": "margin_bottom_desktop",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin bottom (desktop)",
+            "defaultValue": 120
+          },
+          {
+            "id": "padding_top_desktop",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding top (desktop)",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_bottom_desktop",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding bottom (desktop)",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_horiz_desktop",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal (desktop)",
+            "defaultValue": 0
+          },
+          {
+            "id": "tablet_screen_properties",
+            "type": "header",
+            "content": "Tablet screen"
+          },
+          {
+            "id": "margin_top_tablet",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin top (tablet)",
+            "defaultValue": 0
+          },
+          {
+            "id": "margin_bottom_tablet",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin bottom (tablet)",
+            "defaultValue": 60
+          },
+          {
+            "id": "padding_top_tablet",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding top (tablet)",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_bottom_tablet",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding bottom (tablet)",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_horiz_tablet",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal (tablet)",
+            "defaultValue": 0
+          },
+          {
+            "id": "mobile_screen_properties",
+            "type": "header",
+            "content": "Mobile screen"
+          },
+          {
+            "id": "margin_top_mobile",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin top (mobile)",
+            "defaultValue": 0
+          },
+          {
+            "id": "margin_bottom_mobile",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin bottom (mobile)",
+            "defaultValue": 60
+          },
+          {
+            "id": "padding_top_mobile",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding top (mobile)",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_bottom_mobile",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding bottom (mobile)",
+            "defaultValue": 0
+          },
+          {
+            "id": "padding_horiz_mobile",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal (mobile)",
+            "defaultValue": 0
+          }
+        ]
+      }
     }
   },
 
@@ -6133,6 +6391,14 @@
             "defaultValue": null
           }
         ]
+      }
+    },
+    "Invoice: Checkout": {
+      "name": "Invoice: Checkout",
+      "path": "blocks/shop/invoice/invoiceCheckout.njk",
+      "settings": {
+        "class": "block-invoice-checkout",
+        "schema": []
       }
     },
     "Checkout products": {
@@ -9536,6 +9802,10 @@
       "name": "Delivery digital product",
       "path": "snippets/shop/delivery/deliveryDigitalProduct.njk"
     },
+    "Invoice: Checkout" : {
+      "name": "Invoice: Checkout",
+      "path": "snippets/shop/invoice/invoiceCheckout.njk"
+    },
     "Track items icon": {
       "name": "Track items icon",
       "path": "snippets/shared/icons/trackItemsIcon.njk"
@@ -9615,6 +9885,10 @@
       "name": "shop-common-styles.css",
       "path": "assets/css/shop-common-styles.css"
     },
+    "template-invoice.css": {
+      "name": "template-invoice.css",
+      "path": "assets/css/template-invoice.css"
+    },
     "toastify.css": {
       "name": "toastify.css",
       "path": "assets/css/toastify.css"
@@ -9642,6 +9916,18 @@
     "snippet-purchase-details.css": {
       "name": "snippet-purchase-details.css",
       "path": "assets/css/snippet-purchase-details.css"
+    },
+    "sellix-invoice-checkout-component.js": {
+      "name": "sellix-invoice-checkout-component.js",
+      "path": "assets/components/invoice-checkout.js"
+    },
+    "widget-invoice-checkout.js": {
+      "name": "widget-invoice-checkout.js",
+      "path": "assets/packages/widgets/invoice-checkout/invoice-checkout.js"
+    },
+    "widget-invoice-checkout.css": {
+      "name": "widget-invoice-checkout.css",
+      "path": "assets/packages/widgets/invoice-checkout/invoice-checkout.css"
     },
     "react-simple-star-rating.js": {
       "name": "react-simple-star-rating.js",
@@ -9731,10 +10017,6 @@
       "name": "sellix-api.js",
       "path": "assets/js/sellix-api.js"
     },
-    "sellix-feedback-pagination.js": {
-      "name": "sellix-feedback-pagination.js",
-      "path": "assets/js/sellix-feedback-pagination.js"
-    },
     "sellix-table-pagination.js": {
       "name": "sellix-table-pagination.js",
       "path": "assets/js/sellix-table-pagination.js"
@@ -9766,6 +10048,10 @@
     "sellix-feedback-pagination-component.js": {
       "name": "sellix-feedback-pagination-component.js",
       "path": "assets/components/feedback-pagination.js"
+    },
+    "sellix-feedback-pagination.js": {
+      "name": "sellix-feedback-pagination.js",
+      "path": "assets/js/sellix-feedback-pagination.js"
     },
     "sellix-table-pagination-component.js": {
       "name": "sellix-table-pagination-component.js",
