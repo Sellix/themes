@@ -517,10 +517,6 @@ html .sellix-cookie-container, html .sellix-cookie-modal {
   border-color: red !important;
 }
 
-.ReactCollapse--collapse {
-  transition: height 0.5s;
-}
-
 .modal {
   width: 100%;
   max-width: 640px;
@@ -731,10 +727,16 @@ html .sellix-cookie-container, html .sellix-cookie-modal {
 
 .sellix-overlay {
   position: fixed;
+  background: rgba(0, 0, 0, 0.3137254902);
+  width: 100vw;
+  height: 100vh;
   top: 0;
-  left: 0;
   right: 0;
-  bottom: 0;
-  z-index: 9999999;
-  background-color: rgba(3, 10, 22, 0.768627451) !important;
+  cursor: pointer;
+  z-index: 999999999;
+  backdrop-filter: blur(2px);
+}
+
+.ReactCollapse--collapse {
+  transition: height 0.5s;
 }
