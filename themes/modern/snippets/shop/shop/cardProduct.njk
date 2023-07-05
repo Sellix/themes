@@ -3,6 +3,7 @@
 {% set shop = shopInfo.shop %}
 {% set product = args.product %}
 {% set isPlaceholder = not product.image_name %}
+{% set isLicense = product.licensing_enabled %}
 {% set image = cdn_link(product.cloudflare_image_id, 'shopItem') %}
 {% set onHold = product.on_hold | int %}
 {% set isOut = (product.stock | int === 0) %}
@@ -11,6 +12,7 @@
 {% set colors = themeProperties.current_colors %}
 {% set cardProps = themeProperties.cards %}
 {% set properties = args.properties %}
+{% set showBadge = safe_get(properties.show_product_type_badge, true) %}
 
 {% set showStockInfo = safe_get(themeProperties.common.show_stock_info, false) %}
 {% set hideStockCounter = shop.hide_stock_counter %}
@@ -111,11 +113,19 @@
     id="sellix-card-container-{{id}}"
     class="{{ globalClass }}__container {{ localClass }}__container"
   >
-    {% if onHold or isOut %}
+    {% if onHold or isOut or (showBadge and isLicense) %}
       <div class="{{ globalClass }}__badge-container">
-        <div class="{{ globalClass }}__badge icon-badge">
-          {% render_snippet 'Icons: Hand' %}
-        </div>
+        {% if onHold or isOut %}
+          <div class="{{ globalClass }}__badge icon-badge">
+            {% render_snippet 'Icons: Hand' %}
+          </div>
+        {% endif %}
+
+        {% if showBadge and isLicense %}
+          <div class="{{ globalClass }}__badge {{ 'icon-badge' if onHold }}">
+            {{ 'shop.shared.titles.productType.license' | t }}
+          </div>
+        {% endif %}
       </div>
     {% endif %}
 

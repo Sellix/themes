@@ -12,6 +12,7 @@
 {% set onHold = product.on_hold | int %}
 {% set isRatingGold = rating > 4 %}
 
+{% set isLicense = product.licensing_enabled %}
 {% set isFree = product.price_display | float === 0 %}
 {% set isDisabled = product.stock | int === 0 or onHold %}
 {% set isPlaceholder = not product.cloudflare_image_id %}
@@ -107,7 +108,7 @@
   </a>
 
   <div class="{{ globalClass }}__buttons {{ localClass }}__buttons unselectable {{'with-cart' if args.cartEnabled else ''}}">
-    {% if not isDisabled and not isFree %}
+    {% if not isDisabled and not isFree and not isLicense %}
       <div class="{{ globalClass }}__cart-button {{ localClass }}__cart-button">
         {% render_snippet
           'Cart button 1',

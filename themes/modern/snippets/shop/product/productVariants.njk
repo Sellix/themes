@@ -3,6 +3,7 @@
 {% set shop = global.common.shopInfo.shop %}
 {% set colors = themeProperties.current_colors %}
 {% set product = args.product %}
+{% set isLicense = product.licensing_enabled %}
 {% set currency = args.currency %}
 {% set isCart = args.is_cart or false %}
 {% set productVariants = product.price_variants or [] %}
@@ -108,6 +109,11 @@
             <div class="{{ globalClass }}__title {{ localClass }}__title">
               <span>
                 {{ variant.title }}
+                {% if isLicense %}
+                  <span>
+                    ({{ variant.license_period }} {{ 'shared.periods.day' | t({count: variant.license_period | int}) }})
+                  </span>
+                {% endif %}
               </span>
 
               {% if variant.description %}

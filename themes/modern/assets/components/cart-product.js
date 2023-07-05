@@ -13,7 +13,7 @@
       this.$cartRemoveBtn = this.$cart.find('[data-cart-product-minus-button]');
       this.$cartQuantityBtn = this.$cart.find('[data-cart-product-quantity-button]');
 
-      if (this.product.type !== 'SUBSCRIPTION') {
+      if (this.product.type !== 'SUBSCRIPTION' && !this.product.licensing_enabled) {
         this.$cartAddBtn.on('click', (...args) => this.add(...args));
         this.$cartRemoveBtn.on('click', (...args) => this.remove(...args));
         this.$cartQuantityBtn.on('click', (...args) => this.addFirst(...args));
@@ -52,6 +52,7 @@
     }
 
     addFirst(event) {
+      console.log(this.product);
       event.preventDefault();
       const quantity = (this.cart.getItemById(this.product.uniqid) || { quantity: 0 }).quantity || 0;
       if (!quantity) {
