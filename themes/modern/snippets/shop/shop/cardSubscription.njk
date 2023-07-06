@@ -72,15 +72,6 @@
     border-top-left-radius: {{ imageBorderRadius or borderRadius }}px;
     border-top-right-radius: {{ imageBorderRadius or borderRadius }}px;
   }
-
-  @media (hover: hover) {
-    .{{ localClass }} .{{ localClass }}__cart {
-      display: none;
-    }
-    .{{ localClass }}:hover .{{ localClass }}__cart {
-      display: block!important;
-    }
-  }
 </style>
 
 <div class="{{ globalClass }} {{ localClass}} d-flex w-100 position-relative">
@@ -107,7 +98,7 @@
       {% endif %}
 
       <div class="{{ globalClass }}__image {{ localClass }}__image {{'image-placeholder' if isPlaceholder else ''}}">
-        <div class="{{ localClass }}__cart">
+        <div class="{{ globalClass }}__cart {{ localClass }}__cart">
           {% render_snippet 'Cart button 2', product=product %}
         </div>
         {% if isPlaceholder %}

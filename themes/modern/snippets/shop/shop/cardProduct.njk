@@ -89,22 +89,6 @@
     border-top-left-radius: {{ imageBorderRadius or borderRadius }}px;
     border-top-right-radius: {{ imageBorderRadius or borderRadius }}px;
   }
-
-  .{{ localClass }} .{{ localClass }}__cart {
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-  }
-
-  @media (hover: hover) {
-    .{{ localClass }} .{{ localClass }}__cart {
-      display: none;
-    }
-    .{{ localClass }}:hover .{{ localClass }}__cart {
-      display: block!important;
-    }
-  }
 </style>
 
 <div class="{{ globalClass }} {{ localClass }} d-flex w-100 position-relative">
@@ -131,7 +115,7 @@
 
     <div class="{{ globalClass}}__card {{ localClass }}__card unselectable">
       <div class="{{ globalClass}}__image {{ localClass }}__image {{'image-placeholder' if isPlaceholder else ''}}">
-        <div class="{{ localClass }}__cart">
+        <div class="{{ globalClass }}__cart {{ localClass }}__cart">
           {% render_snippet 'Cart button 2', product=product %}
         </div>
         {% if isPlaceholder %}
