@@ -107,7 +107,7 @@
       sellixApi
         .updateCart(products)
         .then(() => {
-          window.location.href = 'checkout';
+          window.location.href = `checkout${window.location.search}`;
         })
         .catch((resp) => {
           console.log(resp);
