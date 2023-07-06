@@ -19,17 +19,18 @@
   }
 
   .{{ localClass}}__search input {
-    border-radius: 0.5rem;
-    padding: 1rem 2.5rem 1rem 1rem;
+    border-radius: .5rem;
+    padding: 0rem 1rem 0rem 2.75rem;
     font-size: {{ inputsProps.common_font_size }}px;
     font-weight: {{ inputsProps.common_font_weight }};
     color: {{ colors[inputsProps.common_font_color] }};
     background-color: {{ colors[properties.input_background_color] }};
-    box-shadow: none;
+    background-color: var(--backgroundAccentLight);
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     border: {{ "1px solid var(--borderColor)" if inputsProps.common_show_border else "none" }};
+    box-shadow: 0px 1px 2px 0px rgba(18, 20, 23, 0.06);
     width: 100%;
     height: {{ inputsProps.common_height }}px;
     font-family: inherit;
@@ -47,7 +48,7 @@
     color: {{ colors[inputsProps.common_font_color] }};
   }
 
-  .{{ localClass }}__search .fas {
+  .{{ localClass }}__search .shop-search-icon {
     color: {{ colors[inputsProps.common_font_color] }} !important;
   }
 
@@ -66,12 +67,15 @@
     justify-content: space-between;
     min-height: {{ inputsProps.common_height }}px;
     background-color: {{ colors[properties.input_background_color] }};
+    background-color: var(--backgroundAccentLight);
+    box-shadow: 0px 1px 2px 0px rgba(18, 20, 23, 0.06);
     border-radius: 0.5rem;
     border: {{ "1px solid var(--borderColor)" if inputsProps.common_show_border else "none" }};
   }
 
   .sellix-dropdown .select2-container--sellix .select2-selection__rendered {
     padding-left: 1rem !important;
+    padding-right: 1rem !important;
     color: {{ colors[inputsProps.common_font_color] }};
     font-size: {{ inputsProps.common_font_size }}px;
     font-weight: {{ inputsProps.common_font_weight }};
@@ -79,9 +83,12 @@
     overflow: hidden;
     text-overflow: ellipsis;
     display: inline;
-    max-width: 90%;
+    width: 100%;
   }
 
+  .sellix-dropdown {
+    position: relative;
+  }
   .sellix-dropdown .select2-container--sellix .select2-selection__arrow b:before {
     position: relative;
     content: '';
@@ -128,7 +135,10 @@
 <div class="{{ globalClass }}__container {{ localClass }}__container">
   {% if shop.search_enabled %}
     <label for="shop-search-{{id}}" class="{{ globalClass }}__item {{ globalClass }}__search {{ localClass }}__search">
-      <i class="fa-regular fas fa-search"></i>
+      <svg class="shop-search-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.80469 13.2C10.7042 13.2 13.0547 10.8494 13.0547 7.94995C13.0547 5.05046 10.7042 2.69995 7.80469 2.69995C4.90519 2.69995 2.55469 5.05046 2.55469 7.94995C2.55469 10.8494 4.90519 13.2 7.80469 13.2Z" stroke="#555D67" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M15.4594 14.85L11.8594 11.25" stroke="#555D67" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
       <input
         type="text"
         id="shop-search-{{id}}"
@@ -139,14 +149,14 @@
   {% endif %}
 
   {% if categories | length %}
-    <div class="sellix-dropdown {{ globalClass }}__item {{ globalClass }}__categories-dropdown {{ localClass }}__categories-dropdown d-none">
-      <select id="category-select-{{id}}" class="category-select"></select>
+    <div id="category-select-{{id}}" class="sellix-dropdown {{ globalClass }}__item {{ globalClass }}__categories-dropdown {{ localClass }}__categories-dropdown d-none">
+      <select id="category-select" class="category-select"></select>
     </div>
   {% endif %}
 
   {% if shop.sort_enabled %}
-    <div class="sellix-dropdown {{ globalClass }}__item {{ globalClass }}__sort-dropdown {{ globalClass }}__local-dropdown d-none">
-      <select id="sort-select-{{id}}" class="sort-select">
+    <div id="sort-select-{{id}}" class="sellix-dropdown {{ globalClass }}__item {{ globalClass }}__sort-dropdown {{ globalClass }}__local-dropdown d-none">
+      <select id="sort-select" class="sort-select">
         <option value="DEFAULT">{{ 'shop.main.productList.filter.default' | t }}</option>
         <option value="PRICE">{{ 'shop.main.productList.filter.price' | t }}</option>
         <option value="NAME">{{ 'shop.main.productList.filter.name' | t }}</option>
@@ -159,6 +169,34 @@
 
 <script type='application/javascript'>
   $(document).ready(function () {
+
+    function optionFactory(state, isResult, isSort) {
+
+      if (isSort && state.id) {
+        return $(`
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              {{ 'shop.main.productList.filter.indexBy' | t }}: ${state.text}
+              ${isResult ? `
+                <svg style="margin-left: 5px; min-width: 21px" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.5 12.5L10.5 7.5L15.5 12.5" stroke="#555D67" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              ` : ''}
+            </div>
+        `);
+      }
+
+      return $(`
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          ${state.text}
+          ${isResult ? `
+            <svg style="margin-left: 5px; min-width: 21px" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.5 12.5L10.5 7.5L15.5 12.5" stroke="#555D67" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          ` : ''}
+        </div>
+    `);
+    }
+
     $('.{{ globalClass }}__item').removeClass('d-none');
 
     let search = '', category = 'all', sort = 'DEFAULT';
@@ -177,7 +215,7 @@
       );
     });
 
-    $('#category-select-{{id}}').select2({
+    $('#category-select').select2({
       data: [
         {
           text: "{{ 'shop.main.productList.filter.allCategories' | t }}",
@@ -194,30 +232,48 @@
       ],
       minimumResultsForSearch: -1,
       theme: 'sellix',
-    }).on('change', (e) => {
-      category = e.target.value;
-      $(document).trigger(
-        'SellixProductListFilterChangeEvent',
-        { name: '{{ filterName }}', search, category, sort },
-      );
-    });
 
-    $('#sort-select-{{id}}').select2({
-      templateSelection: (state) => {
-        if (state.id) {
-          return `{{ 'shop.main.productList.filter.indexBy' | t }}: ${state.text}`;
-        }
-        return state.text;
-      },
+      dropdownAutoWidth: true,
+      width: 'auto',
+      dropdownParent: $('#category-select-{{id}}'),
+      templateSelection: (state) => optionFactory(state, true, false),
+      templateResult: (state) => optionFactory(state, false, false),
+      escapeMarkup: (m) => m,
+    })
+      .on('change', (e) => {
+        category = e.target.value;
+        $(document).trigger('SellixProductListFilterChangeEvent', { name: '{{ filterName }}', search, category, sort });
+      })
+      .on('select2:open', (e) => {
+        $('#category-select-{{ id }}').find('.select2-dropdown').addClass('animated ' + 'flipIn');
+      })
+      .on('select2:closing', (e) => {
+        $('#category-select-{{ id }}').find('.select2-dropdown').removeClass('animated ' + 'flipIn');
+      });
+
+    $('#sort-select').select2({
+      dropdownAutoWidth: true,
+      width: 'auto',
+      dropdownParent: $('#sort-select-{{id}}'),
+      templateSelection: (state) => optionFactory(state, true, true),
+      templateResult: (state) => optionFactory(state, false, false),
+      escapeMarkup: (m) => m,
       minimumResultsForSearch: -1,
       theme: 'sellix',
-    }).on('change', (e) => {
-      sort = e.target.value;
-      $(document).trigger(
-        'SellixProductListFilterChangeEvent',
-        { name: '{{ filterName }}', search, category, sort },
-      );
-    });
+    })
+      .on('change', (e) => {
+        sort = e.target.value;
+        $(document).trigger(
+          'SellixProductListFilterChangeEvent',
+          { name: '{{ filterName }}', search, category, sort },
+        );
+      })
+      .on('select2:open', (e) => {
+        $('#sort-select-{{ id }}').find('.select2-dropdown').addClass('animated ' + 'flipIn');
+      })
+      .on('select2:closing', (e) => {
+        $('#sort-select-{{ id }}').find('.select2-dropdown').removeClass('animated ' + 'flipIn');
+      });
 
     setTimeout(function() {
       {% if global.request.type === 'category' %}

@@ -15,6 +15,7 @@
 {% else %}
   <div class="{{ globalClass }} {{ localClass }} empty {{'static' if args.isGroup else ''}} d-none">
     <div class="{{ globalClass }}__container">
+
       <div class="{{ globalClass }}__button" data-cart-product-minus-button="1">
         {% render_snippet 'Icons: Minus' %}
       </div>
@@ -31,15 +32,17 @@
           {% endif %}
         </span>
       </div>
+
       <div class="{{ globalClass }}__button" data-cart-product-plus-button="1">
         {% render_snippet 'Icons: Plus' %}
       </div>
+
     </div>
   </div>
 
   <script type='application/javascript'>
     $(document).ready(async function () {
-      $('.{{ localClass  }}').removeClass('d-none');
+      $('.{{ localClass }}').removeClass('d-none');
       const product = await SellixContext.getShopProduct('{{ product.uniqid }}');
       let cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
       const cartProdComponent = new SellixCartProductComponent(

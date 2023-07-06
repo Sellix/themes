@@ -5,6 +5,7 @@
 {% set product = global.common.productInfo.product %}
 
 {% set limit = safe_get(properties.grid_limit, 0) | int %}
+{% set customClass = safe_get(properties.custom_class, '') %}
 {% set orderType = safe_get(properties.grid_order_type, 'none') %}
 {% set orderDirection = safe_get(properties.grid_order_direction, 'asc') %}
 {% set filterType = safe_get(properties.grid_filter_type, 'none') %}
@@ -166,7 +167,7 @@
   }
 </style>
 
-<div class="{{ globalClass }}__container {{ localClass }}__container {{ 'grid-one-column' if items.length == 0 }}">
+<div class="{{ globalClass }}__container {{ localClass }}__container {{ 'grid-one-column' if items.length == 0 }} {{ customClass }}">
   <div class="{{ globalClass }}__products {{ localClass }}__products">
     {% set visibleProductsCnt = 0 %}
     {% for item in items %}
@@ -184,29 +185,33 @@
             class="{{ globalClass }}__cards {{ localClass }}__cards"
           >
             {% if item.isInfo %}
+              {% set atLeastOneHasImages = items | atLeastOneHasImages %}
               {% render_snippet
                 'Card: Info',
+                count=items.length,
+                atLeastOneHasImages=atLeastOneHasImages,
                 product=item,
                 theme=theme,
                 properties=cardProps
               %}
-              {% elif item.isSubscription %}
+            {% elif item.isSubscription %}
               {% render_snippet
                 'Card: Subscription',
                 product=item,
                 theme=theme,
                 properties=cardProps
               %}
-              {% elif item.isProduct %}
+            {% elif item.isProduct %}
               {% render_snippet
                 'Card: Product',
                 product=item,
                 theme=theme,
                 properties=cardProps
               %}
-              {% elif item.isGroup %}
+            {% elif item.isGroup %}
               {% render_snippet
                 'Card: Group',
+                count=items.length,
                 group=item,
                 theme=theme,
                 properties=cardProps

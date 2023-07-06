@@ -1,5 +1,6 @@
 {% set id = uid() %}
 {% set product = args.product %}
+{% set dark = args.dark %}
 {% set type = product.type or 'UNDEFINED' %}
 
 {% if type == 'FILE' %}
@@ -13,5 +14,9 @@
 {% elif type == 'SUBSCRIPTION'%}
   {% render_snippet 'Icons: No image Subscription' %}
 {% else %}
-  {% render_snippet 'Icons: No image Default' %}
+  {% if dark %}
+    {% render_snippet 'Icons: No image Default Dark' %}
+  {% else %}
+    {% render_snippet 'Icons: No image Default' %}
+  {% endif %}
 {% endif %}

@@ -5,6 +5,7 @@
 {% set colors = themeProperties.current_colors %}
 {% set cardProps = themeProperties.cards %}
 {% set properties = args.properties %}
+{% set count = args.count %}
 
 {% set showBadge = safe_get(properties.show_product_type_badge, true) %}
 {% set background = safe_get(properties.background_color, cardProps.product_card_background_color) %}
@@ -71,6 +72,41 @@
     border-top-left-radius: {{ imageBorderRadius or borderRadius }}px;
     border-top-right-radius: {{ imageBorderRadius or borderRadius }}px;
   }
+
+  {% if count == 1 %}
+    .group-card-block .snippet-product-card__card {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(50px, 1fr));
+      grid-column-gap: 40px;
+    }
+
+    .group-card-block .snippet-product-card__image {
+      max-width: 240px;
+      min-height: 130px;
+      height: 130px;
+      border-radius: 0.5rem 0 0 0.5rem !important;
+    }
+
+    .group-card-block .snippet-product-card__info {
+      padding-left: 0;
+    }
+
+    .group-card-block .snippet-product-card__image svg {
+      transform: scale(.75);
+    }
+  {% else %}
+  {% endif %}
+
+  .group-card-block .snippet-product-card__image {
+    background: #1B1F23;
+    margin-bottom: 0;
+  }
+
+
+  .group-card-block .snippet-product-card__title {
+    font-weight: 600;
+  }
+
 </style>
 
 <div class="{{ globalClass }} {{ localClass }} d-flex w-100 position-relative">
@@ -86,7 +122,7 @@
     <div class="{{ globalClass }}__card {{ localClass }}__card unselectable">
       <div class="{{ globalClass }}__image {{ localClass }}__image {{'image-placeholder' if isPlaceholder else ''}}">
         {% if isPlaceholder %}
-          {% render_snippet 'Product: Placeholder icon', product=group %}
+          {% render_snippet 'Product: Placeholder icon', product=group, dark=1 %}
         {% else %}
           <img src="{{image}}" alt="{{group.title}}" loading="lazy" />
         {% endif %}
