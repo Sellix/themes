@@ -1,6 +1,6 @@
 {
   "id": "modern",
-  "version": "1.0.24",
+  "version": "1.0.25",
   "is_active": 0,
   "name": "Modern",
   "scheme": "modern",
@@ -2749,9 +2749,7 @@
         "class": "template-feedback-list",
         "section_order": [
           "Breadcrumbs",
-          "Section title 1",
           "Container: Simple 1",
-          "Section title 2",
           "Container: Simple 2",
           "Multi columns 1"
         ],
@@ -2776,34 +2774,34 @@
               }
             }
           },
-          "Section title 1": {
-            "name": "Section title",
-            "settings": {
-              "visible": true,
-              "properties": {
-                "fullwidth": false,
-                "title_content": "shop.feedback.title",
-                "subtitle_content": "Accessible design is good design.",
-                "margin_bottom_desktop": 0,
-                "margin_bottom_tablet": 0,
-                "margin_bottom_mobile": 0,
-                "padding_bottom_desktop": 24,
-                "padding_bottom_tablet": 12,
-                "padding_bottom_mobile": 12
-              }
-            }
-          },
           "Container: Simple 1": {
             "name": "Container: Simple",
             "settings": {
               "visible": true,
               "block_order": [
+                "Title",
                 "Feedback: Shop stat",
                 "Horizontal delimiter 1",
                 "Feedback: List",
                 "Feedback: Pagination"
               ],
               "blocks": {
+                "Title": {
+                  "name": "Title",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "title_content": "shop.feedback.title",
+                      "subtitle_content": "Accessible design is good design.",
+                      "margin_bottom_desktop": 0,
+                      "margin_bottom_tablet": 0,
+                      "margin_bottom_mobile": 0,
+                      "padding_bottom_desktop": 24,
+                      "padding_bottom_tablet": 12,
+                      "padding_bottom_mobile": 12
+                    }
+                  }
+                },
                 "Feedback: Shop stat": {
                   "name": "Feedback: Shop stat",
                   "settings": {
@@ -2851,33 +2849,35 @@
               }
             }
           },
-          "Section title 2": {
-            "name": "Section title",
-            "settings": {
-              "visible": true,
-              "block_order": [],
-              "blocks": {},
-              "properties": {
-                "fullwidth": false,
-                "title_content": "Popular Products",
-                "subtitle_content": "Design is as much an act of spacing as an act of marking.",
-                "margin_bottom_desktop": 0,
-                "margin_bottom_tablet": 0,
-                "margin_bottom_mobile": 0
-              }
-            }
-          },
           "Container: Simple 2": {
             "name": "Container: Simple",
             "settings": {
               "visible": true,
-              "block_order": ["Products grid"],
+              "block_order": ["Title", "Products grid"],
               "blocks": {
+                "Title": {
+                  "name": "Title",
+                  "settings": {
+                    "visible": true,
+                    "block_order": [],
+                    "blocks": {},
+                    "properties": {
+                      "block_group_name": "grid_popular_products",
+                      "title_content": "Popular Products",
+                      "subtitle_content": "Design is as much an act of spacing as an act of marking.",
+                      "margin_bottom_desktop": 0,
+                      "margin_bottom_tablet": 0,
+                      "margin_bottom_mobile": 0
+                    }
+                  }
+                },
                 "Products grid" : {
                   "name": "Products grid",
                   "settings": {
                     "visible": true,
                     "properties": {
+                      "block_group_name": "grid_popular_products",
+                      "visibility": "invisible_group_empty",
                       "container_border_radius": 0,
                       "grid_background_color": "transparent",
                       "grid_limit": 4,
@@ -3037,16 +3037,13 @@
           "Multi columns 1",
           "Shop statistics",
           "Container: Simple 1",
-          "Section title 1",
           "Container: Simple 2",
-          "Section title 2",
+          "Container: Simple 3",
           "Multi columns 2",
           "Multi columns 3",
           "Multi columns 4",
-          "Section title 3",
-          "Container: Simple 3",
-          "Section title 4",
-          "Container: Simple 4"
+          "Container: Simple 4",
+          "Container: Simple 5"
         ],
         "sections": {
           "Multi columns 1": {
@@ -3188,6 +3185,7 @@
                   "settings": {
                     "visible": true,
                     "properties": {
+                      "visibility": "invisible_empty",
                       "container_border_radius": 0,
                       "grid_background_color": "transparent",
                       "custom_class": "info-card-block",
@@ -3224,33 +3222,33 @@
               }
             }
           },
-          "Section title 1": {
-            "name": "Section title",
-            "settings": {
-              "visible": true,
-              "block_order": [],
-              "blocks": {},
-              "properties": {
-                "fullwidth": false,
-                "title_content": "Shop Our Best Sellers",
-                "subtitle_content": "Design is as much an act of spacing as an act of marking.",
-                "margin_bottom_desktop": 0,
-                "margin_bottom_tablet": 0,
-                "margin_bottom_mobile": 0
-              }
-            }
-          },
           "Container: Simple 2": {
             "name": "Container: Simple",
             "settings": {
               "visible": true,
-              "block_order": ["Products grid"],
+              "block_order": ["Title", "Products grid"],
               "blocks": {
+                "Title": {
+                  "name": "Title",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "block_group_name": "grid_best_sellers",
+                      "title_content": "Shop Our Best Sellers",
+                      "subtitle_content": "Design is as much an act of spacing as an act of marking.",
+                      "margin_bottom_desktop": 0,
+                      "margin_bottom_tablet": 0,
+                      "margin_bottom_mobile": 0
+                    }
+                  }
+                },
                 "Products grid" : {
                   "name": "Products grid",
                   "settings": {
                     "visible": true,
                     "properties": {
+                      "block_group_name": "grid_best_sellers",
+                      "visibility": "invisible_group_empty",
                       "container_border_radius": 0,
                       "grid_background_color": "transparent",
                       "grid_limit": 8,
@@ -3278,14 +3276,29 @@
               }
             }
           },
-          "Section title 2": {
-            "name": "Section title",
+          "Container: Simple 3": {
+            "name": "Container: Simple",
             "settings": {
               "visible": true,
+              "block_order": ["Title"],
+              "blocks": {
+                "Title": {
+                  "name": "Title",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "title_content": "Main Features",
+                      "subtitle_content": "Every great design begins with an even better story",
+                      "margin_bottom_desktop": 0,
+                      "margin_bottom_tablet": 0,
+                      "margin_bottom_mobile": 0
+                    }
+                  }
+                }
+              },
               "properties": {
                 "fullwidth": false,
-                "title_content": "Main Features",
-                "subtitle_content": "Every great design begins with an even better story",
+                "background_color": "background_accent_light",
                 "margin_bottom_desktop": 0,
                 "margin_bottom_tablet": 0,
                 "margin_bottom_mobile": 0
@@ -4067,34 +4080,36 @@
               }
             }
           },
-          "Section title 3": {
-            "name": "Section title",
-            "settings": {
-              "visible": true,
-              "properties": {
-                "fullwidth": false,
-                "title_content": "Explore Our Collections",
-                "subtitle_content": "Good design is good business.",
-                "padding_top_desktop": 120,
-                "padding_top_tablet": 60,
-                "padding_top_mobile": 60,
-                "margin_bottom_desktop": 0,
-                "margin_bottom_tablet": 0,
-                "margin_bottom_mobile": 0
-              }
-            }
-          },
-          "Container: Simple 3": {
+          "Container: Simple 4": {
             "name": "Container: Simple",
             "settings": {
               "visible": true,
-              "block_order": ["Products grid"],
+              "block_order": ["Title", "Products grid"],
               "blocks": {
+                "Title": {
+                  "name": "Title",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "block_group_name": "grid_collections",
+                      "title_content": "Explore Our Collections",
+                      "subtitle_content": "Good design is good business.",
+                      "padding_top_desktop": 120,
+                      "padding_top_tablet": 60,
+                      "padding_top_mobile": 60,
+                      "margin_bottom_desktop": 0,
+                      "margin_bottom_tablet": 0,
+                      "margin_bottom_mobile": 0
+                    }
+                  }
+                },
                 "Products grid" : {
                   "name": "Products grid",
                   "settings": {
                     "visible": true,
                     "properties": {
+                      "block_group_name": "grid_collections",
+                      "visibility": "invisible_group_empty",
                       "container_border_radius": 0,
                       "custom_class": "group-card-block",
                       "grid_background_color": "transparent",
@@ -4132,31 +4147,33 @@
               }
             }
           },
-          "Section title 4": {
-            "name": "Section title",
-            "settings": {
-              "visible": true,
-              "properties": {
-                "fullwidth": false,
-                "title_content": "Newly Added",
-                "subtitle_content": "Design is a formal response to a strategic question.",
-                "margin_bottom_desktop": 0,
-                "margin_bottom_tablet": 0,
-                "margin_bottom_mobile": 0
-              }
-            }
-          },
-          "Container: Simple 4": {
+          "Container: Simple 5": {
             "name": "Container: Simple",
             "settings": {
               "visible": true,
-              "block_order": ["Products grid"],
+              "block_order": ["Title", "Products grid"],
               "blocks": {
+                "Title": {
+                  "name": "Title",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "block_group_name": "grid_newly_added",
+                      "title_content": "Newly Added",
+                      "subtitle_content": "Design is a formal response to a strategic question.",
+                      "margin_bottom_desktop": 0,
+                      "margin_bottom_tablet": 0,
+                      "margin_bottom_mobile": 0
+                    }
+                  }
+                },
                 "Products grid" : {
                   "name": "Products grid",
                   "settings": {
                     "visible": true,
                     "properties": {
+                      "block_group_name": "grid_newly_added",
+                      "visibility": "invisible_group_empty",
                       "container_border_radius": 0,
                       "grid_background_color": "transparent",
                       "grid_limit": 4,
@@ -4233,7 +4250,6 @@
         "section_order": [
           "Breadcrumbs",
           "Container: Simple 1",
-          "Section title 2",
           "Container: Simple 2",
           "Multi columns 1"
         ],
@@ -4291,33 +4307,35 @@
               }
             }
           },
-          "Section title 2": {
-            "name": "Section title",
-            "settings": {
-              "visible": true,
-              "block_order": [],
-              "blocks": {},
-              "properties": {
-                "fullwidth": false,
-                "title_content": "Popular Products",
-                "subtitle_content": "Design is as much an act of spacing as an act of marking.",
-                "margin_bottom_desktop": 0,
-                "margin_bottom_tablet": 0,
-                "margin_bottom_mobile": 0
-              }
-            }
-          },
           "Container: Simple 2": {
             "name": "Container: Simple",
             "settings": {
               "visible": true,
-              "block_order": ["Products grid"],
+              "block_order": ["Title", "Products grid"],
               "blocks": {
+                "Title": {
+                  "name": "Title",
+                  "settings": {
+                    "visible": true,
+                    "block_order": [],
+                    "blocks": {},
+                    "properties": {
+                      "block_group_name": "grid_popular_products",
+                      "title_content": "Popular Products",
+                      "subtitle_content": "Design is as much an act of spacing as an act of marking.",
+                      "margin_bottom_desktop": 0,
+                      "margin_bottom_tablet": 0,
+                      "margin_bottom_mobile": 0
+                    }
+                  }
+                },
                 "Products grid" : {
                   "name": "Products grid",
                   "settings": {
                     "visible": true,
                     "properties": {
+                      "block_group_name": "grid_popular_products",
+                      "visibility": "invisible_group_empty",
                       "container_border_radius": 0,
                       "grid_background_color": "transparent",
                       "grid_limit": 4,
@@ -4436,6 +4454,12 @@
           "title": "Hello world",
           "title2": "It demo"
         },
+        "section_order": [
+          "Breadcrumbs",
+          "FAQ",
+          "Container: Simple 1",
+          "Multi columns 1"
+        ],
         "sections": {
           "Breadcrumbs": {
             "name": "Breadcrumbs",
@@ -4528,33 +4552,35 @@
               }
             }
           },
-          "Section title 1": {
-            "name": "Section title",
-            "settings": {
-              "visible": true,
-              "block_order": [],
-              "blocks": {},
-              "properties": {
-                "fullwidth": false,
-                "title_content": "Popular Products",
-                "subtitle_content": "Design is as much an act of spacing as an act of marking.",
-                "margin_bottom_desktop": 0,
-                "margin_bottom_tablet": 0,
-                "margin_bottom_mobile": 0
-              }
-            }
-          },
           "Container: Simple 1": {
             "name": "Container: Simple",
             "settings": {
               "visible": true,
-              "block_order": ["Products grid"],
+              "block_order": ["Title", "Products grid"],
               "blocks": {
+                "Title": {
+                  "name": "Title",
+                  "settings": {
+                    "visible": true,
+                    "block_order": [],
+                    "blocks": {},
+                    "properties": {
+                      "block_group_name": "grid_popular_products",
+                      "title_content": "Popular Products",
+                      "subtitle_content": "Design is as much an act of spacing as an act of marking.",
+                      "margin_bottom_desktop": 0,
+                      "margin_bottom_tablet": 0,
+                      "margin_bottom_mobile": 0
+                    }
+                  }
+                },
                 "Products grid" : {
                   "name": "Products grid",
                   "settings": {
                     "visible": true,
                     "properties": {
+                      "block_group_name": "grid_popular_products",
+                      "visibility": "invisible_group_empty",
                       "container_border_radius": 0,
                       "grid_background_color": "transparent",
                       "grid_limit": 4,
@@ -4662,14 +4688,7 @@
               }
             }
           }
-        },
-        "section_order": [
-          "Breadcrumbs",
-          "FAQ",
-          "Section title 1",
-          "Container: Simple 1",
-          "Multi columns 1"
-        ]
+        }
       }
     },
     "Product/Product": {
@@ -4683,9 +4702,7 @@
           "Breadcrumbs",
           "Container: With sidebar",
           "Container: Simple 1",
-          "Section title 1",
           "Container: Simple 2",
-          "Section title 2",
           "Container: Simple 3"
         ],
         "sections": {
@@ -4936,23 +4953,6 @@
               }
             }
           },
-          "Section title 1": {
-            "name": "Section title",
-            "settings": {
-              "visible": true,
-              "properties": {
-                "fullwidth": false,
-                "title_content": "shop.feedback.title",
-                "subtitle_content": "Accessible design is good design.",
-                "margin_bottom_desktop": 0,
-                "margin_bottom_tablet": 0,
-                "margin_bottom_mobile": 0,
-                "padding_bottom_desktop": 24,
-                "padding_bottom_tablet": 12,
-                "padding_bottom_mobile": 12
-              }
-            }
-          },
           "Container: Simple 2": {
             "name": "Container: Simple",
             "settings": {
@@ -4964,11 +4964,28 @@
                 "margin_bottom_mobile": 0
               },
               "block_order": [
+                "Title",
                 "Product: Feedback stat",
                 "Horizontal delimiter 1",
                 "Product: Relations"
               ],
               "blocks": {
+                "Title": {
+                  "name": "Title",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "title_content": "shop.feedback.title",
+                      "subtitle_content": "Accessible design is good design.",
+                      "margin_bottom_desktop": 0,
+                      "margin_bottom_tablet": 0,
+                      "margin_bottom_mobile": 0,
+                      "padding_bottom_desktop": 24,
+                      "padding_bottom_tablet": 12,
+                      "padding_bottom_mobile": 12
+                    }
+                  }
+                },
                 "Product: Feedback stat": {
                   "name": "Product: Feedback stat",
                   "settings": {
@@ -5004,34 +5021,36 @@
               }
             }
           },
-          "Section title 2": {
-            "name": "Section title",
-            "settings": {
-              "visible": true,
-              "properties": {
-                "fullwidth": false,
-                "title_content": "You Might Also Like",
-                "subtitle_content": "Design is as much an act of spacing as an act of marking.",
-                "margin_bottom_desktop": 0,
-                "margin_bottom_tablet": 0,
-                "margin_bottom_mobile": 0,
-                "padding_bottom_desktop": 24,
-                "padding_bottom_tablet": 12,
-                "padding_bottom_mobile": 12
-              }
-            }
-          },
           "Container: Simple 3": {
             "name": "Container: Simple",
             "settings": {
               "visible": true,
-              "block_order": ["Products grid"],
+              "block_order": ["Title", "Products grid"],
               "blocks": {
+                "Title": {
+                  "name": "Title",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "block_group_name": "grid_same_products",
+                      "title_content": "You Might Also Like",
+                      "subtitle_content": "Design is as much an act of spacing as an act of marking.",
+                      "margin_bottom_desktop": 0,
+                      "margin_bottom_tablet": 0,
+                      "margin_bottom_mobile": 0,
+                      "padding_bottom_desktop": 24,
+                      "padding_bottom_tablet": 12,
+                      "padding_bottom_mobile": 12
+                    }
+                  }
+                },
                 "Products grid" : {
                   "name": "Products grid",
                   "settings": {
                     "visible": true,
                     "properties": {
+                      "visibility": "invisible_group_empty",
+                      "block_group_name": "grid_same_products",
                       "grid_filter_type": "product_group_or_category",
                       "container_border_radius": 0,
                       "grid_background_color": "transparent",
@@ -5073,7 +5092,7 @@
         "section_order": [
           "Breadcrumbs",
           "Product list",
-          "Section title 1",
+          "Container: Simple 1",
           "Multi columns 1",
           "Multi columns 2"
         ],
@@ -5144,14 +5163,29 @@
               }
             }
           },
-          "Section title 1": {
-            "name": "Section title",
+          "Container: Simple 1": {
+            "name": "Container: Simple",
             "settings": {
               "visible": true,
+              "block_order": ["Title"],
+              "blocks": {
+                "Title": {
+                  "name": "Title",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "title_content": "Main Features",
+                      "subtitle_content": "Every great design begins with an even better story",
+                      "margin_bottom_desktop": 0,
+                      "margin_bottom_tablet": 0,
+                      "margin_bottom_mobile": 0
+                    }
+                  }
+                }
+              },
               "properties": {
                 "fullwidth": false,
-                "title_content": "Main Features",
-                "subtitle_content": "Every great design begins with an even better story",
+                "background_color": "background_accent_light",
                 "margin_bottom_desktop": 0,
                 "margin_bottom_tablet": 0,
                 "margin_bottom_mobile": 0
@@ -5680,7 +5714,6 @@
                 "margin_bottom_tablet": 0,
                 "columns_per_row_mobile": 1,
                 "padding_top_mobile": 0,
-                "padding_bottom_mobile": 0,
                 "padding_bottom_mobile": 60,
                 "padding_horiz_mobile": 0,
                 "margin_top_mobile": 0,
@@ -5780,7 +5813,7 @@
         "section_order": [
           "Breadcrumbs",
           "Product list",
-          "Section title 1",
+          "Container: Simple 1",
           "Multi columns 1",
           "Multi columns 2"
         ],
@@ -5842,14 +5875,29 @@
               }
             }
           },
-          "Section title 1": {
-            "name": "Section title",
+          "Container: Simple 1": {
+            "name": "Container: Simple",
             "settings": {
               "visible": true,
+              "block_order": ["Title"],
+              "blocks": {
+                "Title": {
+                  "name": "Title",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "title_content": "Main Features",
+                      "subtitle_content": "Every great design begins with an even better story",
+                      "margin_bottom_desktop": 0,
+                      "margin_bottom_tablet": 0,
+                      "margin_bottom_mobile": 0
+                    }
+                  }
+                }
+              },
               "properties": {
                 "fullwidth": false,
-                "title_content": "Main Features",
-                "subtitle_content": "Every great design begins with an even better story",
+                "background_color": "background_accent_light",
                 "margin_bottom_desktop": 0,
                 "margin_bottom_tablet": 0,
                 "margin_bottom_mobile": 0
@@ -6734,7 +6782,6 @@
         "section_order": [
           "Breadcrumbs",
           "Container: Simple 1",
-          "Section title 1",
           "Container: Simple 2",
           "Multi columns 1"
         ],
@@ -6790,33 +6837,35 @@
               }
             }
           },
-          "Section title 1": {
-            "name": "Section title",
-            "settings": {
-              "visible": true,
-              "block_order": [],
-              "blocks": {},
-              "properties": {
-                "fullwidth": false,
-                "title_content": "Popular Products",
-                "subtitle_content": "Design is as much an act of spacing as an act of marking.",
-                "margin_bottom_desktop": 0,
-                "margin_bottom_tablet": 0,
-                "margin_bottom_mobile": 0
-              }
-            }
-          },
           "Container: Simple 2": {
             "name": "Container: Simple",
             "settings": {
               "visible": true,
-              "block_order": ["Products grid"],
+              "block_order": ["Title", "Products grid"],
               "blocks": {
+                "Title": {
+                  "name": "Title",
+                  "settings": {
+                    "visible": true,
+                    "block_order": [],
+                    "blocks": {},
+                    "properties": {
+                      "block_group_name": "grid_popular_products",
+                      "title_content": "Popular Products",
+                      "subtitle_content": "Design is as much an act of spacing as an act of marking.",
+                      "margin_bottom_desktop": 0,
+                      "margin_bottom_tablet": 0,
+                      "margin_bottom_mobile": 0
+                    }
+                  }
+                },
                 "Products grid" : {
                   "name": "Products grid",
                   "settings": {
                     "visible": true,
                     "properties": {
+                      "block_group_name": "grid_popular_products",
+                      "visibility": "invisible_group_empty",
                       "container_border_radius": 0,
                       "grid_background_color": "transparent",
                       "grid_limit": 4,
@@ -7684,6 +7733,10 @@
             "limit": 1
           },
           {
+            "name": "Title",
+            "limit": 1
+          },
+          {
             "name": "Trust",
             "limit": 1
           }
@@ -7967,6 +8020,10 @@
           },
           {
             "name": "Shop terms",
+            "limit": 1
+          },
+          {
+            "name": "Title",
             "limit": 1
           },
           {
@@ -9818,361 +9875,6 @@
             "unit": "px",
             "label": "Padding bottom (mobile)",
             "defaultValue": 0
-          },
-          {
-            "id": "padding_horiz_mobile",
-            "type": "range",
-            "max": 500,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding horizontal (mobile)",
-            "defaultValue": 0
-          }
-        ]
-      }
-    },
-    "Section title": {
-      "name": "Section title",
-      "path": "sections/shop/sectionTitle.njk",
-      "settings": {
-        "class": "section-title",
-        "blocks": [],
-        "schema": [
-          {
-            "id": "fullwidth",
-            "type": "checkbox",
-            "label": "Fullwidth",
-            "defaultValue": false
-          },
-          {
-            "id": "background_color",
-            "type": "select",
-            "label": "Background color",
-            "options": [
-              {
-                "title": "Main",
-                "value": "background_main_color"
-              },
-              {
-                "title": "Accent (Light)",
-                "value": "background_accent_light"
-              },
-              {
-                "title": "Accent (Dark)",
-                "value": "background_accent_dark"
-              },
-              {
-                "title": "Transparent",
-                "value": "transparent"
-              }
-            ],
-            "defaultValue": "background_accent_light"
-          },
-          {
-            "id": "title_properties",
-            "type": "header",
-            "content": "Title properties"
-          },
-          {
-            "id": "title_content",
-            "type": "text",
-            "label": "Title",
-            "defaultValue": "Put your title here"
-          },
-          {
-            "id": "title_font_color",
-            "type": "select",
-            "label": "Font color",
-            "options": [
-              {
-                "title": "Brand",
-                "value": "brand_color"
-              },
-              {
-                "title": "Light",
-                "value": "light_font_color"
-              },
-              {
-                "title": "Dark",
-                "value": "dark_font_color"
-              }
-            ],
-            "defaultValue": "dark_font_color"
-          },
-          {
-            "id": "title_font_size",
-            "max": 100,
-            "min": 1,
-            "step": 1,
-            "type": "range",
-            "unit": "px",
-            "label": "Font size",
-            "defaultValue": 32
-          },
-          {
-            "id": "title_line_height",
-            "max": 100,
-            "min": 1,
-            "step": 1,
-            "type": "range",
-            "unit": "px",
-            "label": "Line height",
-            "defaultValue": 39
-          },
-          {
-            "id": "title_font_weight",
-            "type": "select",
-            "label": "Font weight",
-            "options": [
-              {
-                "title": "Normal",
-                "value": 400
-              },
-              {
-                "title": "Medium",
-                "value": 500
-              },
-              {
-                "title": "Bold",
-                "value": 600
-              },
-              {
-                "title": "Extra Bold",
-                "value": 700
-              }
-            ],
-            "defaultValue": 500
-          },
-          {
-            "id": "subtitle_properties",
-            "type": "header",
-            "content": "Subtitle properties"
-          },
-          {
-            "id": "subtitle_content",
-            "type": "text",
-            "label": "Subtitle",
-            "defaultValue": "Put your title here"
-          },
-          {
-            "id": "subtitle_font_color",
-            "type": "select",
-            "label": "Font color",
-            "options": [
-              {
-                "title": "Brand",
-                "value": "brand_color"
-              },
-              {
-                "title": "Light",
-                "value": "light_font_color"
-              },
-              {
-                "title": "Dark",
-                "value": "dark_font_color"
-              }
-            ],
-            "defaultValue": "light_font_color"
-          },
-          {
-            "id": "subtitle_font_size",
-            "max": 100,
-            "min": 1,
-            "step": 1,
-            "type": "range",
-            "unit": "px",
-            "label": "Font size",
-            "defaultValue": 16
-          },
-          {
-            "id": "subtitle_line_height",
-            "max": 100,
-            "min": 1,
-            "step": 1,
-            "type": "range",
-            "unit": "px",
-            "label": "Line height",
-            "defaultValue": 24
-          },
-          {
-            "id": "subtitle_font_weight",
-            "type": "select",
-            "label": "Font weight",
-            "options": [
-              {
-                "title": "Normal",
-                "value": 400
-              },
-              {
-                "title": "Medium",
-                "value": 500
-              },
-              {
-                "title": "Bold",
-                "value": 600
-              },
-              {
-                "title": "Extra Bold",
-                "value": 700
-              }
-            ],
-            "defaultValue": 400
-          },
-          {
-            "id": "desktop_screen_properties",
-            "type": "header",
-            "content": "Desktop screen"
-          },
-          {
-            "id": "margin_top_desktop",
-            "type": "range",
-            "max": 500,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Margin top (desktop)",
-            "defaultValue": 0
-          },
-          {
-            "id": "margin_bottom_desktop",
-            "type": "range",
-            "max": 500,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Margin bottom (desktop)",
-            "defaultValue": 60
-          },
-          {
-            "id": "padding_top_desktop",
-            "type": "range",
-            "max": 500,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding top (desktop)",
-            "defaultValue": 60
-          },
-          {
-            "id": "padding_bottom_desktop",
-            "type": "range",
-            "max": 500,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding bottom (desktop)",
-            "defaultValue": 60
-          },
-          {
-            "id": "padding_horiz_desktop",
-            "type": "range",
-            "max": 500,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding horizontal (desktop)",
-            "defaultValue": 0
-          },
-          {
-            "id": "tablet_screen_properties",
-            "type": "header",
-            "content": "Tablet screen"
-          },
-          {
-            "id": "margin_top_tablet",
-            "type": "range",
-            "max": 500,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Margin top (tablet)",
-            "defaultValue": 0
-          },
-          {
-            "id": "margin_bottom_tablet",
-            "type": "range",
-            "max": 500,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Margin bottom (tablet)",
-            "defaultValue": 30
-          },
-          {
-            "id": "padding_top_tablet",
-            "type": "range",
-            "max": 500,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding top (tablet)",
-            "defaultValue": 30
-          },
-          {
-            "id": "padding_bottom_tablet",
-            "type": "range",
-            "max": 500,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding bottom (tablet)",
-            "defaultValue": 30
-          },
-          {
-            "id": "padding_horiz_tablet",
-            "type": "range",
-            "max": 500,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding horizontal (tablet)",
-            "defaultValue": 0
-          },
-          {
-            "id": "mobile_screen_properties",
-            "type": "header",
-            "content": "Mobile screen"
-          },
-          {
-            "id": "margin_top_mobile",
-            "type": "range",
-            "max": 500,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Margin top (mobile)",
-            "defaultValue": 0
-          },
-          {
-            "id": "margin_bottom_mobile",
-            "type": "range",
-            "max": 500,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Margin bottom (mobile)",
-            "defaultValue": 30
-          },
-          {
-            "id": "padding_top_mobile",
-            "type": "range",
-            "max": 500,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding top (mobile)",
-            "defaultValue": 30
-          },
-          {
-            "id": "padding_bottom_mobile",
-            "type": "range",
-            "max": 500,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding bottom (mobile)",
-            "defaultValue": 30
           },
           {
             "id": "padding_horiz_mobile",
@@ -15078,6 +14780,32 @@
             "defaultValue": "none"
           },
           {
+            "id": "visibility",
+            "type": "select",
+            "label": "Visibility",
+            "options":  [
+              {
+                "title": "Visible",
+                "value": "visible"
+              },
+              {
+                "title": "Invisible if empty",
+                "value": "invisible_empty"
+              },
+              {
+                "title": "Block Group invisible is empty",
+                "value": "invisible_group_empty"
+              }
+            ],
+            "defaultValue": "visible"
+          },
+          {
+            "id": "block_group_name",
+            "type": "text",
+            "label": "Block group name",
+            "defaultValue": null
+          },
+          {
             "id": "grid_filter_name",
             "type": "text",
             "label": "Filter name",
@@ -19841,7 +19569,6 @@
       "name": "Ticket chat",
       "path": "blocks/shop/ticket/ticketChat.njk",
       "settings": {
-        "blocks": [],
         "schema": [
           {
             "id": "ticket_container_background_color",
@@ -20027,6 +19754,336 @@
             "type": "checkbox",
             "label": "Show border",
             "defaultValue": true
+          }
+        ]
+      }
+    },
+    "Title": {
+      "name": "Title",
+      "path": "blocks/shop/shared/title.njk",
+      "settings": {
+        "class": "block-title",
+        "schema": [
+          {
+            "id": "block_group_name",
+            "type": "text",
+            "label": "Block group name",
+            "defaultValue": null
+          },
+          {
+            "id": "title_properties",
+            "type": "header",
+            "content": "Title properties"
+          },
+          {
+            "id": "title_content",
+            "type": "text",
+            "label": "Title",
+            "defaultValue": "Put your title here"
+          },
+          {
+            "id": "title_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              },
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              }
+            ],
+            "defaultValue": "dark_font_color"
+          },
+          {
+            "id": "title_font_size",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 32
+          },
+          {
+            "id": "title_line_height",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Line height",
+            "defaultValue": 39
+          },
+          {
+            "id": "title_font_weight",
+            "type": "select",
+            "label": "Font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 600
+              },
+              {
+                "title": "Extra Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 500
+          },
+          {
+            "id": "subtitle_properties",
+            "type": "header",
+            "content": "Subtitle properties"
+          },
+          {
+            "id": "subtitle_content",
+            "type": "text",
+            "label": "Subtitle",
+            "defaultValue": "Put your title here"
+          },
+          {
+            "id": "subtitle_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              },
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              }
+            ],
+            "defaultValue": "light_font_color"
+          },
+          {
+            "id": "subtitle_font_size",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 16
+          },
+          {
+            "id": "subtitle_line_height",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Line height",
+            "defaultValue": 24
+          },
+          {
+            "id": "subtitle_font_weight",
+            "type": "select",
+            "label": "Font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 600
+              },
+              {
+                "title": "Extra Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 400
+          },
+          {
+            "id": "desktop_screen_properties",
+            "type": "header",
+            "content": "Desktop screen"
+          },
+          {
+            "id": "margin_top_desktop",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin top (desktop)",
+            "defaultValue": 0
+          },
+          {
+            "id": "margin_bottom_desktop",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin bottom (desktop)",
+            "defaultValue": 60
+          },
+          {
+            "id": "padding_top_desktop",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding top (desktop)",
+            "defaultValue": 60
+          },
+          {
+            "id": "padding_bottom_desktop",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding bottom (desktop)",
+            "defaultValue": 60
+          },
+          {
+            "id": "padding_horiz_desktop",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal (desktop)",
+            "defaultValue": 0
+          },
+          {
+            "id": "tablet_screen_properties",
+            "type": "header",
+            "content": "Tablet screen"
+          },
+          {
+            "id": "margin_top_tablet",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin top (tablet)",
+            "defaultValue": 0
+          },
+          {
+            "id": "margin_bottom_tablet",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin bottom (tablet)",
+            "defaultValue": 30
+          },
+          {
+            "id": "padding_top_tablet",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding top (tablet)",
+            "defaultValue": 30
+          },
+          {
+            "id": "padding_bottom_tablet",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding bottom (tablet)",
+            "defaultValue": 30
+          },
+          {
+            "id": "padding_horiz_tablet",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal (tablet)",
+            "defaultValue": 0
+          },
+          {
+            "id": "mobile_screen_properties",
+            "type": "header",
+            "content": "Mobile screen"
+          },
+          {
+            "id": "margin_top_mobile",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin top (mobile)",
+            "defaultValue": 0
+          },
+          {
+            "id": "margin_bottom_mobile",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Margin bottom (mobile)",
+            "defaultValue": 30
+          },
+          {
+            "id": "padding_top_mobile",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding top (mobile)",
+            "defaultValue": 30
+          },
+          {
+            "id": "padding_bottom_mobile",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding bottom (mobile)",
+            "defaultValue": 30
+          },
+          {
+            "id": "padding_horiz_mobile",
+            "type": "range",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal (mobile)",
+            "defaultValue": 0
           }
         ]
       }
@@ -20861,6 +20918,10 @@
       "name": "block-store-code.css",
       "path": "assets/css/block-store-code.css"
     },
+    "block-title.css": {
+      "name": "block-title.css",
+      "path": "assets/css/block-title.css"
+    },
     "column-background-1.jpg": {
       "name": "column-background-1.jpg",
       "path": "assets/media/column-background-1.jpg"
@@ -20992,10 +21053,6 @@
     "section-product-list.css": {
       "name": "section-product-list.css",
       "path": "assets/css/section-product-list.css"
-    },
-    "section-title.css": {
-      "name": "section-title.css",
-      "path": "assets/css/section-title.css"
     },
     "select2.css": {
       "name": "select2.css",

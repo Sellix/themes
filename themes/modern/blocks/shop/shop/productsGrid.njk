@@ -4,6 +4,7 @@
 {% set theme = global.common.theme %}
 {% set product = global.common.productInfo.product %}
 
+{% set visibility = safe_get(properties.visibility, 'visible') %}
 {% set limit = safe_get(properties.grid_limit, 0) | int %}
 {% set customClass = safe_get(properties.custom_class, '') %}
 {% set orderType = safe_get(properties.grid_order_type, 'none') %}
@@ -16,6 +17,7 @@
 {% set showProduct = safe_get(properties.grid_show_product, true) %}
 {% set showSubscription = safe_get(properties.grid_show_subscription, true) %}
 {% set showViewAllButton = safe_get(properties.grid_show_view_all_button, false) %}
+
 
 {% set products = [] %}
 {% if expandGroup %}
@@ -235,7 +237,7 @@
   {% endif %}
 
   <div
-    class="empty-message-container empty-search {{ localClass}}__empty-container {{ globalClass}}__empty-container {{ 'd-none' if items.length > 0 }}"
+    class="empty-message-container empty-search {{ localClass}}__empty-container {{ globalClass}}__empty-container {{ 'd-none' if items.length > 0 or (items.length === 0 and visibility !== 'visible') }}"
   >
     {% render_snippet 'Icons: No products' %}
 
@@ -250,90 +252,110 @@
   </div>
 </div>
 
-<script type='application/javascript'>
-  $(document).ready(async function () {
-    const sortByDefault = (a, b) => items.findIndex((it) => it.uniqid === a.uniqid) - items.findIndex((it) => it.uniqid === b.uniqid);
-    const sortByPrice = (a, b) => (a.min_price_item ? +a.min_price_item.price_display : 9999999) - (b.min_price_item ? +b.min_price_item.price_display : 9999999);
-    const sortByName = (a, b) => a.title < b.title ? -1 : a.title > b.title ? 1 : 0;
-    const sortByType = (a, b) => b.isGroup - a.isGroup;
-    const sortByStock = (a, b) => b.stock - a.stock;
+{% if items | length > 0 %}
+  <script type='application/javascript'>
+    $(document).ready(async function () {
+      const sortByDefault = (a, b) => items.findIndex((it) => it.uniqid === a.uniqid) - items.findIndex((it) => it.uniqid === b.uniqid);
+      const sortByPrice = (a, b) => (a.min_price_item ? +a.min_price_item.price_display : 9999999) - (b.min_price_item ? +b.min_price_item.price_display : 9999999);
+      const sortByName = (a, b) => a.title < b.title ? -1 : a.title > b.title ? 1 : 0;
+      const sortByType = (a, b) => b.isGroup - a.isGroup;
+      const sortByStock = (a, b) => b.stock - a.stock;
 
-    const sortFunc = {
-      "DEFAULT": sortByDefault,
-      "PRICE": sortByPrice,
-      "NAME": sortByName,
-      "TYPE": sortByType,
-      "STOCK": sortByStock
-    };
+      const sortFunc = {
+        "DEFAULT": sortByDefault,
+        "PRICE": sortByPrice,
+        "NAME": sortByName,
+        "TYPE": sortByType,
+        "STOCK": sortByStock
+      };
 
-    const items = filterItems(await SellixContext.getShopItems());
-    const categories = SellixContext.getShopCategories();
-    const itemsMap = items.reduce((m, item) => ({...m, [item.uniqid]: item}), {});
+      const items = filterItems(await SellixContext.getShopItems());
+      const categories = SellixContext.getShopCategories();
+      const itemsMap = items.reduce((m, item) => ({...m, [item.uniqid]: item}), {});
 
-    function filterItems(items) {
-      return items.filter((item) => {
-        return (item.isGroup && {{ showGroup }}) || (item.isInfo && {{ showInfo }}) ||
-          (item.isProduct && {{ showProduct }}) || (item.isSubscription && {{ showSubscription }})
-      })
-    }
-
-    function filterProducts({ search, category, sort }) {
-      search = search || '';
-
-      let filteredItems = items;
-
-      if (category !== 'all') {
-        const categoryObj = categories.filter((cat) => cat.uniqid === category)?.[0];
-        if (categoryObj) {
-          filteredItems = [...categoryObj.products_bound, ...categoryObj.groups_bound];
-        }
+      function filterItems(items) {
+        return items.filter((item) => {
+          return (item.isGroup && {{ showGroup }}) || (item.isInfo && {{ showInfo }}) ||
+            (item.isProduct && {{ showProduct }}) || (item.isSubscription && {{ showSubscription }})
+        })
       }
 
-      filteredItems = filteredItems.filter(item => {
-        let hasProduct = false;
-        if (item.isGroup) {
-          if (item.products_bound && item.products_bound.length) {
-            hasProduct = item.products_bound.find(
-              ({ title }) => title.toLowerCase().includes(search.toLowerCase())
-            );
+      function filterProducts({ search, category, sort }) {
+        search = search || '';
+
+        let filteredItems = items;
+
+        if (category !== 'all') {
+          const categoryObj = categories.filter((cat) => cat.uniqid === category)?.[0];
+          if (categoryObj) {
+            filteredItems = [...categoryObj.products_bound, ...categoryObj.groups_bound];
           }
         }
 
-        return hasProduct || item.title.toLowerCase().includes(search.toLowerCase());
-      });
+        filteredItems = filteredItems.filter(item => {
+          let hasProduct = false;
+          if (item.isGroup) {
+            if (item.products_bound && item.products_bound.length) {
+              hasProduct = item.products_bound.find(
+                ({ title }) => title.toLowerCase().includes(search.toLowerCase())
+              );
+            }
+          }
 
-      filteredItems = filterItems(filteredItems);
-
-      const filteredItemIds = filteredItems.map(item => item.uniqid);
-      $('.{{ localClass }}__cards[data-product-id]')
-        .hide()
-        .filter((idx, el) => filteredItemIds.includes($(el).data('product-id')))
-        .show();
-
-      if (filteredItemIds.length === 0) {
-        $('.{{ localClass }}__products').addClass('grid-one-column')
-        $('.{{ localClass }}__empty-container.empty-search').removeClass('d-none');
-      } else {
-        $('.{{ localClass }}__products').removeClass('grid-one-column')
-        $('.{{ localClass }}__empty-container').addClass('d-none');
-      }
-
-      if (sort) {
-        const sf = sortFunc[sort] ?? sortFunc.DEFAULT;
-        const sorted = $('.{{ localClass }}__cards[data-product-id]').detach().sort((a, b) => {
-          const prA = itemsMap[$(a).data('product-id')];
-          const prB = itemsMap[$(b).data('product-id')];
-          return sf(prA, prB);
+          return hasProduct || item.title.toLowerCase().includes(search.toLowerCase());
         });
-        $('.{{ localClass }}__products').append(sorted);
-      }
-    }
 
-    $(document).on('SellixProductListFilterChangeEvent', (e, eventInfo) => {
-      const { name } = eventInfo;
-      if (name === '{{ filterName }}') {
-        filterProducts(eventInfo);
+        filteredItems = filterItems(filteredItems);
+
+        const filteredItemIds = filteredItems.map(item => item.uniqid);
+        $('.{{ localClass }}__cards[data-product-id]')
+          .hide()
+          .filter((idx, el) => filteredItemIds.includes($(el).data('product-id')))
+          .show();
+
+        if (filteredItemIds.length === 0) {
+          $('.{{ localClass }}__products').addClass('grid-one-column')
+          $('.{{ localClass }}__empty-container.empty-search').removeClass('d-none');
+        } else {
+          $('.{{ localClass }}__products').removeClass('grid-one-column')
+          $('.{{ localClass }}__empty-container').addClass('d-none');
+        }
+
+        if (sort) {
+          const sf = sortFunc[sort] ?? sortFunc.DEFAULT;
+          const sorted = $('.{{ localClass }}__cards[data-product-id]').detach().sort((a, b) => {
+            const prA = itemsMap[$(a).data('product-id')];
+            const prB = itemsMap[$(b).data('product-id')];
+            return sf(prA, prB);
+          });
+          $('.{{ localClass }}__products').append(sorted);
+        }
       }
+
+      $(document).on('SellixProductListFilterChangeEvent', (e, eventInfo) => {
+        const { name } = eventInfo;
+        if (name === '{{ filterName }}') {
+          filterProducts(eventInfo);
+        }
+      });
     });
-  });
-</script>
+  </script>
+{% else %}
+
+  <script type="application/javascript">
+    switch ('{{ properties.visibility }}') {
+      case 'invisible_empty':
+        break;
+      case 'invisible_group_empty':
+        const event = new CustomEvent(
+          'SellixHideBlockGroupEvent',
+          { detail: { groupName: '{{ properties.block_group_name }}' } },
+        );
+        document.dispatchEvent(event);
+        break;
+      default:
+        break
+    }
+  </script>
+
+{% endif %}
