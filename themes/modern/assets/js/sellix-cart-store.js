@@ -99,6 +99,18 @@
       return { product, quantity, isNew };
     }
 
+    set(product, quantity = 1, updateBackend = true) {
+      const item = this.getItemById(product.uniqid);
+      if (item) {
+        if (quantity <= 0) {
+          return this.remove(product.id, item.quantity);
+        }
+        return this.add(product, quantity - item.quantity, updateBackend);
+      } else if (quantity >= 1) {
+        return this.add(product, quantity, updateBackend);
+      }
+    }
+
     addMany(products) {
       const updatedProducts = products.map(({ product, quantity }) => this.add(product, quantity, false));
 

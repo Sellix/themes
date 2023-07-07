@@ -84,7 +84,6 @@
 
     removeProduct(event) {
       const productId = jQuery(event.delegateTarget).data('product-id');
-      console.log('Remove Product', productId);
       this.cart.remove(productId, 0);
       this.checkItems();
     }

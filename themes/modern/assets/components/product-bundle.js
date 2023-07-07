@@ -67,6 +67,8 @@
       return productsLeft
         .map((product) => {
           const { uniqid, quantity_min, on_hold, stock } = product;
+          const isSubscription = product.type === 'SUBSCRIPTION';
+          const isLicense = product.licensing_enabled;
 
           const quantity = (this.cart.getItemById(uniqid) || {}).quantity || 0;
           const valid = sellixHelper.isValidCount({
@@ -74,7 +76,7 @@
             count: parseInt(quantity) + 1,
           });
 
-          if (+stock === 0 || !!+on_hold || +product.price_display === 0 || product.type === 'SUBSCRIPTION') {
+          if (+stock === 0 || !!+on_hold || +product.price_display === 0 || isSubscription || isLicense) {
             return null;
           }
 

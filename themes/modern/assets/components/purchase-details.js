@@ -152,13 +152,7 @@
     };
 
     onAddToCart = (uniqid, quantity) => {
-      let cartProduct;
-      if (this.purchaseType === 'checkout') {
-        cartProduct = this.cart.getItemById(uniqid);
-      } else if (this.purchaseType === 'product' && this.product.uniqid === uniqid) {
-        cartProduct = this.product;
-      }
-
+      const cartProduct = this.getProduct(uniqid);
       if (!cartProduct) {
         return;
       }
@@ -168,6 +162,15 @@
       } else if (quantity < 0) {
         this.cart.remove(uniqid, quantity);
       }
+    };
+
+    onUpdateCart = (uniqid, quantity) => {
+      const cartProduct = this.getProduct(uniqid);
+      if (!cartProduct) {
+        return;
+      }
+
+      this.cart.set(cartProduct, quantity);
     };
 
     onChangeData = ({ type, value }) => {
@@ -209,6 +212,7 @@
           sellixHelper: window.sellixHelper,
           sellixI18Next: window.sellixI18Next,
           onAddToCart: this.onAddToCart,
+          onUpdateCart: this.onUpdateCart,
           onApplyCoupon: this.onApplyCoupon,
           onCreateInvoice: this.onCreateInvoice,
           onShowMessage: this.onShowMessage,
@@ -227,6 +231,16 @@
         }),
         this.domContainer,
       );
+    }
+
+    getProduct(uniqid) {
+      if (this.purchaseType === 'checkout') {
+        return this.cart.getItemById(uniqid);
+      } else if (this.purchaseType === 'product' && this.product.uniqid === uniqid) {
+        return this.product;
+      }
+
+      return;
     }
   }
 
