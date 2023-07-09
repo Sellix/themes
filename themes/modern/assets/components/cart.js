@@ -102,7 +102,9 @@
     }
 
     checkout() {
-      const products = this.cart.getItems().map(({ uniqid, quantity }) => ({ uniqid, quantity }));
+      const products = this.cart
+        .getItems()
+        .map(({ uniqid, quantity, customerPrice }) => ({ uniqid, quantity, customerPrice }));
       sellixApi
         .updateCart(products)
         .then(() => {
@@ -131,10 +133,19 @@
           let itemsForRendering = newProducts.map((product, key) => {
             const hasImage = !!product.cloudflare_image_id;
             const equalQuantity = product.quantity_min === product.quantity_max;
-            const price = +product.price_display;
             const inStock = product.stock === -1 ? '∞' : product.stock;
             const isValidPlus = sellixHelper.isValidCount({ ...product, count: product.quantity + 1 });
+            const isPayWhatYouWant = Boolean(product.pay_what_you_want);
             const isFree = +product.price_display === 0 && product.pay_what_you_want !== 1;
+
+            let price = +product.price_display,
+              priceWithDiscount = product.price_with_discount;
+
+            if (isPayWhatYouWant && typeof product.customerPrice !== 'undefined') {
+              price = product.customerPrice;
+              priceWithDiscount = product.price_discount ? price - price * product.price_discount / 100 : price;
+            }
+
             return {
               id: this.selector,
               key,
@@ -147,7 +158,7 @@
                 ),
                 currency_title: SellixContext.getCurrencyList()[product.currency],
                 price: `${price.toFixed(2)}`,
-                price_with_discount: `${product.price_with_discount.toFixed(2)}`,
+                price_with_discount: `${priceWithDiscount.toFixed(2)}`,
               },
               isValidPlus,
               equalQuantity,

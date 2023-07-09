@@ -52,7 +52,6 @@
     }
 
     addFirst(event) {
-      console.log(this.product);
       event.preventDefault();
       const quantity = (this.cart.getItemById(this.product.uniqid) || { quantity: 0 }).quantity || 0;
       if (!quantity) {

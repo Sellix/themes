@@ -152,25 +152,25 @@
     };
 
     onAddToCart = (uniqid, quantity) => {
-      const cartProduct = this.getProduct(uniqid);
-      if (!cartProduct) {
+      const product = this.getProduct(uniqid);
+      if (!product) {
         return;
       }
 
       if (quantity > 0) {
-        this.cart.add(cartProduct, quantity);
+        this.cart.add(product, quantity);
       } else if (quantity < 0) {
         this.cart.remove(uniqid, quantity);
       }
     };
 
-    onUpdateCart = (uniqid, quantity) => {
-      const cartProduct = this.getProduct(uniqid);
-      if (!cartProduct) {
+    onUpdateCart = (uniqid, updateBody) => {
+      const product = this.getProduct(uniqid);
+      if (!product) {
         return;
       }
 
-      this.cart.set(cartProduct, quantity);
+      this.cart.set(product, updateBody);
     };
 
     onChangeData = ({ type, value }) => {

@@ -45,7 +45,11 @@
     }
 
     update() {
-      const products = this.getItems().map(({ uniqid, quantity }) => ({ uniqid, quantity }));
+      const products = this.getItems().map(({ uniqid, quantity, customerPrice }) => ({
+        uniqid,
+        quantity,
+        customerPrice,
+      }));
       return sellixApi.updateCart(products).catch((resp) => {
         console.log(resp);
         if (resp.responseJSON) {
@@ -87,44 +91,50 @@
 
       this.state = updatedState;
 
+      const action = isNew ? 'insert' : 'update';
       if (updateBackend) {
-        this.update().then(() => {
-          jQuery(document).trigger('SellixCartUpdateEvent', {
-            action: isNew ? 'insert' : 'update',
-            productId: product.uniqid,
-          });
-        });
+        this.updateBackend([{ action, productId: product.uniqid }]);
       }
 
-      return { product, quantity, isNew };
+      return { product, quantity, action };
     }
 
-    set(product, quantity = 1, updateBackend = true) {
-      const item = this.getItemById(product.uniqid);
-      if (item) {
-        if (quantity <= 0) {
-          return this.remove(product.id, item.quantity);
+    set(product, { quantity, customerPrice }) {
+      let action;
+      if (typeof quantity !== 'undefined') {
+        const item = this.getItemById(product.uniqid);
+        if (item) {
+          if (quantity <= 0) {
+            this.remove(product.id, item.quantity, false);
+            action = 'delete';
+          } else {
+            const { action: newAction } = this.add(product, quantity - item.quantity, false);
+            action = newAction;
+          }
+        } else if (quantity >= 1) {
+          const { action: newAction } = this.add(product, quantity, false);
+          action = newAction;
         }
-        return this.add(product, quantity - item.quantity, updateBackend);
-      } else if (quantity >= 1) {
-        return this.add(product, quantity, updateBackend);
       }
+
+      if (typeof customerPrice !== 'undefined') {
+        // temporarly commented
+        // const item = this.getItemById(product.uniqid);
+        // if (item) {
+        //   this.state = this.state.map((item) => (item.uniqid === product.uniqid ? { ...item, customerPrice } : item));
+        //   action = action || 'update';
+        // }
+      }
+
+      this.updateBackend([{ action, productId: product.uniqid }]);
     }
 
     addMany(products) {
       const updatedProducts = products.map(({ product, quantity }) => this.add(product, quantity, false));
-
-      return this.update().then(() => {
-        for (const { product, isNew } of updatedProducts) {
-          jQuery(document).trigger('SellixCartUpdateEvent', {
-            action: isNew ? 'insert' : 'update',
-            productId: product.uniqid,
-          });
-        }
-      });
+      this.updateBackend(updatedProducts.map(({ product, action }) => ({ action, productId: product.uniqid })));
     }
 
-    remove(id, quantity = 1) {
+    remove(id, quantity = 1, updateBackend = true) {
       if (!this.isInited) {
         this.defferedActions.push({ type: 'remove', id, quantity });
         return;
@@ -149,18 +159,26 @@
         })
         .filter((item) => item.quantity > 0);
 
-      this.update().then(() => {
-        jQuery(document).trigger('SellixCartUpdateEvent', {
-          action: isDeleted ? 'delete' : 'update',
-          productId: id,
-        });
-      });
+      if (updateBackend) {
+        this.updateBackend([{ action: isDeleted ? 'delete' : 'update', productId: id }]);
+      }
     }
 
     clear() {
       this.state = [];
+      return this.updateBackend([{ action: 'delete' }]);
+    }
+
+    updateBackend(events) {
       return this.update().then(() => {
-        jQuery(document).trigger('SellixCartUpdateEvent', { action: 'delete' });
+        let eventBody;
+        for (const { productId, action } of events) {
+          eventBody = { action };
+          if (productId) {
+            eventBody.productId = productId;
+          }
+          jQuery(document).trigger('SellixCartUpdateEvent', eventBody);
+        }
       });
     }
   }
