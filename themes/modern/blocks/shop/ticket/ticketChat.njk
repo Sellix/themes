@@ -1,62 +1,91 @@
-{% set id = uid() %}
 {% set messageId = uid() %}
 {% set submitId = uid() %}
-{% set title = global.common.ticketInfo.data.query.title %}
-{% set invoice_id = global.common.ticketInfo.data.query.invoice_id %}
-{% set messages = global.common.ticketInfo.data.query.messages %}
+{% set ticket = global.common.ticketInfo.data.query %}
+{% set title = ticket.title %}
+{% set invoice_id = ticket.invoice_id %}
+{% set messages = ticket.messages %}
 {% set colors = themeProperties.current_colors %}
 
-<div
-  class="reply-screen shop animated fadeIn"
-  style="margin-bottom: 1rem; border-radius: 0.5rem"
->
-  <div
-    class="container"
-    style="background: {{ colors[properties.ticket_container_background_color] }}; border: {{ "1px solid var(--borderColor)" if properties.ticket_container_show_border else "none" }}; padding: {{ properties.ticket_container_padding }}px"
-  >
-    <div class="screen-header">
-      <div class="screen-title-container" style="justify-content: {{ properties.ticket_title_text_align }};">
-        <div>
-          <h1
-            class="screen-title back"
-            style="color: {{ colors[properties.ticket_title_font_color] }}; font-size: {{ properties.ticket_title_font_size }}px; font-weight: {{ properties.ticket_title_font_weight }};"
-          >
-            {{ 'shop.ticket.title' | t }}: <span style="font-weight: 400; font-size: 20px; margin-left: 1rem;">{{title}}</span>
-          </h1>
-        </div>
+{% set bgColor = safe_get(properties.container_background_color, 'background_accent_light') %}
+{% set showBorder = safe_get(properties.container_show_border, true) %}
+{% set borderRadius = safe_get(properties.container_border_radius, 8) %}
+{% set paddingVert = safe_get(properties.container_padding_vert, 16) %}
+{% set paddingHoriz = safe_get(properties.container_padding_horiz, 20) %}
+{% set shadow = safe_get(properties.container_shadow, 'none') %}
+
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }}__container {
+    background: {{ colors[bgColor] }};
+    border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
+    border-radius: {{ borderRadius }}px;
+    box-shadow: {{ shadow }};
+  }
+
+  .{{ localClass }}__header {
+    padding: {{ paddingVert }}px {{ paddingHoriz }}px;
+  }
+
+  .{{ localClass }}__title-container {
+    justify-content: {{ properties.title_text_align }};
+  }
+
+  .{{ localClass }}__title {
+    color: {{ colors[properties.title_font_color] }};
+    font-size: {{ properties.title_font_size }}px;
+    font-weight: {{ properties.title_font_weight }};
+  }
+</style>
+
+<div class="animated fadeIn {{ globalClass }}__container {{ localClass }}__container">
+  <div class="{{ globalClass }}__header">
+    <div class="{{ globalClass }}__title-container {{ localClass }}__title-container">
+      <div class="{{ globalClass }}__title {{ localClass }}__title">
+        <div>{{ 'shop.ticket.chatTitle' | t }}</div>
+        <div>{{title}}</div>
       </div>
     </div>
+  </div>
 
-    <div class="reply-screen-container">
-      <form
-        id="ticket-form-{{id}}"
-        class="reply-screen-form {{'invoice w-70' if invoice_id else 'w-100'}}"
-        style="background: {{ colors[properties.ticket_chat_background] }}; border: {{ "1px solid var(--borderColor)" if properties.ticket_chat_show_border else "none" }};"
-      >
-        <div class="reply-screen-message-container">
-          {% for item in messages %}
-            {% set role = item.role %}
-            {% set message = item.message %}
-            {% set created_at = item.created_at %}
-            {% render_snippet 'Ticket Message', role=role, message=message, created_at=created_at, properties=properties %}
-          {% endfor %}
-        </div>
+  <div class="{{ globalClass }}__chat-container">
+    <form
+      id="ticket-form-{{id}}"
+      class="{{ globalClass}}__chat-form {{ localClass}}__chat-form"
+    >
+      <div class="message-container {{ globalClass }}__chat-messages">
+        {% for item in messages %}
+          {% set role = item.role %}
+          {% set message = item.message %}
+          {% set created_at = item.created_at %}
+          {% render_snippet
+            'Ticket Message',
+            customer_email=ticket.customer_email,
+            role=role,
+            message=message,
+            created_at=created_at,
+            properties=properties
+          %}
+        {% endfor %}
+      </div>
 
-        <div class="reply-screen-send-form-container">
-            {% render_snippet 'Shared: Text area',
-              selector=messageId,
-              name="message",
-              placeholder=('shop.ticket.messagePlaceholder' | t),
-              wrapperclass="reply-screen-send-form",
-              rows=2, textAreaHeight="66px",
-              autoresize=true,
-              wrapperClassName="reply-screen-send-form",
-              parentHeight="66px"
-            %}
-            <i class="fa-solid fa-paper-plane-top cursor-pointer" id="ticket-submit-{{submitId}}"></i>
-        </div>
-      </form>
-    </div>
+      <div class="{{ globalClass }}__chat-input">
+        {% render_snippet 'Shared: Text area',
+          selector=messageId,
+          name="message",
+          placeholder=('shop.ticket.messagePlaceholder' | t),
+          wrapperclass="reply-screen-send-form",
+          rows=2, textAreaHeight="66px",
+          autoresize=true,
+          wrapperClassName="reply-screen-send-form",
+          parentHeight="66px",
+          autosize=false
+        %}
+        <i id="ticket-submit-{{submitId}}">
+          {% render_snippet 'Icons: Send message' %}
+        </i>
+      </div>
+    </form>
   </div>
 </div>
 

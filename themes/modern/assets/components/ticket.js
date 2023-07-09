@@ -2,7 +2,7 @@
   class TicketComponent {
     constructor(selector, messageId, submitId, uniqId, renderOptions) {
       this.$form = jQuery(selector);
-      this.$messageContainer = this.$form.find('.reply-screen-message-container');
+      this.$messageContainer = this.$form.find('.message-container');
       this.$submitButton = this.$form.find(`#ticket-submit-${submitId}`);
       this.uniqId = uniqId;
       this.renderOptions = renderOptions;
@@ -17,14 +17,15 @@
       window.addEventListener('focus', () => this.getTicket());
     }
 
-    renderTicket(message, role, date) {
+    renderTicket(customerEmail, message, role, date) {
       return sellixApi
         .renderComponent(
           {
             ...this.renderOptions,
             path: [this.renderOptions.path, ['snippet', 'Ticket Message'].join(':')].join(';'),
           },
-          { role, created_at: date, message },
+          SellixContext.get('request'),
+          { customer_email: customerEmail, role, created_at: date, message },
         )
         .then((resp) => {
           const $component = $(resp.html);
@@ -44,9 +45,12 @@
         .getTicket(this.uniqId)
         .then(async (resp) => {
           if (resp.status === 200) {
-            for (let newMessage of resp.data.query.messages) {
+            const ticket = resp.data.query;
+            for (let newMessage of ticket.messages) {
               if ($(`[data-id="${newMessage.role}-${newMessage.created_at}"]`).length === 0) {
-                await this.renderTicket(newMessage.message, newMessage.role, newMessage.created_at);
+                await this.renderTicket(
+                  ticket.customer_email, newMessage.message, newMessage.role, newMessage.created_at
+                );
               }
             }
           } else {
@@ -66,6 +70,10 @@
     }
 
     submit() {
+      if (!this.$message.val()) {
+        return;
+      }
+
       sellixApi
         .replyTicket({
           message: this.$message.val(),

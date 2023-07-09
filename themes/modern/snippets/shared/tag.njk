@@ -1,5 +1,5 @@
-{% set isWarning = safe_get(args.is_warning, false) %}
-{% set isSuccess = safe_get(args.is_success, false) %}
-<div class="sellix-tag {{ 'warning' if isWarning }} {{ 'success' if isSuccess }}">
+{% set type = safe_get(args.type, 'default') %}
+
+<div class="sellix-tag {{ type }}">
   {{ args.tag }}
 </div>

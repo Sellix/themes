@@ -1,26 +1,43 @@
+{% set shop = global.common.shopInfo.shop %}
 {% set role = args.role %}
+{% set customerEmail = args.customer_email %}
 {% set message = args.message %}
 {% set properties = args.properties %}
 {% set created_at = args.created_at * 1000 %}
 {% set colors = themeProperties.current_colors %}
 
-<div data-id="{{ role }}-{{ args.created_at }}" class="reply-screen-message {{'you' if role === 'CUSTOMER' else ''}}">
-  <div
-    class="reply-screen-message-item"
-    style="background: {{ colors[properties.ticket_message_background] }}; border: {{ "1px solid var(--borderColor)" if properties.ticket_message_show_border else "none" }};"
-  >
-    <div>
-      <div class="reply-screen-message-item-title">
-        {{['shop.ticket.senders', ('you' if role == 'CUSTOMER' else 'merchant')] | join('.') | t}}
+{% set globalClass = 'snippet-ticket-message' %}
+{% set localClass = id %}
+
+<div data-id="{{ role }}-{{ args.created_at }}" class="{{ globalClass }}__message">
+  <div class="{{ globalClass }}__image {{'merchant' if role === 'SHOP'}}">
+    {% if role == 'CUSTOMER' %}
+      {{ customerEmail.slice(0, 1) | capitalize if customerEmail else 'C' }}
+    {% else %}
+      M
+    {% endif %}
+  </div>
+
+  <div class="d-flex flex-column">
+    <div class="{{ globalClass }}__message-item">
+      <div class="{{ globalClass }}__message-name">
+        {% if role == 'CUSTOMER' %}
+          {{ customerEmail if customerEmail else ('shop.ticket.senders.you' | t) }}
+        {% else %}
+          {{ shop.name }}
+        {% endif %}
+      </div>
+
+      <div class="{{ globalClass }}__message-date">
+        {{created_at | date_format('fromNow')}}
       </div>
     </div>
 
-    <span>{{message}}</span>
+    <div class="{{ globalClass }}__message-text">
+      {{message}}
+    </div>
   </div>
-
-  <span class="reply-screen-message-item-date">
-    {{created_at | date_format('DD')}},
-    {{['shared.months', created_at | date_format('MMMM')] | join('.') | lower | t({'context': 'short'})}}
-    {{created_at | date_format('HH:mm')}}
-  </span>
+  <div class="{{ globalClass}}__badge {{ 'd-none' if role == 'CUSTOMER' }}">
+    {% render_snippet 'Tag', tag='Shop' %}
+  </div>
 </div>

@@ -16,6 +16,7 @@
     }
 
     submit() {
+      console.log('Submit', this.$title.val(), this.$email.val(), this.$message.val());
       if (this.$title.val() && this.$email.val() && this.$message.val()) {
         sellixApi
           .createTicket({

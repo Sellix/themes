@@ -1,6 +1,7 @@
-{% set id = uid() %}
+{% set id = args.id or uid() %}
 {% set colors = themeProperties.current_colors %}
 {% set inputsProps = themeProperties.inputs %}
+{% set autosize = safe_get(args.autosize, true) %}
 
 {% set label = safe_get(args.label, '') %}
 {% set name = safe_get(args.name, id) %}
@@ -72,7 +73,9 @@
 {% if autoresize %}
   <script type='application/javascript'>
     $(document).ready(function () {
-      $('.{{ localClass }}__text-area').textareaAutoSize();
+      {% if autosize %}
+        $('.{{ localClass }}__text-area').textareaAutoSize();
+      {% endif %}
     });
   </script>
 {% endif %}
