@@ -64,6 +64,8 @@
 {% for product in items %}
   {% set image = cdn_link(product.cloudflare_image_id, 'shopItem') %}
   {% set isPlaceholder = not product.image_name %}
+  {% set isPayWhatYouWant = (product.pay_what_you_want | int === 1) %}
+  {% set isFree = product.price_display | float === 0 and not isPayWhatYouWant %}
 
   {% if limit > 0 and visibleProductsCnt >= limit %}
     {# Skip items out of limit #}
@@ -114,9 +116,9 @@
 
               <span class="{{ globalClass }}__price {{ localClass }}__price">
                 {% if isFree %}
-                  {% render_snippet 'Tag', tag=('shop.shared.titles.free' | t), type='success' %}
+                  {% render_snippet 'Tag', tag=('shop.shared.titles.free' | t), type='success', is_light=true %}
                   {% elif isPayWhatYouWant %}
-                  {% render_snippet 'Tag', tag=('shop.main.cards.product.yourPrice' | t) %}
+                  {% render_snippet 'Tag', tag=('shop.main.cards.product.yourPrice' | t), is_light=true %}
                 {% else %}
                   {% render_snippet 'Price',
                     currency=product.currency,
