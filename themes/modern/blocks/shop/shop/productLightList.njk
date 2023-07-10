@@ -1,0 +1,134 @@
+{% set shopInfo = global.common.shopInfo %}
+{% set shop = shopInfo.shop %}
+{% set theme = global.common.theme %}
+
+{% set limit = safe_get(properties.limit, 0) | int %}
+{% set orderType = safe_get(properties.order_type, 'none') %}
+{% set orderDirection = safe_get(properties.order_direction, 'asc') %}
+{% set expandGroup = safe_get(properties.expand_group, false) %}
+{% set showGroup = safe_get(properties.show_group, true) %}
+{% set showInfo = safe_get(properties.show_info, true) %}
+{% set showProduct = safe_get(properties.show_product, true) %}
+{% set showSubscription = safe_get(properties.show_subscription, true) %}
+{% set showOnHold = safe_get(properties.show_on_hold, false) %}
+{% set showOutOfStock = (product.show_out_of_stock, false) %}
+
+{% set products = [] %}
+{% if expandGroup %}
+  {% for productId, product in shopInfo.products %}
+    {% set products = (products.push(product), products) %}
+  {% endfor %}
+{% else %}
+  {% for itemId in shopInfo.items %}
+    {% set products = (products.push(shopInfo.products[itemId]), products) %}
+  {% endfor %}
+{% endif %}
+
+{% set items = [] %}
+{% for product in products %}
+  {% set onHold = product.on_hold | int %}
+  {% set isOut = (product.stock | int === 0) %}
+
+  {% if onHold and not showOnHold %}
+    {# Do Nothing #}
+  {% elif isOut and not showOutOfStock %}
+    {# Do Noting#}
+  {% else %}
+    {% if product.isGroup and showGroup %}
+      {% set items = (items.push(product), items) %}
+    {% elif product.isInfo and showInfo %}
+      {% set items = (items.push(product), items) %}
+    {% elif product.isProduct and showProduct %}
+      {% set items = (items.push(product), items) %}
+    {% elif product.isSubscription and showSubscription %}
+      {% set items = (items.push(product), items) %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% if orderType %}
+  {% set items = items | sort_products({'sortType': orderType, 'direction': orderDirection}) %}
+{% endif %}
+
+{% if filterType and product %}
+  {% set items = items | filter_products({
+    'filterType': filterType,
+    'productId': product.uniqid,
+    'excludeProductIds': [product.uniqid]
+  }) %}
+{% endif %}
+
+{% set localClass = id %}
+
+{% set visibleProductsCnt = 0 %}
+{% for product in items %}
+  {% set image = cdn_link(product.cloudflare_image_id, 'shopItem') %}
+  {% set isPlaceholder = not product.image_name %}
+
+  {% if limit > 0 and visibleProductsCnt >= limit %}
+    {# Skip items out of limit #}
+  {% else %}
+    {% set visibleProductsCnt = visibleProductsCnt + 1 %}
+
+    <a
+      href="{{'javascript:void(0)' if product.on_hold | int else ['product/', product.uniqid] | join}}"
+      class="{{ globalClass }}__container"
+    >
+      <div class="{{ globalClass}}__image {{'image-placeholder' if isPlaceholder else ''}}">
+        {% if isPlaceholder %}
+          {% render_snippet 'Product: Placeholder icon', product=product %}
+        {% else %}
+          <img src="{{image}}" alt="{{product.title}}" loading="lazy" />
+        {% endif %}
+      </div>
+
+      <div class="{{ globalClass }}__info">
+        <div class="{{ globalClass }}__title">
+          {{product.title}}
+        </div>
+
+        <div class="{{ globalClass }}__description">
+          {% if product.price_discount and not isFree %}
+            <span class="{{ globalClass }}__price-with-discount">
+              {% render_snippet
+                'Price',
+                currency=product.currency,
+                price=product.price_display,
+                discount=product.price_discount,
+                priceVariants=product.price_variants
+              %}
+              <span>
+                {% render_snippet
+                  'Price',
+                  currency=product.currency,
+                  price=product.price_display,
+                  priceVariants=product.price_variants
+                %}
+              </span>
+            </span>
+          {% else %}
+            <div class="{{ globalClass }}__group-description-info">
+              {% if not isFree and product.price_variants %}
+                <span>{{ 'shop.shared.titles.startingAt' | t }} </span>
+              {% endif %}
+
+              <span class="{{ globalClass }}__price {{ localClass }}__price">
+                {% if isFree %}
+                  {% render_snippet 'Tag', tag=('shop.shared.titles.free' | t), type='success' %}
+                  {% elif isPayWhatYouWant %}
+                  {% render_snippet 'Tag', tag=('shop.main.cards.product.yourPrice' | t) %}
+                {% else %}
+                  {% render_snippet 'Price',
+                    currency=product.currency,
+                    price=product.price_display,
+                    priceVariants=product.price_variants
+                  %}
+                {% endif %}
+              </span>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </a>
+  {% endif %}
+{% endfor %}

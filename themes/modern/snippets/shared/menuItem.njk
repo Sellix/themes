@@ -1,3 +1,5 @@
+{% set colors = themeProperties.current_colors %}
+{% set menuProps = themeProperties.menu %}
 {% set url = safe_get(args.url, '') %}
 {% set title = safe_get(args.title, 'Menu Link') %}
 {% set isActive = safe_get(args.is_active, false) %}
@@ -12,6 +14,12 @@
 {% set globalClass = 'snippet-menu-item' %}
 
 {% set translationPrefix = 'menu' %}
+
+<style>
+  .{{ globalClass }}:hover {
+    color: {{ colors[menuProps.menu_item_font_color_hover] }};
+  }
+</style>
 
 <a
   href="{{ localePrefix }}{{url}}"

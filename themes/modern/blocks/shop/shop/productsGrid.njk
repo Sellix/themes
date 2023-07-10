@@ -1,8 +1,6 @@
-{% set id = uid() %}
 {% set shopInfo = global.common.shopInfo %}
 {% set shop = shopInfo.shop %}
 {% set theme = global.common.theme %}
-{% set product = global.common.productInfo.product %}
 
 {% set visibility = safe_get(properties.visibility, 'visible') %}
 {% set limit = safe_get(properties.grid_limit, 0) | int %}
@@ -34,11 +32,11 @@
 {% for product in products %}
   {% if product.isGroup and showGroup %}
     {% set items = (items.push(product), items) %}
-    {% elif product.isInfo and showInfo %}
+  {% elif product.isInfo and showInfo %}
     {% set items = (items.push(product), items) %}
-    {% elif product.isProduct and showProduct %}
+  {% elif product.isProduct and showProduct %}
     {% set items = (items.push(product), items) %}
-    {% elif product.isSubscription and showSubscription %}
+  {% elif product.isSubscription and showSubscription %}
     {% set items = (items.push(product), items) %}
   {% else %}
   {% endif %}

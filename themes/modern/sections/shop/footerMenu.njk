@@ -129,7 +129,7 @@
                 'Menu item',
                 url=item.page_slug,
                 title=item.title,
-                class='...'
+                class=''
               %}
             {% endfor %}
           </div>
@@ -138,26 +138,12 @@
     {% endfor %}
   </div>
 
-  <div class="{{ globalClass }}__signup">
-    <div class="{{ globalClass }}__signup-title">
-      Stay in the Loop
+  <div class="{{ globalClass }}__products">
+    <div class="{{ globalClass }}__products-title">
+      {{ 'shop.shared.footer.productsTitle' | t }}
     </div>
-    <div class="{{ globalClass }}__signup-subtitle">
-      Sign up to receive email updates, on new products & more.
-    </div>
-    <div class="{{ globalClass }}__signup-widget">
-      {% render_snippet 'Shared: Text',
-        name='signup-input',
-        placeholder='Email Address',
-        icon_name='Icons: Arrow right 1',
-        icon_on_click=['onSignup_', id] | join
-      %}
+    <div class="{{ globalClass }}__products-list">
+      {% render_block 'Product light list' %}
     </div>
   </div>
 </div>
-
-<script type='application/javascript'>
-  function onSignup_{{ id }}(email) {
-    console.log('onSignup_{{ id }}', email);
-  }
-</script>
