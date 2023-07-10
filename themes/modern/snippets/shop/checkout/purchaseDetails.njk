@@ -6,6 +6,7 @@
 {% set colors = themeProperties.current_colors %}
 {% set properties = args.properties %}
 
+{% set showCalculationDetails = safe_get(properties.show_calculation_details, false) %}
 {% set showTitle = safe_get(properties.show_title, true) %}
 {% set containerBgColor = safe_get(properties.container_background_color, 'transparent') %}
 {% set containerShadow = safe_get(properties.container_shadow, 'none') %}
@@ -93,7 +94,7 @@
       options: {
         showTitle: {{ showTitle }},
         skipGatewaySelector: true,
-        showCalculationDetails: false,
+        showCalculationDetails: {{ showCalculationDetails }},
       }
     });
   });
