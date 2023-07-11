@@ -6,6 +6,7 @@
 {% set onHold = product.on_hold | int %}
 {% set isFree = product.price_display | float === 0 %}
 {% set isSubscription = product.type === 'SUBSCRIPTION' %}
+{% set isLicense = product.licensing_enabled %}
 
 {% set globalClass = 'snippet-cart-button-2' %}
 {% set localClass = id %}
@@ -22,13 +23,19 @@
 
       <div class="{{ globalClass }}__button unselectable" data-cart-product-quantity-button="1">
         <span class="d-none" data-cart-product-quantity-value="1">...</span>
-        <span class="d-none" data-cart-product-first-button="cart-product-first-button">
+        <span class="cart-button-animation-wrapper" data-cart-product-first-button="cart-product-first-button">
           {% if isSubscription %}
             {{ 'shop.shared.titles.subscribe' | t }}
+          {% elif isLicense %}
+            {{ 'shop.shared.titles.buy' | t }}
           {% elif isFree %}
             {{ 'shop.shared.titles.getIt' | t }}
           {% else %}
-            {{ 'shop.shared.titles.buy' | t }}
+            <span class="cart-button-animation">
+              <span class="add-to-cart">Add to cart</span>
+              <i class="fas fa-shopping-cart"></i>
+              <i class="fas fa-box"></i>
+            </span>
           {% endif %}
         </span>
       </div>
@@ -43,8 +50,10 @@
   <script type='application/javascript'>
     $(document).ready(async function () {
       $('.{{ localClass }}').removeClass('d-none');
+
       const product = await SellixContext.getShopProduct('{{ product.uniqid }}');
-      let cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
+      const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
+
       const cartProdComponent = new SellixCartProductComponent(
         '.{{ localClass }}',
         cart,
