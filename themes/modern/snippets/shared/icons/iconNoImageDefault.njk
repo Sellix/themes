@@ -1,3 +1,4 @@
+{% set is = uid() %}
 {% set isDark = global.theme.isDark %}
 {% if isDark %}
   {% set color1 = '#262A30' %}
@@ -9,61 +10,61 @@
 
 <svg width="100" height="99" viewBox="0 0 100 99" fill="none" xmlns="http://www.w3.org/2000/svg">
   <g class="item-first">
-    <g filter="url(#filter0_dd_10471_150832)">
+    <g filter="url(#filter0_dd_10471_{{ id }})">
       <rect x="7" y="20.2292" width="60" height="70" rx="8" transform="rotate(-5 7 20.2292)" fill="{{ color1 }}"/>
     </g>
-    <mask id="mask0_10471_150832" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="11" y="19" width="57" height="57">
+    <mask id="mask0_10471_{{ id }}" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="11" y="19" width="57" height="57">
       <rect x="11.334" y="23.8654" width="52" height="52" rx="4" transform="rotate(-5 11.334 23.8654)" fill="currentColor"/>
     </mask>
-    <g mask="url(#mask0_10471_150832)">
+    <g mask="url(#mask0_10471_{{ id }})">
       <rect x="11.334" y="23.8654" width="52" height="52" rx="4" transform="rotate(-5 11.334 23.8654)" fill="currentColor"/>
       <path opacity="0.8" d="M39.4857 54.3898C37.2557 51.5816 36.1406 50.1774 34.8434 49.7722C33.71 49.4182 32.4755 49.5262 31.4208 50.0717C30.2138 50.696 29.3595 52.2724 27.6508 55.4253L22.067 65.729C19.1134 71.1792 17.6366 73.9044 17.9794 76.021C18.2781 77.8656 19.3856 79.4892 21.0146 80.4707C22.8839 81.5971 26.0317 81.3217 32.3272 80.7709L52.4719 79.0084C58.7674 78.4577 61.9152 78.1823 63.5606 76.7484C64.9944 75.499 65.8031 73.7077 65.777 71.8392C65.7469 69.6952 63.8195 67.2679 59.9644 62.4134L57.1776 58.9043C56.4806 58.0266 56.1321 57.5877 55.8197 57.3193C53.9313 55.697 51.0242 55.9513 49.4462 57.877C49.1852 58.1955 48.9182 58.6883 48.3842 59.6736C48.1171 60.1664 47.9836 60.4128 47.8531 60.572C47.0641 61.5348 45.6106 61.662 44.6664 60.8508C44.5102 60.7166 44.3359 60.4972 43.9874 60.0583L39.4857 54.3898Z" fill="{{ color2 }}"/>
       <path opacity="0.8" d="M42.0318 41.2747C41.6227 36.5981 44.859 32.4948 49.2606 32.1098C53.6621 31.7247 57.5618 35.2036 57.971 39.8802C58.3801 44.5567 55.1438 48.66 50.7422 49.0451C46.3407 49.4302 42.441 45.9512 42.0318 41.2747Z" fill="{{ color2 }}"/>
     </g>
   </g>
   <g class="item-second">
-    <g filter="url(#filter1_dd_10471_150832)">
+    <g filter="url(#filter1_dd_10471_{{ id }})">
       <rect x="33.0996" y="5" width="60" height="70" rx="8" transform="rotate(5 33.0996 5)" fill="{{ color1 }}"/>
     </g>
-    <mask id="mask1_10471_150832" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="32" y="9" width="57" height="57">
+    <mask id="mask1_10471_{{ id }}" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="32" y="9" width="57" height="57">
       <rect x="36.7363" y="9.3335" width="52" height="52" rx="4" transform="rotate(5 36.7363 9.3335)" fill="currentColor"/>
     </mask>
-    <g mask="url(#mask1_10471_150832)">
+    <g mask="url(#mask1_10471_{{ id }})">
       <rect x="36.7363" y="9.3335" width="52" height="52" rx="4" transform="rotate(5 36.7363 9.3335)" fill="currentColor"/>
       <path opacity="0.8" d="M59.1598 44.2826C57.4513 41.1298 56.597 39.5533 55.3899 38.929C54.3352 38.3835 53.1007 38.2755 51.9673 38.6296C50.6701 39.0348 49.5551 40.4389 47.3249 43.2472L40.0366 52.4247C36.1815 57.2792 34.254 59.7066 34.224 61.8506C34.1979 63.7191 35.0066 65.5104 36.4404 66.7598C38.0857 68.1936 41.2335 68.469 47.529 69.0198L67.6737 70.7822C73.9692 71.333 77.1171 71.6084 78.9864 70.4821C80.6154 69.5006 81.7228 67.877 82.0216 66.0323C82.3643 63.9157 80.8877 61.1905 77.934 55.7403L75.799 51.8006C75.265 50.8153 74.998 50.3225 74.737 50.004C73.159 48.0784 70.2518 47.824 68.3634 49.4464C68.0511 49.7147 67.7026 50.1537 67.0055 51.0313C66.657 51.4702 66.4827 51.6897 66.3266 51.8239C65.3824 52.635 63.9288 52.5079 63.1398 51.5451C63.0093 51.3858 62.8758 51.1394 62.6088 50.6466L59.1598 44.2826Z" fill="{{ color2 }}"/>
       <path opacity="0.8" d="M63.9447 31.809C64.3539 27.1324 68.2536 23.6535 72.6551 24.0386C77.0566 24.4236 80.293 28.5269 79.8838 33.2035C79.4747 37.88 75.575 41.3589 71.1735 40.9739C66.7719 40.5888 63.5356 36.4855 63.9447 31.809Z" fill="{{ color2 }}"/>
     </g>
   </g>
   <defs>
-    <filter id="filter0_dd_10471_150832" x="0.666016" y="10.6663" width="78.54" height="87.6302" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+    <filter id="filter0_dd_10471_{{ id }}" x="0.666016" y="10.6663" width="78.54" height="87.6302" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
       <feFlood flood-opacity="0" result="BackgroundImageFix"/>
       <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-      <feMorphology radius="1" operator="erode" in="SourceAlpha" result="effect1_dropShadow_10471_150832"/>
+      <feMorphology radius="1" operator="erode" in="SourceAlpha" result="effect1_dropShadow_10471_{{ id }}"/>
       <feOffset dy="2"/>
       <feGaussianBlur stdDeviation="4"/>
       <feColorMatrix type="matrix" values="0 0 0 0 0.027451 0 0 0 0 0.054902 0 0 0 0 0.137255 0 0 0 0.05 0"/>
-      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_10471_150832"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_10471_{{ id }}"/>
       <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
       <feOffset dy="1"/>
       <feGaussianBlur stdDeviation="1.5"/>
       <feColorMatrix type="matrix" values="0 0 0 0 0.027451 0 0 0 0 0.054902 0 0 0 0 0.137255 0 0 0 0.06 0"/>
-      <feBlend mode="normal" in2="effect1_dropShadow_10471_150832" result="effect2_dropShadow_10471_150832"/>
-      <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_10471_150832" result="shape"/>
+      <feBlend mode="normal" in2="effect1_dropShadow_10471_{{ id }}" result="effect2_dropShadow_10471_{{ id }}"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_10471_{{ id }}" result="shape"/>
     </filter>
-    <filter id="filter1_dd_10471_150832" x="20.665" y="0.666382" width="78.54" height="87.6302" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+    <filter id="filter1_dd_10471_{{ id }}" x="20.665" y="0.666382" width="78.54" height="87.6302" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
       <feFlood flood-opacity="0" result="BackgroundImageFix"/>
       <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-      <feMorphology radius="1" operator="erode" in="SourceAlpha" result="effect1_dropShadow_10471_150832"/>
+      <feMorphology radius="1" operator="erode" in="SourceAlpha" result="effect1_dropShadow_10471_{{ id }}"/>
       <feOffset dy="2"/>
       <feGaussianBlur stdDeviation="4"/>
       <feColorMatrix type="matrix" values="0 0 0 0 0.027451 0 0 0 0 0.054902 0 0 0 0 0.137255 0 0 0 0.05 0"/>
-      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_10471_150832"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_10471_{{ id }}"/>
       <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
       <feOffset dy="1"/>
       <feGaussianBlur stdDeviation="1.5"/>
       <feColorMatrix type="matrix" values="0 0 0 0 0.027451 0 0 0 0 0.054902 0 0 0 0 0.137255 0 0 0 0.06 0"/>
-      <feBlend mode="normal" in2="effect1_dropShadow_10471_150832" result="effect2_dropShadow_10471_150832"/>
-      <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_10471_150832" result="shape"/>
+      <feBlend mode="normal" in2="effect1_dropShadow_10471_{{ id }}" result="effect2_dropShadow_10471_{{ id }}"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_10471_{{ id }}" result="shape"/>
     </filter>
   </defs>
 </svg>
