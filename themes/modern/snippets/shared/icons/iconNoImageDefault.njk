@@ -1,5 +1,5 @@
 {% set is = uid() %}
-{% set isDark = global.theme.isDark %}
+{% set isDark = safe_get(args.dark, global.theme.isDark) %}
 {% if isDark %}
   {% set color1 = '#262A30' %}
   {% set color2 = '#555D67' %}

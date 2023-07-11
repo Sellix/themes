@@ -1,10 +1,11 @@
 {% set id = uid() %}
+{% set properties = args.properties %}
 {% set group = args.group %}
 {% set isPlaceholder = not group.image_name %}
+{% set placeholderType = safe_get(properties.placeholder_type, undefined) %}
 {% set image = cdn_link(group.cloudflare_image_id, 'shopItem') %}
 {% set colors = themeProperties.current_colors %}
 {% set cardProps = themeProperties.cards %}
-{% set properties = args.properties %}
 {% set count = args.count %}
 
 {% set showBadge = safe_get(properties.show_product_type_badge, true) %}
@@ -97,11 +98,6 @@
   {% else %}
   {% endif %}
 
-  .group-card-block .snippet-product-card__image {
-    background: #1B1F23;
-    margin-bottom: 0;
-  }
-
 
   .group-card-block .snippet-product-card__title {
     font-weight: 600;
@@ -120,9 +116,9 @@
     {% endif %}
 
     <div class="{{ globalClass }}__card {{ localClass }}__card unselectable">
-      <div class="{{ globalClass }}__image {{ localClass }}__image {{'image-placeholder' if isPlaceholder else ''}}">
+      <div class="{{ globalClass }}__image {{ localClass }}__image {{'image-placeholder' if isPlaceholder}} {{ placeholderType }}">
         {% if isPlaceholder %}
-          {% render_snippet 'Product: Placeholder icon', product=group, dark=true %}
+          {% render_snippet 'Product: Placeholder icon', product=group, dark=(placeholderType == 'dark') %}
         {% else %}
           <img src="{{image}}" alt="{{group.title}}" loading="lazy" />
         {% endif %}

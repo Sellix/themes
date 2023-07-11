@@ -1,6 +1,6 @@
 {
   "id": "modern",
-  "version": "1.0.32",
+  "version": "1.0.33",
   "is_active": 0,
   "name": "Modern",
   "scheme": "modern",
@@ -3208,11 +3208,11 @@
                   "name": "Products grid",
                   "settings": {
                     "visible": true,
+                    "custom_class": "info-card-block",
                     "properties": {
                       "visibility": "invisible_empty",
                       "container_border_radius": 0,
                       "grid_background_color": "transparent",
-                      "custom_class": "info-card-block",
                       "grid_limit": 2,
                       "grid_show_group": false,
                       "grid_expand_group": false,
@@ -4131,12 +4131,13 @@
                   "name": "Products grid",
                   "settings": {
                     "visible": true,
+                    "custom_class": "group-card-block",
                     "properties": {
                       "block_group_name": "grid_collections",
                       "visibility": "invisible_group_empty",
                       "container_border_radius": 0,
-                      "custom_class": "group-card-block",
                       "grid_background_color": "transparent",
+                      "grid_card_placeholder_type": "dark",
                       "grid_limit": 4,
                       "grid_show_product_type_badge": false,
                       "grid_show_group": true,
@@ -4152,7 +4153,7 @@
                       "grid_items_per_row_mobile": 1,
                       "grid_card_properties_enabled": true,
                       "grid_card_image_height": 262,
-                      "grid_card_background_color": "background_dark",
+                      "grid_card_background_color": "background_light",
                       "grid_card_image_border_radius": 0,
                       "grid_card_info_padding_vert": 24,
                       "grid_card_info_padding_horiz": 24,
@@ -14860,6 +14861,14 @@
                 "value": "background_accent_dark"
               },
               {
+                "title": "Light",
+                "value": "background_light"
+              },
+              {
+                "title": "Dark",
+                "value": "background_dark"
+              },
+              {
                 "title": "Transparent",
                 "value": "transparent"
               }
@@ -15052,6 +15061,26 @@
             "type": "text",
             "label": "Items per row (mobile)",
             "defaultValue": 1
+          },
+          {
+            "id": "grid_card_placeholder_type",
+            "type": "select",
+            "label": "Placeholder type",
+            "options": [
+              {
+                "title": "Auto",
+                "value": "auto"
+              },
+              {
+                "title": "Light",
+                "value": "light"
+              },
+              {
+                "title": "Dark",
+                "value": "dark"
+              }
+            ],
+            "defaultValue": "auto"
           },
           {
             "id": "grid_card_properties",
@@ -20862,10 +20891,6 @@
     "Icons: No image Default": {
       "name": "Icons: No image Default",
       "path": "snippets/shared/icons/iconNoImageDefault.njk"
-    },
-    "Icons: No image Default Dark": {
-      "name": "Icons: No image Default Dark",
-      "path": "snippets/shared/icons/iconNoImageDefaultDark.njk"
     },
     "Icons: No image Group": {
       "name": "Icons: No image Group",

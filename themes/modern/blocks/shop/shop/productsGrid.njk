@@ -58,6 +58,7 @@
 
 {% set hideOutOfStock = shop.hide_out_of_stock %}
 
+{% set placeholderType = safe_get(properties.grid_card_placeholder_type, 'auto') %}
 {% set containerShadow = safe_get(properties.container_shadow, 'none') %}
 {% set containerBorderRadius = safe_get(properties.container_border_radius, '0.5') %}
 {% set backgroundColor = safe_get(properties.grid_background_color, 'transparent') %}
@@ -75,6 +76,7 @@
 {% set customCardPropsEnabled = safe_get(properties.grid_card_properties_enabled, false) %}
 {% if customCardPropsEnabled %}
   {% set cardProps = {
+    'placeholder_type': placeholderType,
     'show_product_type_badge': safe_get(properties.grid_show_product_type_badge, true),
     'image_height': safe_get(properties.grid_card_image_height, globalCardProps.product_card_image_height),
     'image_border_radius': safe_get(properties.grid_card_image_border_radius, globalCardProps.product_card_image_border_radius),
@@ -98,6 +100,7 @@
   } %}
 {% else %}
   {% set cardProps = {
+    'placeholder_type': placeholderType,
     'show_product_type_badge': safe_get(properties.grid_show_product_type_badge, true),
     'image_height': safe_get(globalCardProps.product_card_image_height, 247),
     'image_border_radius': safe_get(globalCardProps.product_card_image_border_radius, 8),
