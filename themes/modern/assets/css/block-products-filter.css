@@ -179,7 +179,7 @@ span.select2-container--sellix .select2-dropdown {
   padding: 0.5rem 0;
 }
 
-.select2-container--sellix .select2-results__option--highlighted[aria-selected] {
+.select2-container--sellix .select2-results__option--highlighted[aria-selected='true'] {
   background-color: var(--purple8);
   color: white
 }
@@ -195,7 +195,83 @@ span.select2-container--sellix .select2-dropdown {
 }
 
 
+.sellix-dropdown .select2-container--sellix {
+  width: 100%!important;
+  cursor: pointer;
+}
 
+.sellix-dropdown .select2-container--sellix .select2-selection--single {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 40px;
+  background-color: var(--backgroundAccentLight);
+  box-shadow: 0px 1px 2px 0px rgba(18, 20, 23, 0.06);
+  border-radius: 0.5rem;
+  border: 1px solid var(--borderColor);
+}
+
+.sellix-dropdown .select2-container--sellix .select2-selection__rendered {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  color: var(--lightFontColor);
+  font-size: 14px;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline;
+  width: 100%;
+}
+
+.sellix-dropdown {
+  position: relative;
+}
+.sellix-dropdown .select2-container--sellix .select2-selection__arrow b:before {
+  position: relative;
+  content: '';
+  display: inline-block;
+  width: 0.4em;
+  height: 0.4em;
+  border-right: 0.2em solid var(--thinColor);
+  border-top: 0.2em solid var(--thinColor);
+  transform: rotate(135deg);
+  margin-right: 0.5em;
+}
+
+.select2-container--sellix .select2-dropdown {
+  border: 1px solid var(--borderColor);
+  margin-top: 8px;
+  margin-bottom: 8px;
+  box-shadow: none;
+  border-radius: 4px !important;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  background-color: var(--backgroundAccentDark);
+}
+
+.select2-container--sellix .select2-results__option {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--darkFontColor);
+  padding: 0 1rem !important;
+  display: flex !important;
+  align-items: center;
+  height: 40px;
+}
+
+.select2-container--sellix .select2-results__option.select2-results__option--highlighted {
+  background-color: var(--backgroundHover);
+}
+
+.select2-container--sellix .select2-results__option[aria-selected='true'] {
+  background-color: var(--brandColor);
+  color: white!important;
+}
+
+.is-dark .select2-container--sellix .select2-results__option.select2-results__option--highlighted {
+  color: black;
+}
 
 @media (max-width: 768px) {
   .block-products-filter__container {

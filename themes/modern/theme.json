@@ -1,6 +1,6 @@
 {
   "id": "modern",
-  "version": "1.0.30",
+  "version": "1.0.32",
   "is_active": 0,
   "name": "Modern",
   "scheme": "modern",
@@ -837,6 +837,12 @@
           "type": "color-picker",
           "label": "transparent",
           "defaultValue": "#FFFFFF00"
+        },
+        {
+          "id": "image_placeholder",
+          "type": "color-picker",
+          "label": "Image placeholder",
+          "defaultValue": "#E9EDF0"
         },
         {
           "id": "black9",
@@ -2117,9 +2123,9 @@
         "show_stock_info": false
       },
       "dark_colors": {
-        "background_accent_dark": "#121417",
-        "background_accent_light": "#1B1F23",
-        "background_active": "#43248E",
+        "background_accent_dark": "#1B1F23",
+        "background_accent_light": "#121417",
+        "background_active": "#6A3CE2",
         "background_dark": "#FFFFFF",
         "background_light": "#121417",
         "background_hover": "#DEDEDE",
@@ -2150,13 +2156,14 @@
         "input_border": "#233453",
         "input_border_hover": "#555D67",
         "link_color": "#6461FC",
-        "light_font_color": "#777F89",
+        "light_font_color": "#A2AAB4",
         "menu_background": "rgb(249, 249, 250)",
         "menu_background_hover": "rgba(249, 249, 250, 10%)",
         "mobile_menu_background": "#F5F7F8",
         "mobile_menu_background_hover": "#DFE1E3",
         "thin_color": "#A2AAB4",
-        "transparent": "#FFFFFF00"
+        "transparent": "#FFFFFF00",
+        "image_placeholder": "#454C56"
       },
       "inputs": {
         "common_height": 40,
@@ -2221,7 +2228,8 @@
         "mobile_menu_background": "#F5F7F8",
         "mobile_menu_background_hover": "#DFE1E3",
         "thin_color": "#A2AAB4",
-        "transparent": "#FFFFFF00"
+        "transparent": "#FFFFFF00",
+        "image_placeholder": "#E9EDF0"
       },
       "locale": {
         "default": "en"
@@ -2233,7 +2241,7 @@
         "menu_item_font_color": "light_font_color",
         "menu_item_font_weight": 500,
         "menu_active_item_font_size": 14,
-        "menu_active_item_background": "background_main_color",
+        "menu_active_item_background": "background_accent_light",
         "menu_active_item_font_color": "brand_color",
         "menu_active_item_font_weight": 500
       },
@@ -2293,8 +2301,16 @@
             "name": "Footer menu",
             "settings": {
               "visible": true,
-              "block_order": [],
+              "block_order": ["Product light list"],
               "blocks": {
+                "Product light list": {
+                  "name": "Product light list",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                    }
+                  }
+                }
               },
               "properties": {
                 "background_color": "background_accent_dark",
@@ -3418,7 +3434,7 @@
                       "item_content_align_mobile": "center",
                       "item_margin_bottom_mobile": 0,
                       "text_content": "Everything is designed. Few things are designed well.",
-                      "text_font_color": "dark_font_color",
+                      "text_font_color": "light_font_color",
                       "text_font_size": 14,
                       "text_line_height": 20,
                       "text_font_weight": 400
@@ -3499,7 +3515,7 @@
                       "item_content_align_mobile": "center",
                       "item_margin_bottom_mobile": 0,
                       "text_content": "You can't use up creativity. The more you use, the more you have.",
-                      "text_font_color": "dark_font_color",
+                      "text_font_color": "light_font_color",
                       "text_font_size": 14,
                       "text_line_height": 20,
                       "text_font_weight": 400
@@ -3580,7 +3596,7 @@
                       "item_content_align_mobile": "center",
                       "item_margin_bottom_mobile": 0,
                       "text_content": "The public is more familiar with bad design than good design.",
-                      "text_font_color": "dark_font_color",
+                      "text_font_color": "light_font_color",
                       "text_font_size": 14,
                       "text_line_height": 20,
                       "text_font_weight": 400
@@ -3661,7 +3677,7 @@
                       "item_content_align_mobile": "center",
                       "item_margin_bottom_mobile": 0,
                       "text_content": "The function of design is letting design function.",
-                      "text_font_color": "dark_font_color",
+                      "text_font_color": "light_font_color",
                       "text_font_size": 14,
                       "text_line_height": 20,
                       "text_font_weight": 400
@@ -3742,7 +3758,7 @@
                       "item_content_align_mobile": "center",
                       "item_margin_bottom_mobile": 0,
                       "text_content": "Design is a formal response to a strategic question.",
-                      "text_font_color": "dark_font_color",
+                      "text_font_color": "light_font_color",
                       "text_font_size": 14,
                       "text_line_height": 20,
                       "text_font_weight": 400
@@ -3823,7 +3839,7 @@
                       "item_content_align_mobile": "center",
                       "item_margin_bottom_mobile": 0,
                       "text_content": "The alternative to good design is always bad design.",
-                      "text_font_color": "dark_font_color",
+                      "text_font_color": "light_font_color",
                       "text_font_size": 14,
                       "text_line_height": 20,
                       "text_font_weight": 400
@@ -3833,7 +3849,7 @@
               },
               "properties": {
                 "fullwidth": false,
-                "background_color": "background_main_color",
+                "background_color": "background_accent_light",
                 "column_gap": 30,
                 "row_gap": 30,
                 "columns_per_row_desktop": 3,
@@ -5152,7 +5168,6 @@
                       "grid_show_info": false,
                       "grid_show_product": true,
                       "grid_show_subscription": true,
-                      "grid_background_color": "transparent",
                       "grid_show_border": false
                     }
                   }
@@ -5705,7 +5720,7 @@
               },
               "properties": {
                 "fullwidth": false,
-                "background_color": "background_main_color",
+                "background_color": "background_accent_light",
                 "column_gap": 30,
                 "row_gap": 30,
                 "columns_per_row_desktop": 3,
@@ -9294,7 +9309,7 @@
                 "value": "transparent"
               }
             ],
-            "defaultValue": "background_main_color"
+            "defaultValue": "background_accent_light"
           },
           {
             "id": "logo_properties",
@@ -9735,7 +9750,7 @@
                 "value": "transparent"
               }
             ],
-            "defaultValue": "background_main_color"
+            "defaultValue": "background_accent_light"
           },
           {
             "id": "desktop_screen_properties",
@@ -14718,7 +14733,7 @@
                 "value": "transparent"
               }
             ],
-            "defaultValue": "background_accent_dark"
+            "defaultValue": "background_accent_light"
           },
           {
             "id": "show_border",
@@ -14849,7 +14864,7 @@
                 "value": "transparent"
               }
             ],
-            "defaultValue": "transparent"
+            "defaultValue": "background_accent_light"
           },
           {
             "id": "grid_show_border",
@@ -15957,7 +15972,7 @@
                 "value": "brand_color"
               }
             ],
-            "defaultValue": "dark_font_color"
+            "defaultValue": "light_font_color"
           },
           {
             "id": "bundle_description_font_size",
