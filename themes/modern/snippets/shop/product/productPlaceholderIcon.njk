@@ -1,11 +1,11 @@
 {% set id = uid() %}
 {% set product = args.product %}
-{% set dark = global.theme.isDark %}
+{% set dark = args.dark %}
 {% set type = product.type or 'UNDEFINED' %}
 
 {% if product.isGroup %}
-  <div style="color: {{ '#E9EDF0' if dark else '#454C56' }};">
-    {% render_snippet 'Icons: No image Group' %}
+  <div style="color: {{ '#454C56' if dark else '#E9EDF0' }};">
+    {% render_snippet 'Icons: No image Group', dark=dark %}
   </div>
 {% elif type == 'FILE' %}
   {% render_snippet 'Icons: No image File' %}
