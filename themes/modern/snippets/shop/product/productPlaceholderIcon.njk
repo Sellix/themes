@@ -2,11 +2,14 @@
 {% set product = args.product %}
 {% set dark = global.theme.isDark %}
 {% set type = product.type or 'UNDEFINED' %}
+{% set isLicense = product.licensing_enabled %}
 
 {% if product.isGroup %}
   <div style="color: {{ '#E9EDF0' if dark else '#454C56' }};">
     {% render_snippet 'Icons: No image Group' %}
   </div>
+{% elif isLicense %}
+  {% render_snippet 'Icons: No image License' %}
 {% elif type == 'FILE' %}
   {% render_snippet 'Icons: No image File' %}
 {% elif type == 'INFO_CARD' %}
@@ -15,7 +18,7 @@
   {% render_snippet 'Icons: No image Serials' %}
 {% elif type == 'SERVICE' %}
   {% render_snippet 'Icons: No image Service' %}
-{% elif type == 'SUBSCRIPTION'%}
+{% elif type == 'SUBSCRIPTION' %}
   {% render_snippet 'Icons: No image Subscription' %}
 {% else %}
   {% render_snippet 'Icons: No image Default' %}
