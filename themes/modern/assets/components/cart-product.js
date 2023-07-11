@@ -16,7 +16,15 @@
       if (this.product.type !== 'SUBSCRIPTION' && !this.product.licensing_enabled) {
         this.$cartAddBtn.on('click', (...args) => this.add(...args));
         this.$cartRemoveBtn.on('click', (...args) => this.remove(...args));
-        this.$cartQuantityBtn.on('click', (...args) => this.addFirst(...args));
+
+        this.$cartQuantityBtn.on('click', (...args) => {
+          this.$cart.addClass("clicked");
+          setTimeout(() => {
+            this.$cart.removeClass("clicked");
+          }, 1800);
+
+          return this.addFirst(...args, 1250)
+        });
 
         const renderEvent = sellixHelper.getEventName({
           name: 'SellixRenderComponent',
@@ -51,11 +59,17 @@
       }
     }
 
-    addFirst(event) {
+    addFirst(event, timeout) {
       event.preventDefault();
       const quantity = (this.cart.getItemById(this.product.uniqid) || { quantity: 0 }).quantity || 0;
       if (!quantity) {
-        this.add(event);
+        if(timeout) {
+          setTimeout(() => {
+            this.add(event);
+          }, timeout)
+        } else {
+          this.add(event);
+        }
       }
     }
 
