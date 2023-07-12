@@ -55,6 +55,21 @@
     line-height: {{ titleLineHeight }}px;
   }
 
+  @media (max-width: 768px) {
+
+    .{{ localClass }}__title {
+      font-size: 30px;
+      line-height: 32px;
+    }
+
+    .{{ localClass }}__container {
+      padding: {{ paddingVertTopMobile }}px {{ paddingHorizMobile }}px {{ paddingVertBottomMobile }}px {{ paddingHorizMobile }}px;
+      margin-top: {{ marginTopMobile }}px;
+      margin-bottom: {{ marginBottomMobile }}px;
+    }
+
+  }
+
   .{{ localClass }}__crumbs {
     display: flex;
     align-items: center;
@@ -73,31 +88,15 @@
   .{{ localClass }}__link-crumb a {
     color: {{ colors[crumbFontColor] }};
     text-decoration: none;
-    margin-right: 0.625rem;
+    margin-right: 0.35rem;
   }
 
   .{{ localClass }}__link-crumb svg {
-    margin-right: 0.75rem;
+    margin-right: 0.35rem;
   }
 
   .{{ localClass }}__last-link-crumb {
     color: {{ colors[lastCrumbFontColor] }};
-  }
-
-  @media (max-width: 768px) {
-    .{{ localClass }}__container {
-      padding: {{ paddingVertTopTablet }}px {{ paddingHorizTablet }}px {{ paddingVertBottomTablet }}px {{ paddingHorizTablet }}px;
-      margin-top: {{ marginTopTablet }}px;
-      margin-bottom: {{ marginBottomTablet }}px;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .{{ localClass }}__container {
-      padding: {{ paddingVertTopMobile }}px {{ paddingHorizMobile }}px {{ paddingVertBottomMobile }}px {{ paddingHorizMobile }}px;
-      margin-top: {{ marginTopMobile }}px;
-      margin-bottom: {{ marginBottomMobile }}px;
-    }
   }
 </style>
 
