@@ -151,10 +151,10 @@
 {% set layoutId = uid() %}
 
 <body>
-  <div id="app" class="{{ 'is-dark' if global.theme.isDark }}">
-    <div class="sellix-store sellix-ui-container">
-      {% render_section 'Header', layoutId=layoutId %}
+  <div id="app" class="sellix-ui-container {{ 'is-dark' if global.theme.isDark }}">
+    {% render_section 'Header', layoutId=layoutId %}
 
+    <div class="sellix-store">
       <div id="content" class="template">
         {% render_template 'default' %}
       </div>

@@ -3,6 +3,11 @@
   lang="{{ global.locales.language }}"
   style="background-color: var(--backgroundColor);"
   class="scroll-hidden"
+  {% if global.locales.rtl %}
+    dir="rtl"
+  {% else %}
+    dir="ltr"
+  {% endif %}
 >
 <head>
   {% if global.locales.defaultLocale != global.locales.locale %}
@@ -141,10 +146,10 @@
 {% set layoutId = uid() %}
 
 <body>
-  <div id="app">
-    <div class="sellix-store sellix-ui-container">
-      {# {% render_section 'header', layoutId=layoutId %} #}
+  <div id="app" class="sellix-ui-container {{ 'is-dark' if global.theme.isDark }}">
+    {# {% render_section 'header', layoutId=layoutId %} #}
 
+    <div class="sellix-store">
       <div id="content" class="template">
         {% render_template 'default' %}
       </div>
