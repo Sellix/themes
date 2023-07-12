@@ -12,8 +12,10 @@
       this.$cartAddBtn = this.$cart.find('[data-cart-product-plus-button]');
       this.$cartRemoveBtn = this.$cart.find('[data-cart-product-minus-button]');
       this.$cartQuantityBtn = this.$cart.find('[data-cart-product-quantity-button]');
+      this.$isGroup = this.$cart.find('[data-cart-product-is-group]');
 
       if (this.product.type !== 'SUBSCRIPTION' && !this.product.licensing_enabled) {
+
         this.$cartAddBtn.on('click', (...args) => this.add(...args));
         this.$cartRemoveBtn.on('click', (...args) => this.remove(...args));
 
@@ -23,7 +25,9 @@
             this.$cart.removeClass("clicked");
           }, 1800);
 
-          return this.addFirst(...args, 1250)
+          let timeout = this.$isGroup.data("cart-product-is-group") ? 0 : 1250;
+
+          return this.addFirst(...args, timeout)
         });
 
         const renderEvent = sellixHelper.getEventName({

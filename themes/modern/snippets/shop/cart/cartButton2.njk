@@ -29,10 +29,14 @@
           {% elif isLicense %}
             {{ 'shop.shared.titles.buy' | t }}
           {% elif isFree %}
-            {{ 'shop.shared.titles.getIt' | t }}
+            <span class="cart-button-animation">
+              <span class="add-to-cart">{{ 'shop.shared.titles.getIt' | t }}</span>
+              <i class="fas fa-shopping-cart"></i>
+              <i class="fas fa-box"></i>
+            </span>
           {% else %}
             <span class="cart-button-animation">
-              <span class="add-to-cart">Add to cart</span>
+              <span class="add-to-cart">{{ 'shop.shared.titles.addToCart' }}</span>
               <i class="fas fa-shopping-cart"></i>
               <i class="fas fa-box"></i>
             </span>
