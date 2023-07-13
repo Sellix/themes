@@ -1,28 +1,27 @@
 {% set id = uid() %}
 
 {% set slug = global.request.slug %}
-{% set colors = themeProperties.current_colors %}
 {% set menuProps = themeProperties.menu %}
 
 {% set localClass = id %}
 
 <style>
   .{{ localClass }}__menu-tab {
-    color: {{ colors[menuProps.menu_item_font_color] }};
+    color: {{ menuProps.menu_item_font_color | get_color }};
     font-size: {{ menuProps.menu_item_font_size }}px;
     font-weight: {{ menuProps.menu_item_font_weight }};
   }
   .{{ localClass }}__menu-tab.active {
-    color: {{ colors[menuProps.menu_active_item_font_color] }};
-    {#border-bottom: 2px solid {{ colors[menuProps.menu_active_item_font_color] }};#}
+    color: {{ menuProps.menu_active_item_font_color | get_color }};
+    {#border-bottom: 2px solid {{ menuProps.menu_active_item_font_color | get_color }};#}
     font-size: {{ menuProps.menu_active_item_font_size }}px;
     font-weight: {{ menuProps.menu_active_item_font_weight }};
-    background: {{ colors[menuProps.menu_active_item_background] }};
+    background: {{ menuProps.menu_active_item_background | get_color }};
     /*position: relative;*/
   }
   .{{ localClass }}__menu-tab:hover {
-    {#background: {{ colors[menuProps.menu_item_background_hover] }};#}
-    color: {{ colors[menuProps.menu_item_font_color_hover] }};
+    {#background: {{ menuProps.menu_item_background_hover | get_color }};#}
+    color: {{ menuProps.menu_item_font_color_hover | get_color }};
     font-weight: 600;
   }
 </style>

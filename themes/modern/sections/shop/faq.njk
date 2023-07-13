@@ -1,5 +1,3 @@
-{% set colors = themeProperties.current_colors %}
-
 {% set fullWidth = safe_get(properties.fullwidth, false) %}
 {% set bgColor = properties.background_color %}
 {% set marginTopDesktop = safe_get(properties.margin_top_desktop, 0) %}
@@ -24,7 +22,7 @@
 
 <style>
   .sellix-section.{{ globalClass}}-global-{{ id }} {
-    background-color: {{ colors[bgColor] }};
+    background-color: {{ bgColor | get_color }};
   }
 
   .{{ localClass }}__container {

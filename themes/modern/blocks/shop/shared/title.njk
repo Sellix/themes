@@ -1,5 +1,3 @@
-{% set colors = themeProperties.current_colors %}
-
 {% set titleFontColor = safe_get(properties.title_font_color, 'dark_font_color') %}
 {% set titleFontSize = safe_get(properties.title_font_size, 14) %}
 {% set titleFontWeight = safe_get(properties.title_font_weight, 400) %}
@@ -52,14 +50,14 @@
   }
 
   .{{ localClass }}__title {
-    color: {{ colors[titleFontColor] }};
+    color: {{ titleFontColor | get_color }};
     font-size: {{ titleFontSize }}px;
     font-weight: {{ titleFontWeight }};
     line-height: {{ titleLineHeight }}px;
   }
 
   .{{ localClass }}__subtitle {
-    color: {{ colors[subtitleFontColor] }};
+    color: {{ subtitleFontColor | get_color }};
     font-size: {{ subtitleFontSize }}px;
     font-weight: {{ subtitleFontWeight }};
     line-height: {{ subtitleLineHeight }}px;

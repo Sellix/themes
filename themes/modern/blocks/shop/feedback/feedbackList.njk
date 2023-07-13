@@ -2,7 +2,6 @@
 {% set feedbacks = global.common.feedbacksInfo.feedbacks %}
 {% set offset = args.offset if args.offset else 0 %}
 {% set limit = safe_get(args.limit, safe_get(properties.page_size, 12)) %}
-{% set colors = themeProperties.current_colors %}
 {% set isEmpty = feedbacks | length == 0 %}
 
 {% set bgColor = safe_get(properties.background_color, 'background_accent_ligth') %}
@@ -20,7 +19,7 @@
 
 <style>
   .{{ localClass }}__container {
-    background: {{ colors[bgColor] }};
+    background: {{ bgColor | get_color }};
     border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
     padding: {{ paddingVert }}px {{ paddingHoriz }}px;
     box-shadow: {{ shadow }};

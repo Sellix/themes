@@ -2,7 +2,6 @@
 {% set class = args.class %}
 {% set link = args.link %}
 {% set iconClass = args.icon_class %}
-{% set colors = themeProperties.current_colors %}
 {% set properties = args.properties %}
 
 {% set fontSize = safe_get(properties.font_size, 16) %}
@@ -13,7 +12,7 @@
 <style>
   .{{ localClass }} {
     font-size: {{ fontSize }}px;
-    color: {{ colors[fontColor] }};
+    color: {{ fontColor | get_color }};
   }
 </style>
 

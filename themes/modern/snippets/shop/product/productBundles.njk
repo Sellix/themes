@@ -6,7 +6,6 @@
 {% set bundles = args.bundles %}
 {% set properties = args.properties %}
 {% set currencyList = global.config.CURRENCY_LIST %}
-{% set colors = themeProperties.current_colors %}
 
 {% set bundleBorderRadius = safe_get(properties.bundle_border_radius, 8) %}
 {% set bundlePaddingVert = safe_get(properties.bundle_padding_vert, 16) %}
@@ -37,7 +36,7 @@
 
 <style>
   .{{ localClass }}__bundle {
-    background: {{ colors[bundleBackgroundColor] }};
+    background: {{ bundleBackgroundColor | get_color }};
     border: {{ "1px solid var(--borderColor)" if bundleShowBorder else "none" }};
     box-shadow: {{ bundleShadow }};
     border-radius: {{ bundleBorderRadius }}px;
@@ -54,7 +53,7 @@
   }
 
   .{{ localClass }}__head-title {
-    color: {{ colors[titleFontColor] }};
+    color: {{ titleFontColor | get_color }};
     font-size: {{ titleFontSize }}px;
     font-weight: {{ titleFontWeight }};
     line-height: {{ titleLineHeight }}px;
@@ -65,7 +64,7 @@
   }
 
   .{{ localClass }}__head-description {
-    color: {{ colors[descriptionFontColor] }};
+    color: {{ descriptionFontColor | get_color }};
     font-size: {{ descriptionFontSize }}px;
     font-weight: {{ descriptionFontWeight }};
     line-height: {{ descriptionLineHeight }}px;
@@ -77,7 +76,7 @@
   }
 
   .{{ localClass }}__product:hover {
-    background: {{ colors[productBackgroundColorHover] }};
+    background: {{ productBackgroundColorHover | get_color }};
   }
 </style>
 

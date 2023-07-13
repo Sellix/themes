@@ -1,5 +1,4 @@
 {% set id = uid() %}
-{% set colors = themeProperties.current_colors %}
 {% set localClass = args.localClass %}
 {% set properties = args.properties %}
 
@@ -9,13 +8,13 @@
 
 <style>
   .{{ localClass }}__burger-button > div {
-    background: {{ colors[color] }};
+    background: {{ color | get_color }};
   }
   .snippet-burger-button__burger-button > div::before, .snippet-burger-button__burger-button > div::after {
-    background: {{ colors[color] }};
+    background: {{ color | get_color }};
   }
   .snippet-burger-button__burger-button.untoggled > div {
-    background: {{ colors[color] }};
+    background: {{ color | get_color }};
   }
 </style>
 

@@ -4,7 +4,6 @@
 {% set emailId = uid() %}
 {% set messageId = uid() %}
 {% set invoiceId = uid() %}
-{% set colors = themeProperties.current_colors %}
 
 {% set formSize = safe_get(properties.form_size, 100) %}
 {% set formAlign = safe_get(properties.form_align, 'left') %}
@@ -26,7 +25,7 @@
   }
   .{{ localClass }}__container form {
     width: {{ formSize }}%;
-    background: {{ colors[formBgColor] }};
+    background: {{ formBgColor | get_color }};
     border: {{ "1px solid var(--borderColor)" if formShowBorder else "none" }};
     border-radius: {{ formBorderRadius }}px;
     padding: {{ formPaddingVert }}px {{ formPaddingHoriz }}px;

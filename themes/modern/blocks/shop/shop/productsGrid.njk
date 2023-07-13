@@ -54,8 +54,6 @@
   }) %}
 {% endif %}
 
-{% set colors = themeProperties.current_colors %}
-
 {% set hideOutOfStock = shop.hide_out_of_stock %}
 
 {% set placeholderType = safe_get(properties.grid_card_placeholder_type, 'auto') %}
@@ -140,7 +138,7 @@
 
 <style>
   .{{ localClass }}__container {
-    background: {{ colors[backgroundColor] }};
+    background: {{ backgroundColor | get_color }};
     border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
     padding: {{ paddingVert }}px {{ paddingHoriz }}px;
     box-shadow: {{ containerShadow }};

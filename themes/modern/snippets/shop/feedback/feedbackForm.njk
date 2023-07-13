@@ -1,5 +1,4 @@
 {% set id = uid() %}
-{% set colors = themeProperties.current_colors %}
 {% set feedbackId = args.feedbackId %}
 {% set feedback = args.feedback %}
 {% set score = feedback.score if feedback.score else 5 %}
@@ -43,7 +42,7 @@
   .{{ localClass }}__form {
     margin: auto;
     width: {{ formSize }};
-    background: {{ colors[bgColor] }};
+    background: {{ bgColor | get_color }};
     border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
     box-shadow: {{ shadow }};
     border-radius: {{ borderRadius }}px;
@@ -62,7 +61,7 @@
   }
 
   .{{ localClass }}__title {
-    color: {{colors[titleFontColor] }};
+    color: {{titleFontColor | get_color }};
     font-size: {{ titleFontSize }}px;
     font-weight: {{ titleFontWeight }};
     line-height: {{ titleLineHeight }}px;
@@ -70,7 +69,7 @@
   }
 
   .{{ localClass }}__text {
-    color: {{colors[subtitleFontColor] }};
+    color: {{subtitleFontColor | get_color }};
     font-size: {{ subtitleFontSize }}px;
     font-weight: {{ subtitleFontWeight }};
     line-height: {{ subtitleLineHeight }}px;
@@ -78,7 +77,7 @@
   }
 
   .{{ localClass }}__star-rating-title {
-    color: {{colors[starRatingTitleFontColor] }};
+    color: {{starRatingTitleFontColor | get_color }};
     font-size: {{ starRatingTitleFontSize }}px;
     font-weight: {{ starRatingTitleFontWeight }};
     line-height: {{ starRatingTitleLineHeight }}px;

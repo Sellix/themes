@@ -1,7 +1,6 @@
 {% set id = uid() %}
 
 {% set shop = global.common.shopInfo.shop %}
-{% set colors = themeProperties.current_colors %}
 {% set product = args.product %}
 {% set invoice = args.invoice %}
 {% set currency = args.currency %}
@@ -39,21 +38,21 @@
 {% elif addons | length %}
   <style>
     .{{ localClass }} {
-      background: {{ colors[bgColor] }};
+      background: {{ bgColor | get_color }};
       border: {{ '1px solid var(--borderColor)' if showBorder else 'none' }};
       box-shadow: {{ shadow }};
       border-radius: {{ borderRadius }}px;
       padding: {{ paddingVert }}px {{ paddingHoriz }}px;
     }
     .{{ localClass }}__title {
-      color: {{ colors[titleFontColor] }};
+      color: {{ titleFontColor | get_color }};
       font-size: {{ titleFontSize }}px;
       font-weight: {{ titleFontWeight }};
       line-height: {{ titleLineHeight }}px;
     }
 
     .{{ localClass }}__description {
-      color: {{ colors[bodyFontColor] }};
+      color: {{ bodyFontColor | get_color }};
       font-size: {{ bodyFontSize }}px;
       font-weight: {{ bodyFontWeight }};
       line-height: {{ bodyLineHeight }}px;

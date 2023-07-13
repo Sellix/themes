@@ -1,6 +1,5 @@
 {% set id = uid() %}
 {% set product = args.product %}
-{% set colors = themeProperties.current_colors %}
 {% set properties = args.properties %}
 
 {% set size = safe_get(args.size, 16) %}
@@ -15,7 +14,7 @@
 
 <style>
   .{{ localClass }} {
-    color: {{ colors[fontColor] }};
+    color: {{ fontColor | get_color }};
     font-size: {{ fontSize }}px;
     font-weight: {{ fontWeight }};
     line-height: {{ lineHeight }}px;
@@ -30,7 +29,7 @@
         rating=product.average_score,
         size=size,
         iconsCount=iconsCount,
-        color=colors[fontColor]
+        color=(fontColor | get_color)
       %}
     </div>
     <div class="{{ globalClass }}__score {{ localClass }}__score">

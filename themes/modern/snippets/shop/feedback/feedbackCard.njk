@@ -4,7 +4,6 @@
 {% set reply = args.feedback.reply %}
 {% set score = args.feedback.score %}
 {% set color = 'var(--darkFontColor)' %}
-{% set colors = themeProperties.current_colors %}
 {% set cardsProps = themeProperties.cards %}
 {% set properties = args.properties %}
 
@@ -34,7 +33,7 @@
 
 <style>
   .{{ localClass }} {
-    background: {{ colors[containerBackgroundColor] }};
+    background: {{ containerBackgroundColor | get_color }};
     border-radius: {{ containerBorderRadius }}px;
     box-shadow: {{ containerShadow }};
     border: {{ "1px solid var(--borderColor)" if containerShowBorder else "none" }};
@@ -42,7 +41,7 @@
   }
 
   .{{ localClass }}__message {
-    color: {{ colors[messageColor] }};
+    color: {{ messageColor | get_color }};
     font-size: {{ messageFontSize }}px;
     font-weight: {{ messageFontWeight }};
     line-height: {{ messageLineHeight }}px;
@@ -50,9 +49,9 @@
   }
 
   .{{ localClass }}__reply {
-    background: {{ colors[replyBgColor] }};
+    background: {{ replyBgColor | get_color }};
     border: {{ "1px solid var(--borderColor)" if replyShowBorder else "none" }};
-    color: {{ colors[replyColor] }};
+    color: {{ replyColor | get_color }};
     font-size: {{ replyFontSize }}px;
     font-weight: {{ replyFontWeight }};
     line-height: {{ replyLineHeight }}px;

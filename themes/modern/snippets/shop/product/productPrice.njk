@@ -1,5 +1,4 @@
 {% set id = uid() %}
-{% set colors = themeProperties.current_colors %}
 {% set product = args.product %}
 {% set isFree = product.price_display | float === 0 %}
 
@@ -18,13 +17,13 @@
 
 <style>
   .{{ localClass }} {
-    color: {{ colors[priceFontColor] }}!important;
+    color: {{ priceFontColor | get_color }}!important;
     font-size: {{ priceFontSize }}px;
     font-weight: {{ priceFontWeight }};
     line-height: {{ priceLineHeight }}px;
   }
   .{{ localClass }} span {
-    color: {{ colors[initialPriceFontColor] }}!important;
+    color: {{ initialPriceFontColor | get_color }}!important;
     font-size: {{ initialPriceFontSize }}px;
     font-weight: {{ initialPriceFontWeight }};
     line-height: {{ initialPriceLineHeight }}px;

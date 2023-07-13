@@ -1,7 +1,6 @@
 {% set id = uid() %}
 {% set product = args.product %}
 {% set properties = args.properties %}
-{% set colors = themeProperties.current_colors %}
 
 {% set buttons = [
   {
@@ -170,7 +169,7 @@
 
   <style>
     .{{ localClass }}__title {
-      color: {{ colors[properties.icon_color] }};
+      color: {{ properties.icon_color | get_color }};
     }
   </style>
 

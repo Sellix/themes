@@ -4,7 +4,6 @@
 {% set title = ticket.title %}
 {% set invoice_id = ticket.invoice_id %}
 {% set messages = ticket.messages %}
-{% set colors = themeProperties.current_colors %}
 
 {% set bgColor = safe_get(properties.container_background_color, 'background_accent_light') %}
 {% set showBorder = safe_get(properties.container_show_border, true) %}
@@ -17,7 +16,7 @@
 
 <style>
   .{{ localClass }}__container {
-    background: {{ colors[bgColor] }};
+    background: {{ bgColor | get_color }};
     border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
     border-radius: {{ borderRadius }}px;
     box-shadow: {{ shadow }};
@@ -32,7 +31,7 @@
   }
 
   .{{ localClass }}__title {
-    color: {{ colors[properties.title_font_color] }};
+    color: {{ properties.title_font_color | get_color }};
     font-size: {{ properties.title_font_size }}px;
     font-weight: {{ properties.title_font_weight }};
   }

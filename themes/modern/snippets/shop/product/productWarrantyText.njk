@@ -1,6 +1,5 @@
 {% set id = uid() %}
 {% set properties = args.properties %}
-{% set colors = themeProperties.current_colors %}
 
 {% set id = uid() %}
 {% set product = args.product or global.common.productInfo.product %}
@@ -21,7 +20,7 @@
 <style>
   .{{ localClass }} {
     padding-top: 1rem;
-    color: {{ colors[fontColor] }}!important;
+    color: {{ fontColor | get_color }}!important;
     font-size: {{ fontSize }}px!important;
     font-weight: {{ fontWeight }}!important;
     line-height: {{ lineHeight }}px;

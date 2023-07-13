@@ -1,7 +1,6 @@
 {% set id = uid() %}
 {% set shop = global.common.shopInfo.shop %}
 {% set isInvoice = global.request.type == 'invoice' %}
-{% set colors = themeProperties.current_colors %}
 
 {% set properties = args.properties %}
 {% set invoice = args.invoice %}
@@ -41,7 +40,7 @@
 
 <style>
   .{{ localClass }} {
-    background: {{ colors[productBgColor] }};
+    background: {{ productBgColor | get_color }};
     border: {{ "1px solid var(--borderColor)" if productShowBorder else "none" }};
     box-shadow: {{ productShadow }};
     border-radius: {{ productBorderRadius }}px;
@@ -49,7 +48,7 @@
   }
 
   .{{ localClass }}__title-text {
-    color: {{ colors[titleFontColor] }};
+    color: {{ titleFontColor | get_color }};
     font-size: {{ titleFontSize }}px;
     font-weight: {{ titleFontWeight }};
     line-height: {{ titleLineHeight }}px;

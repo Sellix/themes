@@ -4,7 +4,6 @@
 {% set isPlaceholder = not product.image_name %}
 {% set placeholderType = safe_get(properties.placeholder_type, undefined) %}
 {% set image = cdn_link(product.cloudflare_image_id, 'shopItem') %}
-{% set colors = themeProperties.current_colors %}
 {% set cardProps = themeProperties.cards %}
 {% set count = args.count %}
 {% set atLeastOneHasImages = args.atLeastOneHasImages %}
@@ -50,10 +49,10 @@
     box-shadow: {{ shadow }};
   }
   .{{ localClass }}__card {
-    background: {{ colors[background] }};
+    background: {{ background | get_color }};
   }
   .{{ localClass }}__title {
-    color: {{ colors[titleFontcolor] }};
+    color: {{ titleFontcolor | get_color }};
     font-size: {{ titleFontSize }}px;
     font-weight: {{ titleFontWeight }};
     line-height: {{ titleLineHeight }}px;
@@ -68,7 +67,7 @@
     justify-content: flex-start;
   }
   .{{ localClass }}__text {
-    color: {{ colors[descriptionFontColor] }};
+    color: {{ descriptionFontColor | get_color }};
     font-size: {{ descriptionFontSize }}px;
     font-weight: {{ descriptionFontWeight }};
     margin-bottom: 0 !important;

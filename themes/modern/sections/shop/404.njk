@@ -1,5 +1,3 @@
-{% set colors = themeProperties.current_colors %}
-
 <style type='text/css'>
   .shop-not-found {
     max-width: 1280px;
@@ -166,13 +164,13 @@
 
   <div class='shop-not-found text-center'>
     <div>
-      <h2 style="color: {{ colors[properties.404_heading_font_color] }}; font-size: {{ properties.404_heading_font_size }}px; font-weight: {{ properties.404_heading_font_weight }}; line-height: {{ properties.404_heading_line_height }}%; text-align: {{ properties.404_heading_text_align }};">
+      <h2 style="color: {{ properties.404_heading_font_color | get_color }}; font-size: {{ properties.404_heading_font_size }}px; font-weight: {{ properties.404_heading_font_weight }}; line-height: {{ properties.404_heading_line_height }}%; text-align: {{ properties.404_heading_text_align }};">
         {{ properties.404_heading_text | t }}
       </h2>
     </div>
 
     <div>
-      <h4 style="color: {{ colors[properties.404_description_font_color] }}; font-size: {{ properties.404_description_font_size }}px; font-weight: {{ properties.404_description_font_weight }}; line-height: {{ properties.404_description_line_height }}%; text-align: {{ properties.404_description_text_align }};">
+      <h4 style="color: {{ properties.404_description_font_color | get_color }}; font-size: {{ properties.404_description_font_size }}px; font-weight: {{ properties.404_description_font_weight }}; line-height: {{ properties.404_description_line_height }}%; text-align: {{ properties.404_description_text_align }};">
         {{ properties.404_description_text | t }}
       </h4>
      </div>

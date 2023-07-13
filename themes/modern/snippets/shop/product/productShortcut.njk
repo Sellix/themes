@@ -1,6 +1,5 @@
 {% set id = uid() %}
 {% set properties = args.properties %}
-{% set colors = themeProperties.current_colors %}
 
 {% set product = args.product %}
 {% set onHold = product.on_hold %}
@@ -26,7 +25,7 @@
   .{{ localClass }} {
     margin: auto;
     width: {{ formSize }};
-    background: {{ colors[bgColor] }};
+    background: {{ bgColor | get_color }};
     border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
     box-shadow: {{ shadow }};
     border-radius: {{ borderRadius }}px;

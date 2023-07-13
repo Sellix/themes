@@ -2,7 +2,6 @@
 {% set shop = global.common.shopInfo.shop %}
 {% set product = args.product %}
 {% set cartEnabled = global.common.cartEnabled %}
-{% set colors = themeProperties.current_colors %}
 {% set isSubscription = product.type === 'SUBSCRIPTION' %}
 
 {% set isStatic = args.is_static %}
@@ -16,8 +15,8 @@
 
 <style>
   .{{ localClass }} .{{ localClass }}__button {
-    background-color: {{ colors[bgColor] }};
-    color: {{ colors[color] }}
+    background-color: {{ bgColor | get_color }};
+    color: {{ color | get_color }}
   }
 </style>
 

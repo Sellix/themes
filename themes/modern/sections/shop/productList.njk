@@ -1,5 +1,3 @@
-{% set colors = themeProperties.current_colors %}
-
 {% set fullWidth = safe_get(properties.fullwidth, false) %}
 {% set bgColor = properties.background_color %}
 {% set marginTopDesktop = safe_get(properties.margin_top_desktop, 0) %}
@@ -22,18 +20,18 @@
 
 <style>
   .sellix-section.{{ globalClass}}-global-{{ id }} {
-    background-color: {{ colors[bgColor] }};
+    background-color: {{ bgColor | get_color }};
   }
 
   .{{ localClass }}__container {
-    background-color: {{ colors[bgColor] }};
+    background-color: {{ bgColor | get_color }};
     padding: {{ paddingTopDesktop }}px {{ paddingHorizDesktop }}px {{ paddingBottomDesktop }}px {{ paddingHorizDesktop }}px;
     margin-top: {{ marginTopDesktop }}px;
     margin-bottom: {{ marginBottomDesktop }}px;
   }
 
   @media (max-width: 768px) {
-    .{{ localClass }} {
+    .{{ localClass }}__container {
       padding: {{ paddingTopTablet }}px {{ paddingHorizTablet }}px {{ paddingBottomTablet }}px {{ paddingHorizTablet }}px;
       margin-top: {{ marginTopTablet }}px;
       margin-bottom: {{ marginBottomTablet }}px;
@@ -41,7 +39,7 @@
   }
 
   @media (max-width: 640px) {
-    .{{ localClass }} {
+    .{{ localClass }}__container {
       padding: {{ paddingTopMobile }}px {{ paddingHorizMobile }}px {{ paddingBottomMobile }}px {{ paddingHorizMobile }}px;
       margin-top: {{ marginTopMobile }}px;
       margin-bottom: {{ marginBottomMobile }}px;

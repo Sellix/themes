@@ -1,6 +1,5 @@
 {% set id = uid() %}
 
-{% set colors = themeProperties.current_colors %}
 {% set backgroundColor = safe_get(properties.item_background_color, 'transparent') %}
 {# Desktop #}
 {% set contentAlignDesktop = safe_get(properties.item_content_align_desktop, 'center') %}
@@ -24,7 +23,7 @@
   .{{ localClass }} {
     display: flex;
     align-items: center;
-    background-color: {{ colors[backgroundColor] }};
+    background-color: {{ backgroundColor | get_color }};
     {% if contentAlignDesktop === 'left' %}
       justify-content: flex-start;
     {% elif contentAlignDektop === 'right' %}

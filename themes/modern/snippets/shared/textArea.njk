@@ -1,5 +1,4 @@
 {% set id = args.id or uid() %}
-{% set colors = themeProperties.current_colors %}
 {% set inputsProps = themeProperties.inputs %}
 {% set autosize = safe_get(args.autosize, true) %}
 
@@ -33,16 +32,16 @@
   .{{ localClass }}__label {
     display: flex;
     justify-content: {{ labelAlign }};
-    color: {{ colors[labelFontColor] }};
+    color: {{ labelFontColor | get_color }};
     font-size: {{ labelFontSize }}px;
     font-weight: {{ labelFontWeight }};
     line-height: {{ labelLineHeight }}px;
   }
   .{{ localClass }}__text-area {
     min-height: {{textAreaHeight if autoresize else ''}};
-    background: {{ colors[textFieldBackground] }};
+    background: {{ textFieldBackground | get_color }};
     border: {{ "1px solid var(--borderColor)" if commonShowBorder else "none" }};
-    color: {{ colors[commonFontColor] }};
+    color: {{ commonFontColor | get_color }};
     font-size: {{ commonFontSize }}px;
     font-weight: {{ commonFontWeight }};
   }

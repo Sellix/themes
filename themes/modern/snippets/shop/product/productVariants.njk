@@ -1,7 +1,6 @@
 {% set id = uid() %}
 {% set properties = args.properties %}
 {% set shop = global.common.shopInfo.shop %}
-{% set colors = themeProperties.current_colors %}
 {% set product = args.product %}
 {% set isLicense = product.licensing_enabled %}
 {% set currency = args.currency %}
@@ -42,7 +41,7 @@
 {% if productVariants | length and product.stock %}
   <style>
     .{{ localClass }}__variant {
-      background: {{ colors[bgColor] }};
+      background: {{ bgColor | get_color }};
       border: {{ '1px solid var(--borderColor)' if showBorder else 'none' }};
       box-shadow: {{ shadow }};
       border-radius: {{ borderRadius }}px;
@@ -50,37 +49,37 @@
     }
 
     .{{ localClass }}__variant.active {
-      background: {{ colors[bgActiveColor] }};
+      background: {{ bgActiveColor | get_color }};
     }
 
     .{{ localClass }}__variant.active .{{ localClass }}__title {
-      color: {{ colors[titleActiveFontColor] }};
+      color: {{ titleActiveFontColor | get_color }};
     }
 
     .{{ localClass }}__variant.active .{{ localClass }}__info {
-      color: {{ colors[infoActiveFontColor] }};
+      color: {{ infoActiveFontColor | get_color }};
     }
 
     .{{ localClass }}__variant.active .{{ localClass }}__description {
-      color: {{ colors[descriptionActiveFontColor] }};
+      color: {{ descriptionActiveFontColor | get_color }};
     }
 
     .{{ localClass }}__title {
-      color: {{ colors[titleFontColor] }};
+      color: {{ titleFontColor | get_color }};
       font-size: {{ titleFontSize }}px;
       font-weight: {{ titleFontWeight }};
       line-height: {{ titleLineHeight }}px;
     }
 
     .{{ localClass }}__description {
-      color: {{ colors[descriptionFontColor] }};
+      color: {{ descriptionFontColor | get_color }};
       font-size: {{ descriptionFontSize }}px;
       font-weight: {{ descriptionFontWeight }};
       line-height: {{ descriptionLineHeight }}px;
     }
 
     .{{ localClass }}__info {
-      color: {{ colors[infoFontColor] }};
+      color: {{ infoFontColor | get_color }};
       font-size: {{ infoFontSize }}px;
       font-weight: {{ infoFontWeight }};
       line-height: {{ infoLineHeight }}px;

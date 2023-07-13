@@ -2,7 +2,6 @@
 {% set feedbacks = global.common.feedbacksInfo.feedbacks %}
 {% set pageLimit = 10 %}
 {% set currentPage = 1 %}
-{% set colors = themeProperties.current_colors %}
 
 {% set pageSize = safe_get(properties.page_size, 12) %}
 {% set bgColor = safe_get(properties.background_color, 'background_accent_light') %}
@@ -38,7 +37,7 @@
       display: flex;
       margin: 0 auto;
       padding: {{ paddingVert }}px {{ paddingHoriz }}px;
-      background: {{ colors[bgColor] }};
+      background: {{ bgColor | get_color }};
       border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
       box-shadow: {{ shadow }};
       border-radius: {{ borderRadius }}px;
@@ -49,19 +48,19 @@
     .{{ localClass}}__container .next {
       cursor: pointer;
       padding: {{ btnPaddingVert }}px {{ btnPaddingHoriz }}px;
-      background: {{ colors[btnBgColor] }};
+      background: {{ btnBgColor | get_color }};
       border: {{ "1px solid var(--borderColor)" if btnShowBorder else "none" }};
       box-shadow: {{ btnShadow }};
       border-radius: {{ btnBorderRadius }}px;
 
-      color: {{ colors[btnFontColor] }};
+      color: {{ btnFontColor | get_color }};
       font-size: {{ btnFontSize }}px;
       font-weight: {{ btnFontWeight }};
       line-height: {{ btnLineHeight }}px;
     }
     .{{ localClass }}__container .item.active {
-      background: {{ colors[activeBtnBgColor] }};
-      color: {{ colors[activeBtnFontColor] }};
+      background: {{ activeBtnBgColor | get_color }};
+      color: {{ activeBtnFontColor | get_color }};
       font-size: {{ activeBtnFontSize }}px;
       font-weight: {{ activeBtnFontWeight }};
     }

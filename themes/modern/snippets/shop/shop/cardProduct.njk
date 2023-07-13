@@ -11,7 +11,6 @@
 {% set isOut = (product.stock | int === 0) %}
 {% set isPayWhatYouWant = (product.pay_what_you_want | int === 1) %}
 {% set isFree = product.price_display | float === 0 and not isPayWhatYouWant %}
-{% set colors = themeProperties.current_colors %}
 {% set cardProps = themeProperties.cards %}
 {% set showBadge = safe_get(properties.show_product_type_badge, true) %}
 
@@ -51,10 +50,10 @@
     box-shadow: {{ shadow }};
   }
   .{{ localClass }}__card {
-    background: {{ colors[background] }};
+    background: {{ background | get_color }};
   }
   .{{ localClass }}__title {
-    color: {{ colors[titleFontcolor] }};
+    color: {{ titleFontcolor | get_color }};
     font-size: {{ titleFontSize }}px;
     font-weight: {{ titleFontWeight }};
     line-height: {{ titleLineHeight }}px;
@@ -64,12 +63,12 @@
     padding: {{ infoPaddingVert }}px {{ infoPaddingHoriz }}px;
   }
   .{{ localClass }}__description {
-    color: {{ colors[descriptionFontColor] }};
+    color: {{ descriptionFontColor | get_color }};
     font-size: {{ descriptionFontSize }}px;
     font-weight: {{ descriptionFontWeight }};
   }
   .{{ localClass }}__price-with-discount, .{{ localClass }}__price-with-discount i {
-    color: {{ colors[priceFontColor] }};
+    color: {{ priceFontColor | get_color }};
     font-size: {{ priceFontSize }}px;
     font-weight: {{ priceFontWeight }};
   }
@@ -77,7 +76,7 @@
     opacity: 0.4;
   }
   .{{ localClass }}__price {
-    color: {{ colors[priceFontColor] }};
+    color: {{ priceFontColor | get_color }};
     font-size: {{ priceFontSize }}px;
     font-weight: {{ priceFontWeight }};
   }

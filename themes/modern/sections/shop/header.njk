@@ -2,7 +2,6 @@
 {% set menuProps = themeProperties.mobile_menu %}
 {% set shop = global.common.shopInfo.shop %}
 {% set subscription = global.common.shopInfo.subscription %}
-{% set colors = themeProperties.current_colors %}
 
 {% set fullWidth = safe_get(properties.fullwidth, false) %}
 {% set bgColor = safe_get(properties.background_color, 'background_main_color') %}
@@ -26,19 +25,19 @@
   .{{ globalClass }} {
     box-shadow: {{ shadow }};
     border: {{ "1px solid var(--borderColorLight)" if showBorder else "none" }};
-    background-color: {{ colors[bgColor] }};
+    background-color: {{ bgColor | get_color }};
   }
   .{{ localClass }} {
 
   }
   .{{ localClass }}__shop-name {
-    color: {{ colors[shopNameFontColor] }};
+    color: {{ shopNameFontColor | get_color }};
     font-size: {{ shopNameFontSize }}px;
     font-weight: {{ shopNameFontWeight }};
     line-height: {{ shopNameLineHeight }}px;
   }
   .{{ localClass }} .sidebar-toggler {
-    color: {{ colors[shopNameFontColor] }};
+    color: {{ shopNameFontColor | get_color }};
   }
   .{{ localClass }}__logo-image img {
     height: {{ logoImageSize }}px;

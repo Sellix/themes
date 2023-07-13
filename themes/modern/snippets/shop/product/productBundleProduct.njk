@@ -3,7 +3,6 @@
 {% set shop = shopInfo.shop %}
 {% set product = args.product %}
 {% set properties = args.properties %}
-{% set colors = themeProperties.current_colors %}
 {% set hideStockCounter = shop.hide_stock_counter %}
 {% set showStockInfo = safe_get(themeProperties.common.show_stock_info, false) %}
 
@@ -38,7 +37,7 @@
 
 <style>
   .{{ localClass }}__title {
-    color: {{ colors[titleFontColor] }};
+    color: {{ titleFontColor | get_color }};
     font-size: {{ titleFontSize }}px;
     font-weight: {{ titleFontWeight }};
     line-height: {{ titleLineHeight }}px;

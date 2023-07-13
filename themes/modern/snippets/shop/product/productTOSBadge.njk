@@ -1,7 +1,6 @@
 {% set id = uid() %}
 {% set shop = global.common.shopInfo.shop %}
 {% set properties = args.properties %}
-{% set colors = themeProperties.current_colors %}
 
 {% set product = args.product or global.common.productInfo.product %}
 {% set terms = product.terms_of_service %}
@@ -32,7 +31,7 @@
     flex-direction: column;
     border: {{ '1px solid var(--borderColor)!important' if containerShowBorder else 'none' }};
     border-radius: {{ containerBorderRadius }}px;
-    background: {{ colors[containerBackgroundColor] }};
+    background: {{ containerBackgroundColor | get_color }};
     padding:  {{ containerPaddingVert }}px {{ containerPaddingHoriz }}px;
     box-shadow: {{ containerShadow }};
   }
@@ -43,7 +42,7 @@
 
   .{{ localClass }}__head {
     display: flex;
-    color: {{ colors[titleFontColor] }};
+    color: {{ titleFontColor | get_color }};
     font-size: {{ titleFontSize }}px;
     font-weight: {{ titleFontWeight }};
     line-height: {{ titleLineHeight }}px;
@@ -54,7 +53,7 @@
     width: 2rem;
     height: 2rem;
     margin-right: 1rem;
-    fill: {{ colors[titleFontColor] }};
+    fill: {{ titleFontColor | get_color }};
   }
 
   .{{ localClass }}__head i.fa {
@@ -75,7 +74,7 @@
     font-weight: 300;
     margin-top: 0.5rem;
     font-size: 12px;
-    color: {{ colors[titleFontColor] }};
+    color: {{ titleFontColor | get_color }};
     opacity: .7;
   }
 </style>

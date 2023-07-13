@@ -1,5 +1,4 @@
 {% set id = args.id or uid() %}
-{% set colors = themeProperties.current_colors %}
 {% set inputsProps = themeProperties.inputs %}
 
 {% set showPassword = safe_get(args.show_password, false) %}
@@ -35,7 +34,7 @@
   .{{ localClass }}__label {
     display: flex;
     justify-content: {{ labelAlign }};
-    color: {{ colors[labelFontColor] }};
+    color: {{ labelFontColor | get_color }};
     font-size: {{ labelFontSize }}px;
     font-weight: {{ labelFontWeight }};
     line-height: {{ labelLineHeight }}px;
@@ -45,9 +44,9 @@
   }
   .{{ localClass }}__input {
     height: {{ commonHeight }}px;
-    background: {{ colors[textFieldBackground] }};
+    background: {{ textFieldBackground | get_color }};
     border: {{ "1px solid var(--borderColor)" if commonShowBorder else "none" }};
-    color: {{ colors[commonFontColor] }};
+    color: {{ commonFontColor | get_color }};
     font-size: {{ commonFontSize }}px;
     font-weight: {{ commonFontWeight }};
   }
@@ -60,7 +59,7 @@
     position: absolute;
     right: 0.5rem;
     top: 0.75rem;
-    color: {{ colors[commonFontColor] }};
+    color: {{ commonFontColor | get_color }};
   }
 </style>
 

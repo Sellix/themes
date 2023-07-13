@@ -1,5 +1,4 @@
 {% set id = uid() %}
-{% set colors = themeProperties.current_colors %}
 
 {% set shop = global.common.shopInfo.shop %}
 
@@ -28,13 +27,13 @@
   .{{ localClass }}__value {
     display: flex;
     align-items: center;
-    color: {{ colors[valueFontColor] }};
+    color: {{ valueFontColor | get_color }};
     font-size: {{ valueFontSize }}px;
     font-weight: {{ valueFontWeight }};
     line-height: {{ valueLineHeight }}px;
   }
   .{{ localClass }}__label {
-    color: {{ colors[labelFontColor] }};
+    color: {{ labelFontColor | get_color }};
     font-size: {{ labelFontSize }}px;
     font-weight: {{ labelFontWeight }};
     line-height: {{ labelLineHeight }}px;

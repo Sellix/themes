@@ -1,5 +1,4 @@
 {% set shop = global.common.shopInfo.shop %}
-{% set colors = themeProperties.current_colors %}
 {% set currentContext = context() %}
 
 {% set shopName = safe_get(themeProperties.common.shop_name, null) or shop.name %}
@@ -44,7 +43,7 @@
 
 <style>
   .sellix-section.{{ globalClass}}-global-{{ id }} {
-    background-color: {{ colors[bgColor] }};
+    background-color: {{ bgColor | get_color }};
   }
 
   .{{ localClass }}__container {
@@ -70,7 +69,7 @@
   }
 
   .{{ localClass }}__shop-name {
-    color: {{ colors[shopNameFontColor] }};
+    color: {{ shopNameFontColor | get_color }};
     font-size: {{ shopNameFontSize }}px;
     font-weight: {{ shopNameFontWeight }};
     line-height: {{ shopNameLineHeight }}px;
@@ -82,20 +81,20 @@
   }
 
   .{{ localClass }}__menu-title {
-    color: {{ colors[menuTitleFontColor] }};
+    color: {{ menuTitleFontColor | get_color }};
     font-size: {{ menuTitleFontSize }}px;
     font-weight: {{ menuTitleFontWeight }};
     line-height: {{ menuTitleLineHeight }}px;
   }
   .{{ localClass }}__menu-items a {
-    color: {{ colors[menuItemFontColor] }};
+    color: {{ menuItemFontColor | get_color }};
     font-size: {{ menuItemFontSize }}px;
     font-weight: {{ menuItemFontWeight }};
     line-height: {{ menuItemLineHeight }}px;
   }
 </style>
 
-<div class="{{ globalClass }}__container {{ localClass }}__container menus-count-{{ menusCount}} {{ 'full-width' if fullWidth else 'content-width' }}">
+<footer class="{{ globalClass }}__container {{ localClass }}__container menus-count-{{ menusCount}} {{ 'full-width' if fullWidth else 'content-width' }}">
   <div class="{{ globalClass }}__logo">
     <div class="{{ globalClass }}__logo-wrapper">
       {% if logoImage and logoType in ['logo', 'logo_or_name', 'logo_and_name'] %}
@@ -146,4 +145,4 @@
       {% render_block 'Product light list' %}
     </div>
   </div>
-</div>
+</footer>

@@ -5,7 +5,6 @@
 {% set isFree = product.price_display | float === 0 and not isPayWhatYouWant %}
 {% set onHold = product.on_hold | int %}
 {% set isOut = (product.stock | int === 0) %}
-{% set colors = themeProperties.current_colors %}
 
 {% set tags = [] %}
 {% if product.type === 'SUBSCRIPTION' %}
@@ -46,13 +45,13 @@
 
 <style>
   .{{ localClass }}__title {
-    color: {{ colors[titleFontColor] }};
+    color: {{ titleFontColor | get_color }};
     font-size: {{ titleFontSize }}px;
     font-weight: {{ titleFontWeight }};
     line-height: {{ titleLineHeight }}px;
   }
   .{{ localClass }}__price {
-    color: {{ colors[priceFontColor] }};
+    color: {{ priceFontColor | get_color }};
     font-size: {{ priceFontSize }}px;
     font-weight: {{ priceFontWeight }};
     line-height: {{ priceLineHeight }}px;
@@ -60,12 +59,12 @@
   .{{ localClass }}__price-initial {
     text-decoration: line-through;
     font-weight: {{ initialPriceFontWeight }};
-    color: {{ colors[initialPriceFontColor] }};
+    color: {{ initialPriceFontColor | get_color }};
     font-size: {{ initialPriceFontSize }}px;
     line-height: {{ initialPriceLineHeight }}px;
   }
   .{{ localClass }}__tax {
-    color: {{ colors[priceFontColor] }};
+    color: {{ priceFontColor | get_color }};
     font-size: 14px;
     font-weight: 40;
     line-height: 20px;

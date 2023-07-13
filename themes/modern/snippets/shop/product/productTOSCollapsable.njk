@@ -4,7 +4,6 @@
 {% set productTerms = product.terms_of_service %}
 {% set invoice = args.invoice %}
 {% set properties = args.properties %}
-{% set colors = themeProperties.current_colors %}
 
 {% set collapsable = safe_get(properties.collapsable, true) %}
 
@@ -32,14 +31,14 @@
 
 <style>
   .{{ localClass }}__header {
-    color: {{ colors[titleFontColor] }};
+    color: {{ titleFontColor | get_color }};
     font-size: {{ titleFontSize }}px;
     font-weight: {{ titleFontWeight }};
     line-height: {{ titleLineHeight }}px;
   }
 
   .{{ localClass }}__body {
-    color: {{ colors[bodyFontColor] }};
+    color: {{ bodyFontColor | get_color }};
     font-size: {{ bodyFontSize }}px;
     font-weight: {{ bodyFontWeight }};
     line-height: {{ bodyLineHeight }}px;

@@ -1,6 +1,5 @@
 {% set id = args.id or uid() %}
 
-{% set colors = themeProperties.current_colors %}
 {% set itemsAlign = safe_get(properties.items_align, 'center') %}
 {% set minWidthDesktop = properties.min_width_desktop %}
 {% set maxWidthDesktop = properties.max_width_desktop %}
@@ -38,7 +37,7 @@
       background-position: top;
       background-size: cover;
     {% elif bgColor %}
-      background-color: {{ colors[bgColor] }};
+      background-color: {{ bgColor | get_color }};
     {% endif %}
 
     width: 100%;

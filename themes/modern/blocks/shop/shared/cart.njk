@@ -1,6 +1,5 @@
 {% set id = uid() %}
 {% set shop = global.common.shopInfo.shop %}
-{% set colors = themeProperties.current_colors %}
 
 {% set headerBgColor = safe_get(properties.header_background_color, 'background_accent_light') %}
 {% set headerShowBorder = safe_get(properties.header_show_border, true) %}
@@ -55,28 +54,28 @@
 
 <style>
   .{{ localClass }}__dropdown-header {
-    background: {{ colors[headerBgColor] }};
+    background: {{ headerBgColor | get_color }};
     border-bottom: {{ '1px solid var(--borderColor)' if headerShowBorder else 'none' }};
     box-shadow: {{ headerShadow }};
   }
 
   .{{ localClass }}__dropdown-header-title {
     text-align: {{ headerTitleTextAlign }};
-    color: {{ colors[headerTitleFontColor] }};
+    color: {{ headerTitleFontColor | get_color }};
     font-weight: {{ headerTitleFontWeight }};
     font-size: {{ headerTitleFontSize }}px;
     line-height: {{ headerTitleLineHeight }}px;
   }
   .{{ localClass }}__dropdown-header-description {
     text-align: {{ headerDescriptionTextAlign }};
-    color: {{ colors[headerDescriptionFontColor] }};
+    color: {{ headerDescriptionFontColor | get_color }};
     font-weight: {{ headerDescriptionFontWeight }};
     font-size: {{ headerDescriptionFontSize }}px;
     line-height: {{ headerDescriptionLineHeight }}px;
   }
 
   .{{ localClass }}__dropdown-body {
-    background: {{ colors[bodyBgColor] }};
+    background: {{ bodyBgColor | get_color }};
   }
 
   .{{ localClass }}__dropdown-products {
@@ -98,21 +97,21 @@
   }
   .{{ localClass }}__dropdown-item-title {
     text-align: {{ itemTitleTextAlign }};
-    color: {{ colors[itemTitleFontColor] }};
+    color: {{ itemTitleFontColor | get_color }};
     font-weight: {{ itemTitleFontWeight }};
     font-size: {{ itemTitleFontSize }}px;
     line-height: {{ itemTitleLineHeight }}px;
   }
   .{{ localClass }}__dropdown-item-price {
     text-align: {{ itemPriceTextAlign }};
-    color: {{ colors[itemPriceFontColor] }};
+    color: {{ itemPriceFontColor | get_color }};
     font-weight: {{ itemPriceFontWeight }};
     font-size: {{ itemPriceFontSize }}px;
     line-height: {{ itemPriceLineHeight }}px;
   }
 
   .{{ localClass }}__dropdown-footer {
-    background: {{ colors[footerBgColor] }};
+    background: {{ footerBgColor | get_color }};
     border-top: {{ '1px solid var(--borderColor)' if footerShowBorder else 'none' }};
     box-shadow: {{ footerShadow }};
   }

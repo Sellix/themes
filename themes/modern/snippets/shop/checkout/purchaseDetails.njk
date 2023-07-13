@@ -3,7 +3,6 @@
 {% set type = args.type if args.type else 'checkout' %}
 {% set shop = global.common.shopInfo.shop %}
 {% set cartEnabled = global.common.cartEnabled %}
-{% set colors = themeProperties.current_colors %}
 {% set properties = args.properties %}
 
 {% set showCalculationDetails = safe_get(properties.show_calculation_details, false) %}
@@ -20,7 +19,7 @@
 
 <style>
   .{{ localClass }} .sellix-product-card {
-    background: {{ colors[containerBgColor] }};
+    background: {{ containerBgColor | get_color }};
     box-shadow: {{ containerShadow }};
     border-radius: {{ containerBorderRadius }}px;
     padding: 0;
@@ -34,7 +33,7 @@
   }
 
   .{{ localClass }} .sellix-product-card .sellix-product-form-field .currency-title {
-    background: {{ colors[properties.container_background_color] }};
+    background: {{ properties.container_background_color | get_color }};
   }
 </style>
 

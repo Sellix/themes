@@ -1,6 +1,5 @@
 {% set id = uid() %}
 {% set properties = args.properties %}
-{% set colors = themeProperties.current_colors %}
 
 {% set align = safe_get(properties.align, 'center') %}
 {% set width = safe_get(properties.width, 100) %}
@@ -25,7 +24,7 @@
     justify-content: {{ align }};
   }
   .{{ localClass }}__delimiter {
-    background-color: {{ colors[color] }};
+    background-color: {{ color | get_color }};
     width: {{ width }}%;
     height: {{ height }}px;
     border-radius: {{ borderRadius }}px;

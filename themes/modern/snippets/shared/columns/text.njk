@@ -1,8 +1,6 @@
 {% set id = uid() %}
 {% set properties = args.properties %}
 
-{% set colors = themeProperties.current_colors %}
-
 {% set contentAlignDesktop = safe_get(properties.content_align_desktop, 'center') %}
 {% set contentAlignTablet = safe_get(properties.content_align_tablet, 'center') %}
 {% set contentAlignMobile = safe_get(properties.content_align_mobile, 'center') %}
@@ -18,7 +16,7 @@
   .{{ localClass }} {
     width: 100%;
     text-align: {{ contentAlignDesktop }};
-    color: {{ colors[fontColor] }};
+    color: {{ fontColor | get_color }};
     font-size: {{ fontSize }}px;
     font-weight: {{ fontWeight }};
     line-height: {{ lineHeight }}px;

@@ -1,6 +1,5 @@
 {% set id = uid() %}
 {% set shop = global.common.shopInfo.shop %}
-{% set colors = themeProperties.current_colors %}
 
 {% set size = safe_get(properties.size, 100) %}
 {% set bgColor = safe_get(properties.background_color, 'background_accent_light') %}
@@ -25,13 +24,13 @@
   }
   .{{ localClass }}__terms-text {
     width: {{ size }}%;
-    background: {{ colors[bgColor] }};
+    background: {{ bgColor }};
     border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
     border-radius: {{ borderRadius }}px;
     padding: {{ paddingVert }}px {{ paddingHoriz }}px;
     box-shadow: {{ shadow }};
 
-    color: {{ colors[fontColor] }};
+    color: {{ fontColor | get_color }};
     font-size: {{ fontSize }}px;
     font-weight: {{ fontWeight }};
     line-height: {{ lineHeight }}px;

@@ -1,7 +1,6 @@
 {% set id = uid() %}
 
 {% set properties = args.properties %}
-{% set colors = themeProperties.current_colors %}
 
 {% set fontSize = safe_get(properties.icon_size, 16) %}
 {% set fontColor = safe_get(properties.icon_color, 'light_font_color') %}
@@ -11,7 +10,7 @@
 <style>
   .{{ localClass }} {
     font-size: {{ fontSize }}px;
-    color: {{ colors[fontColor] }};
+    color: {{ fontColor | get_color }};
   }
 
   .{{ localClass }} svg {

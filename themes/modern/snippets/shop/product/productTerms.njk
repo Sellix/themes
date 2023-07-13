@@ -1,7 +1,6 @@
 {% set id = uid() %}
 {% set product = args.product %}
 {% set properties = args.properties %}
-{% set colors = themeProperties.current_colors %}
 
 {% set productTerms = product.terms_of_service %}
 
@@ -18,7 +17,7 @@
 <style>
   .{{ localClass }} {
     border: {{ '1px solid var(--borderColor)' if showBorder else 'none' }};
-    background: {{ colors[bgColor] }};
+    background: {{ bgColor | get_color }};
     border-radius: {{ borderRadius }}px;
     box-shadow: {{ shadow }};
     padding: {{ paddingVert }}px {{ paddingHoriz }}px;

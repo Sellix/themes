@@ -43,6 +43,12 @@
   <link href="{{ font.href }}" rel="stylesheet">
 
   <style>
+    :root {
+      --headerHeight: 72;
+      @media (max-width: 1080px) {
+        --headerHeight: 64;
+      }
+    }
     @font-face {
       font-family: "Inter var";
       font-weight: 100 900;
@@ -152,16 +158,17 @@
 
 <body>
   <div id="app" class="sellix-ui-container {{ 'is-dark' if global.theme.isDark }}">
-    {% render_section 'Header', layoutId=layoutId %}
+    <div class="sellix-header">
+      {% render_section 'Header', layoutId=layoutId %}
+    </div>
 
-    <div class="sellix-store">
-      <div id="content" class="template">
+    <div class="sellix-store {{ 'min-vh-100' if not templateProperties.footer_type not in ['fullscreen_content']  }}">
+      <div id="content" class="template {{ 'min-vh-100' if templateProperties.footer_type in ['fullscreen_content'] }}">
         {% render_template 'default' %}
       </div>
 
       <div class="sellix-footer {{ 'with-border' if global.request.type in ['invoice'] }}">
         {% render_section 'Footer menu' %}
-
         {% render_section 'Footer' %}
       </div>
     </div>

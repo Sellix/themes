@@ -1,5 +1,4 @@
 {% set id = uid() %}
-{% set colors = themeProperties.current_colors %}
 
 {% set bgColor = safe_get(properties.background_color, 'background_accent_dark') %}
 {% set showBorder = safe_get(properties.show_border, true) %}
@@ -14,7 +13,7 @@
   .{{ localClass }}__container {
     cursor: pointer;
     border: {{ '1px solid var(--borderColor)' if showBorder else 'none' }};
-    background: {{ colors[bgColor] }};
+    background: {{ bgColor | get_color }};
     border-radius: {{ borderRadius }}px;
     box-shadow: {{ shadow }};
     padding: {{ paddingVert }}px {{ paddingHoriz }}px;
@@ -24,7 +23,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: {{ colors[properties.question_font_color] if properties.question_font_color else 'inherit' }};
+    color: {{ (properties.question_font_color | get_color) if properties.question_font_color else 'inherit' }};
     font-size: {{ properties.question_font_size }}px;
     font-weight: {{ properties.question_font_weight }};
     text-align: {{ properties.question_text_align }};
@@ -35,7 +34,7 @@
     overflow: hidden;
     transition: opacity 200ms linear, max-height 200ms linear;
     will-change: opacity, max-height;
-    color: {{ colors[properties.answer_font_color] if properties.answer_font_color else 'inherit' }};
+    color: {{ (properties.answer_font_color | get_color) if properties.answer_font_color else 'inherit' }};
     font-size: {{ properties.answer_font_size }}px;
     font-weight: {{ properties.answer_font_weight }};
     text-align: {{ properties.answer_text_align }};

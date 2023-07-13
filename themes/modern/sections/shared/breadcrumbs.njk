@@ -1,5 +1,3 @@
-{% set colors = themeProperties.current_colors %}
-
 {% set paddingVertTopDesktop = safe_get(properties.padding_top_desktop, 32) %}
 {% set paddingVertBottomDesktop = safe_get(properties.padding_bottom_desktop, 32) %}
 {% set paddingHorizDesktop = safe_get(properties.padding_horiz_desktop, 0) %}
@@ -35,11 +33,11 @@
 
 <style>
   .sellix-section.{{ globalClass}}-global-{{ id }} {
-    background-color: {{ colors[bgColor] }};
+    background-color: {{ bgColor | get_color }};
   }
 
   .{{ localClass }}__container {
-    background-color: {{ colors[bgColor] }};
+    background-color: {{ bgColor | get_color }};
     padding: {{ paddingVertTopDesktop }}px {{ paddingHorizDesktop }}px {{ paddingVertBottomDesktop }}px {{ paddingHorizDesktop }}px;
     margin-top: {{ marginTopDesktop }}px;
     margin-bottom: {{ marginBottomDesktop }}px;
@@ -49,7 +47,7 @@
     text-transform: capitalize;
     margin-top: 1rem;
     display: {{ 'block' if titleVisible else 'none' }};
-    color: {{ colors[titleFontColor] }};
+    color: {{ titleFontColor | get_color }};
     font-size: {{ titleFontSize }}px;
     font-weight: {{ titleFontWeight }};
     line-height: {{ titleLineHeight }}px;
@@ -64,14 +62,14 @@
     text-transform: capitalize;
     display: flex;
     align-items: center;
-    color: {{ colors[crumbFontColor] }};
+    color: {{ crumbFontColor | get_color }};
     font-size: {{ crumbFontSize }}px;
     font-weight: {{ crumbFontWeight }};
     line-height: {{ crumbLineHeight }}px;
   }
 
   .{{ localClass }}__link-crumb a {
-    color: {{ colors[crumbFontColor] }};
+    color: {{ crumbFontColor | get_color }};
     text-decoration: none;
     margin-right: 0.625rem;
   }
@@ -81,7 +79,7 @@
   }
 
   .{{ localClass }}__last-link-crumb {
-    color: {{ colors[lastCrumbFontColor] }};
+    color: {{ lastCrumbFontColor | get_color }};
   }
 
   @media (max-width: 768px) {

@@ -1,4 +1,3 @@
-{% set colors = themeProperties.current_colors %}
 {% set menuProps = themeProperties.menu %}
 {% set url = safe_get(args.url, '') %}
 {% set title = safe_get(args.title, 'Menu Link') %}
@@ -17,7 +16,7 @@
 
 <style>
   .{{ globalClass }}:hover {
-    color: {{ colors[menuProps.menu_item_font_color_hover] }};
+    color: {{ menuProps.menu_item_font_color_hover | get_color }};
   }
 </style>
 

@@ -1,6 +1,5 @@
 {% set id = uid() %}
 {% set shop = global.common.shopInfo.shop %}
-{% set colors = themeProperties.current_colors %}
 
 {% set bgColor = safe_get(properties.background_color, 'background_accent_light') %}
 {% set showBorder = safe_get(properties.show_border, true) %}
@@ -31,7 +30,7 @@
   }
   .{{ localClass }}__wrapper {
     width: 100%;
-    background: {{ colors[bgColor] }};
+    background: {{ bgColor | get_color }};
     border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
     border-radius: {{ borderRadius }}px;
     padding: {{ paddingVert }}px {{ paddingHoriz }}px;
@@ -40,7 +39,7 @@
   .{{ localClass }}__title {
     display: flex;
     justify-content: {{ titleAlign }};
-    color: {{ colors[titleFontColor] }};
+    color: {{ titleFontColor | get_color }};
     font-size: {{ titleFontSize }}px;
     font-weight: {{ titleFontWeight }};
     line-height: {{ titleLineHeight }}px;
@@ -48,7 +47,7 @@
   .{{ localClass }}__content {
     display: flex;
     justify-content: {{ contentAlign }};
-    color: {{ colors[contentFontColor] }};
+    color: {{ contentFontColor | get_color }};
     font-size: {{ contentFontSize }}px;
     font-weight: {{ contentFontWeight }};
     line-height: {{ contentLineHeight }}px;

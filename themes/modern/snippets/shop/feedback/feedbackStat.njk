@@ -1,6 +1,5 @@
 {% set averageScore = safe_get(args.average_score, 0) or 0 %}
 {% set reviewsCount = safe_get(args.reviews_count, 0) or 0 %}
-{% set colors = themeProperties.current_colors %}
 {% set properties = args.properties %}
 
 {% set starsCount = safe_get(properties.stars_count, 5) %}
@@ -20,7 +19,7 @@
 
 <style>
   .{{ localClass }} {
-    color: {{ colors[scoreFontColor] }};
+    color: {{ scoreFontColor | get_color }};
     font-size: {{ scoreFontSize }}px;
     font-weight: {{ scoreFontWeight }};
     line-height: {{ scoreLineHeight }}px;
@@ -28,7 +27,7 @@
   .{{ localClass }}__stars {
     display: flex;
     align-items: center;
-    color: {{ colors[reviewsFontColor] }};
+    color: {{ reviewsFontColor | get_color }};
     font-size: {{ reviewsFontSize }}px;
     font-weight: {{ reviewsFontWeight }};
     line-height: {{ reviewsLineHeight }}px;
@@ -45,7 +44,7 @@
       rating=averageScore,
       size=starSize,
       iconsCount=starsCount,
-      color=colors[starColor]
+      color=(starColor | get_color)
     %}
     <span class="{{ globalClass }}__reviews {{ localClass }}__reviews">
       ({{ 'shop.shared.reviews.reviewsWithCount' | t({count: reviewsCount}) }})
