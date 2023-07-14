@@ -5,9 +5,18 @@
 {% set contentAlignTablet = safe_get(properties.content_align_tablet, 'center') %}
 {% set contentAlignMobile = safe_get(properties.content_align_mobile, 'center') %}
 {% set fontColor = safe_get(properties.font_color, 'dark_font_color') %}
-{% set fontSize = safe_get(properties.font_size, 14) %}
-{% set fontWeight = safe_get(properties.font_weight, 400) %}
-{% set lineHeight = safe_get(properties.line_height, 28) %}
+
+{% set fontSizeDesktop = safe_get(properties.font_size_desktop, 14) %}
+{% set fontWeightDesktop = safe_get(properties.font_weight_desktop, 400) %}
+{% set lineHeightDesktop = safe_get(properties.line_height_desktop, 28) %}
+
+{% set fontSizeTablet = safe_get(properties.font_size_tablet, 14) %}
+{% set fontWeightTablet = safe_get(properties.font_weight_tablet, 400) %}
+{% set lineHeightTablet = safe_get(properties.line_height_tablet, 28) %}
+
+{% set fontSizeMobile = safe_get(properties.font_size_mobile, 14) %}
+{% set fontWeightMobile = safe_get(properties.font_weight_mobile, 400) %}
+{% set lineHeightMobile = safe_get(properties.line_height_mobile, 28) %}
 
 {% set globalClass = 'snippet-multy-columns__text' %}
 {% set localClass = id %}
@@ -17,19 +26,25 @@
     width: 100%;
     text-align: {{ contentAlignDesktop }};
     color: {{ fontColor | get_color }};
-    font-size: {{ fontSize }}px;
-    font-weight: {{ fontWeight }};
-    line-height: {{ lineHeight }}px;
+    font-size: {{ fontSizeDesktop }}px;
+    font-weight: {{ fontWeightDesktop }};
+    line-height: {{ lineHeightDesktop }}px;
   }
   @media (max-width: 768px) {
     .{{ localClass }} {
       text-align: {{ contentAlignTablet }};
+      font-size: {{ fontSizeTablet }}px;
+      font-weight: {{ fontWeightTablet }};
+      line-height: {{ lineHeightTablet }}px;
     }
   }
 
   @media (max-width: 640px) {
     .{{ localClass }} {
       text-align: {{ contentAlignMobile }};
+      font-size: {{ fontSizeMobile }}px;
+      font-weight: {{ fontWeightMobile }};
+      line-height: {{ lineHeightMobile }}px;
     }
   }
 </style>
