@@ -123,7 +123,7 @@
           {% render_snippet 'Cart button 2', product=product %}
         </div>
         {% if isPlaceholder %}
-          {% render_snippet 'Product: Placeholder icon', product=product, dark=(placeholderType == 'dark') %}
+          {% render_snippet 'Product: Placeholder icon', product=product, dark=(true if placeholderType == 'dark' else undefined) %}
         {% else %}
           <img src="{{image}}" alt="{{product.title}}" loading="lazy" />
         {% endif %}

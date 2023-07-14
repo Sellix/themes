@@ -117,7 +117,7 @@
     <div class="{{ globalClass }}__card {{ localClass }}__card unselectable">
       <div class="{{ globalClass }}__image {{ localClass }}__image {{'image-placeholder' if isPlaceholder}} {{ placeholderType }}">
         {% if isPlaceholder %}
-          {% render_snippet 'Product: Placeholder icon', product=group, dark=(placeholderType == 'dark') %}
+          {% render_snippet 'Product: Placeholder icon', product=group, dark=(true if placeholderType == 'dark' else undefined) %}
         {% else %}
           <img src="{{image}}" alt="{{group.title}}" loading="lazy" />
         {% endif %}

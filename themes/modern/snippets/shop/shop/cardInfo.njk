@@ -105,7 +105,7 @@
     {% if (count > 1 and atLeastOneHasImages) %}
       <div class="{{ globalClass }}__image {{ localClass}}__image {{'image-placeholder' if isPlaceholder else ''}} {{ placeholderType }}">
         {% if isPlaceholder %}
-          {% render_snippet 'Product: Placeholder icon', product=product, dark=(placeholderType == 'dark') %}
+          {% render_snippet 'Product: Placeholder icon', product=product, dark=(true if placeholderType == 'dark' else undefined) %}
         {% else %}
           <img src="{{image}}" alt="{{product.title}}" loading="lazy" />
         {% endif %}
