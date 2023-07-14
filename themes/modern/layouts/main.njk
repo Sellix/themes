@@ -43,12 +43,6 @@
   <link href="{{ font.href }}" rel="stylesheet">
 
   <style>
-    :root {
-      --headerHeight: 72;
-      @media (max-width: 1080px) {
-        --headerHeight: 64;
-      }
-    }
     @font-face {
       font-family: "Inter var";
       font-weight: 100 900;
@@ -162,8 +156,8 @@
       {% render_section 'Header', layoutId=layoutId %}
     </div>
 
-    <div class="sellix-store {{ 'min-vh-100' if not templateProperties.footer_type not in ['fullscreen_content']  }}">
-      <div id="content" class="template {{ 'min-vh-100' if templateProperties.footer_type in ['fullscreen_content'] }}">
+    <div class="sellix-store {{ 'height-100vh' if not templateProperties.footer_type not in ['fullscreen_content']  }}">
+      <div id="content" class="template {{ 'height-100vh' if templateProperties.footer_type in ['fullscreen_content'] }}">
         {% render_template 'default' %}
       </div>
 
