@@ -133,13 +133,13 @@
   {% if global.request.type in ['checkout', 'product', 'subscription'] %}
     <link rel="stylesheet" href="{{ 'widget-purchase-details.css' | asset_url }}" />
   {% endif %}
+  {% if global.request.type in ['checkout'] %}
+    <link rel="stylesheet" href="{{ 'template-checkout.css' | asset_url }}"/>
+  {% endif %}
   {% if global.request.type in ['invoice'] %}
     <link rel="stylesheet" href="{{ 'widget-invoice-checkout.css' | asset_url }}" />
-  {% endif %}
-  {% if global.request.type in ['invoice'] %}
     <link rel="stylesheet" href="{{ 'template-invoice.css' | asset_url }}"/>
   {% endif %}
-
   <link rel="stylesheet" href="{{ 'magnific-popup.1.1.0.css' | asset_url }}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
