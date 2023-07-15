@@ -132,7 +132,7 @@
         value=message
       %}
 
-      <div style="display: flex; justify-content: {{ properties.feedback_form_button_position }}; margin-top: -16px">
+      <div class="{{ globalClass }}__snippet-feedback-form justify-content-{{ properties.feedback_form_button_position or start }}">
         {% render_snippet 'Shared: Ripple button',
           button_id=['leave-feedback-submit-', id] | join,
           type='submit',
