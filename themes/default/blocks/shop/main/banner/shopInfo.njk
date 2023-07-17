@@ -2,6 +2,7 @@
 {% set subscription = global.common.shopInfo.subscription %}
 {% set colors = themeProperties.current_colors %}
 {% set serviceType = 'business' if subscription.id == 2 else 'customer' %}
+{% set isDark = themeProperties.color_schema.dark_mode %}
 
 {% if shop.service_date_from == 'FIRST_SALE' %}
   {% set first_activity = (shop.first_sale_date if shop.first_sale_date else shop.created_at) * 1000 %}
@@ -16,6 +17,7 @@
         <span
           class="sellix-banner-verified"
           data-tooltip-location="right"
+          data-tooltip-theme="{{ isDark }}"
           data-tooltip="This shop has verified its brand identity to Sellix."
         >
           {% render_snippet 'Verified icon', style='width:20px; height:20px; margin-bottom: 0.25rem;' %}

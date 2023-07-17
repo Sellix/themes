@@ -163,7 +163,7 @@
   flex-direction: column;
   position: relative;
   width: calc(100% - 400px - 0px);
-  padding: 6rem 3rem 6rem 6rem;
+  padding: 3rem 3rem 3rem 6rem;
   max-height: 100vh;
 }
 @media (max-width: 1024px) {
@@ -189,10 +189,8 @@
   max-width: 700px;
   position: relative;
   z-index: 1;
-  padding: 0 6rem;
+  padding: 2rem 6rem;
   overflow-y: auto;
-  padding-top: 5rem;
-  padding-bottom: 2rem;
   transition: padding-top 0.3s ease;
 }
 .sellix-widget-invoice-checkout--main-invoice::-webkit-scrollbar {
@@ -477,7 +475,6 @@
 
 .sellix-widget-invoice-checkout--product-card {
   padding: 1.5rem;
-  padding-bottom: 0;
   width: 100%;
 }
 @media (max-width: 500px) {
@@ -491,6 +488,7 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: nowrap;
+  padding-top: 1rem;
 }
 .sellix-widget-invoice-checkout--buttons-wrapper button {
   width: 100%;
@@ -705,8 +703,38 @@
 .checkout-details {
   flex-grow: 1;
   overflow-y: auto;
-  padding-right: 1rem;
+  padding-right: 0;
   margin-bottom: 2rem;
+}
+.checkout-details-back {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+@media (max-width: 768px) {
+  .checkout-details-back {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    margin-left: 1.5rem;
+  }
+}
+.checkout-details-back span {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: var(--darkFontColor);
+}
+.checkout-details-back div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.75rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+  box-shadow: 0 2px 8px -1px rgba(7, 14, 35, 0.05), 0px 1px 3px 0px rgba(7, 14, 35, 0.06);
+  background: var(--backgroundAccentLight);
 }
 .checkout-details-title {
   font-weight: 500;
@@ -832,123 +860,6 @@
 }
 .sellix-widget-invoice-checkout--info-modal .sellix-modal-close {
   display: none;
-}
-
-.calculation {
-  margin-bottom: 1rem;
-  color: var(--black9);
-}
-.calculation-line {
-  width: 100%;
-  padding-bottom: 1.25rem;
-  margin-bottom: 1.25rem;
-  border-bottom: 1px solid var(--black2);
-}
-.calculation-item {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  margin-bottom: 0.75rem;
-  color: var(--black9);
-  display: flex;
-  justify-content: space-between;
-}
-.calculation-item.total {
-  padding-top: 1.25rem;
-  margin-top: 1.25rem;
-  margin-bottom: 0;
-  border-top: 1px solid var(--black2);
-}
-.calculation-item.total div:first-child {
-  font-weight: 500;
-  color: var(--black9);
-}
-.calculation-item div:last-child {
-  font-weight: 500;
-  padding-left: 1rem;
-  white-space: nowrap;
-}
-.calculation-item div:first-child {
-  font-weight: 400;
-  color: var(--black4);
-  font-size: 14px;
-}
-.calculation-item span {
-  color: var(--black4);
-  margin-right: 0;
-}
-
-.checkout-footer {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
-}
-@media (max-width: 768px) {
-  .checkout-footer {
-    margin-top: 0;
-    padding: 0 1rem;
-    width: 100%;
-  }
-}
-.checkout-footer-copyright {
-  display: flex;
-  align-items: center;
-  margin-top: 1.5rem;
-  color: var(--black4);
-  font-size: 12px;
-  white-space: nowrap;
-}
-@media (max-width: 768px) {
-  .checkout-footer-copyright {
-    justify-content: center;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-  }
-}
-@media (max-width: 260px) {
-  .checkout-footer-copyright {
-    flex-direction: column;
-  }
-  .checkout-footer-copyright div {
-    line-height: 2.5rem;
-  }
-  .checkout-footer-copyright div span {
-    display: none;
-  }
-}
-.checkout-footer-copyright a {
-  padding: 0 0.5rem;
-  font-weight: 400;
-  color: var(--black4);
-}
-.checkout-footer-copyright a:first-child {
-  padding-left: 0;
-}
-
-.is-checkout footer.sellix-widget-invoice-checkout--footer {
-  box-shadow: 0px 1px 3px rgba(7, 14, 35, 0.06), 0px 2px 8px -1px rgba(7, 14, 35, 0.05);
-  border-radius: 0.5rem;
-  border: none;
-  background: var(--white);
-  padding: 1rem;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-}
-@media (max-width: 768px) {
-  .is-checkout footer.sellix-widget-invoice-checkout--footer:first-child {
-    padding-bottom: 1rem;
-    margin-bottom: 0.5rem;
-  }
-}
-@media (max-width: 360px) {
-  .is-checkout footer.sellix-widget-invoice-checkout--footer-more span {
-    display: none;
-  }
-}
-.is-checkout footer.sellix-widget-invoice-checkout--footer-more svg {
-  margin-right: 0;
 }
 
 .modal {
@@ -1171,6 +1082,857 @@
   backdrop-filter: blur(2px);
 }
 
+.calculation {
+  margin-bottom: 1rem;
+  color: var(--black9);
+}
+.calculation-line {
+  width: 100%;
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--black2);
+}
+.calculation-item {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 0.75rem;
+  color: var(--black9);
+  display: flex;
+  justify-content: space-between;
+}
+.calculation-item.total {
+  padding-top: 1.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+  border-top: 1px solid var(--black2);
+}
+.calculation-item.total div:first-child {
+  font-weight: 500;
+  color: var(--black9);
+}
+.calculation-item div:last-child {
+  font-weight: 500;
+  padding-left: 1rem;
+  white-space: nowrap;
+}
+.calculation-item div:first-child {
+  font-weight: 400;
+  color: var(--black4);
+  font-size: 14px;
+}
+.calculation-item span {
+  color: var(--black4);
+  margin-right: 0;
+}
+
+.checkout-footer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+@media (max-width: 768px) {
+  .checkout-footer {
+    margin-top: 0;
+    padding: 0 1rem 1rem 1rem;
+    width: 100%;
+  }
+}
+.checkout-footer-copyright {
+  display: flex;
+  align-items: center;
+  margin-top: 1.5rem;
+  color: var(--black4);
+  font-size: 12px;
+  white-space: nowrap;
+}
+@media (max-width: 768px) {
+  .checkout-footer-copyright {
+    justify-content: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 260px) {
+  .checkout-footer-copyright {
+    flex-direction: column;
+  }
+  .checkout-footer-copyright div {
+    line-height: 2.5rem;
+  }
+  .checkout-footer-copyright div span {
+    display: none;
+  }
+}
+.checkout-footer-copyright a {
+  padding: 0 0.5rem;
+  font-weight: 400;
+  color: var(--black4);
+}
+.checkout-footer-copyright a:first-child {
+  padding-left: 0;
+}
+
+.is-checkout footer.sellix-widget-invoice-checkout--footer {
+  box-shadow: 0px 1px 3px rgba(7, 14, 35, 0.06), 0px 2px 8px -1px rgba(7, 14, 35, 0.05);
+  border-radius: 0.5rem;
+  border: none;
+  background: var(--white);
+  padding: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+@media (max-width: 768px) {
+  .is-checkout footer.sellix-widget-invoice-checkout--footer:first-child {
+    padding-bottom: 1rem;
+    margin-bottom: 0.5rem;
+  }
+}
+@media (max-width: 360px) {
+  .is-checkout footer.sellix-widget-invoice-checkout--footer-more span {
+    display: none;
+  }
+}
+.is-checkout footer.sellix-widget-invoice-checkout--footer-more svg {
+  margin-right: 0;
+}
+
+.default-mode-message-container {
+  border-radius: 3px;
+  padding: 0;
+  text-align: center;
+  margin: 0;
+  position: relative;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+.default-mode-message-container.BITCOIN .copy-icon path, .default-mode-message-container.BITCOIN_LN .copy-icon path {
+  fill: var(--gateway-bitcoin);
+}
+.default-mode-message-container.POLYGON .copy-icon path {
+  fill: var(--gateway-polygon);
+}
+.default-mode-message-container.PLZ .copy-icon path {
+  fill: var(--gateway-plz);
+}
+.default-mode-message-container.CONCORDIUM .copy-icon path {
+  fill: black;
+}
+.default-mode-message-container.LITECOIN .copy-icon path {
+  fill: var(--gateway-litecoin);
+}
+.default-mode-message-container.TRON .copy-icon path {
+  fill: var(--gateway-tron);
+}
+.default-mode-message-container.BINANCE .copy-icon path {
+  fill: var(--gateway-binance);
+}
+.default-mode-message-container.NANO .copy-icon path {
+  fill: var(--gateway-nano);
+}
+.default-mode-message-container.MONERO .copy-icon path {
+  fill: var(--gateway-monero);
+}
+.default-mode-message-container.SOLANA .copy-icon path {
+  fill: var(--gateway-solana);
+}
+.default-mode-message-container.RIPPLE .copy-icon path {
+  fill: var(--gateway-ripple);
+}
+.default-mode-message-container.ETHEREUM .copy-icon path {
+  fill: var(--gateway-ethereum);
+}
+.default-mode-message-container.CRONOS .copy-icon path {
+  fill: var(--gateway-cronos);
+}
+.default-mode-message-container.USDC .copy-icon path {
+  fill: var(--gateway-usdc);
+}
+.default-mode-message-container.USDT .copy-icon path {
+  fill: var(--gateway-usdt);
+}
+.default-mode-message-container.BINANCE_COIN .copy-icon path {
+  fill: var(--gateway-binance);
+}
+.default-mode-message-container.BITCOIN_CASH .copy-icon path {
+  fill: var(--gateway-bitcoin-cash);
+}
+
+.default-mode-message {
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+  color: var(--black4);
+}
+.default-mode-message-badge {
+  width: auto;
+  padding: 0.125rem 0.25rem;
+  color: white !important;
+  white-space: nowrap;
+  font-size: 12px;
+  border-radius: 0.25rem;
+  font-weight: 500;
+}
+.default-mode-message-badge.POLYGON {
+  background-color: var(--gateway-polygon);
+}
+.default-mode-message-badge.PLZ {
+  background-color: var(--gateway-plz);
+}
+.default-mode-message-badge.PLZ.blockchain-MATIC {
+  background-color: var(--gateway-polygon);
+  color: white !important;
+}
+.default-mode-message-badge.PLZ.blockchain-ERC20 {
+  background-color: var(--gateway-ethereum);
+  color: black !important;
+}
+.default-mode-message-badge.PLZ.blockchain-BEP20 {
+  background-color: var(--gateway-binance);
+  color: black !important;
+}
+.default-mode-message-badge.PLZ.blockchain-TRC20 {
+  background-color: var(--gateway-tron);
+  color: white !important;
+}
+.default-mode-message-badge.BITCOIN, .default-mode-message-badge.BITCOIN_LN {
+  background-color: var(--gateway-bitcoin);
+}
+.default-mode-message-badge.CONCORDIUM {
+  background-color: white;
+  color: black !important;
+}
+.default-mode-message-badge.LITECOIN {
+  background-color: var(--gateway-litecoin);
+}
+.default-mode-message-badge.TRON {
+  background-color: var(--gateway-tron);
+}
+.default-mode-message-badge.BINANCE {
+  background-color: var(--gateway-binance);
+  color: black !important;
+}
+.default-mode-message-badge.NANO {
+  background-color: var(--gateway-nano);
+}
+.default-mode-message-badge.MONERO {
+  background-color: var(--gateway-monero);
+}
+.default-mode-message-badge.SOLANA {
+  background-color: var(--gateway-solana);
+}
+.default-mode-message-badge.RIPPLE {
+  background-color: var(--gateway-ripple);
+}
+.default-mode-message-badge.ETHEREUM {
+  background-color: var(--gateway-ethereum);
+  color: black !important;
+}
+.default-mode-message-badge.BINANCE_COIN {
+  background-color: var(--gateway-binance);
+}
+.default-mode-message-badge.CRONOS {
+  background-color: var(--gateway-cronos);
+  color: white !important;
+}
+.default-mode-message-badge.USDC {
+  background-color: var(--gateway-usdc);
+}
+.default-mode-message-badge.USDC.blockchain-MATIC {
+  background-color: var(--gateway-polygon);
+  color: white !important;
+}
+.default-mode-message-badge.USDC.blockchain-ERC20 {
+  background-color: var(--gateway-ethereum);
+  color: black !important;
+}
+.default-mode-message-badge.USDC.blockchain-BEP20 {
+  background-color: var(--gateway-binance);
+  color: black !important;
+}
+.default-mode-message-badge.USDC.blockchain-TRC20 {
+  background-color: var(--gateway-tron);
+  color: white !important;
+}
+.default-mode-message-badge.USDT {
+  background-color: var(--gateway-usdt);
+}
+.default-mode-message-badge.USDT.blockchain-MATIC {
+  background-color: var(--gateway-polygon);
+  color: white !important;
+}
+.default-mode-message-badge.USDT.blockchain-ERC20 {
+  background-color: var(--gateway-ethereum);
+  color: black !important;
+}
+.default-mode-message-badge.USDT.blockchain-BEP20 {
+  background-color: var(--gateway-binance);
+  color: black !important;
+}
+.default-mode-message-badge.USDT.blockchain-TRC20 {
+  background-color: var(--gateway-tron);
+  color: white !important;
+}
+.default-mode-message-badge.PEPE {
+  background-color: var(--gateway-pepe);
+}
+.default-mode-message-badge.PEPE.blockchain-ERC20 {
+  background-color: var(--gateway-ethereum);
+  color: black !important;
+}
+.default-mode-message-badge.APE {
+  background-color: var(--gateway-ape);
+}
+.default-mode-message-badge.APE.blockchain-ERC20 {
+  background-color: var(--gateway-ethereum);
+  color: black !important;
+}
+.default-mode-message-badge.DAI {
+  background-color: var(--gateway-dai);
+}
+.default-mode-message-badge.DAI.blockchain-MATIC {
+  background-color: var(--gateway-polygon);
+  color: white !important;
+}
+.default-mode-message-badge.DAI.blockchain-ERC20 {
+  background-color: var(--gateway-ethereum);
+  color: black !important;
+}
+.default-mode-message-badge.DAI.blockchain-BEP20 {
+  background-color: var(--gateway-binance);
+  color: black !important;
+}
+.default-mode-message-badge.SHIB {
+  background-color: var(--gateway-shib);
+}
+.default-mode-message-badge.SHIB.blockchain-MATIC {
+  background-color: var(--gateway-polygon);
+  color: white !important;
+}
+.default-mode-message-badge.SHIB.blockchain-ERC20 {
+  background-color: var(--gateway-ethereum);
+  color: black !important;
+}
+.default-mode-message-badge.SHIB.blockchain-BEP20 {
+  background-color: var(--gateway-binance);
+  color: black !important;
+}
+.default-mode-message-badge.WETH {
+  background-color: var(--gateway-weth);
+  color: black !important;
+}
+.default-mode-message-badge.WETH.blockchain-MATIC {
+  background-color: var(--gateway-polygon);
+  color: white !important;
+}
+.default-mode-message-badge.WETH.blockchain-ERC20 {
+  background-color: var(--gateway-ethereum);
+  color: black !important;
+}
+.default-mode-message-badge.BITCOIN_CASH {
+  background-color: var(--gateway-bitcoin-cash);
+}
+.default-mode-exactly {
+  color: var(--black9);
+  font-weight: 500;
+  font-size: 1rem;
+  text-align: center;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 0;
+  margin: 0.5rem 0;
+  position: relative;
+}
+.default-mode-exactly.success .default-mode-copy {
+  display: flex;
+}
+.default-mode-exactly-badge {
+  font-weight: 600;
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.25rem;
+  margin: 0 0.125rem;
+}
+.default-mode-container {
+  border-radius: 3px;
+  text-align: center;
+  margin: 0;
+  position: relative;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.2s ease;
+  height: auto;
+  opacity: 1;
+  background: var(--white);
+  padding: 0;
+}
+.default-mode-divider {
+  border-top: 1px solid var(--black2);
+  margin: 1.25rem 0;
+}
+.default-mode-wrapper {
+  border-radius: 0.5rem;
+  will-change: max-height;
+  transition: all 0.2s ease-out;
+  text-align: center;
+  position: relative;
+  margin-bottom: 1.25rem;
+  color: var(--black9);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+}
+@media (max-width: 500px) {
+  .default-mode-wrapper {
+    width: 100% !important;
+  }
+}
+.default-mode-address {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 0.85rem 1rem;
+  margin: 1.5rem 0;
+  background-color: var(--black0);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  position: relative;
+}
+@media (max-width: 768px) {
+  .default-mode-address {
+    width: calc(100vw - 3rem);
+  }
+}
+@media (max-width: 500px) {
+  .default-mode-address {
+    width: calc(100vw - 2rem);
+  }
+}
+.default-mode-address span {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@media (max-width: 768px) {
+  .default-mode-address span {
+    width: auto;
+  }
+}
+.default-mode-address.success .default-mode-copy {
+  display: flex;
+}
+.default-mode-copy {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: none;
+  left: 0;
+  top: 0;
+  background: var(--green4);
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+}
+.default-mode-copy.POLYGON {
+  background-color: var(--gateway-polygon);
+}
+.default-mode-copy.PLZ {
+  background-color: var(--gateway-plz);
+}
+.default-mode-copy.PLZ.blockchain-MATIC {
+  background-color: var(--gateway-polygon);
+  color: white !important;
+}
+.default-mode-copy.PLZ.blockchain-ERC20 {
+  background-color: var(--gateway-ethereum);
+  color: black !important;
+}
+.default-mode-copy.PLZ.blockchain-BEP20 {
+  background-color: var(--gateway-binance);
+  color: black !important;
+}
+.default-mode-copy.PLZ.blockchain-TRC20 {
+  background-color: var(--gateway-tron);
+  color: white !important;
+}
+.default-mode-copy.BITCOIN, .default-mode-copy.BITCOIN_LN {
+  background-color: var(--gateway-bitcoin);
+}
+.default-mode-copy.CONCORDIUM {
+  background-color: white;
+  color: black !important;
+}
+.default-mode-copy.LITECOIN {
+  background-color: var(--gateway-litecoin);
+}
+.default-mode-copy.TRON {
+  background-color: var(--gateway-tron);
+}
+.default-mode-copy.BINANCE {
+  background-color: var(--gateway-binance);
+  color: black !important;
+}
+.default-mode-copy.NANO {
+  background-color: var(--gateway-nano);
+}
+.default-mode-copy.MONERO {
+  background-color: var(--gateway-monero);
+}
+.default-mode-copy.SOLANA {
+  background-color: var(--gateway-solana);
+}
+.default-mode-copy.RIPPLE {
+  background-color: var(--gateway-ripple);
+}
+.default-mode-copy.ETHEREUM {
+  background-color: var(--gateway-ethereum);
+  color: black !important;
+}
+.default-mode-copy.BINANCE_COIN {
+  background-color: var(--gateway-binance);
+}
+.default-mode-copy.CRONOS {
+  background-color: var(--gateway-cronos);
+  color: white !important;
+}
+.default-mode-copy.USDC {
+  background-color: var(--gateway-usdc);
+}
+.default-mode-copy.USDC.blockchain-MATIC {
+  background-color: var(--gateway-polygon);
+  color: white !important;
+}
+.default-mode-copy.USDC.blockchain-ERC20 {
+  background-color: var(--gateway-ethereum);
+  color: black !important;
+}
+.default-mode-copy.USDC.blockchain-BEP20 {
+  background-color: var(--gateway-binance);
+  color: black !important;
+}
+.default-mode-copy.USDC.blockchain-TRC20 {
+  background-color: var(--gateway-tron);
+  color: white !important;
+}
+.default-mode-copy.PEPE {
+  background-color: var(--gateway-pepe);
+}
+.default-mode-copy.PEPE.blockchain-ERC20 {
+  background-color: var(--gateway-ethereum);
+  color: black !important;
+}
+.default-mode-copy.APE {
+  background-color: var(--gateway-ape);
+}
+.default-mode-copy.APE.blockchain-ERC20 {
+  background-color: var(--gateway-ethereum);
+  color: black !important;
+}
+.default-mode-copy.DAI {
+  background-color: var(--gateway-dai);
+}
+.default-mode-copy.DAI.blockchain-MATIC {
+  background-color: var(--gateway-polygon);
+  color: white !important;
+}
+.default-mode-copy.DAI.blockchain-ERC20 {
+  background-color: var(--gateway-ethereum);
+  color: black !important;
+}
+.default-mode-copy.DAI.blockchain-BEP20 {
+  background-color: var(--gateway-binance);
+  color: black !important;
+}
+.default-mode-copy.SHIB {
+  background-color: var(--gateway-shib);
+}
+.default-mode-copy.SHIB.blockchain-MATIC {
+  background-color: var(--gateway-polygon);
+  color: white !important;
+}
+.default-mode-copy.SHIB.blockchain-ERC20 {
+  background-color: var(--gateway-ethereum);
+  color: black !important;
+}
+.default-mode-copy.SHIB.blockchain-BEP20 {
+  background-color: var(--gateway-binance);
+  color: black !important;
+}
+.default-mode-copy.WETH {
+  background-color: var(--gateway-weth);
+  color: black !important;
+}
+.default-mode-copy.WETH.blockchain-MATIC {
+  background-color: var(--gateway-polygon);
+  color: white !important;
+}
+.default-mode-copy.WETH.blockchain-ERC20 {
+  background-color: var(--gateway-ethereum);
+  color: black !important;
+}
+.default-mode-copy.USDT {
+  background-color: var(--gateway-usdt);
+}
+.default-mode-copy.USDT.blockchain-MATIC {
+  background-color: var(--gateway-polygon);
+  color: white !important;
+}
+.default-mode-copy.USDT.blockchain-ERC20 {
+  background-color: var(--gateway-ethereum);
+  color: black !important;
+}
+.default-mode-copy.USDT.blockchain-BEP20 {
+  background-color: var(--gateway-binance);
+  color: black !important;
+}
+.default-mode-copy.USDT.blockchain-TRC20 {
+  background-color: var(--gateway-tron);
+  color: white !important;
+}
+.default-mode-copy.BITCOIN_CASH {
+  background-color: var(--gateway-bitcoin-cash);
+}
+.default-mode-copy span {
+  width: auto;
+  margin-left: 0.5rem;
+}
+
+.sellix-widget-invoice-checkout--getaway {
+  border: none;
+  width: calc(50% - 5px);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  height: 53px;
+  display: block;
+}
+.sellix-widget-invoice-checkout--getaway-title {
+  font-size: 14px;
+  color: var(--black9);
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+.sellix-widget-invoice-checkout--getaway:hover {
+  background-color: var(--white);
+  color: var(--purple6);
+}
+.sellix-widget-invoice-checkout--getaway:last-child {
+  margin-bottom: 0;
+}
+.sellix-widget-invoice-checkout--getaway.selected {
+  background-color: var(--purple6);
+  color: var(--white);
+}
+.sellix-widget-invoice-checkout--getaway.selected:hover {
+  background-color: var(--purple6);
+  color: var(--white);
+}
+.sellix-widget-invoice-checkout--getaway i {
+  font-size: 1.5rem;
+  color: #2890c3;
+  margin-right: 0.5rem;
+}
+
+.change-gateway-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 1rem auto 0 auto;
+  flex-direction: column;
+}
+
+.update-gateway {
+  max-width: 500px !important;
+}
+
+.update-gateway-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.25rem;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+}
+.update-gateway-modal-title {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--black9);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.update-gateway-modal-text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--black5);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.update-gateway-modal-button {
+  width: 100%;
+  gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.update-gateway-modal-button button {
+  width: calc(70% - 1rem);
+}
+@media (max-width: 768px) {
+  .update-gateway-modal-button button {
+    width: 100%;
+  }
+}
+.update-gateway-modal-button .close {
+  width: 30%;
+}
+@media (max-width: 768px) {
+  .update-gateway-modal-button .close {
+    width: 100%;
+  }
+}
+.update-gateway-modal-wrapper {
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.sellix-widget-invoice-checkout--track {
+  max-width: 1024px;
+  min-height: auto;
+}
+.sellix-widget-invoice-checkout--track-body {
+  padding: 1.5rem;
+  border-top: none;
+  background: var(--white);
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+.sellix-widget-invoice-checkout--track-body a {
+  color: var(--purple6) !important;
+}
+.sellix-widget-invoice-checkout--track .no-track {
+  color: var(--black9);
+  font-size: 1.5rem;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sellix-widget-invoice-checkout--track .track-cards {
+  flex: 1;
+}
+.sellix-widget-invoice-checkout--track .track {
+  border-radius: 25px;
+  width: 100%;
+  position: relative;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 0;
+  margin: 0 auto;
+  flex-direction: row;
+}
+.sellix-widget-invoice-checkout--track .track-line {
+  margin-right: 1.5rem;
+}
+.sellix-widget-invoice-checkout--track .track-container {
+  z-index: 2;
+  position: relative;
+  font-size: 0.7rem;
+  width: 100%;
+}
+.sellix-widget-invoice-checkout--track .track-card {
+  position: relative;
+  transition: all 0.3s ease 0.2s;
+  display: flex;
+  flex-direction: column;
+  z-index: 6;
+  padding-bottom: 1.25rem;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+}
+.sellix-widget-invoice-checkout--track .track-card:after {
+  content: "";
+  position: absolute;
+  border-radius: 100%;
+  width: 0.75rem;
+  height: 0.75rem;
+  background: var(--black1);
+  left: -1.75rem;
+  top: 0.25rem;
+}
+.sellix-widget-invoice-checkout--track .track-card:before {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background: var(--black1);
+  left: calc(-1.75rem + 5px);
+  top: 10px;
+}
+.sellix-widget-invoice-checkout--track .track-card:last-child {
+  padding-bottom: 0;
+}
+.sellix-widget-invoice-checkout--track .track-card:last-child:before {
+  display: none;
+}
+.sellix-widget-invoice-checkout--track .track-card-badge {
+  background: var(--orange0);
+  padding: 0.125rem 0.5rem;
+  color: var(--orange6);
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  text-transform: capitalize;
+  margin-bottom: 0.5rem;
+  border-radius: 0.25rem;
+  max-width: fit-content;
+}
+.sellix-widget-invoice-checkout--track .track-card-time {
+  margin-top: 0.25rem;
+  color: var(--black4);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+}
+.sellix-widget-invoice-checkout--track .track-card-description {
+  color: var(--black9);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+.sellix-widget-invoice-checkout--track .track-card-description a {
+  color: var(--purple6);
+}
+
 .sellix-widget.alert {
   position: relative;
   padding: 1.5rem;
@@ -1237,6 +1999,43 @@
 }
 .sellix-widget.alert b svg {
   margin-right: 0.5rem;
+}
+
+.ReactCollapse--collapse {
+  transition: height 0.5s;
+}
+
+.qr-wrapper {
+  overflow: hidden;
+  width: auto;
+  padding: 0;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+  position: relative;
+}
+.qr-wrapper canvas {
+  cursor: pointer;
+  width: auto;
+}
+.qr-wrapper > img {
+  cursor: pointer;
+}
+.qr-wrapper .qr-logo {
+  background: white;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  padding: 0 !important;
+  border-radius: 0.25rem;
+}
+.qr-wrapper .qr-corner {
+  background: white;
+  position: absolute;
+  padding: 3px;
 }
 
 /* Config */
@@ -2086,6 +2885,11 @@
   border-radius: 50%;
   transform: translate3d(-50%, -50%, 0);
 }
+.button.secondary {
+  color: var(--darkFontColor);
+  background: var(--backgroundAccentLight);
+  border: 1px solid var(--borderColor);
+}
 
 .sellix-select {
   cursor: pointer;
@@ -2138,6 +2942,56 @@
 }
 .sellix-select.is-invalid:focus {
   border-color: red !important;
+}
+
+.sellix-tooltip {
+  cursor: pointer;
+}
+.sellix-tooltip .success-tooltip {
+  background: var(--green6) !important;
+  color: white !important;
+  white-space: nowrap !important;
+  max-width: 230px !important;
+}
+.sellix-tooltip .success-tooltip .react-tooltip-arrow {
+  display: none;
+}
+.sellix-tooltip .react-tooltip {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  text-align: center;
+  box-shadow: 0 2px 4px -1px rgba(7, 14, 35, 0.08), 0px 2px 24px -2px rgba(7, 14, 35, 0.12);
+  max-width: 220px;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  z-index: 999;
+  opacity: 1;
+  background: var(--backgroundAccentDark);
+  color: var(--darkFontColor);
+  white-space: break-spaces;
+  text-transform: none;
+}
+.sellix-tooltip .react-tooltip.place-top:after {
+  border-top-color: var(--backgroundAccentDark);
+  background-color: var(--backgroundAccentDark);
+}
+.sellix-tooltip .react-tooltip.place-bottom:after {
+  border-bottom-color: var(--backgroundAccentDark);
+  background-color: var(--backgroundAccentDark);
+}
+.sellix-tooltip .react-tooltip.place-left:after {
+  border-left-color: var(--backgroundAccentDark);
+  background-color: var(--backgroundAccentDark);
+}
+.sellix-tooltip .react-tooltip.place-right:after {
+  border-right-color: var(--backgroundAccentDark);
+  background-color: var(--backgroundAccentDark);
+}
+.sellix-tooltip .react-tooltip.show {
+  opacity: 1;
 }
 
 button.secondary .lds-ellipsis div {
@@ -2210,888 +3064,6 @@ button.secondary .lds-ellipsis div {
     transform: translate(15px, 0);
   }
 }
-.qr-wrapper {
-  overflow: hidden;
-  width: auto;
-  padding: 0;
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0;
-  position: relative;
-}
-.qr-wrapper canvas {
-  cursor: pointer;
-  width: auto;
-}
-.qr-wrapper > img {
-  cursor: pointer;
-}
-.qr-wrapper .qr-logo {
-  background: white;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 48px;
-  padding: 0 !important;
-  border-radius: 0.25rem;
-}
-.qr-wrapper .qr-corner {
-  background: white;
-  position: absolute;
-  padding: 3px;
-}
-
-.ReactCollapse--collapse {
-  transition: height 0.5s;
-}
-
-.default-mode-message-container {
-  border-radius: 3px;
-  padding: 0;
-  text-align: center;
-  margin: 0;
-  position: relative;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
-}
-.default-mode-message-container.BITCOIN .copy-icon path, .default-mode-message-container.BITCOIN_LN .copy-icon path {
-  fill: var(--gateway-bitcoin);
-}
-.default-mode-message-container.POLYGON .copy-icon path {
-  fill: var(--gateway-polygon);
-}
-.default-mode-message-container.PLZ .copy-icon path {
-  fill: var(--gateway-plz);
-}
-.default-mode-message-container.CONCORDIUM .copy-icon path {
-  fill: black;
-}
-.default-mode-message-container.LITECOIN .copy-icon path {
-  fill: var(--gateway-litecoin);
-}
-.default-mode-message-container.TRON .copy-icon path {
-  fill: var(--gateway-tron);
-}
-.default-mode-message-container.BINANCE .copy-icon path {
-  fill: var(--gateway-binance);
-}
-.default-mode-message-container.NANO .copy-icon path {
-  fill: var(--gateway-nano);
-}
-.default-mode-message-container.MONERO .copy-icon path {
-  fill: var(--gateway-monero);
-}
-.default-mode-message-container.SOLANA .copy-icon path {
-  fill: var(--gateway-solana);
-}
-.default-mode-message-container.RIPPLE .copy-icon path {
-  fill: var(--gateway-ripple);
-}
-.default-mode-message-container.ETHEREUM .copy-icon path {
-  fill: var(--gateway-ethereum);
-}
-.default-mode-message-container.CRONOS .copy-icon path {
-  fill: var(--gateway-cronos);
-}
-.default-mode-message-container.USDC .copy-icon path {
-  fill: var(--gateway-usdc);
-}
-.default-mode-message-container.USDT .copy-icon path {
-  fill: var(--gateway-usdt);
-}
-.default-mode-message-container.BINANCE_COIN .copy-icon path {
-  fill: var(--gateway-binance);
-}
-.default-mode-message-container.BITCOIN_CASH .copy-icon path {
-  fill: var(--gateway-bitcoin-cash);
-}
-
-.default-mode-message {
-  font-size: 13px;
-  line-height: 18px;
-  font-weight: 400;
-  color: var(--black4);
-}
-.default-mode-message-badge {
-  width: auto;
-  padding: 0.125rem 0.25rem;
-  color: white !important;
-  white-space: nowrap;
-  font-size: 12px;
-  border-radius: 0.25rem;
-  font-weight: 500;
-}
-.default-mode-message-badge.POLYGON {
-  background-color: var(--gateway-polygon);
-}
-.default-mode-message-badge.PLZ {
-  background-color: var(--gateway-plz);
-}
-.default-mode-message-badge.PLZ.blockchain-MATIC {
-  background-color: var(--gateway-polygon);
-  color: white !important;
-}
-.default-mode-message-badge.PLZ.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-message-badge.PLZ.blockchain-BEP20 {
-  background-color: var(--gateway-binance);
-  color: black !important;
-}
-.default-mode-message-badge.PLZ.blockchain-TRC20 {
-  background-color: var(--gateway-tron);
-  color: white !important;
-}
-.default-mode-message-badge.BITCOIN, .default-mode-message-badge.BITCOIN_LN {
-  background-color: var(--gateway-bitcoin);
-}
-.default-mode-message-badge.CONCORDIUM {
-  background-color: white;
-  color: black !important;
-}
-.default-mode-message-badge.LITECOIN {
-  background-color: var(--gateway-litecoin);
-}
-.default-mode-message-badge.TRON {
-  background-color: var(--gateway-tron);
-}
-.default-mode-message-badge.BINANCE {
-  background-color: var(--gateway-binance);
-  color: black !important;
-}
-.default-mode-message-badge.NANO {
-  background-color: var(--gateway-nano);
-}
-.default-mode-message-badge.MONERO {
-  background-color: var(--gateway-monero);
-}
-.default-mode-message-badge.SOLANA {
-  background-color: var(--gateway-solana);
-}
-.default-mode-message-badge.RIPPLE {
-  background-color: var(--gateway-ripple);
-}
-.default-mode-message-badge.ETHEREUM {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-message-badge.BINANCE_COIN {
-  background-color: var(--gateway-binance);
-}
-.default-mode-message-badge.CRONOS {
-  background-color: var(--gateway-cronos);
-  color: white !important;
-}
-.default-mode-message-badge.USDC {
-  background-color: var(--gateway-usdc);
-}
-.default-mode-message-badge.USDC.blockchain-MATIC {
-  background-color: var(--gateway-polygon);
-  color: white !important;
-}
-.default-mode-message-badge.USDC.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-message-badge.USDC.blockchain-BEP20 {
-  background-color: var(--gateway-binance);
-  color: black !important;
-}
-.default-mode-message-badge.USDC.blockchain-TRC20 {
-  background-color: var(--gateway-tron);
-  color: white !important;
-}
-.default-mode-message-badge.USDT {
-  background-color: var(--gateway-usdt);
-}
-.default-mode-message-badge.USDT.blockchain-MATIC {
-  background-color: var(--gateway-polygon);
-  color: white !important;
-}
-.default-mode-message-badge.USDT.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-message-badge.USDT.blockchain-BEP20 {
-  background-color: var(--gateway-binance);
-  color: black !important;
-}
-.default-mode-message-badge.USDT.blockchain-TRC20 {
-  background-color: var(--gateway-tron);
-  color: white !important;
-}
-.default-mode-message-badge.PEPE {
-  background-color: var(--gateway-pepe);
-}
-.default-mode-message-badge.PEPE.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-message-badge.APE {
-  background-color: var(--gateway-ape);
-}
-.default-mode-message-badge.APE.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-message-badge.DAI {
-  background-color: var(--gateway-dai);
-}
-.default-mode-message-badge.DAI.blockchain-MATIC {
-  background-color: var(--gateway-polygon);
-  color: white !important;
-}
-.default-mode-message-badge.DAI.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-message-badge.DAI.blockchain-BEP20 {
-  background-color: var(--gateway-binance);
-  color: black !important;
-}
-.default-mode-message-badge.SHIB {
-  background-color: var(--gateway-shib);
-}
-.default-mode-message-badge.SHIB.blockchain-MATIC {
-  background-color: var(--gateway-polygon);
-  color: white !important;
-}
-.default-mode-message-badge.SHIB.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-message-badge.SHIB.blockchain-BEP20 {
-  background-color: var(--gateway-binance);
-  color: black !important;
-}
-.default-mode-message-badge.WETH {
-  background-color: var(--gateway-weth);
-  color: black !important;
-}
-.default-mode-message-badge.WETH.blockchain-MATIC {
-  background-color: var(--gateway-polygon);
-  color: white !important;
-}
-.default-mode-message-badge.WETH.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-message-badge.BITCOIN_CASH {
-  background-color: var(--gateway-bitcoin-cash);
-}
-.default-mode-exactly {
-  color: var(--black9);
-  font-weight: 500;
-  font-size: 1rem;
-  text-align: center;
-  white-space: nowrap;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.5rem 0;
-  margin: 0.5rem 0;
-  position: relative;
-}
-.default-mode-exactly.success .default-mode-copy {
-  display: flex;
-}
-.default-mode-exactly-badge {
-  font-weight: 600;
-  border-radius: 0.25rem;
-  padding: 0.125rem 0.25rem;
-  margin: 0 0.125rem;
-}
-.default-mode-container {
-  border-radius: 3px;
-  text-align: center;
-  margin: 0;
-  position: relative;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: all 0.2s ease;
-  height: auto;
-  opacity: 1;
-  background: var(--white);
-  padding: 0;
-}
-.default-mode-divider {
-  border-top: 1px solid var(--black2);
-  margin: 1.25rem 0;
-}
-.default-mode-wrapper {
-  border-radius: 0.5rem;
-  will-change: max-height;
-  transition: all 0.2s ease-out;
-  text-align: center;
-  position: relative;
-  margin-bottom: 1.25rem;
-  color: var(--black9);
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 17px;
-}
-@media (max-width: 500px) {
-  .default-mode-wrapper {
-    width: 100% !important;
-  }
-}
-.default-mode-address {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: all 0.2s ease;
-  cursor: pointer;
-  border-radius: 0.5rem;
-  padding: 0.85rem 1rem;
-  margin: 1.5rem 0;
-  background-color: var(--black0);
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 17px;
-  position: relative;
-}
-@media (max-width: 768px) {
-  .default-mode-address {
-    width: calc(100vw - 3rem);
-  }
-}
-@media (max-width: 500px) {
-  .default-mode-address {
-    width: calc(100vw - 2rem);
-  }
-}
-.default-mode-address span {
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-@media (max-width: 768px) {
-  .default-mode-address span {
-    width: auto;
-  }
-}
-.default-mode-address.success .default-mode-copy {
-  display: flex;
-}
-.default-mode-copy {
-  position: absolute;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  display: none;
-  left: 0;
-  top: 0;
-  background: var(--green4);
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 500;
-  font-size: 1rem;
-  border-radius: 0.5rem;
-}
-.default-mode-copy.POLYGON {
-  background-color: var(--gateway-polygon);
-}
-.default-mode-copy.PLZ {
-  background-color: var(--gateway-plz);
-}
-.default-mode-copy.PLZ.blockchain-MATIC {
-  background-color: var(--gateway-polygon);
-  color: white !important;
-}
-.default-mode-copy.PLZ.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-copy.PLZ.blockchain-BEP20 {
-  background-color: var(--gateway-binance);
-  color: black !important;
-}
-.default-mode-copy.PLZ.blockchain-TRC20 {
-  background-color: var(--gateway-tron);
-  color: white !important;
-}
-.default-mode-copy.BITCOIN, .default-mode-copy.BITCOIN_LN {
-  background-color: var(--gateway-bitcoin);
-}
-.default-mode-copy.CONCORDIUM {
-  background-color: white;
-  color: black !important;
-}
-.default-mode-copy.LITECOIN {
-  background-color: var(--gateway-litecoin);
-}
-.default-mode-copy.TRON {
-  background-color: var(--gateway-tron);
-}
-.default-mode-copy.BINANCE {
-  background-color: var(--gateway-binance);
-  color: black !important;
-}
-.default-mode-copy.NANO {
-  background-color: var(--gateway-nano);
-}
-.default-mode-copy.MONERO {
-  background-color: var(--gateway-monero);
-}
-.default-mode-copy.SOLANA {
-  background-color: var(--gateway-solana);
-}
-.default-mode-copy.RIPPLE {
-  background-color: var(--gateway-ripple);
-}
-.default-mode-copy.ETHEREUM {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-copy.BINANCE_COIN {
-  background-color: var(--gateway-binance);
-}
-.default-mode-copy.CRONOS {
-  background-color: var(--gateway-cronos);
-  color: white !important;
-}
-.default-mode-copy.USDC {
-  background-color: var(--gateway-usdc);
-}
-.default-mode-copy.USDC.blockchain-MATIC {
-  background-color: var(--gateway-polygon);
-  color: white !important;
-}
-.default-mode-copy.USDC.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-copy.USDC.blockchain-BEP20 {
-  background-color: var(--gateway-binance);
-  color: black !important;
-}
-.default-mode-copy.USDC.blockchain-TRC20 {
-  background-color: var(--gateway-tron);
-  color: white !important;
-}
-.default-mode-copy.PEPE {
-  background-color: var(--gateway-pepe);
-}
-.default-mode-copy.PEPE.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-copy.APE {
-  background-color: var(--gateway-ape);
-}
-.default-mode-copy.APE.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-copy.DAI {
-  background-color: var(--gateway-dai);
-}
-.default-mode-copy.DAI.blockchain-MATIC {
-  background-color: var(--gateway-polygon);
-  color: white !important;
-}
-.default-mode-copy.DAI.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-copy.DAI.blockchain-BEP20 {
-  background-color: var(--gateway-binance);
-  color: black !important;
-}
-.default-mode-copy.SHIB {
-  background-color: var(--gateway-shib);
-}
-.default-mode-copy.SHIB.blockchain-MATIC {
-  background-color: var(--gateway-polygon);
-  color: white !important;
-}
-.default-mode-copy.SHIB.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-copy.SHIB.blockchain-BEP20 {
-  background-color: var(--gateway-binance);
-  color: black !important;
-}
-.default-mode-copy.WETH {
-  background-color: var(--gateway-weth);
-  color: black !important;
-}
-.default-mode-copy.WETH.blockchain-MATIC {
-  background-color: var(--gateway-polygon);
-  color: white !important;
-}
-.default-mode-copy.WETH.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-copy.USDT {
-  background-color: var(--gateway-usdt);
-}
-.default-mode-copy.USDT.blockchain-MATIC {
-  background-color: var(--gateway-polygon);
-  color: white !important;
-}
-.default-mode-copy.USDT.blockchain-ERC20 {
-  background-color: var(--gateway-ethereum);
-  color: black !important;
-}
-.default-mode-copy.USDT.blockchain-BEP20 {
-  background-color: var(--gateway-binance);
-  color: black !important;
-}
-.default-mode-copy.USDT.blockchain-TRC20 {
-  background-color: var(--gateway-tron);
-  color: white !important;
-}
-.default-mode-copy.BITCOIN_CASH {
-  background-color: var(--gateway-bitcoin-cash);
-}
-.default-mode-copy span {
-  width: auto;
-  margin-left: 0.5rem;
-}
-
-.sellix-widget-invoice-checkout--getaway {
-  border: none;
-  width: calc(50% - 5px);
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 400;
-  padding: 1rem;
-  margin-bottom: 0.5rem;
-  height: 53px;
-  display: block;
-}
-.sellix-widget-invoice-checkout--getaway-title {
-  font-size: 14px;
-  color: var(--black9);
-  font-weight: 400;
-  letter-spacing: 1px;
-  margin-bottom: 0.75rem;
-  text-transform: uppercase;
-}
-.sellix-widget-invoice-checkout--getaway:hover {
-  background-color: var(--white);
-  color: var(--purple6);
-}
-.sellix-widget-invoice-checkout--getaway:last-child {
-  margin-bottom: 0;
-}
-.sellix-widget-invoice-checkout--getaway.selected {
-  background-color: var(--purple6);
-  color: var(--white);
-}
-.sellix-widget-invoice-checkout--getaway.selected:hover {
-  background-color: var(--purple6);
-  color: var(--white);
-}
-.sellix-widget-invoice-checkout--getaway i {
-  font-size: 1.5rem;
-  color: #2890c3;
-  margin-right: 0.5rem;
-}
-
-.change-gateway-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin: 1rem auto 0 auto;
-  flex-direction: column;
-}
-
-.update-gateway {
-  max-width: 500px !important;
-}
-
-.update-gateway-modal {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1.25rem;
-  font-family: "Inter", sans-serif;
-  font-style: normal;
-}
-.update-gateway-modal-title {
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 19px;
-  color: var(--black9);
-  margin-bottom: 1rem;
-  text-align: center;
-}
-.update-gateway-modal-text {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  color: var(--black5);
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-.update-gateway-modal-button {
-  width: 100%;
-  gap: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-}
-.update-gateway-modal-button button {
-  width: calc(70% - 1rem);
-}
-@media (max-width: 768px) {
-  .update-gateway-modal-button button {
-    width: 100%;
-  }
-}
-.update-gateway-modal-button .close {
-  width: 30%;
-}
-@media (max-width: 768px) {
-  .update-gateway-modal-button .close {
-    width: 100%;
-  }
-}
-.update-gateway-modal-wrapper {
-  background: var(--white);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.sellix-widget-invoice-checkout--track {
-  max-width: 1024px;
-  min-height: auto;
-}
-.sellix-widget-invoice-checkout--track-body {
-  padding: 1.5rem;
-  border-top: none;
-  background: var(--white);
-  border-radius: 0 0 0.5rem 0.5rem;
-}
-.sellix-widget-invoice-checkout--track-body a {
-  color: var(--purple6) !important;
-}
-.sellix-widget-invoice-checkout--track .no-track {
-  color: var(--black9);
-  font-size: 1.5rem;
-  padding: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.sellix-widget-invoice-checkout--track .track-cards {
-  flex: 1;
-}
-.sellix-widget-invoice-checkout--track .track {
-  border-radius: 25px;
-  width: 100%;
-  position: relative;
-  height: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 0;
-  margin: 0 auto;
-  flex-direction: row;
-}
-.sellix-widget-invoice-checkout--track .track-line {
-  margin-right: 1.5rem;
-}
-.sellix-widget-invoice-checkout--track .track-container {
-  z-index: 2;
-  position: relative;
-  font-size: 0.7rem;
-  width: 100%;
-}
-.sellix-widget-invoice-checkout--track .track-card {
-  position: relative;
-  transition: all 0.3s ease 0.2s;
-  display: flex;
-  flex-direction: column;
-  z-index: 6;
-  padding-bottom: 1.25rem;
-  text-align: left;
-  width: 100%;
-  cursor: pointer;
-}
-.sellix-widget-invoice-checkout--track .track-card:after {
-  content: "";
-  position: absolute;
-  border-radius: 100%;
-  width: 0.75rem;
-  height: 0.75rem;
-  background: var(--black1);
-  left: -1.75rem;
-  top: 0.25rem;
-}
-.sellix-widget-invoice-checkout--track .track-card:before {
-  content: "";
-  position: absolute;
-  width: 2px;
-  height: 100%;
-  background: var(--black1);
-  left: calc(-1.75rem + 5px);
-  top: 10px;
-}
-.sellix-widget-invoice-checkout--track .track-card:last-child {
-  padding-bottom: 0;
-}
-.sellix-widget-invoice-checkout--track .track-card:last-child:before {
-  display: none;
-}
-.sellix-widget-invoice-checkout--track .track-card-badge {
-  background: var(--orange0);
-  padding: 0.125rem 0.5rem;
-  color: var(--orange6);
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 15px;
-  text-transform: capitalize;
-  margin-bottom: 0.5rem;
-  border-radius: 0.25rem;
-  max-width: fit-content;
-}
-.sellix-widget-invoice-checkout--track .track-card-time {
-  margin-top: 0.25rem;
-  color: var(--black4);
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 15px;
-}
-.sellix-widget-invoice-checkout--track .track-card-description {
-  color: var(--black9);
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-}
-.sellix-widget-invoice-checkout--track .track-card-description a {
-  color: var(--purple6);
-}
-
-.custom-loader {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.custom-loader svg {
-  animation-name: spin;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-  animation-delay: 0s;
-  width: 35px !important;
-  height: 35px !important;
-  z-index: 9;
-}
-.custom-loader img {
-  animation-name: spin;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-  animation-delay: 0s;
-  width: 35px !important;
-  height: 35px !important;
-  z-index: 9;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(360deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-.sellix-widget-invoice-checkout--footer {
-  background: var(--white);
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: none;
-  border-radius: 0.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: var(--black9);
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-}
-.sellix-widget-invoice-checkout--footer:empty {
-  background: var(--white);
-  position: relative;
-  top: 0;
-}
-.sellix-widget-invoice-checkout--footer svg {
-  margin-right: 0.5rem;
-  width: 1.3rem;
-  height: 1.3rem;
-}
-.sellix-widget-invoice-checkout--footer-more {
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--black4);
-  display: flex;
-  align-items: center;
-}
-.sellix-widget-invoice-checkout--footer-more.open svg {
-  transform: rotate(180deg);
-}
-.sellix-widget-invoice-checkout--footer-more svg {
-  transition: transform 0.3s ease;
-  margin-left: 0.25rem;
-  width: 1rem;
-  height: 1rem;
-}
-.sellix-widget-invoice-checkout--footer-more svg * {
-  stroke: var(--black4);
-}
-
-.embed-loader {
-  display: flex;
-  opacity: 1;
-  z-index: 99999999;
-  width: 100vw;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-  transition: opacity 1s ease-in;
-  overflow: hidden;
-}
-.embed-loader-wrapper {
-  padding: 1rem 0;
-}
-.embed-loader-circle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 100%;
-  width: 68px;
-  height: 68px;
-  margin: 0 auto;
-  position: relative;
-}
-.embed-loader-sellix {
-  position: absolute;
-}
-
 .stripe-form {
   display: flex;
   flex-wrap: wrap;
@@ -3238,6 +3210,51 @@ button.secondary .lds-ellipsis div {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.sellix-widget-invoice-checkout--footer {
+  background: var(--white);
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--black9);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.sellix-widget-invoice-checkout--footer:empty {
+  background: var(--white);
+  position: relative;
+  top: 0;
+}
+.sellix-widget-invoice-checkout--footer svg {
+  margin-right: 0.5rem;
+  width: 1.3rem;
+  height: 1.3rem;
+}
+.sellix-widget-invoice-checkout--footer-more {
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--black4);
+  display: flex;
+  align-items: center;
+}
+.sellix-widget-invoice-checkout--footer-more.open svg {
+  transform: rotate(180deg);
+}
+.sellix-widget-invoice-checkout--footer-more svg {
+  transition: transform 0.3s ease;
+  margin-left: 0.25rem;
+  width: 1rem;
+  height: 1rem;
+}
+.sellix-widget-invoice-checkout--footer-more svg * {
+  stroke: var(--black4);
 }
 
 .darkTheme .moving-mouse-holder {
@@ -3629,6 +3646,72 @@ button.secondary .lds-ellipsis div {
   }
 }
 
+.custom-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.custom-loader svg {
+  animation-name: spin;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0s;
+  width: 35px !important;
+  height: 35px !important;
+  z-index: 9;
+}
+.custom-loader img {
+  animation-name: spin;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0s;
+  width: 35px !important;
+  height: 35px !important;
+  z-index: 9;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.embed-loader {
+  display: flex;
+  opacity: 1;
+  z-index: 99999999;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1s ease-in;
+  overflow: hidden;
+}
+.embed-loader-wrapper {
+  padding: 1rem 0;
+}
+.embed-loader-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  width: 68px;
+  height: 68px;
+  margin: 0 auto;
+  position: relative;
+}
+.embed-loader-sellix {
+  position: absolute;
+}
+
 .sellix-delivery-body {
   width: 100%;
   display: flex;
@@ -3980,21 +4063,6 @@ button.secondary .lds-ellipsis div {
   text-overflow: ellipsis;
 }
 
-.paypal-btn.light .sk-circle-fade-dot:before {
-  background-color: var(--purple6) !important;
-}
-.paypal-btn .sk-circle-fade-dot {
-  width: 1.25rem;
-  height: 1.25rem;
-}
-
-.paypal-note {
-  display: flex;
-  justify-content: center;
-  margin-top: 0.25rem;
-  color: var(--black4) !important;
-}
-
 .skrill-button {
   margin-top: 1.5rem;
   display: flex;
@@ -4137,6 +4205,21 @@ button.secondary .lds-ellipsis div {
 }
 .perfectmoney > form > button.medium:hover {
   background-color: #f35c5b;
+}
+
+.paypal-btn.light .sk-circle-fade-dot:before {
+  background-color: var(--purple6) !important;
+}
+.paypal-btn .sk-circle-fade-dot {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.paypal-note {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.25rem;
+  color: var(--black4) !important;
 }
 
 .sellix-widget-invoice-checkout--delivery-feedback {
