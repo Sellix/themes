@@ -146,9 +146,7 @@
       } else if (this.hideStockCounter) {
         inStockTitle = `${window.sellixI18Next.t('shop.shared.titles.inStock')}`;
       } else {
-        inStockTitle = `${window.sellixI18Next.t(
-          'shop.shared.titles.stock',
-        )} <div style='margin-left: 0.5rem'>${inStock}</div>`;
+        inStockTitle = `${window.sellixI18Next.t('shop.shared.titles.stock')} <div class="ml-2">${inStock}</div>`;
       }
 
       this.$container.find('[data-total-value]').html(inStockTitle);

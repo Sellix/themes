@@ -14,6 +14,7 @@
     const domContainer = document.querySelector('#rating-widget-{{id}}');
     ReactDOM.render(
       React.createElement(ReactSimpleStarRating.Rating, {
+        rtl: {{ global.locales.rtl }},
         ratingValue: Number({{rating / 5 * 100 if rating else 0}}),
         initialValue: Number({{rating / 5 * 100 if rating else 0}}),
         className: 'sellix-rating-stars',
