@@ -60,3 +60,13 @@
     {% render_snippet 'Feedback: Card', feedback=item %}
   {% endfor %}
 </div>
+
+{% if (settings.group_names_to_hide or settings.group_name) and isEmpty %}
+  <script type="application/javascript">
+    const event = new CustomEvent(
+      'SellixHideGroupEvent',
+      { detail: { groupName: '{{ settings.group_names_to_hide or settings.group_name }}' } },
+    );
+    setTimeout(() => document.dispatchEvent(event), 0);
+  </script>
+{% endif %}

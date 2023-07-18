@@ -339,7 +339,7 @@
       });
     });
   </script>
-{% else %}
+{% elif settings.group_names_to_hide or settings.group_name %}
 
   <script type="application/javascript">
     switch ('{{ properties.visibility }}') {
@@ -347,10 +347,10 @@
         break;
       case 'invisible_group_empty':
         const event = new CustomEvent(
-          'SellixHideBlockGroupEvent',
-          { detail: { groupName: '{{ properties.block_group_name }}' } },
+          'SellixHideGroupEvent',
+          { detail: { groupName: '{{ settings.group_names_to_hide or settings.group_name }}' } },
         );
-        document.dispatchEvent(event);
+        setTimeout(() => document.dispatchEvent(event), 0);
         break;
       default:
         break

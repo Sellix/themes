@@ -88,30 +88,45 @@
   </div>
 
   <script type="application/javascript">
-    $(document).ready(function() {
-      let activeTabName = '{{ activeTab }}';
+    {% if countVisibleTabs > 1 %}
+      $(document).ready(function() {
+        let activeTabName = '{{ activeTab }}';
 
-      const $container = $('.{{ localClass }}__container');
-      const $tabs = $container.find('.tabs');
+        const $container = $('.{{ localClass }}__container');
+        const $tabs = $container.find('.tabs');
 
-      if (activeTabName) {
-        $tabs.find(`.tab[data-tab-name=${activeTabName}]`).addClass('active');
-        $container.find(`.tab-content[data-tab-name=${activeTabName}]`).removeClass('d-none');
-      }
-
-      $tabs.find('.tab').on('click', function(event) {
-        event.preventDefault();
-        const tabName = $(this).data('tabName');
-
-        if (tabName !== activeTabName) {
-          $tabs.find(`.tab[data-tab-name=${activeTabName}]`).removeClass('active');
-          $tabs.find(`.tab[data-tab-name=${tabName}]`).addClass('active');
-
-          $container.find(`.tab-content[data-tab-name=${activeTabName}]`).addClass('d-none');
-          $container.find(`.tab-content[data-tab-name=${tabName}]`).removeClass('d-none');
-          activeTabName = tabName;
+        if (activeTabName) {
+          $tabs.find(`.tab[data-tab-name=${activeTabName}]`).addClass('active');
+          $container.find(`.tab-content[data-tab-name=${activeTabName}]`).removeClass('d-none');
         }
+
+        $tabs.find('.tab').on('click', function(event) {
+          event.preventDefault();
+          const tabName = $(this).data('tabName');
+
+          if (tabName !== activeTabName) {
+            $tabs.find(`.tab[data-tab-name=${activeTabName}]`).removeClass('active');
+            $tabs.find(`.tab[data-tab-name=${tabName}]`).addClass('active');
+
+            $container.find(`.tab-content[data-tab-name=${activeTabName}]`).addClass('d-none');
+            $container.find(`.tab-content[data-tab-name=${tabName}]`).removeClass('d-none');
+            activeTabName = tabName;
+          }
+        });
       });
-    });
+    {% endif %}
+  </script>
+{% endif %}
+
+{% if
+  (settings.group_names_to_hide or settings.group_name)
+  and (countVisibleTabs == 0 or (countVisibleTabs == 1 and product.feedback.list | length == 0))
+%}
+  <script type="application/javascript">
+      const event = new CustomEvent(
+      'SellixHideGroupEvent',
+      { detail: { groupName: '{{ settings.group_names_to_hide or settings.group_name }}' } },
+      );
+      setTimeout(() => document.dispatchEvent(event), 0);
   </script>
 {% endif %}

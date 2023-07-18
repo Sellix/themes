@@ -9,33 +9,26 @@
 {% set localClass = id %}
 
 <style>
-  .{{ localClass }}__btn-view-more {
-    cursor: pointer;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-  }
-  .{{ localClass }}__feedback-card {
-    margin-bottom: 1rem;
-  }
-  .{{ localClass }}__empty {
-    padding: 1rem 0;
-  }
+
 </style>
 
 <div class="{{ globalClass }} {{ localClass }}">
   {% if product.feedback.list | length == 0 %}
-    <div class="empty-message-container {{ globalClass }}__empty {{ localClass }}__empty">
-      {% render_snippet 'Icons: Empty feedback' %}
-      <span class="empty-message-title {{ globalClass }}__empty-title {{ localClass }}__empty-title">
-        Product <b>{{ product.title }}</b> has no feedback.
+    <div class="empty-message-container {{ globalClass }}__empty">
+      {% render_snippet 'Icons: No feedback' %}
+
+      <span class="empty-message-title {{ globalClass }}__empty-title">
+        <b>{{ 'shop.shared.reviews.notFoundTitle' | t }}</b>
+      </span>
+      <span class="empty-message-subtitle {{ globalClass }}__empty-title">
+        {{ 'shop.shared.reviews.notFoundMessage' | t }}
       </span>
     </div>
   {% else %}
     {% for feedback in product.feedback.list %}
       {% set page = (loop.index0 / pageSize) | int %}
       <div
-        class="{{ globalClass}}__feedback-card {{ localClass }}__feedback-card {{ 'd-none' if page > 0 else '' }}"
+        class="{{ globalClass}}__feedback-card  {{ 'd-none' if page > 0 else '' }}"
         data-feedback-page="{{ page }}"
       >
         {% render_snippet 'Feedback: Card', feedback=feedback, properties=properties %}
@@ -43,7 +36,7 @@
     {% endfor %}
 
     {% if pageCount > 1 %}
-      <div class="{{ globalClass }}__btn-view-more {{ localClass }}__btn-view-more">
+      <div class="{{ globalClass }}__btn-view-more">
         {{ 'shop.shared.titles.viewMore' | t }}
       </div>
     {% endif %}

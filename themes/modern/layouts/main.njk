@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+{% set rtl = global.locales.rtl %}
 <html
   lang="{{ global.locales.language }}"
   style="background-color: var(--backgroundColor);"
   class="scroll-hidden"
-  {% if global.locales.rtl %}
+  {% if rtl %}
     dir="rtl"
   {% else %}
     dir="ltr"
@@ -75,74 +76,75 @@
     {% render_snippet 'Root css variables' %}
   </style>
 
-  <link rel="stylesheet" href="{{ 'ui-elements.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'fa-icons.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'font-awesome.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'modal.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'root-styles.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'shop.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'sliding-panel.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'swiper.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'toastify.css' | asset_url }}"/>
+  <link rel="stylesheet" href="{{ 'ui-elements.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'fa-icons.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'font-awesome.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'modal.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'root-styles.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'shop.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'sliding-panel.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'swiper.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'toastify.css' | asset_url(rtl) }}"/>
 
   {# Sections #}
-  <link rel="stylesheet" href="{{ 'section-404.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'section-faq.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'section-footer.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'section-footer-menu.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'section-header.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'section-product-list.css' | asset_url }}"/>
+  <link rel="stylesheet" href="{{ 'section-404.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'section-faq.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'section-footer.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'section-footer-menu.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'section-header.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'section-product-list.css' | asset_url(rtl) }}"/>
 
   {# Blocks #}
-  <link rel="stylesheet" href="{{ 'block-cart.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'block-feedback-form.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'block-products-filter.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'block-products-grid.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'block-product-light-list.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'block-ticket-chat.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'block-ticket-details.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'block-title.css' | asset_url }}"/>
+  <link rel="stylesheet" href="{{ 'block-cart.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'block-feedback-form.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'block-products-filter.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'block-products-grid.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'block-product-light-list.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'block-ticket-chat.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'block-ticket-details.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'block-title.css' | asset_url(rtl) }}"/>
 
   {# Snippets #}
-  <link rel="stylesheet" href="{{ 'snippet-cart-button-1.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-cart-button-2.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-checkout-products.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-checkout-product-count.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-burger-button.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-feedback-cards.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-feedback-form.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-language-selector.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-mobile-sidebar-menu.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-product-addons.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-product-bundles.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-product-bundle-product.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-product-cards.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-product-gallery.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-product-info.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-product-list.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-product-review-stat.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-product-shortcut.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-product-share.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-product-stock.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-product-variants.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-purchase-details.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-social-links-floating.css' | asset_url }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-ticket-message.css' | asset_url }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-cart-button-1.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-cart-button-2.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-checkout-products.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-checkout-product-count.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-burger-button.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-feedback-cards.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-feedback-form.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-language-selector.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-mobile-sidebar-menu.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-product-addons.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-product-bundles.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-product-bundle-product.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-product-cards.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-product-feedback.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-product-gallery.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-product-info.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-product-list.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-product-review-stat.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-product-shortcut.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-product-share.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-product-stock.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-product-variants.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-purchase-details.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-social-links-floating.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-ticket-message.css' | asset_url(rtl) }}"/>
 
   {% set theme = global.common.shopInfo.theme %}
 
-  <link rel="stylesheet" href="{{ 'select2.css' | asset_url }}"/>
+  <link rel="stylesheet" href="{{ 'select2.css' | asset_url(rtl) }}"/>
   {% if global.request.type in ['checkout', 'product', 'subscription'] %}
-    <link rel="stylesheet" href="{{ 'widget-purchase-details.css' | asset_url }}" />
+    <link rel="stylesheet" href="{{ 'widget-purchase-details.css' | asset_url(rtl) }}" />
   {% endif %}
   {% if global.request.type in ['checkout'] %}
-    <link rel="stylesheet" href="{{ 'template-checkout.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'template-checkout.css' | asset_url(rtl) }}"/>
   {% endif %}
   {% if global.request.type in ['invoice'] %}
-    <link rel="stylesheet" href="{{ 'widget-invoice-checkout.css' | asset_url }}" />
-    <link rel="stylesheet" href="{{ 'template-invoice.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'widget-invoice-checkout.css' | asset_url(rtl) }}" />
+    <link rel="stylesheet" href="{{ 'template-invoice.css' | asset_url(rtl) }}"/>
   {% endif %}
-  <link rel="stylesheet" href="{{ 'magnific-popup.1.1.0.css' | asset_url }}" />
+  <link rel="stylesheet" href="{{ 'magnific-popup.1.1.0.css' | asset_url(rtl) }}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css" />
