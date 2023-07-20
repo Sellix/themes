@@ -115,20 +115,6 @@
     border-top: {{ '1px solid var(--borderColor)' if footerShowBorder else 'none' }};
     box-shadow: {{ footerShadow }};
   }
-  {% if buttonsWidth == 'full_width' %}
-    .{{ localClass }}__clear-button {
-      flex: 1;
-      margin-right: 1rem;
-    }
-    .{{ localClass }}__checkout-button {
-      flex: 1;
-    }
-    @media (max-width: 640px) {
-      .{{ localClass }}__clear-button {
-        margin-right: 0;
-      }
-    }
-  {% endif %}
 </style>
 
 <div class="{{ globalClass }}__container {{ localClass }}__container">
@@ -172,25 +158,43 @@
 
       <div class="sliding-panel__footer {{ globalClass }}__dropdown-footer {{ localClass }}__dropdown-footer">
         {% if showClearButton %}
-          <div class="unselectable {{ globalClass }}__clear-button {{ localClass }}__clear-button" data-cart-clear-button="1">
+          <div class="unselectable {{ 'flex-fill' if buttonsWidth == 'full_width' }} {{ globalClass }}__clear-button {{ localClass }}__clear-button" data-cart-clear-button="1">
             {% render_snippet 'Shared: Link button',
               properties={
               'label': properties.clear_button_label | t,
               'url': 'javascript:void(0);',
               'icon_snippet': 'Icons: Close',
-              'background_color': 'button_text_color',
-              'label_color': 'button_color'
+              'background_color': 'background_accent_light',
+              'label_color': 'light_font_color',
+              'label_font_weight': 500
             }
             %}
           </div>
         {% endif %}
-        <div class="unselectable {{ globalClass }}__checkout-button {{ localClass }}__checkout-button" data-cart-checkout-button="1">
+
+        <div
+          class="unselectable d-none {{ 'flex-fill' if buttonsWidth == 'full_width' }} {{ globalClass }}__continue-shopping {{ localClass }}__continue-shopping"
+          data-close-icon="1"
+          data-cart-continue-shopping-button="1"
+        >
           {% render_snippet 'Shared: Link button',
             properties={
-              'label': properties.checkout_button_label | t,
-              'url': 'javascript:void(0);',
-              'icon_snippet': 'Icons: Arrow right 1'
-            }
+            'label': 'shop.shared.titles.continueShopping' | t,
+            'url': 'javascript:void(0);',
+            'background_color': 'background_accent_light',
+            'label_color': 'light_font_color',
+            'label_font_weight': 500
+          }
+          %}
+        </div>
+
+        <div class="unselectable {{ 'flex-fill' if buttonsWidth == 'full_width' }} {{ globalClass }}__checkout-button {{ localClass }}__checkout-button" data-cart-checkout-button="1">
+          {% render_snippet 'Shared: Link button',
+            properties={
+            'label': properties.checkout_button_label | t,
+            'url': 'javascript:void(0);',
+            'icon_snippet': 'Icons: Arrow right 1'
+          }
           %}
         </div>
       </div>

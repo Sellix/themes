@@ -1,9 +1,12 @@
 (function (document, window, jQuery, sellixHelper) {
+  const EFFECT_OPEN_CART_MODAL = 'open_cart_modal';
+  const EFFECT_QUICK_CHECKOUT_BUTTON = 'quick_checkout_button';
+
   class CartProductComponent {
-    constructor(selector, cart, product, redirectToCheckout, renderOptions) {
+    constructor(selector, cart, product, cartEffect, renderOptions) {
       this.cart = cart;
       this.product = product;
-      this.redirectToCheckout = redirectToCheckout;
+      this.cartEffect = cartEffect;
       this.renderOptions = renderOptions;
 
       this.$cart = jQuery(selector);
@@ -14,20 +17,31 @@
       this.$cartQuantityBtn = this.$cart.find('[data-cart-product-quantity-button]');
       this.$isGroup = this.$cart.find('[data-cart-product-is-group]');
 
-      if (this.product.type !== 'SUBSCRIPTION' && !this.product.licensing_enabled) {
+      if (this.cartEffect === EFFECT_QUICK_CHECKOUT_BUTTON) {
+        this.$quickCheckoutBtn = this.$cart.find('[data-quick-checkout-btn]');
+        this.$quickCheckoutBtn.on('click', (event) => {
+          event.stopPropagation();
+          event.preventDefault();
 
+          window.location.href = 'checkout';
+        });
+      } else {
+        this.$quickCheckoutBtn = jQuery('<div></div>');
+      }
+
+      if (this.product.type !== 'SUBSCRIPTION' && !this.product.licensing_enabled) {
         this.$cartAddBtn.on('click', (...args) => this.add(...args));
         this.$cartRemoveBtn.on('click', (...args) => this.remove(...args));
 
         this.$cartQuantityBtn.on('click', (...args) => {
-          this.$cart.addClass("clicked");
+          this.$cart.addClass('clicked');
           setTimeout(() => {
-            this.$cart.removeClass("clicked");
+            this.$cart.removeClass('clicked');
           }, 1800);
 
-          let timeout = this.$isGroup.data("cart-product-is-group") ? 0 : 1250;
+          let timeout = this.$isGroup.data('cart-product-is-group') ? 0 : 1250;
 
-          return this.addFirst(...args, timeout)
+          return this.addFirst(...args, timeout);
         });
 
         const renderEvent = sellixHelper.getEventName({
@@ -42,7 +56,7 @@
       }
     }
 
-    add(event) {
+    add(event, { isFirst = false } = {}) {
       event.preventDefault();
 
       const quantity = (this.cart.getItemById(this.product.uniqid) || { quantity: 0 }).quantity || 0;
@@ -58,8 +72,8 @@
         this.cart.add(this.product);
       }
 
-      if (this.redirectToCheckout) {
-        window.location.href = 'checkout';
+      if (isFirst && this.cartEffect === EFFECT_OPEN_CART_MODAL) {
+        jQuery(document).trigger('SellixOpenCheckoutModal', { showContinueShoppingButton: true });
       }
     }
 
@@ -67,12 +81,10 @@
       event.preventDefault();
       const quantity = (this.cart.getItemById(this.product.uniqid) || { quantity: 0 }).quantity || 0;
       if (!quantity) {
-        if(timeout) {
-          setTimeout(() => {
-            this.add(event);
-          }, timeout)
+        if (timeout) {
+          setTimeout(() => this.add(event, { isFirst: true }), timeout);
         } else {
-          this.add(event);
+          this.add(event, { isFirst: true });
         }
       }
     }
@@ -96,6 +108,8 @@
       this.$cart.toggleClass('empty', quantity === 0);
       this.$cartQuantity.toggleClass('d-none', quantity === 0);
       this.$cartCartFirstBtn.toggleClass('d-none', quantity !== 0);
+
+      this.$quickCheckoutBtn.toggleClass('d-none', quantity === 0);
 
       this.$cartAddBtn.toggleClass('invisible', !isValidPlus);
       this.$cartRemoveBtn.toggleClass('invisible', !isValidMinus);

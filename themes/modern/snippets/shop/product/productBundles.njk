@@ -1,8 +1,7 @@
 {% set id = uid() %}
 {% set shop = global.common.shopInfo.shop %}
-{% set isProduct = global.request.type == 'product' %}
 {% set isInvoice = global.request.type == 'invoice' %}
-{% set cartEnabled = global.common.cartEnabled %}
+{% set cartEnabled = themeProperties.cart.is_enabled %}
 {% set bundles = args.bundles %}
 {% set properties = args.properties %}
 {% set currencyList = global.config.CURRENCY_LIST %}
@@ -128,7 +127,6 @@
                 product=product,
                 cartEnabled=cartEnabled,
                 skipBuyButton=true,
-                redirectToCheckout=false,
                 properties=properties
               %}
             </div>
@@ -153,7 +151,7 @@
               id: '{{ bundle.id }}',
               products_bound: products,
             },
-            {{isProduct}},
+            '{{ global.request.type }}',
             {{renderOptions | dump | safe}},
           );
         });

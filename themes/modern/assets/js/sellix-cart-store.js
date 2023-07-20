@@ -131,7 +131,7 @@
 
     addMany(products) {
       const updatedProducts = products.map(({ product, quantity }) => this.add(product, quantity, false));
-      this.updateBackend(updatedProducts.map(({ product, action }) => ({ action, productId: product.uniqid })));
+      return this.updateBackend(updatedProducts.map(({ product, action }) => ({ action, productId: product.uniqid })));
     }
 
     remove(id, quantity = 1, updateBackend = true) {

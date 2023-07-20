@@ -1,11 +1,16 @@
 {% set id = uid() %}
 {% set shop = global.common.shopInfo.shop %}
 {% set product = args.product %}
-{% set cartEnabled = global.common.cartEnabled %}
+{% set cartEnabled = themeProperties.cart.is_enabled %}
+{% set possibleCartEffects = safe_get(args.possible_cart_effects, ['open_cart_modal', 'quick_checkout_button']) %}
+{% set cartEffect =
+  themeProperties.cart.effect
+  if cartEnabled and global.request.type != 'checkout' and themeProperties.cart.effect in possibleCartEffects
+  else 'none'
+%}
 {% set isSubscription = product.type === 'SUBSCRIPTION' %}
 
 {% set isStatic = args.is_static %}
-{% set redirectToCheckout = args.redirect_to_checkout %}
 {% set properties = args.properties %}
 {% set bgColor = safe_get(properties.background_color, '') %}
 {% set color = safe_get(properties.color, '') %}
@@ -41,6 +46,15 @@
     <div class="{{ globalClass }}__button {{ localClass }}__button" data-cart-product-plus-button="1">
       <i class="fa-regular fa-plus"></i>
     </div>
+
+    {% if cartEffect == 'quick_checkout_button' and not isSubscription and not isLicense %}
+      <div class="d-none {{ globalClass }}__quick-checkout-container" data-quick-checkout-btn="1">
+        {% render_snippet 'Shared: Ripple button',
+          button_id=['quick-checkout-btn-', id] | join,
+          title=('shop.checkout.title' | t)
+        %}
+      </div>
+    {% endif %}
   </div>
 
   <script type='application/javascript'>
@@ -51,7 +65,7 @@
         '.{{ localClass }}',
         cart,
         product,
-        {{redirectToCheckout | default(false)}},
+        '{{ cartEffect }}',
         {{renderOptions | dump | safe}},
       );
       setTimeout(() => cartProdComponent.render(), 0);

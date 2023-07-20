@@ -18,7 +18,11 @@
       this.$cart.find('[data-cart-checkout-button]').on('click', this.checkout.bind(this));
       this.$cart.find('[data-cart-clear-button]').on('click', this.clear.bind(this));
       this.$cart.find('[data-close-icon]').on('click', this.close.bind(this));
-      sellixHelper.onClickOutside(this.$cartDropdown.get(0), (...args) => this.close(...args));
+      sellixHelper.onClickOutside(this.$cartDropdown.get(0), this.close.bind(this));
+
+      jQuery(document).on('SellixOpenCheckoutModal', (event, eventInfo) => {
+        this.open(event, eventInfo);
+      });
 
       const renderEvent = sellixHelper.getEventName({
         name: 'SellixRenderComponent',
@@ -31,24 +35,28 @@
       });
     }
 
-    open(event) {
+    open(event, eventInfo) {
       event.stopPropagation();
 
       let items = this.cart.getItems();
-
-      if (items.length) {
-        $('html').addClass('no-scroll');
-
-        // close menu if it is opened
-        jQuery('.snippet-mobile-sidebar-menu').removeClass('open');
-        jQuery('.sidebar-toggler').removeClass('open');
-        const $burgerButton = jQuery('.snippet-burger-button__burger-button');
-        $burgerButton.removeClass('toggled');
-        $burgerButton.addClass('untoggled');
-
-        this.$cart.find('[data-cart-dropdown]').addClass('open');
-        this.isOpened = true;
+      if (items.length <= 0) {
+        return;
       }
+
+      $('html').addClass('no-scroll');
+
+      // close menu if it is opened
+      jQuery('.snippet-mobile-sidebar-menu').removeClass('open');
+      jQuery('.sidebar-toggler').removeClass('open');
+      const $burgerButton = jQuery('.snippet-burger-button__burger-button');
+      $burgerButton.removeClass('toggled');
+      $burgerButton.addClass('untoggled');
+
+      const { showContinueShoppingButton = false } = eventInfo || {};
+      this.$cart.find('[data-cart-continue-shopping-button]').toggleClass('d-none', !showContinueShoppingButton);
+
+      this.$cart.find('[data-cart-dropdown]').addClass('open');
+      this.isOpened = true;
     }
 
     close(event) {

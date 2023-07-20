@@ -1,5 +1,8 @@
 {% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
 {% set properties = args.properties %}
+{% set cartEnabled = themeProperties.cart.is_enabled %}
+{% set cartEffect = themeProperties.cart.effect if cartEnabled else 'none' %}
 {% set group = args.group %}
 {% set isPlaceholder = not group.image_name %}
 {% set placeholderType = safe_get(properties.placeholder_type, undefined) %}
@@ -160,6 +163,8 @@
 
 <script type='application/javascript'>
   $(document).ready(function () {
+    const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
+
     $('.{{ localClass }}__container').on('click', async function () {
       const groupId = $(this).data('group-id');
       const items = await SellixContext.getShopItems();
@@ -168,11 +173,35 @@
       if (group && group.products_bound.length) {
         $(document).trigger('SellixSetActiveModalGroup', { groupId });
         $('#group-card-modal').modal({
+          groupModalId: '{{ id }}',
+          cartItemIds: new Set(cart.getItems().map((item) => item.uniqid)),
           modalClass: '',
           blockerClass: '',
           showClose: false,
         });
       }
+    });
+
+    $(document).on($.modal.AFTER_CLOSE, (event, context) => {
+      if ('{{ cartEffect }}' !== 'open_cart_modal') {
+        // effect is not enabled
+        return;
+      }
+
+      const { options } = context;
+      if (options.groupModalId !== '{{ id }}') {
+        // another group modal
+        return;
+      }
+
+      const set1 = options.cartItemIds || new Set([]);
+      const set2 = new Set(cart.getItems().map((item) => item.uniqid));
+      const diff = new Set([
+        ...[...set1].filter(x => !set2.has(x)),
+        ...[...set2].filter(x => !set1.has(x)),
+      ]);
+
+      $(document).trigger('SellixOpenCheckoutModal', { showContinueShoppingButton: true });
     });
 
     {% if global.request.type === 'group' and global.request.options.itemId === group.uniqid %}

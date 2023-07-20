@@ -11,6 +11,7 @@
 {% set onHold = product.on_hold | int %}
 {% set isRatingGold = rating > 4 %}
 
+{% set isSubscription = product.type == 'SUBSCRIPTION' %}
 {% set isLicense = product.licensing_enabled %}
 {% set isFree = product.price_display | float === 0 %}
 {% set isDisabled = product.stock | int === 0 or onHold %}
@@ -107,13 +108,13 @@
   </a>
 
   <div class="{{ globalClass }}__buttons {{ localClass }}__buttons unselectable {{'with-cart' if args.cartEnabled else ''}}">
-    {% if not isDisabled and not isFree and not isLicense %}
+    {% if not isDisabled and not isSubscription and not isLicense %}
       <div class="{{ globalClass }}__cart-button {{ localClass }}__cart-button">
         {% render_snippet
           'Cart button 1',
           product=product,
           is_static=true,
-          redirect_to_checkout=args.redirectToCheckout
+          possible_cart_effects=['open_cart_modal']
         %}
       </div>
     {% endif %}

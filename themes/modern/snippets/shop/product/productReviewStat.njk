@@ -4,20 +4,16 @@
 
 {% set size = safe_get(args.size, 16) %}
 {% set iconsCount = safe_get(args.icons_count, 5) %}
-{% set fontColor = safe_get(properties.font_color, 'dark_font_color') %}
-{% set fontSize = safe_get(properties.font_size, 14) %}
-{% set fontWeight = safe_get(properties.font_weight, 400) %}
-{% set lineHeight = safe_get(properties.line_height, 20) %}
 
 {% set globalClass = ['snippet-product-review-stat'] %}
 {% set localClass = id %}
 
 <style>
   .{{ localClass }} {
-    color: {{ fontColor | get_color }};
-    font-size: {{ fontSize }}px;
-    font-weight: {{ fontWeight }};
-    line-height: {{ lineHeight }}px;
+    {{ safe_get_style('color', properties.font_color | get_color, '') }}
+    {{ safe_get_style('font-size', properties.font_size, 'px') }}
+    {{ safe_get_style('font-weight', properties.font_weight) }}
+    {{ safe_get_style('line-height', properties.line_height, 'px') }}
   }
 </style>
 

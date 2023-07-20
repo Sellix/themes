@@ -1,9 +1,9 @@
 (function (document, window, jQuery, sellixHelper) {
   class ProductBundleComponent {
-    constructor(selector, cart, bundle, isProduct, renderOptions) {
+    constructor(selector, cart, bundle, requestType, renderOptions) {
       this.cart = cart;
       this.bundle = bundle;
-      this.isProduct = isProduct;
+      this.requestType = requestType;
       this.renderOptions = renderOptions;
 
       this.$bundle = jQuery(selector);
@@ -25,8 +25,8 @@
       const productsToAdd = this.getProductsToAdd();
 
       this.cart.addMany(productsToAdd).then(() => {
-        if (this.isProduct) {
-          location.href = 'checkout';
+        if (this.requestType === 'product') {
+          window.location.href = 'checkout';
         }
       });
     };
@@ -76,7 +76,7 @@
             count: parseInt(quantity) + 1,
           });
 
-          if (+stock === 0 || !!+on_hold || +product.price_display === 0 || isSubscription || isLicense) {
+          if (+stock === 0 || !!+on_hold || isSubscription || isLicense) {
             return null;
           }
 

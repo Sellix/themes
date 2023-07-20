@@ -2,7 +2,7 @@
 {% set theme = global.theme %}
 {% set type = args.type if args.type else 'checkout' %}
 {% set shop = global.common.shopInfo.shop %}
-{% set cartEnabled = global.common.cartEnabled %}
+{% set cartEnabled = themeProperties.cart.is_enabled %}
 {% set properties = args.properties %}
 
 {% set showCalculationDetails = safe_get(properties.show_calculation_details, false) %}

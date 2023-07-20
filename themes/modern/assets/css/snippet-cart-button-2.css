@@ -1,4 +1,8 @@
 .snippet-cart-button-2 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
   position: absolute;
   bottom: 0;
   left: 0;
@@ -10,12 +14,28 @@
 }
 
 .snippet-cart-button-2__container {
+  flex: 1 0 auto;
   background-color: var(--backgroundAccentLight);
   color: var(--darkFontColor);
-  width: 100%;
+  min-width: calc(50% - 0.25rem);
   display: grid;
   grid-template-columns: auto 1fr auto;
   border-radius: 0.5rem;
+  height: 36px;
+}
+
+.snippet-cart-button-2__quick-checkout-container {
+  flex: 1 0 auto;
+  min-width: calc(50% - 0.25rem);
+}
+
+.snippet-cart-button-2 .snippet-cart-button-2__quick-checkout-container button {
+  flex: 1 0 auto;
+  min-width: auto;
+  min-height: 36px;
+  height: 36px;
+  margin-bottom: 0;
+  width: 100%;
 }
 
 .snippet-cart-button-2__button {

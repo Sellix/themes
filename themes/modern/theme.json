@@ -10,6 +10,7 @@
   "settings": {
     "schema_order": [
       "common",
+      "cart",
       "color_schema",
       "light_colors",
       "dark_colors",
@@ -610,6 +611,39 @@
           "defaultValue": "left"
         }
       ],
+      "cart": [
+        {
+          "id": "cart_properties",
+          "type": "header",
+          "content": "Cart"
+        },
+        {
+          "id": "is_enabled",
+          "type": "checkbox",
+          "label": "Enabled",
+          "defaultValue": true
+        },
+        {
+          "id": "effect",
+          "type": "select",
+          "label": "Cart Effect",
+          "options": [
+            {
+              "title": "None",
+              "value": "none"
+            },
+            {
+              "title": "Open Cart Modal",
+              "value": "open_cart_modal"
+            },
+            {
+              "title": "Quick Checkout Button",
+              "value": "quick_checkout_button"
+            }
+          ],
+          "defaultValue": "none"
+        }
+      ],
       "color_schema": [
         {
           "id": "dark_mode",
@@ -627,7 +661,7 @@
         {
           "id": "logo_image",
           "type": "select-image",
-          "label": "Image",
+          "label": "Logo",
           "defaultValue": null
         },
         {
@@ -2142,6 +2176,10 @@
         "feedback_card_reply_text_line_height": 20,
         "feedback_card_reply_text_align": "left",
         "feedback_card_reply_text_font_weight": 400
+      },
+      "cart": {
+        "is_enabled":  true,
+        "effect": "quick_checkout_button"
       },
       "color_schema": {
         "dark_mode": false
