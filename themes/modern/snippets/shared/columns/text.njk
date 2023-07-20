@@ -24,7 +24,6 @@
 <style>
   .{{ localClass }} {
     width: 100%;
-    text-align: {{ contentAlignDesktop }};
     color: {{ fontColor | get_color }};
     font-size: {{ fontSizeDesktop }}px;
     font-weight: {{ fontWeightDesktop }};
@@ -37,6 +36,15 @@
       font-weight: {{ fontWeightTablet }};
       line-height: {{ lineHeightTablet }}px;
     }
+    [dir="rtl"] .{{ localClass }} {
+      {% if contentAlignTablet == 'right' %}
+        text-align: left;
+      {% elif contentAlignTablet == 'left' %}
+        text-align: right;
+      {% else %}
+        text-align: {{ contentAlignTablet }};
+      {% endif %}
+    }
   }
 
   @media (max-width: 640px) {
@@ -46,9 +54,18 @@
       font-weight: {{ fontWeightMobile }};
       line-height: {{ lineHeightMobile }}px;
     }
+    [dir="rtl"] .{{ localClass }} {
+      {% if contentAlignMobile == 'right' %}
+        text-align: left;
+      {% elif contentAlignMobile == 'left' %}
+        text-align: right;
+      {% else %}
+        text-align: {{ contentAlignMobile }};
+      {% endif %}
+    }
   }
 </style>
 
-<div class="{{ localClass }}">
+<div class="{{ localClass }} text-align-{{ contentAlignDesktop }}">
   {{ properties.content }}
 </div>

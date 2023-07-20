@@ -65,7 +65,6 @@
     font-size: {{ titleFontSize }}px;
     font-weight: {{ titleFontWeight }};
     line-height: {{ titleLineHeight }}px;
-    text-align: {{ titleTextAlign }};
   }
 
   .{{ localClass }}__text {
@@ -73,7 +72,6 @@
     font-size: {{ subtitleFontSize }}px;
     font-weight: {{ subtitleFontWeight }};
     line-height: {{ subtitleLineHeight }}px;
-    text-align: {{ subtitleTextAlign }};
   }
 
   .{{ localClass }}__star-rating-title {
@@ -81,7 +79,6 @@
     font-size: {{ starRatingTitleFontSize }}px;
     font-weight: {{ starRatingTitleFontWeight }};
     line-height: {{ starRatingTitleLineHeight }}px;
-    text-align: {{ starRatingTitleTextAlign }};
   }
 </style>
 
@@ -89,7 +86,7 @@
   <form class="{{ globalClass }}__form {{ localClass }}__form" onsubmit="return false">
     <div class="{{ globalClass }}__star-rating-wrapper {{ localClass }}__star-rating-wrapper">
       {% if starRatingTitle %}
-      <h5 class="{{ globalClass }}__star-rating-title {{ localClass }}__star-rating-title">
+      <h5 class="{{ globalClass }}__star-rating-title {{ localClass }}__star-rating-title text-align-{{ starRatingTitleTextAlign }}">
         {{ starRatingTitle | t}}
       </h5>
       {% endif %}
@@ -112,13 +109,13 @@
     <div class="{{ globalClass }}__message-wrapper {{ localClass }}__message-wrapper">
       <div>
         {% if title %}
-          <h5 class="{{ globalClass }}__title {{ localClass }}__title">
+          <h5 class="{{ globalClass }}__title {{ localClass }}__title text-align-{{ titleTextAlign }}">
             {{ title | t}}
           </h5>
         {% endif %}
 
         {% if subtitle %}
-          <p class="{{ globalClass }}__text {{ localClass }}__text">
+          <p class="{{ globalClass }}__text {{ localClass }}__text text-align-{{ subtitleTextAlign }}">
             {{ properties.feedback_form_sub_title | t}}
           </p>
         {% endif %}

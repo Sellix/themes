@@ -52,7 +52,6 @@
     font-size: {{ titleFontSize }}px;
     font-weight: {{ titleFontWeight }};
     line-height: {{ titleLineHeight }}px;
-    text-align: {{ titleTextAlign }};
   }
   .{{ localClass }}__item h3 {
     margin-top: 0;
@@ -63,7 +62,6 @@
     font-size: {{ bodyFontSize }}px;
     font-weight: {{ bodyFontWeight }};
     line-height: {{ bodyLineHeight }}px;
-    text-align: {{ bodyTextAlign }};
   }
 
   .{{ localClass }}__help-link {
@@ -87,7 +85,7 @@
   <div class="sellix-trust sellix-trust-{{ id }}">
 
     <div class="{{ globalClass }}__item {{ localClass }}__item">
-      <h3 class="{{ globalClass }}__item-title {{ localClass }}__item-title">
+      <h3 class="{{ globalClass }}__item-title {{ localClass }}__item-title text-align-{{ titleTextAlign }}">
         {% if shop.trusted_checks.identity_verified %}
           <i class="fa-regular fa-circle-check text-green mr-2"></i>
           {{ 'shop.trust.identityVerified.yes' | t }}
@@ -96,7 +94,7 @@
           {{ 'shop.trust.identityVerified.no' | t }}
         {% endif %}
       </h3>
-      <div class="{{ globalClass }}__item-body {{ localClass }}__item-body">
+      <div class="{{ globalClass }}__item-body {{ localClass }}__item-body text-align-{{ bodyTextAlign }}">
         {% if shop.trusted_checks.identity_verified %}
           {{ 'shop.trust.identityText.yes' | t }}
         {% else %}

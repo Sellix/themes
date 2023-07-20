@@ -14,14 +14,13 @@
 {% set formPaddingVert = safe_get(properties.form_padding_vert, 16) %}
 {% set formShadow = safe_get(properties.form_shadow, 'none') %}
 
-{% set buttonAlign = safe_get(properties.button_align, 'left') %}
+{% set buttonAlign = safe_get(properties.button_align, 'start') %}
 
 {% set localClass = id %}
 
 <style>
   .{{ localClass }}__container {
     display: flex;
-    justify-content: {{ formAlign }};
   }
   .{{ localClass }}__container form {
     width: {{ formSize }}%;
@@ -36,7 +35,6 @@
   }
   .{{ localClass }}__button-container {
     display: flex;
-    justify-content: {{ buttonAlign }};
   }
   .{{ localClass }}__button-container button {
     {% if buttonAlign == 'stretch' %}
@@ -45,7 +43,7 @@
   }
 </style>
 
-<div class="{{ globalClass }}__container {{ localClass }}__container">
+<div class="{{ globalClass }}__container {{ localClass }}__container justify-content-{{ formAlign }}">
   <form
     class="{{ globalClass }}__form {{ localClass }}__form"
     onsubmit="return false"
@@ -86,7 +84,7 @@
       %}
     </div>
 
-    <div class="{{ globalClass }}__button-container {{ localClass }}__button-container">
+    <div class="{{ globalClass }}__button-container {{ localClass }}__button-container justify-content-{{ buttonAlign }}">
       {% render_snippet
         'Shared: Ripple button',
         button_id=['contact-form-submit-', id] | join,

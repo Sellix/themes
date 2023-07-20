@@ -12,6 +12,8 @@
 {% set paddingHoriz = safe_get(properties.container_padding_horiz, 20) %}
 {% set shadow = safe_get(properties.container_shadow, 'none') %}
 
+{% set titleAlign = safe_get(properties.title_text_align, 'start') %}
+
 {% set localClass = id %}
 
 <style>
@@ -26,10 +28,6 @@
     padding: {{ paddingVert }}px {{ paddingHoriz }}px;
   }
 
-  .{{ localClass }}__title-container {
-    justify-content: {{ properties.title_text_align }};
-  }
-
   .{{ localClass }}__title {
     color: {{ properties.title_font_color | get_color }};
     font-size: {{ properties.title_font_size }}px;
@@ -39,7 +37,7 @@
 
 <div class="animated fadeIn {{ globalClass }}__container {{ localClass }}__container">
   <div class="{{ globalClass }}__header">
-    <div class="{{ globalClass }}__title-container {{ localClass }}__title-container">
+    <div class="{{ globalClass }}__title-container {{ localClass }}__title-container justify-content-{{ titleAlign }}">
       <div class="{{ globalClass }}__title {{ localClass }}__title">
         <div>{{ 'shop.ticket.chatTitle' | t }}</div>
         <div>{{title}}</div>

@@ -47,7 +47,6 @@
 
     flex: 1;
     display: flex;
-    justify-content: {{ alignHoriz }};
     align-items: {{ alignVert }};
   }
 </style>
@@ -59,7 +58,7 @@
     </div>
   {% endif %}
   {% if showText %}
-    <div class="{{ globalClass }}__text {{ localClass }}__text">
+    <div class="{{ globalClass }}__text {{ localClass }}__text justify-content-{{ alignHoriz }}">
       {{ textContent }}
     </div>
   {% endif %}

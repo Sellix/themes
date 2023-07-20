@@ -30,7 +30,7 @@
   }
   .{{ localClass }}__wrapper {
     width: 100%;
-    back
+    background-color: {{ bgColor | get_color }};
     border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
     border-radius: {{ borderRadius }}px;
     padding: {{ paddingVert }}px {{ paddingHoriz }}px;
@@ -38,7 +38,6 @@
   }
   .{{ localClass }}__title {
     display: flex;
-    justify-content: {{ titleAlign }};
     color: {{ titleFontColor | get_color }};
     font-size: {{ titleFontSize }}px;
     font-weight: {{ titleFontWeight }};
@@ -47,7 +46,6 @@
   .{{ localClass }}__content {
     display: flex;
     flex-direction: column;
-    justify-content: {{ contentAlign }};
     color: {{ contentFontColor | get_color }};
     font-size: {{ contentFontSize }}px;
     font-weight: {{ contentFontWeight }};
@@ -57,10 +55,10 @@
 
 <div class="{{ globalClass }}__container {{ localClass }}__container">
   <div class="{{ globalClass }}__wrapper {{ localClass }}__wrapper">
-    <div class="{{ globalClass }}__title {{ localClass }}__title">
+    <div class="{{ globalClass }}__title {{ localClass }}__title justify-content-{{ titleAlign }}">
       {{ page.name }}
     </div>
-    <div class="{{ globalClass }}__content {{ localClass }}__content">
+    <div class="{{ globalClass }}__content {{ localClass }}__content justify-content-{{ contentAlign }}">
       {{ page.content | html_sanitize | safe }}
     </div>
   </div>

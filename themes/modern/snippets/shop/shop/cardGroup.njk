@@ -51,7 +51,6 @@
     font-size: {{ titleFontSize }}px;
     font-weight: {{ titleFontWeight }};
     line-height: {{ titleLineHeight }}px;
-    justify-content: {{ titleTextAlign }};
   }
   .{{ localClass }}__info {
     padding: {{ infoPaddingVert }}px {{ infoPaddingHoriz }}px;
@@ -153,7 +152,7 @@
           {% endif %}
         </div>
 
-        <div class="{{ globalClass }}__title {{ localClass }}__title">
+        <div class="{{ globalClass }}__title {{ localClass }}__title justify-content-{{ titleTextAlign }}">
           {{group.title}}
         </div>
       </div>

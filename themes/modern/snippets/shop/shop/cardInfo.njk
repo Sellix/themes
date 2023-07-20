@@ -56,7 +56,6 @@
     font-size: {{ titleFontSize }}px;
     font-weight: {{ titleFontWeight }};
     line-height: {{ titleLineHeight }}px;
-    justify-content: {{ titleTextAlign }};
 
     font-size: 18px;
     font-weight: 500;
@@ -64,7 +63,6 @@
   }
   .{{ localClass }}__info {
     padding: {{ infoPaddingVert }}px {{ infoPaddingHoriz }}px;
-    justify-content: flex-start;
   }
   .{{ localClass }}__text {
     color: {{ descriptionFontColor | get_color }};
@@ -118,7 +116,7 @@
         {% render_snippet 'Tag', tag=('shop.shared.titles.productType.info' | t) %}
       </div>
 
-      <div class="{{ globalClass }}__title {{ localClass }}__title">
+      <div class="{{ globalClass }}__title {{ localClass }}__title justify-content-{{ titleTextAlign }}">
         {{product.title}}
       </div>
 

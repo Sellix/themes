@@ -45,7 +45,6 @@
     font-size: {{ messageFontSize }}px;
     font-weight: {{ messageFontWeight }};
     line-height: {{ messageLineHeight }}px;
-    text-align: {{ messageAlign }};
   }
 
   .{{ localClass }}__reply {
@@ -55,7 +54,6 @@
     font-size: {{ replyFontSize }}px;
     font-weight: {{ replyFontWeight }};
     line-height: {{ replyLineHeight }}px;
-    text-align: {{ replyAlign }};
   }
 
   .{{ localClass }}__header {
@@ -79,12 +77,12 @@
   </div>
 
   <div class="{{ globalClass }}__review {{ localClass }}__review">
-    <div class="{{ globalClass }}__message {{ localClass }}__message">
+    <div class="{{ globalClass }}__message {{ localClass }}__message text-align-{{ messageAlign }}">
       {{message}}
     </div>
 
     {% if reply %}
-      <div class="{{ globalClass }}__reply {{ localClass }}__reply">
+      <div class="{{ globalClass }}__reply {{ localClass }}__reply text-align-{{ replyAlign }}">
         {{reply}}
       </div>
     {% endif %}

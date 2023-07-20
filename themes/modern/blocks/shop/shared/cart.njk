@@ -60,14 +60,12 @@
   }
 
   .{{ localClass }}__dropdown-header-title {
-    text-align: {{ headerTitleTextAlign }};
     color: {{ headerTitleFontColor | get_color }};
     font-weight: {{ headerTitleFontWeight }};
     font-size: {{ headerTitleFontSize }}px;
     line-height: {{ headerTitleLineHeight }}px;
   }
   .{{ localClass }}__dropdown-header-description {
-    text-align: {{ headerDescriptionTextAlign }};
     color: {{ headerDescriptionFontColor | get_color }};
     font-weight: {{ headerDescriptionFontWeight }};
     font-size: {{ headerDescriptionFontSize }}px;
@@ -96,14 +94,12 @@
     border-radius: {{ imageBorderRadius }}px;
   }
   .{{ localClass }}__dropdown-item-title {
-    text-align: {{ itemTitleTextAlign }};
     color: {{ itemTitleFontColor | get_color }};
     font-weight: {{ itemTitleFontWeight }};
     font-size: {{ itemTitleFontSize }}px;
     line-height: {{ itemTitleLineHeight }}px;
   }
   .{{ localClass }}__dropdown-item-price {
-    text-align: {{ itemPriceTextAlign }};
     color: {{ itemPriceFontColor | get_color }};
     font-weight: {{ itemPriceFontWeight }};
     font-size: {{ itemPriceFontSize }}px;
@@ -132,12 +128,12 @@
     <div class="sliding-panel__container {{ globalClass }}__dropdown-container {{ localClass }}__dropdown-container">
       <header class="sliding-panel__header {{ globalClass }}__dropdown-header {{ localClass }}__dropdown-header">
         <div class="{{ globalClass }}__dropdown-header-info">
-          <h6 class="{{ globalClass }}__dropdown-header-title {{ localClass }}__dropdown-header-title">
+          <h6 class="{{ globalClass }}__dropdown-header-title {{ localClass }}__dropdown-header-title text-align-{{ headerTitleTextAlign }}">
             {{ headerTitle | t }}
           </h6>
 
           {% if headerDescription %}
-            <p class="{{ globalClass }}__dropdown-header-description {{ localClass }}__dropdown-header-description">
+            <p class="{{ globalClass }}__dropdown-header-description {{ localClass }}__dropdown-header-description text-align-{{ headerDescriptionTextAlign }}">
               {{ headerDescription | t }}
             </p>
           {% endif %}
@@ -222,13 +218,13 @@
     </div>
 
     <div class="{{ globalClass }}__dropdown-item-info">
-      <div class="{{ globalClass }}__dropdown-item-title {{ localClass }}__dropdown-item-title">
+      <div class="{{ globalClass }}__dropdown-item-title {{ localClass }}__dropdown-item-title text-align-{{ itemTitleTextAlign }}">
         {% raw %}
           {{:product.title}}
         {% endraw %}
       </div>
 
-      <div class="{{ globalClass }}__dropdown-item-price {{ localClass }}__dropdown-item-price">
+      <div class="{{ globalClass }}__dropdown-item-price {{ localClass }}__dropdown-item-price text-align-{{ itemPriceTextAlign }}">
         {% raw %}
           {{if isFree}}
         {% endraw %}

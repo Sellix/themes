@@ -21,7 +21,6 @@
   .{{ localClass }} {
     width: 100%;
     display: flex;
-    justify-content: {{ align }};
   }
   .{{ localClass }}__delimiter {
     background-color: {{ color | get_color }};
@@ -46,6 +45,6 @@
   }
 </style>
 
-<div class="{{ globalClass }} {{ localClass }}">
+<div class="{{ globalClass }} {{ localClass }} justify-content-{{ align }}">
   <div class="{{ globalClass }}__delimiter {{ localClass }}__delimiter"></div>
 </div>

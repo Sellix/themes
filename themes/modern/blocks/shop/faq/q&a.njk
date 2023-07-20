@@ -7,6 +7,9 @@
 {% set paddingVert = safe_get(properties.padding_vert, 16) %}
 {% set paddingHoriz = safe_get(properties.padding_horiz, 16) %}
 
+{% set questionTextAlign = safe_get(properties.question_text_align, 'left') %}
+{% set contentTextAlign = safe_get(properties.answer_text_align, 'left') %}
+
 {% set localClass = id %}
 
 <style>
@@ -26,7 +29,6 @@
     color: {{ (properties.question_font_color | get_color) if properties.question_font_color else 'inherit' }};
     font-size: {{ properties.question_font_size }}px;
     font-weight: {{ properties.question_font_weight }};
-    text-align: {{ properties.question_text_align }};
   }
 
   .{{ localClass }}__content {
@@ -37,16 +39,11 @@
     color: {{ (properties.answer_font_color | get_color) if properties.answer_font_color else 'inherit' }};
     font-size: {{ properties.answer_font_size }}px;
     font-weight: {{ properties.answer_font_weight }};
-    text-align: {{ properties.answer_text_align }};
-  }
-  .{{ localClass }}__content > div{
-    padding-top: 0.5rem;
-    padding-right: 1.5rem;
   }
 </style>
 
 <div class="accordion-item {{ globalClass }}__container {{ localClass }}__container" data-faq-item-id="{{ id }}">
-  <div class="{{ globalClass }}__question {{ localClass }}__question">
+  <div class="{{ globalClass }}__question {{ localClass }}__question text-align-{{ questionTextAlign }}">
     <div class="{{ globalClass }}__question-text {{ localClass }}__question-text">
       {{ properties.question | t }}
     </div>
@@ -57,8 +54,8 @@
       {% render_snippet 'Icons: Chevron up' %}
     </div>
   </div>
-  <div class="{{ globalClass}}__content {{ localClass }}__content" data-faq-item-answer="1">
-    <div>
+  <div class="{{ globalClass}}__content {{ localClass }}__content text-align-{{ contentTextAlign }}" data-faq-item-answer="1">
+    <div class="pr-4 pt-0">
       {{ properties.answer | t | safe }}
     </div>
   </div>
