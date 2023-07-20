@@ -48,8 +48,8 @@
 
       $('#group-card-modal .sellix-modal-header').html(headerHtml);
 
-      $modalBody.html(`<div class="w-100 d-flex justify-content-center align-items-center">` +
-        `${window.sellixI18Next.t('shop.main.cards.group.loading')}`+
+      $modalBody.html(`<div class="w-100 d-flex justify-content-center align-items-center pt-3">` +
+        `{% render_snippet 'Shared: Loader', color_class='black' %}` +
       `</div>`);
 
       sellixApi
@@ -72,7 +72,7 @@
         .then((resp) => {
           const $component = $(resp.html);
           $component.css('display', 'none');
-          $('#group-card-modal .sellix-modal-body').html($component);
+          $modalBody.html($component);
           setTimeout(function () {
             $(document).trigger('SellixCartUpdateEvent', { action: 'update' });
             $component.css('display', '');
