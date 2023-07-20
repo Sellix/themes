@@ -116,7 +116,7 @@
     onShowProductTerms = () => {
       jQuery('#product-terms-modal').modal({
         modalClass: '',
-        blockerClass: '',
+        blockerClass: 'sellix-overlay',
         showClose: false,
       });
     };
