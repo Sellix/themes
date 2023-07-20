@@ -4,7 +4,6 @@
 {% set average_score = shop.average_score if shop.average_score else 0 %}
 
 {% set align = safe_get(properties.align, 'center') %}
-{% set alignMap = {'left': 'start', 'center': 'center', 'right': 'end'} %}
 
 {% set valueFontColor = safe_get(properties.value_font_color, 'dark_font_color') %}
 {% set valueFontSize = safe_get(properties.value_font_size, 24) %}
@@ -23,7 +22,7 @@
   .{{ localClass }} {
     display: flex;
     flex-direction: column;
-    align-items: {{ alignMap[align] }};
+    align-items: {{ align }};
   }
   .{{ localClass }}__value {
     display: flex;

@@ -24,9 +24,9 @@
     display: flex;
     align-items: center;
     background-color: {{ backgroundColor | get_color }};
-    {% if contentAlignDesktop === 'left' %}
+    {% if contentAlignDesktop === 'start' %}
       justify-content: flex-start;
-    {% elif contentAlignDektop === 'right' %}
+    {% elif contentAlignDektop === 'end' %}
       justify-content: flex-end;
     {% else %}
       justify-content: space-around;
@@ -37,9 +37,9 @@
 
   @media (max-width: 768px) {
     .{{ localClass }} {
-      {% if contentAlignTablet === 'left' %}
+      {% if contentAlignTablet === 'start' %}
         justify-content: flex-start;
-      {% elif contentAlignTablet === 'right' %}
+      {% elif contentAlignTablet === 'end' %}
         justify-content: flex-end;
       {% else %}
         justify-content: space-around;
@@ -51,9 +51,9 @@
 
   @media (max-width: 640px) {
     .{{ localClass }} {
-      {% if contentAlignMobile === 'left' %}
+      {% if contentAlignMobile === 'start' %}
         justify-content: flex-start;
-      {% elif contentAlignMobile === 'right' %}
+      {% elif contentAlignMobile === 'end' %}
         justify-content: flex-end;
       {% else %}
         justify-content: space-around;
