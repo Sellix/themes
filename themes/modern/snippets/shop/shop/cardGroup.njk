@@ -201,7 +201,9 @@
         ...[...set2].filter(x => !set1.has(x)),
       ]);
 
-      $(document).trigger('SellixOpenCheckoutModal', { showContinueShoppingButton: true });
+      if (diff.size > 0) {
+        $(document).trigger('SellixOpenCheckoutModal', { showContinueShoppingButton: true });
+      }
     });
 
     {% if global.request.type === 'group' and global.request.options.itemId === group.uniqid %}
