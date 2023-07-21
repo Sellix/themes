@@ -24,26 +24,14 @@
     display: flex;
     align-items: center;
     background-color: {{ backgroundColor | get_color }};
-    {% if contentAlignDesktop === 'start' %}
-      justify-content: flex-start;
-    {% elif contentAlignDektop === 'end' %}
-      justify-content: flex-end;
-    {% else %}
-      justify-content: space-around;
-    {% endif %}
+    justify-content: {{ contentAlignDesktop }};
     padding: {{ paddingVertDesktop }}px {{ paddingHorizDesktop }}px;
     margin: 0 auto {{ marginBottomDesktop }}px auto;
   }
 
   @media (max-width: 768px) {
     .{{ localClass }} {
-      {% if contentAlignTablet === 'start' %}
-        justify-content: flex-start;
-      {% elif contentAlignTablet === 'end' %}
-        justify-content: flex-end;
-      {% else %}
-        justify-content: space-around;
-      {% endif %}
+      justify-content: {{ contentAlignTablet }};
       padding: {{ paddingVertTablet }}px {{ paddingHorizTablet }}px;
       margin: 0 auto {{ marginBottomTablet }}px auto;
     }
@@ -51,13 +39,7 @@
 
   @media (max-width: 640px) {
     .{{ localClass }} {
-      {% if contentAlignMobile === 'start' %}
-        justify-content: flex-start;
-      {% elif contentAlignMobile === 'end' %}
-        justify-content: flex-end;
-      {% else %}
-        justify-content: space-around;
-      {% endif %}
+      justify-content: {{ contentAlignMobile }};
       padding: {{ paddingVertMobile }}px {{ paddingHorizMobile }}px;
       margin: 0 auto {{ marginBottomMobile }}px auto;
     }
