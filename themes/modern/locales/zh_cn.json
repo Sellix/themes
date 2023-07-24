@@ -351,7 +351,8 @@
     "Reviews": "评论",
     "Shop": "购物",
     "Terms": "条款",
-    "Trusted Advisor": "可信赖的顾问"
+    "Trusted Advisor": "可信赖的顾问",
+    "Write Rewiew": "撰写评论"
   },
   "pages": {
     "customer": {
@@ -600,7 +601,7 @@
             "text": "Sellix 订单确认电子邮件将发送到您的 PayPal 电子邮件。"
           },
           "termsOfServiceMessage": [
-            "点击支付即表示您同意{{name}}的",
+            "我已阅读并同意{{name}}的",
             "服务条款",
             ""
           ]
@@ -680,6 +681,7 @@
             "typeHere": "在此输入"
           },
           "addToCart": "添加到购物车",
+          "updateCart": "更新购物车",
           "applyCoupon": "应用优惠券",
           "back": "返回",
           "buyNow": "立即购买",
@@ -697,6 +699,11 @@
           "getIt": "获取",
           "noPaymentOptions": "此产品没有付款选项。",
           "pay": "支付",
+          "license": {
+            "previously": "之前购买过此产品？",
+            "renew": "在此续订",
+            "key": "许可证编号"
+          },
           "price": {
             "balanceAmount": "从余额使用",
             "bundleDiscount": "捆绑优惠",
@@ -709,7 +716,10 @@
             "taxNotice": "百分比是基于您的国家{{delimiter1}}{{country}}{{delimiter2}}。如果您从其他地方购买，您可以稍后更改它。",
             "tooltip": "价格如何计算？",
             "total": "总计",
-            "volumeDiscount": "数量折扣"
+            "volumeDiscount": "数量折扣",
+            "addons": "附加服务",
+            "license": "许可证",
+            "period": "有效期"
           },
           "priceCalculated": "价格如何计算？",
           "selectGateway": "选择网关",
@@ -869,13 +879,14 @@
         "verifiedPurchase": "经过验证的购买"
       },
       "formSubtitle": "这个产品好吗？请在这里写下你的反馈意见。",
-      "formTitle": "留下您的反馈意见",
       "noFeedbacks": "目前还没有反馈",
       "noFeedbacksSubtitle": "此处没有任何反馈可显示",
       "subtitle": "易于访问的设计是良好的设计！",
-      "textPlaceholder": "请留下您的反馈文字",
       "title": "评论",
-      "tooLongMessage": "反馈必须是256个字符的长度"
+      "tooLongMessage": "反馈必须是256个字符的长度",
+      "formTitle": "撰写评论",
+      "starRatingTitle": "您的评分",
+      "textPlaceholder": "您是否想写些关于该产品的评论？"
     },
     "main": {
       "cards": {
@@ -898,7 +909,7 @@
           "onHold": "该产品被搁置，目前无法购买。"
         }
       },
-      "copyright": "版权所有 {{ year }}，Sellix SRL。",
+      "copyright": "版权所有 {{ year }}, {{ storeName }}。保留所有权利。",
       "productList": {
         "filter": {
           "allCategories": "所有类别",
@@ -955,7 +966,9 @@
         "已售出的产品",
         "次"
       ],
-      "warrantyTitle": "产品保修"
+      "warrantyTitle": "产品保修",
+      "termsTitle": "条款",
+      "noTermsTitle": "无条款"
     },
     "shared": {
       "banner": {
@@ -965,7 +978,8 @@
           "entrepreneur": "企业家",
           "professional": "专业人士",
           "providingService": "自{{ serviceYear }}年{{ serviceMonth }}开始提供{{ serviceType }}服务",
-          "starter": "初学者"
+          "starter": "初学者",
+          "reseller": "经销商"
         },
         "stats": {
           "productQuality": "产品质量",
@@ -973,7 +987,8 @@
         }
       },
       "footer": {
-        "title": "电商解决方案由...提供"
+        "title": "电商解决方案由...提供",
+        "productsTitle": "热门产品"
       },
       "menu": {
         "about": "关于",
@@ -995,7 +1010,9 @@
         "reviewsWithCount_one": "{{count}} 条评价",
         "reviewsWithCount_other": "{{count}} 条评价",
         "reviewsWithCount_zero": "暂无评价",
-        "totalReview": "总评价数"
+        "totalReview": "总评价数",
+        "notFoundTitle": "暂无评论",
+        "notFoundMessage": "当前没有评论可显示"
       },
       "titles": {
         "Explore shop": "探索商店",
@@ -1049,9 +1066,11 @@
       "title": "商店"
     },
     "terms": {
-      "noTermsSubtitle": "店主尚未添加任何店铺条款",
-      "noTermsTitle": "未添加条款",
-      "title": "条款"
+      "title": "条款",
+      "noTermsTitle": "缺失服务条款",
+      "noTermsSubtitle": "商家尚未添加服务条款。",
+      "noProductTerms": "产品 {{- productName }} 没有相关服务条款。",
+      "modalTitle": "产品服务条款"
     },
     "ticket": {
       "messagePlaceholder": "输入一个信息",
@@ -1059,7 +1078,8 @@
         "merchant": "商户",
         "you": "你"
       },
-      "title": "票务"
+      "title": "票务",
+      "chatTitle": "查询"
     },
     "trust": {
       "feedback": "反馈上诉率",
@@ -1339,6 +1359,17 @@
       "State is required": "州/省是必填项",
       "Surname": "姓氏",
       "Surname is required": "姓氏是必填项"
+    },
+    "PurchaseDetails": {
+      "Terms of Service": "服务条款",
+      "Shop Terms of Service": "商店服务条款",
+      "Product Terms of Service": "产品服务条款",
+      "\"{{productName}}\" Terms of Service": "\"{{productName}}\"服务条款",
+      "No terms specified": "未指定条款",
+      "Period": "有效期",
+      "Add to Cart": "添加到购物车",
+      "Update Cart": "更新购物车",
+      "Email": "电子邮件"
     }
   }
 }

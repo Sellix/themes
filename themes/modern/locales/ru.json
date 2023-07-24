@@ -363,7 +363,8 @@
     "Reviews": "Отзывы",
     "Shop": "Магазин",
     "Terms": "Условия",
-    "Trusted Advisor": "Доверенный советник"
+    "Trusted Advisor": "Доверенный советник",
+    "Write Rewiew": "Написать отзыв"
   },
   "pages": {
     "customer": {
@@ -612,8 +613,8 @@
             "text": "Письма с подтверждением продажи от Sellix будут доставляться на вашу электронную почту PayPal."
           },
           "termsOfServiceMessage": [
-            "Нажимая «Оплатить», вы соглашаетесь с ",
-            "условиями обслуживания {{name}}",
+            "Я прочитал(а) и согласен(на) с {{name}}",
+            "условиями обслуживания",
             ""
           ]
         },
@@ -692,6 +693,7 @@
             "typeHere": "Введите здесь"
           },
           "addToCart": "Добавить в корзину",
+          "updateCart": "Обновить корзину",
           "applyCoupon": "Применить купон",
           "back": "Назад",
           "buyNow": "Купить сейчас",
@@ -709,6 +711,11 @@
           "getIt": "Получить",
           "noPaymentOptions": "У этого продукта нет вариантов оплаты.",
           "pay": "Оплатить",
+          "license": {
+            "previously": "Ранее приобретали ключ?",
+            "renew": "Обновить здесь",
+            "key": "ID лицензии ключа"
+          },
           "price": {
             "balanceAmount": "Использовано из баланса",
             "bundleDiscount": "Скидка на пакет",
@@ -721,7 +728,10 @@
             "taxNotice": "Процент основан на вашей стране{{delimiter1}}{{country}}{{delimiter2}}. Вы можете изменить его позже, если будете покупать из другого места.",
             "tooltip": "Как рассчитывается цена?",
             "total": "Итого",
-            "volumeDiscount": "Скидка при объемной покупке"
+            "volumeDiscount": "Скидка при объемной покупке",
+            "addons": "Дополнения",
+            "license": "Лицензия",
+            "period": "Период"
           },
           "priceCalculated": "Как рассчитывается цена?",
           "selectGateway": "Выберите шлюз",
@@ -881,13 +891,14 @@
         "verifiedPurchase": "Верифицированная Покупка"
       },
       "formSubtitle": "Всё ли в порядке с продуктом? Оставьте свой отзыв об этом.",
-      "formTitle": "Оставьте свой отзыв",
       "noFeedbacks": "Пока нет отзывов",
       "noFeedbacksSubtitle": "Нет отзывов для отображения",
       "subtitle": "Доступный дизайн - это хороший дизайн!",
-      "textPlaceholder": "Оставьте сообщение о своём отзыве",
       "title": "Отзывы",
-      "tooLongMessage": "Сообщение не может быть длиннее 256 символов"
+      "tooLongMessage": "Сообщение не может быть длиннее 256 символов",
+      "formTitle": "Написать отзыв",
+      "starRatingTitle": "Ваша оценка",
+      "textPlaceholder": "Хотели бы вы что-то написать о продукте?"
     },
     "main": {
       "cards": {
@@ -910,7 +921,7 @@
           "onHold": "Продажа данного продукта приостановленв, он не может быть куплен сейчас"
         }
       },
-      "copyright": "Авторское право {{ year }}, Sellix SRL. Все права защищены.",
+      "copyright": "Авторские права {{ year }}, {{ storeName }} Все права защищены.",
       "productList": {
         "filter": {
           "allCategories": "Все категории",
@@ -967,7 +978,9 @@
         "Продукт продан",
         "раз"
       ],
-      "warrantyTitle": "Гарантия на продукт"
+      "warrantyTitle": "Гарантия на продукт",
+      "termsTitle": "Условия",
+      "noTermsTitle": "Нет условий"
     },
     "shared": {
       "banner": {
@@ -986,7 +999,8 @@
         }
       },
       "footer": {
-        "title": "Решение для электронной коммерции, разработанное"
+        "title": "Решение для электронной коммерции, разработанное",
+        "productsTitle": "Популярные продукты"
       },
       "menu": {
         "about": "О нас",
@@ -1008,7 +1022,9 @@
         "reviewsWithCount_one": "{{count}} отзыв",
         "reviewsWithCount_other": "{{count}} отзывов",
         "reviewsWithCount_zero": "Нет отзывов",
-        "totalReview": "Всего отзывов"
+        "totalReview": "Всего отзывов",
+        "notFoundTitle": "Еще нет отзывов",
+        "notFoundMessage": "Здесь пока нет отзывов"
       },
       "titles": {
         "Explore shop": "Перейти в магазин",
@@ -1062,9 +1078,11 @@
       "title": "Магазин"
     },
     "terms": {
-      "noTermsSubtitle": "Владелец не добавил никаких условий в магазин",
-      "noTermsTitle": "Не добавлено условий",
-      "title": "Условия"
+      "title": "Условия",
+      "noTermsTitle": "Отсутствуют условия обслуживания",
+      "noTermsSubtitle": "Торговец не добавил условия обслуживания.",
+      "noProductTerms": "Продукт {{- productName }} не имеет условий обслуживания.",
+      "modalTitle": "Условия обслуживания продукта"
     },
     "ticket": {
       "messagePlaceholder": "Введите сообщение",
@@ -1072,7 +1090,8 @@
         "merchant": "Продавец",
         "you": "Вы"
       },
-      "title": "Заявка"
+      "title": "Заявка",
+      "chatTitle": "Запрос"
     },
     "trust": {
       "feedback": "коэффициент привлекательности обратной связи",
@@ -1299,9 +1318,15 @@
       "{{name}} has been received but it's not enough. We only received {{receivedMessage}}, please send the remaining amount in order to fulfill the invoice": "{{name}} была получена, но ее недостаточно. Мы получили только {receivedMessage}, пожалуйста, отправьте оставшуюся сумму, чтобы выполнить счет-фактуру"
     },
     "PurchaseDetails": {
-      "\"{{productName}}\" Terms of Service": "\"{{productName}}\" Условия Обслуживания",
-      "Shop Terms of Service": "Условия Обслуживания Магазина",
-      "Period": "Период"
+      "Terms of Service": "Условия обслуживания",
+      "Shop Terms of Service": "Условия обслуживания магазина",
+      "Product Terms of Service": "Условия обслуживания продукта",
+      "\"{{productName}}\" Terms of Service": "Условия обслуживания \"{{productName}}\"",
+      "No terms specified": "Условия не указаны",
+      "Period": "Период",
+      "Add to Cart": "Добавить в корзину",
+      "Update Cart": "Обновить корзину",
+      "Email": "Эл. почта"
     },
     "Payments": {
       "CashApp": {

@@ -362,7 +362,8 @@
     "Reviews": "Avis",
     "Shop": "Boutique",
     "Terms": "Conditions",
-    "Trusted Advisor": "Conseiller de confiance"
+    "Trusted Advisor": "Conseiller de confiance",
+    "Write Rewiew": "Écrire une critique"
   },
   "pages": {
     "customer": {
@@ -611,8 +612,8 @@
             "text": "Les courriels de satisfaction de Sellix seront envoyés à votre e-mail PayPal."
           },
           "termsOfServiceMessage": [
-            "En cliquant sur Payer, vous acceptez les",
-            "Conditions d'utilisation de {{name}}",
+            "J'ai lu et j'accepte les",
+            "Conditions générales de vente de {{name}}",
             ""
           ]
         },
@@ -691,6 +692,7 @@
             "typeHere": "Saisissez ici"
           },
           "addToCart": "Ajouter au panier",
+          "updateCart": "Mettre à jour le panier",
           "applyCoupon": "Appliquer un coupon",
           "back": "Retour",
           "buyNow": "Acheter maintenant",
@@ -708,6 +710,11 @@
           "getIt": "Obtenez-le",
           "noPaymentOptions": "Ce produit n'a pas d'options de paiement.",
           "pay": "Payer",
+          "license": {
+            "previously": "Avez-vous déjà acheté la clé auparavant?",
+            "renew": "Renouveler ici",
+            "key": "Identifiant de licence de la clé"
+          },
           "price": {
             "balanceAmount": "Utilisé à partir du solde",
             "bundleDiscount": "Remise groupée",
@@ -720,7 +727,10 @@
             "taxNotice": "Le pourcentage est basé sur votre pays{{delimiter1}}{{country}}{{delimiter2}}. Vous pouvez le modifier ultérieurement si vous achetez depuis un autre endroit.",
             "tooltip": "Comment le prix est-il calculé ?",
             "total": "Total",
-            "volumeDiscount": "Remise en volume"
+            "volumeDiscount": "Remise en volume",
+            "addons": "Extras",
+            "license": "Licence",
+            "period": "Période"
           },
           "priceCalculated": "Comment le prix est-il calculé ?",
           "selectGateway": "Sélectionner une passerelle",
@@ -880,13 +890,14 @@
         "verifiedPurchase": "Achat vérifié"
       },
       "formSubtitle": "Le produit était-il bon ? Donnez votre avis sur le produit ici.",
-      "formTitle": "Laissez vos commentaires",
       "noFeedbacks": "Aucun commentaire pour le moment",
       "noFeedbacksSubtitle": "Aucun commentaire à afficher ici",
       "subtitle": "Un design accessible est un bon design !",
-      "textPlaceholder": "Laissez un texte pour vos commentaires",
       "title": "Avis",
-      "tooLongMessage": "Les commentaires doivent comporter 256 caractères"
+      "tooLongMessage": "Les commentaires doivent comporter 256 caractères",
+      "formTitle": "Écrire une critique",
+      "starRatingTitle": "Votre évaluation",
+      "textPlaceholder": "Souhaitez-vous écrire quelque chose sur ce produit?"
     },
     "main": {
       "cards": {
@@ -909,7 +920,7 @@
           "onHold": "Ce produit est en attente et ne peut être acheté pour le moment."
         }
       },
-      "copyright": "Droits d'auteur {{ year }}, Sellix SRL. Tous droits réservés.",
+      "copyright": "Droits d'auteur {{ year }}, {{ storeName }} Tous droits réservés.",
       "productList": {
         "filter": {
           "allCategories": "Toutes les catégories",
@@ -966,7 +977,9 @@
         "Produit vendu",
         "temps"
       ],
-      "warrantyTitle": "Garantie du produit"
+      "warrantyTitle": "Garantie du produit",
+      "termsTitle": "Conditions",
+      "noTermsTitle": "Pas de conditions"
     },
     "shared": {
       "banner": {
@@ -976,7 +989,8 @@
           "entrepreneur": "Entrepreneur",
           "professional": "Professionnel",
           "providingService": "Fournissant des services {{ serviceType }} depuis {{ serviceMonth }} {{serviceYear}}",
-          "starter": "Débutant"
+          "starter": "Débutant",
+          "reseller": "Revendeur"
         },
         "stats": {
           "productQuality": "Qualité du produit",
@@ -984,7 +998,8 @@
         }
       },
       "footer": {
-        "title": "Solution de commerce électronique propulsée par"
+        "title": "Solution de commerce électronique propulsée par",
+        "productsTitle": "Produits populaires"
       },
       "menu": {
         "about": "À propos",
@@ -1006,7 +1021,9 @@
         "reviewsWithCount_one": "{{count}} avis",
         "reviewsWithCount_other": "{{count}} avis",
         "reviewsWithCount_zero": "Aucun avis",
-        "totalReview": "Total des avis"
+        "totalReview": "Total des avis",
+        "notFoundTitle": "Aucune critique pour le moment",
+        "notFoundMessage": "Aucune critique à afficher ici"
       },
       "titles": {
         "Explore shop": "Explorer la boutique",
@@ -1060,9 +1077,11 @@
       "title": "Boutique"
     },
     "terms": {
-      "noTermsSubtitle": "Le propriétaire n'a ajouté aucune condition à la boutique",
-      "noTermsTitle": "Aucune condition ajoutée",
-      "title": "Conditions"
+      "title": "Conditions",
+      "noTermsTitle": "Conditions générales de vente manquantes",
+      "noTermsSubtitle": "Le commerçant n'a ajouté aucune condition générale de vente.",
+      "noProductTerms": "Le produit {{- productName }} n'a pas de conditions générales de vente.",
+      "modalTitle": "Conditions générales de vente du produit"
     },
     "ticket": {
       "messagePlaceholder": "Tapez un message",
@@ -1070,7 +1089,8 @@
         "merchant": "Merchant",
         "you": "Vous"
       },
-      "title": "Ticket"
+      "title": "Ticket",
+      "chatTitle": "Demande"
     },
     "trust": {
       "feedback": "le taux d'appel en retour",
@@ -1350,6 +1370,17 @@
       "State is required": "L'état est requis",
       "Surname": "Prénom",
       "Surname is required": "Le prénom est requis"
+    },
+    "PurchaseDetails": {
+      "Terms of Service": "Conditions générales de vente",
+      "Shop Terms of Service": "Conditions générales de vente du magasin",
+      "Product Terms of Service": "Conditions générales de vente du produit",
+      "\"{{productName}}\" Terms of Service": "Conditions générales de vente de \"{{productName}}\"",
+      "No terms specified": "Aucune condition spécifiée",
+      "Period": "Période",
+      "Add to Cart": "Ajouter au panier",
+      "Update Cart": "Mettre à jour le panier",
+      "Email": "E-mail"
     }
   }
 }

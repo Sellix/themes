@@ -362,7 +362,8 @@
     "Reviews": "Recensioni",
     "Shop": "Negozio",
     "Terms": "Termini",
-    "Trusted Advisor": "Consulente di fiducia"
+    "Trusted Advisor": "Consulente di fiducia",
+    "Write Rewiew": "Scrivi una Recensione"
   },
   "pages": {
     "customer": {
@@ -611,8 +612,8 @@
             "text": "Le email di completamento di Sellix saranno inviate al tuo indirizzo email di PayPal."
           },
           "termsOfServiceMessage": [
-            "Cliccando su Paga accetti i",
-            "Termini di Servizio",
+            "Ho letto e accetto i",
+            "Termini di Servizio di {{name}}",
             ""
           ]
         },
@@ -691,6 +692,7 @@
             "typeHere": "Digita Qui"
           },
           "addToCart": "Aggiungi al Carrello",
+          "updateCart": "Aggiorna Carrello",
           "applyCoupon": "Applica un Coupon",
           "back": "Indietro",
           "buyNow": "Acquista Ora",
@@ -708,6 +710,11 @@
           "getIt": "Ottieni",
           "noPaymentOptions": "Questo prodotto non ha opzioni di pagamento.",
           "pay": "Paga",
+          "license": {
+            "previously": "Hai già acquistato la chiave in precedenza?",
+            "renew": "Rinnova qui",
+            "key": "ID Licenza Chiave"
+          },
           "price": {
             "balanceAmount": "Utilizzato dal saldo",
             "bundleDiscount": "Sconto Pacchetto",
@@ -720,7 +727,10 @@
             "taxNotice": "La percentuale si basa sul tuo paese{{delimiter1}}{{country}}{{delimiter2}}. Puoi cambiarla successivamente se acquisti da un altro luogo.",
             "tooltip": "Come viene calcolato il prezzo?",
             "total": "Totale",
-            "volumeDiscount": "Sconto Volume"
+            "volumeDiscount": "Sconto Volume",
+            "addons": "Aggiunte",
+            "license": "Licenza",
+            "period": "Periodo"
           },
           "priceCalculated": "Come viene calcolato il prezzo?",
           "selectGateway": "Seleziona Gateway",
@@ -880,13 +890,14 @@
         "verifiedPurchase": "Acquisto verificato"
       },
       "formSubtitle": "Il prodotto era buono? Scrivete qui il vostro feedback in merito.",
-      "formTitle": "Lasciate il vostro feedback",
       "noFeedbacks": "Ancora nessun feedback",
       "noFeedbacksSubtitle": "Nessun feedback da mostrare qui",
       "subtitle": "Un design accessibile è un buon design!",
-      "textPlaceholder": "Lasciate un testo per il vostro feedback",
       "title": "Recensioni",
-      "tooLongMessage": "Il feedback deve essere lungo 256 caratteri"
+      "tooLongMessage": "Il feedback deve essere lungo 256 caratteri",
+      "formTitle": "Scrivi una Recensione",
+      "starRatingTitle": "La tua valutazione",
+      "textPlaceholder": "Ti piacerebbe scrivere qualcosa su questo prodotto?"
     },
     "main": {
       "cards": {
@@ -909,7 +920,7 @@
           "onHold": "Questo prodotto è in attesa e non può essere acquistato al momento."
         }
       },
-      "copyright": "Diritti d'autore {{ year }}, Sellix SRL. Tutti i diritti riservati.",
+      "copyright": "Copyright {{ year }}, {{ storeName }} Tutti i diritti riservati.",
       "productList": {
         "filter": {
           "allCategories": "Tutte le categorie",
@@ -966,7 +977,9 @@
         "Prodotto venduto",
         "tempi"
       ],
-      "warrantyTitle": "Garanzia del prodotto"
+      "warrantyTitle": "Garanzia del prodotto",
+      "termsTitle": "Termini",
+      "noTermsTitle": "Nessun termine"
     },
     "shared": {
       "banner": {
@@ -976,7 +989,8 @@
           "entrepreneur": "Imprenditore",
           "professional": "Professionista",
           "providingService": "Offriamo servizi {{ serviceType }} dal {{ serviceMonth }} {{serviceYear}}",
-          "starter": "Principiante"
+          "starter": "Principiante",
+          "reseller": "Rivenditore"
         },
         "stats": {
           "productQuality": "Qualità del prodotto",
@@ -984,7 +998,8 @@
         }
       },
       "footer": {
-        "title": "Soluzione di e-commerce fornita da"
+        "title": "Soluzione di e-commerce fornita da",
+        "productsTitle": "Prodotti Popolari"
       },
       "menu": {
         "about": "Informazioni",
@@ -1006,7 +1021,9 @@
         "reviewsWithCount_one": "{{count}} recensione",
         "reviewsWithCount_other": "{{count}} recensioni",
         "reviewsWithCount_zero": "Nessuna recensione",
-        "totalReview": "Totale recensioni"
+        "totalReview": "Totale recensioni",
+        "notFoundTitle": "Ancora nessuna recensione",
+        "notFoundMessage": "Nessuna recensione da mostrare qui"
       },
       "titles": {
         "Explore shop": "Esplora il negozio",
@@ -1060,9 +1077,11 @@
       "title": "Negozio"
     },
     "terms": {
-      "noTermsSubtitle": "Il proprietario non ha aggiunto alcun termine al negozio",
-      "noTermsTitle": "Nessun termine aggiunto",
-      "title": "Termini"
+      "title": "Termini",
+      "noTermsTitle": "Mancano i Termini di Servizio",
+      "noTermsSubtitle": "Il commerciante non ha aggiunto Termini di Servizio.",
+      "noProductTerms": "Il prodotto {{- productName }} non ha Termini di Servizio.",
+      "modalTitle": "Termini di Servizio del Prodotto"
     },
     "ticket": {
       "messagePlaceholder": "Digitare un messaggio",
@@ -1070,7 +1089,8 @@
         "merchant": "Commerciante",
         "you": "Tu"
       },
-      "title": "Biglietto"
+      "title": "Biglietto",
+      "chatTitle": "Richiesta"
     },
     "trust": {
       "feedback": "rapporto di richiamo del feedback",
@@ -1350,6 +1370,17 @@
       "State is required": "Lo stato è obbligatorio",
       "Surname": "Cognome",
       "Surname is required": "Il cognome è obbligatorio"
+    },
+    "PurchaseDetails": {
+      "Terms of Service": "Termini di Servizio",
+      "Shop Terms of Service": "Termini di Servizio del Negozio",
+      "Product Terms of Service": "Termini di Servizio del Prodotto",
+      "\"{{productName}}\" Terms of Service": "Termini di Servizio di \"{{productName}}\"",
+      "No terms specified": "Nessun termine specificato",
+      "Period": "Periodo",
+      "Add to Cart": "Aggiungi al Carrello",
+      "Update Cart": "Aggiorna Carrello",
+      "Email": "E-mail"
     }
   }
 }

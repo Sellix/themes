@@ -359,7 +359,8 @@
     "Reviews": "レビュー",
     "Shop": "ショップ",
     "Terms": "利用規約",
-    "Trusted Advisor": "信頼できるアドバイザー"
+    "Trusted Advisor": "信頼できるアドバイザー",
+    "Write Rewiew": "レビューを書く"
   },
   "pages": {
     "customer": {
@@ -608,7 +609,7 @@
             "text": "Sellixの商品配信メールはPayPalのメールアドレスに配信されます。"
           },
           "termsOfServiceMessage": [
-            "Payをクリックすることで、{{name}}の",
+            "{{name}}さんの",
             "利用規約",
             ""
           ]
@@ -706,6 +707,11 @@
           "getIt": "入手",
           "noPaymentOptions": "この商品には支払いオプションがありません。",
           "pay": "支払う",
+          "license": {
+            "previously": "以前にキーを購入したことがありますか？",
+            "renew": "こちらで更新",
+            "key": "ライセンスID"
+          },
           "price": {
             "balanceAmount": "残高から利用",
             "bundleDiscount": "バンドルディスカウント",
@@ -718,7 +724,10 @@
             "taxNotice": "パーセンテージはお住まいの国{{delimiter1}}{{country}}{{delimiter2}}に基づいています。別の場所で購入する場合は後で変更できます。",
             "tooltip": "価格はどのように計算されますか？",
             "total": "合計",
-            "volumeDiscount": "数量割引"
+            "volumeDiscount": "数量割引",
+            "addons": "アドオン",
+            "license": "ライセンス",
+            "period": "期間"
           },
           "priceCalculated": "価格はどのように計算されますか？",
           "selectGateway": "ゲートウェイを選択",
@@ -878,13 +887,14 @@
         "verifiedPurchase": "購入確認済み"
       },
       "formSubtitle": "製品は良かったですか？感想をお聞かせください。",
-      "formTitle": "ご意見をお聞かせください",
       "noFeedbacks": "まだフィードバックはありません",
       "noFeedbacksSubtitle": "ここに表示するフィードバックはありません",
       "subtitle": "アクセシブルなデザインは良いデザインです！",
-      "textPlaceholder": "ご意見・ご感想をテキストで残す",
       "title": "レビュー",
-      "tooLongMessage": "フィードバックは256文字でお願いします"
+      "tooLongMessage": "フィードバックは256文字でお願いします",
+      "formTitle": "レビューを書く",
+      "starRatingTitle": "あなたの評価",
+      "textPlaceholder": "この商品について何か書きたいですか？"
     },
     "main": {
       "cards": {
@@ -907,7 +917,7 @@
           "onHold": "本製品は現在、予約販売となっており、購入することはできません。"
         }
       },
-      "copyright": "© {{ year }} Sellix SRL。全著作権保有。",
+      "copyright": "著作権 {{ year }}, {{ storeName }} All Rights Reserved.",
       "productList": {
         "filter": {
           "allCategories": "すべてのカテゴリー",
@@ -964,7 +974,9 @@
         "製品販売",
         "倍"
       ],
-      "warrantyTitle": "製品保証"
+      "warrantyTitle": "製品保証",
+      "termsTitle": "利用規約",
+      "noTermsTitle": "利用規約なし"
     },
     "shared": {
       "banner": {
@@ -974,7 +986,8 @@
           "entrepreneur": "起業家",
           "professional": "プロフェッショナル",
           "providingService": "{{ serviceType }}サービス提供開始{{ serviceYear }}年{{ serviceMonth }}月以来",
-          "starter": "初心者"
+          "starter": "初心者",
+          "reseller": "リセラー"
         },
         "stats": {
           "productQuality": "製品品質",
@@ -982,7 +995,8 @@
         }
       },
       "footer": {
-        "title": "Eコマースソリューション提供元"
+        "title": "Eコマースソリューション提供元",
+        "productsTitle": "人気商品"
       },
       "menu": {
         "about": "会社概要",
@@ -1004,7 +1018,9 @@
         "reviewsWithCount_one": "{{count}}件のレビュー",
         "reviewsWithCount_other": "{{count}}件のレビュー",
         "reviewsWithCount_zero": "レビューはありません",
-        "totalReview": "総レビュー数"
+        "totalReview": "総レビュー数",
+        "notFoundTitle": "まだレビューはありません",
+        "notFoundMessage": "ここに表示するレビューはありません"
       },
       "titles": {
         "Explore shop": "ショップを探索する",
@@ -1058,9 +1074,11 @@
       "title": "ショップ"
     },
     "terms": {
-      "noTermsSubtitle": "オーナーはショップに利用規約を追加していません",
-      "noTermsTitle": "利用規約が追加されていません",
-      "title": "利用規約"
+      "title": "利用規約",
+      "noTermsTitle": "利用規約が見つかりません",
+      "noTermsSubtitle": "商人が利用規約を追加していません。",
+      "noProductTerms": "商品 {{- productName }} には利用規約がありません。",
+      "modalTitle": "商品の利用規約"
     },
     "ticket": {
       "messagePlaceholder": "メッセージを入力する",
@@ -1068,7 +1086,8 @@
         "merchant": "マーチャント",
         "you": "あなた"
       },
-      "title": "チケット"
+      "title": "チケット",
+      "chatTitle": "お問い合わせ"
     },
     "trust": {
       "feedback": "フィードバックアピールレシオ",
@@ -1348,6 +1367,17 @@
       "State is required": "州は必須です",
       "Surname": "姓",
       "Surname is required": "姓は必須です"
+    },
+    "PurchaseDetails": {
+      "Terms of Service": "利用規約",
+      "Shop Terms of Service": "ショップの利用規約",
+      "Product Terms of Service": "商品の利用規約",
+      "\"{{productName}}\" Terms of Service": "\"{{productName}}\"の利用規約",
+      "No terms specified": "指定された利用規約なし",
+      "Period": "期間",
+      "Add to Cart": "カートに追加",
+      "Update Cart": "カートを更新",
+      "Email": "メール"
     }
   }
 }
