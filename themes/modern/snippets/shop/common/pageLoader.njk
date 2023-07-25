@@ -1,5 +1,6 @@
 {% if themeProperties.page_loader.enabled %}
-  <link rel="stylesheet" href="{{ 'pace-theme.css' | asset_url }}"/>
+  {% set rtl = global.locales.rtl %}
+  <link rel="stylesheet" href="{{ 'pace-theme.css' | asset_url(rtl) }}"/>
 
   <style>
     .pace .pace-progress {
