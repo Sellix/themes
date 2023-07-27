@@ -123,7 +123,7 @@
             <div class="{{ globalClass }}__info {{ localClass }}__info">
               <div>
                 <span>{{ 'shop.shared.titles.startingAt' | t }} </span>
-                {% render_snippet 'Price', currency=currency, price=variant.price %}
+                {% render_snippet 'Price', currency=currency, price=variant.price_conversions[currency] %}
               </div>
 
               {% if showStockInfo %}
