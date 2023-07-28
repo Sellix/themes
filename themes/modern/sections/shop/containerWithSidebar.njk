@@ -57,10 +57,10 @@
     display: grid;
     {% if sidebarType == 'left' %}
       grid-template-areas: "sidebar content";
-      grid-template-columns: minmax(200px, {{ sidebarWidth }}px) minmax(360px, 1fr);
+      grid-template-columns: minmax(200px, {{ sidebarWidth }}px) minmax(200px, 1fr);
     {% else %}
       grid-template-areas: "content sidebar";
-      grid-template-columns: minmax(360px, 1fr) minmax(200px, {{ sidebarWidth }}px);
+      grid-template-columns: minmax(200px, 1fr) minmax(200px, {{ sidebarWidth }}px);
     {% endif %}
     grid-column-gap: {{ sidebarGap }}px;
   }
