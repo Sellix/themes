@@ -861,6 +861,52 @@
   display: none;
 }
 
+.calculation {
+  margin-bottom: 1rem;
+  color: var(--black9);
+}
+.calculation-line {
+  width: 100%;
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--black2);
+}
+.calculation-item {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 0.75rem;
+  color: var(--black9);
+  display: flex;
+  justify-content: space-between;
+}
+.calculation-item.total {
+  padding-top: 1.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+  border-top: 1px solid var(--black2);
+}
+.calculation-item.total div:first-child {
+  font-weight: 500;
+  color: var(--black9);
+}
+.calculation-item div:last-child {
+  font-weight: 500;
+  padding-left: 1rem;
+  white-space: nowrap;
+}
+.calculation-item div:first-child {
+  font-weight: 400;
+  color: var(--black4);
+  font-size: 14px;
+}
+.calculation-item span {
+  color: var(--black4);
+  margin-right: 0;
+}
+
 .checkout-footer {
   display: flex;
   flex-direction: column;
@@ -929,52 +975,6 @@
   }
 }
 .is-checkout footer.sellix-widget-invoice-checkout--footer-more svg {
-  margin-right: 0;
-}
-
-.calculation {
-  margin-bottom: 1rem;
-  color: var(--black9);
-}
-.calculation-line {
-  width: 100%;
-  padding-bottom: 1.25rem;
-  margin-bottom: 1.25rem;
-  border-bottom: 1px solid var(--black2);
-}
-.calculation-item {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  margin-bottom: 0.75rem;
-  color: var(--black9);
-  display: flex;
-  justify-content: space-between;
-}
-.calculation-item.total {
-  padding-top: 1.25rem;
-  margin-top: 1.25rem;
-  margin-bottom: 0;
-  border-top: 1px solid var(--black2);
-}
-.calculation-item.total div:first-child {
-  font-weight: 500;
-  color: var(--black9);
-}
-.calculation-item div:last-child {
-  font-weight: 500;
-  padding-left: 1rem;
-  white-space: nowrap;
-}
-.calculation-item div:first-child {
-  font-weight: 400;
-  color: var(--black4);
-  font-size: 14px;
-}
-.calculation-item span {
-  color: var(--black4);
   margin-right: 0;
 }
 
@@ -1196,118 +1196,6 @@
   cursor: pointer;
   z-index: 999999999;
   backdrop-filter: blur(2px);
-}
-
-.sellix-widget-invoice-checkout--track {
-  max-width: 1024px;
-  min-height: auto;
-}
-.sellix-widget-invoice-checkout--track-body {
-  padding: 1.5rem;
-  border-top: none;
-  background: var(--white);
-  border-radius: 0 0 0.5rem 0.5rem;
-}
-.sellix-widget-invoice-checkout--track-body a {
-  color: var(--purple6) !important;
-}
-.sellix-widget-invoice-checkout--track .no-track {
-  color: var(--black9);
-  font-size: 1.5rem;
-  padding: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.sellix-widget-invoice-checkout--track .track-cards {
-  flex: 1;
-}
-.sellix-widget-invoice-checkout--track .track {
-  border-radius: 25px;
-  width: 100%;
-  position: relative;
-  height: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 0;
-  margin: 0 auto;
-  flex-direction: row;
-}
-.sellix-widget-invoice-checkout--track .track-line {
-  margin-right: 1.5rem;
-}
-.sellix-widget-invoice-checkout--track .track-container {
-  z-index: 2;
-  position: relative;
-  font-size: 0.7rem;
-  width: 100%;
-}
-.sellix-widget-invoice-checkout--track .track-card {
-  position: relative;
-  transition: all 0.3s ease 0.2s;
-  display: flex;
-  flex-direction: column;
-  z-index: 6;
-  padding-bottom: 1.25rem;
-  text-align: left;
-  width: 100%;
-  cursor: pointer;
-}
-.sellix-widget-invoice-checkout--track .track-card:after {
-  content: "";
-  position: absolute;
-  border-radius: 100%;
-  width: 0.75rem;
-  height: 0.75rem;
-  background: var(--black1);
-  left: -1.75rem;
-  top: 0.25rem;
-}
-.sellix-widget-invoice-checkout--track .track-card:before {
-  content: "";
-  position: absolute;
-  width: 2px;
-  height: 100%;
-  background: var(--black1);
-  left: calc(-1.75rem + 5px);
-  top: 10px;
-}
-.sellix-widget-invoice-checkout--track .track-card:last-child {
-  padding-bottom: 0;
-}
-.sellix-widget-invoice-checkout--track .track-card:last-child:before {
-  display: none;
-}
-.sellix-widget-invoice-checkout--track .track-card-badge {
-  background: var(--orange0);
-  padding: 0.125rem 0.5rem;
-  color: var(--orange6);
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 15px;
-  text-transform: capitalize;
-  margin-bottom: 0.5rem;
-  border-radius: 0.25rem;
-  max-width: fit-content;
-}
-.sellix-widget-invoice-checkout--track .track-card-time {
-  margin-top: 0.25rem;
-  color: var(--black4);
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 15px;
-}
-.sellix-widget-invoice-checkout--track .track-card-description {
-  color: var(--black9);
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-}
-.sellix-widget-invoice-checkout--track .track-card-description a {
-  color: var(--purple6);
 }
 
 .sellix-widget-invoice-checkout--getaway {
@@ -2000,6 +1888,80 @@
   margin-right: 0.5rem;
 }
 
+.ReactCollapse--collapse {
+  transition: height 0.5s;
+}
+
+button.secondary .lds-ellipsis div {
+  background: var(--black9);
+}
+
+.lds-ellipsis {
+  display: flex;
+  position: relative;
+  width: 50px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+}
+.lds-ellipsis.black > div {
+  background: var(--black9);
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis.purple > div {
+  background: var(--black9);
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis > div {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--white);
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis > div:nth-child(1) {
+  left: 5px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis > div:nth-child(2) {
+  left: 5px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis > div:nth-child(3) {
+  left: 20px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis > div:nth-child(4) {
+  left: 56px;
+  left: 35px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(15px, 0);
+  }
+}
 /* Config */
 :root {
   --sk-size: 40px;
@@ -2826,8 +2788,37 @@
   background-color: white !important;
 }
 
-.ReactCollapse--collapse {
-  transition: height 0.5s;
+.qr-wrapper {
+  overflow: hidden;
+  width: auto;
+  padding: 0;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+  position: relative;
+}
+.qr-wrapper canvas {
+  cursor: pointer;
+  width: auto;
+}
+.qr-wrapper > img {
+  cursor: pointer;
+}
+.qr-wrapper .qr-logo {
+  background: white;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  padding: 0 !important;
+  border-radius: 0.25rem;
+}
+.qr-wrapper .qr-corner {
+  background: white;
+  position: absolute;
+  padding: 3px;
 }
 
 .button {
@@ -2960,107 +2951,116 @@
   opacity: 1;
 }
 
-button.secondary .lds-ellipsis div {
-  background: var(--black9);
+.sellix-widget-invoice-checkout--track {
+  max-width: 1024px;
+  min-height: auto;
 }
-
-.lds-ellipsis {
+.sellix-widget-invoice-checkout--track-body {
+  padding: 1.5rem;
+  border-top: none;
+  background: var(--white);
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+.sellix-widget-invoice-checkout--track-body a {
+  color: var(--purple6) !important;
+}
+.sellix-widget-invoice-checkout--track .no-track {
+  color: var(--black9);
+  font-size: 1.5rem;
+  padding: 1.5rem;
   display: flex;
-  position: relative;
-  width: 50px;
-  height: 30px;
   align-items: center;
   justify-content: center;
 }
-.lds-ellipsis.black > div {
-  background: var(--black9);
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+.sellix-widget-invoice-checkout--track .track-cards {
+  flex: 1;
 }
-.lds-ellipsis.purple > div {
-  background: var(--black9);
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
-}
-.lds-ellipsis > div {
-  position: absolute;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--white);
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
-}
-.lds-ellipsis > div:nth-child(1) {
-  left: 5px;
-  animation: lds-ellipsis1 0.6s infinite;
-}
-.lds-ellipsis > div:nth-child(2) {
-  left: 5px;
-  animation: lds-ellipsis2 0.6s infinite;
-}
-.lds-ellipsis > div:nth-child(3) {
-  left: 20px;
-  animation: lds-ellipsis2 0.6s infinite;
-}
-.lds-ellipsis > div:nth-child(4) {
-  left: 56px;
-  left: 35px;
-  animation: lds-ellipsis3 0.6s infinite;
-}
-
-@keyframes lds-ellipsis1 {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-@keyframes lds-ellipsis3 {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0);
-  }
-}
-@keyframes lds-ellipsis2 {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(15px, 0);
-  }
-}
-.qr-wrapper {
-  overflow: hidden;
-  width: auto;
-  padding: 0;
-  border-radius: 5px;
+.sellix-widget-invoice-checkout--track .track {
+  border-radius: 25px;
+  width: 100%;
+  position: relative;
+  height: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0;
+  z-index: 0;
+  margin: 0 auto;
+  flex-direction: row;
+}
+.sellix-widget-invoice-checkout--track .track-line {
+  margin-right: 1.5rem;
+}
+.sellix-widget-invoice-checkout--track .track-container {
+  z-index: 2;
   position: relative;
+  font-size: 0.7rem;
+  width: 100%;
 }
-.qr-wrapper canvas {
+.sellix-widget-invoice-checkout--track .track-card {
+  position: relative;
+  transition: all 0.3s ease 0.2s;
+  display: flex;
+  flex-direction: column;
+  z-index: 6;
+  padding-bottom: 1.25rem;
+  text-align: left;
+  width: 100%;
   cursor: pointer;
-  width: auto;
 }
-.qr-wrapper > img {
-  cursor: pointer;
-}
-.qr-wrapper .qr-logo {
-  background: white;
+.sellix-widget-invoice-checkout--track .track-card:after {
+  content: "";
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 48px;
-  padding: 0 !important;
+  border-radius: 100%;
+  width: 0.75rem;
+  height: 0.75rem;
+  background: var(--black1);
+  left: -1.75rem;
+  top: 0.25rem;
+}
+.sellix-widget-invoice-checkout--track .track-card:before {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background: var(--black1);
+  left: calc(-1.75rem + 5px);
+  top: 10px;
+}
+.sellix-widget-invoice-checkout--track .track-card:last-child {
+  padding-bottom: 0;
+}
+.sellix-widget-invoice-checkout--track .track-card:last-child:before {
+  display: none;
+}
+.sellix-widget-invoice-checkout--track .track-card-badge {
+  background: var(--orange0);
+  padding: 0.125rem 0.5rem;
+  color: var(--orange6);
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  text-transform: capitalize;
+  margin-bottom: 0.5rem;
   border-radius: 0.25rem;
+  max-width: fit-content;
 }
-.qr-wrapper .qr-corner {
-  background: white;
-  position: absolute;
-  padding: 3px;
+.sellix-widget-invoice-checkout--track .track-card-time {
+  margin-top: 0.25rem;
+  color: var(--black4);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+}
+.sellix-widget-invoice-checkout--track .track-card-description {
+  color: var(--black9);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+.sellix-widget-invoice-checkout--track .track-card-description a {
+  color: var(--purple6);
 }
 
 .sellix-widget-invoice-checkout--footer {
@@ -3538,6 +3538,72 @@ button.secondary .lds-ellipsis div {
   line-height: 18px;
 }
 
+.embed-loader {
+  display: flex;
+  opacity: 1;
+  z-index: 99999999;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1s ease-in;
+  overflow: hidden;
+}
+.embed-loader-wrapper {
+  padding: 1rem 0;
+}
+.embed-loader-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  width: 68px;
+  height: 68px;
+  margin: 0 auto;
+  position: relative;
+}
+.embed-loader-sellix {
+  position: absolute;
+}
+
+.custom-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.custom-loader svg {
+  animation-name: spin;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0s;
+  width: 35px !important;
+  height: 35px !important;
+  z-index: 9;
+}
+.custom-loader img {
+  animation-name: spin;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0s;
+  width: 35px !important;
+  height: 35px !important;
+  z-index: 9;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .sellix-widget-invoice-checkout--invoice-details {
   font-size: 14px;
   margin-bottom: 1.25rem;
@@ -3645,72 +3711,6 @@ button.secondary .lds-ellipsis div {
   }
 }
 
-.embed-loader {
-  display: flex;
-  opacity: 1;
-  z-index: 99999999;
-  width: 100vw;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-  transition: opacity 1s ease-in;
-  overflow: hidden;
-}
-.embed-loader-wrapper {
-  padding: 1rem 0;
-}
-.embed-loader-circle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 100%;
-  width: 68px;
-  height: 68px;
-  margin: 0 auto;
-  position: relative;
-}
-.embed-loader-sellix {
-  position: absolute;
-}
-
-.custom-loader {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.custom-loader svg {
-  animation-name: spin;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-  animation-delay: 0s;
-  width: 35px !important;
-  height: 35px !important;
-  z-index: 9;
-}
-.custom-loader img {
-  animation-name: spin;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-  animation-delay: 0s;
-  width: 35px !important;
-  height: 35px !important;
-  z-index: 9;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(360deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
 .sellix-delivery-body {
   width: 100%;
   display: flex;
@@ -3898,6 +3898,64 @@ button.secondary .lds-ellipsis div {
   color: white;
 }
 
+.paypal-btn.light .sk-circle-fade-dot:before {
+  background-color: var(--purple6) !important;
+}
+.paypal-btn .sk-circle-fade-dot {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.paypal-note {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.25rem;
+  color: var(--black4) !important;
+}
+
+.perfectmoney {
+  margin-top: 1.5rem;
+  display: flex;
+  width: 100%;
+}
+.perfectmoney form {
+  width: 100%;
+  margin: 0;
+}
+.perfectmoney > form > button.medium {
+  background-color: var(--gateway-perfect-money) !important;
+  border-radius: 0.5rem;
+  color: white !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  border: none !important;
+  width: 100%;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  height: 45px !important;
+  outline: none;
+}
+.perfectmoney > form > button.medium img {
+  width: 1.5rem;
+  margin-right: 0.5rem;
+}
+.perfectmoney > form > button.medium:hover {
+  background-color: #f35c5b;
+}
+
+.skrill-button {
+  margin-top: 1.5rem;
+  display: flex;
+}
+.skrill-button img {
+  margin: 0 auto;
+  width: 100%;
+  min-width: 100%;
+  background: var(--gateway-skrill);
+  border-radius: 0.5rem;
+}
+
 .wallets-placeholder {
   animation: pulse1 2.3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   height: 36px;
@@ -4060,64 +4118,6 @@ button.secondary .lds-ellipsis div {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.paypal-btn.light .sk-circle-fade-dot:before {
-  background-color: var(--purple6) !important;
-}
-.paypal-btn .sk-circle-fade-dot {
-  width: 1.25rem;
-  height: 1.25rem;
-}
-
-.paypal-note {
-  display: flex;
-  justify-content: center;
-  margin-top: 0.25rem;
-  color: var(--black4) !important;
-}
-
-.skrill-button {
-  margin-top: 1.5rem;
-  display: flex;
-}
-.skrill-button img {
-  margin: 0 auto;
-  width: 100%;
-  min-width: 100%;
-  background: var(--gateway-skrill);
-  border-radius: 0.5rem;
-}
-
-.perfectmoney {
-  margin-top: 1.5rem;
-  display: flex;
-  width: 100%;
-}
-.perfectmoney form {
-  width: 100%;
-  margin: 0;
-}
-.perfectmoney > form > button.medium {
-  background-color: var(--gateway-perfect-money) !important;
-  border-radius: 0.5rem;
-  color: white !important;
-  font-size: 1rem !important;
-  font-weight: 400 !important;
-  border: none !important;
-  width: 100%;
-  padding: 0;
-  align-items: center;
-  justify-content: center;
-  height: 45px !important;
-  outline: none;
-}
-.perfectmoney > form > button.medium img {
-  width: 1.5rem;
-  margin-right: 0.5rem;
-}
-.perfectmoney > form > button.medium:hover {
-  background-color: #f35c5b;
 }
 
 .dark .stripe-form > .sk-circle-fade .sk-circle-fade-dot:before {
