@@ -30,6 +30,11 @@
       }
 
       if (this.product.type !== 'SUBSCRIPTION' && !this.product.licensing_enabled) {
+        this.$cart.on('click', (event) => {
+          event.stopPropagation();
+          event.preventDefault();
+        });
+
         this.$cartAddBtn.on('click', (...args) => this.add(...args));
         this.$cartRemoveBtn.on('click', (...args) => this.remove(...args));
 
@@ -57,6 +62,7 @@
     }
 
     add(event, { isFirst = false } = {}) {
+      event.stopPropagation();
       event.preventDefault();
 
       const quantity = (this.cart.getItemById(this.product.uniqid) || { quantity: 0 }).quantity || 0;
@@ -81,7 +87,9 @@
     }
 
     addFirst(event, timeout) {
+      event.stopPropagation();
       event.preventDefault();
+
       const quantity = (this.cart.getItemById(this.product.uniqid) || { quantity: 0 }).quantity || 0;
       if (!quantity) {
         if (timeout) {
@@ -93,13 +101,14 @@
     }
 
     remove(event) {
+      event.stopPropagation();
       event.preventDefault();
 
       const quantity = (this.cart.getItemById(this.product.uniqid) || { quantity: 0 }).quantity || 0;
       if (quantity === this.product.quantity_min) {
         this.cart.remove(this.product.uniqid, this.product.quantity_min);
       } else {
-        this.cart.remove(this.product.uniqid, this.product.quantity_min);
+        this.cart.remove(this.product.uniqid);
       }
     }
 
