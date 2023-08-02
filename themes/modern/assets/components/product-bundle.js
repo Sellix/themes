@@ -71,10 +71,13 @@
           const isLicense = product.licensing_enabled;
 
           const quantity = (this.cart.getItemById(uniqid) || {}).quantity || 0;
-          const valid = sellixHelper.isValidCount({
-            ...product,
-            count: parseInt(quantity) + 1,
-          });
+          const valid = sellixHelper.isValidCount(
+            {
+              ...product,
+              count: parseInt(quantity) + 1,
+            },
+            true,
+          );
 
           if (+stock === 0 || !!+on_hold || isSubscription || isLicense) {
             return null;

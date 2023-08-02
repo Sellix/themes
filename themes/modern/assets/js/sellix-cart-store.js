@@ -5,6 +5,7 @@
     constructor(shop) {
       this.shop = shop;
       this.storageName = `cart-${shop}`;
+      this.debounceUpdate = null;
 
       this.isInited = false;
       this.defferedActions = [];
@@ -170,16 +171,24 @@
     }
 
     updateBackend(events) {
-      return this.update().then(() => {
-        let eventBody;
-        for (const { productId, action } of events) {
-          eventBody = { action };
-          if (productId) {
-            eventBody.productId = productId;
-          }
-          jQuery(document).trigger('SellixCartUpdateEvent', eventBody);
+      const updateFunc = () => {
+        return this.update().then(() => {});
+      };
+
+      if (this.debounceUpdate) {
+        clearInterval(this.debounceUpdate);
+      }
+      this.debounceUpdate = setTimeout(updateFunc, 500);
+
+      // send events without waiting BE response
+      let eventBody;
+      for (const { productId, action } of events) {
+        eventBody = { action };
+        if (productId) {
+          eventBody.productId = productId;
         }
-      });
+        jQuery(document).trigger('SellixCartUpdateEvent', eventBody);
+      }
     }
   }
 

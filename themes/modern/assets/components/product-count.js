@@ -125,8 +125,8 @@
         quantity_min: this.product.quantity_min,
       };
 
-      const isValidPlus = sellixHelper.isValidCount({ ...staticProps, count: quantity + 1 });
-      const isValidMinus = sellixHelper.isValidCount({ ...staticProps, count: quantity - 1 });
+      const isValidPlus = sellixHelper.isValidCount({ ...staticProps, count: quantity + 1 }, true);
+      const isValidMinus = sellixHelper.isValidCount({ ...staticProps, count: quantity - 1 }, false);
 
       this.showHideButton('plus', isValidPlus);
       this.showHideButton('minus', isValidMinus);

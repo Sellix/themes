@@ -39,7 +39,7 @@
       return [name, namespace, id].filter((item) => Boolean(item)).join('.');
     }
 
-    isValidCount({ stock, count, quantity_max, quantity_min }) {
+    isValidCount({ stock, count, quantity_max, quantity_min }, is_plus = true) {
       if (isNaN(count)) {
         return false;
       }
@@ -48,11 +48,19 @@
         return false;
       }
 
-      if ((quantity_max !== -1 && count > quantity_max) || (quantity_min !== -1 && count < quantity_min)) {
+      if (is_plus && quantity_max !== -1 && count > quantity_max) {
         return false;
       }
 
-      return !(stock !== -1 && count > stock);
+      if (is_plus && stock !== -1 && count > stock) {
+        return false;
+      }
+
+      if (!is_plus && quantity_min !== -1 && count < quantity_min) {
+        return false;
+      }
+
+      return true;
     }
 
     getStock(stock) {

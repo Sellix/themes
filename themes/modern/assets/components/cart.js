@@ -142,7 +142,7 @@
             const hasImage = !!product.cloudflare_image_id;
             const equalQuantity = product.quantity_min === product.quantity_max;
             const inStock = product.stock === -1 ? '∞' : product.stock;
-            const isValidPlus = sellixHelper.isValidCount({ ...product, count: product.quantity + 1 });
+            const isValidPlus = sellixHelper.isValidCount({ ...product, count: product.quantity + 1 }, true);
             const isPayWhatYouWant = Boolean(product.pay_what_you_want);
             const isFree = +product.price_display === 0 && product.pay_what_you_want !== 1;
 
@@ -192,7 +192,7 @@
           updatedProducts.forEach((item) => {
             this.$cartBody.find(`#cart-product-${item.uniqid} [data-cart-product-quantity]`).text(item.quantity);
 
-            const isValidPlus = sellixHelper.isValidCount({ ...item, count: item.quantity + 1 });
+            const isValidPlus = sellixHelper.isValidCount({ ...item, count: item.quantity + 1 }, true);
             const $plusButton = this.$cartBody.find(`#cart-product-${item.uniqid} [data-cart-add-button]`);
             if (isValidPlus) {
               $plusButton.css('visibility', 'initial');

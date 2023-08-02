@@ -61,10 +61,13 @@
 
       const quantity = (this.cart.getItemById(this.product.uniqid) || { quantity: 0 }).quantity || 0;
 
-      const isValid = sellixHelper.isValidCount({
-        ...this.product,
-        count: quantity + 1,
-      });
+      const isValid = sellixHelper.isValidCount(
+        {
+          ...this.product,
+          count: quantity + 1,
+        },
+        true,
+      );
 
       if (this.product.quantity_min > 1 && (quantity === 0 || quantity === undefined)) {
         this.cart.add(this.product, this.product.quantity_min);
@@ -102,8 +105,8 @@
 
     render() {
       const quantity = (this.cart.getItemById(this.product.uniqid) || { quantity: 0 }).quantity || 0;
-      const isValidPlus = sellixHelper.isValidCount({ ...this.product, count: quantity + 1 });
-      const isValidMinus = sellixHelper.isValidCount({ ...this.product, count: quantity });
+      const isValidPlus = sellixHelper.isValidCount({ ...this.product, count: quantity + 1 }, true);
+      const isValidMinus = sellixHelper.isValidCount({ ...this.product, count: quantity }, false);
 
       this.$cart.toggleClass('empty', quantity === 0);
       this.$cartQuantity.toggleClass('d-none', quantity === 0);
