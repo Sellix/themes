@@ -94,15 +94,19 @@
         </div>
       {% endif %}
 
-      {% if not isInvoice and product.stock !== 0 %}
-        <div class="{{ globalClass }}__product-count">
-          {% render_snippet
-            'Checkout: Product count',
-            product=product,
-            quantity=quantity,
-            show_stock_info=false
-          %}
-        </div>
+      {% if not isInvoice %}
+        {% if product.stock !== 0 %}
+          <div class="{{ globalClass }}__product-count">
+            {% render_snippet
+              'Checkout: Product count',
+              product=product,
+              quantity=quantity,
+              show_stock_info=false
+            %}
+          </div>
+        {% else %}
+          {% render_snippet 'Tag', tag=('shop.main.cards.product.soldOut' | t), type='warning' %}
+        {% endif %}
 
         <div
           class="remove-icon {{ globalClass }}__remove-icon"

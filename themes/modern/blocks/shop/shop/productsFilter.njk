@@ -125,8 +125,6 @@
 <script type='application/javascript'>
   $(document).ready(function () {
     let selectedCategory = 'all', selectedSort = '{{ shop.default_sort }}';
-    console.log(selectedCategory, selectedSort);
-
     const optionFactory = (state, isResult, isSort) => {
       const chevronSvg = `<svg class="chevron" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M5.5 12.5L10.5 7.5L15.5 12.5" stroke="#555D67" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -225,7 +223,6 @@
       .on('change', (e) => {
         sort = e.target.value;
         selectedSort = e.target.value;
-        console.log('Change', selectedSort);
         $(document).trigger(
           'SellixProductListFilterChangeEvent',
           { name: '{{ filterName }}', search, category, sort },

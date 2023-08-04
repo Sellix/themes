@@ -63,7 +63,11 @@
         const product = this.cart.getItemById(this.productId);
         if (product) {
           const newProductVariant = this.productVariantsStore.get(this.productId);
-          if (newProductVariant && newProductVariant.title !== this.activeProductVariant.title) {
+          if (
+            newProductVariant &&
+            this.activeProductVariant &&
+            newProductVariant.title !== this.activeProductVariant.title
+          ) {
             this.activeProductVariant = newProductVariant;
             if (product.quantity > 1) {
               this.cart.remove(product.uniqid, product.quantity - 1);

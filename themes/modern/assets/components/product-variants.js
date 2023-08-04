@@ -78,18 +78,22 @@
 
     render() {
       if (this.variants.length) {
-        const firstActive = this.store.get(
-          this.productId,
-          this.variants.find(({ stock }) => stock !== 0),
-        );
-
-        if (firstActive) {
-          this.store.set(this.productId, firstActive);
+        const firstAvailable = this.variants.find(({ stock }) => stock !== 0);
+        let activeVariant;
+        if (firstAvailable) {
+          const productVariant = this.store.get(this.productId, firstAvailable);
+          activeVariant = this.variants.find(
+            ({ title, stock }) => title === `${productVariant.title}` && stock >= productVariant.stock,
+          );
+        }
+        if (activeVariant) {
+          this.store.set(this.productId, activeVariant);
         } else {
           if (this.isCart) {
+            this.store.set(this.productId, undefined);
             this.cart.remove(this.productId, 0);
           } else {
-            this.store.set(this.productId, this.variants[0]);
+            this.store.set(this.productId, firstAvailable);
           }
         }
       }

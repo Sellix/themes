@@ -167,11 +167,28 @@
 
     clear() {
       this.state = [];
-      return this.updateBackend([{ action: 'delete' }]);
+      return this.updateBackend().then(() => this.triggerEvents([{ action: 'delete' }]));
     }
 
     updateBackend(events) {
       // send events without waiting BE response
+      this.triggerEvents(events || []);
+
+      return new Promise((resolve, reject) => {
+        if (this.debounceUpdate) {
+          clearInterval(this.debounceUpdate);
+          resolve('debounce');
+        }
+        this.debounceUpdate = setTimeout(() => {
+          this.debounceUpdate = undefined;
+          this.update()
+            .then((resp) => resolve(resp))
+            .catch((error) => reject(error));
+        }, 250);
+      });
+    }
+
+    triggerEvents(events) {
       let eventBody;
       for (const { productId, action } of events) {
         eventBody = { action };
@@ -180,18 +197,6 @@
         }
         jQuery(document).trigger('SellixCartUpdateEvent', eventBody);
       }
-
-      return new Promise((resolve, reject) => {
-        if (this.debounceUpdate) {
-          clearInterval(this.debounceUpdate);
-          resolve('debounce');
-        }
-        this.debounceUpdate = setTimeout(() => {
-          this.update()
-            .then((resp) => resolve(resp))
-            .catch((error) => reject(error));
-        }, 250);
-      });
     }
   }
 
