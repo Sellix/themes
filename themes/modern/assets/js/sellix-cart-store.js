@@ -171,15 +171,6 @@
     }
 
     updateBackend(events) {
-      const updateFunc = () => {
-        return this.update().then(() => {});
-      };
-
-      if (this.debounceUpdate) {
-        clearInterval(this.debounceUpdate);
-      }
-      this.debounceUpdate = setTimeout(updateFunc, 500);
-
       // send events without waiting BE response
       let eventBody;
       for (const { productId, action } of events) {
@@ -189,6 +180,18 @@
         }
         jQuery(document).trigger('SellixCartUpdateEvent', eventBody);
       }
+
+      return new Promise((resolve, reject) => {
+        if (this.debounceUpdate) {
+          clearInterval(this.debounceUpdate);
+          resolve('debounce');
+        }
+        this.debounceUpdate = setTimeout(() => {
+          this.update()
+            .then((resp) => resolve(resp))
+            .catch((error) => reject(error));
+        }, 250);
+      });
     }
   }
 
