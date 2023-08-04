@@ -33,8 +33,7 @@
   }
 
   .select2-container--sellix-lng-selector .select2-results__option[aria-selected='true'] {
-    background-color: {{ inputsProps.dropdown_active_option_background | get_color }} !important;
-    {#color: {{ inputsProps.dropdown_active_option_font_color | get_color }} !important;#}
+    {#background-color: {{ inputsProps.dropdown_active_option_background | get_color }} !important;#}
   }
 </style>
 
@@ -53,36 +52,47 @@
 </div>
 
 <script type='application/javascript'>
-  function optionFactory(state, isResult) {
-    const $element = $(state.element);
-    const imgUrl = $element.data("imgUrl");
+  $(document).ready(function() {
+    let selectedLanguage = '{{ global.locales.locale }}';
+    const optionFactory = (state, isResult) => {
+      const $element = $(state.element);
+      const imgUrl = $element.data("imgUrl");
 
-    if (!state.id) {
-      return state.text;
-    }
+      if (!state.id) {
+        return state.text;
+      }
 
-    let isMobile = (window || {}).innerWidth < 768;
-    let title =  state.text;
+      let isMobile = (window || {}).innerWidth < 768;
+      let title =  state.text;
+      const chevronSvg = `<svg class="ml-2" style="min-width: 21px" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5.5 12.5L10.5 7.5L15.5 12.5" stroke="#555D67" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`;
 
-    return $(`
+      const tickSvg = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 10.1667L8 14.3333L16 6" stroke="#6A3CE2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`;
+
+      return $(`
         <div style="display: flex; align-items: center;">
-          ${isMobile ?
-            imgUrl ?
-              `<img alt="${title}" style="height:18px;width: 18px;" class="mr-2" src="${imgUrl}" />` :
-              '':
-            !isResult && imgUrl ?
-              `<img alt="${title}" style="height:18px;width: 18px;" class="mr-2" src="${imgUrl}" />` :
-              ''
+          ${isMobile
+            ? imgUrl
+              ? `<img alt="${title}" style="height:18px;width: 18px;" class="mr-2" src="${imgUrl}" />`
+              : ''
+            : !isResult && imgUrl
+              ? `<img alt="${title}" style="height:18px;width: 18px;" class="mr-2" src="${imgUrl}" />`
+              : ''
           }
           ${isMobile && isResult ? '' : title}
-          ${isResult ? `<svg class="ml-2" style="min-width: 21px" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5.5 12.5L10.5 7.5L15.5 12.5" stroke="#555D67" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>` : ''}
+          ${isResult
+            ? chevronSvg
+            : state.id === selectedLanguage
+              ? tickSvg
+              : ''
+          }
         </div>
     `);
-  }
+    }
 
-  $(document).ready(function() {
     $('#language-selector').select2({
       dropdownAutoWidth: true,
       width: 'auto',
@@ -94,6 +104,7 @@
       theme: 'sellix-lng-selector',
     })
     .on('select2:select', (e) => {
+      selectedLanguage = e.params.data.id;
       const oldLocale = '{{ global.locales.locale }}';
       const newLocale = e.params.data.id;
       if (oldLocale !== newLocale) {
@@ -110,10 +121,10 @@
       }
     })
     .on('select2:open', (e) => {
-        $('.language-selector-{{ id }}').find('.select2-dropdown').addClass('animated ' + 'flipIn');
+        $('.language-selector-{{ id }}').find('.select2-dropdown').addClass('animated flipIn');
       })
     .on('select2:closing', (e) => {
-        $('.language-selector-{{ id }}').find('.select2-dropdown').removeClass('animated ' + 'flipIn');
+        $('.language-selector-{{ id }}').find('.select2-dropdown').removeClass('animated flipIn');
     });
 
     $('.language-selector-{{ id }}').removeClass('d-none');

@@ -67,7 +67,6 @@
     font-size: {{ inputsProps.dropdown_option_font_size }}px !important;
     font-weight: {{ inputsProps.dropdown_option_font_weight }};
     color: {{ inputsProps.dropdown_option_font_color | get_color }};
-    height: {{ inputsProps.common_height }}px;
   }
 
   .select2-container--sellix .select2-results__option.select2-results__option--highlighted {
@@ -75,8 +74,7 @@
   }
 
   .select2-container--sellix .select2-results__option[aria-selected='true'] {
-    background-color: {{ inputsProps.dropdown_active_option_background | get_color }} !important;
-    {#color: {{ inputsProps.dropdown_active_option_font_color | get_color }} !important;#}
+    {#background-color: {{ inputsProps.dropdown_active_option_background | get_color }} !important;#}
   }
 </style>
 
@@ -105,11 +103,20 @@
   {% if shop.sort_enabled %}
     <div id="sort-select-{{id}}" class="sellix-dropdown {{ globalClass }}__item {{ globalClass }}__sort-dropdown {{ globalClass }}__local-dropdown d-none">
       <select id="sort-select" class="sort-select">
-        <option value="DEFAULT">{{ 'shop.main.productList.filter.default' | t }}</option>
-        <option value="PRICE">{{ 'shop.main.productList.filter.price' | t }}</option>
-        <option value="NAME">{{ 'shop.main.productList.filter.name' | t }}</option>
-        <option value="TYPE">{{ 'shop.main.productList.filter.type' | t }}</option>
-        <option value="STOCK">{{ 'shop.main.productList.filter.stock' | t }}</option>
+        {% for option in [
+          {value: 'DEFAULT', title: 'shop.main.productList.filter.default'},
+          {value: 'PRICE', title: 'shop.main.productList.filter.price'},
+          {value: 'NAME', title: 'shop.main.productList.filter.name'},
+          {value: 'TYPE', title: 'shop.main.productList.filter.type'},
+          {value: 'STOCK', title: 'shop.main.productList.filter.stock'}
+        ] %}
+          <option
+            value="{{ option.value }}"
+            {{'selected' if option.value == shop.default_sort else ''}}
+          >
+            {{ option.title | t }}
+          </option>
+        {% endfor %}
       </select>
     </div>
   {% endif %}
@@ -117,37 +124,43 @@
 
 <script type='application/javascript'>
   $(document).ready(function () {
+    let selectedCategory = 'all', selectedSort = '{{ shop.default_sort }}';
+    console.log(selectedCategory, selectedSort);
 
-    function optionFactory(state, isResult, isSort) {
+    const optionFactory = (state, isResult, isSort) => {
+      const chevronSvg = `<svg class="chevron" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5.5 12.5L10.5 7.5L15.5 12.5" stroke="#555D67" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`;
 
-      if (isSort && state.id) {
+      const tickSvg = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 10.1667L8 14.3333L16 6" stroke="#6A3CE2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`;
+
+      if (isSort && isResult) {
         return $(`
             <div class="select2-results__option-text-wrapper">
               {{ 'shop.main.productList.filter.indexBy' | t }}: ${state.text}
-              ${isResult ? `
-                <svg class="chevron" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.5 12.5L10.5 7.5L15.5 12.5" stroke="#555D67" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              ` : ''}
+              ${chevronSvg}
             </div>
         `);
       }
-
+      const selectedItem = isSort ? selectedSort : selectedCategory;
       return $(`
         <div class="select2-results__option-text-wrapper">
-          ${state.text}
-          ${isResult ? `
-            <svg class="chevron" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5.5 12.5L10.5 7.5L15.5 12.5" stroke="#555D67" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          ` : ''}
+          <span>${state.text}</span>
+          ${isResult
+            ? chevronSvg
+            : (state.id === selectedItem)
+              ? tickSvg
+              : ''
+          }
         </div>
-    `);
+      `);
     }
 
     $('.{{ globalClass }}__item').removeClass('d-none');
 
-    let search = '', category = 'all', sort = 'DEFAULT';
+    let search = '', category = 'all', sort = 'NAME';
 
     $('.block-product-list-items__empty-container button').on('click', () => {
       $('#shop-search-{{id}}').val('').trigger('keyup');
@@ -180,7 +193,6 @@
       ],
       minimumResultsForSearch: -1,
       theme: 'sellix',
-
       dropdownAutoWidth: true,
       width: 'auto',
       dropdownParent: $('#category-select-{{id}}'),
@@ -190,6 +202,7 @@
     })
       .on('change', (e) => {
         category = e.target.value;
+        selectedCategory = e.target.value;
         $(document).trigger('SellixProductListFilterChangeEvent', { name: '{{ filterName }}', search, category, sort });
       })
       .on('select2:open', (e) => {
@@ -204,13 +217,15 @@
       width: 'auto',
       dropdownParent: $('#sort-select-{{id}}'),
       templateSelection: (state) => optionFactory(state, true, true),
-      templateResult: (state) => optionFactory(state, false, false),
+      templateResult: (state) => optionFactory(state, false, true),
       escapeMarkup: (m) => m,
       minimumResultsForSearch: -1,
       theme: 'sellix',
     })
       .on('change', (e) => {
         sort = e.target.value;
+        selectedSort = e.target.value;
+        console.log('Change', selectedSort);
         $(document).trigger(
           'SellixProductListFilterChangeEvent',
           { name: '{{ filterName }}', search, category, sort },
@@ -229,8 +244,8 @@
         $('#category-select-{{id}}').trigger('change');
       {% endif %}
 
-      $('#sort-select-{{id}}').val('{{ shop.default_sort }}');
-      $('#sort-select-{{id}}').trigger('change');
+      {#$('#sort-select-{{id}}').val('{{ shop.default_sort }}');#}
+      {#$('#sort-select-{{id}}').trigger('change');#}
     }, 0);
   });
 </script>
