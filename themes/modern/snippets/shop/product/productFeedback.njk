@@ -28,7 +28,7 @@
     {% for feedback in product.feedback.list %}
       {% set page = (loop.index0 / pageSize) | int %}
       <div
-        class="{{ globalClass}}__feedback-card  {{ 'd-none' if page > 0 else '' }}"
+        class="{{ globalClass}}__feedback-card {{ localClass }}__feedback-card  {{ 'd-none' if page > 0 else '' }}"
         data-feedback-page="{{ page }}"
       >
         {% render_snippet 'Feedback: Card', feedback=feedback, properties=properties %}
@@ -36,7 +36,7 @@
     {% endfor %}
 
     {% if pageCount > 1 %}
-      <div class="{{ globalClass }}__btn-view-more">
+      <div class="{{ globalClass }}__btn-view-more {{ localClass }}__btn-view-more">
         {{ 'shop.shared.titles.viewMore' | t }}
       </div>
     {% endif %}

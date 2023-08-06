@@ -153,7 +153,7 @@
   {% render_snippet 'Mobile sidebar menu', menu='Main Menu' %}
 
   <script>
-    window.__RENDER_CONTEXT__ = {{ global | dump | safe | replace('\u003c', '<') }};
+    window.__RENDER_CONTEXT__ = {{ global | dump | safe | replace('<', '\u003c') }};
     window.RECAPTCHA_PUBLIC_KEY = window.__RENDER_CONTEXT__.config.CAPTCHA_SITE_KEY_V3;
     window.RECAPTCHA_PUBLIC_KEY_V2 = window.__RENDER_CONTEXT__.config.RECAPTCHA;
   </script>
