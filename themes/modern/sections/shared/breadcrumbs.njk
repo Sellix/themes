@@ -1,0 +1,135 @@
+{% set paddingVertTopDesktop = safe_get(properties.padding_top_desktop, 32) %}
+{% set paddingVertBottomDesktop = safe_get(properties.padding_bottom_desktop, 32) %}
+{% set paddingHorizDesktop = safe_get(properties.padding_horiz_desktop, 0) %}
+{% set marginTopDesktop = safe_get(properties.margin_top_desktop, 0) %}
+{% set marginBottomDesktop = safe_get(properties.margin_bottom_desktop, 60) %}
+{% set paddingVertTopTablet = safe_get(properties.padding_top_tablet, 24) %}
+{% set paddingVertBottomTablet = safe_get(properties.padding_bottom_tablet, 24) %}
+{% set paddingHorizTablet = safe_get(properties.padding_horiz_tablet, 0) %}
+{% set marginTopTablet = safe_get(properties.margin_top_tablet, 0) %}
+{% set marginBottomTablet = safe_get(properties.margin_bottom_tablet, 30) %}
+{% set paddingVertTopMobile = safe_get(properties.padding_top_mobile, 16) %}
+{% set paddingVertBottomMobile = safe_get(properties.padding_bottom_mobile, 16) %}
+{% set paddingHorizMobile = safe_get(properties.padding_horiz_mobile, 0) %}
+{% set marginTopMobile = safe_get(properties.margin_top_mobile, 0) %}
+{% set marginBottomMobile = safe_get(properties.margin_bottom_mobile, 30) %}
+
+{% set title = properties.title %}
+{% set titleVisible = properties.title_visible %}
+{% set titleFontColor = safe_get(properties.title_font_color, 'dark_font_color') %}
+{% set titleFontSize = safe_get(properties.title_font_size, 40) %}
+{% set titleFontWeight = safe_get(properties.title_font_weight, 500) %}
+{% set titleLineHeight = safe_get(properties.title_line_height, 48) %}
+{% set bgColor = properties.background_color %}
+
+{% set crumbFontColor = safe_get(properties.crumb_font_color, 'black4') %}
+{% set lastCrumbFontColor = safe_get(properties.last_crumb_font_color, 'dark_font_color') %}
+{% set crumbFontSize = safe_get(properties.crumb_font_size, 40) %}
+{% set crumbFontWeight = safe_get(properties.crumb_font_weight, 500) %}
+{% set crumbLineHeight = safe_get(properties.crumb_line_height, 48) %}
+{% set bgColor = properties.background_color %}
+
+{% set localClass = [globalClass, '-', id] | join %}
+
+<style>
+  .sellix-section.{{ globalClass}}-global-{{ id }} {
+    background-color: {{ bgColor | get_color }};
+  }
+
+  .{{ localClass }}__container {
+    background-color: {{ bgColor | get_color }};
+    padding: {{ paddingVertTopDesktop }}px {{ paddingHorizDesktop }}px {{ paddingVertBottomDesktop }}px {{ paddingHorizDesktop }}px;
+    margin-top: {{ marginTopDesktop }}px;
+    margin-bottom: {{ marginBottomDesktop }}px;
+  }
+
+  .{{ localClass }}__title {
+    text-transform: capitalize;
+    margin-top: 1rem;
+    display: {{ 'block' if titleVisible else 'none' }};
+    color: {{ titleFontColor | get_color }};
+    font-size: {{ titleFontSize }}px;
+    font-weight: {{ titleFontWeight }};
+    line-height: {{ titleLineHeight }}px;
+  }
+
+  @media (max-width: 768px) {
+
+    .{{ localClass }}__title {
+      font-size: 30px;
+      line-height: 32px;
+    }
+
+    .{{ localClass }}__container {
+      padding: {{ paddingVertTopMobile }}px {{ paddingHorizMobile }}px {{ paddingVertBottomMobile }}px {{ paddingHorizMobile }}px;
+      margin-top: {{ marginTopMobile }}px;
+      margin-bottom: {{ marginBottomMobile }}px;
+    }
+
+  }
+
+  .{{ localClass }}__crumbs {
+    display: flex;
+    align-items: center;
+  }
+
+  .{{ localClass }}__link-crumb {
+    text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    color: {{ crumbFontColor | get_color }};
+    font-size: {{ crumbFontSize }}px;
+    font-weight: {{ crumbFontWeight }};
+    line-height: {{ crumbLineHeight }}px;
+  }
+
+  .{{ localClass }}__link-crumb a {
+    color: {{ crumbFontColor | get_color }};
+    text-decoration: none;
+    margin-right: 0.35rem;
+  }
+
+  .{{ localClass }}__link-crumb svg {
+    margin-right: 0.35rem;
+  }
+
+  .{{ localClass }}__last-link-crumb {
+    color: {{ lastCrumbFontColor | get_color }};
+  }
+</style>
+
+{% set lastItemIdx = 0 %}
+{% for idx in safe_range(1, 11) %}
+  {% set crumbLabel = properties[['crumb_label_', idx] | join] %}
+  {% if crumbLabel %}
+    {% set lastItemIdx = idx %}
+  {% endif %}
+{% endfor %}
+
+<div class="{{ globalClass }}__container {{ localClass }}__container {{ 'full-width' if properties.fullwidth else 'content-width' }}">
+  <div class="{{ localClass }}__crumbs">
+    {% for idx in safe_range(1, 11) %}
+      {% set crumbLabel = properties[['crumb_label_', idx] | join] %}
+      {% set crumbUrl = properties[['crumb_url_', idx] | join] %}
+
+      {% if crumbLabel %}
+        <div class="{{ globalClass }}__link-crumb {{ localClass }}__link-crumb">
+          {% if idx != lastItemIdx %}
+            <a href="{{ crumbUrl }}">
+              <span>{{ crumbLabel | t }}</span>
+            </a>
+            {% render_snippet 'Icons: Arrow right 2' %}
+          {% else %}
+            <span class="{{ globalClass }}__last-link-crumb {{ localClass }}__last-link-crumb">
+              {{ crumbLabel | t }}
+            </span>
+          {% endif %}
+        </div>
+      {% endif %}
+
+    {% endfor %}
+  </div>
+  <div class="{{ globalClass }}__title {{ localClass }}__title">
+    {{- title | t -}}
+  </div>
+</div>

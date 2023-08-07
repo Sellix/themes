@@ -1,0 +1,248 @@
+{% set id = uid() %}
+{% set shopInfo = global.common.shopInfo %}
+{% set shop = shopInfo.shop %}
+{% set categories = shopInfo.categories %}
+{% set inputsProps = themeProperties.inputs %}
+
+{% set filterName = properties.filter_name %}
+
+{% set localClass = id %}
+
+<style>
+  .{{ localClass}}__container {
+    {% if properties.container_background_color %}background: {{ properties.container_background_color | get_color }};{% endif %}
+    border: {% if properties.show_border %}1px solid var(--borderColor){% else %}none{% endif %};
+    box-shadow: {{ properties.container_shadow }};
+    border-radius: {{ properties.container_border_radius }}rem;
+    {% if properties.container_padding %}padding: {{ properties.container_padding }}px;{% endif %}
+  }
+
+  .{{ localClass}}__search input {
+    font-size: {{ inputsProps.common_font_size }}px;
+    font-weight: {{ inputsProps.common_font_weight }};
+    color: {{ inputsProps.common_font_color | get_color }};
+    background-color: {{ properties.input_background_color | get_color }};
+    border: {{ "1px solid var(--borderColor)" if inputsProps.common_show_border else "none" }};
+    height: {{ inputsProps.common_height }}px;
+  }
+
+  .{{ localClass }}__search input:focus {
+    outline: none;
+    border: {{ "1px solid var(--brandColor)" if inputsProps.common_show_border else "none" }};
+  }
+
+  .{{ localClass }}__search input::placeholder {
+    opacity: 0.7;
+    font-size: {{ inputsProps.common_font_size }}px;
+    font-weight: {{ inputsProps.common_font_weight }};
+    color: {{ inputsProps.common_font_color | get_color }};
+  }
+
+  .{{ localClass }}__search .shop-search-icon {
+    color: {{ inputsProps.common_font_color | get_color }} !important;
+  }
+
+  {{ localClass }}__categories-dropdown select {
+    background: {{ inputsProps.select_background | get_color }}
+  }
+
+  .sellix-dropdown .select2-container--sellix .select2-selection--single {
+    min-height: {{ inputsProps.common_height }}px;
+    background-color: {{ properties.input_background_color | get_color }};
+    border: {{ "1px solid var(--borderColor)" if inputsProps.common_show_border else "none" }};
+  }
+
+  .sellix-dropdown .select2-container--sellix .select2-selection__rendered {
+    color: {{ inputsProps.common_font_color | get_color }};
+    font-size: {{ inputsProps.common_font_size }}px;
+    font-weight: {{ inputsProps.common_font_weight }};
+  }
+
+  .select2-container--sellix .select2-dropdown {
+    border: {{ "1px solid var(--borderColor)" if inputsProps.dropdown_show_border else "none" }} !important;
+    background-color: {{ properties.input_background_color | get_color }} !important;
+  }
+
+  .select2-container--sellix .select2-results__option {
+    font-size: {{ inputsProps.dropdown_option_font_size }}px !important;
+    font-weight: {{ inputsProps.dropdown_option_font_weight }};
+    color: {{ inputsProps.dropdown_option_font_color | get_color }};
+  }
+
+  .select2-container--sellix .select2-results__option.select2-results__option--highlighted {
+    background-color: {{ inputsProps.dropdown_option_background_hover | get_color }} !important;
+  }
+
+  .select2-container--sellix .select2-results__option[aria-selected='true'] {
+    {#background-color: {{ inputsProps.dropdown_active_option_background | get_color }} !important;#}
+  }
+</style>
+
+<div class="{{ globalClass }}__container {{ localClass }}__container">
+  {% if shop.search_enabled %}
+    <label for="shop-search-{{id}}" class="{{ globalClass }}__item {{ globalClass }}__search {{ localClass }}__search">
+      <svg class="shop-search-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.80469 13.2C10.7042 13.2 13.0547 10.8494 13.0547 7.94995C13.0547 5.05046 10.7042 2.69995 7.80469 2.69995C4.90519 2.69995 2.55469 5.05046 2.55469 7.94995C2.55469 10.8494 4.90519 13.2 7.80469 13.2Z" stroke="#555D67" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M15.4594 14.85L11.8594 11.25" stroke="#555D67" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <input
+        type="text"
+        id="shop-search-{{id}}"
+        value=""
+        placeholder="{{ 'shop.main.productList.filter.placeholder' | t }}"
+      />
+    </label>
+  {% endif %}
+
+  {% if categories | length %}
+    <div id="category-select-{{id}}" class="sellix-dropdown {{ globalClass }}__item {{ globalClass }}__categories-dropdown {{ localClass }}__categories-dropdown d-none">
+      <select id="category-select" class="category-select"></select>
+    </div>
+  {% endif %}
+
+  {% if shop.sort_enabled %}
+    <div id="sort-select-{{id}}" class="sellix-dropdown {{ globalClass }}__item {{ globalClass }}__sort-dropdown {{ globalClass }}__local-dropdown d-none">
+      <select id="sort-select" class="sort-select">
+        {% for option in [
+          {value: 'DEFAULT', title: 'shop.main.productList.filter.default'},
+          {value: 'PRICE', title: 'shop.main.productList.filter.price'},
+          {value: 'NAME', title: 'shop.main.productList.filter.name'},
+          {value: 'TYPE', title: 'shop.main.productList.filter.type'},
+          {value: 'STOCK', title: 'shop.main.productList.filter.stock'}
+        ] %}
+          <option
+            value="{{ option.value }}"
+            {{'selected' if option.value == shop.default_sort else ''}}
+          >
+            {{ option.title | t }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+  {% endif %}
+</div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    let selectedCategory = 'all', selectedSort = '{{ shop.default_sort }}';
+    const optionFactory = (state, isResult, isSort) => {
+      const chevronSvg = `<svg class="chevron" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5.5 12.5L10.5 7.5L15.5 12.5" stroke="#555D67" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`;
+
+      const tickSvg = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 10.1667L8 14.3333L16 6" stroke="#6A3CE2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`;
+
+      if (isSort && isResult) {
+        return $(`
+            <div class="select2-results__option-text-wrapper">
+              {{ 'shop.main.productList.filter.indexBy' | t }}: ${state.text}
+              ${chevronSvg}
+            </div>
+        `);
+      }
+      const selectedItem = isSort ? selectedSort : selectedCategory;
+      return $(`
+        <div class="select2-results__option-text-wrapper">
+          <span>${state.text}</span>
+          ${isResult
+            ? chevronSvg
+            : (state.id === selectedItem)
+              ? tickSvg
+              : ''
+          }
+        </div>
+      `);
+    }
+
+    $('.{{ globalClass }}__item').removeClass('d-none');
+
+    let search = '', category = 'all', sort = 'NAME';
+
+    $('.block-product-list-items__empty-container button').on('click', () => {
+      $('#shop-search-{{id}}').val('').trigger('keyup');
+      $('#category-select-{{id}}').val('all');
+      $('#category-select-{{id}}').trigger('change');
+    });
+
+    $('#shop-search-{{id}}').on('keyup', function (e) {
+      search = e.target.value;
+      $(document).trigger(
+        'SellixProductListFilterChangeEvent',
+        { name: '{{ filterName }}', search, category, sort },
+      );
+    });
+
+    $('#category-select').select2({
+      data: [
+        {
+          text: "{{ 'shop.main.productList.filter.allCategories' | t }}",
+          id: "all",
+        },
+        {% for category in categories %}
+          {% if not category.unlisted %}
+          {
+            text: "{{category.title}}",
+            id: "{{category.uniqid}}"
+          },
+          {% endif %}
+        {% endfor %}
+      ],
+      minimumResultsForSearch: -1,
+      theme: 'sellix',
+      dropdownAutoWidth: true,
+      width: 'auto',
+      dropdownParent: $('#category-select-{{id}}'),
+      templateSelection: (state) => optionFactory(state, true, false),
+      templateResult: (state) => optionFactory(state, false, false),
+      escapeMarkup: (m) => m,
+    })
+      .on('change', (e) => {
+        category = e.target.value;
+        selectedCategory = e.target.value;
+        $(document).trigger('SellixProductListFilterChangeEvent', { name: '{{ filterName }}', search, category, sort });
+      })
+      .on('select2:open', (e) => {
+        $('#category-select-{{ id }}').find('.select2-dropdown').addClass('animated ' + 'flipIn');
+      })
+      .on('select2:closing', (e) => {
+        $('#category-select-{{ id }}').find('.select2-dropdown').removeClass('animated ' + 'flipIn');
+      });
+
+    $('#sort-select').select2({
+      dropdownAutoWidth: true,
+      width: 'auto',
+      dropdownParent: $('#sort-select-{{id}}'),
+      templateSelection: (state) => optionFactory(state, true, true),
+      templateResult: (state) => optionFactory(state, false, true),
+      escapeMarkup: (m) => m,
+      minimumResultsForSearch: -1,
+      theme: 'sellix',
+    })
+      .on('change', (e) => {
+        sort = e.target.value;
+        selectedSort = e.target.value;
+        $(document).trigger(
+          'SellixProductListFilterChangeEvent',
+          { name: '{{ filterName }}', search, category, sort },
+        );
+      })
+      .on('select2:open', (e) => {
+        $('#sort-select-{{ id }}').find('.select2-dropdown').addClass('animated ' + 'flipIn');
+      })
+      .on('select2:closing', (e) => {
+        $('#sort-select-{{ id }}').find('.select2-dropdown').removeClass('animated ' + 'flipIn');
+      });
+
+    setTimeout(function() {
+      {% if global.request.type === 'category' %}
+        $('#category-select-{{id}}').val('{{ global.request.options.itemId }}');
+        $('#category-select-{{id}}').trigger('change');
+      {% endif %}
+
+      {#$('#sort-select-{{id}}').val('{{ shop.default_sort }}');#}
+      {#$('#sort-select-{{id}}').trigger('change');#}
+    }, 0);
+  });
+</script>

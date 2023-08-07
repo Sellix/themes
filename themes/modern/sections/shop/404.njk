@@ -1,0 +1,48 @@
+{% set id = uid() %}
+
+{% set globalClass = 'shop-not-found' %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }}__header h2 {
+    color: {{ properties.404_heading_font_color | get_color }};
+    font-size: {{ properties.404_heading_font_size }}px;
+    font-weight: {{ properties.404_heading_font_weight }};
+    line-height: {{ properties.404_heading_line_height }}%;
+  }
+
+  .{{ localClass }}__description h4 {
+    color: {{ properties.404_description_font_color | get_color }};
+    font-size: {{ properties.404_description_font_size }}px;
+    font-weight: {{ properties.404_description_font_weight }};
+    line-height: {{ properties.404_description_line_height }}%;
+  }
+</style>
+
+<div class='glitch-container'>
+  <span class='glitch' data-text='404'></span>
+
+  <div class='shop-not-found text-center'>
+    <div class="{{ localClass }}__header text-align-{{ properties.404_heading_text_align or 'center' }}">
+      <h2>
+        {{ properties.404_heading_text | t }}
+      </h2>
+    </div>
+
+    <div class="{{ localClass }}__description text-align-{{ properties.404_description_text_align or 'center' }}">
+      <h4>
+        {{ properties.404_description_text | t }}
+      </h4>
+     </div>
+
+    <br><br>
+
+    <div class="{{ globalClass }}__button-container justify-content-{{ properties.404_button_position or 'center' }}">
+      <a href=''>
+        <button type='button' class='button'>
+          {{ properties.404_button_title | t }}
+        </button>
+      </a>
+    </div>
+  </div>
+</div>

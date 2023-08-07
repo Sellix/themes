@@ -1,0 +1,54 @@
+{% set id = uid() %}
+{% set properties = args.properties %}
+
+{% set contentAlignDesktop = safe_get(properties.content_align_desktop, 'center') %}
+{% set contentAlignTablet = safe_get(properties.content_align_tablet, 'center') %}
+{% set contentAlignMobile = safe_get(properties.content_align_mobile, 'center') %}
+
+{% set fontColor = safe_get(properties.font_color, 'dark_font_color') %}
+
+{% set fontSizeDesktop = safe_get(properties.font_size_desktop, 14) %}
+{% set fontWeightDesktop = safe_get(properties.font_weight_desktop, 400) %}
+{% set lineHeightDesktop = safe_get(properties.line_height_desktop, 28) %}
+
+{% set fontSizeTablet = safe_get(properties.font_size_tablet, fontSizeDesktop) %}
+{% set fontWeightTablet = safe_get(properties.font_weight_tablet, fontWeightDesktop) %}
+{% set lineHeightTablet = safe_get(properties.line_height_tablet, lineHeightDesktop) %}
+
+{% set fontSizeMobile = safe_get(properties.font_size_mobile, fontSizeTablet) %}
+{% set fontWeightMobile = safe_get(properties.font_weight_mobile, fontWeightTablet) %}
+{% set lineHeightMobile = safe_get(properties.line_height_mobile, lineHeightTablet ) %}
+
+{% set globalClass = 'snippet-multy-columns__text' %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }} {
+    width: 100%;
+    color: {{ fontColor | get_color }};
+    font-size: {{ fontSizeDesktop }}px;
+    font-weight: {{ fontWeightDesktop }};
+    line-height: {{ lineHeightDesktop }}px;
+  }
+  @media (max-width: 768px) {
+    .{{ localClass }} {
+      text-align: {{ contentAlignTablet }};
+      font-size: {{ fontSizeTablet }}px;
+      font-weight: {{ fontWeightTablet }};
+      line-height: {{ lineHeightTablet }}px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .{{ localClass }} {
+      text-align: {{ contentAlignMobile }};
+      font-size: {{ fontSizeMobile }}px;
+      font-weight: {{ fontWeightMobile }};
+      line-height: {{ lineHeightMobile }}px;
+    }
+  }
+</style>
+
+<div class="{{ localClass }} text-align-{{ contentAlignDesktop }}">
+  {{ properties.content }}
+</div>

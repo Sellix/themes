@@ -1,0 +1,39 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set containerSelector = args.container_selector %}
+
+{% set globalClass = 'snippet-shop-message' %}
+{% set localClass = id %}
+
+{% if shop.popup_message %}
+  <script>
+    $(document).ready(() => {
+      const msg = `{{ shop.popup_message }}`;
+      const hash = btoa(encodeURIComponent(msg));
+      if (!localStorage.getItem(hash)) {
+        setTimeout(() => {
+          window._shopMessage = Toastify({
+            selector: '{{ containerSelector }}',
+            duration: 0,
+            className: `sellix-toastify {{ globalClass }}`,
+            node: $(`
+              <div>
+                <div class="t-close" onClick="window._shopMessage.removeElement(window._shopMessage.toastElement)">
+                  <i class="fas fa-times"></i>
+                </div>
+                <div class="t-header">Message from {{ global.common.shopInfo.shop.name }}</div>
+                <div class="t-content">${msg}</div>
+              </div>
+            `)[0],
+            gravity: "top",
+            position: "right",
+            callback() {
+              localStorage.setItem(hash, 'true');
+              delete window._shopMessage;
+            },
+          }).showToast();
+        }, 2000);
+      }
+    });
+  </script>
+{% endif %}

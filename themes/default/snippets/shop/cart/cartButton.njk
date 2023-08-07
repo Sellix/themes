@@ -1,7 +1,7 @@
 {% set shop = global.common.shopInfo.shop %}
 {% set product = args.product %}
 {% set subscription = global.common.shopInfo.subscription %}
-{% set cartEnabled = global.common.cartEnabled %}
+{% set cartEnabled = themeProperties.cart.is_enabled %}
 
 {% if product.stock | int === 0 or not cartEnabled or product.on_hold | int !== 0 %}
   {# Do Nothing #}

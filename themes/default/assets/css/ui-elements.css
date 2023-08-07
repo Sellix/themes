@@ -1,0 +1,384 @@
+/* Button */
+.sellix-ui-container .button {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--buttonTextColor);
+  user-select: none;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0 1.25rem;
+  min-height: 44px;
+  white-space: nowrap;
+  background-color: var(--buttonColor);
+  outline: none;
+  border-radius: 0.5rem;
+  /*border: 1px solid var(--gridLine);*/
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif !important;
+  line-height: 20px;
+}
+
+.sellix-ui-container .button.button-link {
+  color: var(--darkFontColor);
+  min-height: initial;
+  background: initial;
+  border: initial;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.sellix-ui-container .button:hover {
+  opacity: 0.9;
+}
+
+.sellix-ui-container .button:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.sellix-ui-container .button.thin {
+  min-height: 30px;
+  font-size: 12px;
+  padding: 0 10px;
+  border-radius: 6px;
+}
+
+.sellix-ui-container .button:focus {
+  box-shadow: none !important;
+  outline: none;
+}
+
+.sellix-ui-container .button .ripple-effect {
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.sellix-ui-container .button.small {
+  min-height: 2rem;
+  font-weight: 500;
+}
+
+.sellix-ui-container .button-ghost {
+  background: #0000;
+  border-color: var(--borderColor);
+  border-radius: 0.5rem;
+  color: var(--darkFontColor);
+}
+
+.sellix-ui-container .button-ghost:hover {
+  background: var(--menuBackgroundHover);
+}
+
+.sellix-ui-container .button-secondary {
+  background-color: var(--backgroundAccentLight);
+  border: 2px solid var(--borderColor);
+  color: var(--buttonColor);
+}
+
+.sellix-ui-container .button-secondary:hover {
+  background-color: #e6e6e6 !important;
+}
+
+/* Checkbox */
+.sellix-ui-container .sellix-checkbox {
+  background-color: #0000;
+  /*border: 1px solid #0000;*/
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 1.125rem;
+  padding-left: 1.75rem;
+  cursor: pointer;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  margin-right: 1.5rem
+}
+
+.sellix-ui-container .sellix-checkbox input {
+  box-sizing: border-box;
+  padding: 0;
+  position: absolute;
+  z-index: -1;
+  opacity: 0
+}
+
+.sellix-ui-container .sellix-checkbox input:not(:disabled):active~label::before {
+  color: #fff;
+  background-color: var(--backgroundAccentLight);
+  border-color: var(--black3)
+}
+
+.sellix-ui-container .sellix-checkbox input:focus~label::before {
+  border-color: var(--checkboxColor);
+  box-shadow: 0 0 0 .2rem rgba(97,59,234,.25)
+}
+
+.sellix-ui-container .sellix-checkbox input:checked~label::before {
+  color: #fff;
+  border-color: var(--checkboxColor);
+  background-color: var(--checkboxColor)
+}
+
+.sellix-ui-container .sellix-checkbox input:checked~label::after {
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA4IDgnPjxwYXRoIGZpbGw9JyNmZmYnIGQ9J002LjU2NC43NWwtMy41OSAzLjYxMi0xLjUzOC0xLjU1TDAgNC4yNiAyLjk3NCA3LjI1IDggMi4xOTN6Jy8+PC9zdmc+)!important;
+  border: 1px solid var(--borderColor)
+}
+
+.sellix-ui-container .sellix-checkbox label {
+  position: relative;
+  margin-bottom: 0;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 13px
+}
+
+.sellix-ui-container .sellix-checkbox label:before {
+  position: absolute;
+  cursor: pointer;
+  left: -1.75rem;
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+  content: '';
+  background-color: var(--backgroundAccentLight);
+  border: var(--borderColor) solid 1px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 4px;
+  transition: background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out
+}
+
+.sellix-ui-container .sellix-checkbox label:after {
+  top: 50%;
+  cursor: pointer;
+  transform: translateY(-50%);
+  position: absolute;
+  left: -1.75rem;
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  content: '';
+  background: no-repeat 50%/50% 50%;
+  border-radius: 4px;
+}
+
+/* Radio button */
+.sellix-radio-button {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  width: 18px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.sellix-radio-button input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.sellix-radio-button .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  background-color: transparent;
+  border: 1.5px solid var(--borderColor);
+  border-radius: 50%;
+}
+
+.sellix-radio-button input:checked ~ .checkmark {
+  border: 6px solid var(--borderActiveColor);
+}
+
+/* Input */
+.sellix-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 1px solid var(--borderColor);
+  border-radius: 0.5rem;
+  font-size: 14px;
+  width: 100%;
+  padding: 0 1rem;
+  color: var(--darkFontColor);
+  transition: border 0.3s ease;
+  height: 48px;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+}
+
+.sellix-input.textarea {
+  height: auto;
+  padding: 1rem;
+}
+
+.sellix-input.right-icon {
+  padding-right: 3rem;
+}
+
+.sellix_input-icon {
+  cursor: pointer;
+  color: var(--brandColor);
+  position: absolute;
+  height: calc(100% - 2px);
+  width: 2.75rem;
+  padding-left: 0.75rem;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  margin: 1px;
+  display: flex;
+  align-items: center;
+  right: 0;
+  top: 0;
+}
+.sellix_input-icon:hover {
+  background-color: var(--backgroundAccentDark);
+}
+
+.sellix-input.is-invalid {
+  border: 1px solid #f86c6b !important;
+}
+
+.sellix-input.is-invalid:hover {
+  border-color: #f86c6b !important;
+}
+
+.sellix-input.is-invalid:focus {
+  border-color: #f86c6b !important;
+}
+
+.sellix-input:active {
+  border-color: var(--borderColor);
+}
+
+.sellix-input::placeholder {
+  color: var(--thinColor);
+  font-size: 14px;
+}
+
+.sellix-input[disabled] {
+  background: var(--backgroundAccentDark);
+  border-color: var(--borderColor);
+}
+
+.sellix-input[disabled]:focus {
+  border-color: #f9f9fa;
+}
+
+/* Label */
+.sellix-label {
+  font-size: 13px;
+  color: var(--darkFontColor);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  line-height: 17px;
+}
+
+
+/* Switcher */
+.switcher {
+  width: 2.75rem;
+  min-width: 2.75rem;
+  height: 1.5rem;
+  margin: 0 0 0 1rem;
+}
+.switcher-label {
+  cursor: pointer;
+  width: calc(100% - 3.75rem);
+}
+.switcher-label .sellix-note {
+  font-weight: 400;
+  margin: 0;
+}
+.switcher.left {
+  margin-right: 0;
+}
+.switcher-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.switcher-container.withBorder {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--black1);
+}
+.switcher-container.right .switcher {
+  margin-left: 0;
+  margin-right: 1rem;
+}
+.switcher-container.right .switcher-label {
+  width: calc(100% - 3.75rem);
+}
+.switcher input {
+  display: none;
+  position: absolute;
+  margin-top: 0.3rem;
+  margin-left: -1.25rem;
+  width: 50px;
+}
+.switcher input:checked ~ .switcher-slider::before {
+  transform: translateX(19px);
+}
+.switcher input:checked + .switcher-slider {
+  background-color: var(--purple6);
+  border-color: var(--purple6);
+}
+.switcher input:checked + .switcher-slider::before {
+  border-color: var(--purple6);
+}
+.switcher .switcher-slider {
+  background-color: var(--black1);
+  border: none;
+  border-radius: 50em;
+  font-size: 12px;
+  position: relative;
+  display: block;
+  height: inherit;
+  cursor: pointer;
+  transition: 0.15s ease-out;
+}
+.switcher .switcher-slider:before {
+  width: 20px;
+  height: 20px;
+  top: 2px;
+  border-radius: 100%;
+  position: absolute;
+  left: 2px;
+  box-sizing: border-box;
+  content: "";
+  background-color: var(--white);
+  border: 1px solid var(--black1);
+  transition: 0.15s ease-out;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+}
+.switcher .switcher-slider span {
+  border-radius: 50em;
+  font-size: 12px;
+  background-color: var(--black0);
+  border: none;
+  position: relative;
+  display: block;
+  height: inherit;
+  cursor: pointer;
+  transition: 0.15s ease-out;
+}
+

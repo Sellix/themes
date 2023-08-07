@@ -1,5 +1,6 @@
 {% set id = uid() %}
 {% set shop = global.common.shopInfo.shop %}
+{% set cartEnabled = themeProperties.cart.is_enabled %}
 {% set subscription = global.common.shopInfo.subscription %}
 {% set colors = themeProperties.current_colors %}
 
@@ -43,7 +44,7 @@
     </div>
 
     <div class="sellix-header-cart">
-      {% if global.common.cartEnabled %}
+      {% if cartEnabled %}
         {% render_snippet 'Cart', properties=properties %}
       {% endif %}
     </div>

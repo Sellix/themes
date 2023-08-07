@@ -1,0 +1,129 @@
+{% set shop = global.common.shopInfo.shop %}
+{% set id = uid() %}
+{% set titleId = uid() %}
+{% set emailId = uid() %}
+{% set messageId = uid() %}
+{% set invoiceId = uid() %}
+
+{% set formSize = safe_get(properties.form_size, 100) %}
+{% set formAlign = safe_get(properties.form_align, 'left') %}
+{% set formBgColor = safe_get(properties.form_background, 'background_accent_dark') %}
+{% set formShowBorder = safe_get(properties.form_show_border, true) %}
+{% set formBorderRadius = safe_get(properties.form_border_radius, 8) %}
+{% set formPaddingHoriz = safe_get(properties.form_padding_horiz, 16) %}
+{% set formPaddingVert = safe_get(properties.form_padding_vert, 16) %}
+{% set formShadow = safe_get(properties.form_shadow, 'none') %}
+
+{% set buttonAlign = safe_get(properties.button_align, 'start') %}
+
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }}__container {
+    display: flex;
+  }
+  .{{ localClass }}__container form {
+    width: {{ formSize }}%;
+    background: {{ formBgColor | get_color }};
+    border: {{ "1px solid var(--borderColor)" if formShowBorder else "none" }};
+    border-radius: {{ formBorderRadius }}px;
+    padding: {{ formPaddingVert }}px {{ formPaddingHoriz }}px;
+    box-shadow: {{ formShadow }};
+  }
+  .{{ localClass }}__field {
+    margin-bottom: 1rem;
+  }
+  .{{ localClass }}__button-container {
+    display: flex;
+  }
+  .{{ localClass }}__button-container button {
+    {% if buttonAlign == 'stretch' %}
+      flex: 1;
+    {% endif %}
+  }
+</style>
+
+<div class="{{ globalClass }}__container {{ localClass }}__container justify-content-{{ formAlign }}">
+  <form
+    class="{{ globalClass }}__form {{ localClass }}__form"
+    onsubmit="return false"
+  >
+    <div class="{{ globalClass }}__field {{ localClass }}__field">
+      {% render_snippet 'Shared: Text',
+        id=titleId,
+        name="title",
+        label=('shop.contact.fields.title.title' | t),
+        placeholder=('shop.contact.fields.title.placeholder' | t)
+      %}
+    </div>
+
+    <div class="{{ globalClass }}__field {{ localClass }}__field">
+      {% render_snippet 'Shared: Text',
+        id=emailId,
+        name="email",
+        label=('shop.contact.fields.email.title' | t),
+        placeholder=('shop.contact.fields.email.placeholder' | t)
+      %}
+    </div>
+
+    <div class="{{ globalClass }}__field {{ localClass }}__field">
+      {% render_snippet 'Shared: Text',
+        id=invoiceId,
+        name="invoice_id",
+        label=('shop.contact.fields.invoiceId.title' | t),
+        placeholder=('shop.contact.fields.invoiceId.placeholder' | t)
+      %}
+    </div>
+
+    <div class="{{ globalClass }}__field {{ localClass }}__field">
+      {% render_snippet 'Shared: Text area',
+        id=messageId,
+        name="message",
+        label=('shop.contact.fields.message.title' | t),
+        placeholder=('shop.contact.fields.message.placeholder' | t)
+      %}
+    </div>
+
+    <div class="{{ globalClass }}__button-container {{ localClass }}__button-container justify-content-{{ buttonAlign }}">
+      {% render_snippet
+        'Shared: Ripple button',
+        button_id=['contact-form-submit-', id] | join,
+        type='submit',
+        title=(properties.button_title | t)
+      %}
+    </div>
+  </form>
+</div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const formComponent = new SellixFormComponent(
+      '.{{ localClass }}__form',
+      '{{titleId}}',
+      '{{emailId}}',
+      '{{messageId}}',
+      '{{invoiceId}}',
+      '{{shop.name}}',
+    );
+    $('.{{ localClass }}__form').validate({
+      errorElement: 'div',
+      errorClass: 'invalid-feedback',
+      rules: {
+        title: 'required',
+        email: 'required',
+        message: 'required',
+      },
+      messages: {
+        title: 'Title is required',
+        email: 'Email is required',
+        message: 'Message is required',
+      },
+      highlight: function(element, errorClass) {
+        $(element).addClass('is-invalid').removeClass(errorClass);
+      },
+      unhighlight: function(element, errorClass) {
+        $(element).removeClass('is-invalid').removeClass(errorClass);
+      },
+    });
+  });
+</script>

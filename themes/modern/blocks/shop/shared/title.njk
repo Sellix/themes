@@ -1,0 +1,116 @@
+{% set titleContent = safe_get(properties.title_content) %}
+{% set titleFontColor = safe_get(properties.title_font_color, 'dark_font_color') %}
+{% set titleFontSizeDesktop = safe_get(properties.title_font_size_desktop, 14) %}
+{% set titleFontWeightDesktop = safe_get(properties.title_font_weight_desktop, 400) %}
+{% set titleLineHeightDesktop = safe_get(properties.title_line_height_desktop, 28) %}
+{% set titleFontSizeTablet = safe_get(properties.title_font_size_tablet, 14) %}
+{% set titleFontWeightTablet = safe_get(properties.title_font_weight_tablet, 400) %}
+{% set titleLineHeightTablet = safe_get(properties.title_line_height_tablet, 28) %}
+{% set titleFontSizeMobile = safe_get(properties.title_font_size_mobile, 14) %}
+{% set titleFontWeightMobile = safe_get(properties.title_font_weight_mobile, 400) %}
+{% set titleLineHeightMobile = safe_get(properties.title_line_height_mobile, 28) %}
+
+{% set subtitleContent = safe_get(properties.subtitle_content) %}
+{% set subtitleFontColor = safe_get(properties.subtitle_font_color, 'dark_font_color') %}
+{% set subtitleFontSizeDesktop = safe_get(properties.subtitle_font_size_desktop, 14) %}
+{% set subtitleFontWeightDesktop = safe_get(properties.subtitle_font_weight_desktop, 400) %}
+{% set subtitleLineHeightDesktop = safe_get(properties.subtitle_line_height_desktop, 28) %}
+{% set subtitleFontSizeTablet = safe_get(properties.subtitle_font_size_tablet, 14) %}
+{% set subtitleFontWeightTablet = safe_get(properties.subtitle_font_weight_tablet, 400) %}
+{% set subtitleLineHeightTablet = safe_get(properties.subtitle_line_height_tablet, 28) %}
+{% set subtitleFontSizeMobile = safe_get(properties.subtitle_font_size_mobile, 14) %}
+{% set subtitleFontWeightMobile = safe_get(properties.subtitle_font_weight_mobile, 400) %}
+{% set subtitleLineHeightMobile = safe_get(properties.subtitle_line_height_mobile, 28) %}
+
+{% set marginTopDesktop = safe_get(properties.margin_top_desktop, 0) %}
+{% set marginBottomDesktop = safe_get(properties.margin_bottom_desktop, 0) %}
+{% set paddingHorizDesktop = safe_get(properties.padding_horiz_desktop, 0) %}
+{% set paddingTopDesktop = safe_get(properties.padding_top_desktop, 0) %}
+{% set paddingBottomDesktop = safe_get(properties.padding_bottom_desktop, 0) %}
+{% set marginTopTablet = safe_get(properties.margin_top_tablet, 0) %}
+{% set marginBottomTablet = safe_get(properties.margin_bottom_tablet, 0) %}
+{% set paddingHorizTablet = safe_get(properties.padding_horiz_tablet, 0) %}
+{% set paddingTopTablet = safe_get(properties.padding_top_tablet, 0) %}
+{% set paddingBottomTablet = safe_get(properties.padding_bottom_tablet, 0) %}
+{% set marginTopMobile = safe_get(properties.margin_top_mobile, 0) %}
+{% set marginBottomMobile = safe_get(properties.margin_bottom_mobile, 0) %}
+{% set paddingHorizMobile = safe_get(properties.padding_horiz_mobile, 0) %}
+{% set paddingTopMobile = safe_get(properties.padding_top_mobile, 0) %}
+{% set paddingBottomMobile = safe_get(properties.padding_bottom_mobile, 0) %}
+
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }}__container {
+    padding: {{ paddingTopDesktop }}px {{ paddingHorizDesktop }}px {{ paddingBottomDesktop }}px {{ paddingHorizDesktop }}px;
+    margin-top: {{ marginTopDesktop }}px;
+    margin-bottom: {{ marginBottomDesktop }}px;
+  }
+
+  @media (max-width: 768px) {
+    .{{ localClass }}__container {
+      padding: {{ paddingTopTablet }}px {{ paddingHorizTablet }}px {{ paddingBottomTablet }}px {{ paddingHorizTablet }}px;
+      margin-top: {{ marginTopTablet }}px;
+      margin-bottom: {{ marginBottomTablet }}px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .{{ localClass }}__container {
+      padding: {{ paddingTopMobile }}px {{ paddingHorizMobile }}px {{ paddingBottomMobile }}px {{ paddingHorizMobile }}px;
+      margin-top: {{ marginTopMobile }}px;
+      margin-bottom: {{ marginBottomMobile }}px;
+    }
+  }
+
+  .{{ localClass }}__title {
+    color: {{ titleFontColor | get_color }};
+    font-size: {{ titleFontSizeDesktop }}px;
+    font-weight: {{ titleFontWeightDesktop }};
+    line-height: {{ titleLineHeightDesktop }}px;
+  }
+
+  .{{ localClass }}__subtitle {
+    color: {{ subtitleFontColor | get_color }};
+    font-size: {{ subtitleFontSizeDesktop }}px;
+    font-weight: {{ subtitleFontWeightDesktop }};
+    line-height: {{ subtitleLineHeightDesktop }}px;
+  }
+
+  @media (max-width: 768px) {
+    .{{ localClass }}__title {
+      font-size: {{ titleFontSizeTablet }}px;
+      font-weight: {{ titleFontWeightTablet }};
+      line-height: {{ titleLineHeightTablet }}px;
+    }
+
+    .{{ localClass }}__subtitle {
+      font-size: {{ subtitleFontSizeTablet }}px;
+      font-weight: {{ subtitleFontWeightTablet }};
+      line-height: {{ subtitleLineHeightTablet }}px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .{{ localClass }}__title {
+      font-size: {{ titleFontSizeMobile }}px;
+      font-weight: {{ titleFontWeightMobile }};
+      line-height: {{ titleLineHeightMobile }}px;
+    }
+
+    .{{ localClass }}__subtitle {
+      font-size: {{ subtitleFontSizeMobile }}px;
+      font-weight: {{ subtitleFontWeightMobile }};
+      line-height: {{ subtitleLineHeightMobile }}px;
+    }
+  }
+</style>
+
+<div class="{{ globalClass }}__container {{ localClass }}__container">
+  <div class="{{ globalClass }}__title {{ localClass }}__title">
+    {{- titleContent | t -}}
+  </div>
+  <div class="{{ globalClass }}__subtitle {{ localClass }}__subtitle">
+    {{- subtitleContent | t -}}
+  </div>
+</div>

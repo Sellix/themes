@@ -1,0 +1,192 @@
+{% set id = uid() %}
+{% set product = args.product %}
+{% set properties = args.properties %}
+
+{% set buttons = [
+  {
+    name: 'twitter',
+    class: 'twitter-share-button',
+    icon: 'fa-brands fa-twitter',
+    visible: properties.show_twitter
+  },
+  {
+    name: 'facebook',
+    class: 'facebook-share-button',
+    icon: 'fa-brands fa-facebook',
+    visible: properties.show_facebook
+  },
+  {
+    name: 'linkedin',
+    class: 'linkedin-share-button',
+    icon: 'fa-brands fa-linkedin',
+    visible: properties.show_linkedin
+  },
+  {
+    name: 'email',
+    class: 'email-share-button',
+    icon: 'fa fa-envelope',
+    visible: properties.show_email
+  },
+  {
+    name: 'whatsapp',
+    class: 'whatsapp-share-button',
+    icon: 'fa-brands fa-whatsapp',
+    visible: properties.show_whatsapp
+  },
+  {
+    name: 'telegram',
+    class: 'telegram-share-button',
+    icon: 'fa-brands fa-telegram',
+    visible: properties.show_telegram
+  },
+  {
+    name: 'viber',
+    class: 'viber-share-button',
+    icon: 'fa-brands fa-viber',
+    visible: properties.show_viber
+  },
+  {
+    name: 'pinterest',
+    class: 'pinterest-share-button',
+    icon: 'fa-brands fa-pinterest',
+    visible: properties.show_pinterest
+  },
+  {
+    name: 'tumblr',
+    class: 'tumblr-share-button',
+    icon: 'fa-brands fa-tumblr',
+    visible: properties.show_tumblr
+  },
+  {
+    name: 'hackernews',
+    class: 'hackernews-share-button',
+    icon: 'fa-brands fa-hacker-news',
+    visible: properties.show_hackernews
+  },
+  {
+    name: 'reddit',
+    class: 'reddit-share-button',
+    icon: 'fa-brands fa-reddit',
+    visible: properties.show_reddit
+  },
+  {
+    name: 'vk',
+    class: 'vk-share-button',
+    icon: 'fa-brands fa-vk',
+    visible: properties.show_vk
+  },
+  {
+    name: 'buffer',
+    class: 'buffer-share-button',
+    icon: 'fa-brands fa-buffer',
+    visible: properties.show_buffer
+  },
+  {
+    name: 'xing',
+    class: 'xing-share-button',
+    icon: 'fa-brands fa-xing',
+    visible: properties.show_xing
+  },
+  {
+    name: 'line',
+    class: 'line-share-button',
+    icon: 'fa-brands fa-line',
+    visible: properties.show_line
+  },
+  {
+    name: 'instapaper',
+    class: 'instapaper-share-button',
+    icon: 'fa-brands fa-instapaper',
+    visible: properties.show_instapaper
+  },
+  {
+    name: 'pocket',
+    class: 'pocket-share-button',
+    icon: 'fa-brands fa-get-pocket',
+    visible: properties.show_pocket
+  },
+  {
+    name: 'flipboard',
+    class: 'flipboard-share-button',
+    icon: 'fa-brands fa-flipboard',
+    visible: properties.show_flipboard
+  },
+  {
+    name: 'weibo',
+    class: 'weibo-share-button',
+    icon: 'fa-brands fa-weibo',
+    visible: properties.show_weibo
+  },
+  {
+    name: 'blogger',
+    class: 'blogger-share-button',
+    icon: 'fa-brands fa-blogger',
+    visible: properties.show_blogger
+  },
+  {
+    name: 'baidu',
+    class: 'baidu-share-button',
+    icon: 'fa-brands fa-baidu',
+    visible: properties.show_baidu
+  },
+  {
+    name: 'okru',
+    class: 'ok-share-button',
+    icon: 'fa-brands fa-odnoklassniki',
+    visible: properties.show_ok_ru
+  },
+  {
+    name: 'evernote',
+    class: 'evernote-share-button',
+    icon: 'fa-brands fa-evernote',
+    visible: properties.show_evernote
+  },
+  {
+    name: 'skype',
+    class: 'skype-share-button',
+    icon: 'fa-brands fa-skype',
+    visible: properties.show_skype
+  },
+  {
+    name: 'trello',
+    class: 'trello-share-button',
+    icon: 'fa-brands fa-trello',
+    visible: properties.show_trello
+  }
+] %}
+
+{% set visibleButtons = [] %}
+{% for button in buttons %}
+  {% if button.visible %}
+    {% set visibleButtons = (visibleButtons.push(button), visibleButtons) %}
+  {% endif %}
+{% endfor %}
+
+{% set globalClass = 'snippet-product-share' %}
+{% set localClass = id %}
+
+{% if visibleButtons | length > 0 %}
+
+  <style>
+    .{{ localClass }}__title {
+      color: {{ properties.icon_color | get_color }};
+    }
+  </style>
+
+  <div class="{{ globalClass }}">
+    <span class="{{ globalClass }}__title {{ localClass }}__title">
+      {{ 'shop.shared.titles.share' | t }}
+    </span>
+    {% for button in visibleButtons %}
+      {% render_snippet
+        'Shared: Social share',
+        name=button.name,
+        title=product.title,
+        class=button.class,
+        icon_class=button.icon,
+        properties=properties
+      %}
+    {% endfor %}
+  </div>
+
+{% endif %}

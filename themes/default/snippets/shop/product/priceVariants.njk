@@ -38,7 +38,10 @@
                 </b>
               </div>
             {% endif %}
-            <div>{{ 'shop.shared.titles.startingAt' | t }} <b>{% render_snippet 'Price', currency=currency, price=variant.price %}</b></div>
+            <div>
+              {{ 'shop.shared.titles.startingAt' | t }}
+              <b>{% render_snippet 'Price', currency=currency, price=variant.price_conversions[currency] %}</b>
+            </div>
         </div>
       </div>
     {% endif %}

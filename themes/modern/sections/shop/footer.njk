@@ -1,0 +1,94 @@
+{% set shop = global.common.shopInfo.shop %}
+{% set fullWidth = safe_get(properties.fullwidth, false) %}
+{% set bgColor = safe_get(properties.background_color, 'background_main_color') %}
+{% set shopName = safe_get(themeProperties.common.shop_name, null) or shop.name or 'Sellix SRL' %}
+
+{% set copyright = safe_get(properties.copyright, 'shop.main.copyright') %}
+{% set copyrightFontColor = safe_get(properties.copyright_font_color, 'light_font_color') %}
+{% set copyrightFontSize = safe_get(properties.copyright_font_size, 14) %}
+{% set copyrightFontWeight = safe_get(properties.copyright_font_weight, 400) %}
+{% set copyrightLineHeight = safe_get(properties.copyright_line_height, 20) %}
+
+{% set iconColor = safe_get(properties.icon_color, 'light_font_color') %}
+{% set iconSize = safe_get(properties.icon_size, 16) %}
+
+{% set links = [
+  {
+    link: shop.discord_link,
+    class: 'discord-link',
+    icon: 'fa-brands fa-discord'
+  },
+  {
+    link: shop.instagram_link,
+    class: 'instagram-link',
+    icon: 'fa-brands fa-instagram'
+  },
+  {
+    link: shop.twitter_link,
+    class: 'twitter-link',
+    icon: 'fa-brands fa-twitter'
+  },
+  {
+    link: shop.youtube-link,
+    class: 'youtube_link',
+    icon: 'fa-brands fa-youtube'
+  },
+  {
+    link: shop.facebook-link,
+    class: 'facebook_link',
+    icon: 'fa-brands fa-facebook'
+  },
+  {
+    link: shop.reddit-link,
+    class: 'reddit_link',
+    icon: 'fa-brands fa-reddit-alien'
+  },
+  {
+    link: shop.telegram-link,
+    class: 'telegram_link',
+    icon: 'fa-brands fa-telegram'
+  },
+  {
+    link: shop.tiktok-link,
+    class: 'tiktok_link',
+    icon: 'fa-brands fa-tiktok'
+  }
+] | selectattr('link')
+%}
+
+{% set localClass = id %}
+
+<style>
+  .sellix-section.{{ globalClass}}-global-{{ id }} {
+    background-color: {{ bgColor | get_color }};
+  }
+  .{{ localClass }}__container {
+    {#background-color: {{ bgColor | get_color }};#}
+  }
+  .{{ localClass }}__copyright {
+    color: {{ copyrightFontColor | get_color }};
+    font-size: {{ copyrightFontSize }}px;
+    font-weight: {{ copyrightFontWeight }};
+    line-height: {{ copyrightLineHeight }}px;
+  }
+</style>
+
+<div class="{{ globalClass }}__container {{ localClass }}__container {{ 'full-width' if fullWidth else 'content-width' }}">
+  <div class="{{ globalClass }}__copyright {{ localClass }}__copyright">
+    {{ copyright | t({year: (undefined | date_format('YYYY')), storeName: shopName }) }}
+  </div>
+  <div class="{{ globalClass }}__links">
+    {% for item in links %}
+      {% render_snippet
+        'Shared: Social link',
+        class=item.class,
+        link=item.link,
+        icon_class=item.icon,
+        properties={
+        font_size: iconSize,
+        font_color: iconColor
+      }
+      %}
+    {% endfor %}
+  </div>
+</div>

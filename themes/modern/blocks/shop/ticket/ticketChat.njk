@@ -1,0 +1,99 @@
+{% set messageId = uid() %}
+{% set submitId = uid() %}
+{% set ticket = global.common.ticketInfo.data.query %}
+{% set title = ticket.title %}
+{% set invoice_id = ticket.invoice_id %}
+{% set messages = ticket.messages %}
+
+{% set bgColor = safe_get(properties.container_background_color, 'background_accent_light') %}
+{% set showBorder = safe_get(properties.container_show_border, true) %}
+{% set borderRadius = safe_get(properties.container_border_radius, 8) %}
+{% set paddingVert = safe_get(properties.container_padding_vert, 16) %}
+{% set paddingHoriz = safe_get(properties.container_padding_horiz, 20) %}
+{% set shadow = safe_get(properties.container_shadow, 'none') %}
+
+{% set titleAlign = safe_get(properties.title_text_align, 'start') %}
+
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }}__container {
+    background: {{ bgColor | get_color }};
+    border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
+    border-radius: {{ borderRadius }}px;
+    box-shadow: {{ shadow }};
+  }
+
+  .{{ localClass }}__header {
+    padding: {{ paddingVert }}px {{ paddingHoriz }}px;
+  }
+
+  .{{ localClass }}__title {
+    color: {{ properties.title_font_color | get_color }};
+    font-size: {{ properties.title_font_size }}px;
+    font-weight: {{ properties.title_font_weight }};
+  }
+</style>
+
+<div class="animated fadeIn {{ globalClass }}__container {{ localClass }}__container">
+  <div class="{{ globalClass }}__header">
+    <div class="{{ globalClass }}__title-container {{ localClass }}__title-container justify-content-{{ titleAlign }}">
+      <div class="{{ globalClass }}__title {{ localClass }}__title">
+        <div>{{ 'shop.ticket.chatTitle' | t }}</div>
+        <div>{{title}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="{{ globalClass }}__chat-container">
+    <form
+      id="ticket-form-{{id}}"
+      class="{{ globalClass}}__chat-form {{ localClass}}__chat-form"
+    >
+      <div class="message-container {{ globalClass }}__chat-messages">
+        {% for item in messages %}
+          {% set role = item.role %}
+          {% set message = item.message %}
+          {% set created_at = item.created_at %}
+          {% render_snippet
+            'Ticket Message',
+            customer_email=ticket.customer_email,
+            role=role,
+            message=message,
+            created_at=created_at,
+            properties=properties
+          %}
+        {% endfor %}
+      </div>
+
+      <div class="{{ globalClass }}__chat-input">
+        {% render_snippet 'Shared: Text area',
+          selector=messageId,
+          name="message",
+          placeholder=('shop.ticket.messagePlaceholder' | t),
+          wrapperclass="reply-screen-send-form",
+          rows=2, textAreaHeight="66px",
+          autoresize=true,
+          wrapperClassName="reply-screen-send-form",
+          parentHeight="66px",
+          autosize=false
+        %}
+        <i id="ticket-submit-{{submitId}}">
+          {% render_snippet 'Icons: Send message' %}
+        </i>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const ticketComponent = new SellixTicketComponent(
+      '#ticket-form-{{id}}',
+      '{{messageId}}',
+      '{{submitId}}',
+      '{{global.common.ticketInfo.data.query.uniqid}}',
+      {{renderOptions | dump | safe}}
+    );
+  });
+</script>

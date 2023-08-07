@@ -1,0 +1,59 @@
+{% set id = uid() %}
+{% set product = args.product %}
+{% set isFree = product.price_display | float === 0 %}
+
+{% set priceFontColor = safe_get(properties.price_font_color, 'dark_font_color') %}
+{% set priceFontSize = safe_get(properties.price_font_size, 14) %}
+{% set priceFontWeight = safe_get(properties.price_font_weight, 500) %}
+{% set priceLineHeight = safe_get(properties.title_price_height, 20) %}
+
+{% set initialPriceFontColor = safe_get(properties.initial_price_font_color, 'dark_font_color') %}
+{% set initialPriceFontSize = safe_get(properties.initial_price_font_size, 14) %}
+{% set initialPriceFontWeight = safe_get(properties.initial_price_font_weight, 500) %}
+{% set initialPriceLineHeight = safe_get(properties.initial_title_price_height, 20) %}
+
+{% set globalClass = ['snippet-product-price'] %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }} {
+    color: {{ priceFontColor | get_color }}!important;
+    font-size: {{ priceFontSize }}px;
+    font-weight: {{ priceFontWeight }};
+    line-height: {{ priceLineHeight }}px;
+  }
+  .{{ localClass }} span {
+    color: {{ initialPriceFontColor | get_color }}!important;
+    font-size: {{ initialPriceFontSize }}px;
+    font-weight: {{ initialPriceFontWeight }};
+    line-height: {{ initialPriceLineHeight }}px;
+  }
+  .{{ localClass }}.with-discount span {
+    margin-right: 0.25rem;
+    text-decoration: line-through;
+    color: var(--lightFontColor);
+    font-weight: 400;
+  }
+</style>
+
+{% if product.price_discount and not isFree %}
+  <span class="{{ globalClass }} {{ localClass }} with-discount">
+    {% render_snippet
+      'Price',
+      currency=product.currency,
+      price=product.price_display,
+      discount=product.price_discount
+    %}
+    <span>
+      {% render_snippet 'Price', currency=product.currency, price=product.price_display %}
+    </span>
+  </span>
+{% else %}
+  <span class="{{ globalClass }} {{ localClass }}">
+    {% if isFree%}
+      {{ 'shop.shared.titles.free' | t }}
+    {% else %}
+      {% render_snippet 'Price', currency=product.currency, price=product.price_display %}
+    {% endif %}
+  </span>
+{% endif %}

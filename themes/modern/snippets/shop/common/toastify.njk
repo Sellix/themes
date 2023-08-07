@@ -1,0 +1,40 @@
+<script type='application/javascript'>
+  // Simple toastify handler
+  $(document).ready(function () {
+    $(document).on('SellixToastify', function(e, eventInfo) {
+      const toastifyContainer = $(`
+              <div class="toastify-container">
+                <div class="toastify-container-title ${eventInfo.type}">
+                  <i class="toastify-container-title-icon fa-solid ${eventInfo.type === 'success' ? "fa-check" : "fa-xmark"}"></i>
+                  <div class="toastify-container-message">
+                    ${eventInfo.text}
+                  </div>
+                </div>
+                <div class="toastify-container-note">
+                  ${eventInfo.type === 'success'
+        ? "{{ 'shop.shared.toastify.success' | t }}"
+        : "{{ 'shop.shared.toastify.fail' | t }}"
+      }
+                </div>
+              </div>
+            `)[0];
+
+      const toast = Toastify({
+        duration: 5000,
+        selector: 'content',
+        offset: {
+          x: '1rem',
+          y: '70px',
+        },
+        node: toastifyContainer,
+        gravity: 'top',
+        position: 'right',
+        onClick: function() {
+          if (toast) {
+            toast.hideToast();
+          }
+        }
+      }).showToast();
+    });
+  });
+</script>

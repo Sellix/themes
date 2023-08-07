@@ -1,0 +1,102 @@
+{% set product = global.common.productInfo.product %}
+
+{% set bgColor = properties.background_color %}
+{% set fullWidth = safe_get(properties.fullwidth, false) %}
+{% set sidebarEnabled = safe_get(properties.right_sidebar_enable, true) %}
+{% set sidebarBlocksCount = safe_get(properties.right_sidebar_blocks_count, 3) %}
+{% set sidebarGap = safe_get(properties.right_sidebar_gap, 60) %}
+
+{% set marginTopDesktop = safe_get(properties.margin_top_desktop, 0) %}
+{% set marginBottomDesktop = safe_get(properties.margin_bottom_desktop, 0) %}
+{% set paddingHorizDesktop = safe_get(properties.padding_horiz_desktop, 0) %}
+{% set paddingTopDesktop = safe_get(properties.padding_top_desktop, 0) %}
+{% set paddingBottomDesktop = safe_get(properties.padding_bottom_desktop, 0) %}
+{% set marginTopTablet = safe_get(properties.margin_top_tablet, 0) %}
+{% set marginBottomTablet = safe_get(properties.margin_bottom_tablet, 0) %}
+{% set paddingHorizTablet = safe_get(properties.padding_horiz_tablet, 0) %}
+{% set paddingTopTablet = safe_get(properties.padding_top_tablet, 0) %}
+{% set paddingBottomTablet = safe_get(properties.padding_bottom_tablet, 0) %}
+{% set marginTopMobile = safe_get(properties.margin_top_mobile, 0) %}
+{% set marginBottomMobile = safe_get(properties.margin_bottom_mobile, 0) %}
+{% set paddingHorizMobile = safe_get(properties.padding_horiz_mobile, 0) %}
+{% set paddingTopMobile = safe_get(properties.padding_top_mobile, 0) %}
+{% set paddingBottomMobile = safe_get(properties.padding_bottom_mobile, 0) %}
+
+{% set localClass = id %}
+
+<style>
+  .sellix-section.{{ globalClass}}-global-{{ id }} {
+    background-color: {{ bgColor | get_color }};
+  }
+
+  .{{ localClass }} {
+    background-color: {{ bgColor | get_color }};
+    padding: {{ paddingTopDesktop }}px {{ paddingHorizDesktop }}px {{ paddingBottomDesktop }}px {{ paddingHorizDesktop }}px;
+    margin-top: {{ marginTopDesktop }}px;
+    margin-bottom: {{ marginBottomDesktop }}px;
+  }
+
+  @media (max-width: 768px) {
+    .{{ localClass }} {
+      padding: {{ paddingTopTablet }}px {{ paddingHorizTablet }}px {{ paddingBottomTablet }}px {{ paddingHorizTablet }}px;
+      margin-top: {{ marginTopTablet }}px;
+      margin-bottom: {{ marginBottomTablet }}px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .{{ localClass }} {
+      padding: {{ paddingTopMobile }}px {{ paddingHorizMobile }}px {{ paddingBottomMobile }}px {{ paddingHorizMobile }}px;
+      margin-top: {{ marginTopMobile }}px;
+      margin-bottom: {{ marginBottomMobile }}px;
+    }
+  }
+
+  {% if sidebarEnabled %}
+    .{{ localClass }}__container {
+      display: grid;
+      grid-template-areas: "content sidebar";
+      grid-template-columns: minmax(360px, 1fr) minmax(300px, 420px);
+      grid-column-gap: {{ sidebarGap }}px;
+    }
+
+    .{{ localClass }}__content {
+      grid-area: content;
+    }
+
+    .{{ localClass }}__sidebar {
+      grid-area: sidebar;
+    }
+
+    @media (max-width: 768px) {
+      .{{ localClass }}__container {
+        grid-template-areas:
+          "content"
+          "sidebar";
+        grid-template-columns: minmax(240px, 1fr);
+      }
+    }
+  {% endif %}
+</style>
+
+<div class="{{ localClass }} {{ 'full-width' if fullWidth else 'content-width' }}">
+  <div class="{{ globalClass }}__container {{ localClass }}__container">
+    <div class="{{ globalClass }}__content {{ localClass }}__content">
+      {% for block_name in settings.block_order %}
+        {% if not sidebarEnabled or loop.revindex > sidebarBlocksCount | int %}
+          {% render_block block_name %}
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    {% if sidebarEnabled %}
+      <div class="{{ globalClass }}__sidebar {{ localClass }}__sidebar">
+        {% for block_name in settings.block_order %}
+          {% if loop.revindex <= sidebarBlocksCount | int %}
+            {% render_block block_name %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>

@@ -1,0 +1,211 @@
+.snippet-product-bundle-product {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--borderColor);
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .snippet-product-bundle-product.no-cart {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+  }
+
+  .snippet-product-bundle-product.no-cart .snippet-product-bundle-product__image {
+    display: none;
+  }
+
+  .snippet-product-bundle-product.no-cart .snippet-product-bundle-product__content {
+    margin: 0;
+  }
+
+  .snippet-product-bundle-product.no-cart .snippet-product-bundle-product__content .snippet-product-bundle-product__title {
+    margin-bottom: 0.75rem;
+  }
+
+  .snippet-product-bundle-product.no-cart .snippet-product-bundle-product__buttons {
+    width: auto !important;
+    margin-top: 0;
+  }
+}
+
+.snippet-product-bundle-product:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .snippet-product-bundle-product {
+    flex-direction: column;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.snippet-product-bundle-product__description {
+  display: flex;
+  width: 100%;
+  flex: 1;
+  overflow: hidden;
+}
+
+.snippet-product-bundle-product__image {
+  width: 44px;
+  height: 44px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.snippet-product-bundle-product__image img {
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
+  border-radius: 0.25rem;
+}
+
+.snippet-product-bundle-product__image.image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.25rem;
+  background: var(--backgroundAccentLight);
+}
+
+.snippet-product-bundle-product__image.image-placeholder i {
+  font-size: 1.5rem;
+}
+
+.snippet-product-bundle-product__info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.snippet-product-bundle-product__info * {
+  color: var(--lightFontColor);
+  opacity: 0.9;
+}
+
+.snippet-product-bundle-product__info .dot {
+  font-size: 6px;
+  position: relative;
+  top: 0;
+  margin: 0 0.5rem;
+}
+
+.snippet-product-bundle-product__star {
+  margin: 0 1rem;
+  color: var(--darkFontColor);
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.snippet-product-bundle-product__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--lightFontColor);
+  margin-bottom: 0.75rem;
+}
+
+.snippet-product-bundle-product__title > span:first-child {
+  opacity: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-right: 1rem;
+}
+
+.snippet-product-bundle-product__content {
+  width: 100%;
+  margin-left: 1rem;
+  flex: 1;
+  overflow: hidden;
+}
+
+.snippet-product-bundle-product__buttons {
+  width: 70px;
+  height: 35px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.snippet-product-bundle-product__cart-button {
+  margin-right: 0.5rem
+}
+
+@media (max-width: 768px) {
+  .snippet-product-bundle-product__buttons {
+    height: auto;
+  }
+
+  .snippet-product-bundle-product__buttons .buy-button {
+    width: 4rem;
+    height: 3rem;
+    margin: 0;
+  }
+}
+
+.snippet-product-bundle-product__buttons .buy-button {
+  min-width: 60px;
+  padding: 0.5rem 1rem;
+  line-height: 1.2rem;
+}
+
+.snippet-product-bundle-product__buttons .buy-button.disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.snippet-product-bundle-product__buttons.with-cart {
+  width: 170px;
+}
+
+@media (max-width: 768px) {
+  .snippet-product-bundle-product__buttons.with-cart {
+    margin-top: 1.5rem;
+  }
+
+  .snippet-product-bundle-product__buttons.with-cart .sellix-cart-icon a {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .snippet-product-bundle-product__buttons {
+    width: 100% !important;
+    margin-top: 1rem;
+    justify-content: space-between;
+  }
+
+  .snippet-product-bundle-product__buttons .sellix-cart-icon {
+    margin-left: 0;
+  }
+}
+
+.snippet-product-bundle-product__buttons > a > div {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  color: #fff;
+  border-radius: 0.25rem;
+  font-size: 14px;
+  margin-left: 0.5rem;
+  font-weight: 500;
+}
+
+.snippet-product-bundle-product__buttons > a:last-child > div {
+  background: var(--buttonColor);
+}

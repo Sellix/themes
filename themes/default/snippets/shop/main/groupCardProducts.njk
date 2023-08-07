@@ -3,7 +3,7 @@
 {% set shopInfo = global.common.shopInfo %}
 {% set shop = shopInfo.shop %}
 {% set hideOutOfStock = shop.hide_out_of_stock | int %}
-{% set cartEnabled = args.cartEnabled or global.common.cartEnabled %}
+{% set cartEnabled = args.cartEnabled or themeProperties.cart.is_enabled %}
 {% set hideStockCounter = shop.hide_stock_counter %}
 
 {% for product in group.products_bound %}
@@ -93,7 +93,7 @@
       </a>
 
       <div class="group-option-buttons unselectable {{'with-cart' if cartEnabled else ''}}">
-        {% if not isDisabled and not isFree and product.type != 'SUBSCRIPTION' %}
+        {% if not isDisabled and not isFree and product.type != 'SUBSCRIPTION' and not product.licensing_enabled %}
           {% render_snippet 'Cart button', product=product, isGroup=true %}
         {% else %}
           <div></div>

@@ -1,0 +1,57 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+
+{% set size = safe_get(properties.size, 100) %}
+{% set bgColor = safe_get(properties.background_color, 'background_accent_light') %}
+{% set showBorder = safe_get(properties.show_border, true) %}
+{% set borderRadius = safe_get(properties.border_radius, 8) %}
+{% set paddingVert = safe_get(properties.padding_vert, 16) %}
+{% set paddingHoriz = safe_get(properties.padding_horiz, 16) %}
+{% set shadow = safe_get(properties.shadow, 'none') %}
+
+{% set fontColor = safe_get(properties.font_color, 'dark_font_color') %}
+{% set fontSize = safe_get(properties.font_size, 14) %}
+{% set fontWeight = safe_get(properties.font_weight, 400) %}
+{% set lineHeight = safe_get(properties.line_height, 20) %}
+
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }}__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .{{ localClass }}__terms-text {
+    width: {{ size }}%;
+    background: {{ bgColor }};
+    border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
+    border-radius: {{ borderRadius }}px;
+    padding: {{ paddingVert }}px {{ paddingHoriz }}px;
+    box-shadow: {{ shadow }};
+
+    color: {{ fontColor | get_color }};
+    font-size: {{ fontSize }}px;
+    font-weight: {{ fontWeight }};
+    line-height: {{ lineHeight }}px;
+  }
+</style>
+
+<div class="{{ globalClass }}__container {{ localClass }}__container">
+  {% if shop.terms_of_service %}
+    <div class="{{ globalClass }}__terms-text {{ localClass }}__terms-text">
+      {{shop.terms_of_service | html_sanitize | safe}}
+    </div>
+  {% else %}
+    <div class="empty-message-container {{ globalClass }}__empty">
+      {% render_snippet 'Icons: No terms' %}
+
+      <span class="empty-message-title {{ globalClass }}__empty-title">
+        <b>{{ 'shop.terms.noTermsTitle' | t({shopName: ['<b>', shop.name, '</b>'] | join(' ')}) | safe }}</b>
+      </span>
+      <span class="empty-message-subtitle {{ globalClass }}__empty-title">
+        {{ 'shop.terms.noTermsSubtitle' | t }}
+      </span>
+    </div>
+  {% endif %}
+</div>

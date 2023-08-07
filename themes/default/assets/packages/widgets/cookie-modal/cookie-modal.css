@@ -447,8 +447,8 @@ html .sellix-cookie-container, html .sellix-cookie-modal {
   overflow: hidden;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   outline: none;
-  font-weight: 400 !important;
-  font-family: "Inter", sans-serif !important;
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
   border-radius: 0.25rem;
   border: 1px solid var(--gridLine);
 }
@@ -462,6 +462,11 @@ html .sellix-cookie-container, html .sellix-cookie-modal {
   width: 10px;
   border-radius: 50%;
   transform: translate3d(-50%, -50%, 0);
+}
+.button.secondary {
+  color: var(--darkFontColor);
+  background: var(--backgroundAccentLight);
+  border: 1px solid var(--borderColor);
 }
 
 .sellix-select {
@@ -515,6 +520,60 @@ html .sellix-cookie-container, html .sellix-cookie-modal {
 }
 .sellix-select.is-invalid:focus {
   border-color: red !important;
+}
+
+.sellix-tooltip {
+  cursor: pointer;
+}
+.sellix-tooltip .success-tooltip {
+  background: var(--green6) !important;
+  color: white !important;
+  white-space: nowrap !important;
+  max-width: 230px !important;
+}
+.sellix-tooltip .success-tooltip .react-tooltip-arrow {
+  display: none;
+}
+.sellix-tooltip .react-tooltip {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  text-align: center;
+  box-shadow: 0 2px 4px -1px rgba(7, 14, 35, 0.08), 0px 2px 24px -2px rgba(7, 14, 35, 0.12);
+  max-width: 220px;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  z-index: 999;
+  opacity: 1;
+  background: var(--backgroundAccentDark);
+  color: var(--darkFontColor);
+  white-space: break-spaces;
+  text-transform: none;
+}
+.sellix-tooltip .react-tooltip.place-top:after {
+  border-top-color: var(--backgroundAccentDark);
+  background-color: var(--backgroundAccentDark);
+}
+.sellix-tooltip .react-tooltip.place-bottom:after {
+  border-bottom-color: var(--backgroundAccentDark);
+  background-color: var(--backgroundAccentDark);
+}
+.sellix-tooltip .react-tooltip.place-left:after {
+  border-left-color: var(--backgroundAccentDark);
+  background-color: var(--backgroundAccentDark);
+}
+.sellix-tooltip .react-tooltip.place-right:after {
+  border-right-color: var(--backgroundAccentDark);
+  background-color: var(--backgroundAccentDark);
+}
+.sellix-tooltip .react-tooltip.show {
+  opacity: 1;
+}
+
+.ReactCollapse--collapse {
+  transition: height 0.5s;
 }
 
 .modal {
@@ -727,14 +786,12 @@ html .sellix-cookie-container, html .sellix-cookie-modal {
 
 .sellix-overlay {
   position: fixed;
+  background: rgba(0, 0, 0, 0.3137254902);
+  width: 100vw;
+  height: 100vh;
   top: 0;
-  left: 0;
   right: 0;
-  bottom: 0;
-  z-index: 9999999;
-  background-color: rgba(3, 10, 22, 0.768627451) !important;
-}
-
-.ReactCollapse--collapse {
-  transition: height 0.5s;
+  cursor: pointer;
+  z-index: 999999999;
+  backdrop-filter: blur(2px);
 }

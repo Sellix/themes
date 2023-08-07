@@ -1,0 +1,63 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set product = args.product %}
+{% set stock = product.stock %}
+{% set quantity = args.quantity %}
+
+{% set showMinMaxNote = safe_get(args.show_min_max_note, true) %}
+{% set showStockInfo = safe_get(args.show_stock_info, true) %}
+
+{% set globalClass = ['snippet-checkout-product-count'] %}
+{% set localClass = id %}
+
+<div class="{{ globalClass }} {{ localClass }}">
+  <div class="{{ globalClass }}__count-widget">
+    <span
+      class="minus real unselectable"
+      style="opacity: 0;"
+      data-modifier="-1"
+      data-stock-count-picker="1"
+    >
+      <i class="fa-regular fa-minus"></i>
+    </span>
+
+    <div class="{{ globalClass }}__input-wrapper unselectable" data-input-wrapper="1">
+      <input type="text" value="{{quantity}}" {{'disabled' if product.quantity_min == product.quantity_max else ''}} />
+    </div>
+
+    <span
+      class="plus real unselectable"
+      style="opacity: 0;"
+      data-modifier="1"
+      data-stock-count-picker="1"
+    >
+      <i class="fa-regular fa-plus"></i>
+    </span>
+  </div>
+
+  {% if showStockInfo %}
+    <div class="{{ globalClass}}__total-container">
+      <div class="{{ globalClass}}__total-container unselectable" data-total-value="1"></div>
+    </div>
+  {% endif %}
+
+  {% if showMinMaxNote %}
+    {% render_snippet 'Product: MinMax note', product=product %}
+  {% endif %}
+</div>
+
+<script type='application/javascript'>
+  $(document).ready(async function () {
+    const shopInfo = SellixContext.getShopInfo();
+    let hideStockCounter = shopInfo.shop && shopInfo.shop.hide_stock_counter;
+    const product = await SellixContext.getShopProduct('{{ product.uniqid }}');
+
+    new SellixProductCountComponent(
+      '.{{ localClass }}',
+      '{{shop.name}}',
+      product,
+      {{renderOptions | dump | safe}},
+      hideStockCounter,
+    );
+  });
+</script>

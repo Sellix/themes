@@ -1,0 +1,164 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set isInvoice = global.request.type == 'invoice' %}
+{% set cartEnabled = themeProperties.cart.is_enabled %}
+{% set bundles = args.bundles %}
+{% set properties = args.properties %}
+{% set currencyList = global.config.CURRENCY_LIST %}
+
+{% set bundleBorderRadius = safe_get(properties.bundle_border_radius, 8) %}
+{% set bundlePaddingVert = safe_get(properties.bundle_padding_vert, 16) %}
+{% set bundlePaddingHoriz = safe_get(properties.bundle_padding_horiz, 16) %}
+{% set bundleShadow = safe_get(properties.bundle_shadow, 'none') %}
+{% set bundleShowBorder = safe_get(properties.bundle_show_border, true) %}
+{% set bundleBackgroundColor = safe_get(properties.bundle_background_color, 'transparent') %}
+
+{% set bundleHeaderPaddingVert = safe_get(properties.bundle_header_padding_vert, 16) %}
+{% set bundleHeaderPaddingHoriz = safe_get(properties.bundle_header_padding_horiz, 16) %}
+
+{% set titleFontColor = safe_get(properties.bundle_title_font_color, 'dark_font_color') %}
+{% set titleFontSize = safe_get(properties.bundle_title_font_size, 14) %}
+{% set titleFontWeight = safe_get(properties.bundle_title_font_weight, 600) %}
+{% set titleLineHeight = safe_get(properties.bundle_title_line_height, 17) %}
+
+{% set descriptionFontColor = safe_get(properties.bundle_description_font_color, 'dark_font_color') %}
+{% set descriptionFontSize = safe_get(properties.bundle_description_font_size, 14) %}
+{% set descriptionFontWeight = safe_get(properties.bundle_description_font_weight, 400) %}
+{% set descriptionLineHeight = safe_get(properties.bundle_description_line_height, 20) %}
+
+{% set productBackgroundColorHover = safe_get(propertis.bundle_product_background_color_hover, 'background_accent_dark') %}
+{% set productPaddingVert = safe_get(properties.bundle_product_padding_vert, 16) %}
+{% set productPaddingHoriz = safe_get(properties.bundle_product_padding_horiz, 16) %}
+
+{% set globalClass = ['snippet-product-bundles'] %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }}__bundle {
+    background: {{ bundleBackgroundColor | get_color }};
+    border: {{ "1px solid var(--borderColor)" if bundleShowBorder else "none" }};
+    box-shadow: {{ bundleShadow }};
+    border-radius: {{ bundleBorderRadius }}px;
+    padding: {{ bundlePaddingVert }}px {{ bundlePaddingHoriz }}px;
+  }
+
+  .{{ localClass }}__product:last-child {
+    border-bottom-left-radius: {{ bundleBorderRadius }}px;
+    border-bottom-right-radius: {{ bundleBorderRadius }}px;
+  }
+
+  .{{ localClass }}__head {
+    padding: {{ bundleHeaderPaddingVert }}px {{ bundleHeaderPaddingHoriz }}px;
+  }
+
+  .{{ localClass }}__head-title {
+    color: {{ titleFontColor | get_color }};
+    font-size: {{ titleFontSize }}px;
+    font-weight: {{ titleFontWeight }};
+    line-height: {{ titleLineHeight }}px;
+  }
+
+  .{{ localClass }}__head-title + div > p > b {
+    font-weight: {{ titleFontWeight + 100 }};
+  }
+
+  .{{ localClass }}__head-description {
+    color: {{ descriptionFontColor | get_color }};
+    font-size: {{ descriptionFontSize }}px;
+    font-weight: {{ descriptionFontWeight }};
+    line-height: {{ descriptionLineHeight }}px;
+
+  }
+
+  .{{ localClass }}__product {
+    padding: {{ productPaddingVert }}px {{ productPaddingHoriz }}px;
+  }
+
+  .{{ localClass }}__product:hover {
+    background: {{ productBackgroundColorHover | get_color }};
+  }
+  .{{ localClass }}__product:hover .image-placeholder {
+    background: {{ productBackgroundColorHover | get_color }};
+  }
+</style>
+
+{%- if not isInvoice and bundles | length -%}
+  <div class="{{ globalClass }} {{ localClass }}">
+    {% for bundle in bundles %}
+      {% set bundleId = uid() %}
+      {% set title = bundle.title %}
+      {% set discountType = bundle.discount_type  %}
+      {% set discountAmount = bundle.discount_amount %}
+      {% set products_bound = bundle.products_bound %}
+
+      <div
+        id="{{ localClass }}-{{bundleId}}"
+        class="d-none {{ globalClass }}__bundle {{ localClass }}__bundle"
+      >
+        <div class="{{ globalClass }}__head {{ localClass }}__head">
+          <div>
+            <div class="{{ globalClass }}__head-title {{ localClass }}__head-title">
+              {{title}}
+            </div>
+
+            <div class="{{ globalClass }}__head-description {{ localClass }}__head-description">
+              <p>
+                {{ 'shop.product.bundle.discountTitle.0' | t }}
+                <b>
+                  {{ currencyList[shop.currency] if discountType === 'FIXED' }}
+                  {{discountAmount}}{{ '%' if discountType === 'PERCENTAGE' }}
+                </b>
+                {{ 'shop.product.bundle.discountTitle.1' | t }}
+              </p>
+            </div>
+          </div>
+
+          {% render_snippet 'Shared: Ripple button',
+            class='medium primary add-all-button',
+            title=('shop.product.bundle.addAllButtonTitle' | t)
+          %}
+        </div>
+
+        <div class="{{ globalClass }}__products {{ localClass }}__products">
+          {% for product in products_bound %}
+            <div
+              class="d-none {{ globalClass }}__product {{ localClass }}__product"
+              data-product-id="{{product.uniqid}}"
+            >
+              {%
+                render_snippet 'Product: Bundle product',
+                product=product,
+                cartEnabled=cartEnabled,
+                skipBuyButton=true,
+                properties=properties
+              %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <script type='application/javascript'>
+        $(document).ready(async function () {
+          const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
+          const productIds = [
+            {% for product in bundle.products_bound %}
+              '{{ product.uniqid }}',
+            {% endfor %}
+          ];
+          const products = await SellixContext.getShopProducts(productIds);
+
+          const bundleComponent = new SellixProductBundleComponent(
+            '#{{ localClass }}-{{bundleId}}',
+            cart,
+            {
+              id: '{{ bundle.id }}',
+              products_bound: products,
+            },
+            '{{ global.request.type }}',
+            {{renderOptions | dump | safe}},
+          );
+        });
+      </script>
+    {% endfor %}
+  </div>
+{% endif %}
