@@ -44,7 +44,7 @@
 </div>
 
 <script type='application/javascript'>
-  $(document).ready(async function () {
+  $(document).ready(function () {
     const purchaseType = '{{type}}';
     const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
     const isDark = {{args.isDark if args.isDark is defined else themeProperties.color_schema.dark_mode}};
@@ -66,7 +66,7 @@
           '{{ product.uniqid }}',
         {% endfor %}
       ]
-      products = await SellixContext.getShopProducts(productIds);
+      products = SellixContext.getShopProducts(productIds);
       bundle.products_bound = products;
       bundles.push(bundle);
     {% endfor %}

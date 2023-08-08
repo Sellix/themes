@@ -138,14 +138,26 @@
       </div>
 
       <script type='application/javascript'>
-        $(document).ready(async function () {
+        $(document).ready(function () {
           const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
           const productIds = [
             {% for product in bundle.products_bound %}
               '{{ product.uniqid }}',
             {% endfor %}
           ];
-          const products = await SellixContext.getShopProducts(productIds);
+
+          const productToUpdate = [
+            {% for product in bundle.products_bound %}
+              {
+                uniqid: '{{ product.uniqid }}',
+                stock: {{ product.stock }},
+                price_variants: {{ product.price_variants | dump | safe if product.price_variants else 'undefined' }}
+              },
+            {% endfor %}
+          ];
+
+          window.SellixContext.updateShopProducts(productToUpdate);
+          const products = window.SellixContext.getShopProducts(productIds);
 
           const bundleComponent = new SellixProductBundleComponent(
             '#{{ localClass }}-{{bundleId}}',

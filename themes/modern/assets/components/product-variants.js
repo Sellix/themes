@@ -86,6 +86,7 @@
             ({ title, stock }) => title === `${productVariant.title}` && stock >= productVariant.stock,
           );
         }
+
         if (activeVariant) {
           this.store.set(this.productId, activeVariant);
         } else {

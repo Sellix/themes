@@ -66,16 +66,14 @@
   </div>
 
   <script type='application/javascript'>
-    $(document).ready(async function () {
+    $(document).ready(function () {
       $('.{{ localClass }}').removeClass('d-none');
-
-      const product = await SellixContext.getShopProduct('{{ product.uniqid }}');
       const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
 
       const cartProdComponent = new SellixCartProductComponent(
         '.{{ localClass }}',
         cart,
-        product,
+        '{{ product.uniqid }}',
         '{{ cartEffect }}',
         {{renderOptions | dump | safe}},
       );

@@ -36,11 +36,9 @@
       const productsLeft = this.bundle.products_bound.filter(({ uniqid }) => !productIds.includes(uniqid));
       const productIdsLeft = productsLeft.map(({ uniqid }) => uniqid);
 
-      if (!productsLeft.length) {
-        this.$bundle.addClass('d-none');
-      } else {
-        this.$bundle.removeClass('d-none');
-      }
+      const productsToAdd = this.getProductsToAdd();
+
+      this.$bundle.toggleClass('d-none', !productsLeft.length || productsLeft.length !== productsToAdd.length);
 
       const $products = this.$bundle.find('[data-product-id]');
 

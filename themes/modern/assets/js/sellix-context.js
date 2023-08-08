@@ -18,28 +18,22 @@
       return this.get('common', {}).shopInfo || {};
     }
 
-    static async getShopItems() {
+    static getShopItems() {
       const productIds = this.getShopInfo().items;
-      return await this.getShopProducts(productIds);
+      return this.getShopProducts(productIds);
     }
 
-    static async getShopProducts(ids) {
+    static getShopProducts(ids) {
       let products = this.getShopInfo().products || {};
       if (!ids) {
         return products;
       }
 
-      const missedIds = ids.filter((id) => !Boolean(products[id]));
-      if (missedIds.length) {
-        const { products: missedProducts } = (await api.getProducts(missedIds)) || [];
-        products = this.updateShopProducts(missedProducts);
-      }
-
       return ids.filter((id) => Boolean(products[id])).map((id) => products[id]);
     }
 
-    static async getShopProduct(id) {
-      const products = await this.getShopProducts([id]);
+    static getShopProduct(id) {
+      const products = this.getShopProducts([id]);
       return products.find((product) => product.uniqid === id);
     }
 
@@ -47,7 +41,9 @@
       let products = this.getShopInfo().products || {};
       products = {
         ...products,
-        ...Object.fromEntries(updatedProducts.map((product) => [product.uniqid, product])),
+        ...Object.fromEntries(
+          updatedProducts.map((product) => [product.uniqid, { ...(products[product.uniqid] || {}), ...product }]),
+        ),
       };
       this.getShopInfo().products = products;
 

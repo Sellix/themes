@@ -1,11 +1,11 @@
-(function (document, window, jQuery, sellixHelper) {
+(function (document, window, jQuery, sellixHelper, SellixContext) {
   const EFFECT_OPEN_CART_MODAL = 'open_cart_modal';
   const EFFECT_QUICK_CHECKOUT_BUTTON = 'quick_checkout_button';
 
   class CartProductComponent {
-    constructor(selector, cart, product, cartEffect, renderOptions) {
+    constructor(selector, cart, productId, cartEffect, renderOptions) {
       this.cart = cart;
-      this.product = product;
+      this.productId = productId;
       this.cartEffect = cartEffect;
       this.renderOptions = renderOptions;
 
@@ -59,6 +59,10 @@
           }
         });
       }
+    }
+
+    get product() {
+      return SellixContext.getShopProduct(this.productId);
     }
 
     add(event, { isFirst = false } = {}) {
@@ -131,4 +135,4 @@
   }
 
   window.SellixCartProductComponent = CartProductComponent;
-})(document, window, jQuery, sellixHelper);
+})(document, window, jQuery, sellixHelper, SellixContext);

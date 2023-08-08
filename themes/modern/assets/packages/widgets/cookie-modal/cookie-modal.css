@@ -10,17 +10,36 @@
   color: var(--black9);
   margin-bottom: 0.5rem;
 }
+.sellix-cookie-header svg {
+  margin-right: 0.25rem;
+}
 .sellix-cookie-header img {
   max-width: 20px;
   width: 20px;
   height: 20px;
   margin-right: 0.5rem;
 }
+@media (max-width: 640px) {
+  .sellix-cookie-header {
+    flex-direction: column;
+    row-gap: 1rem;
+  }
+}
 .sellix-cookie-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 1rem;
+}
+@media (max-width: 640px) {
+  .sellix-cookie-footer {
+    flex-direction: column;
+    row-gap: 1rem;
+    align-items: stretch;
+  }
+  .sellix-cookie-footer div > button {
+    flex: 1;
+  }
 }
 .sellix-cookie-container {
   position: fixed;
@@ -30,6 +49,7 @@
   background: var(--white);
   z-index: 99999;
   border-radius: 0.5rem;
+  border: 1px solid var(--borderColor);
   box-shadow: 0px 2px 4px rgba(7, 14, 35, 0.08), 0px 2px 24px rgba(7, 14, 35, 0.12);
   padding: 1.25rem;
   transform: translateX(50%);
@@ -49,10 +69,9 @@
 }
 .sellix-cookie-container.is-shop .sellix-cookie button.primary {
   background: var(--buttonColor);
-  color: white !important;
+  color: var(--buttonTextColor) !important;
 }
 .sellix-cookie-container.is-shop .sellix-cookie button.secondary {
-  background: transparent;
   color: var(--lightFontColor);
 }
 @media (max-width: 768px) {
@@ -61,6 +80,10 @@
     right: 1rem;
     transform: none;
   }
+}
+
+div.sellix-cookie-modal .sellix-modal-body {
+  border-bottom: none;
 }
 
 div.sellix-cookie-modal-title {
@@ -163,6 +186,14 @@ html .sellix-cookie-container, html .sellix-cookie-modal {
 }
 .sellix-cookie-modal-full-details {
   max-width: 800px !important;
+  background-color: var(--backgroundColor);
+}
+.sellix-cookie-modal-full-details .sellix-modal-body {
+  border-bottom: none;
+  padding-bottom: 0.5rem;
+}
+.sellix-cookie-modal-full-details .sellix-modal-footer {
+  color: var(--lightFontColor);
 }
 .sellix-cookie-modal .sellix-modal-close {
   display: none;
@@ -185,10 +216,9 @@ html .sellix-cookie-container, html .sellix-cookie-modal {
 }
 .sellix-cookie-modal.is-shop.sellix-modal button.primary {
   background: var(--buttonColor);
-  color: white !important;
+  color: var(--buttonTextColor);
 }
 .sellix-cookie-modal.is-shop.sellix-modal button.secondary {
-  background: transparent;
   color: var(--lightFontColor);
 }
 .sellix-cookie-modal.is-shop .sellix-cookie-modal-short-container > div {
@@ -395,10 +425,10 @@ html .sellix-cookie-container, html .sellix-cookie-modal {
 }
 .sellix-cookie-modal-details {
   border-radius: 0.5rem;
-  background: var(--black0);
+  background: var(--backgroundAccentDark);
   padding: 1.25rem;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: space-between;
   margin-bottom: 1rem;
 }

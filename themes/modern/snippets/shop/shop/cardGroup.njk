@@ -75,38 +75,13 @@
     border-top-right-radius: {{ imageBorderRadius or borderRadius }}px;
   }
 
-  {% if count == 1 %}
-    .group-card-block .snippet-product-card__card {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(50px, 1fr));
-      grid-column-gap: 40px;
-    }
-
-    .group-card-block .snippet-product-card__image {
-      max-width: 240px;
-      min-height: 130px;
-      height: 130px;
-      border-radius: 0.5rem 0 0 0.5rem !important;
-    }
-
-    .group-card-block .snippet-product-card__info {
-      padding-left: 0;
-    }
-
-    .group-card-block .snippet-product-card__image svg {
-      transform: scale(.75);
-    }
-  {% else %}
-  {% endif %}
-
-
   .group-card-block .snippet-product-card__title {
     font-weight: 600;
   }
 
 </style>
 
-<div class="{{ globalClass }} {{ localClass }} d-flex w-100 position-relative">
+<div class="{{ globalClass }} {{ localClass }} {{ 'single-card' if count == 1 }} d-flex w-100 position-relative">
   <div class="{{ globalClass }}__container {{ localClass }}__container" data-group-id="{{group.uniqid}}">
     {% if showBadge %}
       <div class="{{ globalClass }}__badge-container">
@@ -164,9 +139,9 @@
   $(document).ready(function () {
     const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
 
-    $('.{{ localClass }}__container').on('click', async function () {
+    $('.{{ localClass }}__container').on('click', function () {
       const groupId = $(this).data('group-id');
-      const items = await SellixContext.getShopItems();
+      const items = SellixContext.getShopItems();
       const group = items.find(({uniqid}) => String(uniqid) === String(groupId));
 
       if (group && group.products_bound.length) {
