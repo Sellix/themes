@@ -864,13 +864,25 @@
           "id": "mobile_menu_background",
           "type": "color-picker",
           "label": "Mobile menu background",
-          "defaultValue": "#F5F7F8"
+          "defaultValue": "#1B1F23"
         },
         {
-          "id": "mobile_menu_background_hover",
+          "id": "mobile_menu_background_active",
           "type": "color-picker",
           "label": "Mobile menu background on hover",
-          "defaultValue": "#DFE1E3"
+          "defaultValue": "#DEDEDE"
+        },
+        {
+          "id": "mobile_menu_font_color",
+          "type": "color-picker",
+          "label": "Mobile menu color",
+          "defaultValue": "#A2AAB4"
+        },
+        {
+          "id": "mobile_menu_font_color_active",
+          "type": "color-picker",
+          "label": "Mobile active menu color",
+          "defaultValue": "#121417"
         },
         {
           "id": "input_border_hover",
@@ -1552,10 +1564,22 @@
           "defaultValue": "#F5F7F8"
         },
         {
-          "id": "mobile_menu_background_hover",
+          "id": "mobile_menu_background_active",
           "type": "color-picker",
-          "label": "Mobile menu background on hover",
-          "defaultValue": "#DFE1E3"
+          "label": "Mobile active menu background",
+          "defaultValue": "#FFFFFF"
+        },
+        {
+          "id": "mobile_menu_font_color",
+          "type": "color-picker",
+          "label": "Mobile menu color",
+          "defaultValue": "#555D67"
+        },
+        {
+          "id": "mobile_menu_font_color_active",
+          "type": "color-picker",
+          "label": "Mobile active menu color",
+          "defaultValue": "#555D67"
         },
         {
           "id": "input_border_hover",
@@ -1909,7 +1933,7 @@
           "defaultValue": "mobile_menu_background"
         },
         {
-          "id": "menu_item_background_hover",
+          "id": "menu_item_background_active",
           "type": "select",
           "label": "Background color on hover",
           "options": [
@@ -1918,8 +1942,8 @@
               "value": "background_main_color"
             },
             {
-              "title": "Mobile menu on hover",
-              "value": "mobile_menu_background_hover"
+              "title": "Mobile active menu",
+              "value": "mobile_menu_background_active"
             },
             {
               "title": "Accent (Light)",
@@ -1934,7 +1958,7 @@
               "value": "brand_color"
             }
           ],
-          "defaultValue": "mobile_menu_background_hover"
+          "defaultValue": "mobile_menu_background_active"
         },
         {
           "id": "menu_item_font_color",
@@ -1946,6 +1970,10 @@
               "value": "brand_color"
             },
             {
+              "title": "Mobile active menu",
+              "value": "mobile_menu_font_color"
+            },
+            {
               "title": "Light",
               "value": "light_font_color"
             },
@@ -1954,7 +1982,7 @@
               "value": "dark_font_color"
             }
           ],
-          "defaultValue": "light_font_color"
+          "defaultValue": "mobile_menu_font_color"
         },
         {
           "id": "menu_item_font_size",
@@ -2029,6 +2057,10 @@
               "value": "brand_color"
             },
             {
+              "title": "Mobile active menu",
+              "value": "mobile_menu_font_color_active"
+            },
+            {
               "title": "Light",
               "value": "light_font_color"
             },
@@ -2037,7 +2069,7 @@
               "value": "dark_font_color"
             }
           ],
-          "defaultValue": "brand_color"
+          "defaultValue": "mobile_menu_font_color_active"
         },
         {
           "id": "menu_active_item_font_size",
@@ -2188,7 +2220,7 @@
         "effect": "quick_checkout_button"
       },
       "color_schema": {
-        "dark_mode": false
+        "dark_mode": true
       },
       "common": {
         "logo_image": null,
@@ -2236,7 +2268,9 @@
         "menu_background": "rgb(249, 249, 250)",
         "menu_background_hover": "rgba(249, 249, 250, 10%)",
         "mobile_menu_background": "#1B1F23",
-        "mobile_menu_background_hover": "#1B1F23",
+        "mobile_menu_background_active": "#DEDEDE",
+        "mobile_menu_font_color": "#A2AAB4",
+        "mobile_menu_font_color_active": "#121417",
         "thin_color": "#A2AAB4",
         "transparent": "#FFFFFF00",
         "image_placeholder": "#454C56"
@@ -2304,7 +2338,9 @@
         "menu_background": "#FFFFFF",
         "menu_background_hover": "#E9E4FF",
         "mobile_menu_background": "#F5F7F8",
-        "mobile_menu_background_hover": "#DFE1E3",
+        "mobile_menu_background_active": "#FFFFFF",
+        "mobile_menu_font_color": "#555D67",
+        "mobile_menu_font_color_active": "#555D67",
         "thin_color": "#A2AAB4",
         "transparent": "#FFFFFF00",
         "image_placeholder": "#E9EDF0"
@@ -2328,11 +2364,11 @@
         "menu_item_background": "mobile_menu_background",
         "menu_item_background_hover": "background_hover",
         "menu_item_font_size": 16,
-        "menu_item_font_color": "light_font_color",
+        "menu_item_font_color": "mobile_menu_font_color",
         "menu_item_font_weight": 500,
-        "menu_active_item_background": "background_hover",
+        "menu_active_item_background": "mobile_menu_background_active",
         "menu_active_item_font_size": 16,
-        "menu_active_item_font_color": "contrast_light_font_color",
+        "menu_active_item_font_color": "mobile_menu_font_color_active",
         "menu_active_item_font_weight": 500
       },
       "page": {
@@ -2957,6 +2993,9 @@
               },
               "properties": {
                 "background_color": "background_accent_light",
+                "padding_top_desktop": 60,
+                "padding_top_tablet": 30,
+                "padding_top_mobile": 30,
                 "padding_bottom_desktop": 60,
                 "padding_bottom_tablet": 30,
                 "padding_bottom_mobile": 30,

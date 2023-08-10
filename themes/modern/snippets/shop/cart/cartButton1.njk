@@ -30,7 +30,7 @@
 {% if isSubscription or product.stock | int === 0 or not cartEnabled or product.on_hold | int !== 0 %}
   {# Do Nothing #}
 {% else %}
-  {% if showPlusMinus %}
+  {% if not showPlusMinus %}
     <div class="{{ globalClass }} {{ localClass }} {{ globalClass }}__cart-button-only empty {{'static' if isStatic }}">
       <div
         class="{{ globalClass }}__button {{ localClass }}__button unselectable"
