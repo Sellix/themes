@@ -48,7 +48,7 @@
       href="{{ locale_prefix }}{{item.page_slug}}"
       class="{{ globalClass }}__item {{ localClass }}__item {{'active' if active else ''}}"
     >
-      {{item.title | t}}
+      {{['menu', item.title] | join('.') | t}}
     </a>
   {% endfor %}
 </div>
