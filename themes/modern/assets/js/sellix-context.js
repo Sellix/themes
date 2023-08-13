@@ -2,6 +2,13 @@
   const api = new SellixApiClass();
 
   class Context {
+    static get CART_EFFECT_OPEN_CART_MODAL() {
+      return 'open_cart_modal';
+    }
+    static get CART_EFFECT_QUICK_CHECKOUT_BUTTON() {
+      return 'quick_checkout_button';
+    }
+
     static get(name, defaultValue) {
       return context[name] || defaultValue;
     }

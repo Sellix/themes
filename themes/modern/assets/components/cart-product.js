@@ -1,7 +1,4 @@
 (function (document, window, jQuery, sellixHelper, SellixContext) {
-  const EFFECT_OPEN_CART_MODAL = 'open_cart_modal';
-  const EFFECT_QUICK_CHECKOUT_BUTTON = 'quick_checkout_button';
-
   class CartProductComponent {
     constructor(selector, cart, productId, cartEffect, renderOptions) {
       this.cart = cart;
@@ -17,7 +14,7 @@
       this.$cartQuantityBtn = this.$cart.find('[data-cart-product-quantity-button]');
       this.$isGroup = this.$cart.find('[data-cart-product-is-group]');
 
-      if (this.cartEffect === EFFECT_QUICK_CHECKOUT_BUTTON) {
+      if (this.cartEffect === SellixContext.CART_EFFECT_QUICK_CHECKOUT_BUTTON) {
         this.$quickCheckoutBtn = this.$cart.find('[data-quick-checkout-btn]');
         this.$quickCheckoutBtn.on('click', (event) => {
           event.stopPropagation();
@@ -85,7 +82,7 @@
         this.cart.add(this.product);
       }
 
-      if (isFirst && this.cartEffect === EFFECT_OPEN_CART_MODAL) {
+      if (isFirst && this.cartEffect === SellixContext.CART_EFFECT_OPEN_CART_MODAL) {
         jQuery(document).trigger('SellixOpenCheckoutModal', { showContinueShoppingButton: true });
       }
     }

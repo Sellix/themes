@@ -3,6 +3,7 @@
 {% set type = args.type if args.type else 'checkout' %}
 {% set shop = global.common.shopInfo.shop %}
 {% set cartEnabled = themeProperties.cart.is_enabled %}
+{% set cartEffect = themeProperties.cart.effect %}
 {% set properties = args.properties %}
 
 {% set showCalculationDetails = safe_get(properties.show_calculation_details, false) %}
@@ -77,6 +78,7 @@
       config: window.SellixContext.get('config'),
       shop: shopInfo.shop,
       cartEnabled: {{cartEnabled or 0}},
+      cartEffect: '{{ cartEffect }}',
       isCustomDomain,
       purchaseType,
       affiliateConversions: customerInfo?.customer?.affiliate_revenue_conversions || {},

@@ -4,6 +4,7 @@
   jQuery,
   React,
   ReactDOM,
+  SellixContext,
   SellixStoreFactory,
   SellixProductAddonsStore,
   SellixProductVariantsStore,
@@ -16,6 +17,7 @@
       config,
       shop,
       cartEnabled,
+      cartEffect,
       isCustomDomain,
       purchaseType,
       cart,
@@ -32,6 +34,7 @@
       this.shop = shop;
       this.affiliateConversions = affiliateConversions;
       this.cartEnabled = cartEnabled;
+      this.cartEffect = cartEffect;
       this.isCustomDomain = isCustomDomain;
       this.purchaseType = purchaseType;
       this.cart = cart;
@@ -157,10 +160,17 @@
         return;
       }
 
+      const showCheckoutModal =
+        this.cartEffect === SellixContext.CART_EFFECT_OPEN_CART_MODAL && !this.cart.getItemById(product.uniqid);
+
       if (quantity > 0) {
         this.cart.add(product, quantity);
       } else if (quantity < 0) {
         this.cart.remove(uniqid, quantity);
+      }
+
+      if (showCheckoutModal) {
+        jQuery(document).trigger('SellixOpenCheckoutModal', { showContinueShoppingButton: true });
       }
     };
 
@@ -170,7 +180,14 @@
         return;
       }
 
+      const showCheckoutModal =
+        this.cartEffect === SellixContext.CART_EFFECT_OPEN_CART_MODAL && !this.cart.getItemById(product.uniqid);
+
       this.cart.set(product, updateBody);
+
+      if (showCheckoutModal) {
+        jQuery(document).trigger('SellixOpenCheckoutModal', { showContinueShoppingButton: true });
+      }
     };
 
     onChangeData = ({ type, value }) => {
@@ -227,6 +244,7 @@
           options: {
             ...this.options,
             isCaptchaV2Visible: this.isCaptchaV2Visible,
+            showQuickCheckoutButton: this.cartEffect === SellixContext.CART_EFFECT_QUICK_CHECKOUT_BUTTON,
           },
         }),
         this.domContainer,
@@ -251,6 +269,7 @@
   jQuery,
   React,
   ReactDOM,
+  SellixContext,
   SellixStoreFactory,
   SellixProductAddonsStore,
   SellixProductVariantsStore,
