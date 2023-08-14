@@ -1201,6 +1201,118 @@
   margin-right: 0;
 }
 
+.sellix-widget-invoice-checkout--track {
+  max-width: 1024px;
+  min-height: auto;
+}
+.sellix-widget-invoice-checkout--track-body {
+  padding: 1.5rem;
+  border-top: none;
+  background: var(--white);
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+.sellix-widget-invoice-checkout--track-body a {
+  color: var(--purple6) !important;
+}
+.sellix-widget-invoice-checkout--track .no-track {
+  color: var(--black9);
+  font-size: 1.5rem;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sellix-widget-invoice-checkout--track .track-cards {
+  flex: 1;
+}
+.sellix-widget-invoice-checkout--track .track {
+  border-radius: 25px;
+  width: 100%;
+  position: relative;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 0;
+  margin: 0 auto;
+  flex-direction: row;
+}
+.sellix-widget-invoice-checkout--track .track-line {
+  margin-right: 1.5rem;
+}
+.sellix-widget-invoice-checkout--track .track-container {
+  z-index: 2;
+  position: relative;
+  font-size: 0.7rem;
+  width: 100%;
+}
+.sellix-widget-invoice-checkout--track .track-card {
+  position: relative;
+  transition: all 0.3s ease 0.2s;
+  display: flex;
+  flex-direction: column;
+  z-index: 6;
+  padding-bottom: 1.25rem;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+}
+.sellix-widget-invoice-checkout--track .track-card:after {
+  content: "";
+  position: absolute;
+  border-radius: 100%;
+  width: 0.75rem;
+  height: 0.75rem;
+  background: var(--black1);
+  left: -1.75rem;
+  top: 0.25rem;
+}
+.sellix-widget-invoice-checkout--track .track-card:before {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background: var(--black1);
+  left: calc(-1.75rem + 5px);
+  top: 10px;
+}
+.sellix-widget-invoice-checkout--track .track-card:last-child {
+  padding-bottom: 0;
+}
+.sellix-widget-invoice-checkout--track .track-card:last-child:before {
+  display: none;
+}
+.sellix-widget-invoice-checkout--track .track-card-badge {
+  background: var(--orange0);
+  padding: 0.125rem 0.5rem;
+  color: var(--orange6);
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  text-transform: capitalize;
+  margin-bottom: 0.5rem;
+  border-radius: 0.25rem;
+  max-width: fit-content;
+}
+.sellix-widget-invoice-checkout--track .track-card-time {
+  margin-top: 0.25rem;
+  color: var(--black4);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+}
+.sellix-widget-invoice-checkout--track .track-card-description {
+  color: var(--black9);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+.sellix-widget-invoice-checkout--track .track-card-description a {
+  color: var(--purple6);
+}
+
 .sellix-widget-invoice-checkout--getaway {
   border: none;
   width: calc(50% - 5px);
@@ -1823,186 +1935,76 @@
   margin-left: 0.5rem;
 }
 
-.sellix-widget-invoice-checkout--track {
-  max-width: 1024px;
-  min-height: auto;
+button.secondary .lds-ellipsis div {
+  background: var(--black9);
 }
-.sellix-widget-invoice-checkout--track-body {
-  padding: 1.5rem;
-  border-top: none;
-  background: var(--white);
-  border-radius: 0 0 0.5rem 0.5rem;
-}
-.sellix-widget-invoice-checkout--track-body a {
-  color: var(--purple6) !important;
-}
-.sellix-widget-invoice-checkout--track .no-track {
-  color: var(--black9);
-  font-size: 1.5rem;
-  padding: 1.5rem;
+
+.lds-ellipsis {
   display: flex;
+  position: relative;
+  width: 50px;
+  height: 30px;
   align-items: center;
   justify-content: center;
 }
-.sellix-widget-invoice-checkout--track .track-cards {
-  flex: 1;
+.lds-ellipsis.black > div {
+  background: var(--black9);
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
-.sellix-widget-invoice-checkout--track .track {
-  border-radius: 25px;
-  width: 100%;
-  position: relative;
-  height: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 0;
-  margin: 0 auto;
-  flex-direction: row;
+.lds-ellipsis.purple > div {
+  background: var(--black9);
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
-.sellix-widget-invoice-checkout--track .track-line {
-  margin-right: 1.5rem;
-}
-.sellix-widget-invoice-checkout--track .track-container {
-  z-index: 2;
-  position: relative;
-  font-size: 0.7rem;
-  width: 100%;
-}
-.sellix-widget-invoice-checkout--track .track-card {
-  position: relative;
-  transition: all 0.3s ease 0.2s;
-  display: flex;
-  flex-direction: column;
-  z-index: 6;
-  padding-bottom: 1.25rem;
-  text-align: left;
-  width: 100%;
-  cursor: pointer;
-}
-.sellix-widget-invoice-checkout--track .track-card:after {
-  content: "";
+.lds-ellipsis > div {
   position: absolute;
-  border-radius: 100%;
-  width: 0.75rem;
-  height: 0.75rem;
-  background: var(--black1);
-  left: -1.75rem;
-  top: 0.25rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--white);
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
-.sellix-widget-invoice-checkout--track .track-card:before {
-  content: "";
-  position: absolute;
-  width: 2px;
-  height: 100%;
-  background: var(--black1);
-  left: calc(-1.75rem + 5px);
-  top: 10px;
+.lds-ellipsis > div:nth-child(1) {
+  left: 5px;
+  animation: lds-ellipsis1 0.6s infinite;
 }
-.sellix-widget-invoice-checkout--track .track-card:last-child {
-  padding-bottom: 0;
+.lds-ellipsis > div:nth-child(2) {
+  left: 5px;
+  animation: lds-ellipsis2 0.6s infinite;
 }
-.sellix-widget-invoice-checkout--track .track-card:last-child:before {
-  display: none;
+.lds-ellipsis > div:nth-child(3) {
+  left: 20px;
+  animation: lds-ellipsis2 0.6s infinite;
 }
-.sellix-widget-invoice-checkout--track .track-card-badge {
-  background: var(--orange0);
-  padding: 0.125rem 0.5rem;
-  color: var(--orange6);
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 15px;
-  text-transform: capitalize;
-  margin-bottom: 0.5rem;
-  border-radius: 0.25rem;
-  max-width: fit-content;
-}
-.sellix-widget-invoice-checkout--track .track-card-time {
-  margin-top: 0.25rem;
-  color: var(--black4);
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 15px;
-}
-.sellix-widget-invoice-checkout--track .track-card-description {
-  color: var(--black9);
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-}
-.sellix-widget-invoice-checkout--track .track-card-description a {
-  color: var(--purple6);
+.lds-ellipsis > div:nth-child(4) {
+  left: 56px;
+  left: 35px;
+  animation: lds-ellipsis3 0.6s infinite;
 }
 
-.sellix-widget.alert {
-  position: relative;
-  padding: 1.5rem;
-  margin-bottom: 1rem;
-  border: 2px solid #fcab0a;
-  border-radius: 0.5rem;
-  text-align: left;
-  flex-direction: column;
-  font-size: 14px;
-  color: var(--darkFontColor);
-  line-height: 24px;
-  display: none;
-  background: rgba(252, 171, 10, 0.1607843137);
-}
-.sellix-widget.alert.red {
-  border: 2px solid #dc3545;
-  background: rgba(220, 53, 69, 0.1607843137);
-}
-.sellix-widget.alert.red svg {
-  fill: #dc3545;
-}
-.sellix-widget.alert.blue {
-  border: 2px solid lightskyblue;
-  background: rgba(135, 206, 250, 0.1607843137);
-}
-.sellix-widget.alert.blue svg {
-  fill: lightskyblue;
-}
-.sellix-widget.alert svg {
-  fill: #fcab0a;
-}
-.sellix-widget.alert a {
-  color: var(--buttonColor) !important;
-}
-.sellix-widget.alert.show {
-  display: flex;
-}
-.sellix-widget.alert.small {
-  font-size: 12px;
-  line-height: 16px;
-  padding: 0.75rem;
-  border-radius: 0.25rem;
-}
-.sellix-widget.alert.small b {
-  font-size: 0.9rem;
-  margin-bottom: 0.25rem;
-}
-.sellix-widget.alert.small b svg {
-  width: 1rem;
-}
-@media (max-width: 768px) {
-  .sellix-widget.alert {
-    padding: 1rem;
-    line-height: 1.3rem;
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
   }
 }
-.sellix-widget.alert b {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-  font-size: 18px;
-  font-weight: 500;
-  color: var(--lightFontColor);
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
 }
-.sellix-widget.alert b svg {
-  margin-right: 0.5rem;
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(15px, 0);
+  }
 }
-
 .button {
   position: relative;
   overflow: hidden;
@@ -2133,76 +2135,74 @@
   opacity: 1;
 }
 
-button.secondary .lds-ellipsis div {
-  background: var(--black9);
-}
-
-.lds-ellipsis {
-  display: flex;
+.sellix-widget.alert {
   position: relative;
-  width: 50px;
-  height: 30px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border: 2px solid #fcab0a;
+  border-radius: 0.5rem;
+  text-align: left;
+  flex-direction: column;
+  font-size: 14px;
+  color: var(--darkFontColor);
+  line-height: 24px;
+  display: none;
+  background: rgba(252, 171, 10, 0.1607843137);
+}
+.sellix-widget.alert.red {
+  border: 2px solid #dc3545;
+  background: rgba(220, 53, 69, 0.1607843137);
+}
+.sellix-widget.alert.red svg {
+  fill: #dc3545;
+}
+.sellix-widget.alert.blue {
+  border: 2px solid lightskyblue;
+  background: rgba(135, 206, 250, 0.1607843137);
+}
+.sellix-widget.alert.blue svg {
+  fill: lightskyblue;
+}
+.sellix-widget.alert svg {
+  fill: #fcab0a;
+}
+.sellix-widget.alert a {
+  color: var(--buttonColor) !important;
+}
+.sellix-widget.alert.show {
+  display: flex;
+}
+.sellix-widget.alert.small {
+  font-size: 12px;
+  line-height: 16px;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+}
+.sellix-widget.alert.small b {
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+.sellix-widget.alert.small b svg {
+  width: 1rem;
+}
+@media (max-width: 768px) {
+  .sellix-widget.alert {
+    padding: 1rem;
+    line-height: 1.3rem;
+  }
+}
+.sellix-widget.alert b {
+  display: flex;
   align-items: center;
-  justify-content: center;
+  margin-bottom: 1rem;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--lightFontColor);
 }
-.lds-ellipsis.black > div {
-  background: var(--black9);
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
-}
-.lds-ellipsis.purple > div {
-  background: var(--black9);
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
-}
-.lds-ellipsis > div {
-  position: absolute;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--white);
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
-}
-.lds-ellipsis > div:nth-child(1) {
-  left: 5px;
-  animation: lds-ellipsis1 0.6s infinite;
-}
-.lds-ellipsis > div:nth-child(2) {
-  left: 5px;
-  animation: lds-ellipsis2 0.6s infinite;
-}
-.lds-ellipsis > div:nth-child(3) {
-  left: 20px;
-  animation: lds-ellipsis2 0.6s infinite;
-}
-.lds-ellipsis > div:nth-child(4) {
-  left: 56px;
-  left: 35px;
-  animation: lds-ellipsis3 0.6s infinite;
+.sellix-widget.alert b svg {
+  margin-right: 0.5rem;
 }
 
-@keyframes lds-ellipsis1 {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-@keyframes lds-ellipsis3 {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0);
-  }
-}
-@keyframes lds-ellipsis2 {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(15px, 0);
-  }
-}
 .qr-wrapper {
   overflow: hidden;
   width: auto;
@@ -3255,113 +3255,6 @@ button.secondary .lds-ellipsis div {
   transform: translate(-50%, -50%);
 }
 
-.sellix-widget-invoice-checkout--invoice-details {
-  font-size: 14px;
-  margin-bottom: 1.25rem;
-  width: 100%;
-}
-.sellix-widget-invoice-checkout--invoice-details-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 14px;
-  font-weight: 400;
-  margin: 0.75rem 0;
-}
-.sellix-widget-invoice-checkout--invoice-details-item span:first-child {
-  color: var(--black4);
-}
-.sellix-widget-invoice-checkout--invoice-details-item span:last-child {
-  color: var(--black9);
-}
-.sellix-widget-invoice-checkout--invoice-details-blockchain {
-  width: 1rem !important;
-  height: 1rem !important;
-  position: absolute;
-  left: 1.5rem;
-  bottom: -0.25rem;
-  padding: 2px;
-  background: var(--white);
-  border-radius: 0.25rem;
-  margin-right: 0 !important;
-}
-@media (max-width: 768px) {
-  .sellix-widget-invoice-checkout--invoice-details-blockchain {
-    width: 0.85rem !important;
-    height: 0.85rem !important;
-    left: 1rem;
-    margin-right: 0 !important;
-  }
-}
-.sellix-widget-invoice-checkout--invoice-details-main {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 14px;
-  font-weight: 400;
-  margin-bottom: 1.25rem;
-}
-.sellix-widget-invoice-checkout--invoice-details-main div {
-  display: flex;
-}
-.sellix-widget-invoice-checkout--invoice-details-main div img {
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 0.25rem;
-  margin-right: 0.75rem;
-}
-.sellix-widget-invoice-checkout--invoice-details-main div > div {
-  display: flex;
-  flex-direction: column;
-}
-.sellix-widget-invoice-checkout--invoice-details-main div > div span:first-child {
-  display: flex;
-  color: var(--black9);
-  margin-bottom: 4px;
-  font-size: 14px;
-  font-weight: 500;
-}
-.sellix-widget-invoice-checkout--invoice-details-main div > div span:last-child {
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--black4);
-  white-space: nowrap;
-}
-.sellix-widget-invoice-checkout--invoice-details-main-timer {
-  background-color: var(--black1);
-  display: inline-block;
-  text-align: center;
-  padding: 0.125rem 0.35rem;
-  color: var(--black4);
-  border-radius: 6px;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 15px;
-  top: -0.75rem;
-  position: relative;
-  left: 0;
-}
-@media (max-width: 350px) {
-  .sellix-widget-invoice-checkout--invoice-details-main-timer {
-    margin-left: -1rem;
-  }
-}
-@media (max-width: 325px) {
-  .sellix-widget-invoice-checkout--invoice-details-main-timer {
-    margin-left: -2rem;
-  }
-}
-@media (max-width: 300px) {
-  .sellix-widget-invoice-checkout--invoice-details-main-timer {
-    margin-left: -3rem;
-  }
-}
-@media (max-width: 285px) {
-  .sellix-widget-invoice-checkout--invoice-details-main-timer {
-    margin-left: -4.5rem;
-  }
-}
-
 .darkTheme .moving-mouse-holder {
   background: transparent;
 }
@@ -3642,6 +3535,113 @@ button.secondary .lds-ellipsis div {
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
+}
+
+.sellix-widget-invoice-checkout--invoice-details {
+  font-size: 14px;
+  margin-bottom: 1.25rem;
+  width: 100%;
+}
+.sellix-widget-invoice-checkout--invoice-details-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0.75rem 0;
+}
+.sellix-widget-invoice-checkout--invoice-details-item span:first-child {
+  color: var(--black4);
+}
+.sellix-widget-invoice-checkout--invoice-details-item span:last-child {
+  color: var(--black9);
+}
+.sellix-widget-invoice-checkout--invoice-details-blockchain {
+  width: 1rem !important;
+  height: 1rem !important;
+  position: absolute;
+  left: 1.5rem;
+  bottom: -0.25rem;
+  padding: 2px;
+  background: var(--white);
+  border-radius: 0.25rem;
+  margin-right: 0 !important;
+}
+@media (max-width: 768px) {
+  .sellix-widget-invoice-checkout--invoice-details-blockchain {
+    width: 0.85rem !important;
+    height: 0.85rem !important;
+    left: 1rem;
+    margin-right: 0 !important;
+  }
+}
+.sellix-widget-invoice-checkout--invoice-details-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 1.25rem;
+}
+.sellix-widget-invoice-checkout--invoice-details-main div {
+  display: flex;
+}
+.sellix-widget-invoice-checkout--invoice-details-main div img {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.25rem;
+  margin-right: 0.75rem;
+}
+.sellix-widget-invoice-checkout--invoice-details-main div > div {
+  display: flex;
+  flex-direction: column;
+}
+.sellix-widget-invoice-checkout--invoice-details-main div > div span:first-child {
+  display: flex;
+  color: var(--black9);
+  margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.sellix-widget-invoice-checkout--invoice-details-main div > div span:last-child {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--black4);
+  white-space: nowrap;
+}
+.sellix-widget-invoice-checkout--invoice-details-main-timer {
+  background-color: var(--black1);
+  display: inline-block;
+  text-align: center;
+  padding: 0.125rem 0.35rem;
+  color: var(--black4);
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  top: -0.75rem;
+  position: relative;
+  left: 0;
+}
+@media (max-width: 350px) {
+  .sellix-widget-invoice-checkout--invoice-details-main-timer {
+    margin-left: -1rem;
+  }
+}
+@media (max-width: 325px) {
+  .sellix-widget-invoice-checkout--invoice-details-main-timer {
+    margin-left: -2rem;
+  }
+}
+@media (max-width: 300px) {
+  .sellix-widget-invoice-checkout--invoice-details-main-timer {
+    margin-left: -3rem;
+  }
+}
+@media (max-width: 285px) {
+  .sellix-widget-invoice-checkout--invoice-details-main-timer {
+    margin-left: -4.5rem;
+  }
 }
 
 .custom-loader {
@@ -4061,6 +4061,21 @@ button.secondary .lds-ellipsis div {
   text-overflow: ellipsis;
 }
 
+.paypal-btn.light .sk-circle-fade-dot:before {
+  background-color: var(--purple6) !important;
+}
+.paypal-btn .sk-circle-fade-dot {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.paypal-note {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.25rem;
+  color: var(--black4) !important;
+}
+
 .skrill-button {
   margin-top: 1.5rem;
   display: flex;
@@ -4071,37 +4086,6 @@ button.secondary .lds-ellipsis div {
   min-width: 100%;
   background: var(--gateway-skrill);
   border-radius: 0.5rem;
-}
-
-.perfectmoney {
-  margin-top: 1.5rem;
-  display: flex;
-  width: 100%;
-}
-.perfectmoney form {
-  width: 100%;
-  margin: 0;
-}
-.perfectmoney > form > button.medium {
-  background-color: var(--gateway-perfect-money) !important;
-  border-radius: 0.5rem;
-  color: white !important;
-  font-size: 1rem !important;
-  font-weight: 400 !important;
-  border: none !important;
-  width: 100%;
-  padding: 0;
-  align-items: center;
-  justify-content: center;
-  height: 45px !important;
-  outline: none;
-}
-.perfectmoney > form > button.medium img {
-  width: 1.5rem;
-  margin-right: 0.5rem;
-}
-.perfectmoney > form > button.medium:hover {
-  background-color: #f35c5b;
 }
 
 .dark .stripe-form > .sk-circle-fade .sk-circle-fade-dot:before {
@@ -4205,19 +4189,35 @@ button.secondary .lds-ellipsis div {
   color: var(--black4);
 }
 
-.paypal-btn.light .sk-circle-fade-dot:before {
-  background-color: var(--purple6) !important;
-}
-.paypal-btn .sk-circle-fade-dot {
-  width: 1.25rem;
-  height: 1.25rem;
-}
-
-.paypal-note {
+.perfectmoney {
+  margin-top: 1.5rem;
   display: flex;
+  width: 100%;
+}
+.perfectmoney form {
+  width: 100%;
+  margin: 0;
+}
+.perfectmoney > form > button.medium {
+  background-color: var(--gateway-perfect-money) !important;
+  border-radius: 0.5rem;
+  color: white !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  border: none !important;
+  width: 100%;
+  padding: 0;
+  align-items: center;
   justify-content: center;
-  margin-top: 0.25rem;
-  color: var(--black4) !important;
+  height: 45px !important;
+  outline: none;
+}
+.perfectmoney > form > button.medium img {
+  width: 1.5rem;
+  margin-right: 0.5rem;
+}
+.perfectmoney > form > button.medium:hover {
+  background-color: #f35c5b;
 }
 
 .sellix-widget-invoice-checkout--delivery-feedback {
