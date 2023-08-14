@@ -10,7 +10,7 @@
 {% set valueFontWeight = safe_get(properties.value_font_weight, 500) %}
 {% set valueLineHeight = safe_get(properties.value_line_height, 29) %}
 
-{% set labelContent = safe_get(properties.label_content, 'shop.shared.banner.stats.productQuality') %}
+{% set labelContent = safe_get(properties.label_content, 'Product Quality') %}
 {% set labelFontColor = safe_get(properties.label_font_color, 'light_font_color') %}
 {% set labelFontSize = safe_get(properties.label_font_size, 14) %}
 {% set labelFontWeight = safe_get(properties.label_font_weight, 500) %}
@@ -52,6 +52,6 @@
     </div>
   </div>
   <div class="{{ localClass }}__label">
-    {{ labelContent | t }}
+    {{ labelContent | t({keyPrefix: 'shop.content'}) }}
   </div>
 </div>

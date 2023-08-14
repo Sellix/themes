@@ -116,12 +116,12 @@
         <div class="{{ globalClass }}__link-crumb {{ localClass }}__link-crumb">
           {% if idx != lastItemIdx %}
             <a href="{{ crumbUrl }}">
-              <span>{{ crumbLabel | t }}</span>
+              <span>{{ crumbLabel | t({keyPrefix: 'shop.content'}) }}</span>
             </a>
             {% render_snippet 'Icons: Arrow right 2' %}
           {% else %}
             <span class="{{ globalClass }}__last-link-crumb {{ localClass }}__last-link-crumb">
-              {{ crumbLabel | t }}
+              {{ crumbLabel | t({keyPrefix: 'shop.content'}) }}
             </span>
           {% endif %}
         </div>
@@ -130,6 +130,6 @@
     {% endfor %}
   </div>
   <div class="{{ globalClass }}__title {{ localClass }}__title">
-    {{- title | t -}}
+    {{- title | t({keyPrefix: 'shop.content'}) -}}
   </div>
 </div>

@@ -11,11 +11,7 @@
 {% set url = properties.url %}
 {% set isLink = safe_get(properties.is_link, false) %}
 
-{% set sharedTranslationKey = ['shop.shared.titles', properties.label] | join('.')  %}
-{% set label = sharedTranslationKey | t %}
-{% if label == sharedTranslationKey %}
-  {% set label = properties.label | t %}
-{% endif %}
+{% set label = properties.label | t({keyPrefix: 'shop.shared.titles'}) %}
 
 {% set globalClass = 'snippet-link_button' %}
 {% set localClass = id %}
@@ -37,7 +33,9 @@
       </span>
     {% endif %}
 
-    <span>{{ label }}</span>
+    <span>
+      {{ label }}
+    </span>
 
     {% if iconSnippet and iconPosition == 'right' %}
       <span class="ml-2 d-flex">
