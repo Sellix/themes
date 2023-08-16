@@ -142,7 +142,9 @@
       {{ 'shop.shared.footer.productsTitle' | t }}
     </div>
     <div class="{{ globalClass }}__products-list">
-      {% render_block 'Product light list' %}
+      {% if 'Product light list' in settings.block_order %}
+        {% render_block 'Product light list' %}
+      {% endif %}
     </div>
   </div>
 </footer>
