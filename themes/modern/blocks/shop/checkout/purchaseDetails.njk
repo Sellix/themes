@@ -26,7 +26,13 @@
         properties=properties
       %}
     {% else %}
-      <div class="{{ globalClass }}__container {{ localClass }}__container"></div>
+      <div class="{{ globalClass }}__container {{ localClass }}__container">
+        {% if global.request.type == 'checkout' %}
+          {% render_snippet 'Checkout purchase details placeholder', properties=properties %}
+        {% else %}
+          {% render_snippet 'Product purchase details placeholder', product=product, properties=properties %}
+        {% endif %}
+      </div>
 
       <script type='application/javascript'>
         $(document).ready(function () {
