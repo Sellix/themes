@@ -175,22 +175,26 @@
         >
           {% render_snippet 'Shared: Link button',
             properties={
-            'label': 'shop.shared.titles.continueShopping' | t,
-            'url': 'javascript:void(0);',
-            'background_color': 'background_accent_light',
-            'label_color': 'light_font_color',
-            'label_font_weight': 500
-          }
+              'label': 'shop.shared.titles.continueShopping' | t,
+              'url': 'javascript:void(0);',
+              'background_color': 'background_accent_light',
+              'label_color': 'light_font_color',
+              'label_font_weight': 500
+            }
           %}
         </div>
 
-        <div class="unselectable {{ 'flex-fill' if buttonsWidth == 'full_width' }} {{ globalClass }}__checkout-button {{ localClass }}__checkout-button" data-cart-checkout-button="1">
+        <div
+          class="unselectable {{ 'flex-fill' if buttonsWidth == 'full_width' }} {{ globalClass }}__checkout-button {{ localClass }}__checkout-button"
+          data-cart-checkout-button="1"
+        >
           {% render_snippet 'Shared: Link button',
+            with_loader=1,
             properties={
-            'label': properties.checkout_button_label | t,
-            'url': 'javascript:void(0);',
-            'icon_snippet': 'Icons: Arrow right 1'
-          }
+              'label': properties.checkout_button_label | t,
+              'url': 'javascript:void(0);',
+              'icon_snippet': 'Icons: Arrow right 1'
+            }
           %}
         </div>
       </div>

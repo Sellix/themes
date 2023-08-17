@@ -1,4 +1,4 @@
-{% set id = uid() %}
+{% set id = args.id or uid() %}
 {% set properties = args.properties %}
 
 {% set iconSnippet = safe_get(properties.icon_snippet, '') %}
@@ -10,37 +10,53 @@
 {% set labelFontWeight = safe_get(properties.label_font_weight, '') %}
 {% set url = properties.url %}
 {% set isLink = safe_get(properties.is_link, false) %}
+{% set withLoader = safe_get(args.with_loader, false) %}
 
 {% set label = properties.label | t({keyPrefix: 'shop.shared.titles'}) %}
 
-{% set globalClass = 'snippet-link_button' %}
+{% set globalClass = 'snippet-link-button' %}
 {% set localClass = id %}
 
 <style>
-  .{{ globalClass }}.{{ localClass }} .button {
+  .{{ localClass }} .button {
     color: {{ labelColor }};
     background-color: {{ bgColor }};
     font-size: {{ labelFontSize }};
     font-weight: {{ labelFontWeight }};
   }
+  .{{ localClass }} .link-button-label {
+    display: flex;
+  }
 </style>
 
 <div class="{{ globalClass }} {{ localClass }}">
-  <a href="{{ url }}" class="button {{ 'button-link' if isLink }}">
-    {% if iconSnippet and iconPosition == 'left' %}
-      <span class="mr-2 d-flex">
-        {% render_snippet iconSnippet %}
-      </span>
-    {% endif %}
+  <a id="{{ id }}" href="{{ url }}" class="button {{ 'button-link' if isLink }}">
+    <div class="link-button-loader d-none">
+      {% render_snippet
+        'Shared: Loader',
+        properties={
+          background_color: bgColor or 'button_color',
+          color: labelColor or 'button_text_color'
+        }
+      %}
+    </div>
 
-    <span>
-      {{ label }}
-    </span>
+    <div class="link-button-label">
+      {% if iconSnippet and iconPosition == 'left' %}
+        <span class="mr-2 d-flex">
+          {% render_snippet iconSnippet %}
+        </span>
+      {% endif %}
 
-    {% if iconSnippet and iconPosition == 'right' %}
-      <span class="ml-2 d-flex">
-        {% render_snippet iconSnippet %}
+      <span>
+        {{ label }}
       </span>
-    {% endif %}
+
+      {% if iconSnippet and iconPosition == 'right' %}
+        <span class="ml-2 d-flex">
+          {% render_snippet iconSnippet %}
+        </span>
+      {% endif %}
+    </div>
   </a>
 </div>

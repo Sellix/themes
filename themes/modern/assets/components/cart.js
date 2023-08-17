@@ -9,13 +9,14 @@
       this.$cartLength = this.$cart.find('[data-cart-icon] [data-cart-length]');
       this.$cartDropdown = this.$cart.find('[data-cart-dropdown]');
       this.$cartBody = this.$cart.find('[data-cart-dropdown-body]');
+      this.$checkoutButton = this.$cart.find('[data-cart-checkout-button]');
 
       this.itemTemplate = jQuery.templates(cartItemTemplateSelector);
 
       this.isOpened = false;
 
       this.$cart.find('[data-cart-icon]').on('click', this.open.bind(this));
-      this.$cart.find('[data-cart-checkout-button]').on('click', this.checkout.bind(this));
+      this.$checkoutButton.on('click', this.checkout.bind(this));
       this.$cart.find('[data-cart-clear-button]').on('click', this.clear.bind(this));
       this.$cart.find('[data-close-icon]').on('click', this.close.bind(this));
       sellixHelper.onClickOutside(this.$cartDropdown.get(0), this.close.bind(this));
@@ -110,22 +111,10 @@
     }
 
     checkout() {
-      const products = this.cart
-        .getItems()
-        .map(({ uniqid, quantity, customerPrice }) => ({ uniqid, quantity, customerPrice }));
-      sellixApi
-        .updateCart(products)
-        .then(() => {
-          window.location.href = `checkout${window.location.search}`;
-        })
-        .catch((resp) => {
-          console.log(resp);
-          const respJson = resp.responseJSON || {};
-          jQuery(document).trigger('SellixToastify', {
-            type: 'error',
-            text: respJson.message || 'Internal server error',
-          });
-        });
+      this.$checkoutButton.find('.link-button-label').addClass('d-none');
+      this.$checkoutButton.find('.link-button-loader').removeClass('d-none');
+
+      window.location.href = `checkout${window.location.search}`;
     }
 
     render({ action, productId } = { action: 'insert' }) {
