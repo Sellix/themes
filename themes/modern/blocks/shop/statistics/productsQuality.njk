@@ -16,7 +16,7 @@
 {% set labelFontWeight = safe_get(properties.label_font_weight, 500) %}
 {% set labelLineHeight = safe_get(properties.label_line_height, 20) %}
 
-{% set localClass = ['shop-statistics-', id, '__product_quality'] | join %}
+{% set localClass = id %}
 
 <style>
   .{{ localClass }} {
@@ -42,7 +42,14 @@
 
 <div class="{{ localClass }}">
   <div class="{{ localClass }}__value">
-    {% render_snippet 'Shared: Rating star', rating=average_score, iconsCount=1 %}
+    {% render_snippet
+      'Shared: Rating star',
+      rating=average_score,
+      iconsCount=1,
+      icon_name='pointed',
+      size=valueFontSize,
+      color=valueFontColor | get_color
+    %}
     <div>
       {% if average_score | float >= 4.95 %}
         5
