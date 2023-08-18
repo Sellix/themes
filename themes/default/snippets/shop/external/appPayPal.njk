@@ -1,10 +1,16 @@
 {% if global.paypal.merchantId %}
   {% set invoice = global.common.invoiceInfo.invoice %}
   {% set product = global.common.productInfo.product %}
+  {% set pay = global.common.payLinkInfo.payment_link %}
 
-  {% set currency = invoice.currency or product.currency %}
+  {% set currency = invoice.currency or product.currency or pay.currency %}
   {% set type = invoice.type or ('PRODUCT_SUBSCRIPTION' if product.type === 'SUBSCRIPTION' else product.type) %}
-
+  {% for key, value in paymentInfo %}
+    <script type="application/javascript">
+      console.log('{{ key | dump | safe }}')
+      console.log('{{ value | dump | safe }}')
+    </script>
+  {% endfor %}
   <script type='application/javascript'>
     $(document).ready(function() {
       if (!window.paypal) {
@@ -16,6 +22,7 @@
         const script = document.createElement('script');
         script.src = `https://www.paypal.com/sdk/js?client-id=${client}&merchant-id=${merchantId}&components=buttons,funding-eligibility&currency=${currency}&commit=true&vault=${vault}`;
         script.async = true;
+        script.id = 'paypal-sdk';
         document.body.appendChild(script);
       }
     });
