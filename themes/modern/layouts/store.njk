@@ -132,6 +132,9 @@
     {% if global.request.type in ['invoice'] %}
       <link rel="stylesheet" href="{{ 'widget-invoice-checkout.css' | asset_url(rtl) }}" />
     {% endif %}
+    {% if global.request.type in ['pay'] %}
+      <link rel="stylesheet" href="{{ 'widget-pay-link.css' | asset_url(rtl) }}" />
+    {% endif %}
     <link rel="stylesheet" href="{{ 'magnific-popup.1.1.0.css' | asset_url(rtl) }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
@@ -197,8 +200,12 @@
   {% if global.request.type in ['checkout', 'product', 'subscription'] %}
     <script src="{{ 'widget-purchase-details.js' | asset_url }}"></script>
   {% endif %}
+
   {% if global.request.type in ['invoice'] %}
     <script src="{{ 'widget-invoice-checkout.js' | asset_url }}"></script>
+  {% endif %}
+  {% if global.request.type in ['pay'] %}
+    <script src="{{ 'widget-pay-link.js' | asset_url }}"></script>
   {% endif %}
 
   {# Other packages #}
@@ -220,6 +227,7 @@
   <script src="{{ 'sellix-feedback-pagination.js' | asset_url }}"></script>
   <script src="{{ 'sellix-feedback-pagination-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-invoice-checkout-component.js' | asset_url }}"></script>
+  <script src="{{ 'sellix-pay-link-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-addons-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-bundle-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-count-component.js' | asset_url }}"></script>

@@ -2659,6 +2659,44 @@
         }
       }
     },
+    "Pay/Pay": {
+      "name": "Pay/Pay",
+      "path": "templates/shop/pay.njk",
+      "template_type": "PAY",
+      "layout_name": "Invoice",
+      "is_default": 0,
+      "settings": {
+        "class": "template-invoice",
+        "section_order": [
+          "Container: Simple"
+        ],
+        "sections": {
+          "Container: Simple": {
+            "name": "Container: Simple",
+            "settings": {
+              "visible": true,
+              "block_order": ["Pay Link"],
+              "blocks": {
+                "Pay Link" : {
+                  "name": "Pay Link",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                    }
+                  }
+                }
+              },
+              "properties": {
+                "fullwidth": true,
+                "margin_bottom_desktop": 0,
+                "margin_bottom_tablet": 0,
+                "margin_bottom_mobile": 0
+              }
+            }
+          }
+        }
+      }
+    },
     "Delivery/Delivery": {
       "name": "Delivery/Delivery",
       "path": "templates/shop/delivery.njk",
@@ -6418,6 +6456,14 @@
         "schema": []
       }
     },
+    "Pay Link": {
+      "name": "Pay Link",
+      "path": "blocks/shop/pay/payLink.njk",
+      "settings": {
+        "class": "block-invoice-checkout",
+        "schema": []
+      }
+    },
     "Checkout products": {
       "name": "Checkout products",
       "path": "blocks/shop/checkout/checkoutProducts.njk",
@@ -9571,6 +9617,10 @@
       "name": "Alert",
       "path": "snippets/shared/alert.njk"
     },
+    "Pay Link" : {
+      "name": "Pay Link",
+      "path": "snippets/shop/pay/payLink.njk"
+    },
     "Cart icon": {
       "name": "Cart icon",
       "path": "snippets/shared/icons/cartIcon.njk"
@@ -9938,6 +9988,10 @@
       "name": "sellix-invoice-checkout-component.js",
       "path": "assets/components/invoice-checkout.js"
     },
+    "sellix-pay-link-component.js": {
+      "name": "sellix-pay-link-component.js",
+      "path": "assets/components/pay-link.js"
+    },
     "widget-invoice-checkout.js": {
       "name": "widget-invoice-checkout.js",
       "path": "assets/packages/widgets/invoice-checkout/invoice-checkout.js"
@@ -9945,6 +9999,14 @@
     "widget-invoice-checkout.css": {
       "name": "widget-invoice-checkout.css",
       "path": "assets/packages/widgets/invoice-checkout/invoice-checkout.css"
+    },
+    "widget-pay-link.js": {
+      "name": "widget-pay-link.js",
+      "path": "assets/packages/widgets/pay-link/pay-link.js"
+    },
+    "widget-pay-link.css": {
+      "name": "widget-pay-link.css",
+      "path": "assets/packages/widgets/pay-link/pay-link.css"
     },
     "react-simple-star-rating.js": {
       "name": "react-simple-star-rating.js",

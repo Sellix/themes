@@ -130,6 +130,9 @@
   {% if global.request.type in ['invoice'] %}
     <link rel="stylesheet" href="{{ 'widget-invoice-checkout.css' | asset_url }}" />
   {% endif %}
+  {% if global.request.type in ['pay'] %}
+    <link rel="stylesheet" href="{{ 'widget-pay-link.css' | asset_url(rtl) }}" />
+  {% endif %}
   <link rel="stylesheet" href="{{ 'magnific-popup.1.1.0.css' | asset_url }}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
@@ -150,7 +153,7 @@
   </div>
 
   <div id="modal"></div>
-  {% render_snippet 'Mobile sidebar menu', menu='Main Menu' %}
+{#  {% render_snippet 'Mobile sidebar menu', menu='Main Menu' %}#}
 
   <script>
     window.__RENDER_CONTEXT__ = {{ global | dump | safe | replace('<', '\u003c') }};
@@ -158,10 +161,10 @@
     window.RECAPTCHA_PUBLIC_KEY_V2 = window.__RENDER_CONTEXT__.config.RECAPTCHA;
   </script>
 
-  {% render_snippet 'Page loader' %}
-  {# {% render_snippet 'Social Links' %} #}
-  {% render_snippet 'Toastify' %}
-  {% render_snippet 'Heart beat' %}
+  {#  {% render_snippet 'Page loader' %}#}
+  {#  {% render_snippet 'Social Links' %} #}
+  {#  {% render_snippet 'Toastify' %}#}
+  {#  {% render_snippet 'Heart beat' %}#}
   {% render_snippet 'App crisp chat' %}
   {% render_snippet 'App helpspace' %}
 
@@ -197,8 +200,13 @@
   {% if global.request.type in ['checkout', 'product', 'subscription'] %}
     <script src="{{ 'widget-purchase-details.js' | asset_url }}"></script>
   {% endif %}
+
   {% if global.request.type in ['invoice'] %}
     <script src="{{ 'widget-invoice-checkout.js' | asset_url }}"></script>
+  {% endif %}
+
+  {% if global.request.type in ['pay'] %}
+    <script src="{{ 'widget-pay-link.js' | asset_url }}"></script>
   {% endif %}
 
   {# Other packages #}
@@ -208,23 +216,26 @@
   <script src="{{ 'sellix-context.js' | asset_url }}"></script>
   <script src="{{ 'sellix-helper.js' | asset_url }}"></script>
 
-  <script src="{{ 'sellix-cart-store.js' | asset_url }}"></script>
+{#  <script src="{{ 'sellix-cart-store.js' | asset_url }}"></script>#}
   <script src="{{ 'sellix-product-addons-store.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-variants-store.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-cart-component.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-cart-product-component.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-contact-form-component.js' | asset_url }}"></script>
+{#  <script src="{{ 'sellix-cart-component.js' | asset_url }}"></script>#}
+{#  <script src="{{ 'sellix-cart-product-component.js' | asset_url }}"></script>#}
+{#  <script src="{{ 'sellix-contact-form-component.js' | asset_url }}"></script>#}
   <script src="{{ 'sellix-checkout-product.js' | asset_url }}"></script>
   <script src="{{ 'sellix-checkout-products.js' | asset_url }}"></script>
   <script src="{{ 'sellix-faq-component.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-feedback-pagination.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-feedback-pagination-component.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-invoice-checkout-component.js' | asset_url }}"></script>
+{#  <script src="{{ 'sellix-feedback-pagination.js' | asset_url }}"></script>#}
+{#  <script src="{{ 'sellix-feedback-pagination-component.js' | asset_url }}"></script>#}
+{#  <script src="{{ 'sellix-invoice-checkout-component.js' | asset_url }}"></script>#}
+{#  <script src="{{ 'sellix-invoice-checkout' | asset_url }}"></script>#}
+
   <script src="{{ 'sellix-product-addons-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-bundle-component.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-product-count-component.js' | asset_url }}"></script>
+{#  <script src="{{ 'sellix-product-count-component.js' | asset_url }}"></script>#}
   <script src="{{ 'sellix-product-variants-component.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-purchase-details-component.js' | asset_url }}"></script>
+{#  <script src="{{ 'sellix-purchase-details-component.js' | asset_url }}"></script>#}
+  <script src="{{ 'sellix-pay-link-component.js' | asset_url }}"></script>
 
   {% render_snippet 'App cookie modal' %}
   {% render_snippet 'I18Next' %}

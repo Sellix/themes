@@ -67,6 +67,10 @@
     static getInvoiceInfo() {
       return this.get('common', {}).invoiceInfo || {};
     }
+
+    static getPayLinkInfo() {
+      return this.get('common', {}).payLinkInfo || {};
+    }
   }
 
   window.SellixContext = Context;

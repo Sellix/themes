@@ -139,6 +139,9 @@
   {% if global.request.type in ['invoice'] %}
     <link rel="stylesheet" href="{{ 'widget-invoice-checkout.css' | asset_url(rtl) }}" />
   {% endif %}
+  {% if global.request.type in ['pay'] %}
+    <link rel="stylesheet" href="{{ 'widget-pay-link.css' | asset_url(rtl) }}" />
+  {% endif %}
   <link rel="stylesheet" href="{{ 'magnific-popup.1.1.0.css' | asset_url(rtl) }}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
@@ -151,14 +154,10 @@
 
 <body>
   <div id="app" class="sellix-ui-container {{ 'is-dark' if global.theme.isDark }}">
-    {# {% render_section 'header', layoutId=layoutId %} #}
-
     <div class="sellix-store height-100vh">
       <div id="content" class="template">
         {% render_template 'default' %}
       </div>
-
-      {# {% render_section 'footer' %} #}
     </div>
   </div>
 
@@ -210,8 +209,12 @@
   {% if global.request.type in ['checkout', 'product', 'subscription'] %}
     <script src="{{ 'widget-purchase-details.js' | asset_url }}"></script>
   {% endif %}
+
   {% if global.request.type in ['invoice'] %}
     <script src="{{ 'widget-invoice-checkout.js' | asset_url }}"></script>
+  {% endif %}
+  {% if global.request.type in ['pay'] %}
+    <script src="{{ 'widget-pay-link.js' | asset_url }}"></script>
   {% endif %}
 
   {# Other packages #}
@@ -233,6 +236,7 @@
   <script src="{{ 'sellix-feedback-pagination.js' | asset_url }}"></script>
   <script src="{{ 'sellix-feedback-pagination-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-invoice-checkout-component.js' | asset_url }}"></script>
+  <script src="{{ 'sellix-pay-link-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-addons-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-bundle-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-count-component.js' | asset_url }}"></script>
@@ -240,7 +244,6 @@
   <script src="{{ 'sellix-purchase-details-component.js' | asset_url }}"></script>
 
   {% render_snippet 'App cookie modal' %}
-  {% render_snippet 'Card: Group modal' %}
   {% render_snippet 'I18Next' %}
 
   {% if global.request.type in ['main', 'shop', 'group', 'contact', 'terms', 'trust', 'feedbacks', 'feedback', 'category'] %}
