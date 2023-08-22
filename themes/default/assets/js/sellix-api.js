@@ -107,6 +107,14 @@
       });
     }
 
+    async getPaymentLink(id) {
+      return jQuery.ajax({
+        method: 'GET',
+        url: `${this.apiUrl}/api/shop/payment-link/${id}`,
+        contentType: 'application/json; charset=utf-8',
+      });
+    }
+
     async createInvoice(data, options) {
       let headers = {};
       if (options.token) {
@@ -126,6 +134,17 @@
         });
       };
       return this.requestWithCaptchaV3('createInvoice', onSuccess, null, options);
+    }
+
+    async getCalculation(data) {
+      return jQuery.ajax({
+        method: 'POST',
+        url: `${this.apiUrl}/api/shop/invoices/calculation`,
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        data: JSON.stringify(data),
+        headers: {},
+      });
     }
 
     async createInvoiceTrial(data) {

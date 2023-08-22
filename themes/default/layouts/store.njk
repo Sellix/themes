@@ -12,6 +12,9 @@
     {% render_snippet 'App google analytics' %}
     {% render_snippet 'Main meta' %}
 
+    {% if global.request.type in ['pay'] %}
+      <script src="{{ 'widget-pay-link.js' | asset_url }}"></script>
+    {% endif %}
     <link rel="icon" type="image/x-icon" href="{{ 'favicon.ico' | asset_url }}"/>
     <link rel="icon" href="{{ 'favicon.ico' | asset_url }}"/>
     <link rel="shortcut icon" type="image/x-icon" href="{{ 'favicon.ico' | asset_url }}">
@@ -100,7 +103,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css" />
-
+    {% if global.request.type in ['pay'] %}
+      <link rel="stylesheet" href="{{ 'widget-pay-link.css' | asset_url(rtl) }}" />
+    {% endif %}
     <script src="{{ 'jquery.js' | asset_url}}"></script>
     <script src="{{ 'quicklink.umd.js' | asset_url}}"></script>
   </head>
@@ -227,6 +232,7 @@
     <script src="{{ 'sellix-api.js' | asset_url }}"></script>
     <script src="{{ 'sellix-helper.js' | asset_url }}"></script>
     <script src="{{ 'sellix-store-code-component.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-pay-link-component.js' | asset_url }}"></script>
 
     {% render_snippet 'App cookie modal' %}
     {% render_snippet 'I18Next' %}
