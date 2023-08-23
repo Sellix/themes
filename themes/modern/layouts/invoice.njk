@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 {% set rtl = global.locales.rtl %}
+
+{# if there is only one section and "Invoice: Checkout" block than theme will skip unnecessary sources from loading #}
+{% set sectionSettings = templateSettings["sections"][templateSettings["section_order"][0]]["settings"] %}
+{% set optimizeImports =
+  templateSettings["section_order"].length == 1
+  and sectionSettings["block_order"].length == 1
+  and sectionSettings["block_order"][0] == "Invoice: Checkout"
+%}
+
 <html
   lang="{{ global.locales.language }}"
   style="background-color: var(--backgroundColor);"
@@ -89,63 +98,74 @@
   {# Template #}
   <link rel="stylesheet" href="{{ 'template-invoice.css' | asset_url(rtl) }}"/>
 
-  {# Sections #}
-  <link rel="stylesheet" href="{{ 'section-faq.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'section-footer.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'section-footer-menu.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'section-header.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'section-product-list.css' | asset_url(rtl) }}"/>
+  {% if not optimizeImports %}
+    {# Sections #}
+    <link rel="stylesheet" href="{{ 'section-faq.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'section-footer.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'section-footer-menu.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'section-header.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'section-product-list.css' | asset_url(rtl) }}"/>
 
-  {# Blocks #}
-  <link rel="stylesheet" href="{{ 'block-cart.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'block-products-filter.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'block-products-grid.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'block-product-light-list.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'block-title.css' | asset_url(rtl) }}"/>
+    {# Blocks #}
+    <link rel="stylesheet" href="{{ 'block-cart.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'block-products-filter.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'block-products-grid.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'block-product-light-list.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'block-title.css' | asset_url(rtl) }}"/>
 
-  {# Snippets #}
-  <link rel="stylesheet" href="{{ 'snippet-cart-button-1.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-cart-button-2.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-checkout-products.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-checkout-product-count.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-burger-button.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-feedback-cards.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-feedback-form.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-language-selector.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-loader.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-mobile-sidebar-menu.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-product-addons.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-product-bundles.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-product-bundle-product.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-product-cards.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-product-feedback.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-product-gallery.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-product-info.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-product-list.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-product-review-stat.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-product-shortcut.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-product-stock.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-product-variants.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-purchase-details.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-shop-message.css' | asset_url(rtl) }}"/>
-  <link rel="stylesheet" href="{{ 'snippet-social-links-floating.css' | asset_url(rtl) }}"/>
+    {# Snippets #}
+    <link rel="stylesheet" href="{{ 'snippet-cart-button-1.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-cart-button-2.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-checkout-products.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-checkout-product-count.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-burger-button.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-feedback-cards.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-feedback-form.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-language-selector.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-loader.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-mobile-sidebar-menu.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-product-addons.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-product-bundles.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-product-bundle-product.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-product-cards.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-product-feedback.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-product-gallery.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-product-info.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-product-list.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-product-review-stat.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-product-shortcut.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-product-stock.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-product-variants.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-purchase-details.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-shop-message.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-social-links-floating.css' | asset_url(rtl) }}"/>
+  {% endif %}
 
   {% set theme = global.common.shopInfo.theme %}
 
+  {% if not optimizeImports %}
   <link rel="stylesheet" href="{{ 'select2.css' | asset_url(rtl) }}"/>
+  {% endif %}
+
   {% if global.request.type in ['checkout', 'product', 'subscription'] %}
     <link rel="stylesheet" href="{{ 'widget-purchase-details.css' | asset_url(rtl) }}" />
   {% endif %}
+
   {% if global.request.type in ['invoice'] %}
     <link rel="stylesheet" href="{{ 'widget-invoice-checkout.css' | asset_url(rtl) }}" />
   {% endif %}
+
   {% if global.request.type in ['pay'] %}
     <link rel="stylesheet" href="{{ 'widget-pay-link.css' | asset_url(rtl) }}" />
   {% endif %}
-  <link rel="stylesheet" href="{{ 'magnific-popup.1.1.0.css' | asset_url(rtl) }}" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+  {% if not optimizeImports %}
+    <link rel="stylesheet" href="{{ 'magnific-popup.1.1.0.css' | asset_url(rtl) }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css" />
+  {% endif %}
+
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css" />
 
   <script src="{{ 'jquery.js' | asset_url}}"></script>
 </head>
@@ -171,7 +191,6 @@
   </script>
 
   {% render_snippet 'Page loader' %}
-  {# {% render_snippet 'Social Links' %} #}
   {% render_snippet 'Toastify' %}
   {% render_snippet 'Heart beat' %}
   {% render_snippet 'App crisp chat' %}
@@ -184,10 +203,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 
+  {% if not optimizeImports %}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrender/1.0.11/jsrender.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.waitforimages/1.5.0/jquery.waitforimages.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/textarea-autosize/0.4.2/jquery.textarea_autosize.min.js" ></script>
+  {% endif %}
 
   <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
@@ -203,9 +224,13 @@
   <script src="{{ 'file-saver.min.js' | asset_url }}"></script>
   <script src="{{ 'ripple.js' | asset_url }}"></script>
   <script src="{{ 'widget-react-simple-star-rating.js' | asset_url }}"></script>
-  <script src="{{ 'select2.js' | asset_url }}"></script>
-  <script src="{{ 'magnific-popup.1.1.0.min.js' | asset_url }}"></script>
-  <script src="{{ 'react-player.standalone.js' | asset_url }}"></script>
+
+  {% if not optimizeImports %}
+    <script src="{{ 'select2.js' | asset_url }}"></script>
+    <script src="{{ 'magnific-popup.1.1.0.min.js' | asset_url }}"></script>
+    <script src="{{ 'react-player.standalone.js' | asset_url }}"></script>
+  {% endif %}
+
   {% if global.request.type in ['checkout', 'product', 'subscription'] %}
     <script src="{{ 'widget-purchase-details.js' | asset_url }}"></script>
   {% endif %}
@@ -213,6 +238,7 @@
   {% if global.request.type in ['invoice'] %}
     <script src="{{ 'widget-invoice-checkout.js' | asset_url }}"></script>
   {% endif %}
+
   {% if global.request.type in ['pay'] %}
     <script src="{{ 'widget-pay-link.js' | asset_url }}"></script>
   {% endif %}
@@ -225,23 +251,27 @@
   <script src="{{ 'sellix-helper.js' | asset_url }}"></script>
 
   <script src="{{ 'sellix-cart-store.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-product-addons-store.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-product-variants-store.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-cart-component.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-cart-product-component.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-contact-form-component.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-checkout-product.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-checkout-products.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-faq-component.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-feedback-pagination.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-feedback-pagination-component.js' | asset_url }}"></script>
+
+  {% if not optimizeImports %}
+    <script src="{{ 'sellix-product-addons-store.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-product-variants-store.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-cart-component.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-cart-product-component.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-contact-form-component.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-checkout-product.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-checkout-products.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-faq-component.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-feedback-pagination.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-feedback-pagination-component.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-pay-link-component.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-product-addons-component.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-product-bundle-component.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-product-count-component.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-product-variants-component.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-purchase-details-component.js' | asset_url }}"></script>
+  {% endif %}
+
   <script src="{{ 'sellix-invoice-checkout-component.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-pay-link-component.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-product-addons-component.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-product-bundle-component.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-product-count-component.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-product-variants-component.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-purchase-details-component.js' | asset_url }}"></script>
 
   {% render_snippet 'App cookie modal' %}
   {% render_snippet 'I18Next' %}

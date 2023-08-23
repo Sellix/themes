@@ -76,6 +76,7 @@
     };
 
     onCreateInvoice = (data, token) => {
+      data.clear_cart = true;
       return sellixApi
         .createInvoice(data, {
           token: token,
@@ -104,24 +105,22 @@
         });
     };
 
-
     getCalculation = (data) => {
-      return sellixApi.getCalculation(data)
-        .then((response) => {
-          const { status, data } = response;
-          if (status === 200) {
-            const { invoice } = data;
-            if (invoice) {
-              const invoices = this.shopStore.get('invoices') || {};
-              invoices[invoice.uniqid] = {
-                uniqid: invoice.uniqid,
-                secret: invoice.secret,
-              };
-              this.shopStore.set('invoices', invoices);
-            }
+      return sellixApi.getCalculation(data).then((response) => {
+        const { status, data } = response;
+        if (status === 200) {
+          const { invoice } = data;
+          if (invoice) {
+            const invoices = this.shopStore.get('invoices') || {};
+            invoices[invoice.uniqid] = {
+              uniqid: invoice.uniqid,
+              secret: invoice.secret,
+            };
+            this.shopStore.set('invoices', invoices);
           }
-          return response;
-        });
+        }
+        return response;
+      });
     };
 
     onCustomerAuthEmail = (data) => {
@@ -219,9 +218,8 @@
         case 'invoice-trial':
           break;
         case 'invoice':
-          this.cart.clear().then(() => {
-            window.location.href = `invoice/${invoice.uniqid}`;
-          });
+          this.cart.clear(false);
+          window.location.href = `invoice/${invoice.uniqid}`;
           break;
       }
     };

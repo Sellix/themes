@@ -165,9 +165,11 @@
       }
     }
 
-    clear() {
+    clear(updateBackend = true) {
       this.state = [];
-      return this.updateBackend().then(() => this.triggerEvents([{ action: 'delete' }]));
+      if (updateBackend) {
+        this.updateBackend().then(() => this.triggerEvents([{ action: 'delete' }]));
+      }
     }
 
     updateBackend(events) {
