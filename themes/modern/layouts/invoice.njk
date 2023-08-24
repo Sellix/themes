@@ -182,7 +182,10 @@
   </div>
 
   <div id="modal"></div>
+
+  {% if not optimizeImports %}
   {% render_snippet 'Mobile sidebar menu', menu='Main Menu' %}
+  {% endif %}
 
   <script>
     window.__RENDER_CONTEXT__ = {{ global | dump | safe | replace('<', '\u003c') }};
