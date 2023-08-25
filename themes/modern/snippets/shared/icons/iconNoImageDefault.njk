@@ -1,8 +1,14 @@
 {% set is = uid() %}
 {% set isDark = safe_get(args.dark, global.theme.isDark) %}
+{% set mode = safe_get(args.mode, 'default') %}
 {% if isDark %}
-  {% set color1 = '#262A30' %}
-  {% set color2 = '#555D67' %}
+  {% if mode == 'default' %}
+    {% set color1 = '#262A30' %}
+    {% set color2 = '#555D67' %}
+  {% elif mode == 'dark1' %}
+    {% set color1 = 'var(--white)' %}
+    {% set color2 = '#555D67' %}
+  {% endif %}
 {% else %}
   {% set color1 = 'white' %}
   {% set color2 = 'white' %}

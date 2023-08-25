@@ -1,11 +1,10 @@
 {% set id = uid() %}
 {% set product = args.product %}
-{% set dark = args.dark %}
 {% set type = product.type or 'UNDEFINED' %}
 {% set isLicense = product.licensing_enabled %}
 
 {% if product.isGroup %}
-  {% render_snippet 'Icons: No image Group', dark=dark %}
+  {% render_snippet 'Icons: No image Group' %}
 {% elif isLicense %}
   {% render_snippet 'Icons: No image License' %}
 {% elif type == 'FILE' %}

@@ -81,7 +81,7 @@
     margin-bottom: 0;
   }
   .{{ localClass }}__image.image-placeholder {
-    /*background-color: var(--black1);*/
+    background-color: var(--black1);
   }
   .{{ localClass }}__image.image-placeholder svg {
     transform: scale(.5);
@@ -103,7 +103,7 @@
     {% if (count > 1 and atLeastOneHasImages) %}
       <div class="{{ globalClass }}__image {{ localClass}}__image {{'image-placeholder' if isPlaceholder else ''}} {{ placeholderType }}">
         {% if isPlaceholder %}
-          {% render_snippet 'Product: Placeholder icon', product=product, dark=(true if placeholderType == 'dark' else undefined) %}
+          {% render_snippet 'Product: Placeholder icon', product=product, dark=(true if placeholderType == 'dark' else undefined), mode='dark1' %}
         {% else %}
           <img src="{{image}}" alt="{{product.title}}" loading="lazy" />
         {% endif %}
