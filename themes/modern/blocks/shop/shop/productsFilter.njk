@@ -5,6 +5,9 @@
 {% set inputsProps = themeProperties.inputs %}
 
 {% set filterName = properties.filter_name %}
+{% set showSearchFilter = properties.show_search_filter %}
+{% set showCategoriesFilter = properties.show_categories_filter %}
+{% set showSortFilter = properties.show_sort_filter %}
 
 {% set localClass = id %}
 
@@ -79,7 +82,7 @@
 </style>
 
 <div class="{{ globalClass }}__container {{ localClass }}__container">
-  {% if shop.search_enabled %}
+  {% if showSearchFilter and shop.search_enabled %}
     <label for="shop-search-{{id}}" class="{{ globalClass }}__item {{ globalClass }}__search {{ localClass }}__search">
       <svg class="shop-search-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M7.80469 13.2C10.7042 13.2 13.0547 10.8494 13.0547 7.94995C13.0547 5.05046 10.7042 2.69995 7.80469 2.69995C4.90519 2.69995 2.55469 5.05046 2.55469 7.94995C2.55469 10.8494 4.90519 13.2 7.80469 13.2Z" stroke="#555D67" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -94,30 +97,36 @@
     </label>
   {% endif %}
 
-  {% if categories | length %}
-    <div id="category-select-{{id}}" class="sellix-dropdown {{ globalClass }}__item {{ globalClass }}__categories-dropdown {{ localClass }}__categories-dropdown d-none">
-      <select id="category-select" class="category-select"></select>
-    </div>
-  {% endif %}
+  {% if (showCategoriesFilter and categories | length) or (showSortFilter and shop.sort_enabled) %}
+    <div class="{{ globalClass }}__filters-group {{ localClass}}__filters-group d-none">
 
-  {% if shop.sort_enabled %}
-    <div id="sort-select-{{id}}" class="sellix-dropdown {{ globalClass }}__item {{ globalClass }}__sort-dropdown {{ globalClass }}__local-dropdown d-none">
-      <select id="sort-select" class="sort-select">
-        {% for option in [
-          {value: 'DEFAULT', title: 'shop.main.productList.filter.default'},
-          {value: 'PRICE', title: 'shop.main.productList.filter.price'},
-          {value: 'NAME', title: 'shop.main.productList.filter.name'},
-          {value: 'TYPE', title: 'shop.main.productList.filter.type'},
-          {value: 'STOCK', title: 'shop.main.productList.filter.stock'}
-        ] %}
-          <option
-            value="{{ option.value }}"
-            {{'selected' if option.value == shop.default_sort else ''}}
-          >
-            {{ option.title | t }}
-          </option>
-        {% endfor %}
-      </select>
+    {% if showCategoriesFilter and categories | length %}
+      <div id="category-select-{{id}}" class="sellix-dropdown {{ globalClass }}__item {{ globalClass }}__categories-dropdown {{ localClass }}__categories-dropdown d-none">
+        <select id="category-select" class="category-select"></select>
+      </div>
+    {% endif %}
+
+    {% if showSortFilter and shop.sort_enabled %}
+      <div id="sort-select-{{id}}" class="sellix-dropdown {{ globalClass }}__item {{ globalClass }}__sort-dropdown {{ globalClass }}__local-dropdown d-none">
+        <select id="sort-select" class="sort-select">
+          {% for option in [
+            {value: 'DEFAULT', title: 'shop.main.productList.filter.default'},
+            {value: 'PRICE', title: 'shop.main.productList.filter.price'},
+            {value: 'NAME', title: 'shop.main.productList.filter.name'},
+            {value: 'TYPE', title: 'shop.main.productList.filter.type'},
+            {value: 'STOCK', title: 'shop.main.productList.filter.stock'}
+          ] %}
+            <option
+              value="{{ option.value }}"
+              {{'selected' if option.value == shop.default_sort else ''}}
+            >
+              {{ option.title | t }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+    {% endif %}
+
     </div>
   {% endif %}
 </div>
@@ -157,6 +166,7 @@
     }
 
     $('.{{ globalClass }}__item').removeClass('d-none');
+    $('.{{ localClass}}__filters-group').removeClass('d-none');
 
     let search = '', category = 'all', sort = 'NAME';
 
@@ -199,15 +209,16 @@
       escapeMarkup: (m) => m,
     })
       .on('change', (e) => {
+        console.log('Change Category');
         category = e.target.value;
         selectedCategory = e.target.value;
         $(document).trigger('SellixProductListFilterChangeEvent', { name: '{{ filterName }}', search, category, sort });
       })
       .on('select2:open', (e) => {
-        $('#category-select-{{ id }}').find('.select2-dropdown').addClass('animated ' + 'flipIn');
+        $('#category-select-{{ id }}').find('.select2-dropdown').addClass('animated flipIn');
       })
       .on('select2:closing', (e) => {
-        $('#category-select-{{ id }}').find('.select2-dropdown').removeClass('animated ' + 'flipIn');
+        $('#category-select-{{ id }}').find('.select2-dropdown').removeClass('animated flipIn');
       });
 
     $('#sort-select').select2({
@@ -229,16 +240,18 @@
         );
       })
       .on('select2:open', (e) => {
-        $('#sort-select-{{ id }}').find('.select2-dropdown').addClass('animated ' + 'flipIn');
+        $('#sort-select-{{ id }}').find('.select2-dropdown').addClass('animated flipIn');
       })
       .on('select2:closing', (e) => {
-        $('#sort-select-{{ id }}').find('.select2-dropdown').removeClass('animated ' + 'flipIn');
+        $('#sort-select-{{ id }}').find('.select2-dropdown').removeClass('animated flipIn');
       });
 
     setTimeout(function() {
-      {% if global.request.type === 'category' %}
+      {% if ['category', 'shop'].includes(global.request.type) %}
+        console.log('Change', '{{ global.request.options.itemId }}');
         $('#category-select-{{id}}').val('{{ global.request.options.itemId }}');
         $('#category-select-{{id}}').trigger('change');
+        console.log($('#category-select-{{id}}'));
       {% endif %}
 
       {#$('#sort-select-{{id}}').val('{{ shop.default_sort }}');#}

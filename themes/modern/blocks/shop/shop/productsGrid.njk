@@ -279,8 +279,16 @@
         })
       }
 
+      const prevFilterValues = {
+        search: '',
+        category: 'all',
+        orderBy: 'DEFAULT'
+      }
+
       function filterProducts({ search, category, sort }) {
-        search = search || '';
+        search = search || prevFilterValues.search;
+
+        console.log('Filter Products', search, category, sort);
 
         let filteredItems = items;
 
