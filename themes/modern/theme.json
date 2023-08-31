@@ -2376,6 +2376,12 @@
         "content_width": 1080,
         "background_attachment": "fixed"
       },
+      "pages": {
+        "category": {
+          "name": "Category",
+          "template_type": "SHOP"
+        }
+      },
       "page_loader": {
         "enabled": true,
         "color": "#5F40E5",
@@ -5469,6 +5475,7 @@
         "class": "template-shop",
         "section_order": [
           "Breadcrumbs",
+          "Container: Simple 0",
           "Product list",
           "Container: Simple 1",
           "Multi columns 1",
@@ -5493,15 +5500,11 @@
               }
             }
           },
-          "Product list": {
-            "name": "Product list",
+          "Container: Simple 0": {
+            "name": "Container: Simple",
             "settings": {
               "visible": true,
-              "block_order": [
-                "Products category filter",
-                "Products filter",
-                "Products grid"
-              ],
+              "block_order": ["Products category filter"],
               "blocks": {
                 "Products category filter": {
                   "name": "Products category filter",
@@ -5511,13 +5514,33 @@
                       "filter_name": "shop-product-grid-filter__main"
                     }
                   }
-                },
+                }
+              },
+              "properties": {
+                "fullwidth": false,
+                "background_color": "background_accent_dark",
+                "margin_bottom_desktop": 0,
+                "margin_bottom_tablet": 0,
+                "margin_bottom_mobile": 0
+              }
+            }
+          },
+          "Product list": {
+            "name": "Product list",
+            "settings": {
+              "visible": true,
+              "block_order": [
+                "Products filter",
+                "Products grid"
+              ],
+              "blocks": {
                 "Products filter": {
                   "name": "Products filter",
                   "settings": {
                     "visible": true,
                     "properties": {
-                      "filter_name": "shop-product-grid-filter__main"
+                      "filter_name": "shop-product-grid-filter__main",
+                      "show_categories_filter": false
                     }
                   }
                 },
@@ -22352,6 +22375,10 @@
       "name": "block-products-filter.css",
       "path": "assets/css/block-products-filter.css"
     },
+    "block-products-category-filter.css": {
+      "name": "block-products-category-filter.css",
+      "path": "assets/css/block-products-category-filter.css"
+    },
     "block-products-grid.css": {
       "name": "block-products-grid.css",
       "path": "assets/css/block-products-grid.css"
@@ -22599,6 +22626,10 @@
     "sellix-product-count-component.js": {
       "name": "sellix-product-count-component.js",
       "path": "assets/components/product-count.js"
+    },
+    "sellix-product-filter-store.js": {
+      "name": "sellix-product-filter-store.js",
+      "path": "assets/js/sellix-product-filter-store.js"
     },
     "sellix-product-variants-component.js": {
       "name": "sellix-product-variants-component.js",

@@ -16,7 +16,6 @@
 {% set showSubscription = safe_get(properties.grid_show_subscription, true) %}
 {% set showViewAllButton = safe_get(properties.grid_show_view_all_button, false) %}
 
-
 {% set products = [] %}
 {% if expandGroup %}
   {% for productId, product in shopInfo.products %}
@@ -132,6 +131,11 @@
   {% set itemsPerRowDesktop = itemsPerRowDesktop if itemsPerRowDesktop < itemsCount else itemsCount %}
   {% set itemsPerRowTablet = itemsPerRowTablet if itemsPerRowTablet < itemsCount else itemsCount %}
   {% set itemsPerRowMobile = itemsPerRowMobile if itemsPerRowMobile < itemsCount else itemsCount %}
+{% endif %}
+
+{% set activeCategory = 'all' %}
+{% if ['category', 'shop'].includes(global.request.type) %}
+  {% set activeCategory = safe_get(global.request.options.itemId, 'all') %}
 {% endif %}
 
 {% set localClass = [globalClass, '-', id] | join %}
@@ -254,6 +258,16 @@
 {% if items | length > 0 %}
   <script type='application/javascript'>
     $(document).ready(function () {
+      const filterStore = new window.SellixProductFilterStore(
+        '{{ shop.name }}',
+        '{{ filterName }}',
+        {
+          search: '',
+          category: '{{ activeCategory }}',
+          sort: '{{ shop.default_sort }}'
+        },
+      );
+
       const sortByDefault = (a, b) => items.findIndex((it) => it.uniqid === a.uniqid) - items.findIndex((it) => it.uniqid === b.uniqid);
       const sortByPrice = (a, b) => (a.min_price_item ? +a.min_price_item.price_display : 9999999) - (b.min_price_item ? +b.min_price_item.price_display : 9999999);
       const sortByName = (a, b) => a.title < b.title ? -1 : a.title > b.title ? 1 : 0;
@@ -276,24 +290,16 @@
         return items.filter((item) => {
           return (item.isGroup && {{ showGroup }}) || (item.isInfo && {{ showInfo }}) ||
             (item.isProduct && {{ showProduct }}) || (item.isSubscription && {{ showSubscription }})
-        })
+        });
       }
 
-      const prevFilterValues = {
-        search: '',
-        category: 'all',
-        orderBy: 'DEFAULT'
-      }
-
-      function filterProducts({ search, category, sort }) {
-        search = search || prevFilterValues.search;
-
-        console.log('Filter Products', search, category, sort);
+      function filterProducts() {
+        const currentFilter = filterStore.get();
 
         let filteredItems = items;
 
-        if (category !== 'all') {
-          const categoryObj = categories.filter((cat) => cat.uniqid === category)?.[0];
+        if (currentFilter.category !== 'all') {
+          const categoryObj = categories.filter((cat) => cat.uniqid === currentFilter.category)?.[0];
           if (categoryObj) {
             filteredItems = [...categoryObj.products_bound, ...categoryObj.groups_bound];
           }
@@ -304,12 +310,12 @@
           if (item.isGroup) {
             if (item.products_bound && item.products_bound.length) {
               hasProduct = item.products_bound.find(
-                ({ title }) => title.toLowerCase().includes(search.toLowerCase())
+                ({ title }) => title.toLowerCase().includes(currentFilter.search.toLowerCase())
               );
             }
           }
 
-          return hasProduct || item.title.toLowerCase().includes(search.toLowerCase());
+          return hasProduct || item.title.toLowerCase().includes(currentFilter.search.toLowerCase());
         });
 
         filteredItems = filterItems(filteredItems);
@@ -328,8 +334,8 @@
           $('.{{ localClass }}__empty-container').addClass('d-none');
         }
 
-        if (sort) {
-          const sf = sortFunc[sort] ?? sortFunc.DEFAULT;
+        if (currentFilter.sort) {
+          const sf = sortFunc[currentFilter.sort] ?? sortFunc.DEFAULT;
           const sorted = $('.{{ localClass }}__cards[data-product-id]').detach().sort((a, b) => {
             const prA = itemsMap[$(a).data('product-id')];
             const prB = itemsMap[$(b).data('product-id')];
@@ -342,7 +348,7 @@
       $(document).on('SellixProductListFilterChangeEvent', (e, eventInfo) => {
         const { name } = eventInfo;
         if (name === '{{ filterName }}') {
-          filterProducts(eventInfo);
+          filterProducts();
         }
       });
     });
