@@ -87,6 +87,10 @@
       {% render_snippet 'Language selector', properties=properties %}
     </div>
 
+    <div class="{{ globalClass }}__customer-login">
+      {% render_block 'Customer login' %}
+    </div>
+
     <div class="{{ globalClass }}__cart">
       {% if themeProperties.cart.is_enabled and global.request.type !== 'invoice' %}
         {% render_block 'Cart' %}

@@ -6,12 +6,15 @@
   {% set localesList = (localesList.push(localeInfo), localesList) %}
 {% endfor %}
 
+{% set globalClass = 'snippet-language-selector' %}
+{% set localClass = id %}
+
 <style>
-  .language-selector-{{ id }} .select2-container--sellix-lng-selector .select2-selection--single {
+  .{{ localClass  }} .select2-container--sellix-lng-selector .select2-selection--single {
     background-color: {{ inputsProps.select_background | get_color }}!important;
   }
 
-  .language-selector-{{ id }} .select2-container--sellix-lng-selector .select2-selection__rendered {
+  .{{ localClass  }} .select2-container--sellix-lng-selector .select2-selection__rendered {
     color: {{ inputsProps.common_font_color | get_color }};
     font-size: {{ inputsProps.common_font_size }}px;
     font-weight: {{ inputsProps.common_font_weight }};
@@ -37,7 +40,7 @@
   }
 </style>
 
-<div class="language-selector-{{ id }} d-none position-relative">
+<div class="{{ globalClass }} {{ localClass  }} d-none position-relative">
   <select id="language-selector" class="">
     {% for localeInfo in localesList | sort(false, false, 'title') %}
       <option
@@ -96,7 +99,7 @@
     $('#language-selector').select2({
       dropdownAutoWidth: true,
       width: 'auto',
-      dropdownParent: $('.language-selector-{{ id }}'),
+      dropdownParent: $('.{{ localClass  }}'),
       minimumResultsForSearch: Infinity,
       templateSelection: (state) => optionFactory(state, true),
       templateResult: (state) => optionFactory(state),
@@ -121,12 +124,12 @@
       }
     })
     .on('select2:open', (e) => {
-        $('.language-selector-{{ id }}').find('.select2-dropdown').addClass('animated flipIn');
+        $('.{{ localClass  }}').find('.select2-dropdown').addClass('animated flipIn');
       })
     .on('select2:closing', (e) => {
-        $('.language-selector-{{ id }}').find('.select2-dropdown').removeClass('animated flipIn');
+        $('.{{ localClass  }}').find('.select2-dropdown').removeClass('animated flipIn');
     });
 
-    $('.language-selector-{{ id }}').removeClass('d-none');
+    $('.{{ localClass  }}').removeClass('d-none');
   });
 </script>

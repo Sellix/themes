@@ -1,0 +1,17 @@
+{% set id = uid() %}
+
+{% set localClass = id %}
+
+<div class="{{ globalClass }}__container {{ localClass }}__container">
+  <div class="{{ globalClass }}__icon" data-customer-login-icon="1">
+    {% render_snippet 'Icons: User' %}
+  </div>
+</div>
+
+<script type="application/javascript">
+  $(document).ready(function() {
+    new SellixCustomerLoginComponent(
+      '.{{ localClass }}__container'
+    )
+  });
+</script>
