@@ -173,6 +173,18 @@
         return null;
       }
     }
+
+    getTopDomain() {
+      let topDomain = 'local-test-sellix.com';
+
+      if (window.location.hostname.includes('sellix-staing.gg')) {
+        topDomain = 'sellix-staing.gg';
+      } else if (window.location.hostname.includes('mysellix.io')) {
+        topDomain = 'mysellix.io';
+      }
+
+      return topDomain;
+    }
   }
   window.sellixHelper = new Helper();
 })(document, window, jQuery, SellixContext, SellixStoreFactory);

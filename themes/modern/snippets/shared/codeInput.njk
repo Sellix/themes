@@ -1,0 +1,25 @@
+{% set id = uid() %}
+{% set onChange = args.on_change %}
+
+{% set globalClass = 'snippet-code-input' %}
+
+<div id="widget-react-code-input-{{id}}" class="{{ globalClass }}"></div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const domContainer = document.querySelector('#widget-react-code-input-{{id}}');
+    ReactDOM.render(
+      React.createElement(ReactCodeInput, {
+        type: 'number',
+        fields: 8,
+        onChange: (val) => {
+          {% if onChange %}
+            {{ onChange }}(val);
+          {% endif %}
+        },
+        value: '',
+      }),
+      domContainer,
+    );
+  });
+</script>

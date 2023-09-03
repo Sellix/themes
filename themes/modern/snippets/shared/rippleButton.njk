@@ -1,21 +1,35 @@
 {% set id = uid() %}
 {% set button_id = args.id if args.id else (["ripple-button-", id] | join) %}
+{% set disabled = args.disabled or false %}
 
 <button
   id='{{button_id}}'
   type="{{args.type if args.type else 'button'}}"
   style="{{args.style if args.style else ''}}"
   class="button {{args.class if args.class else ''}}"
+  {{ 'disabled' if disabled }}
 >
-  {% if args.plus %}
-    <i class="fa-solid fa-plus mr-2"></i>
-  {% endif %}
-  {% if args.icon %}
-    <div class="mr-3">
-      {% render_snippet args.icon %}
-    </div>
-  {% endif %}
-  {{args.title}}
+  <div class="ripple-button-loader d-none">
+    {% render_snippet
+      'Shared: Loader',
+      properties={
+      background_color: bgColor or 'button_color',
+      color: labelColor or 'button_text_color'
+    }
+    %}
+  </div>
+
+  <div class="ripple-button-label">
+    {% if args.plus %}
+      <i class="fa-solid fa-plus mr-2"></i>
+    {% endif %}
+    {% if args.icon %}
+      <div class="mr-3">
+        {% render_snippet args.icon %}
+      </div>
+    {% endif %}
+    {{args.title}}
+  </div>
 </button>
 
 <script type='application/javascript'>

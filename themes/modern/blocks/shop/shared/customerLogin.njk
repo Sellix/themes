@@ -3,15 +3,85 @@
 {% set localClass = id %}
 
 <div class="{{ globalClass }}__container {{ localClass }}__container">
-  <div class="{{ globalClass }}__icon" data-customer-login-icon="1">
+  <div class="{{ globalClass }}__icon" data-icon="1">
     {% render_snippet 'Icons: User' %}
+  </div>
+
+  <div class="{{ globalClass }}__dropdown" data-dropdown="1">
+    <div class="{{ globalClass }}__dropdown-item" data-goto-dashboard="1">
+      {% render_snippet 'Icons: Dashboard' %}
+      <span>{{ 'Go to Dashboard' | t({keyPrefix: 'shop.content'}) }}</span>
+    </div>
+
+    <div class="{{ globalClass }}__dropdown-item" data-logout="1">
+      {% render_snippet 'Icons: Logout' %}
+      <span>{{ 'Logout' | t({keyPrefix: 'shop.content'}) }}</span>
+    </div>
+  </div>
+
+  <div class="sellix-modal sellix-ui-container {{ globalClass }}__modal {{ 'is-dark' if global.theme.isDark }}" style="display: none" data-modal="1">
+    <div class="{{ globalClass }}__close-icon" data-modal-close-icon="1">
+      {% render_snippet 'Icons: Close' %}
+    </div>
+
+    <div class="{{ globalClass }}__modal-container" data-modal-step="1">
+      <div class="{{ globalClass }}__modal-header">
+        <div class="{{ globalClass }}__modal-title">
+          {{ 'Customer Portal' | t({keyPrefix: 'shop.content'}) }}
+        </div>
+        <div class="{{ globalClass }}__modal-subtitle">
+          {{ 'Access the customer portal dashboard to manage your affiliate balances and more.' | t({keyPrefix: 'shop.content'}) }}
+        </div>
+      </div>
+      <div class="{{ globalClass }}__modal-form">
+        <div class="{{ globalClass }}__modal-field">
+          {% render_snippet 'Shared: Text',
+            name="email",
+            label=('Email' | t({keyPrefix: 'shop.content'})),
+            placeholder=('example@gmail.com' | t({keyPrefix: 'shop.content'}))
+          %}
+        </div>
+      </div>
+
+      {% render_snippet 'Shared: Ripple button',
+        class='medium primary send-email-button',
+        title=('Continue' | t({keyPrefix: 'shop.content'})),
+        disabled=true
+      %}
+    </div>
+
+    <div class="d-none {{ globalClass }}__modal-container" data-modal-step="2">
+      <div class="{{ globalClass }}__modal-header">
+        <div class="{{ globalClass }}__modal-title">
+          {{ 'Please enter 2FA code' | t({keyPrefix: 'shop.content'}) }}
+        </div>
+        <div class="{{ globalClass }}__modal-subtitle">
+          {{ 'Two-factor authentication (2FA) is enabled for your account. Please enter a code to log in.' | t({keyPrefix: 'shop.content'}) }}
+        </div>
+      </div>
+      <div class="{{ globalClass }}__modal-form">
+        <div class="{{ globalClass }}__modal-field">
+          {% render_snippet 'Shared: Code input', on_change=['onChangeCodeInput_', id] | join %}
+        </div>
+      </div>
+
+      {% render_snippet 'Shared: Ripple button',
+        class='medium primary verify-code-button',
+        title=('Verify & Login' | t({keyPrefix: 'shop.content'})),
+        disabled=true
+      %}
+    </div>
   </div>
 </div>
 
 <script type="application/javascript">
+  let component{{ id }};
+  function onChangeCodeInput_{{ id }}(val) {
+    if (component{{ id }}) {
+      component{{ id }}.onCodeChange(val);
+    }
+  }
   $(document).ready(function() {
-    new SellixCustomerLoginComponent(
-      '.{{ localClass }}__container'
-    )
+    component{{ id }} = new SellixCustomerLoginComponent('.{{ localClass }}__container');
   });
 </script>
