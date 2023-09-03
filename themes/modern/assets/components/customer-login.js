@@ -77,7 +77,7 @@
           this.$sendEmailBtn.prop('disabled', false);
 
           const respJson = resp.responseJSON || {};
-          console.log(resp, respJson);
+          console.log(resp);
           jQuery(document).trigger('SellixToastify', {
             type: 'error',
             text: respJson.message || respJson.error || 'Internal server error',
@@ -107,7 +107,7 @@
           this.$verifyCodeBtn.prop('disabled', false);
 
           const respJson = resp.responseJSON || {};
-          console.log(resp, respJson);
+          console.log(resp);
           jQuery(document).trigger('SellixToastify', {
             type: 'error',
             text: respJson.message || respJson.error || 'Internal server error',

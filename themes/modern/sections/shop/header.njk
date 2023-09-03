@@ -46,8 +46,8 @@
   }
 </style>
 
-<header class="{{ globalClass }}__header {{ localClass }}__header {{ 'full-width' if fullWidth else 'content-width' }}">
-  <div id="sellix-header-{{ layoutId }}" class="{{ globalClass }}__container {{ localClass }}__container">
+<header id="sellix-header-{{ layoutId }}" class="{{ globalClass }}__header {{ localClass }}__header {{ 'full-width' if fullWidth else 'content-width' }}">
+  <div class="{{ globalClass }}__container {{ localClass }}__container">
     <div class="{{ globalClass }}__logo">
       <div class="sidebar-toggler">
         {% render_snippet
@@ -87,15 +87,17 @@
       {% render_snippet 'Language selector', properties=properties %}
     </div>
 
-    <div class="{{ globalClass }}__customer-login">
-      {% render_block 'Customer login' %}
-    </div>
+    {% if themeProperties.customer_login.is_enabled %}
+      <div class="{{ globalClass }}__customer-login">
+        {% render_block 'Customer login' %}
+      </div>
+    {% endif %}
 
-    <div class="{{ globalClass }}__cart">
-      {% if themeProperties.cart.is_enabled and global.request.type !== 'invoice' %}
-        {% render_block 'Cart' %}
-      {% endif %}
-    </div>
+    {% if themeProperties.cart.is_enabled and global.request.type !== 'invoice' %}
+      <div class="{{ globalClass }}__cart">
+          {% render_block 'Cart' %}
+      </div>
+    {% endif %}
   </div>
 </header>
 

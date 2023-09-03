@@ -17,15 +17,26 @@
             duration: 0,
             className: `sellix-toastify {{ globalClass }}`,
             node: $(`
-              <div>
-                <div class="t-close" onClick="window._shopMessage.removeElement(window._shopMessage.toastElement)">
-                  <i class="fas fa-times"></i>
+              <div class="t-container">
+                <div class="t-icon">
+                  {% render_snippet 'Icons: Shop message' %}
                 </div>
-                <div class="t-header">Message from {{ global.common.shopInfo.shop.name }}</div>
-                <div class="t-content">${msg}</div>
+
+                <div class="t-content">
+                  <div class="t-title">
+                    {{ 'Message from {{ name }}' | t({keyPrefix: 'shop.content', name: global.common.shopInfo.shop.name })}}
+                  </div>
+                  <div class="t-message">
+                    ${msg}
+                  </div>
+                </div>
+
+                <div class="t-close" onClick="window._shopMessage.removeElement(window._shopMessage.toastElement)">
+                  {% render_snippet 'Icons: Close 2' %}
+                </div>
               </div>
             `)[0],
-            gravity: "top",
+            gravity: "bottom",
             position: "right",
             callback() {
               localStorage.setItem(hash, 'true');

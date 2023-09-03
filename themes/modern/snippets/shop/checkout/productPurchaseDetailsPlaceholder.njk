@@ -73,7 +73,7 @@
         <div class="sellix-product-footer">
           <div class="sellix-product-footer--cart-buttons">
             <button type="button" class="button medium primary">
-              {% if isSubscription or isLicense  %}
+              {% if not themeProperties.cart.is_enabled or isSubscription or isLicense  %}
                 {{ 'Continue' | t({keyPrefix: 'widgets.PurchaseDetails'}) }}
               {% else %}
                 {{ 'Add to Cart' | t({keyPrefix: 'widgets.PurchaseDetails'}) }}
