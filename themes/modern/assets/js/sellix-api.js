@@ -105,14 +105,6 @@
       });
     }
 
-    async getPaymentLink(id) {
-      return jQuery.ajax({
-        method: 'GET',
-        url: `${this.apiUrl}/api/shop/payment-link/${id}`,
-        contentType: 'application/json; charset=utf-8',
-      });
-    }
-
     async createInvoice(data, options) {
       let headers = {};
       if (options.token) {
