@@ -1,13 +1,17 @@
 {% set id = uid() %}
 {% set onChange = args.on_change %}
+{% set renderCallback = args.render_callback or (['render_', id] | join) %}
 
 {% set globalClass = 'snippet-code-input' %}
+{% set localClass = id %}
 
-<div id="widget-react-code-input-{{id}}" class="{{ globalClass }}"></div>
+<div id="widget-react-code-input-{{id}}" class="{{ globalClass }} {{ localClass }}"></div>
 
 <script type='application/javascript'>
-  $(document).ready(function () {
-    const domContainer = document.querySelector('#widget-react-code-input-{{id}}');
+  const domContainer_{{ id }} = document.querySelector('.{{ localClass }} .code-input');
+
+  function {{ renderCallback }}(val) {
+    const container = $('<div></div>');
     ReactDOM.render(
       React.createElement(ReactCodeInput, {
         type: 'number',
@@ -17,9 +21,15 @@
             {{ onChange }}(val);
           {% endif %}
         },
-        value: '',
+        value: val,
       }),
-      domContainer,
+      container.get(0),
     );
+
+    $('.{{ localClass }}').html(container);
+  }
+
+  $(document).ready(function () {
+    {{ renderCallback }}('');
   });
 </script>

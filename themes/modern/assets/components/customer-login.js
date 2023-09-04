@@ -1,7 +1,8 @@
 (function (document, window, jQuery, Cookies, sellixApi, sellixHelper) {
   class CustomerLoginComponent {
-    constructor(selector) {
+    constructor(selector, renderCodeInputCallback) {
       this.selector = selector;
+      this.renderCodeInputCallback = renderCodeInputCallback;
       this.$container = jQuery(selector);
       this.$loginBtn = this.$container.find('[data-icon]');
       this.$logoutBtn = this.$container.find('[data-logout]');
@@ -71,6 +72,7 @@
             this.$verifyCodeBtn.find('.ripple-button-label').removeClass('d-none');
             this.$verifyCodeBtn.find('.ripple-button-loader').addClass('d-none');
             this.onCodeChange('');
+            this.renderCodeInputCallback('');
             this._gotoStep(2);
           } else {
             throw { responseJSON: resp };

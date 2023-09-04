@@ -1,5 +1,8 @@
 {% set id = uid() %}
 
+{% set onChangeCodeInput = ['onChangeCodeInput_', id] | join %}
+{% set renderCodeInputCallback = ['renderCallback_', id] | join %}
+
 {% set localClass = id %}
 
 <div class="{{ globalClass }}__container {{ localClass }}__container">
@@ -61,7 +64,10 @@
       </div>
       <div class="{{ globalClass }}__modal-form">
         <div class="{{ globalClass }}__modal-field">
-          {% render_snippet 'Shared: Code input', on_change=['onChangeCodeInput_', id] | join %}
+          {% render_snippet
+            'Shared: Code input',
+            on_change=onChangeCodeInput,
+            render_callback=renderCodeInputCallback %}
         </div>
       </div>
 
@@ -76,12 +82,13 @@
 
 <script type="application/javascript">
   let component{{ id }};
-  function onChangeCodeInput_{{ id }}(val) {
+  function {{ onChangeCodeInput }}(val) {
     if (component{{ id }}) {
       component{{ id }}.onCodeChange(val);
     }
   }
+
   $(document).ready(function() {
-    component{{ id }} = new SellixCustomerLoginComponent('.{{ localClass }}__container');
+    component{{ id }} = new SellixCustomerLoginComponent('.{{ localClass }}__container', {{ renderCodeInputCallback }});
   });
 </script>
