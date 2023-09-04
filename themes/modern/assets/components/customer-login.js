@@ -37,6 +37,8 @@
       } else {
         this.$inputEmail.val('');
         this.$inputEmail.trigger('keyup');
+        this.$sendEmailBtn.find('.ripple-button-label').removeClass('d-none');
+        this.$sendEmailBtn.find('.ripple-button-loader').addClass('d-none');
         this._gotoStep(1);
 
         this.$modal.modal({
@@ -66,6 +68,9 @@
         .then((resp) => {
           const { status, error } = resp;
           if (status >= 200 && status < 300) {
+            this.$verifyCodeBtn.find('.ripple-button-label').removeClass('d-none');
+            this.$verifyCodeBtn.find('.ripple-button-loader').addClass('d-none');
+            this.onCodeChange('');
             this._gotoStep(2);
           } else {
             throw { responseJSON: resp };
