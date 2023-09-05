@@ -225,7 +225,10 @@
     <script src="{{ 'select2.js' | asset_url }}"></script>
     <script src="{{ 'magnific-popup.1.1.0.min.js' | asset_url }}"></script>
     <script src="{{ 'react-player.standalone.js' | asset_url }}"></script>
-    <script src="{{ 'sharer.min.js' | asset_url }}"></script>
+
+    {# <script src="{{ 'sharer.min.js' | asset_url }}"></script> #}
+    {% render_asset 'sharer.min.js', type='javascript', is_lazy=true %}
+
     {% if global.request.type in ['checkout', 'product', 'subscription'] %}
       <script src="{{ 'widget-purchase-details.js' | asset_url }}"></script>
     {% endif %}
