@@ -19,7 +19,8 @@
       this.$checkoutButton.on('click', this.checkout.bind(this));
       this.$cart.find('[data-cart-clear-button]').on('click', this.clear.bind(this));
       this.$cart.find('[data-close-icon]').on('click', this.close.bind(this));
-      sellixHelper.onClickOutside(this.$cartDropdown.get(0), this.close.bind(this));
+      this.$cartDropdown.on('click', this.close.bind(this));
+      this.$cart.find('[data-cart-container]').on('click', (event) => event.stopPropagation());
 
       jQuery(document).on('SellixOpenCheckoutModal', (event, eventInfo) => {
         this.open(event, eventInfo);
@@ -56,13 +57,13 @@
       const { showContinueShoppingButton = false } = eventInfo || {};
       this.$cart.find('[data-cart-continue-shopping-button]').toggleClass('d-none', !showContinueShoppingButton);
 
-      this.$cart.find('[data-cart-dropdown]').addClass('open');
+      this.$cartDropdown.addClass('open');
       this.isOpened = true;
     }
 
     close(event) {
       if (this.isOpened) {
-        this.$cart.find('[data-cart-dropdown]').removeClass('open');
+        this.$cartDropdown.removeClass('open');
         setTimeout(() => {
           this.isOpened = false;
           $('html').removeClass('no-scroll');
