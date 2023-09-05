@@ -52,13 +52,7 @@
             path: [renderOptions.path, ['snippet', 'Group card products'].join(':')].join(';'),
           },
           {
-            group: {
-              ...group,
-              products_bound: (group.products_bound || []).map((product) => {
-                const { description, ...rest } = product;
-                return rest;
-              }),
-            }
+            dependencies: [{'type': 'group', 'groupId': group.uniqid}]
           },
         )
         .then((resp) => {
