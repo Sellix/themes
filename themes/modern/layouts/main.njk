@@ -36,6 +36,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com/"/>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" >
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500&display=swap" rel="stylesheet">
 
     {% set font = themeProperties.typography.font %}
     {% set backgroundImage = themeProperties.page.background_image %}
@@ -74,6 +75,12 @@
 
     <style>
       {% render_snippet 'Root css variables' %}
+
+      :root {
+        --desktop-menu-height: {{ safe_get(properties.header_height_desktop, 64) }}px;
+        --tablet-menu-height: {{ safe_get(properties.header_height_tablet, 64) }}px;
+        --mobile-menu-height: {{ safe_get(properties.header_height_mobile, 64) }}px;
+      }
     </style>
 
     <link rel="stylesheet" href="{{ 'ui-elements.css' | asset_url(rtl) }}"/>
@@ -139,6 +146,9 @@
     {% set theme = global.common.shopInfo.theme %}
 
     <link rel="stylesheet" href="{{ 'select2.css' | asset_url(rtl) }}"/>
+    {% if global.request.type in ['main'] %}
+      <link rel="stylesheet" href="{{ 'template-main-landing.css' | asset_url(rtl) }}" />
+    {% endif %}
     {% if global.request.type in ['checkout', 'product', 'subscription'] %}
       <link rel="stylesheet" href="{{ 'widget-purchase-details.css' | asset_url(rtl) }}" />
     {% endif %}
@@ -161,19 +171,28 @@
 
   <body>
     <div id="app" class="sellix-ui-container {{ 'is-dark' if global.theme.isDark }}">
-      <div class="sellix-header">
-        {% render_section 'Header', layoutId=layoutId %}
-      </div>
+      {% if settings.sections['Header'].settings.visible %}
+        <div class="sellix-header">
+          {% render_section 'Header', layoutId=layoutId %}
+        </div>
+      {% endif %}
 
       <div class="sellix-store {{ 'height-100vh' if not templateProperties.footer_type not in ['fullscreen_content']  }}">
         <div id="content" class="template {{ 'height-100vh' if templateProperties.footer_type in ['fullscreen_content'] }}">
           {% render_template 'default' %}
         </div>
 
-        <div class="sellix-footer {{ 'with-border' if global.request.type in ['invoice'] }}">
-          {% render_section 'Footer menu' %}
-          {% render_section 'Footer' %}
-        </div>
+        {% if settings.sections['Footer menu'].settings.visible or settings.sections['Footer'].settings.visible %}
+          <div class="sellix-footer {{ 'with-border' if global.request.type in ['invoice'] }}">
+            {% if settings.sections['Footer menu'].settings.visible %}
+              {% render_section 'Footer menu' %}
+            {% endif %}
+
+            {% if settings.sections['Footer'].settings.visible %}
+              {% render_section 'Footer' %}
+            {% endif %}
+          </div>
+        {% endif %}
       </div>
     </div>
 

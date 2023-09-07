@@ -83,6 +83,12 @@
 
   <style>
     {% render_snippet 'Root css variables' %}
+
+    :root {
+      --desktop-menu-height: {{ safe_get(properties.header_height_desktop, 64) }}px;
+      --tablet-menu-height: {{ safe_get(properties.header_height_tablet, 64) }}px;
+      --mobile-menu-height: {{ safe_get(properties.header_height_mobile, 64) }}px;
+    }
   </style>
 
   <link rel="stylesheet" href="{{ 'ui-elements.css' | asset_url(rtl) }}"/>

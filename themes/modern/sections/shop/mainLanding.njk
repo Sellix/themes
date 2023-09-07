@@ -1,0 +1,111 @@
+{% set id = uid() %}
+
+{% set bgColor = properties.background_color %}
+{% set bgImage = properties.right_column_background_image %}
+{% set marginTopDesktop = safe_get(properties.margin_top_desktop, 0) %}
+{% set marginBottomDesktop = safe_get(properties.margin_bottom_desktop, 120) %}
+{% set paddingTopDesktop = safe_get(properties.padding_top_desktop, 0) %}
+{% set paddingBottomDesktop = safe_get(properties.padding_bottom_desktop, 0) %}
+{% set paddingHorizDesktop = safe_get(properties.padding_horiz_desktop, 0) %}
+{% set marginTopTablet = safe_get(properties.margin_top_tablet, 0) %}
+{% set marginBottomTablet = safe_get(properties.margin_bottom_tablet, 60) %}
+{% set paddingHorizTablet = safe_get(properties.padding_horiz_tablet, 0) %}
+{% set paddingTopTablet = safe_get(properties.padding_top_tablet, 0) %}
+{% set paddingBottomTablet = safe_get(properties.padding_bottom_tablet, 0) %}
+{% set marginTopMobile = safe_get(properties.margin_top_mobile, 0) %}
+{% set marginBottomMobile = safe_get(properties.margin_bottom_mobile, 60) %}
+{% set paddingHorizMobile = safe_get(properties.padding_horiz_mobile, 130) %}
+{% set paddingTopMobile = safe_get(properties.padding_top_mobile, 400) %}
+{% set paddingBottomMobile = safe_get(properties.padding_bottom_mobile, 400) %}
+
+{% set localClass = id %}
+
+<style>
+  .sellix-section.section-main-landing {
+    display: flex;
+    flex: 1;
+  }
+  .section-main-landing__container {
+    display: flex;
+    justify-content: center;
+  }
+  .section-main-landing__left {
+    width: 55%;
+    display: flex;
+    justify-content: end;
+  }
+  .{{ localClass }}__right {
+    flex: 1;
+    width: 45%;
+  }
+
+  @media (max-width: 1201px) {
+    .section-main-landing__container {
+      flex-direction: column;
+      justify-content: start;
+    }
+    .section-main-landing__left {
+      width: 100%;
+    }
+    .section-main-landing__right {
+      width: 100%;
+    }
+  }
+
+  .sellix-section.{{ globalClass}}-global-{{ id }} {
+    background-color: {{ bgColor | get_color }};
+  }
+
+  .{{ localClass }}__left-column {
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    margin-top: {{ marginTopDesktop }}px;
+    margin-bottom: {{ marginBottomDesktop }}px;
+    padding: {{ paddingTopDesktop }}px {{ paddingHorizDesktop }}px {{ paddingBottomDesktop }}px {{ paddingHorizDesktop }}px;
+  }
+
+  @media (max-width: 1201px) {
+    .{{ localClass }}__left-column {
+      padding: {{ paddingTopTablet }}px {{ paddingHorizTablet }}px {{ paddingBottomTablet }}px {{ paddingHorizTablet }}px;
+      margin-top: {{ marginTopTablet }}px;
+      margin-bottom: {{ marginBottomTablet }}px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .{{ localClass }}__left-column {
+      padding: {{ paddingTopMobile }}px {{ paddingHorizMobile }}px {{ paddingBottomMobile }}px {{ paddingHorizMobile }}px;
+      margin-top: {{ marginTopMobile }}px;
+      margin-bottom: {{ marginBottomMobile }}px;
+    }
+  }
+
+  .{{ localClass }}__right {
+    {% if bgImage %} background: url({{bgImage | asset_url}});
+      background-repeat: no-repeat, no-repeat;
+      background-position: top;
+      background-size: cover;
+    {% elif bgColor %} background: {{ bgColor | get_color }};
+    {% endif %}
+  }
+
+  @media (max-width: 1201px) {
+    .{{ localClass }}__left-column {
+      max-width: initial;
+    }
+  }
+</style>
+
+<div class="{{ globalClass }}__container {{ localClass }}__container full-width">
+  <div class="{{ globalClass }}__left {{ localClass }}__left">
+    <div class="{{ globalClass }}__left-column {{ localClass }}__left-column">
+      {% for block_name in settings.block_order %}
+        {%- render_block block_name -%}
+      {% endfor%}
+    </div>
+  </div>
+
+  <div class="{{ globalClass }}__right {{ localClass }}__right">
+  </div>
+</div>

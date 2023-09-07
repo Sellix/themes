@@ -1,0 +1,52 @@
+{% set id = uid() %}
+
+{% set localClass = id %}
+
+<style>
+  .{{ globalClass }}__container {
+    display: flex;
+    min-height: 80px;
+    flex: 1;
+    background: var(--backgroundAccentDark);
+    border-radius: 0.5rem;
+    padding: 1rem;
+  }
+  .{{ globalClass }}__item {
+    /*min-width: 130px;*/
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .{{ globalClass }}__delimiter {
+    margin: 0 1.5rem;
+    border-right: 1px solid var(--borderColor);
+  }
+
+  @media (max-width: 640px) {
+    .{{ globalClass }}__container {
+      padding: 0.75rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .{{ globalClass }}__delimiter {
+      margin: 0.75rem 0;
+      border-right: none;
+      border-bottom: 1px solid var(--borderColor);
+    }
+  }
+</style>
+
+<div class="{{ globalClass }}__container {{ localClass }}__container">
+  <div class="{{ globalClass }}__item">
+    {% render_snippet 'Shop statistics: Products quality', properties=properties %}
+  </div>
+  <div class="{{ globalClass }}__delimiter"></div>
+  <div class="{{ globalClass }}__item">
+    {% render_snippet 'Shop statistics: Products sold', properties=properties %}
+  </div>
+  <div class="{{ globalClass }}__delimiter"></div>
+  <div class="{{ globalClass }}__item">
+    {% render_snippet 'Shop statistics: Reviews count', properties=properties %}
+  </div>
+</div>
