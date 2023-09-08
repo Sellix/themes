@@ -1,4 +1,5 @@
 {% set colors = themeProperties.current_colors %}
+{% set isDark = global.theme.isDark %}
 
 :root {
     --brandColor: {{colors.brand_color}};
@@ -75,4 +76,29 @@
     --green2: #bbf7d0;
     --green1: #E3F5E9;
     --green0: #f0fdf4;
+
+{% if isDark %}
+  --black9: #FFFFFF;
+  --black8: #E8EDF0;
+  --black7: #A2AAB4;
+  --black6: #454C56;
+  --black5: #777F89;
+  --black4: #777F89;
+  --black3: #A2AAB4;
+  --black2: #262A30;
+  --black1: #262A30;
+  --black0: #0A1730;
+  --white: #192843;
+  --black: #FFFFFF
+
+  --purple0: #43248e57;
+  --purple1: #43248e57;
+
+  --red0: #381E1D;
+  --orange0: #35241E;
+
+  --green0: #143120;
+  --green1: #143120;
+  --green6: #35C068;
+{% endif %}
 }
