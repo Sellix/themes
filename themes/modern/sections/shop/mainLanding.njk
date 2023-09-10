@@ -21,48 +21,17 @@
 {% set localClass = id %}
 
 <style>
-  .sellix-section.section-main-landing {
-    display: flex;
-    flex: 1;
-  }
-  .section-main-landing__container {
-    display: flex;
-    justify-content: center;
-  }
-  .section-main-landing__left {
-    width: 55%;
-    display: flex;
-    justify-content: end;
-  }
-  .{{ localClass }}__right {
-    flex: 1;
-    width: 45%;
-  }
-
-  @media (max-width: 1201px) {
-    .section-main-landing__container {
-      flex-direction: column;
-      justify-content: start;
-    }
-    .section-main-landing__left {
-      width: 100%;
-    }
-    .section-main-landing__right {
-      width: 100%;
-    }
-  }
-
   .sellix-section.{{ globalClass}}-global-{{ id }} {
     background-color: {{ bgColor | get_color }};
   }
 
   .{{ localClass }}__left-column {
-    max-width: 720px;
+    max-width: 620px;
     display: flex;
     flex-direction: column;
     margin-top: {{ marginTopDesktop }}px;
     margin-bottom: {{ marginBottomDesktop }}px;
-    padding: {{ paddingTopDesktop }}px {{ paddingHorizDesktop }}px {{ paddingBottomDesktop }}px {{ paddingHorizDesktop }}px;
+    padding: {{ paddingTopDesktop }}px {{ paddingHorizDesktop }}px {{ paddingBottomDesktop }}px 0;
   }
 
   @media (max-width: 1201px) {
@@ -75,7 +44,7 @@
 
   @media (max-width: 640px) {
     .{{ localClass }}__left-column {
-      padding: {{ paddingTopMobile }}px {{ paddingHorizMobile }}px {{ paddingBottomMobile }}px {{ paddingHorizMobile }}px;
+      padding: {{ paddingTopMobile }}px {{ paddingHorizMobile }}px {{ paddingBottomMobile }}px {{ paddingHorizMobiles }}px;
       margin-top: {{ marginTopMobile }}px;
       margin-bottom: {{ marginBottomMobile }}px;
     }

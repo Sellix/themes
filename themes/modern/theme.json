@@ -2326,7 +2326,7 @@
         "background_hover": "#F5F7F8",
         "background_main_color": "#FFFFFF",
         "border_color": "#DFE5E9",
-        "border_color_light": "#E9EDF0",
+        "border_color_light": "#F5F7F8",
         "border_color_active": "#6A3CE2",
         "brand_color": "#6A3CE2",
         "button_color": "#121417",
@@ -2561,53 +2561,7 @@
             "settings": {
               "visible": true,
               "properties": {
-                "shadow": "0px 2px 4px -1px rgba(7, 14, 35, 0.08)",
-                "show_border": false
-              },
-              "block_order": ["Menu", "Customer login", "Cart"],
-              "blocks": {
-                "Cart": {
-                  "name": "Cart",
-                  "settings": {
-                    "visible": true,
-                    "properties": {}
-                  }
-                },
-                "Menu": {
-                  "name": "Menu",
-                  "settings": {
-                    "visible": true,
-                    "properties": {
-                    }
-                  }
-                },
-                "Customer login": {
-                  "name": "Customer login",
-                  "settings": {
-                    "visible": true,
-                    "properties": {}
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "MainLanding": {
-      "name": "MainLanding",
-      "path": "layouts/main.njk",
-      "is_default": 0,
-      "settings": {
-        "section_order": ["Header"],
-        "sections": {
-          "Header": {
-            "name": "Header",
-            "settings": {
-              "visible": true,
-              "properties": {
-                "shadow": "0px 2px 4px -1px rgba(7, 14, 35, 0.08)",
-                "show_border": false
+                "show_border": true
               },
               "block_order": ["Menu", "Customer login", "Cart"],
               "blocks": {
@@ -3279,12 +3233,11 @@
       "name": "Main/Main Page",
       "path": "templates/shop/main.njk",
       "template_type": "MAIN",
-      "is_default": 0,
+      "is_default": 1,
       "settings": {
         "class": "template-main",
         "section_order": [
-          "Multi columns 1",
-          "Shop statistics",
+          "Main: Landing",
           "Container: Simple 1",
           "Container: Simple 2",
           "Container: Simple 3",
@@ -3295,33 +3248,23 @@
           "Container: Simple 5"
         ],
         "sections": {
-          "Multi columns 1": {
-            "name": "Multi columns",
+          "Main: Landing": {
+            "name": "Main: Landing",
             "settings": {
               "visible": true,
-              "block_order": ["Column 1" ,"Column item 1", "Column item 2", "Column item 3"],
+              "block_order": ["Column item 1", "Column item 2", "Column item 3", "Shop statistics: Panel"],
               "blocks": {
-                "Column 1": {
-                  "name": "Column",
-                  "visible": true,
-                  "settings": {
-                    "visible": true,
-                    "properties": {
-                      "column_index": "1",
-                      "max_width_desktop": 640,
-                      "max_width_tablet": 480,
-                      "max_width_mobile": 343,
-                      "background_color": "transparent"
-                    }
-                  }
-                },
                 "Column item 1": {
                   "name": "Column item",
                   "settings": {
                     "visible": true,
+                    "custom_class": "font-family-tight",
                     "properties": {
                       "column_index": "1",
                       "item_type": "text",
+                      "item_content_align_desktop": "start",
+                      "item_content_align_tablet": "start",
+                      "item_content_align_mobile": "start",
                       "item_background_color": "transparent",
                       "item_margin_bottom_desktop": 24,
                       "item_margin_bottom_tablet": 24,
@@ -3331,11 +3274,11 @@
                       "text_font_size_desktop": 56,
                       "text_line_height_desktop": 72,
                       "text_font_weight_desktop": 500,
-                      "text_font_size_tablet": 28,
-                      "text_line_height_tablet": 36,
+                      "text_font_size_tablet": 32,
+                      "text_line_height_tablet": 40,
                       "text_font_weight_tablet": 500,
-                      "text_font_size_mobile": 28,
-                      "text_line_height_mobile": 36,
+                      "text_font_size_mobile": 32,
+                      "text_line_height_mobile": 40,
                       "text_font_weight_mobile": 500
                     }
                   }
@@ -3347,20 +3290,23 @@
                     "properties": {
                       "column_index": "1",
                       "item_type": "text",
+                      "item_content_align_desktop": "start",
+                      "item_content_align_tablet": "start",
+                      "item_content_align_mobile": "start",
                       "item_background_color": "transparent",
-                      "item_margin_bottom_desktop": 54,
-                      "item_margin_bottom_tablet": 54,
-                      "item_margin_bottom_mobile": 54,
+                      "item_margin_bottom_desktop": 32,
+                      "item_margin_bottom_tablet": 24,
+                      "item_margin_bottom_mobile": 24,
                       "text_content": "A designer knows he has achieved perfection not when there is nothing left to add, but when there is nothing left to take away.",
                       "text_font_color": "dark_font_color",
                       "text_font_size_desktop": 18,
                       "text_line_height_desktop": 28,
                       "text_font_weight_desktop": 400,
-                      "text_font_size_tablet": 18,
-                      "text_line_height_tablet": 28,
+                      "text_font_size_tablet": 16,
+                      "text_line_height_tablet": 24,
                       "text_font_weight_tablet": 400,
-                      "text_font_size_mobile": 18,
-                      "text_line_height_mobile": 28,
+                      "text_font_size_mobile": 16,
+                      "text_line_height_mobile": 24,
                       "text_font_weight_mobile": 400
                     }
                   }
@@ -3372,63 +3318,44 @@
                     "properties": {
                       "column_index": "1",
                       "item_type": "button",
+                      "item_content_align_desktop": "start",
+                      "item_content_align_tablet": "start",
+                      "item_content_align_mobile": "start",
                       "item_background_color": "transparent",
-                      "item_margin_bottom_desktop": 0,
-                      "item_margin_bottom_tablet": 0,
-                      "item_margin_bottom_mobile": 0,
+                      "item_margin_bottom_desktop": 90,
+                      "item_margin_bottom_tablet": 24,
+                      "item_margin_bottom_mobile": 24,
                       "button_label": "Explore shop",
                       "button_label_font_weight": 600,
                       "button_url": "shop"
+                    }
+                  }
+                },
+                "Shop statistics: Panel": {
+                  "name": "Shop statistics: Panel",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "value_font_size": 18,
+                      "value_line_height": 22,
+                      "label_font_size":13,
+                      "label_line_height": 18
                     }
                   }
                 }
               },
               "properties": {
                 "fullwidth": true,
-                "background_image": "column-background-1.jpg",
-                "columns_per_row_desktop": 1,
-                "margin_bottom_desktop": 0,
-                "columns_per_row_tablet": 1,
-                "margin_bottom_tablet": 0,
-                "columns_per_row_mobile": 1,
-                "margin_bottom_mobile": 0
-              }
-            }
-          },
-          "Shop statistics": {
-            "name": "Shop statistics",
-            "settings": {
-              "visible": true,
-              "block_order": [
-                "Shop statistics: Products quality",
-                "Shop statistics: Products sold",
-                "Shop statistics: Reviews count"
-              ],
-              "blocks": {
-                "Shop statistics: Products quality": {
-                  "name": "Shop statistics: Products quality",
-                  "settings": {
-                    "visible": true,
-                    "properties": {}
-                  }
-                },
-                "Shop statistics: Products sold": {
-                  "name": "Shop statistics: Products sold",
-                  "settings": {
-                    "visible": true,
-                    "properties": {}
-                  }
-                },
-                "Shop statistics: Reviews count": {
-                  "name": "Shop statistics: Reviews count",
-                  "settings": {
-                    "visible": true,
-                    "properties": {}
-                  }
-                }
-              },
-              "properties": {
-                "fullwidth": false,
+                "right_column_background_image": "column-background-3.jpg",
+                "padding_top_desktop": 100,
+                "padding_bottom_desktop": 100,
+                "padding_horiz_desktop": 100,
+                "padding_top_tablet": 24,
+                "padding_bottom_tablet": 24,
+                "padding_horiz_tablet": 24,
+                "padding_top_mobile": 24,
+                "padding_bottom_mobile": 24,
+                "padding_horiz_mobile": 24,
                 "margin_bottom_desktop": 0,
                 "margin_bottom_tablet": 0,
                 "margin_bottom_mobile": 0
@@ -4558,138 +4485,6 @@
               }
             }
           }
-        }
-      }
-    },
-    "Main/Main Landing": {
-      "name": "Main/Main Landing",
-      "path": "templates/shop/mainLanding.njk",
-      "layout_name": "MainLanding",
-      "template_type": "MAIN",
-      "is_default": 1,
-      "settings": {
-        "class": "template-main-landing",
-        "section_order": [
-          "Main: Landing"
-        ],
-        "sections": {
-          "Main: Landing": {
-            "name": "Main: Landing",
-            "settings": {
-              "visible": true,
-              "block_order": ["Column item 1", "Column item 2", "Column item 3", "Shop statistics: Panel"],
-              "blocks": {
-                "Column item 1": {
-                  "name": "Column item",
-                  "settings": {
-                    "visible": true,
-                    "custom_class": "font-family-tight",
-                    "properties": {
-                      "column_index": "1",
-                      "item_type": "text",
-                      "item_content_align_desktop": "start",
-                      "item_content_align_tablet": "start",
-                      "item_content_align_mobile": "start",
-                      "item_background_color": "transparent",
-                      "item_margin_bottom_desktop": 24,
-                      "item_margin_bottom_tablet": 24,
-                      "item_margin_bottom_mobile": 24,
-                      "text_content": "Design Resources to Speed Up Your Creative Workflow",
-                      "text_font_color": "dark_font_color",
-                      "text_font_size_desktop": 56,
-                      "text_line_height_desktop": 72,
-                      "text_font_weight_desktop": 500,
-                      "text_font_size_tablet": 32,
-                      "text_line_height_tablet": 40,
-                      "text_font_weight_tablet": 500,
-                      "text_font_size_mobile": 32,
-                      "text_line_height_mobile": 40,
-                      "text_font_weight_mobile": 500
-                    }
-                  }
-                },
-                "Column item 2": {
-                  "name": "Column item",
-                  "settings": {
-                    "visible": true,
-                    "properties": {
-                      "column_index": "1",
-                      "item_type": "text",
-                      "item_content_align_desktop": "start",
-                      "item_content_align_tablet": "start",
-                      "item_content_align_mobile": "start",
-                      "item_background_color": "transparent",
-                      "item_margin_bottom_desktop": 32,
-                      "item_margin_bottom_tablet": 24,
-                      "item_margin_bottom_mobile": 24,
-                      "text_content": "A designer knows he has achieved perfection not when there is nothing left to add, but when there is nothing left to take away.",
-                      "text_font_color": "dark_font_color",
-                      "text_font_size_desktop": 18,
-                      "text_line_height_desktop": 28,
-                      "text_font_weight_desktop": 400,
-                      "text_font_size_tablet": 16,
-                      "text_line_height_tablet": 24,
-                      "text_font_weight_tablet": 400,
-                      "text_font_size_mobile": 16,
-                      "text_line_height_mobile": 24,
-                      "text_font_weight_mobile": 400
-                    }
-                  }
-                },
-                "Column item 3": {
-                  "name": "Column item",
-                  "settings": {
-                    "visible": true,
-                    "properties": {
-                      "column_index": "1",
-                      "item_type": "button",
-                      "item_content_align_desktop": "start",
-                      "item_content_align_tablet": "start",
-                      "item_content_align_mobile": "start",
-                      "item_background_color": "transparent",
-                      "item_margin_bottom_desktop": 90,
-                      "item_margin_bottom_tablet": 24,
-                      "item_margin_bottom_mobile": 24,
-                      "button_label": "Explore shop",
-                      "button_label_font_weight": 600,
-                      "button_url": "shop"
-                    }
-                  }
-                },
-                "Shop statistics: Panel": {
-                  "name": "Shop statistics: Panel",
-                  "settings": {
-                    "visible": true,
-                    "properties": {
-                      "value_font_size": 18,
-                      "value_line_height": 22,
-                      "label_font_size":13,
-                      "label_line_height": 18
-                    }
-                  }
-                }
-              },
-              "properties": {
-                "fullwidth": true,
-                "right_column_background_image": "column-background-3.jpg",
-                "padding_top_desktop": 100,
-                "padding_bottom_desktop": 100,
-                "padding_horiz_desktop": 100,
-                "padding_top_tablet": 24,
-                "padding_bottom_tablet": 24,
-                "padding_horiz_tablet": 24,
-                "padding_top_mobile": 24,
-                "padding_bottom_mobile": 24,
-                "padding_horiz_mobile": 24,
-                "margin_bottom_desktop": 0,
-                "margin_bottom_tablet": 0,
-                "margin_bottom_mobile": 0
-              }
-            }
-          }
-        },
-        "properties": {
-          "footer_type": "fullscreen_content"
         }
       }
     },
@@ -22688,6 +22483,10 @@
       "name": "block-product-light-list.css",
       "path": "assets/css/block-product-light-list.css"
     },
+    "block-shop-statistics.css": {
+      "name": "block-shop-statistics.css",
+      "path": "assets/css/block-shop-statistics.css"
+    },
     "block-store-code.css": {
       "name": "block-store-code.css",
       "path": "assets/css/block-store-code.css"
@@ -22843,6 +22642,10 @@
     "section-header.css": {
       "name": "section-header.css",
       "path": "assets/css/section-header.css"
+    },
+    "section-main-landing.css": {
+      "name": "section-main-landing.css",
+      "path": "assets/css/section-main-landing.css"
     },
     "section-product-list.css": {
       "name": "section-product-list.css",
@@ -23096,9 +22899,9 @@
       "name": "template-invoice.css",
       "path": "assets/css/template-invoice.css"
     },
-    "template-main-landing.css": {
-      "name": "template-main-landing.css",
-      "path": "assets/css/template-main-landing.css"
+    "template-main.css": {
+      "name": "template-main.css",
+      "path": "assets/css/template-main.css"
     },
     "template-checkout.css": {
       "name": "template-checkout.css",

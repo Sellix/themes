@@ -77,9 +77,9 @@
       {% render_snippet 'Root css variables' %}
 
       :root {
-        --desktop-menu-height: {{ safe_get(properties.header_height_desktop, 64) }}px;
-        --tablet-menu-height: {{ safe_get(properties.header_height_tablet, 64) }}px;
-        --mobile-menu-height: {{ safe_get(properties.header_height_mobile, 64) }}px;
+        --desktopMenuHeight: {{ safe_get(properties.header_height_desktop, 64) }}px;
+        --tabletMenuHeight: {{ safe_get(properties.header_height_tablet, 64) }}px;
+        --mobileMenuHeight: {{ safe_get(properties.header_height_mobile, 64) }}px;
       }
     </style>
 
@@ -100,6 +100,7 @@
     <link rel="stylesheet" href="{{ 'section-footer-menu.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'section-header.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'section-product-list.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'section-main-landing.css' | asset_url(rtl) }}"/>
 
     {# Blocks #}
     <link rel="stylesheet" href="{{ 'block-cart.css' | asset_url(rtl) }}"/>
@@ -109,6 +110,7 @@
     <link rel="stylesheet" href="{{ 'block-products-category-filter.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'block-products-grid.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'block-product-light-list.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'block-shop-statistics.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'block-ticket-chat.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'block-ticket-details.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'block-title.css' | asset_url(rtl) }}"/>
@@ -147,7 +149,7 @@
 
     <link rel="stylesheet" href="{{ 'select2.css' | asset_url(rtl) }}"/>
     {% if global.request.type in ['main'] %}
-      <link rel="stylesheet" href="{{ 'template-main-landing.css' | asset_url(rtl) }}" />
+      <link rel="stylesheet" href="{{ 'template-main.css' | asset_url(rtl) }}" />
     {% endif %}
     {% if global.request.type in ['checkout', 'product', 'subscription'] %}
       <link rel="stylesheet" href="{{ 'widget-purchase-details.css' | asset_url(rtl) }}" />
