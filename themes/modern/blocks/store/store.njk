@@ -2,26 +2,30 @@
 {% set id = uid() %}
 {% set codeId = uid() %}
 
-
 <div class="{{ globalClass }}__container">
+  <div class="{{ globalClass }}__icon">
+    {% render_snippet 'Icons: Shop code' %}
+  </div>
+
   <div class="{{ globalClass }}__title">
-    This store is protected by a password <br>
-    In order to view its content, please input the required code
+    <h3>{{ 'Store Locked' |t({keyPrefix: 'shop.content'}) }}</h3>
+    <h4>{{ 'Enter an password below to access the store' |t({keyPrefix: 'shop.content'}) }}</h4>
   </div>
 
   <div class="{{ globalClass }}__form">
     <form id="store-code-{{id}}" onsubmit="return false">
       {% render_snippet 'Shared: Text',
         id=codeId,
-        name="code",
-        label=('code' | t),
-        placeholder=('code' | t),
-        wrapperClassName="title"
+        name='code',
+        label=('password' | t({keyPrefix: 'shop.content'})),
+        placeholder=('Password' | t({keyPrefix: 'shop.content'})),
+        show_password=true,
+        enable_spy_mode=false
       %}
 
       {% render_snippet 'Shared: Ripple button',
         button_id=['store-code-submit-', id] | join, type='submit',
-        title=('Connect' | t)
+        title=('Submit' | t({keyPrefix: 'shop.content'}))
       %}
     </form>
   </div>
@@ -44,7 +48,7 @@
           code: 'required',
         },
         messages: {
-          code: 'Code is required',
+          code: '{{ 'Password is required' | t({keyPrefix: 'shop.content'}) }}',
         },
         highlight: function(element, errorClass) {
           $(element).addClass('is-invalid').removeClass(errorClass);

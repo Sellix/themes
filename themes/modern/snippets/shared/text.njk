@@ -2,6 +2,7 @@
 {% set inputsProps = themeProperties.inputs %}
 
 {% set showPassword = safe_get(args.show_password, false) %}
+{% set spyModeEnabled = safe_get(args.enable_spy_mode, true) %}
 {% set label = safe_get(args.label, '') %}
 {% set name = safe_get(args.name, id) %}
 {% set type = safe_get(args.type, text) %}
@@ -89,7 +90,7 @@
       </div>
     {% endif %}
 
-    {% if showPassword  %}
+    {% if showPassword and spyModeEnabled  %}
       <div class="{{ globalClass }}__show-hide-password-icon {{ localClass }}__show-hide-password-icon">
         {% render_snippet 'Icons: Crossed eye' %}
       </div>
