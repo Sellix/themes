@@ -29,7 +29,11 @@
               ...this.renderOptions,
               path: [this.renderOptions.path, ['snippet', 'Checkout product'].join(':')].join(';'),
             },
-            { product, quantity: product.quantity, properties: this.properties },
+            {
+              dependencies: [{ type: 'product', productId }],
+              quantity: product.quantity,
+              properties: this.properties,
+            },
           )
           .then((resp) => {
             const $component = $(resp.html);
