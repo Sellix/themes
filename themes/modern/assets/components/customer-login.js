@@ -1,8 +1,9 @@
 (function (document, window, jQuery, Cookies, sellixApi, sellixHelper) {
   class CustomerLoginComponent {
-    constructor(selector, renderCodeInputCallback) {
+    constructor(selector, renderCodeInputCallback, shop) {
       this.selector = selector;
       this.renderCodeInputCallback = renderCodeInputCallback;
+      this.shop = shop;
       this.$container = jQuery(selector);
       this.$loginBtn = this.$container.find('[data-icon]');
       this.$logoutBtn = this.$container.find('[data-logout]');
@@ -65,7 +66,7 @@
       this.$sendEmailBtn.prop('disabled', true);
 
       sellixApi
-        .customerAuthEmail({ email: this.$inputEmail.val() })
+        .customerAuthEmail({ email: this.$inputEmail.val(), shop_id: this.shop.id })
         .then((resp) => {
           const { status, error } = resp;
           if (status >= 200 && status < 300) {
@@ -98,7 +99,7 @@
       this.$verifyCodeBtn.prop('disabled', true);
 
       sellixApi
-        .customerAuthCode({ email: this.$inputEmail.val(), code: this.codeValue })
+        .customerAuthCode({ email: this.$inputEmail.val(), code: this.codeValue, shop_id: this.shop.id })
         .then((resp) => {
           const { status, error, data } = resp;
           if (status >= 200 && status < 300) {

@@ -89,6 +89,11 @@
   }
 
   $(document).ready(function() {
-    component{{ id }} = new SellixCustomerLoginComponent('.{{ localClass }}__container', {{ renderCodeInputCallback }});
+    const { shopInfo } = window.SellixContext.get('common');
+    component{{ id }} = new SellixCustomerLoginComponent(
+      '.{{ localClass }}__container',
+      {{ renderCodeInputCallback }},
+      shopInfo.shop,
+    );
   });
 </script>

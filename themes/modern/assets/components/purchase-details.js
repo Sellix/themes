@@ -124,11 +124,11 @@
     };
 
     onCustomerAuthEmail = (data) => {
-      return sellixApi.customerAuthEmail(data);
+      return sellixApi.customerAuthEmail({ shop_id: this.shop.id, ...data });
     };
 
     onCustomerAuthCode = (data) => {
-      return sellixApi.customerAuthCode(data);
+      return sellixApi.customerAuthCode({ shop_id: this.shop.id, ...data });
     };
 
     onShowMessage = ({ type, text }) => {
