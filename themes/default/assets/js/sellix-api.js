@@ -241,7 +241,7 @@
     async getStripeLink(id) {
       return jQuery.ajax({
         method: 'GET',
-        url: `${this.apiUrl}/api/shop/stripe/subscriptions/checkout_link/${id}`,
+        url: `${this.apiUrl}/api/shop/stripe/subscriptions/checkout_link/${id}?ui_elements=true`,
         contentType: 'application/json; charset=utf-8',
       });
     }
@@ -249,7 +249,7 @@
     async getProductStripeLink(id) {
       return jQuery.ajax({
         method: 'GET',
-        url: `${this.apiUrl}/api/shop/stripe/product_subscriptions/checkout_link/${id}`,
+        url: `${this.apiUrl}/api/shop/stripe/product_subscriptions/checkout_link/${id}?ui_elements=true`,
         contentType: 'application/json; charset=utf-8',
       });
     }
