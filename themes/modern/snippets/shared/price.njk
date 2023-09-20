@@ -13,7 +13,7 @@
   {% set productPrice = args.price %}
 {% endif %}
 
-{% set price = ((productPrice - productPrice * args.discount / 100) | round(2) if args.discount else productPrice) | to_fixed(digits) %}
+{% set price = ((productPrice - productPrice * args.discount / 100) | to_decimal_precision(2) if args.discount else productPrice) | to_decimal_precision(digits) %}
 
 {% if currencyOptions.type === 'fiat' %}
   {{currencyOptions.symbol}}{{ price }}

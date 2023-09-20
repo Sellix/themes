@@ -239,10 +239,20 @@
         {% raw %}
           {{else}}
             {{if isPriceDiscount}}
-              {{:product.currency_title}}{{:product.price_with_discount}}
-              <span class="price-without-discount">{{:product.currency_title}}{{:product.price}}</span>
+              {{if currency_options.type == 'fiat'}}
+                {{:currency_options.symbol}}{{:product.price_with_discount}}
+                <span class="price-without-discount">{{:product.currency_title}}{{:product.price}}</span>
+              {{else}}
+                {{:product.price_with_discount}}
+                <span class="price-without-discount">{{:product.currency_title}}{{:product.price}}</span>
+                {{:currency_options.symbol}}
+              {{/if}}
             {{else}}
-              {{:product.currency_title}}{{:product.price}}
+              {{if currency_options.type == 'fiat'}}
+                {{:currency_options.symbol}}{{:product.price}}
+              {{else}}
+                {{:product.price}} {{:currency_options.symbol}}
+              {{/if}}
             {{/if}}
           {{/if}}
         {% endraw %}

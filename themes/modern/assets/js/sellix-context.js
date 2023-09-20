@@ -21,6 +21,10 @@
       return this.get('config', {});
     }
 
+    static getCurrencyOptions() {
+      return this.get('config', {}).CURRENCY_OPTIONS || {};
+    }
+
     static getShopInfo() {
       return this.get('common', {}).shopInfo || {};
     }
