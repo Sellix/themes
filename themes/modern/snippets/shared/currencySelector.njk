@@ -1,11 +1,14 @@
 {% set id = uid() %}
 {% set properties = args.properties %}
 {% set inputsProps = themeProperties.inputs %}
+{% set conversionEnabled = global.currencies.conversionEnabled %}
 {% set currencyItems = global.currencies.items %}
 {% set defaultCurrency = global.currencies.default %}
 
 {% set globalClass = 'snippet-currency-selector' %}
 {% set localClass = id %}
+
+{% if conversionEnabled and currencyItems.length > 0 %}
 
 <style>
   .{{ localClass  }} .select2-container--sellix-currency-selector .select2-selection--single {
@@ -39,9 +42,10 @@
     {% for currencyInfo in currencyItems | sort(false, false, 'title') %}
       <option
         value="{{ currencyInfo.name }}"
-        {{ 'selected' if currencyInfo.key == defaultCurrency.key }}
+        {{ 'selected' if currencyInfo.name == defaultCurrency.name }}
         data-img-url="{{ currencyInfo.imgUrl }}"
         data-currency-type="{{ currencyInfo.type }}"
+        data-currency-smb="{{ currencyInfo.symbol }}"
       >
         {{- currencyInfo.title -}}
       </option>
@@ -51,16 +55,21 @@
 
 <script type='application/javascript'>
   $(document).ready(function() {
-    let isTypeInited = false;
-    let selectedCurrency = '{{ defaultCurrency.key }}';
+    let selectedCurrency = '{{ defaultCurrency.name }}';
     let selectedType = '{{ defaultCurrency.type }}';
+
     const optionFactory = (state, container, isResult) => {
       const $element = $(state.element);
       const $container = $(container);
       const currencyType = $element.data('currencyType');
+      const currencySmb = $element.data('currencySmb');
       const imgUrl = $element.data('imgUrl');
 
       $container.attr('data-currency-type', currencyType);
+
+      if (!isResult && selectedType !== currencyType) {
+        $container.css('display', 'none');
+      }
 
       if (!state.id) {
         return state.text;
@@ -76,28 +85,23 @@
         <path d="M4 10.1667L8 14.3333L16 6" stroke="#6A3CE2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>`;
 
-      // if (!isResult && selectedType !== currencyType) {
-      //   return null;
-      // }
-
-      console.log('Currency Key', state.id, selectedCurrency);
       return $(`
         <div style="display: flex; align-items: center;">
           ${isMobile
-        ? imgUrl
-          ? `<img alt="${title}" style="height:18px;width: 18px;" class="mr-2" src="${imgUrl}" />`
-          : ''
-        : !isResult && imgUrl
-          ? `<img alt="${title}" style="height:18px;width: 18px;" class="mr-2" src="${imgUrl}" />`
-          : ''
-      }
-          ${isMobile && isResult ? '' : title}
+            ? imgUrl
+              ? `<img alt="${title}" style="height:18px;width: 18px;" class="mr-2" src="${imgUrl}" />`
+              : ''
+            : !isResult && imgUrl
+              ? `<img alt="${title}" style="height:18px;width: 18px;" class="mr-2" src="${imgUrl}" />`
+              : ''
+          }
+          ${isMobile && isResult ? '' : `${currencyType === 'fiat' ? `${currencySmb} ` : ''}${title}`}
           ${isResult
-        ? chevronSvg
-        : state.id === selectedCurrency
-          ? tickSvg
-          : ''
-      }
+            ? chevronSvg
+            : state.id === selectedCurrency
+              ? tickSvg
+              : ''
+          }
         </div>
     `);
     }
@@ -115,6 +119,7 @@
       }
       $('.select2-container--sellix-currency-selector .select2-results__options [data-currency-type="fiat"]')
         .css('display', activeType === 'fiat' ? '' : 'none');
+
       $('.select2-container--sellix-currency-selector .select2-results__options [data-currency-type="crypto"]')
         .css('display', activeType === 'crypto' ? '' : 'none');
     }
@@ -175,13 +180,14 @@
       theme: 'sellix-currency-selector',
     })
       .on('select2:select', (e) => {
-        console.log(e.params.data.id);
+        const $element = $(e.params.data.element);
         selectedCurrency = e.params.data.id;
-        const oldCurrency = '{{ defaultCurrency.key }}';
+        selectedType = $element.data('currencyType');
+        const oldCurrency = '{{ defaultCurrency.name }}';
         const newCurrency = e.params.data.id;
         if (oldCurrency !== newCurrency) {
           let options = {
-            domain: window.location.hostname,
+            // domain: window.location.hostname,
             path: '/',
             sameSite: 'lax',
           }
@@ -191,12 +197,6 @@
       })
       .on('select2:open', (e) => {
         $('.{{ localClass  }}').find('.select2-dropdown').addClass('animated flipIn');
-
-        console.log('Items', $('#currency-tab-{{ defaultCurrency.type }}-{{ id }}'));
-        if (!isTypeInited) {
-          isTypeInited = true;
-          $('#currency-tab-{{ defaultCurrency.type }}-{{ id }}').trigger('click');
-        }
       })
       .on('select2:closing', (e) => {
         $('.{{ localClass  }}').find('.select2-dropdown').removeClass('animated flipIn');
@@ -208,3 +208,5 @@
     $('.{{ localClass  }}').removeClass('d-none');
   });
 </script>
+
+{% endif %}

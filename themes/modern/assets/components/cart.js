@@ -137,11 +137,11 @@
             const isFree = +product.price_display === 0 && product.pay_what_you_want !== 1;
 
             let price = +product.price_display,
-              priceWithDiscount = product.price_with_discount;
+              priceWithDiscount = +product.price_with_discount;
 
             if (isPayWhatYouWant && typeof product.customerPrice !== 'undefined') {
               price = product.customerPrice;
-              priceWithDiscount = product.price_discount ? price - price * product.price_discount / 100 : price;
+              priceWithDiscount = product.price_discount ? price - (price * product.price_discount) / 100 : price;
             }
 
             return {
