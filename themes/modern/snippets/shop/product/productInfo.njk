@@ -116,7 +116,7 @@
 
       <span class="{{ globalClass }}__price {{ localClass }}__price">
         {% render_snippet
-          'Price',
+          'Shared: Price',
           currency=product.currency,
           price=product.price_display,
           discount=product.price_discount,
@@ -126,7 +126,7 @@
 
       {% if product.price_discount %}
         <span class="{{ globalClass }}__price-initial {{ localClass }}__price-initial">
-          {% render_snippet 'Price', currency=product.currency, price=product.price_display %}
+          {% render_snippet 'Shared: Price', currency=product.currency, price=product.price_display %}
         </span>
 
         {% render_snippet

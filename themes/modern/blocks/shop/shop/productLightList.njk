@@ -93,7 +93,7 @@
           {% if product.price_discount and not isFree %}
             <span class="{{ globalClass }}__price-with-discount">
               {% render_snippet
-                'Price',
+                'Shared: Price',
                 currency=product.currency,
                 price=product.price_display,
                 discount=product.price_discount,
@@ -101,7 +101,7 @@
               %}
               <span>
                 {% render_snippet
-                  'Price',
+                  'Shared: Price',
                   currency=product.currency,
                   price=product.price_display,
                   priceVariants=product.price_variants
@@ -120,7 +120,7 @@
                   {% elif isPayWhatYouWant %}
                   {% render_snippet 'Tag', tag=('shop.main.cards.product.yourPrice' | t), is_light=true %}
                 {% else %}
-                  {% render_snippet 'Price',
+                  {% render_snippet 'Shared: Price',
                     currency=product.currency,
                     price=product.price_display,
                     priceVariants=product.price_variants

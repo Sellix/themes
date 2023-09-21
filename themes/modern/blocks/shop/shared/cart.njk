@@ -243,14 +243,18 @@
                 {{:currency_options.symbol}}{{:product.price_with_discount}}
                 <span class="price-without-discount">{{:product.currency_title}}{{:product.price}}</span>
               {{else}}
+                <img alt="{{:currency_options.title}}" style="height:20px;width: 20px;" class="mr-1" src="{{:currency_options.imgUrl}}" />
                 {{:product.price_with_discount}}
-                <span class="price-without-discount">{{:product.currency_title}}{{:product.price}}</span>
+                <span class="price-without-discount">
+                  {{:product.currency_title}}{{:product.price}}
+                </span>
                 {{:currency_options.symbol}}
               {{/if}}
             {{else}}
               {{if currency_options.type == 'fiat'}}
                 {{:currency_options.symbol}}{{:product.price}}
               {{else}}
+                <img alt="{{:currency_options.title}}" style="height:20px;width: 20px;" class="mr-1" src="{{:currency_options.imgUrl}}" />
                 {{:product.price}} {{:currency_options.symbol}}
               {{/if}}
             {{/if}}

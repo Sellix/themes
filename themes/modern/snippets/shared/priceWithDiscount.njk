@@ -1,0 +1,96 @@
+{% set id = uid() %}
+
+{% set currencyOptions = global.config.CURRENCY_OPTIONS[args.currency] %}
+{% set digits = args.digits if args.digits is defined else 2 %}
+{% set discountPlace = args.discount_place or 'last' %}
+{% set discount = args.discount or 0 %}
+
+{% if args.priceVariants %}
+  {% set minPrice = null %}
+  {% for variant in args.priceVariants %}
+    {% if minPrice === null or variant.price < minPrice %}
+      {% set minPrice = variant.price %}
+    {% endif %}
+  {% endfor %}
+  {% set productPrice = minPrice %}
+{% else %}
+  {% set productPrice = args.price %}
+{% endif %}
+
+{% set price = productPrice | to_decimal_precision(2) %}
+{% set priceWithDiscount = (productPrice - productPrice * args.discount / 100) | to_decimal_precision(2) %}
+
+{% set globalClass = 'snippet-price-with-discount' %}
+{% set localClass = id %}
+
+<style>
+  .{{ globalClass }} {
+    display: flex;
+  }
+  .{{ globalClass }}__price {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 0.25rem;
+  }
+  .{{ globalClass }}__initial-price {
+    text-decoration: line-through;
+    opacity: 0.4;
+  }
+</style>
+
+<span class="{{ globalClass }} {{ localClass }}">
+  {% if currencyOptions.type === 'fiat' %}
+
+    <span class="{{ globalClass }}__price">
+      {% if discount != 0 and discountPlace == 'first' %}
+        <span class="{{ globalClass }}__initial-price">
+          {{currencyOptions.symbol}}{{ price }}
+        </span>
+      {% endif %}
+
+      <span class="{{ globalClass }}__discount">
+        {{currencyOptions.symbol}}{{ priceWithDiscount }}
+      </span>
+
+      {% if discount != 0 and discountPlace == 'last' %}
+        <span class="{{ globalClass }}__initial-price">
+          {{currencyOptions.symbol}}{{ price }}
+        </span>
+      {% endif %}
+    </span>
+
+  {% else %}
+
+    <img alt="{{ currencyOptions.title }}" style="height:20px;width: 20px;" class="mr-2" src="{{ currencyOptions.imgUrl }}" />
+
+    <span class="{{ globalClass }}__price">
+      {% if discount != 0 and discountPlace == 'first' %}
+        <span class="{{ globalClass }}__initial-price">
+          {{ price }}
+        </span>
+        <span class="{{ globalClass }}__discount">
+          {{ priceWithDiscount }} {{currencyOptions.symbol}}
+        </span>
+      {% endif %}
+
+      {% if discount != 0 and discountPlace == 'last' %}
+        <span class="{{ globalClass }}__discount">
+          {{ priceWithDiscount }} {{currencyOptions.symbol}}
+        </span>
+        <span class="{{ globalClass }}__initial-price">
+          {{ price }} {{currencyOptions.symbol}}
+        </span>
+      {% endif %}
+    </span>
+
+  {% endif %}
+</span>
+
+{#{% if currencyOptions.type === 'fiat' %}#}
+{#  {{currencyOptions.symbol}}{{ price }}#}
+{#{% else %}#}
+{#  {% if currencyOptions.imgUrl %}#}
+{#    <img alt="{{ currencyOptions.title }}" style="height:20px;width: 20px;" class="mr-2" src="{{ currencyOptions.imgUrl }}" />#}
+{#  {% endif %}#}
+{#  {{ price }} {{currencyOptions.symbol}}#}
+{#{% endif %}#}
