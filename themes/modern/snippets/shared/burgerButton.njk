@@ -24,9 +24,20 @@
 
 <script type="application/javascript">
   $(document).ready(function() {
-    $('.{{ globalClass }}__burger-button').click(function() {
-      $(this).toggleClass("toggled");
-      $(this).toggleClass("untoggled");
-    })
+    $(document).on('SellixMobileMenu', (event, eventInfo) => {
+      const $burgerBtn = $('.{{ globalClass }}__burger-button');
+      if (eventInfo && eventInfo.action) {
+        switch (eventInfo.action) {
+          case 'open':
+            $burgerBtn.addClass('toggled');
+            $burgerBtn.removeClass('untoggled');
+            break;
+          case 'close':
+            $burgerBtn.removeClass('toggled');
+            $burgerBtn.addClass('untoggled');
+            break;
+        }
+      }
+    });
   });
 </script>

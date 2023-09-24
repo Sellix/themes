@@ -5,7 +5,7 @@
 {% set invoice = args.invoice %}
 {% set properties = args.properties %}
 
-{% set collapsable = safe_get(properties.collapsable, true) %}
+{% set collapsable = safe_get(args.collapsable, true) %}
 
 {% set warrnatyBodyProps = {
   "padding_vert": properties.body_padding_vert,
@@ -46,7 +46,7 @@
 </style>
 
 <div class="sellix-collapsable {{ globalClass }} {{ localClass }}">
-  <div class="sellix-collapsable__header {{ globalClass }}__header {{ localClass }}__header">
+  <div class="sellix-collapsable__header {{ globalClass }}__header {{ localClass }}__header {{ 'collapsable' if collapsable }}">
     <span>
       {{ 'shop.shared.titles.terms' | t }}
     </span>
@@ -60,7 +60,7 @@
     </span>
   </div>
 
-  <div class="sellix-collapsable__body {{ globalClass }}__body {{ localClass }}__body">
+  <div class="sellix-collapsable__body {{ globalClass }}__body {{ localClass }}__body {{ 'collapsable' if collapsable }}">
     <div class="mt-2"></div>
     {% if productTerms %}
       {% render_snippet 'Product: TOS Text', product=product %}

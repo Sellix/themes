@@ -3,7 +3,6 @@
 <html
   lang="{{ global.locales.language }}"
   style="background-color: var(--backgroundColor);"
-  class="scroll-hidden"
   {% if rtl %}
     dir="rtl"
   {% else %}
@@ -77,9 +76,9 @@
       {% render_snippet 'Root css variables' %}
 
       :root {
-        --desktopMenuHeight: {{ safe_get(properties.header_height_desktop, 64) }}px;
-        --tabletMenuHeight: {{ safe_get(properties.header_height_tablet, 64) }}px;
-        --mobileMenuHeight: {{ safe_get(properties.header_height_mobile, 64) }}px;
+        --desktopMenuHeight: {{ safe_get(properties.header_height_desktop, 60) }}px;
+        --tabletMenuHeight: {{ safe_get(properties.header_height_tablet, 60) }}px;
+        --mobileMenuHeight: {{ safe_get(properties.header_height_mobile, 60) }}px;
       }
     </style>
 
@@ -235,6 +234,7 @@
       <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
     {% endif %}
 
+    <script src="{{ 'smooth-scrollbar.js' | asset_url }}"></script>
     <script src="{{ 'copy-to-clipboard.min.js' | asset_url }}"></script>
     <script src="{{ 'file-saver.min.js' | asset_url }}"></script>
     <script src="{{ 'ripple.js' | asset_url }}"></script>
@@ -298,6 +298,9 @@
       $(document).on('modal:block', function() {
         $('body').css('overflow', '');
       });
+
+      const Scrollbar = window.Scrollbar;
+      Scrollbar.init(document.querySelector('.sellix-store'), {damping: 1});
     });
   </script>
 </body>

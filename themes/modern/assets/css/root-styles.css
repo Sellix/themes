@@ -13,12 +13,12 @@ html.embed #app {
   background-color: transparent !important;
 }
 
-html.no-scroll {
-  touch-action: none;
-  --webkit-overflow-scrolling: none;
-  overflow: hidden;
-  overscroll-behavior: none;
-}
+/*html.no-scroll {*/
+/*  touch-action: none;*/
+/*  --webkit-overflow-scrolling: none;*/
+/*  overflow: hidden;*/
+/*  overscroll-behavior: none;*/
+/*}*/
 
 * {
   box-sizing: border-box;
@@ -70,16 +70,59 @@ a:hover {
   text-decoration: none;
 }
 
-*::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-  background-color: transparent;
-}
+/**::-webkit-scrollbar {*/
+/*  width: 6px;*/
+/*  height: 6px;*/
+/*  background-color: transparent;*/
+/*}*/
 
-*::-webkit-scrollbar-track {
+html {
+  overflow-y: scroll;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+*::-webkit-scrollbar {
+  display: none;  /* WebKit, Safari and Chrome */
   background-color: transparent;
 }
 
 *::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+.sellix-store {
+  height: calc(100vh - var(--desktopMenuHeight));
+}
+
+@media (max-width: 768px) {
+  .sellix-store {
+    height: calc(100vh - var(--mobileMenuHeight));
+  }
+}
+
+.sellix-store {
+  overflow-y: scroll;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.sellix-store.no-scroll {
+  touch-action: none;
+  --webkit-overflow-scrolling: none;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+/* Smooth Scroll */
+.sellix-store .scrollbar-track-x {
+  height: 6px;
+}
+.sellix-store .scrollbar-thumb-x {
+  height: 6px;
+}
+.sellix-store .scrollbar-track-y {
+  width: 6px;
+}
+.sellix-store .scrollbar-thumb-y {
+  width: 6px;
 }
