@@ -111,14 +111,17 @@
     $('.{{ globalClass }}-global-{{ id }} .sidebar-toggler').click(function() {
       const $mobileMenu = $('.snippet-mobile-sidebar-menu');
       const $toggler = $('.sidebar-toggler');
+
       if ($mobileMenu.hasClass('open')) {
         $mobileMenu.removeClass('open');
         $toggler.removeClass('open');
-        $('html').removeClass('no-scroll');
+        $('.sellix-store').removeClass('no-scroll');
+        $(document).trigger('SellixMobileMenu', { action: 'close' });
       } else {
         $mobileMenu.addClass('open');
         $toggler.addClass('open');
-        $('html').addClass('no-scroll');
+        $('.sellix-store').addClass('no-scroll');
+        $(document).trigger('SellixMobileMenu', { action: 'open' });
       }
     });
   });
