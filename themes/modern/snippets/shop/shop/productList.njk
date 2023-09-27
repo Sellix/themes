@@ -63,6 +63,7 @@
               <div class="{{ globalClass }}__option-info">
                 {% if product.price_discount and not isFree %}
                   <span class="{{ globalClass }}__option-info-price with-discount" >
+                    {#
                     <i>
                       {% render_snippet
                         'Shared: Price',
@@ -76,6 +77,15 @@
                       price=product.price_display,
                       discount=product.price_discount
                     -%}
+                    #}
+
+                    {% render_snippet
+                      'Shared: Price with discount',
+                      currency=product.currency,
+                      price=product.price_display,
+                      discount=product.price_discount,
+                      priceVariants=product.price_variants
+                    %}
                   </span>
                 {% else %}
                   <span class="{{ globalClass }}__option-info-price" >

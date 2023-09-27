@@ -157,7 +157,7 @@
                 price: `${price.toFixed(2)}`,
                 price_with_discount: `${priceWithDiscount.toFixed(2)}`,
               },
-              currency_options: SellixContext.getCurrencyOptions()[product.currency],
+              currency_options: SellixContext.getCurrencyOptions(product.currency),
               isValidPlus,
               equalQuantity,
               inStock,

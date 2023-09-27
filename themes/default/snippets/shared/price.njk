@@ -1,4 +1,4 @@
-{% set currencyList = global.config.CURRENCY_LIST %}
+{% set currencyOptions = global.currencyConfig.allCurrencies[args.currency] %}
 {% set digits = args.digits if args.digits is defined else 2 %}
 
 {% if args.priceVariants %}
@@ -14,4 +14,4 @@
 {% endif %}
 
 {% set price = ((productPrice - productPrice * args.discount / 100) | round(2) if args.discount else productPrice) | to_fixed(digits) %}
-{{currencyList[args.currency]}}{{ price }}
+{{currencyOptions.symbol}}{{ price }}

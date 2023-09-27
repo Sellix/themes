@@ -1,14 +1,15 @@
 {% set id = uid() %}
 {% set properties = args.properties %}
 {% set inputsProps = themeProperties.inputs %}
-{% set conversionEnabled = global.currencies.conversionEnabled %}
-{% set currencyItems = global.currencies.items %}
-{% set defaultCurrency = global.currencies.default %}
+{% set multiCurrencyEnabled = global.currencyConfig.multiCurrencyEnabled %}
+{% set availableCurrencies = global.currencyConfig.availableCurrencies %}
+{% set allCurrencies = global.currencyConfig.allCurrencies %}
+{% set defaultCurrency = allCurrencies[global.currencyConfig.default] %}
 
 {% set globalClass = 'snippet-currency-selector' %}
 {% set localClass = id %}
 
-{% if conversionEnabled and currencyItems.length > 0 %}
+{% if multiCurrencyEnabled and availableCurrencies.length > 0 %}
 
 <style>
   .{{ localClass  }} .select2-container--sellix-currency-selector .select2-selection--single {
@@ -39,7 +40,8 @@
 
 <div class="{{ globalClass }} {{ localClass  }} d-none position-relative">
   <select id="currency-selector" class="">
-    {% for currencyInfo in currencyItems | sort(false, false, 'title') %}
+    {% for currency in availableCurrencies | sort(false, false, 'title') %}
+      {% set currencyInfo = allCurrencies[currency] %}
       <option
         value="{{ currencyInfo.name }}"
         {{ 'selected' if currencyInfo.name == defaultCurrency.name }}

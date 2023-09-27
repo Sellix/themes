@@ -131,7 +131,7 @@
       <div class="{{ globalClass }}__info {{ localClass }}__info">
         <div class="{{ globalClass }}__description {{ localClass }}__description">
           {% if product.price_discount and not isFree %}
-            <span class="{{ globalClass }}__price-with-discount {{ localClass }}__price-with-discount">
+            <div class="{{ globalClass }}__price-with-discount {{ localClass }}__price-with-discount">
               {% render_snippet
                 'Shared: Price with discount',
                 currency=product.currency,
@@ -139,30 +139,14 @@
                 discount=product.price_discount,
                 priceVariants=product.price_variants
               %}
-
-{#              {% render_snippet#}
-{#                'Shared: Price',#}
-{#                currency=product.currency,#}
-{#                price=product.price_display,#}
-{#                discount=product.price_discount,#}
-{#                priceVariants=product.price_variants#}
-{#              %}#}
-{#              <i>#}
-{#                {% render_snippet#}
-{#                  'Shared: Price',#}
-{#                  currency=product.currency,#}
-{#                  price=product.price_display,#}
-{#                  priceVariants=product.price_variants#}
-{#                %}#}
-{#              </i>#}
-            </span>
+            </div>
           {% else %}
             <div class="{{ globalClass }}__group-description-info">
               {% if not isFree and product.price_variants %}
                 <span>{{ 'shop.shared.titles.startingAt' | t }} </span>
               {% endif %}
 
-              <span class="{{ globalClass }}__price {{ localClass }}__price">
+              <div class="{{ globalClass }}__price {{ localClass }}__price">
                 {% if isFree %}
                   {% render_snippet 'Tag', tag=('shop.shared.titles.free' | t), type='success' %}
                 {% elif isPayWhatYouWant %}
@@ -174,7 +158,7 @@
                     priceVariants=product.price_variants
                   %}
                 {% endif %}
-              </span>
+              </div>
             </div>
           {% endif %}
 

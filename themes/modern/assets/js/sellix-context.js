@@ -21,8 +21,12 @@
       return this.get('config', {});
     }
 
-    static getCurrencyOptions() {
-      return this.get('config', {}).CURRENCY_OPTIONS || {};
+    static getCurrencyConfig() {
+      return this.get('currencyConfig', {});
+    }
+
+    static getCurrencyOptions(currency) {
+      return (this.getCurrencyConfig().allCurrencies || {})[currency];
     }
 
     static getShopInfo() {
@@ -63,10 +67,6 @@
 
     static getShopCategories() {
       return this.getShopInfo().categories || {};
-    }
-
-    static getCurrencyList() {
-      return this.get('config', {}).CURRENCY_LIST || {};
     }
 
     static getTheme() {

@@ -4,7 +4,7 @@
 {% set quantity_min = product.quantity_min %}
 {% set quantity_max = product.quantity_max %}
 {% set equal = (true if quantity_min == quantity_max else false) %}
-{% set currency = global.config.CURRENCY_LIST[shop.currency] %}
+{% set currency = global.currencyConfig.allCurrencies[shop.currency].symbol %}
 
 {% set globalClass = ['snippet-product-minmax-note'] %}
 {% set localClass = id %}

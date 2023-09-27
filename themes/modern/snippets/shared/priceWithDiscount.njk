@@ -1,6 +1,6 @@
 {% set id = uid() %}
 
-{% set currencyOptions = global.config.CURRENCY_OPTIONS[args.currency] %}
+{% set currencyOptions = global.currencyConfig.allCurrencies[args.currency] %}
 {% set digits = args.digits if args.digits is defined else 2 %}
 {% set discountPlace = args.discount_place or 'last' %}
 {% set discount = args.discount or 0 %}
@@ -86,11 +86,3 @@
   {% endif %}
 </span>
 
-{#{% if currencyOptions.type === 'fiat' %}#}
-{#  {{currencyOptions.symbol}}{{ price }}#}
-{#{% else %}#}
-{#  {% if currencyOptions.imgUrl %}#}
-{#    <img alt="{{ currencyOptions.title }}" style="height:20px;width: 20px;" class="mr-2" src="{{ currencyOptions.imgUrl }}" />#}
-{#  {% endif %}#}
-{#  {{ price }} {{currencyOptions.symbol}}#}
-{#{% endif %}#}

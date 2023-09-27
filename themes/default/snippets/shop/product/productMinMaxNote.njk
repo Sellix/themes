@@ -4,7 +4,7 @@
 {% set quantity_min = product.quantity_min %}
 {% set quantity_max = product.quantity_max %}
 {% set equal = (true if quantity_min == quantity_max else false) %}
-{% set currency = global.config.CURRENCY_LIST[shop.currency] %}
+{% set currencyOptions = global.currencyConfig.allCurrencies[shop.currency] %}
 
 <style>
   .quantity-message {
