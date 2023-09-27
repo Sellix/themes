@@ -1,5 +1,9 @@
 (function (document, window, jQuery, SellixContext, SellixStoreFactory,) {
   class Helper {
+    isMobile() {
+      return (window || {}).innerWidth < 768;
+    }
+
     scrollTo(offset, callback) {
       const fixedOffset = offset.toFixed();
 
@@ -20,6 +24,14 @@
         top: offset,
         behavior: 'smooth',
       });
+    }
+
+    disableScroll() {
+      $('html').addClass('no-scroll');
+    }
+
+    enableScroll() {
+      $('html').removeClass('no-scroll');
     }
 
     onClickOutside(ref, handler) {

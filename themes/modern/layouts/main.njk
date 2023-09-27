@@ -298,8 +298,14 @@
     $(document).ready(function () {
       window.Sharer.init();
 
-      $(document).on('modal:block', function() {
+      $(document).on($.modal.BLOCK, function() {
         $('body').css('overflow', '');
+      });
+      $(document).on($.modal.BEFORE_OPEN, () => {
+        window.sellixHelper.disableScroll();
+      });
+      $(document).on($.modal.AFTER_CLOSE, (event, context) => {
+        window.sellixHelper.enableScroll();
       });
     });
   </script>
