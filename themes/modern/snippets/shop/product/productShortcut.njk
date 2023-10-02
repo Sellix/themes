@@ -61,7 +61,7 @@
         {% render_snippet 'Shared: Link button',
           properties={
           label: 'shop.shared.titles.viewProduct' | t,
-          url: ['product/', product.uniqid] | join,
+          url: ['product/', product.slug or product.uniqid] | join,
           icon_snippet: 'Icons: Arrow right 1',
           is_link: true,
           label_font_weight: 500,

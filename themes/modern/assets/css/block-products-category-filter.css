@@ -14,8 +14,9 @@
 
 .block-products-category-filter__item {
   display: flex;
+  position: relative;
 
-  padding: 0 0.75rem;
+  margin: 0 0.75rem;
   padding-bottom: 1.5rem;
   white-space: nowrap;
   color: var(--lightFontColor);
@@ -34,9 +35,18 @@
 }
 
 .block-products-category-filter__item.active {
-  border-bottom: 3px solid var(--brandColor);
   color: var(--darkFontColor);
   font-weight: 500;
+}
+
+.block-products-category-filter__item.active:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--brandColor);
+  border-radius: 1rem;
 }
 
 @media (hover: none) {

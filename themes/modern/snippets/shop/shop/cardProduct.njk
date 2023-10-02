@@ -96,7 +96,7 @@
 
 <div class="{{ globalClass }} {{ localClass }} d-flex w-100 position-relative">
   <a
-    href="{{'javascript:void(0)' if product.on_hold | int else ['product/', product.uniqid] | join}}"
+    href="{{'javascript:void(0)' if product.on_hold | int else ['product/', product.slug or product.uniqid] | join}}"
     id="sellix-card-container-{{id}}"
     class="{{ globalClass }}__container {{ localClass }}__container"
   >

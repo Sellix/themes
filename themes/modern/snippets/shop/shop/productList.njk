@@ -28,7 +28,7 @@
     {% else %}
       <div class="{{ globalClass }}__option {{'is-disabled' if isDisabled}} {{'' if cartEnabled}}">
         <a
-          href="{{'javascript:void(0)' if isDisabled else ['product/', product.uniqid] | join}}"
+          href="{{'javascript:void(0)' if isDisabled else ['product/', product.slug or product.uniqid] | join}}"
           class="{{ globalClass }}__option-description"
         >
           <div class="{{ globalClass }}__option-image {{'image-placeholder' if isPlaceholder else ''}}">
@@ -122,7 +122,7 @@
             <div></div>
           {% endif %}
 
-          <a href="{{'javascript:void(0)' if isDisabled else ['product/', product.uniqid] | join}}" class="button {{ 'disabled' if isDisabled }}">
+          <a href="{{'javascript:void(0)' if isDisabled else ['product/', product.slug or product.uniqid] | join}}" class="button {{ 'disabled' if isDisabled }}">
             {% if isFree %}
               {{ 'shop.shared.titles.get' | t }}
             {% else %}
