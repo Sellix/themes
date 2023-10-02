@@ -16,12 +16,17 @@
 {% set productShowBorder = safe_get(properties.product_container_show_border, true) %}
 {% set productShadow = safe_get(properties.product_container_shadow, 'none') %}
 {% set productBorderRadius = safe_get(properties.product_container_border_radius, 8) %}
-{% set productPaddingVert = safe_get(properties.product_container_padding_vert, 16) %}
-{% set productPaddingHoriz = safe_get(properties.product_container_padding_horiz, 16) %}
 {% set titleFontColor = safe_get(properties.product_title_font_color, 'light_font_color') %}
 {% set titleFontSize = safe_get(properties.product_title_font_size, 18) %}
 {% set titleFontWeight = safe_get(properties.product_title_font_weight, 500) %}
 {% set titleLineHeight =  safe_get(properties.product_title_line_height, 20) %}
+
+{% set productPaddingVertDesktop = safe_get(properties.product_container_padding_vert_desktop, 16) %}
+{% set productPaddingHorizDesktop = safe_get(properties.product_container_padding_horiz_desktop, 16) %}
+{% set productPaddingVertTablet = safe_get(properties.product_container_padding_vert_tablet, 16) %}
+{% set productPaddingHorizTablet = safe_get(properties.product_container_padding_horiz_tablet, 16) %}
+{% set productPaddingVertMobile = safe_get(properties.product_container_padding_vert_mobile, 16) %}
+{% set productPaddingHorizMobile = safe_get(properties.product_container_padding_horiz_mobile, 16) %}
 
 {% set addonsProps = {} %}
 {% set variantsProps = {} %}
@@ -44,7 +49,19 @@
     border: {{ "1px solid var(--borderColor)" if productShowBorder else "none" }};
     box-shadow: {{ productShadow }};
     border-radius: {{ productBorderRadius }}px;
-    padding: {{ productPaddingVert }}px {{ productPaddingHoriz }}px;
+    padding: {{ productPaddingVertDesktop }}px {{ productPaddingHorizDesktop }}px;
+  }
+
+  @media (max-width: 768px) {
+    .{{ localClass }} {
+      padding: {{ productPaddingVertTablet }}px {{ productPaddingHorizTablet }}px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .{{ localClass }} {
+      padding: {{ productPaddingVertMobile }}px {{ productPaddingHorizMobile }}px;
+    }
   }
 
   .{{ localClass }}__title-text {

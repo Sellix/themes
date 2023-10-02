@@ -1,5 +1,9 @@
 (function (document, window, jQuery, SellixContext, SellixStoreFactory,) {
   class Helper {
+    isMobile() {
+      return (window || {}).innerWidth < 768;
+    }
+
     scrollTo(offset, callback) {
       const fixedOffset = offset.toFixed();
 

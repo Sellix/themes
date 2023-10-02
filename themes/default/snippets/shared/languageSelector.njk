@@ -41,7 +41,7 @@
 </style>
 
 <div class='language-selector-{{ id }}'>
-  <select id='language-selector' class='testetetes'>
+  <select id='language-selector' class='d-none'>
     {% for localeInfo in localesList | sort(false, false, 'title') %}
       <option
         value="{{ localeInfo.code }}"
@@ -94,5 +94,7 @@
         window.location.href = `/${pathParts.join('/')}` + (pathParts.length === 1 ? '/' : '');
       }
     });
+
+    $('#language-selector').removeClass('d-none');
   });
 </script>

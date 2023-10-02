@@ -14,8 +14,13 @@
 {% set showBorder = safe_get(properties.container_show_border, true) %}
 {% set shadow = safe_get(properties.container_shadow, 'none') %}
 {% set borderRadius = safe_get(properties.container_border_radius, 8) %}
-{% set paddingVert = safe_get(properties.container_padding_vert, 16) %}
-{% set paddingHoriz = safe_get(properties.container_padding_horiz, 16) %}
+
+{% set paddingVertDesktop = safe_get(properties.container_padding_vert_desktop, 16) %}
+{% set paddingHorizDesktop = safe_get(properties.container_padding_horiz_desktop, 16) %}
+{% set paddingVertTablet = safe_get(properties.container_padding_vert_tablet, 16) %}
+{% set paddingHorizTablet = safe_get(properties.container_padding_horiz_tablet, 16) %}
+{% set paddingVertMobile = safe_get(properties.container_padding_vert_mobile, 16) %}
+{% set paddingHorizMobile = safe_get(properties.container_padding_horiz_mobile, 16) %}
 
 {% set titleFontColor = safe_get(properties.title_font_color, 'dark_font_color') %}
 {% set titleActiveFontColor = safe_get(properties.title_active_font_color, 'black9') %}
@@ -45,7 +50,19 @@
       border: {{ '1px solid var(--borderColor)' if showBorder else 'none' }};
       box-shadow: {{ shadow }};
       border-radius: {{ borderRadius }}px;
-      padding: {{ paddingVert }}px {{ paddingHoriz }}px;
+      padding: {{ paddingVertDesktop }}px {{ paddingHorizDesktop }}px;
+    }
+
+    @media (max-width: 768px) {
+      .{{ localClass }}__variant {
+        padding: {{ paddingVertTablet }}px {{ paddingHorizTablet }}px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .{{ localClass }}__variant {
+        padding: {{ paddingVertMobile }}px {{ paddingHorizMobile }}px;
+      }
     }
 
     .{{ localClass }}__variant.active {
