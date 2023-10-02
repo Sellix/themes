@@ -207,13 +207,16 @@
     </script>
 
     {% render_snippet 'Page loader' %}
-    {% if themeProperties.common.show_floating_social_links %}
-      {% render_snippet 'Social Links: Floating' %}
-    {% endif %}
     {% render_snippet 'Toastify' %}
     {% render_snippet 'Heart beat' %}
-    {% render_snippet 'App crisp chat' %}
-    {% render_snippet 'App helpspace' %}
+
+    {% if global.request.type not in ['invoice'] %}
+      {% if themeProperties.common.show_floating_social_links %}
+        {% render_snippet 'Social Links: Floating' %}
+      {% endif %}
+      {% render_snippet 'App crisp chat' %}
+      {% render_snippet 'App helpspace' %}
+    {% endif %}
 
     <script src="https://www.google.com/recaptcha/api.js?render={{global.config.CAPTCHA_SITE_KEY_V3}}"></script>
     <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js" crossorigin></script>
@@ -234,7 +237,7 @@
       <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
     {% endif %}
 
-     <script src="{{ 'smooth-scrollbar.js' | asset_url }}"></script>
+    <script src="{{ 'smooth-scrollbar.js' | asset_url }}"></script>
     <script src="{{ 'copy-to-clipboard.min.js' | asset_url }}"></script>
     <script src="{{ 'file-saver.min.js' | asset_url }}"></script>
     <script src="{{ 'ripple.js' | asset_url }}"></script>

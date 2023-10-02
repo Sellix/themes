@@ -218,7 +218,11 @@
       })();
     </script>
 
-    {% render_snippet 'Social Links' %}
+    {% if global.request.type not in ['invoice'] %}
+      {% render_snippet 'Social Links' %}
+      {% render_snippet 'App crisp chat' %}
+      {% render_snippet 'App helpspace' %}
+    {% endif %}
 
     <script type='application/javascript'>
       // Simple toastify handler
@@ -267,9 +271,6 @@
         sellixApi.ping(name);
       });
     </script>
-
-    {% render_snippet 'App crisp chat' %}
-    {% render_snippet 'App helpspace' %}
 
     <script src="https://www.google.com/recaptcha/api.js?render={{global.config.CAPTCHA_SITE_KEY_V3}}"></script>
     <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js" crossorigin></script>
