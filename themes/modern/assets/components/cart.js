@@ -45,7 +45,7 @@
         return;
       }
 
-      $('.sellix-store').addClass('no-scroll');
+      sellixHelper.disableScroll();
 
       // close menu if it is opened
       jQuery('.snippet-mobile-sidebar-menu').removeClass('open');
@@ -66,7 +66,7 @@
         this.$cartDropdown.removeClass('open');
         setTimeout(() => {
           this.isOpened = false;
-          $('.sellix-store').removeClass('no-scroll');
+          sellixHelper.enableScroll();
         }, 500);
       }
     }

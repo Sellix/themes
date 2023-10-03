@@ -46,7 +46,7 @@
 </style>
 
 <div class="{{ globalClass}} {{ localClass}} {{'is-disabled' if isDisabled}} {{'no-cart' if args.cartEnabled}}">
-  <a class="{{ globalClass }}__description {{ localClass }}__description" href='/product/{{ product.uniqid }}' target="_blank">
+  <a class="{{ globalClass }}__description {{ localClass }}__description" href='/product/{{ product.slug or product.uniqid }}' target="_blank">
     <div class="{{ globalClass }}__image {{ localClass }}__image {{'image-placeholder' if isPlaceholder}}">
       {% if isPlaceholder %}
         {% render_snippet 'Product: Placeholder icon', product=product %}
@@ -125,7 +125,7 @@
     {% if args.skipBuyButton %}
       <div></div>
     {% else %}
-      <a href="{{'javascript:void(0)' if isDisabled else ['product/', product.uniqid] | join}}" style="color: white;">
+      <a href="{{'javascript:void(0)' if isDisabled else ['product/', product.slug or product.uniqid] | join}}" style="color: white;">
         <div class="{{'disabled' if isDisabled else ''}} buy-button">
           {% if isFree %}
             {{ 'shop.shared.titles.getIt' | t }}

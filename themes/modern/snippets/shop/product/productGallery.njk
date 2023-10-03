@@ -256,6 +256,14 @@
               },
             },
           },
+          callbacks: {
+            open: function() {
+              window.sellixHelper.disableScroll();
+            },
+            close: function() {
+              window.sellixHelper.enableScroll();
+            }
+          },
         }, slideIdx);
       });
     }

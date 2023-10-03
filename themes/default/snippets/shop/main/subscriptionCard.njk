@@ -10,7 +10,7 @@
 <div class="d-flex w-100 position-relative">
   {% render_snippet 'Discount badge', product=product %}
   <a
-    href="{{'javascript:void' if onHold else ['product/', product.uniqid] | join}}"
+    href="{{'javascript:void' if onHold else ['product/', product.slug or product.uniqid] | join}}"
     id="sellix-card-container-{{id}}"
     class="sellix-card-container"
     style="border: {{ "1px solid var(--borderColor)" if cardsProps.product_card_show_border else "none" }};"

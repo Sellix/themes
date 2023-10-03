@@ -11,8 +11,6 @@
 {% set showBorder = safe_get(properties.container_show_border, true) %}
 {% set shadow = safe_get(properties.container_shadow, 'none') %}
 {% set borderRadius = safe_get(properties.container_border_radius, 8) %}
-{% set paddingVert = safe_get(properties.container_padding_vert, 20) %}
-{% set paddingHoriz = safe_get(properties.container_padding_horiz, 16) %}
 {% set titleFontColor = safe_get(properties.title_font_color, 'dark_font_color') %}
 {% set titleFontSize = safe_get(properties.title_font_size, 14) %}
 {% set titleFontWeight = safe_get(properties.title_font_weight, 400) %}
@@ -21,6 +19,13 @@
 {% set bodyFontSize = safe_get(properties.body_font_size, 14) %}
 {% set bodyFontWeight = safe_get(properties.body_font_weight, 500) %}
 {% set bodyLineHeight = safe_get(properties.body_line_height, 20) %}
+
+{% set paddingVertDesktop = safe_get(properties.container_padding_vert_desktop, 20) %}
+{% set paddingHorizDesktop = safe_get(properties.container_padding_horiz_desktop, 16) %}
+{% set paddingVertTablet = safe_get(properties.container_padding_vert_tablet, 20) %}
+{% set paddingHorizTablet = safe_get(properties.container_padding_horiz_tablet, 16) %}
+{% set paddingVertMobile = safe_get(properties.container_padding_vert_mobile, 20) %}
+{% set paddingHorizMobile = safe_get(properties.container_padding_horiz_mobile, 16) %}
 
 {% set isInvoice = global.request.type == 'invoice' %}
 
@@ -42,7 +47,17 @@
       border: {{ '1px solid var(--borderColor)' if showBorder else 'none' }};
       box-shadow: {{ shadow }};
       border-radius: {{ borderRadius }}px;
-      padding: {{ paddingVert }}px {{ paddingHoriz }}px;
+      padding: {{ paddingVertDesktop }}px {{ paddingHorizDesktop }}px;
+    }
+    @media (max-width: 768px) {
+      .{{ localClass }} {
+        padding: {{ paddingVertTablet }}px {{ paddingHorizTablet }}px;
+      }
+    }
+    @media (max-width: 640px) {
+      .{{ localClass }} {
+        padding: {{ paddingVertMobile }}px {{ paddingHorizMobile }}px;
+      }
     }
     .{{ localClass }}__title {
       color: {{ titleFontColor | get_color }};

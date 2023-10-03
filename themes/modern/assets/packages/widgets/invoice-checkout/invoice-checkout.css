@@ -525,12 +525,6 @@ button.secondary .lds-ellipsis div {
 .embed-loader-sellix {
   position: absolute;
 }
-.checkout-details {
-  flex-grow: 1;
-  overflow-y: auto;
-  padding-right: 0;
-  margin-bottom: 2rem;
-}
 .checkout-details-back {
   display: flex;
   align-items: center;
@@ -538,9 +532,10 @@ button.secondary .lds-ellipsis div {
 }
 @media (max-width: 768px) {
   .checkout-details-back {
-    margin-top: 1rem;
-    margin-bottom: 1.5rem;
-    margin-left: 1.5rem;
+    background: var(--backgroundAccentDark);
+    padding: 1rem;
+    margin-bottom: 0;
+    border-bottom: 1px solid var(--black2);
   }
 }
 .checkout-details-back span {
@@ -565,6 +560,16 @@ button.secondary .lds-ellipsis div {
 }
 .checkout-details-back:hover div {
   color: var(--darkFontColor);
+}
+
+.darkTheme .checkout-details-back div {
+  background: var(--black2);
+}
+.checkout-details {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 0;
+  margin-bottom: 2rem;
 }
 .checkout-details-title {
   font-weight: 500;
@@ -749,7 +754,6 @@ button.secondary .lds-ellipsis div {
   border-radius: 0.25rem;
   color: var(--black4);
   font-size: 0.8rem;
-  max-height: calc(100vh - 18rem);
   overflow-y: auto;
   position: relative;
 }
@@ -2991,7 +2995,7 @@ button.secondary .lds-ellipsis div {
 @media (max-width: 768px) {
   .is-checkout .sellix-widget-invoice-checkout--product-card {
     flex-grow: 1;
-    align-items: center;
+    align-items: start;
     display: flex;
   }
 }
@@ -3243,6 +3247,7 @@ button.secondary .lds-ellipsis div {
   flex-wrap: wrap;
   margin-top: 1rem;
   justify-content: space-between;
+  gap: 0.75rem;
 }
 .stripe-form-container .sellix-label {
   margin-bottom: 0.75rem;
@@ -3250,10 +3255,6 @@ button.secondary .lds-ellipsis div {
   font-size: 13px;
   line-height: 16px;
   color: var(--lightFontColor);
-}
-.stripe-form > div {
-  margin-bottom: 0.75rem;
-  width: calc(50% - 0.375rem);
 }
 .sellix-widget-invoice-checkout--getaway {
   border: none;
@@ -3552,6 +3553,8 @@ button.secondary .lds-ellipsis div {
   }
 }
 .sellix-widget-invoice-checkout--main-invoice {
+  display: flex;
+  flex-direction: column;
   background: var(--white);
   width: 100%;
   max-width: 700px;
@@ -3607,4 +3610,18 @@ button.secondary .lds-ellipsis div {
 }
 .sellix-widget-invoice-checkout .widget-invoice-checkout--footer .widget-invoice-checkout--footer-more svg {
   margin-right: 0;
+}
+.sellix-widget-invoice-checkout .button.large {
+  height: 2.25rem;
+  min-height: 2.25rem;
+}
+.sellix-widget-invoice-checkout .button.medium {
+  height: 2rem;
+  min-height: 2rem;
+  font-weight: 500 !important;
+}
+.sellix-widget-invoice-checkout .button.small {
+  height: 1.75rem;
+  min-height: 1.75rem;
+  font-weight: 500 !important;
 }

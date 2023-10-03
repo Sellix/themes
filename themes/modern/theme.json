@@ -1,6 +1,6 @@
 {
   "id": "modern",
-  "version": "1.0.62",
+  "version": "1.0.64",
   "is_active": 0,
   "name": "Modern",
   "scheme": "modern",
@@ -2698,15 +2698,27 @@
                     "visible": true,
                     "properties": {
                       "container_background_color": "background_accent_light",
-                      "container_padding_horiz": 0,
-                      "container_padding_vert": 0,
-                      "addons_container_padding_vert": 0,
-                      "addons_container_padding_horiz": 0,
+                      "container_padding_horiz_desktop": 0,
+                      "container_padding_vert_desktop": 0,
+                      "container_padding_horiz_tablet": 0,
+                      "container_padding_vert_tablet": 0,
+                      "container_padding_horiz_mobile": 0,
+                      "container_padding_vert_mobile": 0,
+                      "addons_container_padding_vert_desktop": 0,
+                      "addons_container_padding_horiz_desktop": 0,
+                      "addons_container_padding_vert_tablet": 0,
+                      "addons_container_padding_horiz_tablet": 0,
+                      "addons_container_padding_vert_mobile": 0,
+                      "addons_container_padding_horiz_mobile": 0,
                       "product_container_background_color": "background_accent_light",
                       "product_container_show_border": false,
                       "product_container_border_radius": 8,
-                      "product_container_padding_vert": 20,
-                      "product_container_padding_horiz": 20
+                      "product_container_padding_vert_desktop": 20,
+                      "product_container_padding_horiz_desktop": 20,
+                      "product_container_padding_vert_tablet": 16,
+                      "product_container_padding_horiz_tablet": 16,
+                      "product_container_padding_vert_mobile": 16,
+                      "product_container_padding_horiz_mobile": 16
                     }
                   }
                 },
@@ -5136,8 +5148,12 @@
                       "render_mode": "frontend",
                       "show_title": false,
                       "container_show_border": false,
-                      "container_padding_vert": 0,
-                      "container_padding_horiz": 0
+                      "container_padding_vert_desktop": 0,
+                      "container_padding_horiz_desktop": 0,
+                      "container_padding_vert_tablet": 0,
+                      "container_padding_horiz_tablet": 0,
+                      "container_padding_vert_mobile": 0,
+                      "container_padding_horiz_mobile": 0
                     }
                   }
                 },
@@ -5146,8 +5162,12 @@
                   "settings": {
                     "visible": true,
                     "properties": {
-                      "container_padding_vert": 0,
-                      "container_padding_horiz": 0,
+                      "container_padding_vert_desktop": 0,
+                      "container_padding_horiz_desktop": 0,
+                      "container_padding_vert_tablet": 0,
+                      "container_padding_horiz_tablet": 0,
+                      "container_padding_vert_mobile": 0,
+                      "container_padding_horiz_mobile": 0,
                       "container_shadow": "0px 1px 2px rgba(16, 24, 40, 0.05)"
                     }
                   }
@@ -11914,26 +11934,6 @@
             "defaultValue": 8
           },
           {
-            "id": "container_padding_vert",
-            "type": "range",
-            "max": 100,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding vertical",
-            "defaultValue": 20
-          },
-          {
-            "id": "container_padding_horiz",
-            "type": "range",
-            "max": 100,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding horizontal",
-            "defaultValue": 20
-          },
-          {
             "id": "container_shadow",
             "type": "select",
             "label": "Drop shadow",
@@ -11956,6 +11956,82 @@
               }
             ],
             "defaultValue": "none"
+          },
+
+          {
+            "id": "desktop_screen_properties",
+            "type": "header",
+            "content": "Desktop screen"
+          },
+          {
+            "id": "container_padding_vert_desktop",
+            "type": "range",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 20
+          },
+          {
+            "id": "container_padding_horiz_desktop",
+            "type": "range",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 20
+          },
+          {
+            "id": "tablet_screen_properties",
+            "type": "header",
+            "content": "Tablet screen"
+          },
+          {
+            "id": "container_padding_vert_tablet",
+            "type": "range",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 16
+          },
+          {
+            "id": "container_padding_horiz_tablet",
+            "type": "range",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 16
+          },
+          {
+            "id": "mobile_screen_properties",
+            "type": "header",
+            "content": "Mobile screen"
+          },
+          {
+            "id": "container_padding_vert_mobile",
+            "type": "range",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 16
+          },
+          {
+            "id": "container_padding_horiz_mobile",
+            "type": "range",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 16
           },
 
           {
@@ -12027,26 +12103,6 @@
             "defaultValue": 8
           },
           {
-            "id": "addons_container_padding_horiz",
-            "max": 24,
-            "min": 0,
-            "step": 1,
-            "type": "range",
-            "unit": "px",
-            "label": "Container padding horizontal",
-            "defaultValue": 16
-          },
-          {
-            "id": "addons_ontainer_padding_vert",
-            "max": 24,
-            "min": 0,
-            "step": 1,
-            "type": "range",
-            "unit": "px",
-            "label": "Container padding vertical",
-            "defaultValue": 20
-          },
-          {
             "id": "addons_container_shadow",
             "type": "select",
             "label": "Drop shadow",
@@ -12074,6 +12130,83 @@
             ],
             "defaultValue": "none"
           },
+
+          {
+            "id": "desktop_screen_properties",
+            "type": "header",
+            "content": "Desktop screen"
+          },
+          {
+            "id": "addons_container_padding_horiz_desktop",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding horizontal",
+            "defaultValue": 16
+          },
+          {
+            "id": "addons_container_padding_vert_desktop",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding vertical",
+            "defaultValue": 20
+          },
+          {
+            "id": "tablet_screen_properties",
+            "type": "header",
+            "content": "Tablet screen"
+          },
+          {
+            "id": "addons_container_padding_horiz_tablet",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding horizontal",
+            "defaultValue": 16
+          },
+          {
+            "id": "addons_container_padding_vert_tablet",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding vertical",
+            "defaultValue": 20
+          },
+          {
+            "id": "mobile_screen_properties",
+            "type": "header",
+            "content": "Mobile screen"
+          },
+          {
+            "id": "addons_container_padding_horiz_mobile",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding horizontal",
+            "defaultValue": 16
+          },
+          {
+            "id": "addons_container_padding_vert_mobile",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding vertical",
+            "defaultValue": 20
+          },
+
           {
             "id": "addons_title_properties",
             "type": "header",
@@ -12212,6 +12345,7 @@
             "label": "Line height",
             "defaultValue": 20
           },
+
           {
             "id": "variants_properties",
             "type": "header",
@@ -12316,8 +12450,14 @@
             "label": "Border radius",
             "defaultValue": 8
           },
+
           {
-            "id": "variants_container_padding_horiz",
+            "id": "desktop_screen_properties",
+            "type": "header",
+            "content": "Desktop screen"
+          },
+          {
+            "id": "variants_container_padding_horiz_desktop",
             "max": 24,
             "min": 0,
             "step": 1,
@@ -12327,7 +12467,7 @@
             "defaultValue": 16
           },
           {
-            "id": "variants_container_padding_vert",
+            "id": "variants_container_padding_vert_desktop",
             "max": 24,
             "min": 0,
             "step": 1,
@@ -12336,6 +12476,57 @@
             "label": "Container padding vertical",
             "defaultValue": 16
           },
+          {
+            "id": "tablet_screen_properties",
+            "type": "header",
+            "content": "Tablet screen"
+          },
+          {
+            "id": "variants_container_padding_horiz_tablet",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding horizontal",
+            "defaultValue": 16
+          },
+          {
+            "id": "variants_container_padding_vert_tablet",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding vertical",
+            "defaultValue": 16
+          },
+          {
+            "id": "mobile_screen_properties",
+            "type": "header",
+            "content": "Mobile screen"
+          },
+          {
+            "id": "variants_container_padding_horiz_mobile",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding horizontal",
+            "defaultValue": 16
+          },
+          {
+            "id": "variants_container_padding_vert_mobile",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding vertical",
+            "defaultValue": 16
+          },
+
           {
             "id": "variants_title_properties",
             "type": "header",
@@ -12543,6 +12734,7 @@
             ],
             "defaultValue": 400
           },
+
           {
             "id": "product_properties",
             "type": "header",
@@ -12589,26 +12781,6 @@
             "defaultValue": 8
           },
           {
-            "id": "product_container_padding_vert",
-            "type": "range",
-            "max": 48,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding vertical",
-            "defaultValue": 16
-          },
-          {
-            "id": "product_container_padding_horiz",
-            "type": "range",
-            "max": 48,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding horizontal",
-            "defaultValue": 16
-          },
-          {
             "id": "product_container_shadow",
             "type": "select",
             "label": "Drop shadow",
@@ -12631,6 +12803,88 @@
               }
             ],
             "defaultValue": "none"
+          },
+
+          {
+            "id": "desktop_screen_properties",
+            "type": "header",
+            "content": "Desktop screen"
+          },
+          {
+            "id": "product_container_padding_vert_desktop",
+            "type": "range",
+            "max": 48,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 16
+          },
+          {
+            "id": "product_container_padding_horiz_desktop",
+            "type": "range",
+            "max": 48,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 16
+          },
+          {
+            "id": "tablet_screen_properties",
+            "type": "header",
+            "content": "Tablet screen"
+          },
+          {
+            "id": "product_container_padding_vert_tablet",
+            "type": "range",
+            "max": 48,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 16
+          },
+          {
+            "id": "product_container_padding_horiz_tablet",
+            "type": "range",
+            "max": 48,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 16
+          },
+          {
+            "id": "mobile_screen_properties",
+            "type": "header",
+            "content": "Mobile screen"
+          },
+          {
+            "id": "product_container_padding_vert_mobile",
+            "type": "range",
+            "max": 48,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 16
+          },
+          {
+            "id": "product_container_padding_horiz_mobile",
+            "type": "range",
+            "max": 48,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 16
+          },
+
+          {
+            "id": "product_title_properties",
+            "type": "header",
+            "content": "Title properties"
           },
           {
             "id": "product_title_font_color",
@@ -14145,7 +14399,7 @@
           {
             "id": "mobile_screen_properties",
             "type": "header",
-            "content": "Desktop screen"
+            "content": "Mobile screen"
           },
           {
             "id": "items_per_row_mobile",
@@ -16071,7 +16325,7 @@
           {
             "id": "mobile_screen_properties",
             "type": "header",
-            "content": "Desktop screen"
+            "content": "Mobile screen"
           },
           {
             "id": "grid_items_per_row_mobile",
@@ -16624,26 +16878,6 @@
             "defaultValue": 8
           },
           {
-            "id": "container_padding_horiz",
-            "max": 24,
-            "min": 0,
-            "step": 1,
-            "type": "range",
-            "unit": "px",
-            "label": "Container padding horizontal",
-            "defaultValue": 16
-          },
-          {
-            "id": "container_padding_vert",
-            "max": 24,
-            "min": 0,
-            "step": 1,
-            "type": "range",
-            "unit": "px",
-            "label": "Container padding vertical",
-            "defaultValue": 20
-          },
-          {
             "id": "container_shadow",
             "type": "select",
             "label": "Drop shadow",
@@ -16671,6 +16905,83 @@
             ],
             "defaultValue": "none"
           },
+
+          {
+            "id": "desktop_screen_properties",
+            "type": "header",
+            "content": "Desktop screen"
+          },
+          {
+            "id": "container_padding_horiz_desktop",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding horizontal",
+            "defaultValue": 16
+          },
+          {
+            "id": "container_padding_vert_desktop",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding vertical",
+            "defaultValue": 20
+          },
+          {
+            "id": "tablet_screen_properties",
+            "type": "header",
+            "content": "Tablet screen"
+          },
+          {
+            "id": "container_padding_horiz_tablet",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding horizontal",
+            "defaultValue": 16
+          },
+          {
+            "id": "container_padding_vert_tablet",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding vertical",
+            "defaultValue": 20
+          },
+          {
+            "id": "mobile_screen_properties",
+            "type": "header",
+            "content": "Mobile screen"
+          },
+          {
+            "id": "container_padding_horiz_mobile",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding horizontal",
+            "defaultValue": 16
+          },
+          {
+            "id": "container_padding_vert_mobile",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding vertical",
+            "defaultValue": 20
+          },
+
           {
             "id": "title_properties",
             "type": "header",
@@ -18828,8 +19139,14 @@
             "label": "Border radius",
             "defaultValue": 8
           },
+
           {
-            "id": "container_padding_horiz",
+            "id": "desktop_screen_properties",
+            "type": "header",
+            "content": "Desktop screen"
+          },
+          {
+            "id": "container_padding_horiz_desktop",
             "max": 24,
             "min": 0,
             "step": 1,
@@ -18839,7 +19156,7 @@
             "defaultValue": 16
           },
           {
-            "id": "container_padding_vert",
+            "id": "container_padding_vert_desktop",
             "max": 24,
             "min": 0,
             "step": 1,
@@ -18848,6 +19165,57 @@
             "label": "Container padding vertical",
             "defaultValue": 16
           },
+          {
+            "id": "tablet_screen_properties",
+            "type": "header",
+            "content": "Tablet screen"
+          },
+          {
+            "id": "container_padding_horiz_tablet",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding horizontal",
+            "defaultValue": 16
+          },
+          {
+            "id": "container_padding_vert_tablet",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding vertical",
+            "defaultValue": 16
+          },
+          {
+            "id": "mobile_screen_properties",
+            "type": "header",
+            "content": "Mobile screen"
+          },
+          {
+            "id": "container_padding_horiz_mobile",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding horizontal",
+            "defaultValue": 16
+          },
+          {
+            "id": "container_padding_vert_mobile",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding vertical",
+            "defaultValue": 16
+          },
+
           {
             "id": "title_properties",
             "type": "header",
@@ -19504,26 +19872,6 @@
             "defaultValue": 8
           },
           {
-            "id": "container_padding_vert",
-            "type": "range",
-            "max": 48,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding vertical",
-            "defaultValue": 20
-          },
-          {
-            "id": "container_padding_horiz",
-            "type": "range",
-            "max": 48,
-            "min": 0,
-            "step": 1,
-            "unit": "px",
-            "label": "Padding horizontal",
-            "defaultValue": 20
-          },
-          {
             "id": "container_shadow",
             "type": "select",
             "label": "Drop shadow",
@@ -19546,6 +19894,82 @@
               }
             ],
             "defaultValue": "none"
+          },
+
+          {
+            "id": "desktop_screen_properties",
+            "type": "header",
+            "content": "Desktop screen"
+          },
+          {
+            "id": "container_padding_vert_desktop",
+            "type": "range",
+            "max": 48,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 20
+          },
+          {
+            "id": "container_padding_horiz_desktop",
+            "type": "range",
+            "max": 48,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 20
+          },
+          {
+            "id": "tablet_screen_properties",
+            "type": "header",
+            "content": "Tablet screen"
+          },
+          {
+            "id": "container_padding_vert_tablet",
+            "type": "range",
+            "max": 48,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 16
+          },
+          {
+            "id": "container_padding_horiz_tablet",
+            "type": "range",
+            "max": 48,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 16
+          },
+          {
+            "id": "mobile_screen_properties",
+            "type": "header",
+            "content": "Mobile screen"
+          },
+          {
+            "id": "container_padding_vert_mobile",
+            "type": "range",
+            "max": 48,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding vertical",
+            "defaultValue": 16
+          },
+          {
+            "id": "container_padding_horiz_mobile",
+            "type": "range",
+            "max": 48,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding horizontal",
+            "defaultValue": 16
           }
         ]
       }

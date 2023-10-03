@@ -8,8 +8,13 @@
 {% set showBorder = safe_get(properties.container_show_border, true) %}
 {% set shadow = safe_get(properties.container_shadow, 'none') %}
 {% set borderRadius = safe_get(properties.container_border_radius, 8) %}
-{% set paddingVert = safe_get(properties.container_padding_vert, 16) %}
-{% set paddingHoriz = safe_get(properties.container_padding_horiz, 16) %}
+
+{% set paddingVertDesktop = safe_get(properties.container_padding_vert_desktop, 20) %}
+{% set paddingHorizDesktop = safe_get(properties.container_padding_horiz_desktop, 20) %}
+{% set paddingVertTablet = safe_get(properties.container_padding_vert_tablet, 16) %}
+{% set paddingHorizTablet = safe_get(properties.container_padding_horiz_tablet, 16) %}
+{% set paddingVertMobile = safe_get(properties.container_padding_vert_mobile, 16) %}
+{% set paddingHorizMobile = safe_get(properties.container_padding_horiz_mobile, 16) %}
 
 {% set productShowBorder = safe_get(properties.product_container_show_border, true) %}
 
@@ -22,7 +27,6 @@
     border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
     box-shadow: {{ shadow }};
     border-radius: {{ borderRadius }}px;
-    padding: {{ paddingVert }}px {{ paddingHoriz }}px;
   }
   {% if showBorder and not productShowBorder %}
     .snippet-checkout-product:not(:last-of-type) {
@@ -31,6 +35,22 @@
       border-bottom-right-radius: 0;
     }
   {% endif %}
+
+  .{{ localClass }} {
+    padding: {{ paddingVertDesktop }}px {{ paddingHorizDesktop }}px;
+  }
+
+  @media (max-width: 768px) {
+    .{{ localClass }} {
+      padding: {{ paddingVertTablet }}px {{ paddingHorizTablet }}px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .{{ localClass }} {
+      padding: {{ paddingVertMobile }}px {{ paddingHorizMobile }}px;
+    }
+  }
 </style>
 
 <div class="{{ globalClass }} {{ localClass }}">

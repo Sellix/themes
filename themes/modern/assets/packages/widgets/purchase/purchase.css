@@ -640,7 +640,6 @@ button.secondary .lds-ellipsis div {
   border-radius: 0.25rem;
   color: var(--black4);
   font-size: 0.8rem;
-  max-height: calc(100vh - 18rem);
   overflow-y: auto;
   position: relative;
 }
@@ -1030,6 +1029,7 @@ button.secondary .lds-ellipsis div {
   flex-wrap: wrap;
   margin-top: 1rem;
   justify-content: space-between;
+  gap: 0.75rem;
 }
 .stripe-form-container .sellix-label {
   margin-bottom: 0.75rem;
@@ -1038,15 +1038,12 @@ button.secondary .lds-ellipsis div {
   line-height: 16px;
   color: var(--lightFontColor);
 }
-.stripe-form > div {
-  margin-bottom: 0.75rem;
-  width: calc(50% - 0.375rem);
-}
 .tax-form {
   display: flex;
   flex-wrap: wrap;
   margin-top: 1rem;
   justify-content: space-between;
+  row-gap: 0.75rem;
 }
 .tax-form-container .sellix-label {
   margin-bottom: 0.75rem;
@@ -1054,10 +1051,6 @@ button.secondary .lds-ellipsis div {
   font-size: 13px;
   line-height: 16px;
   color: var(--lightFontColor);
-}
-.tax-form > div {
-  margin-bottom: 0.75rem;
-  width: calc(50% - 0.375rem);
 }
 .tax-form-type {
   display: flex;
@@ -1169,7 +1162,6 @@ input[type=number] {
 .tos-note-container {
   width: 100%;
   padding-top: 0;
-  margin: 2rem 0 0.5rem 0;
 }
 .tos-note-container .switcher {
   width: 1.8rem;
@@ -1197,6 +1189,7 @@ input[type=number] {
   font-size: 14px;
   line-height: 16px;
   color: var(--lightFontColor);
+  margin-bottom: 0 !important;
 }
 .tos-note-container .switcher-label .sellix-label span {
   cursor: pointer;
@@ -1320,6 +1313,9 @@ input[type=number] {
 .sellix-product-card .sellix-select {
   max-height: 48px;
   background-position-y: center;
+}
+.sellix-product-card .add-to-cart-button .sellix-select {
+  height: 100%;
 }
 
 .sellix-select {
@@ -1502,7 +1498,10 @@ input[type=number] {
   color: var(--lightFontColor);
 }
 .sellix-product-footer {
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
 }
 .sellix-product-footer .next {
   width: 60%;
@@ -1636,7 +1635,12 @@ input[type=number] {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
+}
+@media (max-width: 768px) {
+  .sellix-product-form {
+    gap: 0.75rem;
+  }
 }
 .sellix-product-form-line {
   width: 100%;
@@ -1672,9 +1676,6 @@ input[type=number] {
   height: 38px;
   padding: 10px 12px;
   width: 36px;
-}
-.sellix-product-form-field .sellix-label {
-  margin-bottom: 0.25rem !important;
 }
 .sellix-product-form-field .sellix-input {
   height: 2.5rem;
@@ -1977,9 +1978,6 @@ input[type=number] {
   font-size: 11px;
 }
 
-.discount-message {
-  padding: 0.5rem 0 1rem 0;
-}
 .discount-message > div {
   background: var(--backgroundColor);
   border: 1px solid var(--borderColor);

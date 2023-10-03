@@ -16,7 +16,7 @@
 {% set hideStockCounter = shop.hide_stock_counter %}
 
 <div class="group-option {{'is-disabled' if isDisabled else ''}} {{'no-cart' if args.cartEnabled else ''}}">
-  <a class="group-option-description" href='/product/{{ product.uniqid }}' target="_blank">
+  <a class="group-option-description" href='product/{{ product.slug or product.uniqid }}' target="_blank">
 
     {% if not isFree %}
       {% render_snippet 'Discount badge', product=product, isGroup=true %}
@@ -116,7 +116,7 @@
     {% if args.skipBuyButton %}
       <div></div>
     {% else %}
-      <a href="{{'javascript:void' if isDisabled else ['product/', product.uniqid] | join}}" style="color: white;">
+      <a href="{{'javascript:void' if isDisabled else ['product/', product.slug or product.uniqid] | join}}" style="color: white;">
         <div class="{{'disabled' if isDisabled else ''}} buy-button">
           {% if isFree %}
             {{ 'shop.shared.titles.getIt' | t }}

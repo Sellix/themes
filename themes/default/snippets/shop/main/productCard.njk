@@ -60,7 +60,7 @@
     {% render_snippet 'Discount badge', product=product %}
   {% endif %}
   <a
-    href="{{'javascript:void' if product.on_hold | int else ['product/', product.uniqid] | join}}"
+    href="{{'javascript:void' if product.on_hold | int else ['product/', product.slug or product.uniqid] | join}}"
     id="sellix-card-container-{{id}}"
     class="sellix-card-container sellix-card-container-{{ id }}"
   >

@@ -115,12 +115,12 @@
       if ($mobileMenu.hasClass('open')) {
         $mobileMenu.removeClass('open');
         $toggler.removeClass('open');
-        $('.sellix-store').removeClass('no-scroll');
+        window.sellixHelper.enableScroll();
         $(document).trigger('SellixMobileMenu', { action: 'close' });
       } else {
         $mobileMenu.addClass('open');
         $toggler.addClass('open');
-        $('.sellix-store').addClass('no-scroll');
+        window.sellixHelper.enableScroll();
         $(document).trigger('SellixMobileMenu', { action: 'open' });
       }
     });

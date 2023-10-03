@@ -73,7 +73,7 @@
     {% set visibleProductsCnt = visibleProductsCnt + 1 %}
 
     <a
-      href="{{'javascript:void(0)' if product.on_hold | int else ['product/', product.uniqid] | join}}"
+      href="{{'javascript:void(0)' if product.on_hold | int else ['product/', product.slug or product.uniqid] | join}}"
       class="{{ globalClass }}__container"
     >
       <div class="{{ globalClass}}__image {{'image-placeholder' if isPlaceholder else ''}}">
