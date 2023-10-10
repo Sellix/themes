@@ -7,6 +7,7 @@
 {% set customClass = safe_get(properties.custom_class, '') %}
 {% set orderType = safe_get(properties.grid_order_type, 'none') %}
 {% set orderDirection = safe_get(properties.grid_order_direction, 'asc') %}
+{% set defaultOrderType = shop.default_sort %}
 {% set filterType = safe_get(properties.grid_filter_type, 'none') %}
 {% set filterName = safe_get(properties.grid_filter_name, id) %}
 {% set expandGroup = safe_get(properties.grid_expand_group, false) %}
@@ -41,8 +42,25 @@
   {% endif %}
 {% endfor %}
 
-{% if orderType %}
-  {% set items = items | sort_products({'sortType': orderType, 'direction': orderDirection}) %}
+{% if orderType and orderType != 'none' %}
+  {% set items = items | sort_products({ 'sortType': orderType, 'direction': orderDirection, field: orderField }) %}
+{% endif %}
+
+{% set orderField = null %}
+{% if orderType == 'none' %}
+  {% if defaultOrderType in ['PRICE', 'NAME', 'TYPE', 'STOCK'] %}
+    {% if defaultOrderType == 'PRICE' %}
+      {% set orderField = 'price_display' %}
+    {% elif defaultOrderType == 'NAME' %}
+      {% set orderField = 'title' %}
+    {% elif defaultOrderType == 'TYPE' %}
+      {% set orderField = 'product_type_weight' %}
+    {% elif defaultOrderType == 'STOCK' %}
+      {% set orderField = 'stock' %}
+    {% endif %}
+
+    {% set items = items | sort_products({ 'sortType': 'field', 'direction': orderDirection, field: orderField }) %}
+  {% endif %}
 {% endif %}
 
 {% if filterType and product %}
@@ -173,6 +191,15 @@
 </style>
 
 <div class="{{ globalClass }}__container {{ localClass }}__container {{ 'grid-one-column' if items.length == 0 }} {{ customClass }}">
+  <div class="{{ globalClass }}__products-loader {{ localClass }}__products-loader {{ 'd-none' if activeCategory == 'all' }}">
+    {% render_snippet
+      'Shared: Loader',
+      properties={
+        background_color: bgColor or 'button_text_color',
+        color: labelColor or 'button_color'
+      }
+    %}
+  </div>
   <div class="{{ globalClass }}__products {{ localClass }}__products">
     {% set visibleProductsCnt = 0 %}
     {% for item in items %}
@@ -188,6 +215,7 @@
           <div
             data-product-id="{{item.uniqid}}"
             class="{{ globalClass }}__cards {{ localClass }}__cards"
+            style="{{ 'display: none' if activeCategory != 'all' }}"
           >
             {% if item.isInfo %}
               {% set atLeastOneHasImages = items | atLeastOneHasImages %}
@@ -269,9 +297,10 @@
       );
 
       const sortByDefault = (a, b) => items.findIndex((it) => it.uniqid === a.uniqid) - items.findIndex((it) => it.uniqid === b.uniqid);
-      const sortByPrice = (a, b) => (a.min_price_item ? +a.min_price_item.price_display : 9999999) - (b.min_price_item ? +b.min_price_item.price_display : 9999999);
+      const sortByPrice = (a, b) => (a.min_price_item ? +a.min_price_item.price_display : +a.price_display) -
+        (b.min_price_item ? +b.min_price_item.price_display : +b.price_display);
       const sortByName = (a, b) => a.title < b.title ? -1 : a.title > b.title ? 1 : 0;
-      const sortByType = (a, b) => b.isGroup - a.isGroup;
+      const sortByType = (a, b) => b.product_type_weight - a.product_type_weight;
       const sortByStock = (a, b) => b.stock - a.stock;
 
       const sortFunc = {
@@ -351,6 +380,13 @@
           filterProducts();
         }
       });
+
+      try{
+        $('.{{ localClass }}__products-loader').addClass('d-none');
+        filterProducts();
+      } catch (e) {
+        $('.{{ localClass }}__cards').show();
+      }
     });
   </script>
 {% elif settings.group_names_to_hide or settings.group_name %}
