@@ -77,12 +77,15 @@
       ]
       if (nextDiscount) {
         const nextQuantity = +nextDiscount.quantity - +quantity,
-          currency = nextDiscount.type === "FIXED" ? "{{currency}}" : "",
-          percent = nextDiscount.type !== "FIXED" ? "%" : "";
+          currency = nextDiscount.type === 'FIXED' ? '{{currency}}' : '',
+          percent = nextDiscount.type !== 'FIXED' ? '%' : '',
+          nextPrice = nextDiscount.type === 'FIXED'
+            ? window.sellixHelper.toDecimalPrecision(nextDiscount.value, 2)
+            : nextDiscount.value;
 
         $discountMessage.find(".quantity-message > span").html(
           `${addMoreTranslations[0]} <b>${nextQuantity}</b> ` +
-          `${addMoreTranslations[1]} <b>${currency}${nextDiscount.value}${percent}</b> ` +
+          `${addMoreTranslations[1]} <b>${currency}${nextPrice}${percent}</b> ` +
           `${addMoreTranslations[2]}`
         );
         $discountMessage.css({ height: 'auto', overflow: 'initial' });

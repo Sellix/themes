@@ -379,6 +379,10 @@ button.secondary .lds-ellipsis div {
   background: var(--black9);
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
+.lds-ellipsis.gray > div {
+  background: var(--black4);
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
 .lds-ellipsis > div {
   position: absolute;
   width: 9px;
@@ -1045,6 +1049,12 @@ button.secondary .lds-ellipsis div {
 .sellix-widget-invoice-checkout--track .track-card-description a {
   color: var(--purple6);
 }
+.sellix-widget-invoice-checkout--delivery-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
 .sellix-widget-invoice-checkout--delivery-digital {
   display: flex;
   align-items: flex-start;
@@ -1095,6 +1105,7 @@ button.secondary .lds-ellipsis div {
   white-space: pre-wrap;
 }
 .sellix-widget-invoice-checkout--delivery-message {
+  color: var(--black4);
   margin: 1rem 0;
   border: 1px solid var(--black2);
   border-radius: 0.5rem;
@@ -1141,6 +1152,7 @@ button.secondary .lds-ellipsis div {
   display: none;
 }
 .sellix-widget-invoice-checkout--delivery-products {
+  color: var(--black4);
   margin-top: 1rem;
   overflow: hidden;
   width: 100%;
@@ -1429,6 +1441,7 @@ button.secondary .lds-ellipsis div {
 }
 .sellix-widget-invoice-checkout--info-header {
   display: flex;
+  height: initial;
   width: 100%;
   font-family: "Inter";
   font-weight: 600;
@@ -3564,6 +3577,11 @@ button.secondary .lds-ellipsis div {
   overflow-y: auto;
   transition: padding-top 0.3s ease;
   max-height: 100vh;
+}
+@media (max-width: 768px) {
+  .sellix-widget-invoice-checkout--main-invoice {
+    max-height: initial;
+  }
 }
 .sellix-widget-invoice-checkout--main-invoice::-webkit-scrollbar {
   width: 0;

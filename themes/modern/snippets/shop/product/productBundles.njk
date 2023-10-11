@@ -106,7 +106,7 @@
                 {{ 'shop.product.bundle.discountTitle.0' | t }}
                 <b>
                   {{ currency if discountType === 'FIXED' }}
-                  {{discountAmount}}{{ '%' if discountType === 'PERCENTAGE' }}
+                  {{discountAmount | to_decimal_precision(2)}}{{ '%' if discountType === 'PERCENTAGE' }}
                 </b>
                 {{ 'shop.product.bundle.discountTitle.1' | t }}
               </p>

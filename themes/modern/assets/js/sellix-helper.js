@@ -197,6 +197,15 @@
 
       return topDomain;
     }
+
+    toDecimalPrecision(value, digits) {
+      value = +value;
+      if (value === 0 || value >= 0.1) {
+        return value.toFixed(digits);
+      }
+
+      return value.toLocaleString('fullwide', { maximumSignificantDigits: digits });
+    }
   }
   window.sellixHelper = new Helper();
 })(document, window, jQuery, SellixContext, SellixStoreFactory);

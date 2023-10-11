@@ -50,13 +50,15 @@
 {% if orderType == 'none' %}
   {% if defaultOrderType in ['PRICE', 'NAME', 'TYPE', 'STOCK'] %}
     {% if defaultOrderType == 'PRICE' %}
-      {% set orderField = 'price_display' %}
+      {% set orderField = 'min_price' %}
     {% elif defaultOrderType == 'NAME' %}
       {% set orderField = 'title' %}
     {% elif defaultOrderType == 'TYPE' %}
       {% set orderField = 'product_type_weight' %}
+      {% set orderDirection = 'desc' %}
     {% elif defaultOrderType == 'STOCK' %}
       {% set orderField = 'stock' %}
+      {% set orderDirection = 'desc' %}
     {% endif %}
 
     {% set items = items | sort_products({ 'sortType': 'field', 'direction': orderDirection, field: orderField }) %}
@@ -297,11 +299,10 @@
       );
 
       const sortByDefault = (a, b) => items.findIndex((it) => it.uniqid === a.uniqid) - items.findIndex((it) => it.uniqid === b.uniqid);
-      const sortByPrice = (a, b) => (a.min_price_item ? +a.min_price_item.price_display : +a.price_display) -
-        (b.min_price_item ? +b.min_price_item.price_display : +b.price_display);
+      const sortByPrice = (a, b) => +a.min_price - +b.min_price;
       const sortByName = (a, b) => a.title < b.title ? -1 : a.title > b.title ? 1 : 0;
       const sortByType = (a, b) => b.product_type_weight - a.product_type_weight;
-      const sortByStock = (a, b) => b.stock - a.stock;
+      const sortByStock = (a, b) => (b.stock === -1 ? 1000000000 : b.stock) - (a.stock === -1 ? 1000000000 : a.stock);
 
       const sortFunc = {
         "DEFAULT": sortByDefault,
