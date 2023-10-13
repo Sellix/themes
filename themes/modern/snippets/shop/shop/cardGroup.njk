@@ -34,6 +34,12 @@
 {% set priceFontSize = safe_get(properties.price_font_size, cardProps.product_card_price_font_size) %}
 {% set priceFontWeight = safe_get(properties.price_font_weight, cardProps.product_card_price_font_weight) %}
 
+{% set priceProperties = {
+  price_font_color: priceFontColor,
+  price_font_weight: priceFontWeight,
+  price_font_size: priceFontSize
+} %}
+
 {% set globalClass =  'snippet-product-card' %}
 {% set localClass = id %}
 
@@ -104,14 +110,19 @@
         <div class="{{ globalClass }}__description {{ localClass }}__description">
           {% if group.min_price_item %}
             <div class="{{ globalClass }}__group-description-info">
-              <span>{{ 'shop.shared.titles.startingAt' | t }} </span>
+              <span class="{{ globalClass }}__starting-at">
+                {{ 'shop.shared.titles.startingAt' | t }}
+              </span>
 
               <span class="{{ globalClass }}__price {{ localClass }}__price">
-                {% render_snippet
-                  'Shared: Price',
-                  currency=group.min_price_item.currency,
-                  price=group.min_price_item.price_display
-                %}
+               {% render_snippet
+                 'Shared: Price',
+                 currency=group.min_price_item.currency,
+                 price=group.min_price,
+                 show_image=true,
+                 show_initial_price='last',
+                 properties=priceProperties
+               %}
               </span>
             </div>
 

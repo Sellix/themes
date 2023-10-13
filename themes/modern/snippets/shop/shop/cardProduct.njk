@@ -40,6 +40,12 @@
 {% set priceFontSize = safe_get(properties.price_font_size, cardProps.product_card_price_font_size) %}
 {% set priceFontWeight = safe_get(properties.price_font_weight, cardProps.product_card_price_font_weight) %}
 
+{% set priceProperties = {
+  price_font_color: priceFontColor,
+  price_font_weight: priceFontWeight,
+  price_font_size: priceFontSize
+} %}
+
 {% set globalClass = 'snippet-product-card' %}
 {% set localClass = id %}
 
@@ -133,17 +139,21 @@
           {% if product.price_discount and not isFree %}
             <div class="{{ globalClass }}__price-with-discount {{ localClass }}__price-with-discount">
               {% render_snippet
-                'Shared: Price with discount',
+                'Shared: Price',
                 currency=product.currency,
-                price=product.price_display,
+                price=product.min_price,
                 discount=product.price_discount,
-                priceVariants=product.price_variants
+                show_image=true,
+                show_initial_price='last',
+                properties=priceProperties
               %}
             </div>
           {% else %}
             <div class="{{ globalClass }}__group-description-info">
               {% if not isFree and product.price_variants %}
-                <span>{{ 'shop.shared.titles.startingAt' | t }} </span>
+                <span class="{{ globalClass }}__starting-at">
+                  {{ 'shop.shared.titles.startingAt' | t }}
+                </span>
               {% endif %}
 
               <div class="{{ globalClass }}__price {{ localClass }}__price">
@@ -152,10 +162,13 @@
                 {% elif isPayWhatYouWant %}
                   {% render_snippet 'Tag', tag=('shop.main.cards.product.yourPrice' | t) %}
                 {% else %}
-                  {% render_snippet 'Shared: Price',
+                  {% render_snippet
+                    'Shared: Price',
                     currency=product.currency,
-                    price=product.price_display,
-                    priceVariants=product.price_variants
+                    price=product.min_price,
+                    show_image=true,
+                    show_initial_price='last',
+                    properties=priceProperties
                   %}
                 {% endif %}
               </div>

@@ -95,7 +95,17 @@
         {% endif %}
 
         <div class="{{ globalClass }}__product-price">
-          {% render_snippet 'Product: Price', product=product %}
+          {% if isFree%}
+            {{ 'shop.shared.titles.free' | t }}
+          {% else %}
+            {% render_snippet
+              'Shared: Price',
+              currency=product.currency,
+              price=product.min_price,
+              discount=product.price_discount,
+              show_initial_price='last'
+            %}
+          {% endif %}
         </div>
       </div>
 

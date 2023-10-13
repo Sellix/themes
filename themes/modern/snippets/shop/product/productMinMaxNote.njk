@@ -4,7 +4,7 @@
 {% set quantity_min = product.quantity_min %}
 {% set quantity_max = product.quantity_max %}
 {% set equal = (true if quantity_min == quantity_max else false) %}
-{% set currency = global.currencyConfig.allCurrencies[shop.currency].symbol %}
+{% set currency = global.currencyConfig.allCurrencies[product.currency] %}
 
 {% set globalClass = ['snippet-product-minmax-note'] %}
 {% set localClass = id %}
@@ -77,15 +77,24 @@
       ]
       if (nextDiscount) {
         const nextQuantity = +nextDiscount.quantity - +quantity,
-          currency = nextDiscount.type === 'FIXED' ? '{{currency}}' : '',
+          currency = nextDiscount.type === 'FIXED' ? '{{ currency.symbol }}' : '',
+          currencyType = '{{ currency.type }}',
           percent = nextDiscount.type !== 'FIXED' ? '%' : '',
           nextPrice = nextDiscount.type === 'FIXED'
             ? window.sellixHelper.toDecimalPrecision(nextDiscount.value, 2)
             : nextDiscount.value;
 
+        const priceTitle = nextDiscount.type === 'FIXED'
+          ? (
+            currencyType === 'feat'
+              ? `${currency}${nextPrice}`
+              : `${nextPrice} ${currency}`
+          )
+          : `3-${nextPrice}${percent}`;
+
         $discountMessage.find(".quantity-message > span").html(
           `${addMoreTranslations[0]} <b>${nextQuantity}</b> ` +
-          `${addMoreTranslations[1]} <b>${currency}${nextPrice}${percent}</b> ` +
+          `${addMoreTranslations[1]} <b>${priceTitle}</b> ` +
           `${addMoreTranslations[2]}`
         );
         $discountMessage.css({ height: 'auto', overflow: 'initial' });

@@ -61,47 +61,22 @@
               </span>
             {% else %}
               <div class="{{ globalClass }}__option-info">
-                {% if product.price_discount and not isFree %}
-                  <span class="{{ globalClass }}__option-info-price with-discount" >
-                    {#
-                    <i>
-                      {% render_snippet
-                        'Shared: Price',
-                        currency=product.currency,
-                        price=product.price_display
-                      %}
-                    </i>
-                    {%- render_snippet
+                <span class="{{ globalClass }}__option-info-price" >
+                  {% if isFree %}
+                    <span style='color: var(--green6)'>
+                      {{ 'shop.shared.titles.free' | t }}
+                    </span>
+                  {% else %}
+                    {% render_snippet
                       'Shared: Price',
                       currency=product.currency,
-                      price=product.price_display,
-                      discount=product.price_discount
-                    -%}
-                    #}
-
-                    {% render_snippet
-                      'Shared: Price with discount',
-                      currency=product.currency,
-                      price=product.price_display,
+                      price=product.min_price,
                       discount=product.price_discount,
-                      priceVariants=product.price_variants
+                      show_image=true,
+                      show_initial_price='last'
                     %}
-                  </span>
-                {% else %}
-                  <span class="{{ globalClass }}__option-info-price" >
-                    {% if isFree%}
-                      <span style='color: var(--green6)'>
-                        {{ 'shop.shared.titles.free' | t }}
-                      </span>
-                    {% else %}
-                      {% render_snippet 'Shared: Price',
-                        currency=product.currency,
-                        price=product.price_display,
-                        priceVariants=product.price_variants
-                      %}
-                    {% endif %}
-                  </span>
-                {% endif %}
+                  {% endif %}
+                </span>
 
                 {% if showStockInfo %}
                   <span class="{{ globalClass }}__option-dot">  ●  </span>

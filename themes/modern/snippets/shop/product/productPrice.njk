@@ -10,7 +10,18 @@
 {% set initialPriceFontColor = safe_get(properties.initial_price_font_color, 'dark_font_color') %}
 {% set initialPriceFontSize = safe_get(properties.initial_price_font_size, 14) %}
 {% set initialPriceFontWeight = safe_get(properties.initial_price_font_weight, 500) %}
-{% set initialPriceLineHeight = safe_get(properties.initial_title_price_height, 20) %}
+{% set initialPriceLineHeight = safe_get(properties.initial_price_line_height, 20) %}
+
+{% set priceProperties = {
+  price_font_color: priceFontColor,
+  price_font_size: priceFontSize,
+  price_font_weight: priceFontWeight,
+  price_line_height: priceLineHeight,
+  initial_price_font_color: initialPriceFontColor,
+  initial_price_font_size: initialPriceFontSize,
+  initial_price_font_weight: initialPriceFontWeight,
+  initial_title_price_height: initialPriceLineHeight
+} %}
 
 {% set globalClass = ['snippet-product-price'] %}
 {% set localClass = id %}
@@ -28,36 +39,20 @@
     font-weight: {{ initialPriceFontWeight }};
     line-height: {{ initialPriceLineHeight }}px;
   }
-  .{{ localClass }}.with-discount span {
-    margin-right: 0.25rem;
-    text-decoration: line-through;
-    color: var(--lightFontColor);
-    font-weight: 400;
-  }
 </style>
 
-{% if product.price_discount and not isFree %}
-  <span class="{{ globalClass }} {{ localClass }} with-discount">
+
+<span class="{{ globalClass }} {{ localClass }}">
+  {% if isFree%}
+    {{ 'shop.shared.titles.free' | t }}
+  {% else %}
     {% render_snippet
       'Shared: Price',
       currency=product.currency,
-      price=product.price_display,
-      discount=product.price_discount
+      price=product.min_price,
+      show_image=true,
+      show_initial_price='last',
+      properties=priceProperties
     %}
-    <span>
-      {% render_snippet
-        'Shared: Price',
-        currency=product.currency,
-        price=product.price_display
-      %}
-    </span>
-  </span>
-{% else %}
-  <span class="{{ globalClass }} {{ localClass }}">
-    {% if isFree%}
-      {{ 'shop.shared.titles.free' | t }}
-    {% else %}
-      {% render_snippet 'Shared: Price', currency=product.currency, price=product.price_display %}
-    {% endif %}
-  </span>
-{% endif %}
+  {% endif %}
+</span>

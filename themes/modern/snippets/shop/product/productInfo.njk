@@ -40,6 +40,17 @@
 {% set taxFontWeight = safe_get(properties.tax_font_weight, 400) %}
 {% set taxLineHeight = safe_get(properties.tax_line_height, 20) %}
 
+{% set priceProperties = {
+  price_font_color: priceFontColor,
+  price_font_size: priceFontSize,
+  price_font_weight: priceFontWeight,
+  price_line_height: priceLineHeight,
+  initial_price_font_color: initialPriceFontColor,
+  initial_price_font_size: initialPriceFontSize,
+  initial_price_font_weight: initialPriceFontWeight,
+  initial_title_price_height: initialPriceLineHeight
+} %}
+
 {% set globalClass = ['snippet-product-info'] %}
 {% set localClass = id %}
 
@@ -64,19 +75,7 @@
     font-size: {{ priceFontSize }}px;
     font-weight: 400;
   }
-  .{{ localClass }}__price {
-    color: {{ priceFontColor | get_color }};
-    font-size: {{ priceFontSize }}px;
-    font-weight: {{ priceFontWeight }};
-    line-height: {{ priceLineHeight }}px;
-  }
-  .{{ localClass }}__price-initial {
-    text-decoration: line-through;
-    font-weight: {{ initialPriceFontWeight }};
-    color: {{ initialPriceFontColor | get_color }};
-    font-size: {{ initialPriceFontSize }}px;
-    line-height: {{ initialPriceLineHeight }}px;
-  }
+
   .{{ localClass }}__tax {
     color: {{ priceFontColor | get_color }};
     font-size: 14px;
@@ -118,17 +117,14 @@
         {% render_snippet
           'Shared: Price',
           currency=product.currency,
-          price=product.price_display,
+          price=product.min_price,
           discount=product.price_discount,
-          priceVariants=product.price_variants
+          show_initial_price='last',
+          properties=priceProperties
         %}
       </span>
 
       {% if product.price_discount %}
-        <span class="{{ globalClass }}__price-initial {{ localClass }}__price-initial">
-          {% render_snippet 'Shared: Price', currency=product.currency, price=product.price_display %}
-        </span>
-
         {% render_snippet
           'Tag',
           tag=([product.price_discount, '%', ' OFF'] | join | t),

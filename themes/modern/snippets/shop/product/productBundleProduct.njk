@@ -26,12 +26,23 @@
 {% set priceFontColor = safe_get(properties.bundle_product_price_font_color, 'dark_font_color') %}
 {% set priceFontSize = safe_get(properties.bundle_product_price_font_size, 14) %}
 {% set priceFontWeight = safe_get(properties.bundle_product_price_font_weight, 500) %}
-{% set priceLineHeight = safe_get(properties.bundle_product_title_price_height, 20) %}
+{% set priceLineHeight = safe_get(properties.bundle_product_price_line_height, 20) %}
 
 {% set initialPriceFontColor = safe_get(properties.bundle_product_initial_price_font_color, 'dark_font_color') %}
 {% set initialPriceFontSize = safe_get(properties.bundle_product_initial_price_font_size, 14) %}
 {% set initialPriceFontWeight = safe_get(properties.bundle_product_initial_price_font_weight, 500) %}
-{% set initialPriceLineHeight = safe_get(properties.bundle_product_initial_title_price_height, 20) %}
+{% set initialPriceLineHeight = safe_get(properties.bundle_product_initial_price_line_height, 20) %}
+
+{% set priceProperties = {
+  'price_font_color': priceFontColor,
+  'price_font_size': priceFontSize,
+  'price_font_weight': priceFontWeight,
+  'price_line_height': priceLineHeight,
+  'initial_price_font_color': initialPriceFontColor,
+  'initial_price_font_size': initialPriceFontSize,
+  'initial_price_font_weight': initialPriceFontWeight,
+  'initial_price_line_height': initialPriceLineHeight
+} %}
 
 {% set globalClass = ['snippet-product-bundle-product'] %}
 {% set localClass = id %}
@@ -77,20 +88,18 @@
         </span>
       {% else %}
         <div class="{{ globalClass }}__info {{ localClass }}__info">
-          {% render_snippet
-            'Product: Price',
-            product=product,
-            properties={
-              'price_font_color': priceFontColor,
-              'price_font_size': priceFontSize,
-              'price_font_weight': priceFontWeight,
-              'price_line_height': priceFontColor,
-              'initial_price_font_color': initialPriceFontColor,
-              'initial_price_font_size': initialPriceFontSize,
-              'initial_price_font_weight': initialPriceFontWeight,
-              'initial_price_line_height': initialPriceFontLineHeight
-            }
-          %}
+          {% if isFree%}
+            {{ 'shop.shared.titles.free' | t }}
+          {% else %}
+            {% render_snippet
+              'Shared: Price',
+              currency=product.currency,
+              price=product.min_price,
+              discount=product.price_discount,
+              show_initial_price='last',
+              properties=priceProperties
+            %}
+          {% endif %}
 
           {% if showStockInfo %}
             <span class="dot">  ●  </span>
