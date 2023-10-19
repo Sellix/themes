@@ -350,10 +350,10 @@
 
         filteredItems = filterItems(filteredItems);
 
-        const filteredItemIds = filteredItems.map(item => item.uniqid);
+        const filteredItemIds = filteredItems.map(item => `${item.uniqid}`);
         $('.{{ localClass }}__cards[data-product-id]')
           .hide()
-          .filter((idx, el) => filteredItemIds.includes($(el).data('product-id')))
+          .filter((idx, el) => filteredItemIds.includes(`${$(el).data('product-id')}`))
           .show();
 
         if (filteredItemIds.length === 0) {

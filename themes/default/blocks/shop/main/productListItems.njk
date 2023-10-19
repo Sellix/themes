@@ -139,10 +139,10 @@
 
         return hasProduct || item.title.toLowerCase().includes(search.toLowerCase());
       });
-      const filteredItemIds = filteredItems.map(item => item.uniqid);
+      const filteredItemIds = filteredItems.map(item => `${item.uniqid}`);
       $('.sellix-product-list-card-container[data-product-id]')
         .hide()
-        .filter((idx, el) => filteredItemIds.includes($(el).data('product-id')))
+        .filter((idx, el) => filteredItemIds.includes(`${$(el).data('product-id')}`))
         .show();
 
       $('.empty-shop-container').hide();
@@ -167,6 +167,7 @@
     }
 
     $(document).on('SellixProductListFilterChangeEvent', (e, eventInfo) => {
+      console.log('filter', eventInfo);
       filterProducts(eventInfo);
     });
   });
