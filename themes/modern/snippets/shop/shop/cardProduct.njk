@@ -183,16 +183,16 @@
                 hide_stock_counter=hideStockCounter
               %}
             {% endif %}
-
-            {% if not isFree and not isOut and not onHold %}
-              <span class="{{ globalClass }}__tax {{ localClass }}__tax"></span>
-            {% endif %}
           </div>
         </div>
 
         <div class="{{ globalClass }}__title {{ localClass }}__title justify-content-{{ titleTextAlign }}">
           {{product.title}}
         </div>
+
+        {% if not isFree and not isOut and not onHold %}
+          <span class="{{ globalClass }}__tax {{ localClass }}__tax"></span>
+        {% endif %}
 
         {% if onHold %}
           <span class="{{ globalClass }}__info-comment {{ localClass }}__info-comment">

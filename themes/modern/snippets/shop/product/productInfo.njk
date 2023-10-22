@@ -41,6 +41,7 @@
 {% set taxLineHeight = safe_get(properties.tax_line_height, 20) %}
 
 {% set priceProperties = {
+  image_size: 20,
   price_font_color: priceFontColor,
   price_font_size: priceFontSize,
   price_font_weight: priceFontWeight,
@@ -120,6 +121,7 @@
           price=product.price_display,
           discount=product.price_discount,
           show_initial_price='last',
+          show_image=true,
           properties=priceProperties
         %}
       </span>

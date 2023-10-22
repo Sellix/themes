@@ -49,7 +49,7 @@
         data-currency-type="{{ currencyInfo.type }}"
         data-currency-smb="{{ currencyInfo.symbol }}"
       >
-        {{- currencyInfo.title -}}
+        {{- currencyInfo.title if currencyInfo.type == 'crypto' else currencyInfo.name -}}
       </option>
     {% endfor %}
   </select>
@@ -91,10 +91,10 @@
         <div style="display: flex; align-items: center;">
           ${isMobile
             ? imgUrl
-              ? `<img alt="${title}" style="height:18px;width: 18px;" class="mr-2" src="${imgUrl}" />`
+              ? `<img alt="${title}" style="height:18px;width: 18px;" class="mr-${isResult ? '0' : '1'}" src="${imgUrl}" />`
               : ''
             : !isResult && imgUrl
-              ? `<img alt="${title}" style="height:18px;width: 18px;" class="mr-2" src="${imgUrl}" />`
+              ? `<img alt="${title}" style="height:18px;width: 18px;" class="mr-1" src="${imgUrl}" />`
               : ''
           }
           ${isMobile && isResult ? '' : `${currencyType === 'fiat' ? `${currencySmb} ` : ''}${title}`}

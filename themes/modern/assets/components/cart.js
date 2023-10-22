@@ -143,7 +143,6 @@
               price = product.customerPrice;
               priceWithDiscount = product.price_discount ? price - (price * product.price_discount) / 100 : price;
             }
-
             return {
               id: this.selector,
               key,

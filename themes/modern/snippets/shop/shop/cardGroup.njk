@@ -125,12 +125,6 @@
                %}
               </span>
             </div>
-
-            <div class="{{ globalClass }}__description-additional">
-              {% if group.min_price_item %}
-                <span class="{{ globalClass }}__tax {{ localClass }}__tax"></span>
-              {% endif %}
-            </div>
           {% else %}
             <span>
               {{ 'shop.main.cards.group.outOfProducts' | t }}
@@ -141,6 +135,10 @@
         <div class="{{ globalClass }}__title {{ localClass }}__title justify-content-{{ titleTextAlign }}">
           {{group.title}}
         </div>
+
+        {% if group.min_price_item %}
+          <span class="{{ globalClass }}__tax {{ localClass }}__tax"></span>
+        {% endif %}
       </div>
     </div>
   </div>
