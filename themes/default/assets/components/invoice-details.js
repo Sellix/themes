@@ -1,4 +1,4 @@
-(function (document, window, jQuery, React, ReactDOM, sellixApi) {
+(function (document, window, jQuery, React, ReactDOM, SellixContext, sellixApi) {
   class InvoiceDetailsComponent {
     constructor({ selector, config, shop, invoiceId, invoice, theme, settings = {} }) {
       this.domContainer = document.querySelector(selector);
@@ -61,7 +61,8 @@
     render() {
       ReactDOM.render(
         React.createElement(window.Invoice.InvoiceDetails, {
-          config: this.config,
+          config: SellixContext.getConfig(),
+          currencyConfig: SellixContext.getCurrencyConfig(),
           settings: this.settings,
           theme: this.theme,
           invoiceId: this.invoiceId,
@@ -85,4 +86,4 @@
   }
 
   window.SellixInvoiceDetailsComponent = InvoiceDetailsComponent;
-})(document, window, jQuery, React, ReactDOM, sellixApi);
+})(document, window, jQuery, React, ReactDOM, SellixContext, sellixApi);
