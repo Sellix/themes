@@ -153,7 +153,7 @@
     const { shopInfo } = window.SellixContext.get('common');
     const ipcountry = Cookies.get('ipcountry') || "";
 
-    let taxAmount = shopInfo.shop.vat_percentage ? shopInfo.shop.vat_percentage : '';
+    let taxAmount = +shopInfo.shop.vat_percentage ? +shopInfo.shop.vat_percentage : '';
     if(shopInfo.shop.tax_configuration === "EU" || shopInfo.shop.tax_configuration === "CUSTOM") {
       if(shopInfo.shop.tax_configuration_data && ipcountry) {
         if(shopInfo.shop.tax_configuration_data.find(({ country, type }) => country === ipcountry)) {
