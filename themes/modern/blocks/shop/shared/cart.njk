@@ -243,13 +243,13 @@
               {{if currency_options.type == 'fiat'}}
                 <span class="snippet-price__container">
                   <span class="snippet-price__price">
-                    {{:currency_options.symbol}}{{:product.price_with_discount}}
+                    {{:currency_options.symbol}}{{if currency_options.symbol.length > 1}} {{/if}}{{:product.price_with_discount}}
                   </span
                 </span>
                 {{if isPriceDiscount}}
                   <span class="snippet-price__container">
                     <span class="snippet-price__price initial-price">
-                      {{:currency_options.symbol}}{{:product.price}}
+                      {{:currency_options.symbol}}{{if currency_options.symbol.length > 1}} {{/if}}{{:product.price}}
                     </span
                   </span>
                 {{/if}}
