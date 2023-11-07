@@ -102,7 +102,7 @@
 
             <div class="{{ globalClass }}__head-description {{ localClass }}__head-description">
               <p>
-                {{ 'shop.product.bundle.discountTitle.0' | t }}
+                {{ 'shop.product.bundle.discountTitle.save' | t }}
                 <b>
                   {% if discountType === 'PERCENTAGE' %}
                     {{discountAmount}}%
@@ -115,7 +115,9 @@
                     %}
                   {% endif %}
                 </b>
-                {{ 'shop.product.bundle.discountTitle.1' | t }}
+                <span class="{{ localClass }}__discount-title">
+                  {{ 'shop.product.bundle.discountTitle.title.default' }}
+                </span>
               </p>
             </div>
           </div>
@@ -176,6 +178,15 @@
             '{{ global.request.type }}',
             {{renderOptions | dump | safe}},
           );
+
+          $(document).on('SellixCartUpdateEvent', () => {
+            const visibleProductsCount = $('.{{ localClass }}__product:not(.d-none)').length;
+
+            let discountTitle = visibleProductsCount <= 5
+              ? window.sellixI18Next.t(`shop.product.bundle.discountTitle.title.${visibleProductsCount}`)
+              : window.sellixI18Next.t(`shop.product.bundle.discountTitle.title.other`, { count: visibleProductsCount });
+            $('.{{ localClass }}__discount-title').text(discountTitle);
+          });
         });
       </script>
     {% endfor %}
