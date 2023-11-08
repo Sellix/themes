@@ -9,6 +9,8 @@
   else 'none'
 %}
 {% set isSubscription = product.type === 'SUBSCRIPTION' %}
+{% set isLicense = product.licensing_enabled %}
+{% set isPayWhatYouWant = product.pay_what_you_want %}
 
 {% set isStatic = args.is_static %}
 {% set showPlusMinus = safe_get(args.show_plus_minus, true) %}
@@ -61,7 +63,7 @@
         <i class="fa-regular fa-plus"></i>
       </div>
 
-      {% if cartEffect == 'quick_checkout_button' and not isSubscription and not isLicense %}
+      {% if cartEffect == 'quick_checkout_button' and not isSubscription and not isLicense and not isPayWhatYouWant %}
         <div class="d-none {{ globalClass }}__quick-checkout-container" data-quick-checkout-btn="1">
           {% render_snippet 'Shared: Ripple button',
             button_id=['quick-checkout-btn-', id] | join,

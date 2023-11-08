@@ -64,7 +64,7 @@
 {% for product in items %}
   {% set image = cdn_link(product.cloudflare_image_id, 'shopItem') %}
   {% set isPlaceholder = not product.image_name %}
-  {% set isPayWhatYouWant = (product.pay_what_you_want | int === 1) %}
+  {% set isPayWhatYouWant = product.pay_what_you_want %}
   {% set isFree = product.price_display | float === 0 and not isPayWhatYouWant %}
 
   {% if limit > 0 and visibleProductsCnt >= limit %}

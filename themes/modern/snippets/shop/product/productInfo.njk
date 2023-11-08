@@ -1,7 +1,7 @@
 {% set id = uid() %}
 {% set shop = global.common.shopInfo.shop %}
 {% set product = args.product %}
-{% set isPayWhatYouWant = (product.pay_what_you_want | int === 1) %}
+{% set isPayWhatYouWant = product.pay_what_you_want %}
 {% set isFree = product.price_display | float === 0 and not isPayWhatYouWant %}
 {% set onHold = product.on_hold | int %}
 {% set isOut = (product.stock | int === 0) %}
