@@ -42,6 +42,7 @@
 <script type='application/javascript'>
   $(document).ready(function() {
     const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
+    const currencyConfig = SellixContext.getCurrencyConfig();
     const productId = '{{product.uniqid}}';
     const discountList = JSON.parse({{product.volume_discounts  | dump | safe}})
       .volume_discounts
@@ -83,7 +84,7 @@
           currencyType = '{{ currency.type }}',
           percent = nextDiscount.type !== 'FIXED' ? '%' : '',
           nextPrice = nextDiscount.type === 'FIXED'
-            ? window.sellixHelper.toDecimalPrecision(nextDiscount.value, 2)
+            ? window.sellixHelper.toDecimalPrecision(nextDiscount.value, currencyConfig.moneyPrecision)
             : nextDiscount.value;
 
         const priceTitle = nextDiscount.type === 'FIXED'

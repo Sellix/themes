@@ -143,6 +143,8 @@
               price = product.customerPrice;
               priceWithDiscount = product.price_discount ? price - (price * product.price_discount) / 100 : price;
             }
+            const currencyConfig = SellixContext.getCurrencyConfig(),
+              currencyOptions = SellixContext.getCurrencyOptions(product.currency);
             return {
               id: this.selector,
               key,
@@ -153,10 +155,13 @@
                   'productImageCart',
                   SellixContext.get('theme', {}).isDark,
                 ),
-                price: `${sellixHelper.toDecimalPrecision(price, 2)}`,
-                price_with_discount: `${sellixHelper.toDecimalPrecision(priceWithDiscount, 2)}`,
+                price: `${sellixHelper.toDecimalPrecision(price, currencyConfig.moneyPrecision)}`,
+                price_with_discount: `${sellixHelper.toDecimalPrecision(
+                  priceWithDiscount,
+                  currencyConfig.moneyPrecision,
+                )}`,
               },
-              currency_options: SellixContext.getCurrencyOptions(product.currency),
+              currency_options: currencyOptions,
               isValidPlus,
               equalQuantity,
               inStock,
