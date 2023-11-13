@@ -13,6 +13,7 @@
 {% set isFree = product.price_display | float === 0 %}
 {% set isSubscription = product.type === 'SUBSCRIPTION' %}
 {% set isLicense = product.licensing_enabled %}
+{% set isPayWhatYouWant = product.pay_what_you_want %}
 
 {% set globalClass = 'snippet-cart-button-2' %}
 {% set localClass = id %}
@@ -32,7 +33,7 @@
         <span class="cart-button-animation-wrapper" data-cart-product-first-button="cart-product-first-button">
           {% if isSubscription %}
             {{ 'shop.shared.titles.subscribe' | t }}
-          {% elif isLicense %}
+          {% elif isLicense or isPayWhatYouWant %}
             {{ 'shop.shared.titles.buy' | t }}
           {% elif isFree %}
             <span class="cart-button-animation">

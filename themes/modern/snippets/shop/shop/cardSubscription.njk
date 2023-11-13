@@ -31,6 +31,12 @@
 {% set priceFontSize = safe_get(properties.price_font_size, cardProps.product_card_price_font_size) %}
 {% set priceFontWeight = safe_get(properties.price_font_weight, cardProps.product_card_price_font_weight) %}
 
+{% set priceProperties = {
+  price_font_color: priceFontColor,
+  price_font_weight: priceFontWeight,
+  price_font_size: priceFontSize
+} %}
+
 {% set globalClass =  'snippet-product-card' %}
 {% set localClass = id %}
 
@@ -110,20 +116,29 @@
       <div class="{{ globalClass }}__info {{ localClass }}__info">
         <div class="{{ globalClass }}__description {{ localClass }}__description">
           <div class="{{ globalClass }}__group-description-info">
-            <span>{{ 'shop.shared.titles.startingAt' | t }}</span>
-            <span class="{{ localClass }}__price">
-              {% render_snippet 'Price', currency=product.currency, price=product.price_display %}
+            <span class="{{ globalClass }}__starting-at">
+              {{ 'shop.shared.titles.startingAt' | t }}
+            </span>
+            <span class="{{ globalClass }}__price {{ localClass }}__price">
+              {% render_snippet
+                'Shared: Price',
+                currency=product.currency,
+                price=product.min_price,
+                show_image=true,
+                show_initial_price='last',
+                properties=priceProperties
+              %}
             </span>
           </div>
-
-          {% if not onHold %}
-            <span class="{{ globalClass }}__tax {{ localClass }}__tax"></span>
-          {% endif %}
         </div>
 
         <div class="{{ globalClass }}__title {{ localClass }}__title justify-content-{{ titleTextAlign }}">
           {{product.title}}
         </div>
+
+        {% if not onHold %}
+          <span class="{{ globalClass }}__tax {{ localClass }}__tax"></span>
+        {% endif %}
 
         {% if onHold %}
           <span class="{{ globalClass }}__info-comment {{ localClass }}__info-comment">

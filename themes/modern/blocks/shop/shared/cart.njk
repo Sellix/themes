@@ -5,7 +5,7 @@
 {% set headerShowBorder = safe_get(properties.header_show_border, true) %}
 {% set headerShadow = safe_get(properties.header_shadow, 'none') %}
 
-{% set headerTitle = safe_get(properties.header_title, 'shop.cart.title' | t) %}
+{% set headerTitle = safe_get(properties.header_title, 'shop.cart.title') %}
 {% set headerTitleFontColor = safe_get(properties.header_title_font_color, 'dark_font_color') %}
 {% set headerTitleFontSize = safe_get(properties.header_title_font_size, 24) %}
 {% set headerTitleFontWeight = safe_get(properties.header_title_font_weight, 500) %}
@@ -238,12 +238,47 @@
             {% render_snippet 'Tag', tag=('shop.shared.titles.free' | t), type='success' %}
         {% raw %}
           {{else}}
-            {{if isPriceDiscount}}
-              {{:product.currency_title}}{{:product.price_with_discount}}
-              <span class="price-without-discount">{{:product.currency_title}}{{:product.price}}</span>
-            {{else}}
-              {{:product.currency_title}}{{:product.price}}
-            {{/if}}
+
+            <span class="snippet-price">
+              {{if currency_options.type == 'fiat'}}
+                <span class="snippet-price__container">
+                  <span class="snippet-price__price">
+                    {{:currency_options.symbol}}{{if currency_options.symbol.length > 1}} {{/if}}{{:product.price_with_discount}}
+                  </span
+                </span>
+                {{if isPriceDiscount}}
+                  <span class="snippet-price__container">
+                    <span class="snippet-price__price initial-price">
+                      {{:currency_options.symbol}}{{if currency_options.symbol.length > 1}} {{/if}}{{:product.price}}
+                    </span
+                  </span>
+                {{/if}}
+              {{else}}
+                <span class="snippet-price__container">
+                  <span class="snippet-price__image">
+                    <img
+                      alt="{{:currency_options.title}}"
+                      style="height: 16px;width: 16px;"
+                      src="{{:currency_options.imgUrl}}"
+                    />
+                  </span>
+                  <span class="snippet-price__price">
+                    {{:product.price_with_discount}}
+                  </span>
+                  {{if isPriceDiscount}}
+                    <span class="snippet-price__price initial-price">
+                      {{:product.price}}
+                    </span>
+                  {{/if}}
+                  <span class="snippet-price__currency">
+                    {{:currency_options.symbol}}
+                  </span>
+                </span>
+
+              {{/if}}
+            </span>
+
+
           {{/if}}
         {% endraw %}
       </div>

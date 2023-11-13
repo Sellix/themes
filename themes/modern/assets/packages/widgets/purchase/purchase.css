@@ -1,3 +1,15 @@
+.widget-price {
+  display: inline-flex;
+  gap: 0.25rem;
+}
+.widget-price--image img {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.widget-price--initial-price {
+  color: var(--black3) !important;
+  text-decoration: line-through;
+}
 .sellix-payment-method {
   padding-top: 0;
 }
@@ -892,8 +904,9 @@ button.secondary .lds-ellipsis div {
   margin-bottom: 1.25rem;
 }
 .coupon-input-container--tag-icon {
+  height: calc(2.5rem - 4px);
   position: absolute;
-  top: 0.75rem;
+  top: 2px;
   left: 0.75rem;
   display: flex;
   align-items: center;
@@ -1049,12 +1062,20 @@ button.secondary .lds-ellipsis div {
   justify-content: space-between;
   row-gap: 0.75rem;
 }
+.tax-form-container {
+  row-gap: 0.75rem;
+  display: flex;
+  flex-direction: column;
+}
 .tax-form-container .sellix-label {
   margin-bottom: 0.75rem;
   font-weight: 500;
   font-size: 13px;
   line-height: 16px;
   color: var(--lightFontColor);
+}
+.tax-form-container .sellix-label.mb-0 {
+  margin-bottom: 0 !important;
 }
 .tax-form-type {
   display: flex;
@@ -1261,14 +1282,12 @@ input[type=number] {
   line-height: 24px;
 }
 .sellix-widget-purchase-details .sellix-input-with-currency-wrapper .sellix-input {
+  padding-left: 2rem;
   border-radius: 0.5rem;
   height: 40px;
   font-weight: 500;
   font-size: 14px;
   line-height: 24px;
-}
-.sellix-widget-purchase-details .sellix-input-with-currency-wrapper .sellix-input.has-currency {
-  padding-left: 2rem;
 }
 
 .dark .bundle-list-wrapper {
@@ -1404,10 +1423,15 @@ input[type=number] {
 }
 .sellix-check-item i {
   color: var(--darkFontColor);
-  margin-left: 0.5rem;
 }
 .sellix-check-item span {
   font-size: 14px;
+}
+.sellix-check-item-head {
+  display: flex;
+  column-gap: 0.5rem;
+  row-gap: 0.25rem;
+  flex-wrap: wrap;
 }
 .sellix-check-item-row {
   width: 100%;
@@ -1427,9 +1451,31 @@ input[type=number] {
   line-height: 16px;
   color: var(--lightFontColor);
 }
+.sellix-check-item-title {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
 .sellix-check-item-name {
   font-size: 0.7rem;
   color: var(--lightFontColor);
+}
+.sellix-check-item-price {
+  display: flex;
+  align-items: center;
+  column-gap: 0.125rem;
+}
+.sellix-check-item-chevron {
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+}
+.sellix-check-item-sub-total {
+  display: flex;
+  column-gap: 1rem;
+  row-gap: 0.25rem;
+  flex-wrap: wrap;
 }
 .sellix-check-item-sub-total-price {
   color: var(--lightFontColor);
@@ -1439,9 +1485,8 @@ input[type=number] {
 .sellix-check-item-sub-total-initial-price {
   font-size: 12px;
   font-weight: 400;
-  color: var(--darkFontColor);
+  color: var(--black3);
   text-decoration: line-through;
-  opacity: 0.4;
 }
 .sellix-check-item .ReactCollapse--content {
   width: 100%;
@@ -1531,6 +1576,7 @@ input[type=number] {
   color: var(--buttonColor) !important;
 }
 .sellix-product-total {
+  flex-wrap: wrap;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1978,8 +2024,13 @@ input[type=number] {
   color: var(--darkFontColor);
   text-align: center;
 }
-.quantity-message span {
+.quantity-message > span {
   font-size: 11px;
+  display: inline-flex;
+  gap: 0.25rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .discount-message > div {
@@ -2288,45 +2339,7 @@ input[type=number] {
     transform: translate(-50%, -50%) rotate(180deg);
   }
 }
-.partial-text {
-  color: var(--darkFontColor);
-  font-size: 0.9rem;
-  font-weight: 300;
-  line-height: 1.5rem;
-}
-.partial-icon {
-  width: 80px;
-  min-width: 80px;
-  height: 80px;
-  border-width: 4px;
-  border-style: solid;
-  border-color: rgb(70, 184, 218);
-  border-radius: 50%;
-  margin: 20px auto;
-  margin-right: 1.5rem;
-  position: relative;
-  box-sizing: content-box;
-}
-.partial-icon .elem-1 {
-  position: absolute;
-  width: 5px;
-  height: 29px;
-  left: 50%;
-  bottom: 17px;
-  border-radius: 2px;
-  margin-left: -2px;
-  background-color: rgb(91, 192, 222);
-}
-.partial-icon .elem-2 {
-  position: absolute;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  margin-left: -3px;
-  left: 50%;
-  top: 19px;
-  background-color: rgb(91, 192, 222);
-}
+
 .cancelled {
   display: flex;
   overflow: hidden;

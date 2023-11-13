@@ -55,7 +55,7 @@
     let selectedLanguage = '{{ global.locales.locale }}';
     const optionFactory = (state, isResult) => {
       const $element = $(state.element);
-      const imgUrl = $element.data("imgUrl");
+      const imgUrl = $element.data('imgUrl');
 
       if (!state.id) {
         return state.text;
@@ -75,7 +75,7 @@
         <div style="display: flex; align-items: center;">
           ${isMobile
             ? imgUrl
-              ? `<img alt="${title}" style="height:18px;width: 18px;" class="mr-1" src="${imgUrl}" />`
+              ? `<img alt="${title}" style="height:18px;width: 18px;" class="mr-${isResult ? '0' : '1'}" src="${imgUrl}" />`
               : ''
             : !isResult && imgUrl
               ? `<img alt="${title}" style="height:18px;width: 18px;" class="mr-1" src="${imgUrl}" />`

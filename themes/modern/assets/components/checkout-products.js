@@ -6,6 +6,7 @@
       this.properties = properties;
 
       this.$products = jQuery(selector);
+      this.$placeholder = this.$products.find('[data-product-placeholder] .snippet-checkout-product');
 
       this.renderEvents = ['SellixCartUpdateEvent', 'SellixRenderComponent'].map((eventName) => {
         return sellixHelper.getEventName({
@@ -23,6 +24,9 @@
     renderProduct(productId) {
       const product = this.cart.getItemById(productId);
       if (product && !this.$products.find(`[data-checkout-product='${productId}']`).length) {
+        const $placeholder = this.$placeholder.clone().removeClass('d-none');
+        this.$products.append($placeholder);
+
         sellixApi
           .renderComponent(
             {
@@ -38,7 +42,7 @@
           )
           .then((resp) => {
             let $component = $(resp.html);
-            this.$products.append($component);
+            $placeholder.replaceWith($component);
             setTimeout(function () {
               const eventName = sellixHelper.getEventName({
                 name: 'SellixRenderComponent',
@@ -48,6 +52,8 @@
             });
           })
           .catch((resp) => {
+            $placeholder.remove();
+
             console.log(resp);
             const respJson = resp.responseJSON || {};
             jQuery(document).trigger('SellixToastify', {

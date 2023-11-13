@@ -8,7 +8,13 @@
 {% if showYoutubelinkOnly %}
   {% set attachments = [] %}
 {% else %}
-  {% set attachments = product.image_attachments if product.image_attachments else [] %}
+  {% set defaultImage = product.image_attachment %}
+  {% set attachments = [] %}
+  {% for attachment in product.image_attachments if product.image_attachments else [] %}
+    {% if attachment.id != defaultImage.id or shop.description_skip_default_image == 0 %}
+      {% set attachments = (attachments.push(attachment), attachments) %}
+    {% endif %}
+  {% endfor %}
 {% endif %}
 {% set slidesCount = attachments | length + (1 if youtubeLink else 0) %}
 

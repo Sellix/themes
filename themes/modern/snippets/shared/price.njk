@@ -1,17 +1,110 @@
-{% set currencyList = global.config.CURRENCY_LIST %}
-{% set digits = args.digits if args.digits is defined else 2 %}
+{% set id = uid() %}
+{% set currency = global.currencyConfig.allCurrencies[args.currency] %}
+{% set usdExchangeRate = global.currencyConfig.usdExchangeRate or 1 %}
+{% set showImage = safe_get(args.show_image, false) %}
+{% set showInitialPrice = safe_get(args.show_initial_price, 'no') %}
+{% set hasDiscount = safe_get(args.discount, false)  %}
 
-{% if args.priceVariants %}
-  {% set minPrice = null %}
-  {% for variant in args.priceVariants %}
-    {% if minPrice === null or variant.price < minPrice %}
-      {% set minPrice = variant.price %}
-    {% endif %}
-  {% endfor %}
-  {% set productPrice = minPrice %}
-{% else %}
-  {% set productPrice = args.price %}
+{% set argsDigits = safe_get(args.digits, 2) %}
+{% set digits = global.currencyConfig.moneyPrecision %}
+{% set digits = digits if digits > argsDigits else argsDigits %}
+
+{% set priceInit = args.price | to_decimal_precision(currency, digits) %}
+{% set price = args.price %}
+{% if hasDiscount %}
+  {% set price = price - price * args.discount / 100 %}
 {% endif %}
+{% set price = price | to_decimal_precision(currency, digits) %}
 
-{% set price = ((productPrice - productPrice * args.discount / 100) | round(2) if args.discount else productPrice) | to_fixed(digits) %}
-{{currencyList[args.currency]}}{{ price }}
+{% set priceFontColor = properties.price_font_color %}
+{% set priceFontSize = properties.price_font_size %}
+{% set priceFontWeight = properties.price_font_weight %}
+{% set priceLineHeight = properties.price_line_height %}
+
+{% set initialPriceFontColor = properties.initial_price_font_color %}
+{% set initialPriceFontSize = properties.initial_price_font_size %}
+{% set initialPriceFontWeight = properties.initial_price_font_weight %}
+{% set initialPriceLineHeight = properties.initial_price_line_height %}
+
+{% set imageSize = properties.image_size %}
+
+{% set globalClass = 'snippet-price' %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }}__price,
+  .{{ localClass }}__currency {
+    {% if priceFontColor %} color: {{ priceFontColor | get_color }}; {% endif %}
+    {% if priceFontSize %}  font-size: {{ priceFontSize }}px; {% endif %}
+    {% if priceFontWeight %} font-weight: {{ priceFontWeight }}; {% endif %}
+    {% if priceLineHeight %} line-height: {{ priceLineHeight }}px; {% endif %}
+  }
+  .{{ localClass }}__price.initial-price {
+    {% if initialPriceFontColor %} color: {{ initialPriceFontColor | get_color }}; {% endif %}
+    {% if initialPriceFontSize %}  font-size: {{ initialPriceFontSize }}px; {% endif %}
+    {% if initialPriceFontWeight %} font-weight: {{ initialPriceFontWeight }}; {% endif %}
+    {% if initialPriceLineHeight %} line-height: {{ initialPriceLineHeight }}px; {% endif %}
+  }
+  .{{ localClass }}__image img {
+    {% if imageSize %}
+      height: {{ imageSize }}px;
+      width: {{ imageSize }}px;
+    {% endif %}
+  }
+</style>
+
+{% macro fiatCurrency(price, initial=false) %}
+  <span class="{{ globalClass }}__container {{ localClass }}__container">
+    <span class="{{ globalClass }}__price {{ localClass }}__price {{ 'initial-price' if initial }}">
+      {{- currency.symbol -}}{%- if currency.symbol | length > 1 %} {% endif -%}{{- price -}}
+    </span>
+  </span>
+{% endmacro %}
+
+{% macro cryptoCurrency(price, initial=false) %}
+  <span class="{{ globalClass }}__price {{ localClass }}__price {{ 'initial-price' if initial }}">
+    {{- price -}}
+  </span>
+{% endmacro %}
+
+<span class="{{ globalClass }} {{ localClass }}">
+  {% if currency.type === 'fiat' %}
+    {% if hasDiscount and showInitialPrice == 'first' %}
+      {{ fiatCurrency(priceInit, true) }}
+    {% endif %}
+
+    {{ fiatCurrency(price) }}
+
+    {% if hasDiscount and showInitialPrice == 'last' %}
+      {{ fiatCurrency(priceInit, true) }}
+    {% endif %}
+
+  {% else %}
+
+    <span class="{{ globalClass }}__container {{ localClass }}__container">
+      {% if showImage %}
+        <span class="{{ globalClass }}__image {{ localClass }}__image">
+          <img
+            alt="{{ currency.title }}"
+            src="{{ currency.imgUrl }}"
+          />
+        </span>
+      {% endif %}
+
+      {% if hasDiscount and showInitialPrice == 'first' %}
+        {{ cryptoCurrency(priceInit, true) }}
+      {% endif %}
+
+      {{ cryptoCurrency(price) }}
+
+      {% if hasDiscount and showInitialPrice == 'last' %}
+        {{ cryptoCurrency(priceInit, true) }}
+      {% endif %}
+
+      <span class="{{ globalClass }}__currency {{ localClass }}__currency">
+        {{- currency.symbol -}}
+      </span>
+    </span>
+
+  {% endif %}
+</span>

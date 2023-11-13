@@ -76,38 +76,23 @@
 <div class="{{ globalClass }} {{ localClass }}" data-checkout-product="{{ product.uniqid }}">
   <div class="{{ globalClass }}__details">
     <div class="{{ globalClass }}__image {{'image-placeholder' if isPlaceholder}}">
-      {% if isPlaceholder %}
-        {% render_snippet 'Product: Placeholder icon', product=product %}
-      {% else %}
-        <img src="{{image}}" alt="{{product.title}}" loading="lazy" />
-      {% endif %}
+      <div class="skeleton skeleton6" style="height: 100px; width: {{ 200 + 10 * [1,2,3,4,5,6] | random }}px"></div>
     </div>
 
     <div class="{{ globalClass }}__title unselectable">
       <div class="{{ globalClass }}__title-text {{ localClass }}__title-text">
         <div>
-          {{product.title}}
+          <div class="skeleton skeleton6" style="width: {{ 180 }}px"></div>
         </div>
 
         {% if isInvoice %}
           <div class="{{ globalClass }}__product-quantity total unselectable">
-            {{ 'shop.checkout.stock' | t }}: {{product.quantity if product.quantity else product.unit_quantity}}
+            <div class="skeleton skeleton6" style="width: {{ 150 }}px"></div>
           </div>
         {% endif %}
 
         <div class="{{ globalClass }}__product-price">
-          {% if isFree %}
-            {{ 'shop.shared.titles.free' | t }}
-          {% else %}
-            {% render_snippet
-              'Shared: Price',
-              currency=product.currency,
-              price=product.price_display,
-              discount=product.price_discount,
-              show_initial_price='last',
-              show_image=true
-            %}
-          {% endif %}
+          <div class="skeleton skeleton6" style="width: {{ 100 }}px"></div>
         </div>
       </div>
 
@@ -124,18 +109,9 @@
       {% endif %}
 
       {% if not isInvoice %}
-        {% if product.stock !== 0 %}
-          <div class="{{ globalClass }}__product-count">
-            {% render_snippet
-              'Checkout: Product count',
-              product=product,
-              quantity=quantity,
-              show_stock_info=false
-            %}
-          </div>
-        {% else %}
-          {% render_snippet 'Tag', tag=('shop.main.cards.product.soldOut' | t), type='warning' %}
-        {% endif %}
+        <div class="{{ globalClass }}__product-count">
+          <div class="skeleton skeleton6" style="width: {{ 120 }}px"></div>
+        </div>
 
         <div
           class="remove-icon {{ globalClass }}__remove-icon"
@@ -147,67 +123,6 @@
       {% endif %}
     </div>
   </div>
-
-  {% if descriptionEnabled %}
-    <div
-      class="{{ globalClass }}__description"
-      style="height: 0; overflow: hidden"
-      data-description-wrapper="1"
-    >
-      <div class="{{ globalClass }}__description-container">
-        <div class="{{ globalClass }}__description-left">
-          {% render_snippet
-            'Product: Gallery',
-            product=product,
-            properties={
-              'slider_show_whole_image': false,
-              'slider_height': 250,
-              'thumbnails_height': 125,
-              'slider_height_without_thumbnails': 375
-            }
-          %}
-        </div>
-        <div class="{{ globalClass }}__description-right">
-          {% render_snippet
-            'Product: Description',
-            product=product,
-            properties={'collapsable': true}
-          %}
-          {% render_snippet
-            'Product: Warranty collapsable',
-            product=product,
-            properties={
-              'body_padding_horiz': 0
-            }
-          %}
-        </div>
-      </div>
-    </div>
-  {% endif %}
-
-  {% if (product.price_variants or []) | length and product.stock %}
-    <div class="{{ globalClass }}__variants">
-      {% render_snippet
-        'Product: Variants',
-        is_cart=true,
-        product=product,
-        properties=variantsProps,
-        currency=shop.currency
-      %}
-    </div>
-  {% endif %}
-
-  {% if (product.addons or []) | length and product.stock %}
-    <div class="{{ globalClass }}__addons">
-      {% render_snippet
-        'Product: Addons',
-        product=product,
-        invoice=invoice,
-        properties=addonsProps,
-        currency=shop.currency
-      %}
-    </div>
-  {% endif %}
 </div>
 
 <script type='application/javascript'>

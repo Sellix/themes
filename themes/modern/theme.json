@@ -1,6 +1,6 @@
 {
   "id": "modern",
-  "version": "1.0.66",
+  "version": "1.1.1",
   "is_active": 0,
   "name": "Modern",
   "scheme": "modern",
@@ -22,7 +22,8 @@
       "mobile_menu",
       "inputs",
       "cards",
-      "locale"
+      "locale",
+      "currency"
     ],
     "schema": {
       "cards": [
@@ -1682,10 +1683,34 @@
       ],
       "locale": [
         {
+          "id": "language_properties",
+          "type": "header",
+          "content": "Language Properties"
+        },
+        {
+          "id": "is_selector_enabled",
+          "type": "checkbox",
+          "label": "Show Language Selector",
+          "defaultValue": true
+        },
+        {
           "id": "default",
           "type": "text",
           "label": "Default locale",
           "defaultValue": "en"
+        }
+      ],
+      "currency": [
+        {
+          "id": "currency_properties",
+          "type": "header",
+          "content": "Currency Properties"
+        },
+        {
+          "id": "is_selector_enabled",
+          "type": "checkbox",
+          "label": "Show Currency Selector",
+          "defaultValue": true
         }
       ],
       "menu": [
@@ -2242,6 +2267,9 @@
         "show_floating_social_links": false,
         "show_stock_info": false
       },
+      "currency": {
+        "is_selector_enabled": true
+      },
       "customer_login": {
         "is_enabled": true
       },
@@ -2363,6 +2391,7 @@
         "image_placeholder": "#E9EDF0"
       },
       "locale": {
+        "is_selector_enabled": true,
         "default": "en"
       },
       "menu": {
@@ -2708,7 +2737,7 @@
                       "bundle_product_padding_vert": 20,
                       "bundle_title_line_height": 17,
                       "bundle_product_title_line_height": 17,
-                      "bundle_product_price_line_height": 17
+                      "bundle_product_price_line_height": 20
                     }
                   }
                 },
@@ -5267,7 +5296,7 @@
                       "bundle_product_padding_vert": 20,
                       "bundle_title_line_height": 17,
                       "bundle_product_title_line_height": 17,
-                      "bundle_product_price_line_height": 17
+                      "bundle_product_price_line_height": 20
                     }
                   }
                 }
@@ -11031,7 +11060,7 @@
             "id": "header_title",
             "type": "text",
             "label": "Title",
-            "defaultValue": "Your Cart"
+            "defaultValue": "shop.cart.title"
           },
           {
             "id": "header_title_font_color",
@@ -17513,7 +17542,7 @@
             "type": "range",
             "unit": "px",
             "label": "Price font size",
-            "defaultValue": 13
+            "defaultValue": 14
           },
           {
             "id": "bundle_product_price_font_weight",
@@ -17571,7 +17600,7 @@
                 "value": "brand_color"
               }
             ],
-            "defaultValue": "black3"
+            "defaultValue": "dark"
           },
           {
             "id": "bundle_product_initial_price_font_size",
@@ -17581,7 +17610,7 @@
             "type": "range",
             "unit": "px",
             "label": "Initial price font size",
-            "defaultValue": 13
+            "defaultValue": 14
           },
           {
             "id": "bundle_product_initial_price_font_weight",
@@ -22486,6 +22515,10 @@
       "name": "Checkout: Products",
       "path": "snippets/shop/checkout/checkoutProducts.njk"
     },
+    "Checkout: Product placeholder": {
+      "name": "Checkout: Product placeholder",
+      "path": "snippets/shop/checkout/checkoutProductPlaceholder.njk"
+    },
     "Checkout: Product count": {
       "name": "Checkout: Product count",
       "path": "snippets/shop/checkout/checkoutProductCount.njk"
@@ -22505,6 +22538,10 @@
     "Column item: Text": {
       "name": "Column item: Text",
       "path": "snippets/shared/columns/text.njk"
+    },
+    "Currency selector": {
+      "name": "Currency selector",
+      "path": "snippets/shared/currencySelector.njk"
     },
     "Discount badge": {
       "name": "Discount badge",
@@ -22710,17 +22747,9 @@
       "name": "Page loader",
       "path": "snippets/shop/common/pageLoader.njk"
     },
-    "Price": {
-      "name": "Price",
-      "path": "snippets/shared/price.njk"
-    },
     "Product list": {
       "name": "Product list",
       "path": "snippets/shop/shop/productList.njk"
-    },
-    "Product light list": {
-      "name": "Product light list",
-      "path": "snippets/shop/shop/productLightList.njk"
     },
     "Product: Addons": {
       "name": "Product: Addons",
@@ -22757,10 +22786,6 @@
     "Product: Placeholder icon": {
       "name": "Product: Placeholder icon",
       "path": "snippets/shop/product/productPlaceholderIcon.njk"
-    },
-    "Product: Price": {
-      "name": "Product: Price",
-      "path": "snippets/shop/product/productPrice.njk"
     },
     "Product: Review stat": {
       "name": "Product: Review stat",
@@ -22845,6 +22870,10 @@
     "Shared: Loader": {
       "name": "Shared: Loader",
       "path": "snippets/shared/loader.njk"
+    },
+    "Shared: Price": {
+      "name": "Shared: Price",
+      "path": "snippets/shared/price.njk"
     },
     "Shared: Rating star": {
       "name": "Shared: Rating star",
@@ -23253,6 +23282,10 @@
       "name": "snippet-code-input.css",
       "path": "assets/css/snippet-code-input.css"
     },
+    "snippet-currency-selector.css": {
+      "name": "snippet-currency-selector.css",
+      "path": "assets/css/snippet-currency-selector.css"
+    },
     "snippet-burger-button.css": {
       "name": "snippet-burger-button.css",
       "path": "assets/css/snippet-burger-button.css"
@@ -23276,6 +23309,10 @@
     "snippet-mobile-sidebar-menu.css": {
       "name": "snippet-mobile-sidebar-menu.css",
       "path": "assets/css/snippet-mobile-sidebar-menu.css"
+    },
+    "snippet-price.css": {
+      "name": "snippet-price.css",
+      "path": "assets/css/snippet-price.css"
     },
     "snippet-product-addons.css": {
       "name": "snippet-product-addons.css",

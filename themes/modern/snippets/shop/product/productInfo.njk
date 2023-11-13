@@ -1,7 +1,7 @@
 {% set id = uid() %}
 {% set shop = global.common.shopInfo.shop %}
 {% set product = args.product %}
-{% set isPayWhatYouWant = (product.pay_what_you_want | int === 1) %}
+{% set isPayWhatYouWant = product.pay_what_you_want %}
 {% set isFree = product.price_display | float === 0 and not isPayWhatYouWant %}
 {% set onHold = product.on_hold | int %}
 {% set isOut = (product.stock | int === 0) %}
@@ -40,6 +40,18 @@
 {% set taxFontWeight = safe_get(properties.tax_font_weight, 400) %}
 {% set taxLineHeight = safe_get(properties.tax_line_height, 20) %}
 
+{% set priceProperties = {
+  image_size: 20,
+  price_font_color: priceFontColor,
+  price_font_size: priceFontSize,
+  price_font_weight: priceFontWeight,
+  price_line_height: priceLineHeight,
+  initial_price_font_color: initialPriceFontColor,
+  initial_price_font_size: initialPriceFontSize,
+  initial_price_font_weight: initialPriceFontWeight,
+  initial_title_price_height: initialPriceLineHeight
+} %}
+
 {% set globalClass = ['snippet-product-info'] %}
 {% set localClass = id %}
 
@@ -64,19 +76,7 @@
     font-size: {{ priceFontSize }}px;
     font-weight: 400;
   }
-  .{{ localClass }}__price {
-    color: {{ priceFontColor | get_color }};
-    font-size: {{ priceFontSize }}px;
-    font-weight: {{ priceFontWeight }};
-    line-height: {{ priceLineHeight }}px;
-  }
-  .{{ localClass }}__price-initial {
-    text-decoration: line-through;
-    font-weight: {{ initialPriceFontWeight }};
-    color: {{ initialPriceFontColor | get_color }};
-    font-size: {{ initialPriceFontSize }}px;
-    line-height: {{ initialPriceLineHeight }}px;
-  }
+
   .{{ localClass }}__tax {
     color: {{ priceFontColor | get_color }};
     font-size: 14px;
@@ -116,19 +116,17 @@
 
       <span class="{{ globalClass }}__price {{ localClass }}__price">
         {% render_snippet
-          'Price',
+          'Shared: Price',
           currency=product.currency,
-          price=product.price_display,
+          price=product.min_price_item.price_display,
           discount=product.price_discount,
-          priceVariants=product.price_variants
+          show_initial_price='last',
+          show_image=true,
+          properties=priceProperties
         %}
       </span>
 
       {% if product.price_discount %}
-        <span class="{{ globalClass }}__price-initial {{ localClass }}__price-initial">
-          {% render_snippet 'Price', currency=product.currency, price=product.price_display %}
-        </span>
-
         {% render_snippet
           'Tag',
           tag=([product.price_discount, '%', ' OFF'] | join | t),

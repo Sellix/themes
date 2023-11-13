@@ -53,18 +53,18 @@
         {{group.title}}
       </div>
 
-      {% if group.minPriceItem %}
+      {% if group.min_price_item %}
         <span class="sellix-card-tax" style="color: var(--darkFontColor)"></span>
       {% endif %}
 
       <div class="sellix-group-card-description">
         <span>
-          {% if group.minPriceItem %}
+          {% if group.min_price_item %}
             <div class="sellix-group-description-info">
               <span>{{ 'shop.shared.titles.startingAt' | t }}: </span>
 
               <span class="sellix-price">
-                {% render_snippet 'Price', currency=group.minPriceItem.currency, price=group.minPriceItem.price_display %}
+                {% render_snippet 'Price', currency=group.min_price_item.currency, price=group.min_price_item.price_display %}
               </span>
             </div>
           {% else %}

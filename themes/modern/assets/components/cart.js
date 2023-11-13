@@ -137,13 +137,14 @@
             const isFree = +product.price_display === 0 && product.pay_what_you_want !== 1;
 
             let price = +product.price_display,
-              priceWithDiscount = product.price_with_discount;
+              priceWithDiscount = +product.price_with_discount;
 
             if (isPayWhatYouWant && typeof product.customerPrice !== 'undefined') {
               price = product.customerPrice;
               priceWithDiscount = product.price_discount ? price - (price * product.price_discount) / 100 : price;
             }
-
+            const currencyConfig = SellixContext.getCurrencyConfig(),
+              currencyOptions = SellixContext.getCurrencyOptions(product.currency);
             return {
               id: this.selector,
               key,
@@ -154,10 +155,13 @@
                   'productImageCart',
                   SellixContext.get('theme', {}).isDark,
                 ),
-                currency_title: SellixContext.getCurrencyList()[product.currency],
-                price: `${price.toFixed(2)}`,
-                price_with_discount: `${priceWithDiscount.toFixed(2)}`,
+                price: `${sellixHelper.toDecimalPrecision(price, currencyConfig.moneyPrecision)}`,
+                price_with_discount: `${sellixHelper.toDecimalPrecision(
+                  priceWithDiscount,
+                  currencyConfig.moneyPrecision,
+                )}`,
               },
+              currency_options: currencyOptions,
               isValidPlus,
               equalQuantity,
               inStock,

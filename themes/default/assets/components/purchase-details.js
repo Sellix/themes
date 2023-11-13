@@ -4,6 +4,7 @@
   jQuery,
   React,
   ReactDOM,
+  SellixContext,
   SellixStoreFactory,
   SellixAddonsStore,
   SellixPriceVariantsStore,
@@ -13,7 +14,6 @@
     constructor({
       selector,
       selectorCaptchaV2,
-      config,
       shop,
       cartEnabled,
       isCustomDomain,
@@ -27,7 +27,6 @@
     }) {
       this.domContainer = document.querySelector(selector);
       this.selectorCaptchaV2 = selectorCaptchaV2;
-      this.config = config;
       this.shop = shop;
       this.affiliateConversions = affiliateConversions;
       this.cartEnabled = cartEnabled;
@@ -188,7 +187,8 @@
       ReactDOM.render(
         React.createElement(Purchase.PurchaseDetails, {
           type: this.purchaseType,
-          config: this.config,
+          config: SellixContext.getConfig(),
+          currencyConfig: SellixContext.getCurrencyConfig(),
           isCartEnabled: this.cartEnabled,
           isCustomDomain: this.isCustomDomain,
           shopInfo: this.shop,
@@ -229,6 +229,7 @@
   jQuery,
   React,
   ReactDOM,
+  SellixContext,
   SellixStoreFactory,
   SellixAddonsStore,
   SellixPriceVariantsStore,

@@ -5,7 +5,7 @@
 {% set cartEnabled = themeProperties.cart.is_enabled %}
 {% set bundles = args.bundles %}
 {% set properties = args.properties %}
-{% set currencyList = global.config.CURRENCY_LIST %}
+{% set currency = global.currencyConfig.allCurrencies[shop.currency].symbol %}
 {% set colors = themeProperties.current_colors %}
 
 
@@ -45,7 +45,7 @@
               <p style="margin: 0; text-align: {{ properties.bundles_description_text_align }};">
                 {{ 'shop.product.bundle.discountTitle.0' | t }}
                 <b style="color: {{ colors[properties.bundles_description_font_color] }};">
-                  {{ currencyList[shop.currency] if discountType === 'FIXED' }}
+                  {{ currency if discountType === 'FIXED' }}
                   {{discountAmount}}{{ '%' if discountType === 'PERCENTAGE' }}
                 </b>
                 {{ 'shop.product.bundle.discountTitle.1' | t }}
