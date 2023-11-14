@@ -67,6 +67,7 @@
           const { uniqid, quantity_min, on_hold, stock } = product;
           const isSubscription = product.type === 'SUBSCRIPTION';
           const isLicense = product.licensing_enabled;
+          const isPayWhatYouWant = product.pay_what_you_want;
 
           const quantity = (this.cart.getItemById(uniqid) || {}).quantity || 0;
           const valid = sellixHelper.isValidCount(
@@ -77,7 +78,7 @@
             true,
           );
 
-          if (+stock === 0 || !!+on_hold || isSubscription || isLicense) {
+          if (+stock === 0 || !!+on_hold || isSubscription || isLicense || isPayWhatYouWant) {
             return null;
           }
 
