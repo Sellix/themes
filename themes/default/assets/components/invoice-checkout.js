@@ -61,6 +61,7 @@
       ReactDOM.render(
         React.createElement(InvoiceCheckout.InvoiceCheckout, {
           config: this.config,
+          currencyConfig: SellixContext.getCurrencyConfig(),
           theme: this.theme,
           shop: this.shop,
           invoiceId: this.invoiceId,
