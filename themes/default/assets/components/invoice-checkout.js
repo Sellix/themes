@@ -28,6 +28,10 @@
       return sellixApi.getInvoiceInfo(id, secret);
     };
 
+    onGetInvoiceTelegramInfo = (id, secret) => {
+      return sellixApi.getInvoiceTelegramInfo(id, secret);
+    };
+
     onPostCashAppIdentifier = (data) => {
       return sellixApi.postCashAppIdentifier(data);
     };
@@ -57,7 +61,6 @@
     };
 
     render() {
-
       ReactDOM.render(
         React.createElement(InvoiceCheckout.InvoiceCheckout, {
           config: this.config,
@@ -72,6 +75,7 @@
           onUpdateInvoice: this.onUpdateInvoice,
           onGetInvoiceSecret: this.onGetInvoiceSecret,
           onGetInvoiceInfo: this.onGetInvoiceInfo,
+          onGetInvoiceTelegramInfo: this.onGetInvoiceTelegramInfo,
           onGetFeedback: this.onGetFeedback,
           onCreateFeedback: this.onCreateFeedback,
           onPostCashAppIdentifier: this.onPostCashAppIdentifier,

@@ -169,6 +169,14 @@
       });
     }
 
+    async getInvoiceTelegramInfo(id, secret) {
+      return jQuery.ajax({
+        method: 'GET',
+        url: `${this.apiUrl}/api/shop/invoices/telegram-info/${id}/${secret}`,
+        contentType: 'application/json; charset=utf-8',
+      });
+    }
+
     async customerAuthEmail(data, options) {
       const onSuccess = (captcha) => {
         return jQuery.ajax({
