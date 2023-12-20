@@ -312,6 +312,16 @@
       });
     }
 
+    async getInsightsTransaction(data) {
+      return jQuery.ajax({
+        method: 'POST',
+        url: `${this.apiUrl}/api/shop/insights/transaction`,
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        data: JSON.stringify(data),
+      });
+    }
+
     async requestWithCaptchaV2(action, onSuccess, onError, options) {
       options ??= options;
 

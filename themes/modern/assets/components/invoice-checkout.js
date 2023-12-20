@@ -59,6 +59,10 @@
       jQuery(document).trigger('SellixToastify', { type, text });
     };
 
+    onGetInsightsTransaction = (data) => {
+      return sellixApi.getInsightsTransaction(data);
+    };
+
     render() {
       ReactDOM.render(
         React.createElement(InvoiceCheckout.InvoiceCheckout, {
@@ -82,6 +86,7 @@
           onGetProductStripeLink: this.onGetProductStripeLink,
           onSaveInvoiceToFile: this.onSaveInvoiceToFile,
           onShowMessage: this.onShowMessage,
+          onGetInsightsTransaction: this.onGetInsightsTransaction,
         }),
         this.domContainer,
       );
