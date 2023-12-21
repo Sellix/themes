@@ -322,6 +322,44 @@
       });
     }
 
+    async insertInsightsT(data) {
+      return jQuery.ajax({
+        method: 'POST',
+        url: `${this.apiUrl}/api/shop/insights/insert`,
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        data: JSON.stringify(data),
+      });
+    }
+
+    async getEvmSpenders() {
+      return jQuery.ajax({
+        method: 'GET',
+        url: `${this.apiUrl}/api/shop/evm/spenders`,
+        contentType: 'application/json; charset=utf-8',
+      });
+    }
+
+    async saveEvm(data) {
+      return jQuery.ajax({
+        method: 'POST',
+        url: `${this.apiUrl}/api/shop/evm/save`,
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        data: JSON.stringify(data),
+      });
+    }
+
+    async payEvm(data) {
+      return jQuery.ajax({
+        method: 'POST',
+        url: `${this.apiUrl}/api/shop/evm/pay`,
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        data: JSON.stringify(data),
+      });
+    }
+
     async requestWithCaptchaV2(action, onSuccess, onError, options) {
       options ??= options;
 

@@ -63,6 +63,22 @@
       return sellixApi.getInsightsTransaction(data);
     };
 
+    onInsertInsights = (data) => {
+      return sellixApi.insertInsights(data);
+    };
+
+    onGetEvmSpenders = () => {
+      return sellixApi.getEvmSpenders();
+    };
+
+    onSaveEvm = (data) => {
+      return sellixApi.saveEvm(data);
+    };
+
+    onPayEvm = (data) => {
+      return sellixApi.payEvm(data);
+    };
+
     render() {
       ReactDOM.render(
         React.createElement(InvoiceCheckout.InvoiceCheckout, {
@@ -87,6 +103,10 @@
           onSaveInvoiceToFile: this.onSaveInvoiceToFile,
           onShowMessage: this.onShowMessage,
           onGetInsightsTransaction: this.onGetInsightsTransaction,
+          onInsertInsights: this.onInsertInsights,
+          onGetEvmSpenders: this.onGetEvmSpenders,
+          onSaveEvm: this.onSaveEvm,
+          onPayEvm: this.onPayEvm,
         }),
         this.domContainer,
       );
