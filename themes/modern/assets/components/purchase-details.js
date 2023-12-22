@@ -225,6 +225,10 @@
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     onFail = () => {};
 
+    onInsertInsights = (data) => {
+      return sellixApi.insertInsights(data);
+    };
+
     render() {
       const cartProducts = this.cart.getItems();
 
@@ -256,6 +260,7 @@
           onChangeStep: this.onChangeStep,
           onCustomerAuthEmail: this.onCustomerAuthEmail,
           onCustomerAuthCode: this.onCustomerAuthCode,
+          onInsertInsights: this.onInsertInsights,
           onSuccess: this.onSuccess,
           onFail: this.onFail,
           onChangeData: this.onChangeData,
