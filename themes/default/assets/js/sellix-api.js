@@ -318,7 +318,7 @@
         url: `${this.apiUrl}/api/shop/insights/transaction`,
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
-        data: JSON.stringify(data),
+        data: JSON.stringify(data, (key, value) => (typeof value === 'bigint' ? value.toString() : value)),
       });
     }
 
@@ -328,7 +328,7 @@
         url: `${this.apiUrl}/api/shop/insights/insert`,
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
-        data: JSON.stringify(data),
+        data: JSON.stringify(data, (key, value) => (typeof value === 'bigint' ? value.toString() : value)),
       });
     }
 
@@ -346,7 +346,7 @@
         url: `${this.apiUrl}/api/shop/evm/save`,
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
-        data: JSON.stringify(data),
+        data: JSON.stringify(data, (key, value) => (typeof value === 'bigint' ? value.toString() : value)),
       });
     }
 
@@ -356,7 +356,7 @@
         url: `${this.apiUrl}/api/shop/evm/pay`,
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
-        data: JSON.stringify(data),
+        data: JSON.stringify(data, (key, value) => (typeof value === 'bigint' ? value.toString() : value)),
       });
     }
 
