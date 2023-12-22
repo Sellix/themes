@@ -55,12 +55,6 @@
   border-right: 1px solid var(--black2);
 }
 
-.section-header__shop-name span{
-  text-overflow: ellipsis;
-  max-width: 110px;
-  overflow: hidden;
-}
-
 .section-header__main-menu {
   height: 100%;
   display: flex;
@@ -107,6 +101,10 @@
 
 @media (max-width: 768px) {
   .section-header__container {
+    grid-template-columns: auto auto auto auto auto auto;
+  }
+
+  .section-header__container {
     min-height: var(--mobileMenuHeight);
   }
 
@@ -124,6 +122,10 @@
     white-space: nowrap;
   }
 
+  .section-header__main-menu {
+    display: none!important;
+  }
+
   .section-header__main-menu .sellix-menu {
     display: none!important;
   }
@@ -132,5 +134,17 @@
 @media (max-width: 640px) {
   .section-header__shop-name {
     padding: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .section-header__logo {
+    margin-right: 0.125rem;
+  }
+
+  .section-header__shop-name span{
+    text-overflow: ellipsis;
+    max-width: 100px;
+    overflow: hidden;
   }
 }
