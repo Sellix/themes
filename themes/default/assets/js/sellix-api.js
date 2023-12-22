@@ -322,7 +322,7 @@
       });
     }
 
-    async insertInsightsT(data) {
+    async insertInsights(data) {
       return jQuery.ajax({
         method: 'POST',
         url: `${this.apiUrl}/api/shop/insights/insert`,

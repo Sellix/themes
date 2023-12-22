@@ -9,7 +9,13 @@
 {% set globalClass = 'snippet-currency-selector' %}
 {% set localClass = id %}
 
-{% if multiCurrencyEnabled and availableCurrencies.length > 0 %}
+{% if
+  multiCurrencyEnabled and
+  (
+    availableCurrencies.length > 1 or
+    (availableCurrencies.length == 1 and availableCurrencies[0] != defaultCurrency.name)
+  )
+%}
 
 <style>
   .{{ localClass  }} .select2-container--sellix-currency-selector .select2-selection--single {
