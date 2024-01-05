@@ -59,7 +59,9 @@
           { duration: 300, queue: false },
         );
 
-        this.$container.find(`[data-addon-title=1][data-addon-id=${addonId}] i.fa-solid`).addClass('fa-chevron-up');
+        this.$container
+          .find(`[data-addon-title=1][data-addon-id=${addonId}] i.fa-solid`)
+          .css({ transform: 'rotate(180deg)' });
       } else {
         this.activeAddonId = undefined;
       }
@@ -100,10 +102,11 @@
               {
                 duration: 300,
                 queue: false,
-                complete: () => $addonsContainer.css({
-                  height: '',
-                  overflow: '',
-                })
+                complete: () =>
+                  $addonsContainer.css({
+                    height: '',
+                    overflow: '',
+                  }),
               },
             );
         } else {
@@ -125,7 +128,7 @@
         .find(`[data-collapsable-wrapper]`)
         .animate({ height: '0', overflow: 'hidden' }, { duration: 300, queue: false });
 
-      this.$container.find(`[data-addon-title=1] i.fa-solid`).removeClass('fa-chevron-up').addClass('fa-chevron-down');
+      this.$container.find(`[data-addon-title=1] i.fa-solid`).css({ transform: 'rotate(0deg)' });
     }
   }
   window.SellixProductAddonsComponent = ProductAddonsComponent;

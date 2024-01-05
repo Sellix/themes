@@ -11,7 +11,7 @@
     }
 
     toggle() {
-      this.$header.find('.chevron').toggleClass('d-none');
+      this.$header.find('.chevron svg').css({ transform: `rotate(${this.collapsed ? '180' : '0'}deg)` });
       const scrollHeight = this.$body.get(0).scrollHeight;
       const setOverflow = () => this.$body.css('overflow', scrollHeight > this.options.maxHeight ? 'auto' : 'hidden');
 

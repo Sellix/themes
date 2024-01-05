@@ -18,7 +18,7 @@
           $itemToHide
             .find('[data-faq-item-answer]')
             .animate({ height: '0px', overflow: 'hidden' }, { duration: 300, queue: false });
-          $itemToHide.find('[data-faq-item-chevron]').toggleClass('d-none');
+          $itemToHide.find('[data-faq-item-chevron] svg').css({ transform: 'rotate(0deg)' });
         } else {
           this.activeItemId = undefined;
           this.activeNestedItemId = undefined;
@@ -33,7 +33,7 @@
           { height: $itemContent.get(0).scrollHeight, overflow: 'initial' },
           { duration: 300, queue: false },
         );
-        $item.find('[data-faq-item-chevron]').toggleClass('d-none');
+        $item.find('[data-faq-item-chevron] svg').css({ transform: 'rotate(180deg)' });
       } else {
         this.activeItemId = undefined;
       }

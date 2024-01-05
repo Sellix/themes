@@ -52,9 +52,11 @@
     }
 
     toggleDescription = (show) => {
-      const $description = this.$product.find('[data-description-wrapper]'),
-        $label = this.$product.find('[data-checkout-product-toggle-description-button] .label-show-description'),
-        $button = this.$product.find('[data-checkout-product-toggle-description-button] .label-click-for-info');
+      const $description = this.$product.find('[data-description-wrapper]');
+
+      this.$product
+        .find('[data-checkout-product-toggle-description-button] svg')
+        .css({ transform: `rotate(${show ? '180' : '0'}deg)` });
 
       if (show) {
         $description.animate(
@@ -70,8 +72,6 @@
             },
           },
         );
-        $label.text(window.sellixI18Next.t('shop.checkout.hideDescription'));
-        $button.hide();
       } else {
         $description.animate(
           { 'min-height': 0, height: 0 },
@@ -85,8 +85,6 @@
             },
           },
         );
-        $label.text(window.sellixI18Next.t('shop.checkout.showDescription'));
-        $button.show();
       }
 
       this.isVisibleDescription = show;
