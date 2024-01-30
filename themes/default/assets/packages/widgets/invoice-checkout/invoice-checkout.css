@@ -1331,6 +1331,10 @@ button.secondary .lds-ellipsis div {
 .darkTheme .checkout-details-back div {
   background: var(--black2);
 }
+.dark .sellix-widget-invoice-checkout--footer {
+  background: var(--black0);
+}
+
 .sellix-widget-invoice-checkout--footer {
   background: var(--white);
   width: 100%;
@@ -1384,7 +1388,7 @@ button.secondary .lds-ellipsis div {
 }
 @media (max-width: 768px) {
   .checkout-footer {
-    padding: 0 2rem;
+    padding: 0 1.5rem;
     margin-top: 0;
     width: 100%;
   }
@@ -1426,12 +1430,6 @@ button.secondary .lds-ellipsis div {
 
 .is-checkout footer.sellix-widget-invoice-checkout--footer {
   box-shadow: 0px 1px 3px rgba(7, 14, 35, 0.06), 0px 2px 8px -1px rgba(7, 14, 35, 0.05);
-  border-radius: 0.5rem;
-  border: none;
-  background: var(--white);
-  padding: 1rem;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
 }
 @media (max-width: 768px) {
   .is-checkout footer.sellix-widget-invoice-checkout--footer:first-child {
@@ -1661,7 +1659,7 @@ button.secondary .lds-ellipsis div {
   padding-top: 1rem;
   margin-top: 1rem;
   margin-bottom: 0;
-  border-top: 1px solid var(--black2);
+  border-top: 1px solid var(--borderColor);
 }
 .calculation-item.total div:first-child {
   font-weight: 500;
@@ -1702,7 +1700,7 @@ button.secondary .lds-ellipsis div {
   padding-top: 1.25rem;
   margin-top: 1.25rem;
   margin-bottom: 0;
-  border-top: 1px solid var(--black2);
+  border-top: 1px solid var(--borderColor);
 }
 .calculation-item.total div:first-child {
   font-weight: 500;
@@ -1753,7 +1751,7 @@ button.secondary .lds-ellipsis div {
   border-radius: 0.5rem;
   margin-bottom: 1.25rem;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
 }
 .checkout-details-logo.placeholder {
@@ -2357,6 +2355,16 @@ button.secondary .lds-ellipsis div {
 .sellix-widget-invoice-checkout--info-modal .sellix-modal-close {
   display: none;
 }
+.dark .cashapp-guide-list-icon circle {
+  fill: var(--white);
+  stroke: var(--gateway-cashapp);
+  stroke-width: 2px;
+}
+
+.dark .cashapp-guide-line {
+  background: var(--gateway-cashapp);
+}
+
 .cashapp-guide-list-icon circle {
   fill: #cbffd7;
 }
@@ -2703,6 +2711,12 @@ button.secondary .lds-ellipsis div {
   font-weight: 400;
   margin: 0.75rem 0;
 }
+.sellix-widget-invoice-checkout--invoice-details-item span:first-child {
+  color: var(--black4);
+}
+.sellix-widget-invoice-checkout--invoice-details-item span:last-child {
+  color: var(--black9);
+}
 .sellix-widget-invoice-checkout--invoice-details-blockchain {
   width: 1rem !important;
   height: 1rem !important;
@@ -2952,6 +2966,11 @@ button.secondary .lds-ellipsis div {
 
 .status-container .alert > b {
   display: flex;
+}
+.status-container p {
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 .single-loader {
@@ -3540,7 +3559,7 @@ button.secondary .lds-ellipsis div {
   align-items: center;
   justify-content: space-between;
   color: var(--black4);
-  border-bottom: 1px solid var(--black2);
+  border-bottom: 1px solid var(--borderColor);
   font-family: "Inter", sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -3895,6 +3914,11 @@ button.secondary .lds-ellipsis div {
 }
 .status-container .buttons button {
   width: 100% !important;
+}
+.status-container p {
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 @keyframes scalePop {
@@ -5995,12 +6019,6 @@ video {
 }
 .p-2 {
   padding: 0.5rem;
-}
-.p-3 {
-  padding: 0.75rem;
-}
-.p-4 {
-  padding: 1rem;
 }
 .p-5 {
   padding: 1.25rem;
@@ -8397,6 +8415,10 @@ dark:!bg-[#25272a] dark:hover:!bg-[#3c3e42]*/
     margin-bottom: 0px;
   }
 
+  .md\:mt-2 {
+    margin-top: 0.5rem;
+  }
+
   .md\:block {
     display: block;
   }
@@ -9988,17 +10010,17 @@ dark:!bg-[#25272a] dark:hover:!bg-[#3c3e42]*/
   margin-right: 0;
 }
 .sellix-widget-invoice-checkout .button.large {
-  height: 2.25rem;
-  min-height: 2.25rem;
+  height: 2.25rem !important;
+  min-height: 2.25rem !important;
 }
 .sellix-widget-invoice-checkout .button.medium {
-  height: 2rem;
-  min-height: 2rem;
+  height: 2rem !important;
+  min-height: 2rem !important;
   font-weight: 500 !important;
 }
 .sellix-widget-invoice-checkout .button.small {
-  height: 1.75rem;
-  min-height: 1.75rem;
+  height: 1.75rem !important;
+  min-height: 1.75rem !important;
   font-weight: 500 !important;
 }
 
