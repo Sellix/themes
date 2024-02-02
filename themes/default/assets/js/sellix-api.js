@@ -171,6 +171,16 @@
       });
     }
 
+    async refreshInvoice(data) {
+      return jQuery.ajax({
+        method: 'POST',
+        url: `${this.apiUrl}/api/shop/invoices/refresh`,
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        data: JSON.stringify(data),
+      });
+    }
+
     async getInvoiceInfo(id, secret) {
       return jQuery.ajax({
         method: 'GET',

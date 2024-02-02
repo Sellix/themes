@@ -199,6 +199,9 @@
     }
 
     toDecimalPrecision(value, digits) {
+      if (isNaN(+value)) {
+        return value;
+      }
       value = +value;
       if (value === 0 || value >= 0.1) {
         return value.toFixed(digits);

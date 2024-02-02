@@ -17,6 +17,10 @@
       return sellixApi.updateInvoice(data);
     };
 
+    onRefreshInvoice = (data) => {
+      return sellixApi.refreshInvoice(data);
+    };
+
     onGetInvoiceSecret = (shopName, id) => {
       const shopStore = SellixStoreFactory.getStore(shopName);
       const invoices = shopStore.get('invoices') || {};
@@ -92,6 +96,7 @@
           sellixI18Next: window.sellixI18Next,
           onGetInvoice: this.onGetInvoice,
           onUpdateInvoice: this.onUpdateInvoice,
+          onRefreshInvoice: this.onRefreshInvoice,
           onGetInvoiceSecret: this.onGetInvoiceSecret,
           onGetInvoiceInfo: this.onGetInvoiceInfo,
           onGetInvoiceTelegramInfo: this.onGetInvoiceTelegramInfo,
