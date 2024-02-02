@@ -9,6 +9,7 @@
 {% set image = cdn_link(group.cloudflare_image_id, 'shopItem') %}
 {% set cardProps = themeProperties.cards %}
 {% set count = args.count %}
+{% set itemsPerRowType = safe_get(properties.items_per_row_type, 'static') %}
 
 {% set showBadge = safe_get(properties.show_product_type_badge, true) %}
 {% set background = safe_get(properties.background_color, cardProps.product_card_background_color) %}
@@ -87,7 +88,7 @@
 
 </style>
 
-<div class="{{ globalClass }} {{ localClass }} {{ 'single-card' if count == 1 }} d-flex w-100 position-relative">
+<div class="{{ globalClass }} {{ localClass }} {{ 'single-card' if count == 1 and itemsPerRowType == 'dynamic' }} d-flex w-100 position-relative">
   <div class="{{ globalClass }}__container {{ localClass }}__container" data-group-id="{{group.uniqid}}">
     {% if showBadge %}
       <div class="{{ globalClass }}__badge-container">
