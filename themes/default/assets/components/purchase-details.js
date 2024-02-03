@@ -93,6 +93,10 @@
         });
     };
 
+    onGetCalculation = (data) => {
+      return sellixApi.getCalculation(data);
+    };
+
     onCustomerAuthEmail = (data) => {
       return sellixApi.customerAuthEmail({ shop_id: this.shop.id, ...data });
     };
@@ -208,6 +212,7 @@
           onAddToCart: this.onAddToCart,
           onApplyCoupon: this.onApplyCoupon,
           onCreateInvoice: this.onCreateInvoice,
+          onGetCalculation: this.onGetCalculation,
           onShowMessage: this.onShowMessage,
           onShowProductTerms: this.onShowProductTerms,
           onChangeProductQuantity: this.onChangeProductQuantity,

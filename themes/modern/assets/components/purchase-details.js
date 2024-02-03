@@ -103,22 +103,8 @@
         });
     };
 
-    getCalculation = (data) => {
-      return sellixApi.getCalculation(data).then((response) => {
-        const { status, data } = response;
-        if (status === 200) {
-          const { invoice } = data;
-          if (invoice) {
-            const invoices = this.shopStore.get('invoices') || {};
-            invoices[invoice.uniqid] = {
-              uniqid: invoice.uniqid,
-              secret: invoice.secret,
-            };
-            this.shopStore.set('invoices', invoices);
-          }
-        }
-        return response;
-      });
+    onGetCalculation = (data) => {
+      return sellixApi.getCalculation(data);
     };
 
     onCustomerAuthEmail = (data) => {
@@ -253,7 +239,7 @@
           onUpdateCart: this.onUpdateCart,
           onApplyCoupon: this.onApplyCoupon,
           onCreateInvoice: this.onCreateInvoice,
-          getCalculation: this.getCalculation,
+          onGetCalculation: this.onGetCalculation,
           onShowMessage: this.onShowMessage,
           onShowProductTerms: this.onShowProductTerms,
           onChangeProductQuantity: this.onChangeProductQuantity,
