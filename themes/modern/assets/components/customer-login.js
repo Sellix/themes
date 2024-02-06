@@ -22,6 +22,7 @@
 
       this.$gotoDashboardBtn.on('click', this.gotoDashboard.bind(this));
       this.$loginBtn.on('click', this.toggle.bind(this));
+      jQuery(document).on('SellixLoginButtonClick', this.toggle.bind(this));
       this.$logoutBtn.on('click', this.logout.bind(this));
       this.$modalCloseBtn.on('click', this.closeModal.bind(this));
       this.$sendEmailBtn.on('click', this.sendEmail.bind(this));

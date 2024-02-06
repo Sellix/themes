@@ -197,6 +197,10 @@
       // console.log('Change', type, value);
     };
 
+    onShowLogin = () => {
+      jQuery(document).trigger('SellixLoginButtonClick');
+    };
+
     onSuccess = ({ type, invoice }) => {
       switch (type) {
         case 'invoice-trial':
@@ -247,6 +251,7 @@
           onCustomerAuthEmail: this.onCustomerAuthEmail,
           onCustomerAuthCode: this.onCustomerAuthCode,
           onInsertInsights: this.onInsertInsights,
+          onShowLogin: this.onShowLogin,
           onSuccess: this.onSuccess,
           onFail: this.onFail,
           onChangeData: this.onChangeData,
