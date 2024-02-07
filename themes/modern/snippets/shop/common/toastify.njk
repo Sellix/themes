@@ -2,33 +2,58 @@
   // Simple toastify handler
   $(document).ready(function () {
     $(document).on('SellixToastify', function(e, eventInfo) {
-      const toastifyContainer = $(`
-              <div class="toastify-container">
-                <div class="toastify-container-title ${eventInfo.type}">
-                  <i class="toastify-container-title-icon fa-solid ${eventInfo.type === 'success' ? "fa-check" : "fa-xmark"}"></i>
-                  <div class="toastify-container-message">
-                    ${eventInfo.text}
-                  </div>
-                </div>
-                <div class="toastify-container-note">
-                  ${eventInfo.type === 'success'
-        ? "{{ 'shop.shared.toastify.success' | t }}"
-        : "{{ 'shop.shared.toastify.fail' | t }}"
+      const getIcon = (type) => {
+        if (type === 'success') {
+          return `<svg width="22" height="22" view-box="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="var(--green6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 12L11 14L15 10" stroke="var(--green6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>`;
+        } else if (type === 'error') {
+          return `<svg width="22" height="22" view-box="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="var(--red6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10 10L14 14M14 10L10 14" stroke="var(--red6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>`;
+        } else if (type === 'warning') {
+          return `<svg width="22" height="22" view-box="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 9V11M12 15V15.01" stroke="var(--orange6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4.99921 19H18.9992C19.3255 18.9977 19.6463 18.9156 19.9336 18.7609C20.2209 18.6061 20.466 18.3835 20.6474 18.1123C20.8289 17.841 20.9412 17.5296 20.9747 17.205C21.0081 16.8804 20.9616 16.5525 20.8392 16.25L13.7392 4.00002C13.5663 3.68741 13.3127 3.42685 13.005 3.2454C12.6972 3.06396 12.3465 2.96826 11.9892 2.96826C11.632 2.96826 11.2812 3.06396 10.9735 3.2454C10.6657 3.42685 10.4122 3.68741 10.2392 4.00002L3.13921 16.25C3.01915 16.5456 2.97155 16.8656 3.00036 17.1833C3.02918 17.501 3.13359 17.8073 3.30486 18.0764C3.47614 18.3456 3.70932 18.5698 3.98494 18.7305C4.26056 18.8912 4.57061 18.9836 4.88921 19" stroke="var(--orange6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>`;
+        } else {
+          return `<svg width="22" height="22" view-box="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="var(--purple6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 8H12.01" stroke="var(--purple6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M11 12H12V16H13" stroke="var(--purple6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>`
+        }
       }
-                </div>
-              </div>
-            `)[0];
+
+      const toastifyContainer = $(`
+        <div class="toastify-container">
+          <div class="toastify-container-title ${eventInfo.type}">
+            <div class="toastify-container-icon">
+                ${getIcon(eventInfo.type)}
+            </div>
+            <div class="toastify-container-message">
+              ${eventInfo.text}
+            </div>
+            <div class="toastify-container-close-button">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="12" fill="currentColor"></circle>
+                <path d="M15.5 8.5L8.5 15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M8.5 8.5L15.5 15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      `)[0];
 
       const toast = Toastify({
-        duration: 5000,
+        duration: -1,
+        close: true,
         selector: 'app',
-        offset: {
-          x: '1rem',
-          y: '70px',
-        },
         node: toastifyContainer,
-        gravity: 'top',
-        position: 'right',
+        gravity: 'bottom',
+        position: 'center',
         onClick: function() {
           if (toast) {
             toast.hideToast();
