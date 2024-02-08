@@ -203,8 +203,12 @@
         return value;
       }
       value = +value;
-      if (value === 0 || value >= 0.1) {
+      if (value === 0 || Math.abs(value) >= 0.1) {
         return value.toFixed(digits);
+      }
+
+      if (Math.abs(value) < 0.0000000001) {
+        return 0;
       }
 
       return value.toLocaleString('fullwide', { maximumSignificantDigits: digits });

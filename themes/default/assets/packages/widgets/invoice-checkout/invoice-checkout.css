@@ -1079,6 +1079,8 @@ button.secondary .lds-ellipsis div {
   background: var(--white);
 }
 .sellix-widget-gateway--container {
+  padding-top: 1rem;
+  margin-top: -1rem;
   width: 100%;
   border-radius: 0.25rem;
   color: var(--black4);
@@ -1299,7 +1301,7 @@ button.secondary .lds-ellipsis div {
 @media (max-width: 768px) {
   .checkout-details-back {
     background: var(--backgroundAccentDark);
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     margin-bottom: 0;
     border-bottom: 1px solid var(--black2);
   }
@@ -1331,8 +1333,10 @@ button.secondary .lds-ellipsis div {
 .darkTheme .checkout-details-back div {
   background: var(--black2);
 }
-.dark .sellix-widget-invoice-checkout--footer {
-  background: var(--black0);
+@media (max-width: 768px) {
+  .dark .sellix-widget-invoice-checkout--footer {
+    background: var(--black0);
+  }
 }
 
 .sellix-widget-invoice-checkout--footer {
@@ -2303,7 +2307,7 @@ button.secondary .lds-ellipsis div {
   display: flex;
   height: initial;
   width: 100%;
-  font-family: "Inter";
+  font-family: "Inter", sans-serif;
   font-weight: 600;
   font-size: 14px;
   line-height: 20px;
@@ -2318,6 +2322,9 @@ button.secondary .lds-ellipsis div {
 .sellix-widget-invoice-checkout--info-header-close {
   font-size: 1rem;
   cursor: pointer;
+}
+.sellix-widget-invoice-checkout--info-details {
+  padding: 1rem 1.5rem;
 }
 .sellix-widget-invoice-checkout--info-description {
   max-width: 650px;
@@ -3568,12 +3575,15 @@ button.secondary .lds-ellipsis div {
   border-radius: 0.5rem 0.5rem 0 0;
   transition: color 0.3s ease;
 }
+.sellix-widget-invoice-checkout--back svg {
+  margin-left: -4px;
+}
 .sellix-widget-invoice-checkout--back:hover {
   color: var(--black9);
 }
 @media (max-width: 768px) {
   .sellix-widget-invoice-checkout--back {
-    padding: 1.5rem 2rem;
+    padding: 1.5rem;
   }
 }
 .sellix-widget-invoice-checkout--back-badge {
@@ -3721,10 +3731,6 @@ button.secondary .lds-ellipsis div {
     transition: transform 0.4s ease-in;
     transform: translateX(0%);
   }
-}
-
-.sellix-widget-invoice-checkout--info-container .checkout-details {
-  padding: 0 1.5rem;
 }
 
 .sellix-widget-invoice-checkout--product-card {
