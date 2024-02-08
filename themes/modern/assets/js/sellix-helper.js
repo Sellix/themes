@@ -213,6 +213,15 @@
 
       return value.toLocaleString('fullwide', { maximumSignificantDigits: digits });
     }
+
+    sanitizeHtml(value) {
+      return value.replace(/[<>]/g, function (match) {
+        return {
+          '<': '&lt;',
+          '>': '&gt;',
+        }[match];
+      });
+    }
   }
   window.sellixHelper = new Helper();
 })(document, window, jQuery, SellixContext, SellixStoreFactory);

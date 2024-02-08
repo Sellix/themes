@@ -119,7 +119,7 @@
     }
 
     render({ action, productId } = { action: 'insert' }) {
-      let products = this.cart.getItems();
+      const products = this.cart.getItems();
 
       switch (action) {
         case 'insert':
@@ -150,6 +150,8 @@
               key,
               product: {
                 ...product,
+                title: sellixHelper.sanitizeHtml(product.title || ''),
+                description: sellixHelper.sanitizeHtml(product.description || ''),
                 cdn_image_url: sellixHelper.getImageUrl(
                   product.cloudflare_image_id,
                   'productImageCart',
