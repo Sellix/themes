@@ -65,6 +65,7 @@
     };
 
     onCreateInvoice = (data, token) => {
+      data.clear_cart = true;
       return sellixApi
         .createInvoice(data, {
           token: token,
@@ -171,9 +172,8 @@
         case 'invoice-trial':
           break;
         case 'invoice':
-          this.cart.clear().then(() => {
-            window.location.href = `invoice/${invoice.uniqid}`;
-          });
+          this.cart.clear(false);
+          window.location.href = `invoice/${invoice.uniqid}`;
           break;
       }
     };

@@ -142,11 +142,11 @@
       });
     }
 
-    clear() {
+    clear(updateBackend = true) {
       this.state = [];
-      return this.update().then(() => {
-        jQuery(document).trigger('SellixCartUpdateEvent', { action: 'delete' });
-      });
+      if (updateBackend) {
+        this.update().then(() => jQuery(document).trigger('SellixCartUpdateEvent', { action: 'delete' }));
+      }
     }
   }
 
