@@ -1079,6 +1079,8 @@ button.secondary .lds-ellipsis div {
   background: var(--white);
 }
 .sellix-widget-gateway--container {
+  padding-top: 1rem;
+  margin-top: -1rem;
   width: 100%;
   border-radius: 0.25rem;
   color: var(--black4);
@@ -1299,7 +1301,7 @@ button.secondary .lds-ellipsis div {
 @media (max-width: 768px) {
   .checkout-details-back {
     background: var(--backgroundAccentDark);
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     margin-bottom: 0;
     border-bottom: 1px solid var(--black2);
   }
@@ -1331,8 +1333,10 @@ button.secondary .lds-ellipsis div {
 .darkTheme .checkout-details-back div {
   background: var(--black2);
 }
-.dark .sellix-widget-invoice-checkout--footer {
-  background: var(--black0);
+@media (max-width: 768px) {
+  .dark .sellix-widget-invoice-checkout--footer {
+    background: var(--black0);
+  }
 }
 
 .sellix-widget-invoice-checkout--footer {
@@ -1987,11 +1991,16 @@ button.secondary .lds-ellipsis div {
   text-align: left;
 }
 .sellix-widget-invoice-checkout--delivery-cart-product {
-  padding: 1rem;
+  padding: 1.25rem;
   border: 1px solid var(--black2);
   border-radius: 0.5rem;
   margin-bottom: 1rem;
   background: var(--black0);
+}
+@media (max-width: 768px) {
+  .sellix-widget-invoice-checkout--delivery-cart-product {
+    padding: 1rem;
+  }
 }
 .sellix-widget-invoice-checkout--delivery-cart-product-title {
   font-size: 1.25rem;
@@ -2078,6 +2087,53 @@ button.secondary .lds-ellipsis div {
   .sellix-delivery-body {
     flex-wrap: wrap;
   }
+}
+.rewards-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.rewards-list-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  line-height: normal;
+  font-style: normal;
+}
+.rewards-list-row-title {
+  display: flex;
+  justify-content: flex-start;
+  color: var(--lightFontColor);
+  font-weight: 400;
+}
+.rewards-list-row-price {
+  display: flex;
+  justify-content: flex-end;
+  color: var(--darkFontColor);
+  font-weight: 500;
+}
+.sellix-product-rewards {
+  margin-top: 1rem;
+  padding: 1.25rem;
+  border: 1px solid var(--borderColor);
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: var(--black0);
+}
+.sellix-product-rewards-title {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--darkFontColor);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+}
+.sellix-product-rewards-title svg {
+  color: var(--brandColor);
 }
 .modal {
   width: 100%;
@@ -2303,7 +2359,7 @@ button.secondary .lds-ellipsis div {
   display: flex;
   height: initial;
   width: 100%;
-  font-family: "Inter";
+  font-family: "Inter", sans-serif;
   font-weight: 600;
   font-size: 14px;
   line-height: 20px;
@@ -2318,6 +2374,9 @@ button.secondary .lds-ellipsis div {
 .sellix-widget-invoice-checkout--info-header-close {
   font-size: 1rem;
   cursor: pointer;
+}
+.sellix-widget-invoice-checkout--info-details {
+  padding: 1rem 1.5rem;
 }
 .sellix-widget-invoice-checkout--info-description {
   max-width: 650px;
@@ -2803,12 +2862,43 @@ button.secondary .lds-ellipsis div {
     margin-left: -4.5rem;
   }
 }
+.sellix-widget-invoice-checkout--delivery-feedback .feedback-reward-notice {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--black2);
+  color: var(--darkFontColor);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+}
+@media (max-width: 768px) {
+  .sellix-widget-invoice-checkout--delivery-feedback .feedback-reward-notice {
+    padding: 1rem;
+  }
+}
 .sellix-widget-invoice-checkout--delivery-feedback {
   background: var(--black0);
   border: 1px solid var(--black2);
   margin: 1rem 0 0 0;
-  padding: 1rem;
   border-radius: 0.5rem;
+}
+.sellix-widget-invoice-checkout--delivery-feedback .star-svg {
+  margin-right: 1rem;
+}
+@media (max-width: 768px) {
+  .sellix-widget-invoice-checkout--delivery-feedback .star-svg {
+    margin-right: 0.5rem;
+  }
+}
+.sellix-widget-invoice-checkout--delivery-feedback-container {
+  padding: 1.25rem;
+}
+@media (max-width: 768px) {
+  .sellix-widget-invoice-checkout--delivery-feedback-container {
+    padding: 1rem;
+  }
 }
 .sellix-widget-invoice-checkout--delivery-feedback-loader {
   display: flex;
@@ -3568,12 +3658,17 @@ button.secondary .lds-ellipsis div {
   border-radius: 0.5rem 0.5rem 0 0;
   transition: color 0.3s ease;
 }
-.sellix-widget-invoice-checkout--back:hover {
-  color: var(--black9);
+.sellix-widget-invoice-checkout--back svg {
+  margin-left: -4px;
+}
+@media (hover: hover) {
+  .sellix-widget-invoice-checkout--back:hover {
+    color: var(--black9);
+  }
 }
 @media (max-width: 768px) {
   .sellix-widget-invoice-checkout--back {
-    padding: 1.5rem 2rem;
+    padding: 1.5rem;
   }
 }
 .sellix-widget-invoice-checkout--back-badge {
@@ -3721,10 +3816,6 @@ button.secondary .lds-ellipsis div {
     transition: transform 0.4s ease-in;
     transform: translateX(0%);
   }
-}
-
-.sellix-widget-invoice-checkout--info-container .checkout-details {
-  padding: 0 1.5rem;
 }
 
 .sellix-widget-invoice-checkout--product-card {
