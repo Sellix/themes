@@ -7,7 +7,7 @@
 {% set warranty = product.warranty | int %}
 {% set title = product.title %}
 {% set name = product.name %}
-{% set warrantyText = product.warrantyText %}
+{% set warrantyText = product.warranty_text %}
 
 {% set fontColor = safe_get(properties.font_color, 'dark_font_color') %}
 {% set fontSize = safe_get(properties.font_size, 14) %}
@@ -19,12 +19,20 @@
 
 <style>
   .{{ localClass }} {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
     color: {{ fontColor | get_color }}!important;
     font-size: {{ fontSize }}px!important;
     font-weight: {{ fontWeight }}!important;
     line-height: {{ lineHeight }}px;
     min-height: 5rem!important;
     white-space: normal!important;
+  }
+
+  .{{ localClass }} .warranty-text {
+    padding: 1rem 0 0 1rem;
   }
 </style>
 
@@ -42,8 +50,8 @@
     <div>
       This warranty, as described by the seller, covers:
       <br/>
-      <div class="w-100 warranty-text" style="white-space: pre-line;">
-        {{warrantyText}}
+      <div class="w-100 warranty-text sellix-text">
+        {{warrantyText | html_sanitize | safe}}
       </div>
     </div>
   {% endif %}

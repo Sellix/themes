@@ -93,6 +93,7 @@
 {% set customCardPropsEnabled = safe_get(properties.grid_card_properties_enabled, false) %}
 {% if customCardPropsEnabled %}
   {% set cardProps = {
+    'items_per_row_type': itemsPerRowType,
     'placeholder_type': placeholderType,
     'show_product_type_badge': safe_get(properties.grid_show_product_type_badge, true),
     'image_height': safe_get(properties.grid_card_image_height, globalCardProps.product_card_image_height),
@@ -117,6 +118,7 @@
   } %}
 {% else %}
   {% set cardProps = {
+    'items_per_row_type': itemsPerRowType,
     'placeholder_type': placeholderType,
     'show_product_type_badge': safe_get(properties.grid_show_product_type_badge, true),
     'image_height': safe_get(globalCardProps.product_card_image_height, 247),

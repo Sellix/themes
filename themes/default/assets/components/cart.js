@@ -107,6 +107,8 @@
               key,
               product: {
                 ...product,
+                title: sellixHelper.sanitizeHtml(product.title || ''),
+                description: sellixHelper.sanitizeHtml(product.description || ''),
                 cdn_image_url: sellixHelper.getImageUrl(
                   product.cloudflare_image_id,
                   'productImageCart',

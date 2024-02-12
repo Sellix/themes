@@ -1,14 +1,30 @@
 div.toastify {
-  margin: 0;
-  padding: 1.25rem;
-  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+  padding:0.4rem;
+  border-radius: 0.5rem;
   min-height: auto;
-  border: 1px solid var(--borderColor);
-  background: var(--backgroundAccentLight);
-  box-shadow: none;
-  font-family: sans-serif;
+  min-width: 400px;
   width: 400px;
+  background: var(--black8);
+  color: var(--black0);
+  font-family: 'Inter', sans-serif;
   z-index: 2147483647;
+  box-shadow: 0px 2px 4px -2px rgb(21 21 21), 0px 2px 4px -1px rgb(0 0 0 / 46%);
+}
+
+.is-dark div.toastify {
+  background: var(--black);
+  box-shadow: 0px 2px 4px -2px rgba(7, 14, 35, 0.12), 0px 2px 4px -1px rgba(7, 14, 35, 0.08);
+}
+
+@media (max-width: 768px) {
+  div.toastify {
+    border-radius: initial;
+  }
 }
 
 div.toastify-icon {
@@ -33,6 +49,9 @@ div.toastify-container {
   padding: 0;
   top: 70px;
   border-radius: .5rem;
+
+  display: flex;
+  flex: 1;
 }
 
 div.toastify-container.small .toastify-container-title {
@@ -54,13 +73,14 @@ div.toastify-container.small .toastify-container-note {
 }
 
 div.toastify-container-title {
-  font-weight: 400;
   display: flex;
+  flex: 1;
+  gap: 0.4rem;
   align-items: center;
-  font-size: 18px;
-  color: var(--darkFontColor);
-  margin-bottom: .5rem;
-  line-height: 1.5rem
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--black0);
+  line-height: normal;;
 }
 
 div.toastify-container-title.success i {
@@ -87,6 +107,43 @@ div.toastify-container-title i {
   font-size: 16px
 }
 
+.toastify-container-message {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  font-weight: 500;
+  line-height: 17px;
+}
+
+.toastify-container-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toastify-container-close-button {
+  display: flex;
+  color: var(--black4);
+}
+
+.toastify-container-close-button circle {
+  color: var(--black9)
+}
+
+.is-dark .toastify-container-close-button circle {
+  color: var(--black8)
+}
+
+.toastify-container-close-button:hover circle {
+  color: var(--black7);
+}
+
+.is-dark .toastify-container-close-button:hover circle {
+  color: #DFE5E9;
+}
+
 div.toastify-container-note {
   font-size: 14px;
   line-height: 21px;
@@ -101,6 +158,9 @@ div.toastify button {
 
 @media (max-width: 768px) {
   div.toastify {
+    bottom: 0;
+    min-width: 100%;
+    width: 100%;
     margin-top: .5rem
   }
 
