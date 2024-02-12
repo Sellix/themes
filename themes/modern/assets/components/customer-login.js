@@ -136,6 +136,10 @@
     onCodeChange(val) {
       this.codeValue = val;
       this.$verifyCodeBtn.prop('disabled', !val || val.length < 6);
+
+      if (val.length >= 8) {
+        this.verifyCode();
+      }
     }
 
     _onEmailKeyUp() {
