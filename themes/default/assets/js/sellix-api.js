@@ -107,6 +107,14 @@
       });
     }
 
+    async getInvoiceRewards(id) {
+      return jQuery.ajax({
+        method: 'GET',
+        url: `${this.apiUrl}/api/shop/invoices/${id}/rewards`,
+        contentType: 'application/json; charset=utf-8',
+      });
+    }
+
     async getPaymentLink(id) {
       return jQuery.ajax({
         method: 'GET',

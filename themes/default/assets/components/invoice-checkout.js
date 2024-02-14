@@ -14,6 +14,10 @@
       return sellixApi.getInvoice(id);
     };
 
+    onGetInvoiceRewards = (id) => {
+      return sellixApi.getInvoiceRewards(id);
+    };
+
     onUpdateInvoice = (data) => {
       return sellixApi.updateInvoice(data);
     };
@@ -96,6 +100,7 @@
           options: this.options,
           sellixI18Next: window.sellixI18Next,
           onGetInvoice: this.onGetInvoice,
+          onGetInvoiceRewards: this.onGetInvoiceRewards,
           onUpdateInvoice: this.onUpdateInvoice,
           onRefreshInvoice: this.onRefreshInvoice,
           onGetInvoiceSecret: this.onGetInvoiceSecret,

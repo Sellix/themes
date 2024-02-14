@@ -74,20 +74,20 @@
       return $(`
         <div style="display: flex; align-items: center; column-gap: 0.25rem;">
           ${isMobile
-        ? imgUrl
-          ? `<img alt="${title}" style="height:18px;width: 18px;" src="${imgUrl}" />`
-          : ''
-        : !isResult && imgUrl
-          ? `<img alt="${title}" style="height:18px;width: 18px;" src="${imgUrl}" />`
-          : ''
-      }
+            ? imgUrl
+              ? `<img alt="${title}" style="height:18px;width: 18px;" src="${imgUrl}" />`
+              : ''
+            : imgUrl
+              ? `<img alt="${title}" style="height:18px;width: 18px;" src="${imgUrl}" />`
+              : ''
+          }
           ${isMobile && isResult ? '' : title}
           ${isResult
-        ? chevronSvg
-        : state.id === selectedLanguage
-          ? tickSvg
-          : ''
-      }
+            ? chevronSvg
+            : state.id === selectedLanguage
+              ? tickSvg
+              : ''
+          }
         </div>
     `);
     }

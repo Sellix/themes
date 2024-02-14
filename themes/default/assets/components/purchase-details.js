@@ -94,6 +94,10 @@
         });
     };
 
+    onGetCalculation = (data) => {
+      return sellixApi.getCalculation(data);
+    };
+
     onCustomerAuthEmail = (data) => {
       return sellixApi.customerAuthEmail({ shop_id: this.shop.id, ...data });
     };
@@ -167,6 +171,10 @@
       // console.log('Change', type, value);
     };
 
+    onShowLogin = () => {
+      jQuery(document).trigger('SellixLoginButtonClick');
+    };
+
     onSuccess = ({ type, invoice }) => {
       switch (type) {
         case 'invoice-trial':
@@ -208,6 +216,7 @@
           onAddToCart: this.onAddToCart,
           onApplyCoupon: this.onApplyCoupon,
           onCreateInvoice: this.onCreateInvoice,
+          onGetCalculation: this.onGetCalculation,
           onShowMessage: this.onShowMessage,
           onShowProductTerms: this.onShowProductTerms,
           onChangeProductQuantity: this.onChangeProductQuantity,
@@ -215,10 +224,12 @@
           onCustomerAuthEmail: this.onCustomerAuthEmail,
           onCustomerAuthCode: this.onCustomerAuthCode,
           onInsertInsights: this.onInsertInsights,
+          onShowLogin: this.onShowLogin,
           onSuccess: this.onSuccess,
           onFail: this.onFail,
           onChangeData: this.onChangeData,
           options: {
+            customerLoginAvailable: false,
             isCaptchaV2Visible: this.isCaptchaV2Visible,
           },
         }),
