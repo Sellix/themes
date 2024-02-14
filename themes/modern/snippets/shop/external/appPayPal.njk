@@ -1,8 +1,17 @@
 {% if global.paypal.merchantId %}
+  {% set shop = global.common.shopInfo.shop %}
   {% set invoice = global.common.invoiceInfo.invoice %}
   {% set product = global.common.productInfo.product %}
 
-  {% set currency = invoice.currency or product.currency %}
+  {% set allCurrencies = global.currencyConfig.allCurrencies %}
+  {% set defaultCurrency = allCurrencies[global.currencyConfig.default] %}
+  {% set isDefaultCurrencyCrypto = defaultCurrency.type === 'crypto' %}
+  {% if isDefaultCurrencyCrypto %}
+    {% set currency = product.original_currency or shop.original_currency %}
+  {% else %}
+    {% set currency = invoice.currency or product.currency or shop.currency %}
+  {% endif %}
+
   {% set type = invoice.type or ('PRODUCT_SUBSCRIPTION' if product.type === 'SUBSCRIPTION' else product.type) %}
   <script type='application/javascript'>
     $(document).ready(function() {
