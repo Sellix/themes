@@ -1,0 +1,96 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_2, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_2);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_2);
+}
+output += "\n";
+var t_3;
+t_3 = (lineno = 3, colno = 25, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"background_color"),"dark_font_color"]));
+frame.set("bgColor", t_3, true);
+if(frame.topLevel) {
+context.setVariable("bgColor", t_3);
+}
+if(frame.topLevel) {
+context.addExport("bgColor", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"label");
+frame.set("label", t_4, true);
+if(frame.topLevel) {
+context.setVariable("label", t_4);
+}
+if(frame.topLevel) {
+context.addExport("label", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"label_color");
+frame.set("labelColor", t_5, true);
+if(frame.topLevel) {
+context.setVariable("labelColor", t_5);
+}
+if(frame.topLevel) {
+context.addExport("labelColor", t_5);
+}
+var t_6;
+t_6 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"label_font_size");
+frame.set("labelFontSize", t_6, true);
+if(frame.topLevel) {
+context.setVariable("labelFontSize", t_6);
+}
+if(frame.topLevel) {
+context.addExport("labelFontSize", t_6);
+}
+var t_7;
+t_7 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"label_font_weight");
+frame.set("labelFontWeight", t_7, true);
+if(frame.topLevel) {
+context.setVariable("labelFontWeight", t_7);
+}
+if(frame.topLevel) {
+context.addExport("labelFontWeight", t_7);
+}
+var t_8;
+t_8 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"url");
+frame.set("url", t_8, true);
+if(frame.topLevel) {
+context.setVariable("url", t_8);
+}
+if(frame.topLevel) {
+context.addExport("url", t_8);
+}
+output += "\n";
+env.getExtension("RenderSnippet")["run"](context,"Shared: Link button",runtime.makeKeywordArgs({"properties": {"background_color": runtime.contextOrFrameLookup(context, frame, "bgColor"),"label": runtime.contextOrFrameLookup(context, frame, "label"),"label_color": runtime.contextOrFrameLookup(context, frame, "labelColor"),"label_font_size": runtime.contextOrFrameLookup(context, frame, "labelFontSize"),"label_font_weight": runtime.contextOrFrameLookup(context, frame, "labelFontWeight"),"url": runtime.contextOrFrameLookup(context, frame, "url"),"icon_snippet": "Icons: Arrow right 1"}}), function(t_10,t_9) {
+if(t_10) { cb(t_10); return; }
+output += runtime.suppressValue(t_9, true && env.opts.autoescape);
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

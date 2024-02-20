@@ -1,0 +1,62 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+output += "<div class=\"sellix-grid-socials\">\n\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"sellix_socials_footer_twitter")) {
+output += "    <div>\n      <a href=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"sellix_socials_footer_twitter"), env.opts.autoescape);
+output += "\">\n        <i class=\"fa-brands fa-twitter\"></i>\n      </a>\n    </div>\n";
+;
+}
+output += "\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"sellix_socials_footer_facebook")) {
+output += "    <div>\n      <a href=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"sellix_socials_footer_facebook"), env.opts.autoescape);
+output += "\">\n        <i class=\"fa-brands fa-facebook\"></i>\n      </a>\n    </div>\n";
+;
+}
+output += "\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"sellix_socials_footer_instagram")) {
+output += "    <div>\n      <a href=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"sellix_socials_footer_instagram"), env.opts.autoescape);
+output += "\">\n        <i class=\"fa-brands fa-instagram\"></i>\n      </a>\n    </div>\n";
+;
+}
+output += "\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"sellix_socials_footer_tiktok")) {
+output += "    <div>\n      <a href=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"sellix_socials_footer_tiktok"), env.opts.autoescape);
+output += "\">\n        <i class=\"fa-brands fa-tiktok\"></i>\n      </a>\n    </div>\n";
+;
+}
+output += "\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"sellix_socials_footer_youtube")) {
+output += "    <div>\n      <a href=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"sellix_socials_footer_youtube"), env.opts.autoescape);
+output += "\">\n        <i class=\"fa-brands fa-youtube\"></i>\n      </a>\n    </div>\n";
+;
+}
+output += "\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"sellix_socials_footer_discord")) {
+output += "    <div>\n      <a href=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"sellix_socials_footer_discord"), env.opts.autoescape);
+output += "\">\n        <i class=\"fa-brands fa-discord\"></i>\n      </a>\n    </div>\n";
+;
+}
+output += "\n</div>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

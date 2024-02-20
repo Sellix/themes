@@ -1,0 +1,194 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_1, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_1);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_1);
+}
+var t_2;
+t_2 = (lineno = 1, colno = 27, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"fullwidth"),false]));
+frame.set("fullWidth", t_2, true);
+if(frame.topLevel) {
+context.setVariable("fullWidth", t_2);
+}
+if(frame.topLevel) {
+context.addExport("fullWidth", t_2);
+}
+var t_3;
+t_3 = (lineno = 2, colno = 25, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"background_color"),"background_main_color"]));
+frame.set("bgColor", t_3, true);
+if(frame.topLevel) {
+context.setVariable("bgColor", t_3);
+}
+if(frame.topLevel) {
+context.addExport("bgColor", t_3);
+}
+var t_4;
+t_4 = (lineno = 3, colno = 26, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"common")),"shop_name"),null])) || runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name") || "Sellix SRL";
+frame.set("shopName", t_4, true);
+if(frame.topLevel) {
+context.setVariable("shopName", t_4);
+}
+if(frame.topLevel) {
+context.addExport("shopName", t_4);
+}
+output += "\n";
+var t_5;
+t_5 = (lineno = 5, colno = 27, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"copyright"),"shop.main.copyright"]));
+frame.set("copyright", t_5, true);
+if(frame.topLevel) {
+context.setVariable("copyright", t_5);
+}
+if(frame.topLevel) {
+context.addExport("copyright", t_5);
+}
+var t_6;
+t_6 = (lineno = 6, colno = 36, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"copyright_font_color"),"light_font_color"]));
+frame.set("copyrightFontColor", t_6, true);
+if(frame.topLevel) {
+context.setVariable("copyrightFontColor", t_6);
+}
+if(frame.topLevel) {
+context.addExport("copyrightFontColor", t_6);
+}
+var t_7;
+t_7 = (lineno = 7, colno = 35, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"copyright_font_size"),14]));
+frame.set("copyrightFontSize", t_7, true);
+if(frame.topLevel) {
+context.setVariable("copyrightFontSize", t_7);
+}
+if(frame.topLevel) {
+context.addExport("copyrightFontSize", t_7);
+}
+var t_8;
+t_8 = (lineno = 8, colno = 37, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"copyright_font_weight"),400]));
+frame.set("copyrightFontWeight", t_8, true);
+if(frame.topLevel) {
+context.setVariable("copyrightFontWeight", t_8);
+}
+if(frame.topLevel) {
+context.addExport("copyrightFontWeight", t_8);
+}
+var t_9;
+t_9 = (lineno = 9, colno = 37, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"copyright_line_height"),20]));
+frame.set("copyrightLineHeight", t_9, true);
+if(frame.topLevel) {
+context.setVariable("copyrightLineHeight", t_9);
+}
+if(frame.topLevel) {
+context.addExport("copyrightLineHeight", t_9);
+}
+output += "\n";
+var t_10;
+t_10 = (lineno = 11, colno = 27, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"icon_color"),"light_font_color"]));
+frame.set("iconColor", t_10, true);
+if(frame.topLevel) {
+context.setVariable("iconColor", t_10);
+}
+if(frame.topLevel) {
+context.addExport("iconColor", t_10);
+}
+var t_11;
+t_11 = (lineno = 12, colno = 26, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"icon_size"),16]));
+frame.set("iconSize", t_11, true);
+if(frame.topLevel) {
+context.setVariable("iconSize", t_11);
+}
+if(frame.topLevel) {
+context.addExport("iconSize", t_11);
+}
+output += "\n";
+var t_12;
+t_12 = env.getFilter("selectattr").call(context, [{"link": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"discord_link"),"class": "discord-link","icon": "fa-brands fa-discord"},{"link": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"instagram_link"),"class": "instagram-link","icon": "fa-brands fa-instagram"},{"link": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"twitter_link"),"class": "twitter-link","icon": "fa-brands fa-twitter"},{"link": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"youtube_link"),"class": "youtube_link","icon": "fa-brands fa-youtube"},{"link": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"facebook_link"),"class": "facebook_link","icon": "fa-brands fa-facebook"},{"link": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"reddit_link"),"class": "reddit_link","icon": "fa-brands fa-reddit-alien"},{"link": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"telegram_link"),"class": "telegram_link","icon": "fa-brands fa-telegram"},{"link": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"tiktok_link"),"class": "tiktok_link","icon": "fa-brands fa-tiktok"}],"link");
+frame.set("links", t_12, true);
+if(frame.topLevel) {
+context.setVariable("links", t_12);
+}
+if(frame.topLevel) {
+context.addExport("links", t_12);
+}
+output += "\n";
+var t_13;
+t_13 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_13, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_13);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_13);
+}
+output += "\n<style>\n  .sellix-section.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "-global-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " {\n    background-color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "bgColor")), env.opts.autoescape);
+output += ";\n  }\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container {\n    ";
+output += "\n  }\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__copyright {\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "copyrightFontColor")), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "copyrightFontSize"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "copyrightFontWeight"), env.opts.autoescape);
+output += ";\n    line-height: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "copyrightLineHeight"), env.opts.autoescape);
+output += "px;\n  }\n</style>\n\n<div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__container ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "fullWidth")?"full-width":"content-width"), env.opts.autoescape);
+output += "\">\n  <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__copyright ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__copyright\">\n    ";
+output += runtime.suppressValue(env.getFilter("t").call(context, runtime.contextOrFrameLookup(context, frame, "copyright"),{"year": (env.getFilter("date_format").call(context, runtime.contextOrFrameLookup(context, frame, "undefined"),"YYYY")),"storeName": runtime.contextOrFrameLookup(context, frame, "shopName")}), env.opts.autoescape);
+output += "\n  </div>\n  <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__links\">\n";
+frame = frame.push();
+var t_16 = runtime.fromIterator(runtime.contextOrFrameLookup(context, frame, "links"));
+runtime.asyncEach(t_16, 1, function(item, t_14, t_15,next) {
+frame.set("item", item);
+frame.set("loop.index", t_14 + 1);
+frame.set("loop.index0", t_14);
+frame.set("loop.revindex", t_15 - t_14);
+frame.set("loop.revindex0", t_15 - t_14 - 1);
+frame.set("loop.first", t_14 === 0);
+frame.set("loop.last", t_14 === t_15 - 1);
+frame.set("loop.length", t_15);
+env.getExtension("RenderSnippet")["run"](context,"Shared: Social link",runtime.makeKeywordArgs({"class": runtime.memberLookup((item),"class"),"link": runtime.memberLookup((item),"link"),"icon_class": runtime.memberLookup((item),"icon"),"properties": {"font_size": runtime.contextOrFrameLookup(context, frame, "iconSize"),"font_color": runtime.contextOrFrameLookup(context, frame, "iconColor")}}), function(t_18,t_17) {
+if(t_18) { cb(t_18); return; }
+output += runtime.suppressValue(t_17, true && env.opts.autoescape);
+next(t_14);
+});
+}, function(t_20,t_19) {
+if(t_20) { cb(t_20); return; }
+frame = frame.pop();
+output += "  </div>\n</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

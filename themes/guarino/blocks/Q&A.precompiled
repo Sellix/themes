@@ -1,0 +1,68 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_2, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_2);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_2);
+}
+output += "\n<style>\n  .faq-item-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " {\n\n  }\n\n  .faq-item-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " .question-button {\n    color: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"qea_title_font_color")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"qea_title_font_color")):"inherit"), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"qea_title_font_size"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"qea_title_font_weight"), env.opts.autoescape);
+output += ";\n    text-align: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"qea_title_text_align"), env.opts.autoescape);
+output += ";\n  }\n\n  .faq-item-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " .answer-content {\n    color: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"qea_content_font_color")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"qea_content_font_color")):"inherit"), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"qea_content_font_size"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"qea_content_font_weight"), env.opts.autoescape);
+output += ";\n    text-align: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"qea_content_text_align"), env.opts.autoescape);
+output += ";\n  }\n</style>\n\n<div class=\"accordion-item faq-item-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\" data-faq-item-id=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\">\n  <button class=\"question-button\">\n    <span class=\"accordion-title\">\n      ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"qea_title"), env.opts.autoescape);
+output += "\n    </span>\n    <span class=\"icon\" aria-hidden=\"true\"></span>\n  </button>\n  <div class=\"accordion-content answer-content\">\n    <span class=\"accordion-title\">\n      ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"qea_content")), env.opts.autoescape);
+output += "\n    </span>\n  </div>\n</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

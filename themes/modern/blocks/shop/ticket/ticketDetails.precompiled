@@ -1,0 +1,180 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"ticketInfo")),"data")),"query");
+frame.set("ticketInfo", t_1, true);
+if(frame.topLevel) {
+context.setVariable("ticketInfo", t_1);
+}
+if(frame.topLevel) {
+context.addExport("ticketInfo", t_1);
+}
+output += "\n";
+var t_2;
+t_2 = (lineno = 2, colno = 25, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_background_color"),"background_accent_light"]));
+frame.set("bgColor", t_2, true);
+if(frame.topLevel) {
+context.setVariable("bgColor", t_2);
+}
+if(frame.topLevel) {
+context.addExport("bgColor", t_2);
+}
+var t_3;
+t_3 = (lineno = 3, colno = 28, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_show_border"),true]));
+frame.set("showBorder", t_3, true);
+if(frame.topLevel) {
+context.setVariable("showBorder", t_3);
+}
+if(frame.topLevel) {
+context.addExport("showBorder", t_3);
+}
+var t_4;
+t_4 = (lineno = 4, colno = 30, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_border_radius"),8]));
+frame.set("borderRadius", t_4, true);
+if(frame.topLevel) {
+context.setVariable("borderRadius", t_4);
+}
+if(frame.topLevel) {
+context.addExport("borderRadius", t_4);
+}
+var t_5;
+t_5 = (lineno = 5, colno = 29, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_vert"),16]));
+frame.set("paddingVert", t_5, true);
+if(frame.topLevel) {
+context.setVariable("paddingVert", t_5);
+}
+if(frame.topLevel) {
+context.addExport("paddingVert", t_5);
+}
+var t_6;
+t_6 = (lineno = 6, colno = 30, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_horiz"),20]));
+frame.set("paddingHoriz", t_6, true);
+if(frame.topLevel) {
+context.setVariable("paddingHoriz", t_6);
+}
+if(frame.topLevel) {
+context.addExport("paddingHoriz", t_6);
+}
+var t_7;
+t_7 = (lineno = 7, colno = 24, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_shadow"),"none"]));
+frame.set("shadow", t_7, true);
+if(frame.topLevel) {
+context.setVariable("shadow", t_7);
+}
+if(frame.topLevel) {
+context.addExport("shadow", t_7);
+}
+output += "\n";
+var t_8;
+t_8 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_8, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_8);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_8);
+}
+output += "\n<style>\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container {\n    background: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "bgColor")), env.opts.autoescape);
+output += ";\n    border: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "showBorder")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += ";\n    border-radius: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "borderRadius"), env.opts.autoescape);
+output += "px;\n    box-shadow: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "shadow"), env.opts.autoescape);
+output += ";\n  }\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__header {\n    padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingVert"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHoriz"), env.opts.autoescape);
+output += "px;\n  }\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__body>div {\n    border-top: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "showBorder")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += ";\n    padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingVert"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHoriz"), env.opts.autoescape);
+output += "px;\n  }\n</style>\n\n<div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__container ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container\">\n  <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__header ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__header\">\n    Details\n  </div>\n\n  <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__body ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__body\">\n    <div>\n      <span>Customer:</span>\n      <span>";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "ticketInfo")),"customer_email"), env.opts.autoescape);
+output += "</span>\n    </div>\n\n    <div>\n      <span>Status:</span>\n      <span>\n";
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "ticketInfo")),"status") == "PENDING") {
+env.getExtension("RenderSnippet")["run"](context,"Tag",runtime.makeKeywordArgs({"tag": "Pending"}), function(t_10,t_9) {
+if(t_10) { cb(t_10); return; }
+output += runtime.suppressValue(t_9, true && env.opts.autoescape);
+cb()});
+}
+else {
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "ticketInfo")),"status") == "SHOP_REPLY") {
+env.getExtension("RenderSnippet")["run"](context,"Tag",runtime.makeKeywordArgs({"tag": "Answered","type": "success"}), function(t_12,t_11) {
+if(t_12) { cb(t_12); return; }
+output += runtime.suppressValue(t_11, true && env.opts.autoescape);
+cb()});
+}
+else {
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "ticketInfo")),"status") == "CUSTOMER_REPLY") {
+env.getExtension("RenderSnippet")["run"](context,"Tag",runtime.makeKeywordArgs({"tag": "Customer Reply","type": "info"}), function(t_14,t_13) {
+if(t_14) { cb(t_14); return; }
+output += runtime.suppressValue(t_13, true && env.opts.autoescape);
+cb()});
+}
+else {
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "ticketInfo")),"status") == "CLOSED") {
+env.getExtension("RenderSnippet")["run"](context,"Tag",runtime.makeKeywordArgs({"tag": "Closed","type": "warning"}), function(t_16,t_15) {
+if(t_16) { cb(t_16); return; }
+output += runtime.suppressValue(t_15, true && env.opts.autoescape);
+cb()});
+}
+else {
+cb()}
+})(function(t_17) {
+if(t_17) { cb(t_17); return; }cb()});
+}
+})(function(t_18) {
+if(t_18) { cb(t_18); return; }cb()});
+}
+})(function(t_19) {
+if(t_19) { cb(t_19); return; }cb()});
+}
+})(function(t_20) {
+if(t_20) { cb(t_20); return; }output += "      </span>\n    </div>\n\n    <div>\n      <span>Created At:</span>\n      <span>\n        ";
+output += runtime.suppressValue(env.getFilter("date_format").call(context, runtime.contextOrFrameLookup(context, frame, "created_at"),"HH:MM"), env.opts.autoescape);
+output += "\n        ";
+output += runtime.suppressValue(env.getFilter("date_format").call(context, runtime.contextOrFrameLookup(context, frame, "created_at"),"DD"), env.opts.autoescape);
+output += ",\n        ";
+output += runtime.suppressValue(env.getFilter("t").call(context, env.getFilter("lower").call(context, env.getFilter("join").call(context, ["shared.months",env.getFilter("date_format").call(context, runtime.contextOrFrameLookup(context, frame, "created_at"),"MMMM")],"."))), env.opts.autoescape);
+output += "\n        ";
+output += runtime.suppressValue(env.getFilter("date_format").call(context, runtime.contextOrFrameLookup(context, frame, "created_at"),"YYYY"), env.opts.autoescape);
+output += "\n      </span>\n    </div>\n  </div>\n</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

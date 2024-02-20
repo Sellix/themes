@@ -1,0 +1,116 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_1, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_1);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"feedbacksInfo")),"feedbacks");
+frame.set("feedbacks", t_2, true);
+if(frame.topLevel) {
+context.setVariable("feedbacks", t_2);
+}
+if(frame.topLevel) {
+context.addExport("feedbacks", t_2);
+}
+var t_3;
+t_3 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"offset")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"offset"):0);
+frame.set("offset", t_3, true);
+if(frame.topLevel) {
+context.setVariable("offset", t_3);
+}
+if(frame.topLevel) {
+context.addExport("offset", t_3);
+}
+var t_4;
+t_4 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"limit")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"limit"):12 * (runtime.contextOrFrameLookup(context, frame, "offset") + 1));
+frame.set("limit", t_4, true);
+if(frame.topLevel) {
+context.setVariable("limit", t_4);
+}
+if(frame.topLevel) {
+context.addExport("limit", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_5, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_5);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_5);
+}
+output += "\n<div class=\"sellix-feedback-screen ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "feedbacks")),"length") === 0?"empty":""), env.opts.autoescape);
+output += "\"\n     style=\"background: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"list_items_background_color")), env.opts.autoescape);
+output += ";";
+output += " border: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"list_items_show_border")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += ";";
+output += " padding: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_vert"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_horiz"), env.opts.autoescape);
+output += "px;";
+output += " box-shadow: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_shadow"), env.opts.autoescape);
+output += ";";
+output += " border-radius: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_border_radius"), env.opts.autoescape);
+output += "rem;\"\n>\n";
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "feedbacks")),"length") === 0) {
+output += "    <div class=\"empty-shop-container\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Empty feedbacks icon", function(t_7,t_6) {
+if(t_7) { cb(t_7); return; }
+output += runtime.suppressValue(t_6, true && env.opts.autoescape);
+output += "\n      <span class=\"empty-shop-title\">\n        ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("t").call(context, "shop.feedback.noFeedbacks",{"shopName": env.getFilter("join").call(context, ["<b>",runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"),"</b>"],"")})), env.opts.autoescape);
+output += "\n      </span>\n    </div>\n";
+cb()});
+}
+else {
+cb()}
+})(function(t_8) {
+if(t_8) { cb(t_8); return; }frame = frame.push();
+var t_11 = runtime.fromIterator((lineno = 22, colno = 32, runtime.callWrap(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "feedbacks")),"slice"), "feedbacks[\"slice\"]", context, [runtime.contextOrFrameLookup(context, frame, "offset"),runtime.contextOrFrameLookup(context, frame, "limit")])));
+runtime.asyncEach(t_11, 1, function(item, t_9, t_10,next) {
+frame.set("item", item);
+frame.set("loop.index", t_9 + 1);
+frame.set("loop.index0", t_9);
+frame.set("loop.revindex", t_10 - t_9);
+frame.set("loop.revindex0", t_10 - t_9 - 1);
+frame.set("loop.first", t_9 === 0);
+frame.set("loop.last", t_9 === t_10 - 1);
+frame.set("loop.length", t_10);
+env.getExtension("RenderSnippet")["run"](context,"Feedback Card",runtime.makeKeywordArgs({"feedback": item}), function(t_13,t_12) {
+if(t_13) { cb(t_13); return; }
+output += runtime.suppressValue(t_12, true && env.opts.autoescape);
+next(t_9);
+});
+}, function(t_15,t_14) {
+if(t_15) { cb(t_15); return; }
+frame = frame.pop();
+output += "</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+})});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

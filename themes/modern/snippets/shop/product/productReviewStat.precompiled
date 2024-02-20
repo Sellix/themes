@@ -1,0 +1,123 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"product");
+frame.set("product", t_2, true);
+if(frame.topLevel) {
+context.setVariable("product", t_2);
+}
+if(frame.topLevel) {
+context.addExport("product", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_3, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_3);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_3);
+}
+output += "\n";
+var t_4;
+t_4 = (lineno = 4, colno = 22, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"size"),16]));
+frame.set("size", t_4, true);
+if(frame.topLevel) {
+context.setVariable("size", t_4);
+}
+if(frame.topLevel) {
+context.addExport("size", t_4);
+}
+var t_5;
+t_5 = (lineno = 5, colno = 28, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"icons_count"),5]));
+frame.set("iconsCount", t_5, true);
+if(frame.topLevel) {
+context.setVariable("iconsCount", t_5);
+}
+if(frame.topLevel) {
+context.addExport("iconsCount", t_5);
+}
+output += "\n";
+var t_6;
+t_6 = ["snippet-product-review-stat"];
+frame.set("globalClass", t_6, true);
+if(frame.topLevel) {
+context.setVariable("globalClass", t_6);
+}
+if(frame.topLevel) {
+context.addExport("globalClass", t_6);
+}
+var t_7;
+t_7 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_7, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_7);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_7);
+}
+output += "\n<style>\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " {\n    ";
+output += runtime.suppressValue((lineno = 12, colno = 21, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get_style"), "safe_get_style", context, ["color",env.getFilter("get_color").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"font_color")),""])), env.opts.autoescape);
+output += "\n    ";
+output += runtime.suppressValue((lineno = 13, colno = 21, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get_style"), "safe_get_style", context, ["font-size",runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"font_size"),"px"])), env.opts.autoescape);
+output += "\n    ";
+output += runtime.suppressValue((lineno = 14, colno = 21, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get_style"), "safe_get_style", context, ["font-weight",runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"font_weight")])), env.opts.autoescape);
+output += "\n    ";
+output += runtime.suppressValue((lineno = 15, colno = 21, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get_style"), "safe_get_style", context, ["line-height",runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"line_height"),"px"])), env.opts.autoescape);
+output += "\n  }\n</style>\n\n<div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "\">\n";
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"sold_count") && runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"average_score")) {
+output += "    <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__stars ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__stars\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Shared: Rating star",runtime.makeKeywordArgs({"rating": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"average_score"),"size": runtime.contextOrFrameLookup(context, frame, "size"),"iconsCount": runtime.contextOrFrameLookup(context, frame, "iconsCount"),"color": (env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "fontColor")))}), function(t_9,t_8) {
+if(t_9) { cb(t_9); return; }
+output += runtime.suppressValue(t_8, true && env.opts.autoescape);
+output += "    </div>\n    <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__score ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__score\">\n      ";
+output += runtime.suppressValue(env.getFilter("to_fixed").call(context, env.getFilter("round").call(context, env.getFilter("float").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"average_score")),1),1), env.opts.autoescape);
+output += "\n      <span class=\"reviews-count\">\n          (";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.shared.reviews.reviewsWithCount",{"count": runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"feedback")),"total")}), env.opts.autoescape);
+output += ")\n        </span>\n    </div>\n";
+cb()});
+}
+else {
+cb()}
+})(function(t_10) {
+if(t_10) { cb(t_10); return; }output += "</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

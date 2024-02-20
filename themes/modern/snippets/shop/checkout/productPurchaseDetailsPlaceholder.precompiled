@@ -1,0 +1,315 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"theme");
+frame.set("theme", t_2, true);
+if(frame.topLevel) {
+context.setVariable("theme", t_2);
+}
+if(frame.topLevel) {
+context.addExport("theme", t_2);
+}
+var t_3;
+t_3 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"type")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"type"):"checkout");
+frame.set("type", t_3, true);
+if(frame.topLevel) {
+context.setVariable("type", t_3);
+}
+if(frame.topLevel) {
+context.addExport("type", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_4, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_4);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"cart")),"is_enabled");
+frame.set("cartEnabled", t_5, true);
+if(frame.topLevel) {
+context.setVariable("cartEnabled", t_5);
+}
+if(frame.topLevel) {
+context.addExport("cartEnabled", t_5);
+}
+var t_6;
+t_6 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"cart")),"effect");
+frame.set("cartEffect", t_6, true);
+if(frame.topLevel) {
+context.setVariable("cartEffect", t_6);
+}
+if(frame.topLevel) {
+context.addExport("cartEffect", t_6);
+}
+var t_7;
+t_7 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_7, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_7);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_7);
+}
+var t_8;
+t_8 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"product");
+frame.set("product", t_8, true);
+if(frame.topLevel) {
+context.setVariable("product", t_8);
+}
+if(frame.topLevel) {
+context.addExport("product", t_8);
+}
+var t_9;
+t_9 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"type") === "SUBSCRIPTION";
+frame.set("isSubscription", t_9, true);
+if(frame.topLevel) {
+context.setVariable("isSubscription", t_9);
+}
+if(frame.topLevel) {
+context.addExport("isSubscription", t_9);
+}
+var t_10;
+t_10 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"licensing_enabled");
+frame.set("isLicense", t_10, true);
+if(frame.topLevel) {
+context.setVariable("isLicense", t_10);
+}
+if(frame.topLevel) {
+context.addExport("isLicense", t_10);
+}
+var t_11;
+t_11 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"pay_what_you_want");
+frame.set("isPayWhatYouWant", t_11, true);
+if(frame.topLevel) {
+context.setVariable("isPayWhatYouWant", t_11);
+}
+if(frame.topLevel) {
+context.addExport("isPayWhatYouWant", t_11);
+}
+output += "\n";
+var t_12;
+t_12 = (lineno = 12, colno = 40, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_calculation_details"),false]));
+frame.set("showCalculationDetails", t_12, true);
+if(frame.topLevel) {
+context.setVariable("showCalculationDetails", t_12);
+}
+if(frame.topLevel) {
+context.addExport("showCalculationDetails", t_12);
+}
+var t_13;
+t_13 = (lineno = 13, colno = 27, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_title"),true]));
+frame.set("showTitle", t_13, true);
+if(frame.topLevel) {
+context.setVariable("showTitle", t_13);
+}
+if(frame.topLevel) {
+context.addExport("showTitle", t_13);
+}
+var t_14;
+t_14 = (lineno = 14, colno = 34, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_background_color"),"transparent"]));
+frame.set("containerBgColor", t_14, true);
+if(frame.topLevel) {
+context.setVariable("containerBgColor", t_14);
+}
+if(frame.topLevel) {
+context.addExport("containerBgColor", t_14);
+}
+var t_15;
+t_15 = (lineno = 15, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_shadow"),"none"]));
+frame.set("containerShadow", t_15, true);
+if(frame.topLevel) {
+context.setVariable("containerShadow", t_15);
+}
+if(frame.topLevel) {
+context.addExport("containerShadow", t_15);
+}
+var t_16;
+t_16 = (lineno = 16, colno = 39, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_border_radius"),0]));
+frame.set("containerBorderRadius", t_16, true);
+if(frame.topLevel) {
+context.setVariable("containerBorderRadius", t_16);
+}
+if(frame.topLevel) {
+context.addExport("containerBorderRadius", t_16);
+}
+var t_17;
+t_17 = (lineno = 17, colno = 37, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_show_border"),true]));
+frame.set("containerShowBorder", t_17, true);
+if(frame.topLevel) {
+context.setVariable("containerShowBorder", t_17);
+}
+if(frame.topLevel) {
+context.addExport("containerShowBorder", t_17);
+}
+output += "\n";
+var t_18;
+t_18 = (lineno = 19, colno = 45, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_vert_desktop"),20]));
+frame.set("containerPaddingVertDesktop", t_18, true);
+if(frame.topLevel) {
+context.setVariable("containerPaddingVertDesktop", t_18);
+}
+if(frame.topLevel) {
+context.addExport("containerPaddingVertDesktop", t_18);
+}
+var t_19;
+t_19 = (lineno = 20, colno = 46, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_horiz_desktop"),20]));
+frame.set("containerPaddingHorizDesktop", t_19, true);
+if(frame.topLevel) {
+context.setVariable("containerPaddingHorizDesktop", t_19);
+}
+if(frame.topLevel) {
+context.addExport("containerPaddingHorizDesktop", t_19);
+}
+var t_20;
+t_20 = (lineno = 21, colno = 44, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_vert_tablet"),16]));
+frame.set("containerPaddingVertTablet", t_20, true);
+if(frame.topLevel) {
+context.setVariable("containerPaddingVertTablet", t_20);
+}
+if(frame.topLevel) {
+context.addExport("containerPaddingVertTablet", t_20);
+}
+var t_21;
+t_21 = (lineno = 22, colno = 45, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_horiz_tablet"),16]));
+frame.set("containerPaddingHorizTablet", t_21, true);
+if(frame.topLevel) {
+context.setVariable("containerPaddingHorizTablet", t_21);
+}
+if(frame.topLevel) {
+context.addExport("containerPaddingHorizTablet", t_21);
+}
+var t_22;
+t_22 = (lineno = 23, colno = 44, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_vert_mobile"),16]));
+frame.set("containerPaddingVertMobile", t_22, true);
+if(frame.topLevel) {
+context.setVariable("containerPaddingVertMobile", t_22);
+}
+if(frame.topLevel) {
+context.addExport("containerPaddingVertMobile", t_22);
+}
+var t_23;
+t_23 = (lineno = 24, colno = 45, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_horiz_mobile"),16]));
+frame.set("containerPaddingHorizMobile", t_23, true);
+if(frame.topLevel) {
+context.setVariable("containerPaddingHorizMobile", t_23);
+}
+if(frame.topLevel) {
+context.addExport("containerPaddingHorizMobile", t_23);
+}
+output += "\n";
+var t_24;
+t_24 = ["snippet-purchase-details"];
+frame.set("globalClass", t_24, true);
+if(frame.topLevel) {
+context.setVariable("globalClass", t_24);
+}
+if(frame.topLevel) {
+context.addExport("globalClass", t_24);
+}
+var t_25;
+t_25 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_25, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_25);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_25);
+}
+output += "\n<style>\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " .sellix-product-card {\n    background: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "containerBgColor")), env.opts.autoescape);
+output += ";\n    box-shadow: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "containerShadow"), env.opts.autoescape);
+output += ";\n    border-radius: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "containerBorderRadius"), env.opts.autoescape);
+output += "px;\n    padding: 0;\n    border: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "containerShowBorder")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += ";\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " .sellix-product-card .sellix-product-form-field .currency-title {\n    background: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_background_color")), env.opts.autoescape);
+output += ";\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " .sellix-product-card .sellix-product-title,\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " .sellix-product-card .sellix-product-body {\n    padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "containerPaddingVertDesktop"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "containerPaddingHorizDesktop"), env.opts.autoescape);
+output += "px;\n  }\n\n  @media (max-width: 768px) {\n    .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " .sellix-product-card .sellix-product-title,\n    .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " .sellix-product-card .sellix-product-body {\n      padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "containerPaddingVertTablet"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "containerPaddingHorizTablet"), env.opts.autoescape);
+output += "px;\n    }\n  }\n  @media (max-width: 640px) {\n    .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " .sellix-product-card .sellix-product-title,\n    .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " .sellix-product-card .sellix-product-body {\n      padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "containerPaddingVertMobile"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "containerPaddingHorizMobile"), env.opts.autoescape);
+output += "px;\n    }\n  }\n</style>\n\n\n<div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " snippet-purchase-details purchase-detail-wrapper\">\n  <div class=\"purchase-details\">\n    <div class=\"sellix-product-card sellix-widget-purchase-details\">\n      <div class=\"sellix-product-body\">\n        <div class=\"sellix-product-info unselectable w-100\">\n          <div class=\"sellix-stock-container\">\n            <div class=\"skeleton skeleton6\" style=\"width: ";
+output += runtime.suppressValue(100 + 10 * env.getFilter("random").call(context, [1,2,3,4,5,6]), env.opts.autoescape);
+output += "px\"></div>\n            <div class=\"skeleton skeleton6\" style=\"width: ";
+output += runtime.suppressValue(10 * env.getFilter("random").call(context, [4,5,6,7]), env.opts.autoescape);
+output += "px\"></div>\n          </div>\n          <div class=\"ReactCollapse--collapse\" aria-hidden=\"false\" style=\"height: auto; overflow: initial;\">\n            <div class=\"ReactCollapse--content\">\n              <div class=\"sellix-product-total mt-0 pt-2\">\n                <div class=\"skeleton skeleton6\" style=\"width: ";
+output += runtime.suppressValue(100 + 10 * env.getFilter("random").call(context, [1,2,3,4,5,6]), env.opts.autoescape);
+output += "px\"></div>\n                <div class=\"d-flex flex-column align-items-end\" style=\"color: var(--lightFontColor);\">\n                  <div class=\"skeleton skeleton6\" style=\"width: ";
+output += runtime.suppressValue(10 * env.getFilter("random").call(context, [4,5,6,7]), env.opts.autoescape);
+output += "px\"></div>\n                </div>\n              </div>\n            </div>\n          </div>\n          <div class=\"sellix-product-total sellix-product-final-total correct-margin-top\"><span\n              class=\"sellix-product-total-title unselectable\">\n              ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "Total",{"keyPrefix": "widgets.PurchaseDetails"}), env.opts.autoescape);
+output += "\n            </span>\n            <div class=\"sellix-product-total-price unselectable\">\n              <div class=\"skeleton skeleton6\" style=\"width: ";
+output += runtime.suppressValue(10 * env.getFilter("random").call(context, [4,5,6,7]), env.opts.autoescape);
+output += "px\"></div>\n            </div>\n          </div>\n        </div>\n        <div class=\"sellix-product-footer\">\n          <div class=\"sellix-product-footer--cart-buttons\">\n            <button type=\"button\" class=\"button\">\n";
+if(!runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"cart")),"is_enabled") || runtime.contextOrFrameLookup(context, frame, "isSubscription") || runtime.contextOrFrameLookup(context, frame, "isLicense") || runtime.contextOrFrameLookup(context, frame, "isPayWhatYouWant")) {
+output += "                ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "Continue",{"keyPrefix": "widgets.PurchaseDetails"}), env.opts.autoescape);
+output += "\n";
+;
+}
+else {
+output += "                ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "Add to Cart",{"keyPrefix": "widgets.PurchaseDetails"}), env.opts.autoescape);
+output += "\n";
+;
+}
+output += "            </button>\n          </div>\n        </div>\n      </div>\n      <div id=\"purchase-detail-recaptcha-v2\"></div>\n    </div>\n  </div>\n</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

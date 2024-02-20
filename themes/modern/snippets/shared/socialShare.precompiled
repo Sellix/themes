@@ -1,0 +1,124 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+output += "\n";
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_2, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_2);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_2);
+}
+output += "\n";
+var t_3;
+t_3 = (lineno = 4, colno = 26, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"icon_size"),16]));
+frame.set("fontSize", t_3, true);
+if(frame.topLevel) {
+context.setVariable("fontSize", t_3);
+}
+if(frame.topLevel) {
+context.addExport("fontSize", t_3);
+}
+var t_4;
+t_4 = (lineno = 5, colno = 27, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"icon_color"),"light_font_color"]));
+frame.set("fontColor", t_4, true);
+if(frame.topLevel) {
+context.setVariable("fontColor", t_4);
+}
+if(frame.topLevel) {
+context.addExport("fontColor", t_4);
+}
+output += "\n";
+var t_5;
+t_5 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_5, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_5);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_5);
+}
+output += "\n<style>\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " {\n    font-size: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "fontSize"), env.opts.autoescape);
+output += "px;\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "fontColor")), env.opts.autoescape);
+output += ";\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " svg {\n    width: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "fontSize"), env.opts.autoescape);
+output += "px;\n    height: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "fontSize"), env.opts.autoescape);
+output += "px;\n  }\n</style>\n\n<a\n  href=\"javascript:void(0);\"\n  class=\"social-share-button ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"class"), env.opts.autoescape);
+output += "\"\n  data-sharer=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"name"), env.opts.autoescape);
+output += "\"\n  data-url=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"url") || runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"currentUrl"), env.opts.autoescape);
+output += "\"\n  data-title=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"title"), env.opts.autoescape);
+output += "\"\n>\n";
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"name") == "instapaper") {
+env.getExtension("RenderSnippet")["run"](context,"Icons: Instapaper", function(t_7,t_6) {
+if(t_7) { cb(t_7); return; }
+output += runtime.suppressValue(t_6, true && env.opts.autoescape);
+cb()});
+}
+else {
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"name") == "baidu") {
+env.getExtension("RenderSnippet")["run"](context,"Icons: Baidu", function(t_9,t_8) {
+if(t_9) { cb(t_9); return; }
+output += runtime.suppressValue(t_8, true && env.opts.autoescape);
+cb()});
+}
+else {
+output += "    <i class=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"icon_class"), env.opts.autoescape);
+output += "\"></i>\n";
+cb();
+}
+})(function(t_10) {
+if(t_10) { cb(t_10); return; }cb()});
+}
+})(function(t_11) {
+if(t_11) { cb(t_11); return; }output += "</a>\n\n<script type=\"application/javascript\">\n  const element_";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " = document.querySelector('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "');\n  if (element_";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += ") {\n    element_";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += ".setAttribute('data-url', '";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"url"), env.opts.autoescape);
+output += "' || window.location.href);\n  }\n</script>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

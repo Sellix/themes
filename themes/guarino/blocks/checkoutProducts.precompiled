@@ -1,0 +1,87 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_2, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_2);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"checkoutInfo")),"products");
+frame.set("products", t_3, true);
+if(frame.topLevel) {
+context.setVariable("products", t_3);
+}
+if(frame.topLevel) {
+context.addExport("products", t_3);
+}
+output += "\n";
+var t_4;
+t_4 = [];
+frame.set("internalProducts", t_4, true);
+if(frame.topLevel) {
+context.setVariable("internalProducts", t_4);
+}
+if(frame.topLevel) {
+context.addExport("internalProducts", t_4);
+}
+frame = frame.push();
+var t_7 = runtime.contextOrFrameLookup(context, frame, "products");
+if(t_7) {t_7 = runtime.fromIterator(t_7);
+var t_6 = t_7.length;
+for(var t_5=0; t_5 < t_7.length; t_5++) {
+var t_8 = t_7[t_5];
+frame.set("productInfo", t_8);
+frame.set("loop.index", t_5 + 1);
+frame.set("loop.index0", t_5);
+frame.set("loop.revindex", t_6 - t_5);
+frame.set("loop.revindex0", t_6 - t_5 - 1);
+frame.set("loop.first", t_5 === 0);
+frame.set("loop.last", t_5 === t_6 - 1);
+frame.set("loop.length", t_6);
+var t_9;
+t_9 = ((lineno = 6, colno = 50, runtime.callWrap(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "internalProducts")),"push"), "internalProducts[\"push\"]", context, [env.getFilter("set_attribute").call(context, runtime.memberLookup((t_8),"product"),"quantity",runtime.memberLookup((t_8),"quantity"))])),runtime.contextOrFrameLookup(context, frame, "internalProducts"));
+frame.set("internalProducts", t_9, true);
+if(frame.topLevel) {
+context.setVariable("internalProducts", t_9);
+}
+if(frame.topLevel) {
+context.addExport("internalProducts", t_9);
+}
+;
+}
+}
+frame = frame.pop();
+output += "\n";
+env.getExtension("RenderSnippet")["run"](context,"Checkout products",runtime.makeKeywordArgs({"products": runtime.contextOrFrameLookup(context, frame, "internalProducts"),"properties": runtime.contextOrFrameLookup(context, frame, "properties")}), function(t_11,t_10) {
+if(t_11) { cb(t_11); return; }
+output += runtime.suppressValue(t_10, true && env.opts.autoescape);
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

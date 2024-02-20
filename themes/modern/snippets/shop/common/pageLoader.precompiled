@@ -1,0 +1,31 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"page_loader")),"enabled")) {
+output += "  <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "pace-theme.css"), env.opts.autoescape);
+output += "\"/>\n\n  <style>\n    .pace .pace-progress {\n      height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"page_loader")),"height"), env.opts.autoescape);
+output += "px;\n      background: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"page_loader")),"color"), env.opts.autoescape);
+output += ";\n    }\n  </style>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "pace.min.js"), env.opts.autoescape);
+output += "\"></script>\n\n  <script type='application/javascript'>\n    $(document).ready(function() {\n      addEventListener('beforeunload', (event) => {\n        Pace.trigger('restart');\n        Pace.stop();\n        return Pace.start({\n          initialRate: 0.03,\n          minTime: 1750,\n          maxProgressPerFrame: 1,\n          ghostTime: 120000\n        });\n      });\n    });\n  </script>\n";
+;
+}
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

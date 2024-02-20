@@ -1,0 +1,89 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_2, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_2);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"container_selector");
+frame.set("containerSelector", t_3, true);
+if(frame.topLevel) {
+context.setVariable("containerSelector", t_3);
+}
+if(frame.topLevel) {
+context.addExport("containerSelector", t_3);
+}
+output += "\n";
+var t_4;
+t_4 = "snippet-shop-message";
+frame.set("globalClass", t_4, true);
+if(frame.topLevel) {
+context.setVariable("globalClass", t_4);
+}
+if(frame.topLevel) {
+context.addExport("globalClass", t_4);
+}
+var t_5;
+t_5 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_5, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_5);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_5);
+}
+output += "\n";
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"popup_message")) {
+output += "  <script>\n    $(document).ready(() => {\n      const msg = `";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"popup_message"), env.opts.autoescape);
+output += "`;\n      const hash = btoa(encodeURIComponent(msg));\n      if (!localStorage.getItem(hash)) {\n        setTimeout(() => {\n          window._shopMessage = Toastify({\n            selector: '";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "containerSelector"), env.opts.autoescape);
+output += "',\n            duration: 0,\n            className: `sellix-toastify ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "`,\n            node: $(`\n              <div class=\"t-container\">\n                <div class=\"t-icon\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Icons: Shop message", function(t_7,t_6) {
+if(t_7) { cb(t_7); return; }
+output += runtime.suppressValue(t_6, true && env.opts.autoescape);
+output += "                </div>\n\n                <div class=\"t-content\">\n                  <div class=\"t-title\">\n                    ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "Message from {{ name }}",{"keyPrefix": "shop.content","name": runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop")),"name")}), env.opts.autoescape);
+output += "\n                  </div>\n                  <div class=\"t-message\">\n                    ${msg}\n                  </div>\n                </div>\n\n                <div class=\"t-close\" onClick=\"console.log('Close Message'); event.stopPropagation();window._shopMessage.removeElement(window._shopMessage.toastElement);\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Icons: Close 2", function(t_9,t_8) {
+if(t_9) { cb(t_9); return; }
+output += runtime.suppressValue(t_8, true && env.opts.autoescape);
+output += "                </div>\n              </div>\n            `)[0],\n            gravity: \"bottom\",\n            position: \"right\",\n            callback() {\n              localStorage.setItem(hash, 'true');\n              delete window._shopMessage;\n            },\n          }).showToast();\n        }, 2000);\n      }\n    });\n  </script>\n";
+cb()})});
+}
+else {
+cb()}
+})(function(t_10) {
+if(t_10) { cb(t_10); return; }if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

@@ -1,0 +1,28 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+output += "<style>\n.column3 {\n  display: inline-block;\n  justify-content: space-around;\n  align-items: left;\n  padding: 130px 25px;\n\n}\n\n.column3 h2 {\n  font-size: 22px;\n  line-height: 60px;\n  display: block;\n  font-weight: 900;\n  border-style: solid;\n  border-width: 0px 0px 1px 0px;\n  border-color: #FFFFFF26;\n}\n\n.column3 p{\n  font-size: 16px;\n  margin-top: 20px;\n}\n\n</style>\n<div class=\"column3\">\n  <h2>";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"column3_Text_title"), env.opts.autoescape);
+output += "</h2>\n  <p>";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"column3_Text_description"), env.opts.autoescape);
+output += "</p>\n  <h2>";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"column3_Text_title2"), env.opts.autoescape);
+output += "</h2>\n  <p>";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"column3_Text_description2"), env.opts.autoescape);
+output += "</p>\n</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

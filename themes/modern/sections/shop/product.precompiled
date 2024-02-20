@@ -1,0 +1,362 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"productInfo")),"product");
+frame.set("product", t_1, true);
+if(frame.topLevel) {
+context.setVariable("product", t_1);
+}
+if(frame.topLevel) {
+context.addExport("product", t_1);
+}
+output += "\n";
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"background_color");
+frame.set("bgColor", t_2, true);
+if(frame.topLevel) {
+context.setVariable("bgColor", t_2);
+}
+if(frame.topLevel) {
+context.addExport("bgColor", t_2);
+}
+var t_3;
+t_3 = (lineno = 3, colno = 27, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"fullwidth"),false]));
+frame.set("fullWidth", t_3, true);
+if(frame.topLevel) {
+context.setVariable("fullWidth", t_3);
+}
+if(frame.topLevel) {
+context.addExport("fullWidth", t_3);
+}
+var t_4;
+t_4 = (lineno = 4, colno = 32, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"right_sidebar_enable"),true]));
+frame.set("sidebarEnabled", t_4, true);
+if(frame.topLevel) {
+context.setVariable("sidebarEnabled", t_4);
+}
+if(frame.topLevel) {
+context.addExport("sidebarEnabled", t_4);
+}
+var t_5;
+t_5 = (lineno = 5, colno = 36, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"right_sidebar_blocks_count"),3]));
+frame.set("sidebarBlocksCount", t_5, true);
+if(frame.topLevel) {
+context.setVariable("sidebarBlocksCount", t_5);
+}
+if(frame.topLevel) {
+context.addExport("sidebarBlocksCount", t_5);
+}
+var t_6;
+t_6 = (lineno = 6, colno = 28, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"right_sidebar_gap"),60]));
+frame.set("sidebarGap", t_6, true);
+if(frame.topLevel) {
+context.setVariable("sidebarGap", t_6);
+}
+if(frame.topLevel) {
+context.addExport("sidebarGap", t_6);
+}
+output += "\n";
+var t_7;
+t_7 = (lineno = 8, colno = 34, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"margin_top_desktop"),0]));
+frame.set("marginTopDesktop", t_7, true);
+if(frame.topLevel) {
+context.setVariable("marginTopDesktop", t_7);
+}
+if(frame.topLevel) {
+context.addExport("marginTopDesktop", t_7);
+}
+var t_8;
+t_8 = (lineno = 9, colno = 37, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"margin_bottom_desktop"),0]));
+frame.set("marginBottomDesktop", t_8, true);
+if(frame.topLevel) {
+context.setVariable("marginBottomDesktop", t_8);
+}
+if(frame.topLevel) {
+context.addExport("marginBottomDesktop", t_8);
+}
+var t_9;
+t_9 = (lineno = 10, colno = 37, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_horiz_desktop"),0]));
+frame.set("paddingHorizDesktop", t_9, true);
+if(frame.topLevel) {
+context.setVariable("paddingHorizDesktop", t_9);
+}
+if(frame.topLevel) {
+context.addExport("paddingHorizDesktop", t_9);
+}
+var t_10;
+t_10 = (lineno = 11, colno = 35, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_top_desktop"),0]));
+frame.set("paddingTopDesktop", t_10, true);
+if(frame.topLevel) {
+context.setVariable("paddingTopDesktop", t_10);
+}
+if(frame.topLevel) {
+context.addExport("paddingTopDesktop", t_10);
+}
+var t_11;
+t_11 = (lineno = 12, colno = 38, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_bottom_desktop"),0]));
+frame.set("paddingBottomDesktop", t_11, true);
+if(frame.topLevel) {
+context.setVariable("paddingBottomDesktop", t_11);
+}
+if(frame.topLevel) {
+context.addExport("paddingBottomDesktop", t_11);
+}
+var t_12;
+t_12 = (lineno = 13, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"margin_top_tablet"),0]));
+frame.set("marginTopTablet", t_12, true);
+if(frame.topLevel) {
+context.setVariable("marginTopTablet", t_12);
+}
+if(frame.topLevel) {
+context.addExport("marginTopTablet", t_12);
+}
+var t_13;
+t_13 = (lineno = 14, colno = 36, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"margin_bottom_tablet"),0]));
+frame.set("marginBottomTablet", t_13, true);
+if(frame.topLevel) {
+context.setVariable("marginBottomTablet", t_13);
+}
+if(frame.topLevel) {
+context.addExport("marginBottomTablet", t_13);
+}
+var t_14;
+t_14 = (lineno = 15, colno = 36, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_horiz_tablet"),0]));
+frame.set("paddingHorizTablet", t_14, true);
+if(frame.topLevel) {
+context.setVariable("paddingHorizTablet", t_14);
+}
+if(frame.topLevel) {
+context.addExport("paddingHorizTablet", t_14);
+}
+var t_15;
+t_15 = (lineno = 16, colno = 34, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_top_tablet"),0]));
+frame.set("paddingTopTablet", t_15, true);
+if(frame.topLevel) {
+context.setVariable("paddingTopTablet", t_15);
+}
+if(frame.topLevel) {
+context.addExport("paddingTopTablet", t_15);
+}
+var t_16;
+t_16 = (lineno = 17, colno = 37, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_bottom_tablet"),0]));
+frame.set("paddingBottomTablet", t_16, true);
+if(frame.topLevel) {
+context.setVariable("paddingBottomTablet", t_16);
+}
+if(frame.topLevel) {
+context.addExport("paddingBottomTablet", t_16);
+}
+var t_17;
+t_17 = (lineno = 18, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"margin_top_mobile"),0]));
+frame.set("marginTopMobile", t_17, true);
+if(frame.topLevel) {
+context.setVariable("marginTopMobile", t_17);
+}
+if(frame.topLevel) {
+context.addExport("marginTopMobile", t_17);
+}
+var t_18;
+t_18 = (lineno = 19, colno = 36, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"margin_bottom_mobile"),0]));
+frame.set("marginBottomMobile", t_18, true);
+if(frame.topLevel) {
+context.setVariable("marginBottomMobile", t_18);
+}
+if(frame.topLevel) {
+context.addExport("marginBottomMobile", t_18);
+}
+var t_19;
+t_19 = (lineno = 20, colno = 36, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_horiz_mobile"),0]));
+frame.set("paddingHorizMobile", t_19, true);
+if(frame.topLevel) {
+context.setVariable("paddingHorizMobile", t_19);
+}
+if(frame.topLevel) {
+context.addExport("paddingHorizMobile", t_19);
+}
+var t_20;
+t_20 = (lineno = 21, colno = 34, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_top_mobile"),0]));
+frame.set("paddingTopMobile", t_20, true);
+if(frame.topLevel) {
+context.setVariable("paddingTopMobile", t_20);
+}
+if(frame.topLevel) {
+context.addExport("paddingTopMobile", t_20);
+}
+var t_21;
+t_21 = (lineno = 22, colno = 37, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_bottom_mobile"),0]));
+frame.set("paddingBottomMobile", t_21, true);
+if(frame.topLevel) {
+context.setVariable("paddingBottomMobile", t_21);
+}
+if(frame.topLevel) {
+context.addExport("paddingBottomMobile", t_21);
+}
+output += "\n";
+var t_22;
+t_22 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_22, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_22);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_22);
+}
+output += "\n<style>\n  .sellix-section.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "-global-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " {\n    background-color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "bgColor")), env.opts.autoescape);
+output += ";\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " {\n    background-color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "bgColor")), env.opts.autoescape);
+output += ";\n    padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingTopDesktop"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHorizDesktop"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingBottomDesktop"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHorizDesktop"), env.opts.autoescape);
+output += "px;\n    margin-top: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "marginTopDesktop"), env.opts.autoescape);
+output += "px;\n    margin-bottom: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "marginBottomDesktop"), env.opts.autoescape);
+output += "px;\n  }\n\n  @media (max-width: 768px) {\n    .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " {\n      padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingTopTablet"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHorizTablet"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingBottomTablet"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHorizTablet"), env.opts.autoescape);
+output += "px;\n      margin-top: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "marginTopTablet"), env.opts.autoescape);
+output += "px;\n      margin-bottom: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "marginBottomTablet"), env.opts.autoescape);
+output += "px;\n    }\n  }\n\n  @media (max-width: 640px) {\n    .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " {\n      padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingTopMobile"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHorizMobile"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingBottomMobile"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHorizMobile"), env.opts.autoescape);
+output += "px;\n      margin-top: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "marginTopMobile"), env.opts.autoescape);
+output += "px;\n      margin-bottom: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "marginBottomMobile"), env.opts.autoescape);
+output += "px;\n    }\n  }\n\n";
+if(runtime.contextOrFrameLookup(context, frame, "sidebarEnabled")) {
+output += "    .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container {\n      display: grid;\n      grid-template-areas: \"content sidebar\";\n      grid-template-columns: minmax(360px, 1fr) minmax(300px, 420px);\n      grid-column-gap: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "sidebarGap"), env.opts.autoescape);
+output += "px;\n    }\n\n    .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__content {\n      grid-area: content;\n    }\n\n    .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__sidebar {\n      grid-area: sidebar;\n    }\n\n    @media (max-width: 768px) {\n      .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container {\n        grid-template-areas:\n          \"content\"\n          \"sidebar\";\n        grid-template-columns: minmax(240px, 1fr);\n      }\n    }\n";
+;
+}
+output += "</style>\n\n<div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "fullWidth")?"full-width":"content-width"), env.opts.autoescape);
+output += "\">\n  <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__container ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container\">\n    <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__content ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__content\">\n";
+frame = frame.push();
+var t_25 = runtime.fromIterator(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"block_order"));
+runtime.asyncEach(t_25, 1, function(block_name, t_23, t_24,next) {
+frame.set("block_name", block_name);
+frame.set("loop.index", t_23 + 1);
+frame.set("loop.index0", t_23);
+frame.set("loop.revindex", t_24 - t_23);
+frame.set("loop.revindex0", t_24 - t_23 - 1);
+frame.set("loop.first", t_23 === 0);
+frame.set("loop.last", t_23 === t_24 - 1);
+frame.set("loop.length", t_24);
+(function(cb) {if(!runtime.contextOrFrameLookup(context, frame, "sidebarEnabled") || runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "loop")),"revindex") > env.getFilter("int").call(context, runtime.contextOrFrameLookup(context, frame, "sidebarBlocksCount"))) {
+env.getExtension("RenderBlock")["run"](context,block_name, function(t_27,t_26) {
+if(t_27) { cb(t_27); return; }
+output += runtime.suppressValue(t_26, true && env.opts.autoescape);
+cb()});
+}
+else {
+cb()}
+})(function(t_28) {
+if(t_28) { cb(t_28); return; }next(t_23);
+});
+}, function(t_30,t_29) {
+if(t_30) { cb(t_30); return; }
+frame = frame.pop();
+output += "    </div>\n\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "sidebarEnabled")) {
+output += "      <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__sidebar ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__sidebar\">\n";
+frame = frame.push();
+var t_33 = runtime.fromIterator(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"block_order"));
+runtime.asyncEach(t_33, 1, function(block_name, t_31, t_32,next) {
+frame.set("block_name", block_name);
+frame.set("loop.index", t_31 + 1);
+frame.set("loop.index0", t_31);
+frame.set("loop.revindex", t_32 - t_31);
+frame.set("loop.revindex0", t_32 - t_31 - 1);
+frame.set("loop.first", t_31 === 0);
+frame.set("loop.last", t_31 === t_32 - 1);
+frame.set("loop.length", t_32);
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "loop")),"revindex") <= env.getFilter("int").call(context, runtime.contextOrFrameLookup(context, frame, "sidebarBlocksCount"))) {
+env.getExtension("RenderBlock")["run"](context,block_name, function(t_35,t_34) {
+if(t_35) { cb(t_35); return; }
+output += runtime.suppressValue(t_34, true && env.opts.autoescape);
+cb()});
+}
+else {
+cb()}
+})(function(t_36) {
+if(t_36) { cb(t_36); return; }next(t_31);
+});
+}, function(t_38,t_37) {
+if(t_38) { cb(t_38); return; }
+frame = frame.pop();
+output += "      </div>\n";
+cb()});
+}
+else {
+cb()}
+})(function(t_39) {
+if(t_39) { cb(t_39); return; }output += "  </div>\n</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+})});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

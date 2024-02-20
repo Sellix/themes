@@ -1,0 +1,76 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"productInfo")),"product");
+frame.set("product", t_2, true);
+if(frame.topLevel) {
+context.setVariable("product", t_2);
+}
+if(frame.topLevel) {
+context.addExport("product", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"type");
+frame.set("type", t_3, true);
+if(frame.topLevel) {
+context.setVariable("type", t_3);
+}
+if(frame.topLevel) {
+context.addExport("type", t_3);
+}
+output += "\n";
+(function(cb) {if(env.getFilter("lower").call(context, runtime.contextOrFrameLookup(context, frame, "type")) == "badge") {
+env.getExtension("RenderSnippet")["run"](context,"Product: TOS Badge",runtime.makeKeywordArgs({"product": runtime.contextOrFrameLookup(context, frame, "product"),"properties": runtime.contextOrFrameLookup(context, frame, "properties")}), function(t_5,t_4) {
+if(t_5) { cb(t_5); return; }
+output += runtime.suppressValue(t_4, true && env.opts.autoescape);
+cb()});
+}
+else {
+(function(cb) {if(env.getFilter("lower").call(context, runtime.contextOrFrameLookup(context, frame, "type")) == "plain_text") {
+env.getExtension("RenderSnippet")["run"](context,"Product: TOS Collapsable",runtime.makeKeywordArgs({"product": runtime.contextOrFrameLookup(context, frame, "product"),"properties": runtime.contextOrFrameLookup(context, frame, "properties"),"collapsable": false}), function(t_7,t_6) {
+if(t_7) { cb(t_7); return; }
+output += runtime.suppressValue(t_6, true && env.opts.autoescape);
+cb()});
+}
+else {
+(function(cb) {if(env.getFilter("lower").call(context, runtime.contextOrFrameLookup(context, frame, "type")) == "collapsable") {
+env.getExtension("RenderSnippet")["run"](context,"Product: TOS Collapsable",runtime.makeKeywordArgs({"product": runtime.contextOrFrameLookup(context, frame, "product"),"properties": runtime.contextOrFrameLookup(context, frame, "properties"),"collapsable": true}), function(t_9,t_8) {
+if(t_9) { cb(t_9); return; }
+output += runtime.suppressValue(t_8, true && env.opts.autoescape);
+cb()});
+}
+else {
+cb()}
+})(function(t_10) {
+if(t_10) { cb(t_10); return; }cb()});
+}
+})(function(t_11) {
+if(t_11) { cb(t_11); return; }cb()});
+}
+})(function(t_12) {
+if(t_12) { cb(t_12); return; }if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

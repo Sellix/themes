@@ -1,0 +1,497 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_2, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_2);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type") == "invoice";
+frame.set("isInvoice", t_3, true);
+if(frame.topLevel) {
+context.setVariable("isInvoice", t_3);
+}
+if(frame.topLevel) {
+context.addExport("isInvoice", t_3);
+}
+output += "\n";
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_4, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_4);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"invoice");
+frame.set("invoice", t_5, true);
+if(frame.topLevel) {
+context.setVariable("invoice", t_5);
+}
+if(frame.topLevel) {
+context.addExport("invoice", t_5);
+}
+var t_6;
+t_6 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"product");
+frame.set("product", t_6, true);
+if(frame.topLevel) {
+context.setVariable("product", t_6);
+}
+if(frame.topLevel) {
+context.addExport("product", t_6);
+}
+var t_7;
+t_7 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"quantity");
+frame.set("quantity", t_7, true);
+if(frame.topLevel) {
+context.setVariable("quantity", t_7);
+}
+if(frame.topLevel) {
+context.addExport("quantity", t_7);
+}
+var t_8;
+t_8 = (lineno = 8, colno = 23, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "cdn_link"), "cdn_link", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"cloudflare_image_id"),"shopItem"]));
+frame.set("image", t_8, true);
+if(frame.topLevel) {
+context.setVariable("image", t_8);
+}
+if(frame.topLevel) {
+context.addExport("image", t_8);
+}
+output += "\n";
+var t_9;
+t_9 = !runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"cloudflare_image_id");
+frame.set("isPlaceholder", t_9, true);
+if(frame.topLevel) {
+context.setVariable("isPlaceholder", t_9);
+}
+if(frame.topLevel) {
+context.addExport("isPlaceholder", t_9);
+}
+var t_10;
+t_10 = env.getFilter("float").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"price_display")) === 0;
+frame.set("isFree", t_10, true);
+if(frame.topLevel) {
+context.setVariable("isFree", t_10);
+}
+if(frame.topLevel) {
+context.addExport("isFree", t_10);
+}
+output += "\n";
+var t_11;
+t_11 = (lineno = 13, colno = 36, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"description_enabled"),true]));
+frame.set("descriptionEnabled", t_11, true);
+if(frame.topLevel) {
+context.setVariable("descriptionEnabled", t_11);
+}
+if(frame.topLevel) {
+context.addExport("descriptionEnabled", t_11);
+}
+output += "\n";
+var t_12;
+t_12 = (lineno = 15, colno = 32, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"product_container_background_color"),"background_accent_dark"]));
+frame.set("productBgColor", t_12, true);
+if(frame.topLevel) {
+context.setVariable("productBgColor", t_12);
+}
+if(frame.topLevel) {
+context.addExport("productBgColor", t_12);
+}
+var t_13;
+t_13 = (lineno = 16, colno = 35, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"product_container_show_border"),true]));
+frame.set("productShowBorder", t_13, true);
+if(frame.topLevel) {
+context.setVariable("productShowBorder", t_13);
+}
+if(frame.topLevel) {
+context.addExport("productShowBorder", t_13);
+}
+var t_14;
+t_14 = (lineno = 17, colno = 31, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"product_container_shadow"),"none"]));
+frame.set("productShadow", t_14, true);
+if(frame.topLevel) {
+context.setVariable("productShadow", t_14);
+}
+if(frame.topLevel) {
+context.addExport("productShadow", t_14);
+}
+var t_15;
+t_15 = (lineno = 18, colno = 37, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"product_container_border_radius"),8]));
+frame.set("productBorderRadius", t_15, true);
+if(frame.topLevel) {
+context.setVariable("productBorderRadius", t_15);
+}
+if(frame.topLevel) {
+context.addExport("productBorderRadius", t_15);
+}
+var t_16;
+t_16 = (lineno = 19, colno = 32, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"product_title_font_color"),"light_font_color"]));
+frame.set("titleFontColor", t_16, true);
+if(frame.topLevel) {
+context.setVariable("titleFontColor", t_16);
+}
+if(frame.topLevel) {
+context.addExport("titleFontColor", t_16);
+}
+var t_17;
+t_17 = (lineno = 20, colno = 31, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"product_title_font_size"),18]));
+frame.set("titleFontSize", t_17, true);
+if(frame.topLevel) {
+context.setVariable("titleFontSize", t_17);
+}
+if(frame.topLevel) {
+context.addExport("titleFontSize", t_17);
+}
+var t_18;
+t_18 = (lineno = 21, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"product_title_font_weight"),500]));
+frame.set("titleFontWeight", t_18, true);
+if(frame.topLevel) {
+context.setVariable("titleFontWeight", t_18);
+}
+if(frame.topLevel) {
+context.addExport("titleFontWeight", t_18);
+}
+var t_19;
+t_19 = (lineno = 22, colno = 34, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"product_title_line_height"),20]));
+frame.set("titleLineHeight", t_19, true);
+if(frame.topLevel) {
+context.setVariable("titleLineHeight", t_19);
+}
+if(frame.topLevel) {
+context.addExport("titleLineHeight", t_19);
+}
+output += "\n";
+var t_20;
+t_20 = (lineno = 24, colno = 43, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"product_container_padding_vert_desktop"),16]));
+frame.set("productPaddingVertDesktop", t_20, true);
+if(frame.topLevel) {
+context.setVariable("productPaddingVertDesktop", t_20);
+}
+if(frame.topLevel) {
+context.addExport("productPaddingVertDesktop", t_20);
+}
+var t_21;
+t_21 = (lineno = 25, colno = 44, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"product_container_padding_horiz_desktop"),16]));
+frame.set("productPaddingHorizDesktop", t_21, true);
+if(frame.topLevel) {
+context.setVariable("productPaddingHorizDesktop", t_21);
+}
+if(frame.topLevel) {
+context.addExport("productPaddingHorizDesktop", t_21);
+}
+var t_22;
+t_22 = (lineno = 26, colno = 42, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"product_container_padding_vert_tablet"),16]));
+frame.set("productPaddingVertTablet", t_22, true);
+if(frame.topLevel) {
+context.setVariable("productPaddingVertTablet", t_22);
+}
+if(frame.topLevel) {
+context.addExport("productPaddingVertTablet", t_22);
+}
+var t_23;
+t_23 = (lineno = 27, colno = 43, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"product_container_padding_horiz_tablet"),16]));
+frame.set("productPaddingHorizTablet", t_23, true);
+if(frame.topLevel) {
+context.setVariable("productPaddingHorizTablet", t_23);
+}
+if(frame.topLevel) {
+context.addExport("productPaddingHorizTablet", t_23);
+}
+var t_24;
+t_24 = (lineno = 28, colno = 42, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"product_container_padding_vert_mobile"),16]));
+frame.set("productPaddingVertMobile", t_24, true);
+if(frame.topLevel) {
+context.setVariable("productPaddingVertMobile", t_24);
+}
+if(frame.topLevel) {
+context.addExport("productPaddingVertMobile", t_24);
+}
+var t_25;
+t_25 = (lineno = 29, colno = 43, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"product_container_padding_horiz_mobile"),16]));
+frame.set("productPaddingHorizMobile", t_25, true);
+if(frame.topLevel) {
+context.setVariable("productPaddingHorizMobile", t_25);
+}
+if(frame.topLevel) {
+context.addExport("productPaddingHorizMobile", t_25);
+}
+output += "\n";
+var t_26;
+t_26 = {};
+frame.set("addonsProps", t_26, true);
+if(frame.topLevel) {
+context.setVariable("addonsProps", t_26);
+}
+if(frame.topLevel) {
+context.addExport("addonsProps", t_26);
+}
+var t_27;
+t_27 = {};
+frame.set("variantsProps", t_27, true);
+if(frame.topLevel) {
+context.setVariable("variantsProps", t_27);
+}
+if(frame.topLevel) {
+context.addExport("variantsProps", t_27);
+}
+frame = frame.push();
+var t_30 = runtime.contextOrFrameLookup(context, frame, "properties");
+if(t_30) {t_30 = runtime.fromIterator(t_30);
+var t_28;
+if(runtime.isArray(t_30)) {
+var t_29 = t_30.length;
+for(t_28=0; t_28 < t_30.length; t_28++) {
+var t_31 = t_30[t_28][0];
+frame.set("[object Object]", t_30[t_28][0]);
+var t_32 = t_30[t_28][1];
+frame.set("[object Object]", t_30[t_28][1]);
+frame.set("loop.index", t_28 + 1);
+frame.set("loop.index0", t_28);
+frame.set("loop.revindex", t_29 - t_28);
+frame.set("loop.revindex0", t_29 - t_28 - 1);
+frame.set("loop.first", t_28 === 0);
+frame.set("loop.last", t_28 === t_29 - 1);
+frame.set("loop.length", t_29);
+if((lineno = 34, colno = 17, runtime.callWrap(runtime.memberLookup((t_31),"slice"), "key[\"slice\"]", context, [0,6])) === "addons") {
+var t_33;
+t_33 = env.getFilter("set_attribute").call(context, runtime.contextOrFrameLookup(context, frame, "addonsProps"),env.getFilter("replace").call(context, t_31,"addons_",""),t_32);
+frame.set("addonsProps", t_33, true);
+if(frame.topLevel) {
+context.setVariable("addonsProps", t_33);
+}
+if(frame.topLevel) {
+context.addExport("addonsProps", t_33);
+}
+;
+}
+output += "\n";
+if((lineno = 38, colno = 17, runtime.callWrap(runtime.memberLookup((t_31),"slice"), "key[\"slice\"]", context, [0,8])) === "variants") {
+var t_34;
+t_34 = env.getFilter("set_attribute").call(context, runtime.contextOrFrameLookup(context, frame, "variantsProps"),env.getFilter("replace").call(context, t_31,"variants_",""),t_32);
+frame.set("variantsProps", t_34, true);
+if(frame.topLevel) {
+context.setVariable("variantsProps", t_34);
+}
+if(frame.topLevel) {
+context.addExport("variantsProps", t_34);
+}
+;
+}
+;
+}
+} else {
+t_28 = -1;
+var t_29 = runtime.keys(t_30).length;
+for(var t_35 in t_30) {
+t_28++;
+var t_36 = t_30[t_35];
+frame.set("key", t_35);
+frame.set("value", t_36);
+frame.set("loop.index", t_28 + 1);
+frame.set("loop.index0", t_28);
+frame.set("loop.revindex", t_29 - t_28);
+frame.set("loop.revindex0", t_29 - t_28 - 1);
+frame.set("loop.first", t_28 === 0);
+frame.set("loop.last", t_28 === t_29 - 1);
+frame.set("loop.length", t_29);
+if((lineno = 34, colno = 17, runtime.callWrap(runtime.memberLookup((t_35),"slice"), "key[\"slice\"]", context, [0,6])) === "addons") {
+var t_37;
+t_37 = env.getFilter("set_attribute").call(context, runtime.contextOrFrameLookup(context, frame, "addonsProps"),env.getFilter("replace").call(context, t_35,"addons_",""),t_36);
+frame.set("addonsProps", t_37, true);
+if(frame.topLevel) {
+context.setVariable("addonsProps", t_37);
+}
+if(frame.topLevel) {
+context.addExport("addonsProps", t_37);
+}
+;
+}
+output += "\n";
+if((lineno = 38, colno = 17, runtime.callWrap(runtime.memberLookup((t_35),"slice"), "key[\"slice\"]", context, [0,8])) === "variants") {
+var t_38;
+t_38 = env.getFilter("set_attribute").call(context, runtime.contextOrFrameLookup(context, frame, "variantsProps"),env.getFilter("replace").call(context, t_35,"variants_",""),t_36);
+frame.set("variantsProps", t_38, true);
+if(frame.topLevel) {
+context.setVariable("variantsProps", t_38);
+}
+if(frame.topLevel) {
+context.addExport("variantsProps", t_38);
+}
+;
+}
+;
+}
+}
+}
+frame = frame.pop();
+output += "\n";
+var t_39;
+t_39 = ["snippet-checkout-product"];
+frame.set("globalClass", t_39, true);
+if(frame.topLevel) {
+context.setVariable("globalClass", t_39);
+}
+if(frame.topLevel) {
+context.addExport("globalClass", t_39);
+}
+var t_40;
+t_40 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_40, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_40);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_40);
+}
+output += "\n<style>\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " {\n    background: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "productBgColor")), env.opts.autoescape);
+output += ";\n    border: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "productShowBorder")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += ";\n    box-shadow: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "productShadow"), env.opts.autoescape);
+output += ";\n    border-radius: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "productBorderRadius"), env.opts.autoescape);
+output += "px;\n    padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "productPaddingVertDesktop"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "productPaddingHorizDesktop"), env.opts.autoescape);
+output += "px;\n  }\n\n  @media (max-width: 768px) {\n    .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " {\n      padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "productPaddingVertTablet"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "productPaddingHorizTablet"), env.opts.autoescape);
+output += "px;\n    }\n  }\n\n  @media (max-width: 640px) {\n    .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " {\n      padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "productPaddingVertMobile"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "productPaddingHorizMobile"), env.opts.autoescape);
+output += "px;\n    }\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__title-text {\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "titleFontColor")), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleFontSize"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleFontWeight"), env.opts.autoescape);
+output += ";\n    line-height: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleLineHeight"), env.opts.autoescape);
+output += "px;\n  }\n</style>\n\n<div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "\" data-checkout-product=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"uniqid"), env.opts.autoescape);
+output += "\">\n  <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__details\">\n    <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__image ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isPlaceholder")?"image-placeholder":""), env.opts.autoescape);
+output += "\">\n      <div class=\"skeleton skeleton6\" style=\"height: 100px; width: ";
+output += runtime.suppressValue(200 + 10 * env.getFilter("random").call(context, [1,2,3,4,5,6]), env.opts.autoescape);
+output += "px\"></div>\n    </div>\n\n    <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__title unselectable\">\n      <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__title-text ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__title-text\">\n        <div>\n          <div class=\"skeleton skeleton6\" style=\"width: ";
+output += runtime.suppressValue(180, env.opts.autoescape);
+output += "px\"></div>\n        </div>\n\n";
+if(runtime.contextOrFrameLookup(context, frame, "isInvoice")) {
+output += "          <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__product-quantity total unselectable\">\n            <div class=\"skeleton skeleton6\" style=\"width: ";
+output += runtime.suppressValue(150, env.opts.autoescape);
+output += "px\"></div>\n          </div>\n";
+;
+}
+output += "\n        <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__product-price\">\n          <div class=\"skeleton skeleton6\" style=\"width: ";
+output += runtime.suppressValue(100, env.opts.autoescape);
+output += "px\"></div>\n        </div>\n      </div>\n\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "descriptionEnabled")) {
+output += "        <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__chevron-icon\">\n          <span class=\"chevron d-none\" data-checkout-product-toggle-description-button=\"1\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Icons: Chevron up", function(t_42,t_41) {
+if(t_42) { cb(t_42); return; }
+output += runtime.suppressValue(t_41, true && env.opts.autoescape);
+output += "          </span>\n\n          <span class=\"chevron\" data-checkout-product-toggle-description-button=\"1\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Icons: Chevron down", function(t_44,t_43) {
+if(t_44) { cb(t_44); return; }
+output += runtime.suppressValue(t_43, true && env.opts.autoescape);
+output += "          </span>\n        </div>\n";
+cb()})});
+}
+else {
+cb()}
+})(function(t_45) {
+if(t_45) { cb(t_45); return; }output += "\n";
+(function(cb) {if(!runtime.contextOrFrameLookup(context, frame, "isInvoice")) {
+output += "        <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__product-count\">\n          <div class=\"skeleton skeleton6\" style=\"width: ";
+output += runtime.suppressValue(120, env.opts.autoescape);
+output += "px\"></div>\n        </div>\n\n        <div\n          class=\"remove-icon ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__remove-icon\"\n          data-product-id=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"uniqid"), env.opts.autoescape);
+output += "\"\n          data-remove-button=\"1\"\n        >\n";
+env.getExtension("RenderSnippet")["run"](context,"Icons: Trash", function(t_47,t_46) {
+if(t_47) { cb(t_47); return; }
+output += runtime.suppressValue(t_46, true && env.opts.autoescape);
+output += "        </div>\n";
+cb()});
+}
+else {
+cb()}
+})(function(t_48) {
+if(t_48) { cb(t_48); return; }output += "    </div>\n  </div>\n</div>\n\n<script type='application/javascript'>\n  $(document).ready(function () {\n    const productId = '";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"uniqid"), env.opts.autoescape);
+output += "';\n\n    new SellixCheckoutProductComponent(\n      `.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "`,\n      '";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "',\n      productId,\n      ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("dump").call(context, runtime.contextOrFrameLookup(context, frame, "renderOptions"))), env.opts.autoescape);
+output += ",\n    );\n\n    $(document).on(`SellixCartUpdateEvent`, (e, eventInfo) => {\n      const id = eventInfo && eventInfo.productId;\n      const action = (eventInfo && eventInfo.action) || 'update';\n\n      if (action === 'delete' && (!productId || id === productId)) {\n        const addonsStore = new SellixProductAddonsStore('";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "');\n        addonsStore.clear(productId);\n      }\n    });\n  });\n</script>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+})});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

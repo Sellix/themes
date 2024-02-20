@@ -1,0 +1,108 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"class");
+frame.set("class", t_2, true);
+if(frame.topLevel) {
+context.setVariable("class", t_2);
+}
+if(frame.topLevel) {
+context.addExport("class", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"link");
+frame.set("link", t_3, true);
+if(frame.topLevel) {
+context.setVariable("link", t_3);
+}
+if(frame.topLevel) {
+context.addExport("link", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"icon_class");
+frame.set("iconClass", t_4, true);
+if(frame.topLevel) {
+context.setVariable("iconClass", t_4);
+}
+if(frame.topLevel) {
+context.addExport("iconClass", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_5, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_5);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_5);
+}
+output += "\n";
+var t_6;
+t_6 = (lineno = 6, colno = 26, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"font_size"),16]));
+frame.set("fontSize", t_6, true);
+if(frame.topLevel) {
+context.setVariable("fontSize", t_6);
+}
+if(frame.topLevel) {
+context.addExport("fontSize", t_6);
+}
+var t_7;
+t_7 = (lineno = 7, colno = 27, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"font_color"),"contrast_light_font_color"]));
+frame.set("fontColor", t_7, true);
+if(frame.topLevel) {
+context.setVariable("fontColor", t_7);
+}
+if(frame.topLevel) {
+context.addExport("fontColor", t_7);
+}
+output += "\n";
+var t_8;
+t_8 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_8, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_8);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_8);
+}
+output += "\n<style>\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " {\n    font-size: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "fontSize"), env.opts.autoescape);
+output += "px;\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "fontColor")), env.opts.autoescape);
+output += ";\n  }\n</style>\n\n<a href=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "link"), env.opts.autoescape);
+output += "\" target=\"_blank\" class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "class"), env.opts.autoescape);
+output += "\">\n  <i class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "iconClass"), env.opts.autoescape);
+output += "\"></i>\n</a>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

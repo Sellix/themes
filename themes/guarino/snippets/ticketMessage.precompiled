@@ -1,0 +1,81 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"role");
+frame.set("role", t_1, true);
+if(frame.topLevel) {
+context.setVariable("role", t_1);
+}
+if(frame.topLevel) {
+context.addExport("role", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"message");
+frame.set("message", t_2, true);
+if(frame.topLevel) {
+context.setVariable("message", t_2);
+}
+if(frame.topLevel) {
+context.addExport("message", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_3, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_3);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"created_at") * 1000;
+frame.set("created_at", t_4, true);
+if(frame.topLevel) {
+context.setVariable("created_at", t_4);
+}
+if(frame.topLevel) {
+context.addExport("created_at", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_5, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_5);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_5);
+}
+output += "\n<div data-id=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "role"), env.opts.autoescape);
+output += "-";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"created_at"), env.opts.autoescape);
+output += "\" class=\"reply-screen-message ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "role") === "CUSTOMER"?"you":""), env.opts.autoescape);
+output += "\">\n  <div\n    class=\"reply-screen-message-item\"\n    style=\"background: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"ticket_message_background")), env.opts.autoescape);
+output += "; border: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"ticket_message_show_border")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += ";\"\n  >\n    <div>\n      <div class=\"reply-screen-message-item-title\">";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "role") == "CUSTOMER"?"You":"Merchant"), env.opts.autoescape);
+output += "</div>\n    </div>\n\n    <span>";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "message"), env.opts.autoescape);
+output += "</span>\n  </div>\n\n  <span class=\"reply-screen-message-item-date\">";
+output += runtime.suppressValue(env.getFilter("date_format").call(context, runtime.contextOrFrameLookup(context, frame, "created_at"),"DD, MMM HH:mm"), env.opts.autoescape);
+output += "</span>\n</div>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

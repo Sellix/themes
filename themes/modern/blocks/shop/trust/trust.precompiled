@@ -1,0 +1,511 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_2, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_2);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_2);
+}
+output += "\n";
+var t_3;
+t_3 = (lineno = 3, colno = 27, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"fullwidth"),false]));
+frame.set("fullWidth", t_3, true);
+if(frame.topLevel) {
+context.setVariable("fullWidth", t_3);
+}
+if(frame.topLevel) {
+context.addExport("fullWidth", t_3);
+}
+var t_4;
+t_4 = (lineno = 4, colno = 28, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_show_border"),false]));
+frame.set("showBorder", t_4, true);
+if(frame.topLevel) {
+context.setVariable("showBorder", t_4);
+}
+if(frame.topLevel) {
+context.addExport("showBorder", t_4);
+}
+var t_5;
+t_5 = (lineno = 5, colno = 25, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_background_color"),"transparent"]));
+frame.set("bgColor", t_5, true);
+if(frame.topLevel) {
+context.setVariable("bgColor", t_5);
+}
+if(frame.topLevel) {
+context.addExport("bgColor", t_5);
+}
+var t_6;
+t_6 = (lineno = 6, colno = 24, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_shadow"),"none"]));
+frame.set("shadow", t_6, true);
+if(frame.topLevel) {
+context.setVariable("shadow", t_6);
+}
+if(frame.topLevel) {
+context.addExport("shadow", t_6);
+}
+var t_7;
+t_7 = (lineno = 7, colno = 30, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_border_radius"),0]));
+frame.set("borderRadius", t_7, true);
+if(frame.topLevel) {
+context.setVariable("borderRadius", t_7);
+}
+if(frame.topLevel) {
+context.addExport("borderRadius", t_7);
+}
+var t_8;
+t_8 = (lineno = 8, colno = 29, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_vert"),0]));
+frame.set("paddingVert", t_8, true);
+if(frame.topLevel) {
+context.setVariable("paddingVert", t_8);
+}
+if(frame.topLevel) {
+context.addExport("paddingVert", t_8);
+}
+var t_9;
+t_9 = (lineno = 9, colno = 30, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_horiz"),0]));
+frame.set("paddingHoriz", t_9, true);
+if(frame.topLevel) {
+context.setVariable("paddingHoriz", t_9);
+}
+if(frame.topLevel) {
+context.addExport("paddingHoriz", t_9);
+}
+output += "\n";
+var t_10;
+t_10 = (lineno = 11, colno = 32, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"item_show_border"),false]));
+frame.set("itemShowBorder", t_10, true);
+if(frame.topLevel) {
+context.setVariable("itemShowBorder", t_10);
+}
+if(frame.topLevel) {
+context.addExport("itemShowBorder", t_10);
+}
+var t_11;
+t_11 = (lineno = 12, colno = 29, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"item_background_color"),"background_accent_dark"]));
+frame.set("itemBgColor", t_11, true);
+if(frame.topLevel) {
+context.setVariable("itemBgColor", t_11);
+}
+if(frame.topLevel) {
+context.addExport("itemBgColor", t_11);
+}
+var t_12;
+t_12 = (lineno = 13, colno = 28, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"item_shadow"),"none"]));
+frame.set("itemShadow", t_12, true);
+if(frame.topLevel) {
+context.setVariable("itemShadow", t_12);
+}
+if(frame.topLevel) {
+context.addExport("itemShadow", t_12);
+}
+var t_13;
+t_13 = (lineno = 14, colno = 34, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"item_border_radius"),8]));
+frame.set("itemBorderRadius", t_13, true);
+if(frame.topLevel) {
+context.setVariable("itemBorderRadius", t_13);
+}
+if(frame.topLevel) {
+context.addExport("itemBorderRadius", t_13);
+}
+var t_14;
+t_14 = (lineno = 15, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"item_padding_vert"),24]));
+frame.set("itemPaddingVert", t_14, true);
+if(frame.topLevel) {
+context.setVariable("itemPaddingVert", t_14);
+}
+if(frame.topLevel) {
+context.addExport("itemPaddingVert", t_14);
+}
+var t_15;
+t_15 = (lineno = 16, colno = 34, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"item_padding_horiz"),24]));
+frame.set("itemPaddingHoriz", t_15, true);
+if(frame.topLevel) {
+context.setVariable("itemPaddingHoriz", t_15);
+}
+if(frame.topLevel) {
+context.addExport("itemPaddingHoriz", t_15);
+}
+output += "\n";
+var t_16;
+t_16 = (lineno = 18, colno = 32, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"item_title_font_color"),"dark_font_color"]));
+frame.set("titleFontColor", t_16, true);
+if(frame.topLevel) {
+context.setVariable("titleFontColor", t_16);
+}
+if(frame.topLevel) {
+context.addExport("titleFontColor", t_16);
+}
+var t_17;
+t_17 = (lineno = 19, colno = 31, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"item_title_font_size"),16]));
+frame.set("titleFontSize", t_17, true);
+if(frame.topLevel) {
+context.setVariable("titleFontSize", t_17);
+}
+if(frame.topLevel) {
+context.addExport("titleFontSize", t_17);
+}
+var t_18;
+t_18 = (lineno = 20, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"item_title_font_weight"),500]));
+frame.set("titleFontWeight", t_18, true);
+if(frame.topLevel) {
+context.setVariable("titleFontWeight", t_18);
+}
+if(frame.topLevel) {
+context.addExport("titleFontWeight", t_18);
+}
+var t_19;
+t_19 = (lineno = 21, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"item_title_line_height"),24]));
+frame.set("titleLineHeight", t_19, true);
+if(frame.topLevel) {
+context.setVariable("titleLineHeight", t_19);
+}
+if(frame.topLevel) {
+context.addExport("titleLineHeight", t_19);
+}
+var t_20;
+t_20 = (lineno = 22, colno = 32, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"item_title_text_align"),"start"]));
+frame.set("titleTextAlign", t_20, true);
+if(frame.topLevel) {
+context.setVariable("titleTextAlign", t_20);
+}
+if(frame.topLevel) {
+context.addExport("titleTextAlign", t_20);
+}
+output += "\n";
+var t_21;
+t_21 = (lineno = 24, colno = 31, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"item_body_font_color"),"dark_font_color"]));
+frame.set("bodyFontColor", t_21, true);
+if(frame.topLevel) {
+context.setVariable("bodyFontColor", t_21);
+}
+if(frame.topLevel) {
+context.addExport("bodyFontColor", t_21);
+}
+var t_22;
+t_22 = (lineno = 25, colno = 30, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"item_body_font_size"),14]));
+frame.set("bodyFontSize", t_22, true);
+if(frame.topLevel) {
+context.setVariable("bodyFontSize", t_22);
+}
+if(frame.topLevel) {
+context.addExport("bodyFontSize", t_22);
+}
+var t_23;
+t_23 = (lineno = 26, colno = 32, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"item_body_font_weight"),400]));
+frame.set("bodyFontWeight", t_23, true);
+if(frame.topLevel) {
+context.setVariable("bodyFontWeight", t_23);
+}
+if(frame.topLevel) {
+context.addExport("bodyFontWeight", t_23);
+}
+var t_24;
+t_24 = (lineno = 27, colno = 32, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"item_body_line_height"),20]));
+frame.set("bodyLineHeight", t_24, true);
+if(frame.topLevel) {
+context.setVariable("bodyLineHeight", t_24);
+}
+if(frame.topLevel) {
+context.addExport("bodyLineHeight", t_24);
+}
+var t_25;
+t_25 = (lineno = 28, colno = 31, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"item_body_text_align"),"start"]));
+frame.set("bodyTextAlign", t_25, true);
+if(frame.topLevel) {
+context.setVariable("bodyTextAlign", t_25);
+}
+if(frame.topLevel) {
+context.addExport("bodyTextAlign", t_25);
+}
+output += "\n";
+var t_26;
+t_26 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_26, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_26);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_26);
+}
+output += "\n<style>\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container {\n    border: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "showBorder")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += ";\n    background: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "bgColor")), env.opts.autoescape);
+output += ";\n    box-shadow: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "shadow"), env.opts.autoescape);
+output += ";\n    border-radius: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "borderRadius"), env.opts.autoescape);
+output += "px;\n    padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingVert"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHoriz"), env.opts.autoescape);
+output += "px;\n  }\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__item {\n    margin-bottom: 0.5rem;\n    border: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "itemShowBorder")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += ";\n    background: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "itemBgColor")), env.opts.autoescape);
+output += ";\n    box-shadow: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "itemShadow"), env.opts.autoescape);
+output += ";\n    border-radius: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "itemBorderRadius"), env.opts.autoescape);
+output += "px;\n    padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "itemPaddingVert"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "itemPaddingHoriz"), env.opts.autoescape);
+output += "px;\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__item-title {\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "titleFontColor")), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleFontSize"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleFontWeight"), env.opts.autoescape);
+output += ";\n    line-height: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleLineHeight"), env.opts.autoescape);
+output += "px;\n  }\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__item h3 {\n    margin-top: 0;\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__item-body {\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "bodyFontColor")), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "bodyFontSize"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "bodyFontWeight"), env.opts.autoescape);
+output += ";\n    line-height: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "bodyLineHeight"), env.opts.autoescape);
+output += "px;\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__help-link {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    margin-top: 2rem;\n  }\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__help-link a {\n    display: flex;\n    align-items: center;\n    color: var(--darkFontColor);\n    font-size: 14px;\n    font-weight: 500;\n    line-height: 17px;\n  }\n</style>\n\n";
+output += "\n<div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__container ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "fullWidth")?"full-width":"content-width"), env.opts.autoescape);
+output += "\">\n  <div class=\"sellix-trust sellix-trust-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\">\n\n    <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__item ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__item\">\n      <h3 class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__item-title ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__item-title text-align-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleTextAlign"), env.opts.autoescape);
+output += "\">\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"identity_verified")) {
+output += "          <i class=\"fa-regular fa-circle-check text-green mr-2\"></i>\n          ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.identityVerified.yes"), env.opts.autoescape);
+output += "\n";
+;
+}
+else {
+output += "          <i class=\"fa-regular fa-circle-xmark text-red mr-2\"></i>\n          ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.identityVerified.no"), env.opts.autoescape);
+output += "\n";
+;
+}
+output += "      </h3>\n      <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__item-body ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__item-body text-align-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "bodyTextAlign"), env.opts.autoescape);
+output += "\">\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"identity_verified")) {
+output += "          ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.identityText.yes"), env.opts.autoescape);
+output += "\n";
+;
+}
+else {
+output += "          ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.identityText.no"), env.opts.autoescape);
+output += "\n";
+;
+}
+output += "      </div>\n    </div>\n\n    <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__item ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__item\">\n      <h3 class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__item-title ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__item-title\">\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"sales_last14days_metric") === "low") {
+output += "          <i class=\"fa-regular fa-circle-xmark text-red mr-2\"></i>\n";
+;
+}
+else {
+output += "          <i class=\"fa-regular fa-circle-check text-green mr-2\"></i>\n";
+;
+}
+output += "\n        ";
+output += runtime.suppressValue(env.getFilter("t").call(context, env.getFilter("lower").call(context, env.getFilter("join").call(context, ["shop","trust",runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"sales_last14days_metric")],"."))), env.opts.autoescape);
+output += "\n        ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.sales"), env.opts.autoescape);
+output += "\n      </h3>\n      <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__item-body ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__item-body\">\n        ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.salesText"), env.opts.autoescape);
+output += "\n      </div>\n    </div>\n\n    <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__item ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__item\">\n      <h3 class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__item-title ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__item-title\">\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_appeal_ratio") * 100 > 35) {
+output += "          <i class=\"fa-regular fa-circle-xmark text-red mr-2\"></i>\n";
+;
+}
+else {
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_appealed") * 100 < 75 && runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_appealed") * 100 > 35) {
+output += "          <i class=\"fa-regular fa-triangle-exclamation text-gold mr-2\"></i>\n";
+;
+}
+else {
+output += "          <i class=\"fa-regular fa-circle-check text-green mr-2\"></i>\n";
+;
+}
+;
+}
+output += "        ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_appeal_ratio"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.feedback"), env.opts.autoescape);
+output += "\n      </h3>\n      <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__item-body ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__item-body\">\n        ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.feedbackText"), env.opts.autoescape);
+output += "\n      </div>\n    </div>\n\n    <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__item ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__item\">\n      <h3 class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__item-title ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__item-title\">\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_score") < 1) {
+output += "          <i class=\"fa-regular fa-circle-xmark text-red mr-2\"></i>\n";
+;
+}
+else {
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_score") > 1 && runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_score") < 4) {
+output += "          <i class=\"fa-regular fa-triangle-exclamation text-gold mr-2\"></i>\n";
+;
+}
+else {
+output += "          <i class=\"fa-regular fa-circle-check text-green mr-2\"></i>\n";
+;
+}
+;
+}
+output += "        ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_score")?env.getFilter("round").call(context, runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_score"),2):env.getFilter("round").call(context, 0,2)), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.feedbackScore"), env.opts.autoescape);
+output += "\n      </h3>\n      <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__item-body ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__item-body\">\n        ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.feedbackScoreText"), env.opts.autoescape);
+output += "\n      </div>\n    </div>\n\n    <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__item ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__item\">\n      <h3 class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__item-title ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__item-title\">\n";
+if(!runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"no_chargeback_gateways")) {
+output += "          <i class=\"fa-regular fa-circle-check text-green mr-2\"></i>\n          ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.paypalAccepted.yes"), env.opts.autoescape);
+output += "\n";
+;
+}
+else {
+output += "          <i class=\"fa-regular fa-circle-xmark text-red mr-2\"></i>\n          ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.paypalAccepted.no"), env.opts.autoescape);
+output += "\n";
+;
+}
+output += "      </h3>\n      <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__item-body ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__item-body\">\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"no_chargeback_gateways")) {
+output += "          ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.paypalText.0"), env.opts.autoescape);
+output += "\n";
+;
+}
+else {
+output += "          ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.paypalText.1"), env.opts.autoescape);
+output += "\n";
+;
+}
+output += "      </div>\n    </div>\n\n    <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__help-link ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__help-link\">\n      <a href=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"what_is_trusted_advisor_url"), env.opts.autoescape);
+output += "\" target=\"_blank\">\n        ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.help"), env.opts.autoescape);
+output += "\n        ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, "&nbsp;"), env.opts.autoescape);
+output += "\n";
+env.getExtension("RenderSnippet")["run"](context,"Icons: Arrow right 1", function(t_28,t_27) {
+if(t_28) { cb(t_28); return; }
+output += runtime.suppressValue(t_27, true && env.opts.autoescape);
+output += "      </a>\n    </div>\n  </div>\n</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

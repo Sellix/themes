@@ -1,0 +1,163 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo");
+frame.set("shopInfo", t_2, true);
+if(frame.topLevel) {
+context.setVariable("shopInfo", t_2);
+}
+if(frame.topLevel) {
+context.addExport("shopInfo", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shopInfo")),"shop");
+frame.set("shop", t_3, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_3);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shopInfo")),"categories");
+frame.set("categories", t_4, true);
+if(frame.topLevel) {
+context.setVariable("categories", t_4);
+}
+if(frame.topLevel) {
+context.addExport("categories", t_4);
+}
+output += "\n";
+var t_5;
+t_5 = "all";
+frame.set("activeCategory", t_5, true);
+if(frame.topLevel) {
+context.setVariable("activeCategory", t_5);
+}
+if(frame.topLevel) {
+context.addExport("activeCategory", t_5);
+}
+if((lineno = 6, colno = 35, runtime.callWrap(runtime.memberLookup((["category","shop"]),"includes"), "--expression--[\"includes\"]", context, [runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type")]))) {
+var t_6;
+t_6 = (lineno = 7, colno = 34, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"options")),"itemId"),"all"]));
+frame.set("activeCategory", t_6, true);
+if(frame.topLevel) {
+context.setVariable("activeCategory", t_6);
+}
+if(frame.topLevel) {
+context.addExport("activeCategory", t_6);
+}
+;
+}
+output += "\n";
+var t_7;
+t_7 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"filter_name");
+frame.set("filterName", t_7, true);
+if(frame.topLevel) {
+context.setVariable("filterName", t_7);
+}
+if(frame.topLevel) {
+context.addExport("filterName", t_7);
+}
+output += "\n";
+var t_8;
+t_8 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_8, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_8);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_8);
+}
+output += "\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "categories")),"length")) {
+output += "  <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__container ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container\">\n    <a\n      href=\"javascript:void(0);\"\n      class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__item ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__item ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "activeCategory") == "all"?"active":""), env.opts.autoescape);
+output += "\"\n      data-category-id=\"all\"\n    >\n      ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "Show All",{"keyPrefix": "shop.content"}), env.opts.autoescape);
+output += "\n    </a>\n";
+frame = frame.push();
+var t_11 = runtime.contextOrFrameLookup(context, frame, "categories");
+if(t_11) {t_11 = runtime.fromIterator(t_11);
+var t_10 = t_11.length;
+for(var t_9=0; t_9 < t_11.length; t_9++) {
+var t_12 = t_11[t_9];
+frame.set("category", t_12);
+frame.set("loop.index", t_9 + 1);
+frame.set("loop.index0", t_9);
+frame.set("loop.revindex", t_10 - t_9);
+frame.set("loop.revindex0", t_10 - t_9 - 1);
+frame.set("loop.first", t_9 === 0);
+frame.set("loop.last", t_9 === t_10 - 1);
+frame.set("loop.length", t_10);
+if(!runtime.memberLookup((t_12),"unlisted")) {
+output += "        <a\n          href=\"javascript:void(0);\"\n          class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__item ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__item ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "activeCategory") == runtime.memberLookup((t_12),"uniqid")?"active":""), env.opts.autoescape);
+output += "\"\n          data-category-id=\"";
+output += runtime.suppressValue(runtime.memberLookup((t_12),"uniqid"), env.opts.autoescape);
+output += "\"\n        >\n          ";
+output += runtime.suppressValue(env.getFilter("t").call(context, runtime.memberLookup((t_12),"title"),{"keyPrefix": "shop.content"}), env.opts.autoescape);
+output += "\n        </a>\n";
+;
+}
+;
+}
+}
+frame = frame.pop();
+output += "  </div>\n\n  <script type=\"application/javascript\">\n    $(document).ready(function() {\n      const filterStore = new window.SellixProductFilterStore(\n        '";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "',\n        '";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "filterName"), env.opts.autoescape);
+output += "',\n        {\n          search: '',\n          category: '',\n          sort: '";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"default_sort"), env.opts.autoescape);
+output += "'\n        },\n      );\n\n      $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__item').on('click', (event) => {\n        filterStore.set({ category: $(event.currentTarget).data('category-id')})\n        $(document).trigger('SellixProductListFilterChangeEvent', { name: '";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "filterName"), env.opts.autoescape);
+output += "' });\n      });\n\n      $(document).on('SellixProductListFilterChangeEvent', (e, eventInfo) => {\n        const { name } = eventInfo;\n        if (name === '";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "filterName"), env.opts.autoescape);
+output += "') {\n          const currentFilter = filterStore.get();\n\n          $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__item').removeClass('active');\n          if (currentFilter.category) {\n            $(`.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__item[data-category-id=${currentFilter.category}]`).addClass('active');\n          }\n        }\n      });\n    });\n  </script>\n";
+;
+}
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

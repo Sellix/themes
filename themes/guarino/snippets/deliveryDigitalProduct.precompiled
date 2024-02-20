@@ -1,0 +1,190 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"invoice");
+frame.set("invoice", t_2, true);
+if(frame.topLevel) {
+context.setVariable("invoice", t_2);
+}
+if(frame.topLevel) {
+context.addExport("invoice", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"info");
+frame.set("info", t_3, true);
+if(frame.topLevel) {
+context.setVariable("info", t_3);
+}
+if(frame.topLevel) {
+context.addExport("info", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"product_type");
+frame.set("productType", t_4, true);
+if(frame.topLevel) {
+context.setVariable("productType", t_4);
+}
+if(frame.topLevel) {
+context.addExport("productType", t_4);
+}
+var t_5;
+t_5 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"is_cart")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"is_cart"):false);
+frame.set("isCart", t_5, true);
+if(frame.topLevel) {
+context.setVariable("isCart", t_5);
+}
+if(frame.topLevel) {
+context.addExport("isCart", t_5);
+}
+output += "\n";
+if(!runtime.contextOrFrameLookup(context, frame, "productType")) {
+var t_6;
+t_6 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "info")),"product")),"type");
+frame.set("productType", t_6, true);
+if(frame.topLevel) {
+context.setVariable("productType", t_6);
+}
+if(frame.topLevel) {
+context.addExport("productType", t_6);
+}
+;
+}
+output += "\n";
+if(runtime.contextOrFrameLookup(context, frame, "productType") === "FILE" && runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "info")),"file_attachment")) {
+output += "  <div class=\"sellix-delivery-digital\">\n    <div class=\"sellix-delivery-digital-title\">File:</div>\n\n    <pre class=\"sellix-delivery-digital-item\">";
+if(true) {
+output += "<span>File Name: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "info")),"file_attachment")),"original_name"), env.opts.autoescape);
+output += "</span><br>";
+output += "<span>Size: ";
+output += runtime.suppressValue(env.getFilter("format_bytes").call(context, runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "info")),"file_attachment")),"size")), env.opts.autoescape);
+output += "</span>";
+;
+}
+output += "</pre>\n  </div>\n\n";
+if(!runtime.contextOrFrameLookup(context, frame, "isCart")) {
+output += "    <button\n      type=\"button\"\n      class=\"sellix-delivery-digital-button medium primary\"\n      onclick=\"saveToFile_";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "()\"\n    >\n      <i class=\"fas fa-save\"></i>&nbsp;&nbsp; Download File\n    </button>\n";
+;
+}
+;
+}
+output += "\n";
+if(runtime.contextOrFrameLookup(context, frame, "productType") === "SERIALS" && env.getFilter("length").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "info")),"serials"))) {
+output += "  <div class=\"sellix-delivery-digital\">\n    <div class=\"sellix-delivery-digital-title\">Serials:</div>\n\n    <pre class=\"sellix-delivery-digital-item\" style=\"overflow:auto hidden\">";
+frame = frame.push();
+var t_9 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "info")),"serials");
+if(t_9) {t_9 = runtime.fromIterator(t_9);
+var t_8 = t_9.length;
+for(var t_7=0; t_7 < t_9.length; t_7++) {
+var t_10 = t_9[t_7];
+frame.set("serial", t_10);
+frame.set("loop.index", t_7 + 1);
+frame.set("loop.index0", t_7);
+frame.set("loop.revindex", t_8 - t_7);
+frame.set("loop.revindex0", t_8 - t_7 - 1);
+frame.set("loop.first", t_7 === 0);
+frame.set("loop.last", t_7 === t_8 - 1);
+frame.set("loop.length", t_8);
+output += "<span style=\"font-size: .75rem;line-height: 1;\">";
+output += runtime.suppressValue(t_10, env.opts.autoescape);
+output += "<br/></span>";
+;
+}
+}
+frame = frame.pop();
+output += "</pre>\n  </div>\n\n  <div class=\"sellix-delivery-digital-buttons\">\n    <button\n      type=\"button\"\n      style=\"width: 11rem; min-height: 40px; max-height: 40px\"\n      class=\"medium primary mr-3\"\n      onclick=\"copyToClipboard_";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "(`";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "info")),"serials"), env.opts.autoescape);
+output += "`)\"\n    >\n      <i class=\"fas fa-copy\"></i>&nbsp;&nbsp;Copy to clipboard\n    </button>\n\n";
+if(!runtime.contextOrFrameLookup(context, frame, "isCart")) {
+output += "      <button\n        type=\"button\"\n        class=\"sellix-delivery-digital-button medium primary\"\n        onclick=\"saveToFile_";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "()\"\n      >\n        <i class=\"fas fa-save\"></i>&nbsp;&nbsp;Save as File\n      </button>\n";
+;
+}
+output += "  </div>\n";
+;
+}
+output += "\n";
+if(runtime.contextOrFrameLookup(context, frame, "productType") === "DYNAMIC" && runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "info")),"dynamic_response")) {
+output += "  <div class=\"sellix-delivery-digital\">\n    <div class=\"sellix-delivery-digital-title\">Product Issued:</div>\n\n    <pre class=\"sellix-delivery-digital-item\" style=\"font-size:.8rem\">";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "info")),"dynamic_response"), env.opts.autoescape);
+output += "</pre>\n  </div>\n  <div class=\"sellix-delivery-digital-buttons\">\n    <button\n      type=\"button\"\n      style=\"width: 11rem; min-height: 40px; max-height: 40px\"\n      class=\"mr-3 medium primary\"\n      onclick=\"copyToClipboard_";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "(`";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "info")),"dynamic_response"), env.opts.autoescape);
+output += "`)\"\n    >\n      <i class=\"fas fa-copy\"></i>&nbsp;&nbsp;Copy to clipboard\n    </button>\n\n";
+if(!runtime.contextOrFrameLookup(context, frame, "isCart")) {
+output += "      <button\n        type=\"button\"\n        class=\"sellix-delivery-digital-button medium primary\"\n        onclick=\"saveToFile_";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "()\"\n      >\n        <i class=\"fas fa-save\"></i>&nbsp;&nbsp;Save as File\n      </button>\n";
+;
+}
+output += "  </div>\n";
+;
+}
+output += "\n\n";
+if(runtime.contextOrFrameLookup(context, frame, "productType") === "SERVICE") {
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "info")),"service_text")) {
+output += "    <div class=\"sellix-delivery-digital\">\n      <div class=\"sellix-delivery-digital-title\">Service:</div>\n\n      <pre class=\"sellix-delivery-digital-item\" style=\"white-space: break-spaces\">";
+output += runtime.suppressValue(env.getFilter("dom_sanitize").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "info")),"service_text")), env.opts.autoescape);
+output += "</pre>\n    </div>\n\n    <div class=\"sellix-delivery-digital-buttons\">\n      <button\n        type=\"button\"\n        style=\"width:11rem; min-height: 40px; max-height: 40px\"\n        class=\"mr-3 medium primary\"\n        onclick=\"copyToClipboard_";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "(`";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "info")),"service_text"), env.opts.autoescape);
+output += "`)\"\n      >\n        <i class=\"fas fa-copy\"></i>&nbsp;&nbsp;Copy to clipboard\n      </button>\n\n";
+if(!runtime.contextOrFrameLookup(context, frame, "isCart")) {
+output += "        <button\n          type=\"button\"\n          class=\"sellix-delivery-digital-button medium primary\"\n          onclick=\"saveToFile_";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "()\"\n        >\n          <i class=\"fas fa-save\"></i>&nbsp;&nbsp;Save as File\n        </button>\n";
+;
+}
+output += "    </div>\n";
+;
+}
+else {
+output += "    <div class=\"sellix-delivery-digital\">\n      <div class=\"sellix-delivery-digital-title\">No service text</div>\n      <div class=\"sellix-delivery-digital-item sellix-text\">\n        <p>This product has no service text, please wait further actions by the seller or open a ticket on his page.</p>\n      </div>\n    </div>\n    <a href=\"/contact\" target=\"_blank\" class=\"sellix-delivery-digital-button\">\n      <button type=\"button\" class=\"medium primary\">\n        <i class=\"fas fa-comments\"></i>&nbsp;&nbsp;Contact ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "info")),"product")),"name"), env.opts.autoescape);
+output += "\n      </button>\n    </a>\n";
+;
+}
+;
+}
+output += "\n<script type=\"application/javascript\">\n  function copyToClipboard_";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "(text) {\n    window.copyToClipboard(text);\n    jQuery(document).trigger('SellixToastify', {\n      type: 'success',\n      text: 'Copied to Clipboard',\n    });\n  }\n\n  function saveToFile_";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "() {\n    window.sellixHelper.saveInvoiceToFile('";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"uniqid"), env.opts.autoescape);
+output += "', '";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "productType"), env.opts.autoescape);
+output += "');\n  }\n</script>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

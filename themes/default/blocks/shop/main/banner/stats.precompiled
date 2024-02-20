@@ -1,0 +1,79 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_1, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_1);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_1);
+}
+var t_2;
+t_2 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"average_score")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"average_score"):0);
+frame.set("average_score", t_2, true);
+if(frame.topLevel) {
+context.setVariable("average_score", t_2);
+}
+if(frame.topLevel) {
+context.addExport("average_score", t_2);
+}
+output += "\n<div class=\"sellix-banner-feedback\">\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_banner_products_sold")) {
+output += "    <div>\n";
+if(!runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"hide_products_sold")) {
+output += "        <div>";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.shared.banner.stats.productSold"), env.opts.autoescape);
+output += "</div>\n\n        <div class=\"sellix-banner-feedback-count\">\n          ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"products_sold_count"), env.opts.autoescape);
+output += "\n        </div>\n";
+;
+}
+output += "    </div>\n";
+;
+}
+output += "\n";
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_banner_product_quality")) {
+output += "    <div>\n      <div>";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.shared.banner.stats.productQuality"), env.opts.autoescape);
+output += "</div>\n\n      <div class=\"sellix-banner-feedback-star\">\n        <span>\n";
+if(env.getFilter("float").call(context, runtime.contextOrFrameLookup(context, frame, "average_score")) >= 4.95) {
+output += "            5\n";
+;
+}
+else {
+output += "            ";
+output += runtime.suppressValue(env.getFilter("round").call(context, env.getFilter("float").call(context, runtime.contextOrFrameLookup(context, frame, "average_score")),1), env.opts.autoescape);
+output += "\n";
+;
+}
+output += "        </span>\n\n        <a href=\"feedback\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Rating star",runtime.makeKeywordArgs({"rating": runtime.contextOrFrameLookup(context, frame, "average_score")}), function(t_4,t_3) {
+if(t_4) { cb(t_4); return; }
+output += runtime.suppressValue(t_3, true && env.opts.autoescape);
+output += "\n          <i>\n            (";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"feedback")?env.getFilter("t").call(context, "shop.shared.reviews.reviewsWithCount",{"count": runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"feedback")),"total")}):env.getFilter("t").call(context, "shop.shared.reviews.noReviews")), env.opts.autoescape);
+output += ")\n          </i>\n        </a>\n      </div>\n    </div>\n";
+cb()});
+}
+else {
+cb()}
+})(function(t_5) {
+if(t_5) { cb(t_5); return; }output += "</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

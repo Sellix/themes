@@ -1,0 +1,30 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+output += "<style>\n\n.productlisttext {\n  margin-top:30px;\n  position: relative;\n  height: 100px;\n  z-index:2;\n  display:flex;\n  align-content: flex-end;\n  justify-content: center;\n  background-image: url(";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"productlist_background_image"), env.opts.autoescape);
+output += ");\n  background-repeat: no-repeat;\n  background-size: contain;\n  background-position: center;\n}\n\n.productlisttext h2{\n  text-align: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"productlist_Text_title_alignment"), env.opts.autoescape);
+output += ";\n  font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"productlist_Text_title_size"), env.opts.autoescape);
+output += "px;\n  font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"productlist_Text_title_thickness"), env.opts.autoescape);
+output += ";\n}\n</style>\n\n<div class=\"productlisttext\">\n    <h2>";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"productlist_Text_title"), env.opts.autoescape);
+output += "</h2>\n</div>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

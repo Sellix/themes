@@ -1,0 +1,59 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"product") || runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"productInfo")),"product");
+frame.set("product", t_2, true);
+if(frame.topLevel) {
+context.setVariable("product", t_2);
+}
+if(frame.topLevel) {
+context.addExport("product", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"terms_of_service");
+frame.set("productTerms", t_3, true);
+if(frame.topLevel) {
+context.setVariable("productTerms", t_3);
+}
+if(frame.topLevel) {
+context.addExport("productTerms", t_3);
+}
+output += "\n";
+if(!runtime.contextOrFrameLookup(context, frame, "productTerms")) {
+output += "  <div class=\"empty-message-container\">\n      <span class=\"empty-message-title\">\n        ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("t").call(context, "shop.terms.noProductTerms",{"productName": env.getFilter("join").call(context, ["<b>",runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"title"),"</b>"],"")})), env.opts.autoescape);
+output += "\n      </span>\n  </div>\n";
+;
+}
+else {
+output += "  <div class=\"sellix-text\">\n    ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("html_sanitize").call(context, runtime.contextOrFrameLookup(context, frame, "productTerms"))), env.opts.autoescape);
+output += "\n  </div>\n";
+;
+}
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

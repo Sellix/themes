@@ -1,0 +1,266 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_1, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_1);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_2, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_2);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_2);
+}
+var t_3;
+t_3 = (lineno = 2, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_3, true);
+if(frame.topLevel) {
+context.setVariable("id", t_3);
+}
+if(frame.topLevel) {
+context.addExport("id", t_3);
+}
+output += "\n<style>\n  .sellix-trust.sellix-trust-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " {\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"is_wide")) {
+output += "      width: 100%;\n";
+;
+}
+if(!runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_border")) {
+output += "      border: none;\n";
+;
+}
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_background_color")) {
+output += "      background: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_background_color")), env.opts.autoescape);
+output += ";\n";
+;
+}
+output += "    box-shadow: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_shadow"), env.opts.autoescape);
+output += ";\n    border-radius: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_border_radius"), env.opts.autoescape);
+output += "rem;\n    padding: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding"), env.opts.autoescape);
+output += "px;\n  }\n\n  .sellix-trust-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " .sellix-trust-title h1 {\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_size")) {
+output += "      font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_size"), env.opts.autoescape);
+output += "px;\n";
+;
+}
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_color")) {
+output += "      color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_color")), env.opts.autoescape);
+output += ";\n";
+;
+}
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_line_height")) {
+output += "      line-height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_line_height"), env.opts.autoescape);
+output += "%;\n";
+;
+}
+output += "  }\n\n  .sellix-trust-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " .sellix-trust-block-title {\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"subheader_font_size")) {
+output += "      font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"subheader_font_size"), env.opts.autoescape);
+output += "px;\n";
+;
+}
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"subheader_font_color")) {
+output += "      color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"subheader_font_color")), env.opts.autoescape);
+output += ";\n";
+;
+}
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"subheader_line_height")) {
+output += "      line-height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"subheader_line_height"), env.opts.autoescape);
+output += "%;\n";
+;
+}
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"subheader_text_align")) {
+output += "      text-align: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"subheader_text_align"), env.opts.autoescape);
+output += ";\n";
+;
+}
+output += "  }\n\n  .sellix-trust-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " .sellix-trust-block>div {\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"body_font_size")) {
+output += "      font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"body_font_size"), env.opts.autoescape);
+output += "px;\n";
+;
+}
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"body_font_color")) {
+output += "      color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"body_font_color")), env.opts.autoescape);
+output += ";\n";
+;
+}
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"body_line_height")) {
+output += "      line-height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"body_line_height"), env.opts.autoescape);
+output += "%;\n";
+;
+}
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"body_text_align")) {
+output += "      text-align: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"body_text_align"), env.opts.autoescape);
+output += ";\n";
+;
+}
+output += "  }\n</style>\n\n<div class=\"sellix-trust-screen\">\n  <div\n    class=\"sellix-trust sellix-trust-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\"\n  >\n    <div>\n      <div\n        class=\"sellix-trust-title\"\n        style=\"justify-content: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_text_align"), env.opts.autoescape);
+output += ";\"\n      >\n        <h1>";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.title"), env.opts.autoescape);
+output += "</h1>\n      </div>\n    </div>\n\n    <div>\n      <div class=\"sellix-trust-block\">\n        <h3 class=\"sellix-trust-block-title\">\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"identity_verified")) {
+output += "            <i class=\"fa-solid fa-circle-check text-green mr-2\"></i>\n            ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.identityVerified.yes"), env.opts.autoescape);
+output += "\n";
+;
+}
+else {
+output += "            <i class=\"fa-solid fa-circle-xmark text-red mr-2\"></i>\n            ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.identityVerified.no"), env.opts.autoescape);
+output += "\n";
+;
+}
+output += "        </h3>\n        <div>\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"identity_verified")) {
+output += "            ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.identityText.yes"), env.opts.autoescape);
+output += "\n";
+;
+}
+else {
+output += "            ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.identityText.no"), env.opts.autoescape);
+output += "\n";
+;
+}
+output += "        </div>\n      </div>\n\n      <div class=\"sellix-trust-block\">\n        <h3 class=\"sellix-trust-block-title\">\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"sales_last14days_metric") === "low") {
+output += "            <i class=\"fa-solid fa-circle-xmark text-red mr-2\"></i>\n";
+;
+}
+else {
+output += "            <i class=\"fa-solid fa-circle-check text-green mr-2\"></i>\n";
+;
+}
+output += "          <b style=\"text-transform: capitalize\">\n            ";
+output += runtime.suppressValue(env.getFilter("t").call(context, env.getFilter("lower").call(context, env.getFilter("join").call(context, ["shop","trust",runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"sales_last14days_metric")],"."))), env.opts.autoescape);
+output += "\n          </b> ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.sales"), env.opts.autoescape);
+output += "\n        </h3>\n        <div>\n          ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.salesText"), env.opts.autoescape);
+output += "\n        </div>\n      </div>\n\n      <div class=\"sellix-trust-block\">\n        <h3 class=\"sellix-trust-block-title\">\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_appeal_ratio") * 100 > 35) {
+output += "            <i class=\"fa-solid fa-circle-xmark text-red mr-2\"></i>\n";
+;
+}
+else {
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_appealed") * 100 < 75 && runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_appealed") * 100 > 35) {
+output += "            <i class=\"fa-solid fa-triangle-exclamation text-gold mr-2\"></i>\n";
+;
+}
+else {
+output += "            <i class=\"fa-solid fa-circle-check text-green mr-2\"></i>\n";
+;
+}
+;
+}
+output += "          ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_appeal_ratio"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.feedback"), env.opts.autoescape);
+output += "</h3>\n        <div>\n          ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.feedbackText"), env.opts.autoescape);
+output += "\n        </div>\n      </div>\n\n      <div class=\"sellix-trust-block\">\n        <h3 class=\"sellix-trust-block-title\">\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_score") < 1) {
+output += "            <i class=\"fa-solid fa-circle-xmark text-red mr-2\"></i>\n";
+;
+}
+else {
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_score") > 1 && runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_score") < 4) {
+output += "            <i class=\"fa-solid fa-triangle-exclamation text-gold mr-2\"></i>\n";
+;
+}
+else {
+output += "            <i class=\"fa-solid fa-circle-check text-green mr-2\"></i>\n";
+;
+}
+;
+}
+output += "          ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_score")?env.getFilter("round").call(context, runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_score"),2):env.getFilter("round").call(context, 0,2)), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.feedbackScore"), env.opts.autoescape);
+output += "\n        </h3>\n        <div>\n          ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.feedbackScoreText"), env.opts.autoescape);
+output += "\n        </div>\n      </div>\n\n      <div class=\"sellix-trust-block\">\n        <h3 class=\"sellix-trust-block-title\">\n";
+if(!runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"no_chargeback_gateways")) {
+output += "            <i class=\"fa-solid fa-circle-check text-green mr-2\"></i>\n            ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.paypalAccepted.yes"), env.opts.autoescape);
+output += "\n";
+;
+}
+else {
+output += "            <i class=\"fa-solid fa-circle-xmark text-red mr-2\"></i>\n            ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.paypalAccepted.no"), env.opts.autoescape);
+output += "\n";
+;
+}
+output += "        </h3>\n        <div>\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"no_chargeback_gateways")) {
+output += "            ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.paypalText.0"), env.opts.autoescape);
+output += "\n";
+;
+}
+else {
+output += "            ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.paypalText.1"), env.opts.autoescape);
+output += "\n";
+;
+}
+output += "        </div>\n      </div>\n\n      <span style=\"font-size:13px;line-height:24px\">\n        <a href=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"what_is_trusted_advisor_url"), env.opts.autoescape);
+output += "\" target=\"_blank\">\n          ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.trust.help"), env.opts.autoescape);
+output += "\n        </a> <br/>\n      </span>\n    </div>\n  </div>\n</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

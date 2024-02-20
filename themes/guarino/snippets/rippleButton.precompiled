@@ -1,0 +1,55 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"id")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"id"):(env.getFilter("join").call(context, ["ripple-button-",runtime.contextOrFrameLookup(context, frame, "id")])));
+frame.set("button_id", t_2, true);
+if(frame.topLevel) {
+context.setVariable("button_id", t_2);
+}
+if(frame.topLevel) {
+context.addExport("button_id", t_2);
+}
+output += "\n<button\n  id='";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "button_id"), env.opts.autoescape);
+output += "'\n  type=\"";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"type")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"type"):"button"), env.opts.autoescape);
+output += "\"\n  style=\"";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"style")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"style"):""), env.opts.autoescape);
+output += "\"\n  class=\"button ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"class")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"class"):""), env.opts.autoescape);
+output += "\"\n>\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"plus")) {
+output += "    <i class=\"fa-solid fa-plus\" style=\"margin-right:.5rem\"></i>\n";
+;
+}
+output += "  ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"title"), env.opts.autoescape);
+output += "\n</button>\n\n<script type='application/javascript'>\n  $(document).ready(function () {\n    new ripple('#";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "button_id"), env.opts.autoescape);
+output += "');\n  });\n</script>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

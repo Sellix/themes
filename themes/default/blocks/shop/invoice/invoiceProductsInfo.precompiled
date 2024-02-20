@@ -1,0 +1,57 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"invoiceInfo")),"invoice");
+frame.set("invoice", t_2, true);
+if(frame.topLevel) {
+context.setVariable("invoice", t_2);
+}
+if(frame.topLevel) {
+context.addExport("invoice", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"productInfo")),"product");
+frame.set("product", t_3, true);
+if(frame.topLevel) {
+context.setVariable("product", t_3);
+}
+if(frame.topLevel) {
+context.addExport("product", t_3);
+}
+output += "\n<div id=\"invoice-products-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\"></div>\n\n<script type=\"application/javascript\">\n  $(document).ready(function() {\n    const component = new SellixInvoiceProductsInfoComponent(\n      '#invoice-products-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "',\n      ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("dump").call(context, runtime.contextOrFrameLookup(context, frame, "invoice"))), env.opts.autoescape);
+output += ",\n      ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("dump").call(context, runtime.contextOrFrameLookup(context, frame, "renderOptions"))), env.opts.autoescape);
+output += ",\n      ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("dump").call(context, runtime.contextOrFrameLookup(context, frame, "properties"))), env.opts.autoescape);
+output += ",\n    );\n\n    component.render();\n  });\n</script>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

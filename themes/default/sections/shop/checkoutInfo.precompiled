@@ -1,0 +1,102 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+output += "<div class=\"sellix-product-screen\">\n  <div class=\"shop-product-container\">\n    <div class=\"shop-product-info\" style=\"";
+output += runtime.suppressValue((!runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"enable_right_sidebar")?"width:100%":""), env.opts.autoescape);
+output += "\">\n      <div class=\"shop-product-info-description\">\n";
+frame = frame.push();
+var t_3 = runtime.fromIterator(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"block_order"));
+runtime.asyncEach(t_3, 1, function(block_name, t_1, t_2,next) {
+frame.set("block_name", block_name);
+frame.set("loop.index", t_1 + 1);
+frame.set("loop.index0", t_1);
+frame.set("loop.revindex", t_2 - t_1);
+frame.set("loop.revindex0", t_2 - t_1 - 1);
+frame.set("loop.first", t_1 === 0);
+frame.set("loop.last", t_1 === t_2 - 1);
+frame.set("loop.length", t_2);
+(function(cb) {if(!runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"enable_right_sidebar") || runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "loop")),"index") > env.getFilter("int").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"right_sidebar_blocks_count"))) {
+(function(cb) {if(block_name == "Purchase details") {
+env.getExtension("RenderBlock")["run"](context,block_name,runtime.makeKeywordArgs({"type": "checkout"}), function(t_5,t_4) {
+if(t_5) { cb(t_5); return; }
+output += runtime.suppressValue(t_4, true && env.opts.autoescape);
+cb()});
+}
+else {
+env.getExtension("RenderBlock")["run"](context,block_name, function(t_7,t_6) {
+if(t_7) { cb(t_7); return; }
+output += runtime.suppressValue(t_6, true && env.opts.autoescape);
+cb()});
+}
+})(function(t_8) {
+if(t_8) { cb(t_8); return; }cb()});
+}
+else {
+cb()}
+})(function(t_9) {
+if(t_9) { cb(t_9); return; }next(t_1);
+});
+}, function(t_11,t_10) {
+if(t_11) { cb(t_11); return; }
+frame = frame.pop();
+output += "      </div>\n    </div>\n\n";
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"enable_right_sidebar")) {
+output += "      <div class=\"shop-product-card\">\n";
+frame = frame.push();
+var t_14 = runtime.fromIterator(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"block_order"));
+runtime.asyncEach(t_14, 1, function(block_name, t_12, t_13,next) {
+frame.set("block_name", block_name);
+frame.set("loop.index", t_12 + 1);
+frame.set("loop.index0", t_12);
+frame.set("loop.revindex", t_13 - t_12);
+frame.set("loop.revindex0", t_13 - t_12 - 1);
+frame.set("loop.first", t_12 === 0);
+frame.set("loop.last", t_12 === t_13 - 1);
+frame.set("loop.length", t_13);
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "loop")),"index") <= env.getFilter("int").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"right_sidebar_blocks_count"))) {
+(function(cb) {if(block_name == "Purchase details") {
+env.getExtension("RenderBlock")["run"](context,block_name,runtime.makeKeywordArgs({"type": runtime.contextOrFrameLookup(context, frame, "purchaseDetailsType")}), function(t_16,t_15) {
+if(t_16) { cb(t_16); return; }
+output += runtime.suppressValue(t_15, true && env.opts.autoescape);
+cb()});
+}
+else {
+env.getExtension("RenderBlock")["run"](context,block_name, function(t_18,t_17) {
+if(t_18) { cb(t_18); return; }
+output += runtime.suppressValue(t_17, true && env.opts.autoescape);
+cb()});
+}
+})(function(t_19) {
+if(t_19) { cb(t_19); return; }cb()});
+}
+else {
+cb()}
+})(function(t_20) {
+if(t_20) { cb(t_20); return; }next(t_12);
+});
+}, function(t_22,t_21) {
+if(t_22) { cb(t_22); return; }
+frame = frame.pop();
+output += "      </div>\n";
+cb()});
+}
+else {
+cb()}
+})(function(t_23) {
+if(t_23) { cb(t_23); return; }output += "  </div>\n</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+})});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

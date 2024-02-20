@@ -1,0 +1,185 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 14, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"invoiceInfo")),"invoice");
+frame.set("invoice", t_2, true);
+if(frame.topLevel) {
+context.setVariable("invoice", t_2);
+}
+if(frame.topLevel) {
+context.addExport("invoice", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_3, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_3);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"type") === "SHOPPING_CART";
+frame.set("isCart", t_4, true);
+if(frame.topLevel) {
+context.setVariable("isCart", t_4);
+}
+if(frame.topLevel) {
+context.addExport("isCart", t_4);
+}
+output += "\n";
+var t_5;
+t_5 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties")),"show_border");
+frame.set("showBorder", t_5, true);
+if(frame.topLevel) {
+context.setVariable("showBorder", t_5);
+}
+if(frame.topLevel) {
+context.addExport("showBorder", t_5);
+}
+var t_6;
+t_6 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties")),"container_border_radius") || "0.5";
+frame.set("borderRadius", t_6, true);
+if(frame.topLevel) {
+context.setVariable("borderRadius", t_6);
+}
+if(frame.topLevel) {
+context.addExport("borderRadius", t_6);
+}
+var t_7;
+t_7 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties")),"container_background_color")) || "none";
+frame.set("backgroundColor", t_7, true);
+if(frame.topLevel) {
+context.setVariable("backgroundColor", t_7);
+}
+if(frame.topLevel) {
+context.addExport("backgroundColor", t_7);
+}
+var t_8;
+t_8 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties")),"container_padding_vert") || "0";
+frame.set("containerPaddingVert", t_8, true);
+if(frame.topLevel) {
+context.setVariable("containerPaddingVert", t_8);
+}
+if(frame.topLevel) {
+context.addExport("containerPaddingVert", t_8);
+}
+var t_9;
+t_9 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties")),"container_padding_horiz") || "0";
+frame.set("containerPaddingHoriz", t_9, true);
+if(frame.topLevel) {
+context.setVariable("containerPaddingHoriz", t_9);
+}
+if(frame.topLevel) {
+context.addExport("containerPaddingHoriz", t_9);
+}
+var t_10;
+t_10 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties")),"container_shadow");
+frame.set("containerShadow", t_10, true);
+if(frame.topLevel) {
+context.setVariable("containerShadow", t_10);
+}
+if(frame.topLevel) {
+context.addExport("containerShadow", t_10);
+}
+output += "\n";
+var t_11;
+t_11 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties")),"body_font_color"));
+frame.set("bodyFontColor", t_11, true);
+if(frame.topLevel) {
+context.setVariable("bodyFontColor", t_11);
+}
+if(frame.topLevel) {
+context.addExport("bodyFontColor", t_11);
+}
+var t_12;
+t_12 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties")),"body_font_size");
+frame.set("bodyFontSize", t_12, true);
+if(frame.topLevel) {
+context.setVariable("bodyFontSize", t_12);
+}
+if(frame.topLevel) {
+context.addExport("bodyFontSize", t_12);
+}
+var t_13;
+t_13 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties")),"body_text_align");
+frame.set("bodyTextAlign", t_13, true);
+if(frame.topLevel) {
+context.setVariable("bodyTextAlign", t_13);
+}
+if(frame.topLevel) {
+context.addExport("bodyTextAlign", t_13);
+}
+output += "\n<style>\n  .product-badge-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " {\n      border: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "showBorder")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += "!important;\n      border-radius: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "borderRadius"), env.opts.autoescape);
+output += "rem!important;\n      background: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "backgroundColor"), env.opts.autoescape);
+output += "!important;\n      padding:  ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "containerPaddingVert"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "containerPaddingHoriz"), env.opts.autoescape);
+output += "px!important;\n      box-shadow: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "containerShadow"), env.opts.autoescape);
+output += "!important;\n      justify-content: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "bodyTextAlign"), env.opts.autoescape);
+output += "!important;\n  }\n\n  .product-badge-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " .product-badge-text div {\n      color: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "bodyFontColor"), env.opts.autoescape);
+output += "!important;\n      font-size:  ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "bodyFontSize"), env.opts.autoescape);
+output += "px!important;\n  }\n\n  .product-badge-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " .product-badge-text span {\n      color: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "bodyFontColor"), env.opts.autoescape);
+output += "!important;\n      font-size:  ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "bodyFontSize") - 2, env.opts.autoescape);
+output += "px!important;\n      opacity: 0.5;\n  }\n</style>\n\n<div id=\"invoice-product-badge-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\" class=\"track-badge product-badge-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\">\n  <i class=\"fa-regular fa-address-card\"></i>\n  <div class=\"product-badge-text\">\n    <div>\n      ";
+output += runtime.suppressValue(env.getFilter("t").call(context, ((runtime.contextOrFrameLookup(context, frame, "isCart")?"shop.invoice.cart.title":"shop.invoice.product.title"))), env.opts.autoescape);
+output += "\n    </div>\n    <span>";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.shared.titles.moreInfo"), env.opts.autoescape);
+output += "</span>\n  </div>\n</div>\n\n<script type='application/javascript'>\n  let isVisibleProductDescription_";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " = false;\n  $(document).ready(function() {\n      $('#invoice-product-badge-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "').on('click', function() {\n          isVisibleProductDescription_";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " = !isVisibleProductDescription_";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += ";\n          $(document).trigger('SellixInvoiceShowProductDescription', { visible: isVisibleProductDescription_";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " });\n      });\n  });\n</script>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

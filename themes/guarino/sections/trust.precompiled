@@ -1,0 +1,228 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_1, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_1);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_2, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_2);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_2);
+}
+var t_3;
+t_3 = (lineno = 2, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_3, true);
+if(frame.topLevel) {
+context.setVariable("id", t_3);
+}
+if(frame.topLevel) {
+context.addExport("id", t_3);
+}
+output += "\n<style>\n  .sellix-trust.sellix-trust-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " {\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"is_wide")) {
+output += "      width: 100%;\n";
+;
+}
+if(!runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_border")) {
+output += "      border: none;\n";
+;
+}
+output += "    background: #160e2c!important;\n    box-shadow: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_shadow"), env.opts.autoescape);
+output += ";\n    border-radius: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_border_radius"), env.opts.autoescape);
+output += "rem;\n    padding: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding"), env.opts.autoescape);
+output += "px;\n  }\n\n  .sellix-trust-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " .sellix-trust-title h1 {\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_size")) {
+output += "      font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_size"), env.opts.autoescape);
+output += "px;\n";
+;
+}
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_color")) {
+output += "      color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_color")), env.opts.autoescape);
+output += ";\n";
+;
+}
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_line_height")) {
+output += "      line-height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_line_height"), env.opts.autoescape);
+output += "%;\n";
+;
+}
+output += "  }\n\n  .sellix-trust-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " .sellix-trust-block-title {\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"subheader_font_size")) {
+output += "      font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"subheader_font_size"), env.opts.autoescape);
+output += "px;\n";
+;
+}
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"subheader_font_color")) {
+output += "      color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"subheader_font_color")), env.opts.autoescape);
+output += ";\n";
+;
+}
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"subheader_line_height")) {
+output += "      line-height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"subheader_line_height"), env.opts.autoescape);
+output += "%;\n";
+;
+}
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"subheader_text_align")) {
+output += "      text-align: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"subheader_text_align"), env.opts.autoescape);
+output += ";\n";
+;
+}
+output += "  }\n\n  .sellix-trust-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " .sellix-trust-block>div {\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"body_font_size")) {
+output += "      font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"body_font_size"), env.opts.autoescape);
+output += "px;\n";
+;
+}
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"body_font_color")) {
+output += "      color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"body_font_color")), env.opts.autoescape);
+output += ";\n";
+;
+}
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"body_line_height")) {
+output += "      line-height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"body_line_height"), env.opts.autoescape);
+output += "%;\n";
+;
+}
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"body_text_align")) {
+output += "      text-align: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"body_text_align"), env.opts.autoescape);
+output += ";\n";
+;
+}
+output += "  }\n\n</style>\n\n<div class=\"sellix-trust-screen\">\n  <div\n    class=\"sellix-trust sellix-trust-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\"\n  >\n    <div>\n      <div\n        class=\"sellix-trust-title\"\n        style=\"justify-content: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_text_align"), env.opts.autoescape);
+output += ";\"\n      >\n        <h1>Trusted Advisor</h1>\n      </div>\n    </div>\n\n    <div>\n      <div class=\"sellix-trust-block\">\n        <h3 class=\"sellix-trust-block-title\">\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"identity_verified")) {
+output += "            <i class=\"fa-solid fa-circle-check text-green mr-2\"></i>\n            Identity Verified\n";
+;
+}
+else {
+output += "            <i class=\"fa-solid fa-circle-xmark text-red mr-2\"></i>\n            Identity not Verified\n";
+;
+}
+output += "        </h3>\n        <div>\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"identity_verified")) {
+output += "            This business has verified its identity and details to Sellix. Verified businesses have gone through an address and document validation phase which confirms their identity and the uniqueness of the merchant.\n";
+;
+}
+else {
+output += "            This business has not verified its identity and details to Sellix. We cannot confirm this store is a valid and unique merchant.\n";
+;
+}
+output += "        </div>\n      </div>\n\n      <div class=\"sellix-trust-block\">\n        <h3 class=\"sellix-trust-block-title\">\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"sales_last14days_metric") === "low") {
+output += "            <i class=\"fa-solid fa-circle-xmark text-red mr-2\"></i>\n";
+;
+}
+else {
+output += "            <i class=\"fa-solid fa-circle-check text-green mr-2\"></i>\n";
+;
+}
+output += "          <b style=\"text-transform: capitalize\">";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"sales_last14days_metric"), env.opts.autoescape);
+output += "</b> sales in the last 14 days</h3>\n        <div>\n          This metric takes into consideration the quantity of sales this business had in the last 14 days. High and Medium sales mean that the business has been proactively selling goods with at least one order daily.\n        </div>\n      </div>\n\n      <div class=\"sellix-trust-block\">\n        <h3 class=\"sellix-trust-block-title\">\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_appeal_ratio") * 100 > 35) {
+output += "            <i class=\"fa-solid fa-circle-xmark text-red mr-2\"></i>\n";
+;
+}
+else {
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_appealed") * 100 < 75 && runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_appealed") * 100 > 35) {
+output += "            <i class=\"fa-solid fa-triangle-exclamation text-gold mr-2\"></i>\n";
+;
+}
+else {
+output += "            <i class=\"fa-solid fa-circle-check text-green mr-2\"></i>\n";
+;
+}
+;
+}
+output += "          ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_appeal_ratio"), env.opts.autoescape);
+output += " feedback appeal ratio</h3>\n        <div>\n          The feedback appeal ratio takes into consideration the total amount of feedback a merchant has and how many have been appealed (either removed or contested). The appeal ratio has a value between 0.00 and 1, where 0.10 corresponds to 10% of all feedback appealed.\n        </div>\n      </div>\n\n      <div class=\"sellix-trust-block\">\n        <h3 class=\"sellix-trust-block-title\">\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_score") < 1) {
+output += "            <i class=\"fa-solid fa-circle-xmark text-red mr-2\"></i>\n";
+;
+}
+else {
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_score") > 1 && runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_score") < 4) {
+output += "            <i class=\"fa-solid fa-triangle-exclamation text-gold mr-2\"></i>\n";
+;
+}
+else {
+output += "            <i class=\"fa-solid fa-circle-check text-green mr-2\"></i>\n";
+;
+}
+;
+}
+output += "          ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_score")?env.getFilter("round").call(context, runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"feedback_score"),2):env.getFilter("round").call(context, 0,2)), env.opts.autoescape);
+output += " feedback score\n        </h3>\n        <div>\n          The feedback score helps customers understand whether or not this business has had positive feedback recently, meaning that every customer purchased a valid good.\n        </div>\n      </div>\n\n      <div class=\"sellix-trust-block\">\n        <h3 class=\"sellix-trust-block-title\">\n";
+if(!runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"no_chargeback_gateways")) {
+output += "            <i class=\"fa-solid fa-circle-check text-green mr-2\"></i>\n            PayPal or Credit cards accepted\n";
+;
+}
+else {
+output += "            <i class=\"fa-solid fa-circle-xmark text-red mr-2\"></i>\n            PayPal or Credit/Debit cards not accepted\n";
+;
+}
+output += "        </h3>\n        <div>\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"trusted_checks")),"no_chargeback_gateways")) {
+output += "            This merchant does not accept any payment method with consumer protection. For example, Cryptocurrencies and Cash App cannot accept refunds due to their nature. Proceed with caution and be sure that you know what you're buying.\n";
+;
+}
+else {
+output += "            This merchant accepts payment methods, such as PayPal and Credit/Debit Cards, with consumer protection; meaning that a refund request can be uted when paying through them only if the purchased good is not valid. However, this does not mean that refund requests are available for payment methods like Cash App and Cryptocurrencies as they are not accepted due to their nature.\n";
+;
+}
+output += "        </div>\n      </div>\n\n      <span style=\"font-size:13px;line-height:24px\">\n        <a href=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"what_is_trusted_advisor_url"), env.opts.autoescape);
+output += "\" target=\"_blank\">What is Trusted Advisor and what does this mean for customers?</a> <br/>\n      </span>\n    </div>\n  </div>\n</div>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

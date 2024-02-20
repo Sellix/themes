@@ -1,0 +1,100 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+output += "\n";
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_2, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_2);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_2);
+}
+output += "\n";
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"color_class");
+frame.set("colorClass", t_3, true);
+if(frame.topLevel) {
+context.setVariable("colorClass", t_3);
+}
+if(frame.topLevel) {
+context.addExport("colorClass", t_3);
+}
+output += "\n";
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"background_color");
+frame.set("bgColor", t_4, true);
+if(frame.topLevel) {
+context.setVariable("bgColor", t_4);
+}
+if(frame.topLevel) {
+context.addExport("bgColor", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"color");
+frame.set("color", t_5, true);
+if(frame.topLevel) {
+context.setVariable("color", t_5);
+}
+if(frame.topLevel) {
+context.addExport("color", t_5);
+}
+output += "\n";
+var t_6;
+t_6 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_6, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_6);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_6);
+}
+output += "\n<style>\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " {";
+if(runtime.contextOrFrameLookup(context, frame, "bgColor")) {
+output += "background: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "bgColor")), env.opts.autoescape);
+output += " ";
+;
+}
+output += "  }\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " div {";
+if(runtime.contextOrFrameLookup(context, frame, "color")) {
+output += "background: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "color")), env.opts.autoescape);
+output += " ";
+;
+}
+output += "  }\n</style>\n\n<div class=\"lds-ellipsis spin-2 ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "colorClass"), env.opts.autoescape);
+output += "\">\n  <div></div>\n  <div></div>\n  <div></div>\n  <div></div>\n</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

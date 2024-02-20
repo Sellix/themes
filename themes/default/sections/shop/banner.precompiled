@@ -1,0 +1,80 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_1, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_1);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_2, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_2);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_2);
+}
+output += "\n<div class=\"sellix-banner-container\">\n  <div\n    class=\"sellix-banner ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"hide_products_sold")?"products-sold-hide":""), env.opts.autoescape);
+output += "\"\n    style=\"border: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_banner_border")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += ";";
+output += " background-color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_background_color")), env.opts.autoescape);
+output += ";";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_background_image")) {
+output += " background-image: url(";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_background_image"), env.opts.autoescape);
+output += ");background-repeat: no-repeat;background-size: cover;background-position: center;";
+;
+}
+output += " padding: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_padding"), env.opts.autoescape);
+output += "px;";
+output += " box-shadow: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_shadow"), env.opts.autoescape);
+output += ";";
+output += " border-radius: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_border_radius"), env.opts.autoescape);
+output += "rem;\"\n  >\n";
+frame = frame.push();
+var t_5 = runtime.fromIterator(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"block_order"));
+runtime.asyncEach(t_5, 1, function(block_name, t_3, t_4,next) {
+frame.set("block_name", block_name);
+frame.set("loop.index", t_3 + 1);
+frame.set("loop.index0", t_3);
+frame.set("loop.revindex", t_4 - t_3);
+frame.set("loop.revindex0", t_4 - t_3 - 1);
+frame.set("loop.first", t_3 === 0);
+frame.set("loop.last", t_3 === t_4 - 1);
+frame.set("loop.length", t_4);
+env.getExtension("RenderBlock")["run"](context,block_name, function(t_7,t_6) {
+if(t_7) { cb(t_7); return; }
+output += runtime.suppressValue(t_6, true && env.opts.autoescape);
+next(t_3);
+});
+}, function(t_9,t_8) {
+if(t_9) { cb(t_9); return; }
+frame = frame.pop();
+output += "  </div>\n</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

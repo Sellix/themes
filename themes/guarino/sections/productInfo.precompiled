@@ -1,0 +1,102 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"productInfo")),"product");
+frame.set("product", t_1, true);
+if(frame.topLevel) {
+context.setVariable("product", t_1);
+}
+if(frame.topLevel) {
+context.addExport("product", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"enable_right_sidebar") && runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"type") != "INFO_CARD";
+frame.set("enableRightSidebar", t_2, true);
+if(frame.topLevel) {
+context.setVariable("enableRightSidebar", t_2);
+}
+if(frame.topLevel) {
+context.addExport("enableRightSidebar", t_2);
+}
+output += "\n<div class=\"sellix-product-screen\">\n  <div class=\"shop-product-container\">\n    <div class=\"shop-product-info\" style=\"";
+output += runtime.suppressValue((!runtime.contextOrFrameLookup(context, frame, "enableRightSidebar")?"width:100%":""), env.opts.autoescape);
+output += "\">\n      <div class=\"shop-product-info-description ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"image_attachment")?"with-image":""), env.opts.autoescape);
+output += "\">\n";
+frame = frame.push();
+var t_5 = runtime.fromIterator(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"block_order"));
+runtime.asyncEach(t_5, 1, function(block_name, t_3, t_4,next) {
+frame.set("block_name", block_name);
+frame.set("loop.index", t_3 + 1);
+frame.set("loop.index0", t_3);
+frame.set("loop.revindex", t_4 - t_3);
+frame.set("loop.revindex0", t_4 - t_3 - 1);
+frame.set("loop.first", t_3 === 0);
+frame.set("loop.last", t_3 === t_4 - 1);
+frame.set("loop.length", t_4);
+(function(cb) {if(!runtime.contextOrFrameLookup(context, frame, "enableRightSidebar") || runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "loop")),"revindex") > env.getFilter("int").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"right_sidebar_blocks_count"))) {
+env.getExtension("RenderBlock")["run"](context,block_name, function(t_7,t_6) {
+if(t_7) { cb(t_7); return; }
+output += runtime.suppressValue(t_6, true && env.opts.autoescape);
+cb()});
+}
+else {
+cb()}
+})(function(t_8) {
+if(t_8) { cb(t_8); return; }next(t_3);
+});
+}, function(t_10,t_9) {
+if(t_10) { cb(t_10); return; }
+frame = frame.pop();
+output += "      </div>\n    </div>\n\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "enableRightSidebar")) {
+output += "      <div class=\"shop-product-card\">\n";
+frame = frame.push();
+var t_13 = runtime.fromIterator(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"block_order"));
+runtime.asyncEach(t_13, 1, function(block_name, t_11, t_12,next) {
+frame.set("block_name", block_name);
+frame.set("loop.index", t_11 + 1);
+frame.set("loop.index0", t_11);
+frame.set("loop.revindex", t_12 - t_11);
+frame.set("loop.revindex0", t_12 - t_11 - 1);
+frame.set("loop.first", t_11 === 0);
+frame.set("loop.last", t_11 === t_12 - 1);
+frame.set("loop.length", t_12);
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "loop")),"revindex") <= env.getFilter("int").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"right_sidebar_blocks_count"))) {
+env.getExtension("RenderBlock")["run"](context,block_name, function(t_15,t_14) {
+if(t_15) { cb(t_15); return; }
+output += runtime.suppressValue(t_14, true && env.opts.autoescape);
+cb()});
+}
+else {
+cb()}
+})(function(t_16) {
+if(t_16) { cb(t_16); return; }next(t_11);
+});
+}, function(t_18,t_17) {
+if(t_18) { cb(t_18); return; }
+frame = frame.pop();
+output += "      </div>\n";
+cb()});
+}
+else {
+cb()}
+})(function(t_19) {
+if(t_19) { cb(t_19); return; }output += "  </div>\n</div>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+})});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

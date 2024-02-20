@@ -1,0 +1,210 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"id") || (lineno = 0, colno = 26, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_2, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_2);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_2);
+}
+output += "\n";
+var t_3;
+t_3 = (lineno = 3, colno = 29, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"icon_snippet"),""]));
+frame.set("iconSnippet", t_3, true);
+if(frame.topLevel) {
+context.setVariable("iconSnippet", t_3);
+}
+if(frame.topLevel) {
+context.addExport("iconSnippet", t_3);
+}
+var t_4;
+t_4 = (lineno = 4, colno = 30, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"icon_position"),"right"]));
+frame.set("iconPosition", t_4, true);
+if(frame.topLevel) {
+context.setVariable("iconPosition", t_4);
+}
+if(frame.topLevel) {
+context.addExport("iconPosition", t_4);
+}
+var t_5;
+t_5 = (lineno = 5, colno = 25, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [env.getFilter("get_color").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"background_color")),""]));
+frame.set("bgColor", t_5, true);
+if(frame.topLevel) {
+context.setVariable("bgColor", t_5);
+}
+if(frame.topLevel) {
+context.addExport("bgColor", t_5);
+}
+var t_6;
+t_6 = (lineno = 6, colno = 28, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [env.getFilter("get_color").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"label_color")),""]));
+frame.set("labelColor", t_6, true);
+if(frame.topLevel) {
+context.setVariable("labelColor", t_6);
+}
+if(frame.topLevel) {
+context.addExport("labelColor", t_6);
+}
+var t_7;
+t_7 = (lineno = 7, colno = 31, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"label_font_size"),false]));
+frame.set("labelFontSize", t_7, true);
+if(frame.topLevel) {
+context.setVariable("labelFontSize", t_7);
+}
+if(frame.topLevel) {
+context.addExport("labelFontSize", t_7);
+}
+var t_8;
+t_8 = (runtime.contextOrFrameLookup(context, frame, "labelFontSize")?env.getFilter("join").call(context, [runtime.contextOrFrameLookup(context, frame, "labelFontSize"),"px"]):"");
+frame.set("labelFontSize", t_8, true);
+if(frame.topLevel) {
+context.setVariable("labelFontSize", t_8);
+}
+if(frame.topLevel) {
+context.addExport("labelFontSize", t_8);
+}
+var t_9;
+t_9 = (lineno = 9, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"label_font_weight"),""]));
+frame.set("labelFontWeight", t_9, true);
+if(frame.topLevel) {
+context.setVariable("labelFontWeight", t_9);
+}
+if(frame.topLevel) {
+context.addExport("labelFontWeight", t_9);
+}
+var t_10;
+t_10 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"url");
+frame.set("url", t_10, true);
+if(frame.topLevel) {
+context.setVariable("url", t_10);
+}
+if(frame.topLevel) {
+context.addExport("url", t_10);
+}
+var t_11;
+t_11 = (lineno = 11, colno = 24, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"is_link"),false]));
+frame.set("isLink", t_11, true);
+if(frame.topLevel) {
+context.setVariable("isLink", t_11);
+}
+if(frame.topLevel) {
+context.addExport("isLink", t_11);
+}
+var t_12;
+t_12 = (lineno = 12, colno = 28, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"with_loader"),false]));
+frame.set("withLoader", t_12, true);
+if(frame.topLevel) {
+context.setVariable("withLoader", t_12);
+}
+if(frame.topLevel) {
+context.addExport("withLoader", t_12);
+}
+output += "\n";
+var t_13;
+t_13 = env.getFilter("t").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"label"),{"keyPrefix": "shop.shared.titles"});
+frame.set("label", t_13, true);
+if(frame.topLevel) {
+context.setVariable("label", t_13);
+}
+if(frame.topLevel) {
+context.addExport("label", t_13);
+}
+output += "\n";
+var t_14;
+t_14 = "snippet-link-button";
+frame.set("globalClass", t_14, true);
+if(frame.topLevel) {
+context.setVariable("globalClass", t_14);
+}
+if(frame.topLevel) {
+context.addExport("globalClass", t_14);
+}
+var t_15;
+t_15 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_15, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_15);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_15);
+}
+output += "\n<style>\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " .button {\n    color: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "labelColor"), env.opts.autoescape);
+output += ";\n    background-color: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "bgColor"), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "labelFontSize"), env.opts.autoescape);
+output += ";\n    font-weight: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "labelFontWeight"), env.opts.autoescape);
+output += ";\n  }\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " .link-button-label {\n    display: flex;\n  }\n</style>\n\n<div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "\">\n  <a id=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\" href=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "url"), env.opts.autoescape);
+output += "\" class=\"button ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isLink")?"button-link":""), env.opts.autoescape);
+output += "\">\n    <div class=\"link-button-loader d-none\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Shared: Loader",runtime.makeKeywordArgs({"properties": {"background_color": runtime.contextOrFrameLookup(context, frame, "bgColor") || "button_color","color": runtime.contextOrFrameLookup(context, frame, "labelColor") || "button_text_color"}}), function(t_17,t_16) {
+if(t_17) { cb(t_17); return; }
+output += runtime.suppressValue(t_16, true && env.opts.autoescape);
+output += "    </div>\n\n    <div class=\"link-button-label\">\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "iconSnippet") && runtime.contextOrFrameLookup(context, frame, "iconPosition") == "left") {
+output += "        <span class=\"mr-2 d-flex\">\n";
+env.getExtension("RenderSnippet")["run"](context,runtime.contextOrFrameLookup(context, frame, "iconSnippet"), function(t_19,t_18) {
+if(t_19) { cb(t_19); return; }
+output += runtime.suppressValue(t_18, true && env.opts.autoescape);
+output += "        </span>\n";
+cb()});
+}
+else {
+cb()}
+})(function(t_20) {
+if(t_20) { cb(t_20); return; }output += "\n      <span>\n        ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "label"), env.opts.autoescape);
+output += "\n      </span>\n\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "iconSnippet") && runtime.contextOrFrameLookup(context, frame, "iconPosition") == "right") {
+output += "        <span class=\"ml-2 d-flex\">\n";
+env.getExtension("RenderSnippet")["run"](context,runtime.contextOrFrameLookup(context, frame, "iconSnippet"), function(t_22,t_21) {
+if(t_22) { cb(t_22); return; }
+output += runtime.suppressValue(t_21, true && env.opts.autoescape);
+output += "        </span>\n";
+cb()});
+}
+else {
+cb()}
+})(function(t_23) {
+if(t_23) { cb(t_23); return; }output += "    </div>\n  </a>\n</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+})})});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

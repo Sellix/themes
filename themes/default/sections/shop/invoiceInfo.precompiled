@@ -1,0 +1,133 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"productInfo")),"product");
+frame.set("product", t_2, true);
+if(frame.topLevel) {
+context.setVariable("product", t_2);
+}
+if(frame.topLevel) {
+context.addExport("product", t_2);
+}
+output += "\n";
+var t_3;
+t_3 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type") == "invoice";
+frame.set("isInvoice", t_3, true);
+if(frame.topLevel) {
+context.setVariable("isInvoice", t_3);
+}
+if(frame.topLevel) {
+context.addExport("isInvoice", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"enable_right_sidebar");
+frame.set("isSidebarEnabled", t_4, true);
+if(frame.topLevel) {
+context.setVariable("isSidebarEnabled", t_4);
+}
+if(frame.topLevel) {
+context.addExport("isSidebarEnabled", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"right_sidebar_blocks_count");
+frame.set("sidebarBlocksCount", t_5, true);
+if(frame.topLevel) {
+context.setVariable("sidebarBlocksCount", t_5);
+}
+if(frame.topLevel) {
+context.addExport("sidebarBlocksCount", t_5);
+}
+output += "\n<div class=\"sellix-product-screen sellix-invoice-screen\">\n  <div class=\"shop-product-container\" style=\"justify-content: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isInvoice")?"space-around":"space-between"), env.opts.autoescape);
+output += ";";
+output += "flex-direction: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isSidebarEnabled")?"row":"column-reverse"), env.opts.autoescape);
+output += ";";
+output += "align-items: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isSidebarEnabled")?"stretch":"center"), env.opts.autoescape);
+output += "\n  \">\n\n    <div class=\"shop-product-info\" style=\"";
+output += runtime.suppressValue((!runtime.contextOrFrameLookup(context, frame, "isSidebarEnabled")?"width:100%":""), env.opts.autoescape);
+output += ";";
+output += "display: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isInvoice")?"none":""), env.opts.autoescape);
+output += "\"\n    >\n      <div class=\"shop-product-info-description ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"image_attachment")?"with-image":""), env.opts.autoescape);
+output += "\">\n";
+frame = frame.push();
+var t_8 = runtime.fromIterator(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"block_order"));
+runtime.asyncEach(t_8, 1, function(block_name, t_6, t_7,next) {
+frame.set("block_name", block_name);
+frame.set("loop.index", t_6 + 1);
+frame.set("loop.index0", t_6);
+frame.set("loop.revindex", t_7 - t_6);
+frame.set("loop.revindex0", t_7 - t_6 - 1);
+frame.set("loop.first", t_6 === 0);
+frame.set("loop.last", t_6 === t_7 - 1);
+frame.set("loop.length", t_7);
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "loop")),"revindex") > env.getFilter("int").call(context, runtime.contextOrFrameLookup(context, frame, "sidebarBlocksCount"))) {
+env.getExtension("RenderBlock")["run"](context,block_name, function(t_10,t_9) {
+if(t_10) { cb(t_10); return; }
+output += runtime.suppressValue(t_9, true && env.opts.autoescape);
+cb()});
+}
+else {
+cb()}
+})(function(t_11) {
+if(t_11) { cb(t_11); return; }next(t_6);
+});
+}, function(t_13,t_12) {
+if(t_13) { cb(t_13); return; }
+frame = frame.pop();
+output += "      </div>\n    </div>\n\n    <div class=\"shop-product-card\">\n";
+frame = frame.push();
+var t_16 = runtime.fromIterator(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"block_order"));
+runtime.asyncEach(t_16, 1, function(block_name, t_14, t_15,next) {
+frame.set("block_name", block_name);
+frame.set("loop.index", t_14 + 1);
+frame.set("loop.index0", t_14);
+frame.set("loop.revindex", t_15 - t_14);
+frame.set("loop.revindex0", t_15 - t_14 - 1);
+frame.set("loop.first", t_14 === 0);
+frame.set("loop.last", t_14 === t_15 - 1);
+frame.set("loop.length", t_15);
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "loop")),"revindex") <= env.getFilter("int").call(context, runtime.contextOrFrameLookup(context, frame, "sidebarBlocksCount"))) {
+env.getExtension("RenderBlock")["run"](context,block_name, function(t_18,t_17) {
+if(t_18) { cb(t_18); return; }
+output += runtime.suppressValue(t_17, true && env.opts.autoescape);
+cb()});
+}
+else {
+cb()}
+})(function(t_19) {
+if(t_19) { cb(t_19); return; }next(t_14);
+});
+}, function(t_21,t_20) {
+if(t_21) { cb(t_21); return; }
+frame = frame.pop();
+output += "    </div>\n  </div>\n</div>\n\n\n<script type='application/javascript'>\n    $(document).ready(function() {\n        $(document).on('SellixInvoiceShowProductDescription', function(event, eventInfo) {\n            if (!eventInfo || !eventInfo.visible) {\n                $('.shop-product-info').css({ display: 'none' });\n            } else {\n                $('.shop-product-info').css({ display: '' });\n            }\n        });\n    });\n</script>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+})});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

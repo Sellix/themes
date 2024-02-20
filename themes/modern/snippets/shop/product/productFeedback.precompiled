@@ -1,0 +1,167 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"product");
+frame.set("product", t_2, true);
+if(frame.topLevel) {
+context.setVariable("product", t_2);
+}
+if(frame.topLevel) {
+context.addExport("product", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_3, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_3);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_3);
+}
+var t_4;
+t_4 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"page_size")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"page_size"):5);
+frame.set("pageSize", t_4, true);
+if(frame.topLevel) {
+context.setVariable("pageSize", t_4);
+}
+if(frame.topLevel) {
+context.addExport("pageSize", t_4);
+}
+output += "\n";
+var t_5;
+t_5 = env.getFilter("int").call(context, (env.getFilter("length").call(context, runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"feedback")),"list")) / runtime.contextOrFrameLookup(context, frame, "pageSize"))) + 1;
+frame.set("pageCount", t_5, true);
+if(frame.topLevel) {
+context.setVariable("pageCount", t_5);
+}
+if(frame.topLevel) {
+context.addExport("pageCount", t_5);
+}
+output += "\n";
+var t_6;
+t_6 = "snippet-product-feedback";
+frame.set("globalClass", t_6, true);
+if(frame.topLevel) {
+context.setVariable("globalClass", t_6);
+}
+if(frame.topLevel) {
+context.addExport("globalClass", t_6);
+}
+var t_7;
+t_7 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_7, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_7);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_7);
+}
+output += "\n<style>\n\n</style>\n\n<div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "\">\n";
+(function(cb) {if(env.getFilter("length").call(context, runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"feedback")),"list")) == 0) {
+output += "    <div class=\"empty-message-container ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__empty\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Icons: No feedback", function(t_9,t_8) {
+if(t_9) { cb(t_9); return; }
+output += runtime.suppressValue(t_8, true && env.opts.autoescape);
+output += "\n      <span class=\"empty-message-title ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__empty-title\">\n        <b>";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.shared.reviews.notFoundTitle"), env.opts.autoescape);
+output += "</b>\n      </span>\n      <span class=\"empty-message-subtitle ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__empty-title\">\n        ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.shared.reviews.notFoundMessage"), env.opts.autoescape);
+output += "\n      </span>\n    </div>\n";
+cb()});
+}
+else {
+frame = frame.push();
+var t_12 = runtime.fromIterator(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"feedback")),"list"));
+runtime.asyncEach(t_12, 1, function(feedback, t_10, t_11,next) {
+frame.set("feedback", feedback);
+frame.set("loop.index", t_10 + 1);
+frame.set("loop.index0", t_10);
+frame.set("loop.revindex", t_11 - t_10);
+frame.set("loop.revindex0", t_11 - t_10 - 1);
+frame.set("loop.first", t_10 === 0);
+frame.set("loop.last", t_10 === t_11 - 1);
+frame.set("loop.length", t_11);
+var t_13;
+t_13 = env.getFilter("int").call(context, (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "loop")),"index0") / runtime.contextOrFrameLookup(context, frame, "pageSize")));
+frame.set("page", t_13, true);
+if(frame.topLevel) {
+context.setVariable("page", t_13);
+}
+if(frame.topLevel) {
+context.addExport("page", t_13);
+}
+output += "      <div\n        class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__feedback-card ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__feedback-card  ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "page") > 0?"d-none":""), env.opts.autoescape);
+output += "\"\n        data-feedback-page=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "page"), env.opts.autoescape);
+output += "\"\n      >\n";
+env.getExtension("RenderSnippet")["run"](context,"Feedback: Card",runtime.makeKeywordArgs({"feedback": feedback,"properties": runtime.contextOrFrameLookup(context, frame, "properties")}), function(t_15,t_14) {
+if(t_15) { cb(t_15); return; }
+output += runtime.suppressValue(t_14, true && env.opts.autoescape);
+output += "      </div>\n";
+next(t_10);
+});
+}, function(t_17,t_16) {
+if(t_17) { cb(t_17); return; }
+frame = frame.pop();
+output += "\n";
+if(runtime.contextOrFrameLookup(context, frame, "pageCount") > 1) {
+output += "      <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__btn-view-more ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__btn-view-more\">\n        ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.shared.titles.viewMore"), env.opts.autoescape);
+output += "\n      </div>\n";
+;
+}
+cb()});
+}
+})(function(t_18) {
+if(t_18) { cb(t_18); return; }output += "</div>\n\n<script type=\"application/javascript\">\n  $(document).ready(function() {\n    const pageCount = ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "pageCount"), env.opts.autoescape);
+output += ";\n    let activePage = 0;\n    const $viewMoreBtn = $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__btn-view-more');\n    $viewMoreBtn.on('click', function() {\n      activePage += 1;\n      $(`.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__feedback-card[data-feedback-page=${activePage}]`).removeClass('d-none');\n\n      if ((activePage + 1) >= pageCount) {\n        $viewMoreBtn.addClass('d-none');\n      }\n    });\n  });\n</script>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

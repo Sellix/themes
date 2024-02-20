@@ -1,0 +1,256 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"config");
+frame.set("config", t_1, true);
+if(frame.topLevel) {
+context.setVariable("config", t_1);
+}
+if(frame.topLevel) {
+context.addExport("config", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_2, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_2);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"items");
+frame.set("products", t_3, true);
+if(frame.topLevel) {
+context.setVariable("products", t_3);
+}
+if(frame.topLevel) {
+context.addExport("products", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"categories");
+frame.set("categories", t_4, true);
+if(frame.topLevel) {
+context.setVariable("categories", t_4);
+}
+if(frame.topLevel) {
+context.addExport("categories", t_4);
+}
+output += "\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type") === "category") {
+output += "  <title>";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "'s Categories on Sellix</title>\n\n";
+if(env.getFilter("length").call(context, runtime.contextOrFrameLookup(context, frame, "products")) > 0) {
+var t_5;
+t_5 = env.getFilter("join").call(context, ["View ",runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"),"'s shop on Sellix: check out ",(env.getFilter("length").call(context, runtime.contextOrFrameLookup(context, frame, "products")))," unique products and get the digital goods you need instantly with our many payment gateways in just a few clicks."]);
+frame.set("productsMeta", t_5, true);
+if(frame.topLevel) {
+context.setVariable("productsMeta", t_5);
+}
+if(frame.topLevel) {
+context.addExport("productsMeta", t_5);
+}
+;
+}
+else {
+var t_6;
+t_6 = env.getFilter("join").call(context, ["View ",runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"),"'s shop on Sellix: get the digital goods you need instantly with our many payment gateways in just a few clicks."]);
+frame.set("productsMeta", t_6, true);
+if(frame.topLevel) {
+context.setVariable("productsMeta", t_6);
+}
+if(frame.topLevel) {
+context.addExport("productsMeta", t_6);
+}
+;
+}
+output += "\n  <meta name=\"description\" content=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "productsMeta"), env.opts.autoescape);
+output += "\" />\n\n  <meta name=\"og:description\" content=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "productsMeta"), env.opts.autoescape);
+output += "\" />\n  <meta name=\"og:title\" content=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "'s categories on Sellix\" />\n\n  <meta name=\"twitter:title\" content=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "'s categories on Sellix\" />\n  <meta name=\"twitter:description\" content=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "productsMeta"), env.opts.autoescape);
+output += "\" />\n  <meta name='twitter:site' content=\"https://";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += ".sellix.io/\"/>\n\n  <meta property=\"og:image\" content=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "config")),"CDN_PREVIEWS_URL"), env.opts.autoescape);
+output += "/categories.png\" />\n  <meta property=\"twitter:image\" content=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "config")),"CDN_PREVIEWS_URL"), env.opts.autoescape);
+output += "/categories.png\" />\n  <meta property=\"twitter:card\" content=\"summary_large_image\" />\n\n  <meta name=\"robots\" content=\"noindex\" />\n";
+;
+}
+else {
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type") === "group") {
+output += "  <title>";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "'s Group on Sellix</title>\n";
+if(env.getFilter("length").call(context, runtime.contextOrFrameLookup(context, frame, "products")) > 0) {
+var t_7;
+t_7 = env.getFilter("join").call(context, ["View ",runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"),"'s shop on Sellix: check out ",(env.getFilter("length").call(context, runtime.contextOrFrameLookup(context, frame, "products")))," unique products and get the digital goods you need instantly with our many payment gateways in just a few clicks."]);
+frame.set("productsMeta", t_7, true);
+if(frame.topLevel) {
+context.setVariable("productsMeta", t_7);
+}
+if(frame.topLevel) {
+context.addExport("productsMeta", t_7);
+}
+;
+}
+else {
+var t_8;
+t_8 = env.getFilter("join").call(context, ["View ",runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"),"'s shop on Sellix: get the digital goods you need instantly with our many payment gateways in just a few clicks."]);
+frame.set("productsMeta", t_8, true);
+if(frame.topLevel) {
+context.setVariable("productsMeta", t_8);
+}
+if(frame.topLevel) {
+context.addExport("productsMeta", t_8);
+}
+;
+}
+output += "\n  <meta name=\"description\" content=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "productsMeta"), env.opts.autoescape);
+output += "\" />\n\n  <meta name=\"og:description\" content=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "productsMeta"), env.opts.autoescape);
+output += "\" />\n  <meta name=\"og:title\" content=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "'s group on Sellix\" />\n\n  <meta name=\"twitter:title\" content=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "'s group on Sellix\" />\n  <meta name=\"twitter:description\" content=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "productMeta"), env.opts.autoescape);
+output += "\" />\n  <meta name='twitter:site' content=\"https://";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += ".sellix.io\"/>\n\n  <meta property=\"og:image\" content=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "config")),"CDN_PREVIEWS_URL"), env.opts.autoescape);
+output += "/group.png\" />\n  <meta property=\"twitter:image\" content=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "config")),"CDN_PREVIEWS_URL"), env.opts.autoescape);
+output += "/group.png\" />\n  <meta property=\"twitter:card\" content=\"summary_large_image\" />\n\n  <meta name=\"robots\" content=\"noindex\" />\n\n";
+;
+}
+else {
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type") === "track") {
+output += "\n";
+;
+}
+else {
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type") === "invoice") {
+output += "\n";
+;
+}
+else {
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type") === "bill") {
+output += "\n";
+;
+}
+else {
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type") === "payment") {
+output += "\n";
+;
+}
+else {
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type") === "subscription") {
+output += "\n";
+;
+}
+else {
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type") === "delivery") {
+output += "\n";
+;
+}
+else {
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type") === "subscription_delivery") {
+output += "\n";
+;
+}
+;
+}
+;
+}
+;
+}
+;
+}
+;
+}
+;
+}
+;
+}
+;
+}
+output += "\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "pageSettings")),"title")) {
+output += "  <title>";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "pageSettings")),"title"), env.opts.autoescape);
+output += "</title>\n";
+;
+}
+else {
+output += "  <title>Explore ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop")),"name"), env.opts.autoescape);
+output += "'s shop on Sellix</title>\n";
+;
+}
+output += "\n";
+if(env.getFilter("length").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "pageSettings")),"meta_tags"))) {
+frame = frame.push();
+var t_11 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "pageSettings")),"meta_tags");
+if(t_11) {t_11 = runtime.fromIterator(t_11);
+var t_10 = t_11.length;
+for(var t_9=0; t_9 < t_11.length; t_9++) {
+var t_12 = t_11[t_9];
+frame.set("meta_tag", t_12);
+frame.set("loop.index", t_9 + 1);
+frame.set("loop.index0", t_9);
+frame.set("loop.revindex", t_10 - t_9);
+frame.set("loop.revindex0", t_10 - t_9 - 1);
+frame.set("loop.first", t_9 === 0);
+frame.set("loop.last", t_9 === t_10 - 1);
+frame.set("loop.length", t_10);
+output += "    <meta ";
+if(runtime.memberLookup((t_12),"name")) {
+output += "name=\"";
+output += runtime.suppressValue(runtime.memberLookup((t_12),"name"), env.opts.autoescape);
+output += "\" ";
+;
+}
+else {
+if(runtime.memberLookup((t_12),"property")) {
+output += "property=\"";
+output += runtime.suppressValue(runtime.memberLookup((t_12),"property"), env.opts.autoescape);
+output += "\"";
+;
+}
+;
+}
+output += "          content=\"";
+output += runtime.suppressValue(runtime.memberLookup((t_12),"content"), env.opts.autoescape);
+output += "\" />\n";
+;
+}
+}
+frame = frame.pop();
+;
+}
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

@@ -1,0 +1,218 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo");
+frame.set("shopInfo", t_2, true);
+if(frame.topLevel) {
+context.setVariable("shopInfo", t_2);
+}
+if(frame.topLevel) {
+context.addExport("shopInfo", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shopInfo")),"shop");
+frame.set("shop", t_3, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_3);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"theme");
+frame.set("theme", t_4, true);
+if(frame.topLevel) {
+context.setVariable("theme", t_4);
+}
+if(frame.topLevel) {
+context.addExport("theme", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"center_product_titles");
+frame.set("centerProduct", t_5, true);
+if(frame.topLevel) {
+context.setVariable("centerProduct", t_5);
+}
+if(frame.topLevel) {
+context.addExport("centerProduct", t_5);
+}
+var t_6;
+t_6 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"center_group_titles");
+frame.set("centerGroup", t_6, true);
+if(frame.topLevel) {
+context.setVariable("centerGroup", t_6);
+}
+if(frame.topLevel) {
+context.addExport("centerGroup", t_6);
+}
+var t_7;
+t_7 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shopInfo")),"items");
+frame.set("items", t_7, true);
+if(frame.topLevel) {
+context.setVariable("items", t_7);
+}
+if(frame.topLevel) {
+context.addExport("items", t_7);
+}
+var t_8;
+t_8 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_8, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_8);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_8);
+}
+var t_9;
+t_9 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"hide_out_of_stock");
+frame.set("hideOutOfStock", t_9, true);
+if(frame.topLevel) {
+context.setVariable("hideOutOfStock", t_9);
+}
+if(frame.topLevel) {
+context.addExport("hideOutOfStock", t_9);
+}
+output += "\n<style>\n  .sellix-product-list-card-container--width {\n    width: ";
+output += runtime.suppressValue(100 / env.getFilter("int").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"list_items_per_row_wide")), env.opts.autoescape);
+output += "%\n  }\n\n  @media (max-width: 768px) {\n    .sellix-product-list-card-container--width {\n      width: ";
+output += runtime.suppressValue(100 / env.getFilter("int").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"list_items_per_row_normal")), env.opts.autoescape);
+output += "%\n    }\n  }\n\n  @media (max-width: 640px) {\n    .sellix-product-list-card-container--width {\n      width: ";
+output += runtime.suppressValue(100 / env.getFilter("int").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"list_items_per_row_narrow")), env.opts.autoescape);
+output += "%\n    }\n  }\n</style>\n\n<div\n  class=\"sellix-product-list-body\"\n  style=\"background: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"list_items_background_color")), env.opts.autoescape);
+output += ";";
+output += " border: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"list_items_show_border")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += ";";
+output += " padding: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_vert"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_horiz"), env.opts.autoescape);
+output += "px;";
+output += " box-shadow: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_shadow"), env.opts.autoescape);
+output += ";";
+output += " border-radius: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_border_radius"), env.opts.autoescape);
+output += "rem;\"\n>\n";
+frame = frame.push();
+var t_12 = runtime.fromIterator(runtime.contextOrFrameLookup(context, frame, "items"));
+runtime.asyncEach(t_12, 1, function(item, t_10, t_11,next) {
+frame.set("item", item);
+frame.set("loop.index", t_10 + 1);
+frame.set("loop.index0", t_10);
+frame.set("loop.revindex", t_11 - t_10);
+frame.set("loop.revindex0", t_11 - t_10 - 1);
+frame.set("loop.first", t_10 === 0);
+frame.set("loop.last", t_10 === t_11 - 1);
+frame.set("loop.length", t_11);
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "hideOutOfStock") && runtime.memberLookup((item),"type") !== "INFO_CARD" && runtime.memberLookup((item),"stock") === 0) {
+output += "      ";
+output += "\n";
+cb();
+}
+else {
+(function(cb) {if(runtime.memberLookup((item),"unlisted") == 1) {
+output += "      ";
+output += "\n";
+cb();
+}
+else {
+output += "      <div\n        data-product-id=\"";
+output += runtime.suppressValue(runtime.memberLookup((item),"uniqid"), env.opts.autoescape);
+output += "\"\n        class=\"sellix-product-list-card-container sellix-product-list-card-container--width\"\n      >\n";
+(function(cb) {if(runtime.memberLookup((item),"isInfo")) {
+env.getExtension("RenderSnippet")["run"](context,"Info card",runtime.makeKeywordArgs({"product": item,"theme": runtime.contextOrFrameLookup(context, frame, "theme"),"centerProduct": runtime.contextOrFrameLookup(context, frame, "centerProduct")}), function(t_14,t_13) {
+if(t_14) { cb(t_14); return; }
+output += runtime.suppressValue(t_13, true && env.opts.autoescape);
+cb()});
+}
+else {
+(function(cb) {if(runtime.memberLookup((item),"isSubscription")) {
+env.getExtension("RenderSnippet")["run"](context,"Subscription card",runtime.makeKeywordArgs({"product": item,"theme": runtime.contextOrFrameLookup(context, frame, "theme"),"centerProduct": runtime.contextOrFrameLookup(context, frame, "centerProduct")}), function(t_16,t_15) {
+if(t_16) { cb(t_16); return; }
+output += runtime.suppressValue(t_15, true && env.opts.autoescape);
+cb()});
+}
+else {
+(function(cb) {if(runtime.memberLookup((item),"isProduct")) {
+env.getExtension("RenderSnippet")["run"](context,"Product card",runtime.makeKeywordArgs({"product": item,"theme": runtime.contextOrFrameLookup(context, frame, "theme"),"centerProduct": runtime.contextOrFrameLookup(context, frame, "centerProduct")}), function(t_18,t_17) {
+if(t_18) { cb(t_18); return; }
+output += runtime.suppressValue(t_17, true && env.opts.autoescape);
+cb()});
+}
+else {
+(function(cb) {if(runtime.memberLookup((item),"isGroup")) {
+env.getExtension("RenderSnippet")["run"](context,"Group card",runtime.makeKeywordArgs({"group": item,"theme": runtime.contextOrFrameLookup(context, frame, "theme"),"centerGroup": runtime.contextOrFrameLookup(context, frame, "centerGroup")}), function(t_20,t_19) {
+if(t_20) { cb(t_20); return; }
+output += runtime.suppressValue(t_19, true && env.opts.autoescape);
+cb()});
+}
+else {
+env.getExtension("RenderSnippet")["run"](context,"Placeholder card",runtime.makeKeywordArgs({"product": item,"theme": runtime.contextOrFrameLookup(context, frame, "theme"),"centerProduct": runtime.contextOrFrameLookup(context, frame, "centerProduct")}), function(t_22,t_21) {
+if(t_22) { cb(t_22); return; }
+output += runtime.suppressValue(t_21, true && env.opts.autoescape);
+cb()});
+}
+})(function(t_23) {
+if(t_23) { cb(t_23); return; }cb()});
+}
+})(function(t_24) {
+if(t_24) { cb(t_24); return; }cb()});
+}
+})(function(t_25) {
+if(t_25) { cb(t_25); return; }cb()});
+}
+})(function(t_26) {
+if(t_26) { cb(t_26); return; }output += "      </div>\n";
+cb()});
+}
+})(function(t_27) {
+if(t_27) { cb(t_27); return; }cb()});
+}
+})(function(t_28) {
+if(t_28) { cb(t_28); return; }next(t_10);
+});
+}, function(t_30,t_29) {
+if(t_30) { cb(t_30); return; }
+frame = frame.pop();
+output += "\n  <div\n    class=\"empty-shop-container empty-search\"\n";
+if(runtime.contextOrFrameLookup(context, frame, "items") && runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "items")),"length") > 0) {
+output += "style=\"display:none;\"";
+;
+}
+output += "  >\n";
+env.getExtension("RenderSnippet")["run"](context,"Zoom glass icon", function(t_32,t_31) {
+if(t_32) { cb(t_32); return; }
+output += runtime.suppressValue(t_31, true && env.opts.autoescape);
+output += "\n    <div class=\"empty-shop-info\">\n        No product found.\n\n        <button\n          class=\"button button-primary\"\n          style=\"min-height: 2.75rem; min-width: 9rem; margin-top: 1rem\"\n        >\n          Clear\n        </button>\n    </div>\n  </div>\n\n  <div\n    class=\"empty-shop-container empty-category\"\n    style=\"display:none;\"\n  >\n";
+env.getExtension("RenderSnippet")["run"](context,"Zoom glass icon", function(t_34,t_33) {
+if(t_34) { cb(t_34); return; }
+output += runtime.suppressValue(t_33, true && env.opts.autoescape);
+output += "\n    <div class=\"empty-shop-info\">\n        Category has no products.\n\n        <button\n          class=\"button button-primary\"\n          style=\"min-height: 2.75rem; min-width: 9rem; margin-top: 1rem\"\n        >\n          Clear\n        </button>\n    </div>\n  </div>\n</div>\n\n<script type='application/javascript'>\n  $(document).ready(function () {\n    const sortByDefault = (a, b) => items.findIndex((it) => it.uniqid === a.uniqid) - items.findIndex((it) => it.uniqid === b.uniqid);\n    const sortByPrice = (a, b) => (a.minPriceItem ? +a.minPriceItem.price_display : 9999999) - (b.minPriceItem ? +b.minPriceItem.price_display : 9999999);\n    const sortByName = (a, b) => a.title < b.title ? -1 : a.title > b.title ? 1 : 0;\n    const sortByType = (a, b) => b.isGroup - a.isGroup;\n    const sortByStock = (a, b) => b.stock - a.stock;\n\n    const sortFunc = {\n      \"DEFAULT\": sortByDefault,\n      \"PRICE\": sortByPrice,\n      \"NAME\": sortByName,\n      \"TYPE\": sortByType,\n      \"STOCK\": sortByStock\n    };\n\n    const items = __RENDER_CONTEXT__.common.shopInfo.items || [];\n    const categories = __RENDER_CONTEXT__.common.shopInfo.categories || [];\n    const itemsMap = items.reduce((m, item) => ({...m, [item.uniqid]: item}), {});\n\n    function filterProducts({ search, category, sort }) {\n      search = search || '';\n\n      let filteredItems = items;\n\n      if (category !== 'all') {\n        const categoryObj = categories.filter((cat) => cat.uniqid === category)?.[0];\n        if (categoryObj) {\n          filteredItems = [...categoryObj.products_bound, ...categoryObj.groups_bound];\n        }\n      }\n\n      filteredItems = filteredItems.filter(item => {\n        let hasProduct = false;\n        if(item.isGroup) {\n          if(item.products_bound && item.products_bound.length) {\n            hasProduct = item.products_bound.find(({ title }) => title.toLowerCase().includes(search.toLowerCase()));\n          }\n        }\n\n        return hasProduct || item.title.toLowerCase().includes(search.toLowerCase());\n      });\n      const filteredItemIds = filteredItems.map(item => item.uniqid);\n      $('.sellix-product-list-card-container[data-product-id]')\n        .hide()\n        .filter((idx, el) => filteredItemIds.includes($(el).data('product-id')))\n        .show();\n\n      $('.empty-shop-container').hide();\n      if (filteredItemIds.length === 0) {\n        if (category) {\n          $('.empty-shop-container.empty-category .category-name').text(category.title);\n          $('.empty-shop-container.empty-category').show();\n        } else {\n          $('.empty-shop-container.empty-search').show();\n        }\n      }\n\n      if (sort) {\n        const sf = sortFunc[sort] ?? sortFunc.DEFAULT;\n        const sorted = $('.sellix-product-list-card-container[data-product-id]').detach().sort((a, b) => {\n          const prA = itemsMap[$(a).data('product-id')];\n          const prB = itemsMap[$(b).data('product-id')];\n          return sf(prA, prB);\n        });\n        $('.sellix-product-list-body').append(sorted);\n      }\n    }\n\n    $(document).on('SellixProductListFilterChangeEvent', (e, eventInfo) => {\n      filterProducts(eventInfo);\n    });\n  });\n</script>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+})})});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

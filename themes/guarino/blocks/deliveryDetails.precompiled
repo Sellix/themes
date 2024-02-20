@@ -1,0 +1,51 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"invoiceInfo")),"invoice");
+frame.set("invoice", t_1, true);
+if(frame.topLevel) {
+context.setVariable("invoice", t_1);
+}
+if(frame.topLevel) {
+context.addExport("invoice", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"invoiceInfo")),"info");
+frame.set("info", t_2, true);
+if(frame.topLevel) {
+context.setVariable("info", t_2);
+}
+if(frame.topLevel) {
+context.addExport("info", t_2);
+}
+var t_3;
+t_3 = (runtime.contextOrFrameLookup(context, frame, "invoice")?(env.getFilter("int").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"developer_invoice"))):false);
+frame.set("isDev", t_3, true);
+if(frame.topLevel) {
+context.setVariable("isDev", t_3);
+}
+if(frame.topLevel) {
+context.addExport("isDev", t_3);
+}
+output += "\n<div>\n";
+env.getExtension("RenderSnippet")["run"](context,"Delivery alert success",runtime.makeKeywordArgs({"is_product_subscription": (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"type") === "PRODUCT_SUBSCRIPTION"),"is_dev": runtime.contextOrFrameLookup(context, frame, "isDev"),"properties": runtime.contextOrFrameLookup(context, frame, "properties")}), function(t_5,t_4) {
+if(t_5) { cb(t_5); return; }
+output += runtime.suppressValue(t_4, true && env.opts.autoescape);
+output += "</div>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

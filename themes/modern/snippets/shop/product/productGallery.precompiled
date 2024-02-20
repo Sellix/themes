@@ -1,0 +1,585 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_2, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_2);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_3, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_3);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"product");
+frame.set("product", t_4, true);
+if(frame.topLevel) {
+context.setVariable("product", t_4);
+}
+if(frame.topLevel) {
+context.addExport("product", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"youtube_link");
+frame.set("youtubeLink", t_5, true);
+if(frame.topLevel) {
+context.setVariable("youtubeLink", t_5);
+}
+if(frame.topLevel) {
+context.addExport("youtubeLink", t_5);
+}
+output += "\n";
+var t_6;
+t_6 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"description_youtube_only");
+frame.set("showYoutubelinkOnly", t_6, true);
+if(frame.topLevel) {
+context.setVariable("showYoutubelinkOnly", t_6);
+}
+if(frame.topLevel) {
+context.addExport("showYoutubelinkOnly", t_6);
+}
+if(runtime.contextOrFrameLookup(context, frame, "showYoutubelinkOnly")) {
+var t_7;
+t_7 = [];
+frame.set("attachments", t_7, true);
+if(frame.topLevel) {
+context.setVariable("attachments", t_7);
+}
+if(frame.topLevel) {
+context.addExport("attachments", t_7);
+}
+;
+}
+else {
+var t_8;
+t_8 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"image_attachment");
+frame.set("defaultImage", t_8, true);
+if(frame.topLevel) {
+context.setVariable("defaultImage", t_8);
+}
+if(frame.topLevel) {
+context.addExport("defaultImage", t_8);
+}
+var t_9;
+t_9 = [];
+frame.set("attachments", t_9, true);
+if(frame.topLevel) {
+context.setVariable("attachments", t_9);
+}
+if(frame.topLevel) {
+context.addExport("attachments", t_9);
+}
+frame = frame.push();
+var t_12 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"image_attachments")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"image_attachments"):[]);
+if(t_12) {t_12 = runtime.fromIterator(t_12);
+var t_11 = t_12.length;
+for(var t_10=0; t_10 < t_12.length; t_10++) {
+var t_13 = t_12[t_10];
+frame.set("attachment", t_13);
+frame.set("loop.index", t_10 + 1);
+frame.set("loop.index0", t_10);
+frame.set("loop.revindex", t_11 - t_10);
+frame.set("loop.revindex0", t_11 - t_10 - 1);
+frame.set("loop.first", t_10 === 0);
+frame.set("loop.last", t_10 === t_11 - 1);
+frame.set("loop.length", t_11);
+if(runtime.memberLookup((t_13),"id") != runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "defaultImage")),"id") || runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"description_skip_default_image") == 0) {
+var t_14;
+t_14 = ((lineno = 14, colno = 44, runtime.callWrap(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "attachments")),"push"), "attachments[\"push\"]", context, [t_13])),runtime.contextOrFrameLookup(context, frame, "attachments"));
+frame.set("attachments", t_14, true);
+if(frame.topLevel) {
+context.setVariable("attachments", t_14);
+}
+if(frame.topLevel) {
+context.addExport("attachments", t_14);
+}
+;
+}
+;
+}
+}
+frame = frame.pop();
+;
+}
+var t_15;
+t_15 = env.getFilter("length").call(context, runtime.contextOrFrameLookup(context, frame, "attachments")) + ((runtime.contextOrFrameLookup(context, frame, "youtubeLink")?1:0));
+frame.set("slidesCount", t_15, true);
+if(frame.topLevel) {
+context.setVariable("slidesCount", t_15);
+}
+if(frame.topLevel) {
+context.addExport("slidesCount", t_15);
+}
+output += "\n";
+var t_16;
+t_16 = (lineno = 20, colno = 39, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"slider_lightbox_enabled"),true]));
+frame.set("sliderLightboxEnabled", t_16, true);
+if(frame.topLevel) {
+context.setVariable("sliderLightboxEnabled", t_16);
+}
+if(frame.topLevel) {
+context.addExport("sliderLightboxEnabled", t_16);
+}
+var t_17;
+t_17 = (lineno = 21, colno = 38, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"slider_show_whole_image"),true]));
+frame.set("sliderShowWholeImage", t_17, true);
+if(frame.topLevel) {
+context.setVariable("sliderShowWholeImage", t_17);
+}
+if(frame.topLevel) {
+context.addExport("sliderShowWholeImage", t_17);
+}
+var t_18;
+t_18 = (lineno = 22, colno = 30, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"slider_height"),400]));
+frame.set("sliderHeight", t_18, true);
+if(frame.topLevel) {
+context.setVariable("sliderHeight", t_18);
+}
+if(frame.topLevel) {
+context.addExport("sliderHeight", t_18);
+}
+var t_19;
+t_19 = (lineno = 23, colno = 42, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"slider_height_without_thumbnails"),600]));
+frame.set("sliderHeightNoThumbnails", t_19, true);
+if(frame.topLevel) {
+context.setVariable("sliderHeightNoThumbnails", t_19);
+}
+if(frame.topLevel) {
+context.addExport("sliderHeightNoThumbnails", t_19);
+}
+var t_20;
+t_20 = (lineno = 24, colno = 36, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"slider_border_radius"),8]));
+frame.set("sliderBorderRadius", t_20, true);
+if(frame.topLevel) {
+context.setVariable("sliderBorderRadius", t_20);
+}
+if(frame.topLevel) {
+context.addExport("sliderBorderRadius", t_20);
+}
+var t_21;
+t_21 = (lineno = 25, colno = 36, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"slider_items_per_view"),1]));
+frame.set("sliderItemsPerView", t_21, true);
+if(frame.topLevel) {
+context.setVariable("sliderItemsPerView", t_21);
+}
+if(frame.topLevel) {
+context.addExport("sliderItemsPerView", t_21);
+}
+var t_22;
+t_22 = (lineno = 26, colno = 36, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"slider_space_between"),16]));
+frame.set("sliderSpaceBetween", t_22, true);
+if(frame.topLevel) {
+context.setVariable("sliderSpaceBetween", t_22);
+}
+if(frame.topLevel) {
+context.addExport("sliderSpaceBetween", t_22);
+}
+var t_23;
+t_23 = (lineno = 27, colno = 41, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"slider_navigation_enabled"),true])) && runtime.contextOrFrameLookup(context, frame, "slidesCount") > runtime.contextOrFrameLookup(context, frame, "sliderItemsPerView");
+frame.set("sliderNavigationEnabled", t_23, true);
+if(frame.topLevel) {
+context.setVariable("sliderNavigationEnabled", t_23);
+}
+if(frame.topLevel) {
+context.addExport("sliderNavigationEnabled", t_23);
+}
+var t_24;
+t_24 = (lineno = 28, colno = 41, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"slider_pagination_enabled"),false])) && runtime.contextOrFrameLookup(context, frame, "slidesCount") > runtime.contextOrFrameLookup(context, frame, "sliderItemsPerView");
+frame.set("sliderPaginationEnabled", t_24, true);
+if(frame.topLevel) {
+context.setVariable("sliderPaginationEnabled", t_24);
+}
+if(frame.topLevel) {
+context.addExport("sliderPaginationEnabled", t_24);
+}
+output += "\n";
+var t_25;
+t_25 = (lineno = 30, colno = 35, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"thumbnails_enabled"),true])) && runtime.contextOrFrameLookup(context, frame, "slidesCount") > runtime.contextOrFrameLookup(context, frame, "sliderItemsPerView");
+frame.set("thumbnailsEnabled", t_25, true);
+if(frame.topLevel) {
+context.setVariable("thumbnailsEnabled", t_25);
+}
+if(frame.topLevel) {
+context.addExport("thumbnailsEnabled", t_25);
+}
+var t_26;
+t_26 = (lineno = 31, colno = 42, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"thumbnails_show_whole_image"),false]));
+frame.set("thumbnailsShowWholeImage", t_26, true);
+if(frame.topLevel) {
+context.setVariable("thumbnailsShowWholeImage", t_26);
+}
+if(frame.topLevel) {
+context.addExport("thumbnailsShowWholeImage", t_26);
+}
+var t_27;
+t_27 = (lineno = 32, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"thumbnails_height"),196]));
+frame.set("thumbnailHeight", t_27, true);
+if(frame.topLevel) {
+context.setVariable("thumbnailHeight", t_27);
+}
+if(frame.topLevel) {
+context.addExport("thumbnailHeight", t_27);
+}
+var t_28;
+t_28 = (lineno = 33, colno = 40, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"thumbnails_border_radius"),8]));
+frame.set("thumbnailsBorderRadius", t_28, true);
+if(frame.topLevel) {
+context.setVariable("thumbnailsBorderRadius", t_28);
+}
+if(frame.topLevel) {
+context.addExport("thumbnailsBorderRadius", t_28);
+}
+var t_29;
+t_29 = (lineno = 34, colno = 40, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"thumbnails_items_per_view"),2]));
+frame.set("thumbnailsItemsPerView", t_29, true);
+if(frame.topLevel) {
+context.setVariable("thumbnailsItemsPerView", t_29);
+}
+if(frame.topLevel) {
+context.addExport("thumbnailsItemsPerView", t_29);
+}
+var t_30;
+t_30 = (lineno = 35, colno = 40, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"thumbnails_space_between"),16]));
+frame.set("thumbnailsSpaceBetween", t_30, true);
+if(frame.topLevel) {
+context.setVariable("thumbnailsSpaceBetween", t_30);
+}
+if(frame.topLevel) {
+context.addExport("thumbnailsSpaceBetween", t_30);
+}
+output += "\n";
+var t_31;
+t_31 = ["snippet-product-gallery"];
+frame.set("globalClass", t_31, true);
+if(frame.topLevel) {
+context.setVariable("globalClass", t_31);
+}
+if(frame.topLevel) {
+context.addExport("globalClass", t_31);
+}
+var t_32;
+t_32 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_32, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_32);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_32);
+}
+output += "\n<style>\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__slides {\n    height: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "thumbnailsEnabled")?runtime.contextOrFrameLookup(context, frame, "sliderHeight"):runtime.contextOrFrameLookup(context, frame, "sliderHeightNoThumbnails")), env.opts.autoescape);
+output += "px;\n    width: 100%;\n  }\n\n  @media (max-width: 768px) {\n\n    .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__slides {\n      height: 280px;\n    }\n\n  }\n\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__slides swiper-slide img {\n    border-radius: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "sliderBorderRadius"), env.opts.autoescape);
+output += "px;\n";
+if(runtime.contextOrFrameLookup(context, frame, "sliderShowWholeImage")) {
+output += "      object-fit: contain;\n      max-width: 100%;\n";
+;
+}
+else {
+output += "      object-fit: cover;\n      width: 100%;\n";
+;
+}
+output += "  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__slides swiper-slide iframe {\n    border-radius: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "sliderBorderRadius"), env.opts.autoescape);
+output += "px;\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__thumbnails {\n    height: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "thumbnailHeight"), env.opts.autoescape);
+output += "px;\n    margin-top: 16px;\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__thumbnails swiper-slide img {\n    border-radius: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "thumbnailsBorderRadius"), env.opts.autoescape);
+output += "px;\n";
+if(runtime.contextOrFrameLookup(context, frame, "thumbnailsShowWholeImage")) {
+output += "      object-fit: contain;\n      max-width: 100%;\n";
+;
+}
+else {
+output += "      object-fit: cover;\n      width: 100%;\n";
+;
+}
+output += "  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__thumbnails swiper-slide iframe {\n    border-radius: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "thumbnailsBorderRadius"), env.opts.autoescape);
+output += "px;\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__youtube-slide {\n    position: relative;\n  }\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__youtube-slide-cover {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__slide .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__youtube-slide-cover {\n    height: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "sliderLightboxEnabled")?"100%":"0px"), env.opts.autoescape);
+output += ";\n  }\n</style>\n\n<div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__container ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container\">\n  <swiper-container\n    init=\"false\"\n    style=\"--swiper-navigation-color: var(--black3); --swiper-navigation-size: 25px\"\n    class=\"d-none ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__slides ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__slides\"\n  >\n";
+frame = frame.push();
+var t_35 = runtime.contextOrFrameLookup(context, frame, "attachments");
+if(t_35) {t_35 = runtime.fromIterator(t_35);
+var t_34 = t_35.length;
+for(var t_33=0; t_33 < t_35.length; t_33++) {
+var t_36 = t_35[t_33];
+frame.set("attachment", t_36);
+frame.set("loop.index", t_33 + 1);
+frame.set("loop.index0", t_33);
+frame.set("loop.revindex", t_34 - t_33);
+frame.set("loop.revindex0", t_34 - t_33 - 1);
+frame.set("loop.first", t_33 === 0);
+frame.set("loop.last", t_33 === t_34 - 1);
+frame.set("loop.length", t_34);
+var t_37;
+t_37 = (lineno = 113, colno = 29, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "cdn_link"), "cdn_link", context, [runtime.memberLookup((t_36),"cloudflare_image_id"),"shopItem"]));
+frame.set("image", t_37, true);
+if(frame.topLevel) {
+context.setVariable("image", t_37);
+}
+if(frame.topLevel) {
+context.addExport("image", t_37);
+}
+output += "      <swiper-slide class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__slide ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__slide\" data-slide-idx=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "loop")),"index0"), env.opts.autoescape);
+output += "\">\n        <img src=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "image"), env.opts.autoescape);
+output += "\" alt=\"";
+output += runtime.suppressValue(runtime.memberLookup((t_36),"original_name"), env.opts.autoescape);
+output += "\" />\n      </swiper-slide>\n";
+;
+}
+}
+frame = frame.pop();
+output += "\n";
+if(runtime.contextOrFrameLookup(context, frame, "youtubeLink")) {
+output += "      <swiper-slide class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__slide ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__slide ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__youtube-slide\" data-slide-idx=\"";
+output += runtime.suppressValue(env.getFilter("length").call(context, runtime.contextOrFrameLookup(context, frame, "attachments")), env.opts.autoescape);
+output += "\">\n        <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__youtube-slide-cover\"></div>\n        <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__youtube-player sellix-youtube-player-wrapper\"></div>\n      </swiper-slide>\n";
+;
+}
+output += "\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "slidesCount") == 0) {
+output += "      <swiper-slide class=\"image-placeholder ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__slide ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__slide\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Product: Placeholder icon",runtime.makeKeywordArgs({"product": runtime.contextOrFrameLookup(context, frame, "product")}), function(t_39,t_38) {
+if(t_39) { cb(t_39); return; }
+output += runtime.suppressValue(t_38, true && env.opts.autoescape);
+output += "      </swiper-slide>\n";
+cb()});
+}
+else {
+cb()}
+})(function(t_40) {
+if(t_40) { cb(t_40); return; }output += "  </swiper-container>\n\n";
+if(runtime.contextOrFrameLookup(context, frame, "thumbnailsEnabled")) {
+output += "    <swiper-container\n      init=\"false\"\n      class=\"d-none ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__thumbnails ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__thumbnails\"\n    >\n";
+frame = frame.push();
+var t_43 = runtime.contextOrFrameLookup(context, frame, "attachments");
+if(t_43) {t_43 = runtime.fromIterator(t_43);
+var t_42 = t_43.length;
+for(var t_41=0; t_41 < t_43.length; t_41++) {
+var t_44 = t_43[t_41];
+frame.set("attachment", t_44);
+frame.set("loop.index", t_41 + 1);
+frame.set("loop.index0", t_41);
+frame.set("loop.revindex", t_42 - t_41);
+frame.set("loop.revindex0", t_42 - t_41 - 1);
+frame.set("loop.first", t_41 === 0);
+frame.set("loop.last", t_41 === t_42 - 1);
+frame.set("loop.length", t_42);
+var t_45;
+t_45 = (lineno = 139, colno = 31, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "cdn_link"), "cdn_link", context, [runtime.memberLookup((t_44),"cloudflare_image_id"),"shopItem"]));
+frame.set("image", t_45, true);
+if(frame.topLevel) {
+context.setVariable("image", t_45);
+}
+if(frame.topLevel) {
+context.addExport("image", t_45);
+}
+output += "        <swiper-slide>\n          <img src=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "image"), env.opts.autoescape);
+output += "\" alt=\"";
+output += runtime.suppressValue(runtime.memberLookup((t_44),"original_name"), env.opts.autoescape);
+output += "\" />\n        </swiper-slide>\n";
+;
+}
+}
+frame = frame.pop();
+output += "\n";
+if(runtime.contextOrFrameLookup(context, frame, "youtubeLink")) {
+output += "        <swiper-slide class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__youtube-slide\">\n          <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__youtube-slide-cover\"></div>\n          <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__youtube-thumb-player sellix-youtub-player-wrapper\"></div>\n        </swiper-slide>\n";
+;
+}
+output += "    </swiper-container>\n";
+;
+}
+output += "</div>\n\n<script type=\"application/javascript\">\n  $(document).ready(function() {\n    const slidesCount = ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "slidesCount"), env.opts.autoescape);
+output += ";\n\n    let thumbnailsElement;\n";
+if(runtime.contextOrFrameLookup(context, frame, "thumbnailsEnabled")) {
+output += "      thumbnailsElement = activateSwiper__";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "(\n        '.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__thumbnails',\n        {\n          loop: true,\n          spaceBetween: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "thumbnailsSpaceBetween"), env.opts.autoescape);
+output += ",\n          slidesPerView: Math.min(";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "thumbnailsItemsPerView"), env.opts.autoescape);
+output += ", slidesCount),\n          freeMode: false,\n          on: {\n            init: () => {\n              $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__thumbnails').removeClass('d-none');\n            }\n          }\n        },\n      );\n";
+;
+}
+output += "\n    activateSwiper__";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "(\n      '.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__slides',\n      {\n        injectStyles: [\n          `.swiper-wrapper { min-width: 0; }`\n        ],\n        navigation: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "sliderNavigationEnabled"), env.opts.autoescape);
+output += ",\n        pagination: {\n          enabled: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "sliderPaginationEnabled"), env.opts.autoescape);
+output += ",\n          clickable: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "sliderPaginationEnabled"), env.opts.autoescape);
+output += ",\n        },\n        spaceBetween: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "sliderSpaceBetween"), env.opts.autoescape);
+output += ",\n        slidesPerView: Math.min(";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "sliderItemsPerView"), env.opts.autoescape);
+output += ", slidesCount),\n        loop: true,\n        thumbs: {\n          swiper: thumbnailsElement ? thumbnailsElement.swiper : undefined,\n        },\n        on: {\n          init: () => {\n            $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__slides').removeClass('d-none');\n          }\n        }\n      },\n    );\n\n";
+if(runtime.contextOrFrameLookup(context, frame, "youtubeLink")) {
+output += "      const url =\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "youtubeLink"), env.opts.autoescape);
+output += "\";\n      activateYoutubePlayer__";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__youtube-player', url);\n";
+if(runtime.contextOrFrameLookup(context, frame, "thumbnailsEnabled")) {
+output += "        activateYoutubePlayer__";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__youtube-thumb-player', url);\n";
+;
+}
+;
+}
+output += "\n";
+if(runtime.contextOrFrameLookup(context, frame, "sliderLightboxEnabled")) {
+output += "      activateLightBox__";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "();\n";
+;
+}
+output += "\n    function activateSwiper__";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "(selector, params) {\n      const element = document.querySelector(selector);\n      Object.assign(element, params);\n      element.initialize();\n\n      return element;\n    }\n\n    function activateLightBox__";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "() {\n      $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__slide').on('click', function(e) {\n        e.preventDefault();\n\n        const slideIdx = +$(this).data('slide-idx') || 0;\n\n        $.magnificPopup.open({\n          type: 'image',\n          closeBtnInside: false,\n          closeMarkup: '<button title=\"%title%\" type=\"button\" class=\"mfp-close\"></button>',\n          gallery:{\n            enabled:true\n          },\n          items: [\n";
+frame = frame.push();
+var t_48 = runtime.contextOrFrameLookup(context, frame, "attachments");
+if(t_48) {t_48 = runtime.fromIterator(t_48);
+var t_47 = t_48.length;
+for(var t_46=0; t_46 < t_48.length; t_46++) {
+var t_49 = t_48[t_46];
+frame.set("attachment", t_49);
+frame.set("loop.index", t_46 + 1);
+frame.set("loop.index0", t_46);
+frame.set("loop.revindex", t_47 - t_46);
+frame.set("loop.revindex0", t_47 - t_46 - 1);
+frame.set("loop.first", t_46 === 0);
+frame.set("loop.last", t_46 === t_47 - 1);
+frame.set("loop.length", t_47);
+output += "            {\n              src: '";
+output += runtime.suppressValue((lineno = 238, colno = 30, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "cdn_link"), "cdn_link", context, [runtime.memberLookup((t_49),"cloudflare_image_id"),"shopItem"])), env.opts.autoescape);
+output += "',\n              type: 'image',\n            },\n";
+;
+}
+}
+frame = frame.pop();
+if(runtime.contextOrFrameLookup(context, frame, "youtubeLink")) {
+output += "            {\n              src: '";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "youtubeLink"), env.opts.autoescape);
+output += "',\n              type: 'iframe',\n            },\n";
+;
+}
+output += "          ],\n          iframe: {\n            patterns: {\n              youtube: {\n                index: 'youtube.com/',\n                id: function(url) {\n                  const pattern = /^.*((youtu.be\\/)|(v\\/)|(\\/u\\/\\w\\/)|(embed\\/)|(watch\\?))\\??v?=?([^#\\&\\?]*).*/;\n                  const match = url.match(pattern);\n                  if (match && match[7].length == 11) {\n                    return match[7];\n                  }\n                  return null;\n                },\n              },\n            },\n          },\n          callbacks: {\n            open: function() {\n              window.sellixHelper.disableScroll();\n            },\n            close: function() {\n              window.sellixHelper.enableScroll();\n            }\n          },\n        }, slideIdx);\n      });\n    }\n\n    function activateYoutubePlayer__";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "(selector) {\n      const container = document.querySelector(selector);\n      renderReactPlayer(container, { url, width: 'auth', height: 'auto' });\n    }\n  });\n</script>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

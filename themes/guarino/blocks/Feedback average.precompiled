@@ -1,0 +1,42 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_1, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_1);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_1);
+}
+var t_2;
+t_2 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"average_score")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"average_score"):0);
+frame.set("average_score", t_2, true);
+if(frame.topLevel) {
+context.setVariable("average_score", t_2);
+}
+if(frame.topLevel) {
+context.addExport("average_score", t_2);
+}
+output += "\n<div class=\"feedbackaverage\">\n        <a href=\"/feedback\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Rating star",runtime.makeKeywordArgs({"rating": runtime.contextOrFrameLookup(context, frame, "average_score"),"size": 50}), function(t_4,t_3) {
+if(t_4) { cb(t_4); return; }
+output += runtime.suppressValue(t_3, true && env.opts.autoescape);
+output += "        </a>\n        <h2>Feedback average</h2>\n</div>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

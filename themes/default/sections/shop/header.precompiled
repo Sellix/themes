@@ -1,0 +1,137 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_2, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_2);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"cart")),"is_enabled");
+frame.set("cartEnabled", t_3, true);
+if(frame.topLevel) {
+context.setVariable("cartEnabled", t_3);
+}
+if(frame.topLevel) {
+context.addExport("cartEnabled", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"subscription");
+frame.set("subscription", t_4, true);
+if(frame.topLevel) {
+context.setVariable("subscription", t_4);
+}
+if(frame.topLevel) {
+context.addExport("subscription", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_5, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_5);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_5);
+}
+output += "\n";
+var t_6;
+t_6 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"header_background_color")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"header_background_color"):"background_main_color");
+frame.set("backgroundColor", t_6, true);
+if(frame.topLevel) {
+context.setVariable("backgroundColor", t_6);
+}
+if(frame.topLevel) {
+context.addExport("backgroundColor", t_6);
+}
+output += "\n<header style=\"background-color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.contextOrFrameLookup(context, frame, "backgroundColor")), env.opts.autoescape);
+output += "\">\n  <!-- <Status /> -->\n  <div class=\"sellix-header\" id=\"sellix-header-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\">\n";
+(function(cb) {if(runtime.inOperator(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type"),["main","group","contact","terms","trust","feedbacks","feedback","category"])) {
+env.getExtension("RenderSnippet")["run"](context,"Shop message",runtime.makeKeywordArgs({"container_selector": env.getFilter("join").call(context, ["sellix-header-",runtime.contextOrFrameLookup(context, frame, "id")])}), function(t_8,t_7) {
+if(t_8) { cb(t_8); return; }
+output += runtime.suppressValue(t_7, true && env.opts.autoescape);
+cb()});
+}
+else {
+cb()}
+})(function(t_9) {
+if(t_9) { cb(t_9); return; }output += "\n    <div style=\"display: flex; align-items: center; width: 100%; height: 100%;\">\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"logo_image")) {
+output += "        <a href=\"\">\n          <div class=\"sellix-header-logo-image\">\n            <img\n              style=\"max-height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"logo_image_height"), env.opts.autoescape);
+output += "px;\"\n              src=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"logo_image"), env.opts.autoescape);
+output += "\"\n              alt=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "\"\n            >\n          </div>\n        </a>\n";
+;
+}
+output += "\n      <div class=\"sellix-header-shop-name\" style=\"text-align: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_name_text_align"), env.opts.autoescape);
+output += ";";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_name_text_align") == "center"?"left: 0;position: absolute;":""), env.opts.autoescape);
+output += "\">\n        <a href=\"\" style=\"width: 230px;align-items: center;height: 100%;padding: 0 1rem 0 0;\">\n          <span style=\"color: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_name_font_color")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_name_font_color")):"inherit"), env.opts.autoescape);
+output += "; font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_name_font_size"), env.opts.autoescape);
+output += "px; font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_name_font_weight"), env.opts.autoescape);
+output += ";\">\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_name")) {
+output += "              ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_name"), env.opts.autoescape);
+output += "\n";
+;
+}
+else {
+output += "              ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "\n";
+;
+}
+output += "          </span>\n        </a>\n      </div>\n    </div>\n\n    <div style='padding-right: 1rem'>\n";
+env.getExtension("RenderSnippet")["run"](context,"Language selector",runtime.makeKeywordArgs({"properties": runtime.contextOrFrameLookup(context, frame, "properties")}), function(t_11,t_10) {
+if(t_11) { cb(t_11); return; }
+output += runtime.suppressValue(t_10, true && env.opts.autoescape);
+output += "    </div>\n\n    <div class=\"sellix-header-cart\">\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "cartEnabled")) {
+env.getExtension("RenderSnippet")["run"](context,"Cart",runtime.makeKeywordArgs({"properties": runtime.contextOrFrameLookup(context, frame, "properties")}), function(t_13,t_12) {
+if(t_13) { cb(t_13); return; }
+output += runtime.suppressValue(t_12, true && env.opts.autoescape);
+cb()});
+}
+else {
+cb()}
+})(function(t_14) {
+if(t_14) { cb(t_14); return; }output += "    </div>\n  </div>\n</header>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+})})});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

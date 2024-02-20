@@ -1,0 +1,155 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"product");
+frame.set("product", t_2, true);
+if(frame.topLevel) {
+context.setVariable("product", t_2);
+}
+if(frame.topLevel) {
+context.addExport("product", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_3, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_3);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_3);
+}
+output += "\n";
+var t_4;
+t_4 = [{"name": "twitter","class": "twitter-share-button","icon": "fa-brands fa-twitter","visible": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_twitter")},{"name": "facebook","class": "facebook-share-button","icon": "fa-brands fa-facebook","visible": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_facebook")},{"name": "linkedin","class": "linkedin-share-button","icon": "fa-brands fa-linkedin","visible": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_linkedin")},{"name": "email","class": "email-share-button","icon": "fa fa-envelope","visible": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_email")},{"name": "whatsapp","class": "whatsapp-share-button","icon": "fa-brands fa-whatsapp","visible": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_whatsapp")},{"name": "telegram","class": "telegram-share-button","icon": "fa-brands fa-telegram","visible": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_telegram")},{"name": "viber","class": "viber-share-button","icon": "fa-brands fa-viber","visible": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_viber")},{"name": "pinterest","class": "pinterest-share-button","icon": "fa-brands fa-pinterest","visible": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_pinterest")},{"name": "tumblr","class": "tumblr-share-button","icon": "fa-brands fa-tumblr","visible": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_tumblr")},{"name": "hackernews","class": "hackernews-share-button","icon": "fa-brands fa-hacker-news","visible": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_hackernews")},{"name": "reddit","class": "reddit-share-button","icon": "fa-brands fa-reddit","visible": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_reddit")},{"name": "vk","class": "vk-share-button","icon": "fa-brands fa-vk","visible": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_vk")},{"name": "buffer","class": "buffer-share-button","icon": "fa-brands fa-buffer","visible": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_buffer")},{"name": "xing","class": "xing-share-button","icon": "fa-brands fa-xing","visible": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_xing")},{"name": "line","class": "line-share-button","icon": "fa-brands fa-line","visible": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_line")},{"name": "instapaper","class": "instapaper-share-button","icon": "fa-brands fa-instapaper","visible": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_instapaper")},{"name": "pocket","class": "pocket-share-button","icon": "fa-brands fa-get-pocket","visible": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_pocket")},{"name": "flipboard","class": "flipboard-share-button","icon": "fa-brands fa-flipboard","visible": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_flipboard")},{"name": "weibo","class": "weibo-share-button","icon": "fa-brands fa-weibo","visible": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_weibo")},{"name": "blogger","class": "blogger-share-button","icon": "fa-brands fa-blogger","visible": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_blogger")},{"name": "baidu","class": "baidu-share-button","icon": "fa-brands fa-baidu","visible": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_baidu")},{"name": "okru","class": "ok-share-button","icon": "fa-brands fa-odnoklassniki","visible": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_ok_ru")},{"name": "evernote","class": "evernote-share-button","icon": "fa-brands fa-evernote","visible": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_evernote")},{"name": "skype","class": "skype-share-button","icon": "fa-brands fa-skype","visible": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_skype")},{"name": "trello","class": "trello-share-button","icon": "fa-brands fa-trello","visible": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_trello")}];
+frame.set("buttons", t_4, true);
+if(frame.topLevel) {
+context.setVariable("buttons", t_4);
+}
+if(frame.topLevel) {
+context.addExport("buttons", t_4);
+}
+output += "\n";
+var t_5;
+t_5 = [];
+frame.set("visibleButtons", t_5, true);
+if(frame.topLevel) {
+context.setVariable("visibleButtons", t_5);
+}
+if(frame.topLevel) {
+context.addExport("visibleButtons", t_5);
+}
+frame = frame.push();
+var t_8 = runtime.contextOrFrameLookup(context, frame, "buttons");
+if(t_8) {t_8 = runtime.fromIterator(t_8);
+var t_7 = t_8.length;
+for(var t_6=0; t_6 < t_8.length; t_6++) {
+var t_9 = t_8[t_6];
+frame.set("button", t_9);
+frame.set("loop.index", t_6 + 1);
+frame.set("loop.index0", t_6);
+frame.set("loop.revindex", t_7 - t_6);
+frame.set("loop.revindex0", t_7 - t_6 - 1);
+frame.set("loop.first", t_6 === 0);
+frame.set("loop.last", t_6 === t_7 - 1);
+frame.set("loop.length", t_7);
+if(runtime.memberLookup((t_9),"visible")) {
+var t_10;
+t_10 = ((lineno = 160, colno = 48, runtime.callWrap(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "visibleButtons")),"push"), "visibleButtons[\"push\"]", context, [t_9])),runtime.contextOrFrameLookup(context, frame, "visibleButtons"));
+frame.set("visibleButtons", t_10, true);
+if(frame.topLevel) {
+context.setVariable("visibleButtons", t_10);
+}
+if(frame.topLevel) {
+context.addExport("visibleButtons", t_10);
+}
+;
+}
+;
+}
+}
+frame = frame.pop();
+output += "\n";
+var t_11;
+t_11 = "snippet-product-share";
+frame.set("globalClass", t_11, true);
+if(frame.topLevel) {
+context.setVariable("globalClass", t_11);
+}
+if(frame.topLevel) {
+context.addExport("globalClass", t_11);
+}
+var t_12;
+t_12 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_12, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_12);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_12);
+}
+output += "\n";
+(function(cb) {if(env.getFilter("length").call(context, runtime.contextOrFrameLookup(context, frame, "visibleButtons")) > 0) {
+output += "\n  <style>\n    .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__title {\n      color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"icon_color")), env.opts.autoescape);
+output += ";\n    }\n  </style>\n\n  <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "\">\n    <span class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__title ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__title\">\n      ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "Share",{"keyPrefix": "shop.content"}), env.opts.autoescape);
+output += "\n    </span>\n";
+frame = frame.push();
+var t_15 = runtime.fromIterator(runtime.contextOrFrameLookup(context, frame, "visibleButtons"));
+runtime.asyncEach(t_15, 1, function(button, t_13, t_14,next) {
+frame.set("button", button);
+frame.set("loop.index", t_13 + 1);
+frame.set("loop.index0", t_13);
+frame.set("loop.revindex", t_14 - t_13);
+frame.set("loop.revindex0", t_14 - t_13 - 1);
+frame.set("loop.first", t_13 === 0);
+frame.set("loop.last", t_13 === t_14 - 1);
+frame.set("loop.length", t_14);
+env.getExtension("RenderSnippet")["run"](context,"Shared: Social share",runtime.makeKeywordArgs({"name": runtime.memberLookup((button),"name"),"title": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"title"),"class": runtime.memberLookup((button),"class"),"icon_class": runtime.memberLookup((button),"icon"),"properties": runtime.contextOrFrameLookup(context, frame, "properties")}), function(t_17,t_16) {
+if(t_17) { cb(t_17); return; }
+output += runtime.suppressValue(t_16, true && env.opts.autoescape);
+next(t_13);
+});
+}, function(t_19,t_18) {
+if(t_19) { cb(t_19); return; }
+frame = frame.pop();
+output += "  </div>\n\n";
+cb()});
+}
+else {
+cb()}
+})(function(t_20) {
+if(t_20) { cb(t_20); return; }if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

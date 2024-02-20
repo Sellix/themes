@@ -1,0 +1,50 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+output += "<style>\n  .sellix-header {\n    height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"logo_image_height"), env.opts.autoescape);
+output += ";\n    padding-top: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"header_padding_top"), env.opts.autoescape);
+output += "px;\n    padding-bottom: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"header_padding_bottom"), env.opts.autoescape);
+output += "px;\n  }\n\n  canvas{\n    display: none;\n  }\n\n  nav{\n    display: none;\n  }\n\n  .sellix-header-in {\n    position: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"header_fluid_row")?"absolute":"relative"), env.opts.autoescape);
+output += ";\n    left: 0;\n    display: flex;\n    align-items: center;\n    justify-content: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"logo_alignment"), env.opts.autoescape);
+output += ";\n    width: 100%;\n    height: 100%;\n\n  }\n\n  header{\n        background: linear-gradient(-90deg, #000000 0%, #160e2c 100%)!important;\n        height: 100px!important;\n  }\n\n  .sellix-section{\n    background: linear-gradient(269deg, #000000 0%, #160e2c 100%)!important;\n  }\n\n  .sellix-input{\n    border: 0px!important;\n    background:#32285b!important;\n  }\n\n</style>\n\n<div class=\"sellix-store-screen\">\n";
+frame = frame.push();
+var t_3 = runtime.fromIterator(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"section_order"));
+runtime.asyncEach(t_3, 1, function(section, t_1, t_2,next) {
+frame.set("section", section);
+frame.set("loop.index", t_1 + 1);
+frame.set("loop.index0", t_1);
+frame.set("loop.revindex", t_2 - t_1);
+frame.set("loop.revindex0", t_2 - t_1 - 1);
+frame.set("loop.first", t_1 === 0);
+frame.set("loop.last", t_1 === t_2 - 1);
+frame.set("loop.length", t_2);
+env.getExtension("RenderSection")["run"](context,section, function(t_5,t_4) {
+if(t_5) { cb(t_5); return; }
+output += runtime.suppressValue(t_4, true && env.opts.autoescape);
+next(t_1);
+});
+}, function(t_7,t_6) {
+if(t_7) { cb(t_7); return; }
+frame = frame.pop();
+output += "</div>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

@@ -1,0 +1,183 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"invoiceInfo")),"invoice");
+frame.set("invoice", t_2, true);
+if(frame.topLevel) {
+context.setVariable("invoice", t_2);
+}
+if(frame.topLevel) {
+context.addExport("invoice", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"subscription")),"name") || "________";
+frame.set("subscriptionName", t_3, true);
+if(frame.topLevel) {
+context.setVariable("subscriptionName", t_3);
+}
+if(frame.topLevel) {
+context.addExport("subscriptionName", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_4, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_4);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_4);
+}
+output += "\n";
+var t_5;
+t_5 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_5, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_5);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_5);
+}
+var t_6;
+t_6 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_background_color")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_background_color"):"background_accent_dark");
+frame.set("backgroundColor", t_6, true);
+if(frame.topLevel) {
+context.setVariable("backgroundColor", t_6);
+}
+if(frame.topLevel) {
+context.addExport("backgroundColor", t_6);
+}
+var t_7;
+t_7 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_show_border")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_show_border"):true);
+frame.set("showBorder", t_7, true);
+if(frame.topLevel) {
+context.setVariable("showBorder", t_7);
+}
+if(frame.topLevel) {
+context.addExport("showBorder", t_7);
+}
+var t_8;
+t_8 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_border_radius")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_border_radius"):0.5);
+frame.set("borderRadius", t_8, true);
+if(frame.topLevel) {
+context.setVariable("borderRadius", t_8);
+}
+if(frame.topLevel) {
+context.addExport("borderRadius", t_8);
+}
+var t_9;
+t_9 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_shadow")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_shadow"):"none");
+frame.set("shadow", t_9, true);
+if(frame.topLevel) {
+context.setVariable("shadow", t_9);
+}
+if(frame.topLevel) {
+context.addExport("shadow", t_9);
+}
+var t_10;
+t_10 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_vert")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_vert"):"16");
+frame.set("paddingVert", t_10, true);
+if(frame.topLevel) {
+context.setVariable("paddingVert", t_10);
+}
+if(frame.topLevel) {
+context.addExport("paddingVert", t_10);
+}
+var t_11;
+t_11 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_horiz")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_horiz"):"16");
+frame.set("paddingHoriz", t_11, true);
+if(frame.topLevel) {
+context.setVariable("paddingHoriz", t_11);
+}
+if(frame.topLevel) {
+context.addExport("paddingHoriz", t_11);
+}
+var t_12;
+t_12 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_color")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_color"):"light_font_color");
+frame.set("titleFontColor", t_12, true);
+if(frame.topLevel) {
+context.setVariable("titleFontColor", t_12);
+}
+if(frame.topLevel) {
+context.addExport("titleFontColor", t_12);
+}
+var t_13;
+t_13 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_size")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_size"):24);
+frame.set("titleFontSize", t_13, true);
+if(frame.topLevel) {
+context.setVariable("titleFontSize", t_13);
+}
+if(frame.topLevel) {
+context.addExport("titleFontSize", t_13);
+}
+var t_14;
+t_14 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_text_align")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_text_align"):"left");
+frame.set("titleTextAlign", t_14, true);
+if(frame.topLevel) {
+context.setVariable("titleTextAlign", t_14);
+}
+if(frame.topLevel) {
+context.addExport("titleTextAlign", t_14);
+}
+output += "\n<style>\n  .sellix-subscription-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " {\n    border: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "showBorder")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += "!important;\n    background: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.contextOrFrameLookup(context, frame, "backgroundColor")), env.opts.autoescape);
+output += "!important;\n    border-radius: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "borderRadius"), env.opts.autoescape);
+output += "rem!important;\n    box-shadow: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "shadow"), env.opts.autoescape);
+output += "!important;\n    padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingVert"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHoriz"), env.opts.autoescape);
+output += "px!important;\n    position: relative;\n    margin-bottom: 1rem;\n  }\n\n  .shop-product-info-product-title-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " {\n    color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.contextOrFrameLookup(context, frame, "titleFontColor")), env.opts.autoescape);
+output += "!important;\n    font-size: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleFontSize"), env.opts.autoescape);
+output += "px!important;\n    justify-content: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleTextAlign"), env.opts.autoescape);
+output += "!important;\n  }\n\n  .shop-product-info-product-description-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " {\n    justify-content: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "bodyTextAlign"), env.opts.autoescape);
+output += "!important;\n  }\n</style>\n\n<div class=\"w-100\">\n  <div class=\"sellix-subscription-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\">\n    <div class=\"shop-product-info-product-title mb-0 shop-product-info-product-title-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\">\n      Subscription ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "subscriptionName"), env.opts.autoescape);
+output += "\n    </div>\n\n    <div class=\"shop-product-info-product-info\"></div>\n\n    <div class=\"shop-product-info-product-description shop-product-info-product-description-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\">\n      <div class=\"sellix-text p-3\">\n        <p>You are purchasing the ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "subscriptionName"), env.opts.autoescape);
+output += " subscription. Once the invoice is flagged as completed you will automatically receive the months you have paid for.</p>\n      </div>\n    </div>\n  </div>\n</div>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

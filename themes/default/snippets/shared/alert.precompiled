@@ -1,0 +1,45 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+output += "<div class=\"alert fade ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"preline")?"preline":""), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"small")?"small":""), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"show")?"show":""), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"red")?"red":""), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"blue")?"blue":""), env.opts.autoescape);
+output += "\">\n";
+(function(cb) {if(!runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"skipTitle")) {
+output += "\t\t<b>";
+env.getExtension("RenderSnippet")["run"](context,"Info icon", function(t_2,t_1) {
+if(t_2) { cb(t_2); return; }
+output += runtime.suppressValue(t_1, true && env.opts.autoescape);
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"title"), env.opts.autoescape);
+output += "</b>\n";
+cb()});
+}
+else {
+cb()}
+})(function(t_3) {
+if(t_3) { cb(t_3); return; }output += "\n\t<span>";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"text"), env.opts.autoescape);
+output += "</span>\n</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

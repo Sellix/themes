@@ -1,0 +1,146 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"stock");
+frame.set("stock", t_2, true);
+if(frame.topLevel) {
+context.setVariable("stock", t_2);
+}
+if(frame.topLevel) {
+context.addExport("stock", t_2);
+}
+var t_3;
+t_3 = (lineno = 2, colno = 29, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "get_stock"), "get_stock", context, [runtime.contextOrFrameLookup(context, frame, "stock")]));
+frame.set("stockTitle", t_3, true);
+if(frame.topLevel) {
+context.setVariable("stockTitle", t_3);
+}
+if(frame.topLevel) {
+context.addExport("stockTitle", t_3);
+}
+var t_4;
+t_4 = runtime.contextOrFrameLookup(context, frame, "stock") == -1 || runtime.contextOrFrameLookup(context, frame, "stock") > 1;
+frame.set("isHightStock", t_4, true);
+if(frame.topLevel) {
+context.setVariable("isHightStock", t_4);
+}
+if(frame.topLevel) {
+context.addExport("isHightStock", t_4);
+}
+var t_5;
+t_5 = (lineno = 4, colno = 34, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"hide_stock_counter"),false]));
+frame.set("hideStockCounter", t_5, true);
+if(frame.topLevel) {
+context.setVariable("hideStockCounter", t_5);
+}
+if(frame.topLevel) {
+context.addExport("hideStockCounter", t_5);
+}
+var t_6;
+t_6 = (lineno = 5, colno = 25, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"reverse"),false]));
+frame.set("reverse", t_6, true);
+if(frame.topLevel) {
+context.setVariable("reverse", t_6);
+}
+if(frame.topLevel) {
+context.addExport("reverse", t_6);
+}
+output += "\n";
+var t_7;
+t_7 = "snippet-product-stock";
+frame.set("globalClass", t_7, true);
+if(frame.topLevel) {
+context.setVariable("globalClass", t_7);
+}
+if(frame.topLevel) {
+context.addExport("globalClass", t_7);
+}
+var t_8;
+t_8 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_8, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_8);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_8);
+}
+output += "\n<style>\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__stock-value {\n";
+if(runtime.contextOrFrameLookup(context, frame, "reverse")) {
+output += "      margin-right: 0.5rem;\n";
+;
+}
+else {
+output += "      margin-left: 0.5rem;\n";
+;
+}
+output += "  }\n</style>\n\n<span class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__stock ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isHightStock")?"stock-high":"stock-low"), env.opts.autoescape);
+output += "\">\n";
+if(runtime.contextOrFrameLookup(context, frame, "hideStockCounter")) {
+output += "    ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.shared.titles.inStock"), env.opts.autoescape);
+output += "\n";
+;
+}
+else {
+if(!runtime.contextOrFrameLookup(context, frame, "reverse")) {
+output += "      ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.shared.titles.stock"), env.opts.autoescape);
+output += "\n";
+;
+}
+output += "    <span class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__stock-value ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__stock-value\">\n";
+if(runtime.contextOrFrameLookup(context, frame, "stock") === -1) {
+output += "        <i class=\"fa-solid fa-infinity\"></i>\n";
+;
+}
+else {
+output += "        ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "stockTitle"), env.opts.autoescape);
+output += "\n";
+;
+}
+output += "    </span>\n";
+if(runtime.contextOrFrameLookup(context, frame, "reverse")) {
+output += "      ";
+output += runtime.suppressValue(env.getFilter("lower").call(context, env.getFilter("t").call(context, "shop.shared.titles.inStock")), env.opts.autoescape);
+output += "\n";
+;
+}
+;
+}
+output += "</span>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

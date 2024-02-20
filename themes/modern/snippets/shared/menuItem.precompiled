@@ -1,0 +1,136 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"menu");
+frame.set("menuProps", t_1, true);
+if(frame.topLevel) {
+context.setVariable("menuProps", t_1);
+}
+if(frame.topLevel) {
+context.addExport("menuProps", t_1);
+}
+var t_2;
+t_2 = (lineno = 1, colno = 21, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"url"),""]));
+frame.set("url", t_2, true);
+if(frame.topLevel) {
+context.setVariable("url", t_2);
+}
+if(frame.topLevel) {
+context.addExport("url", t_2);
+}
+var t_3;
+t_3 = (lineno = 2, colno = 23, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"title"),"Menu Link"]));
+frame.set("title", t_3, true);
+if(frame.topLevel) {
+context.setVariable("title", t_3);
+}
+if(frame.topLevel) {
+context.addExport("title", t_3);
+}
+var t_4;
+t_4 = (lineno = 3, colno = 26, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"is_active"),false]));
+frame.set("isActive", t_4, true);
+if(frame.topLevel) {
+context.setVariable("isActive", t_4);
+}
+if(frame.topLevel) {
+context.addExport("isActive", t_4);
+}
+var t_5;
+t_5 = (lineno = 4, colno = 23, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"class"),"menu-tab"]));
+frame.set("class", t_5, true);
+if(frame.topLevel) {
+context.setVariable("class", t_5);
+}
+if(frame.topLevel) {
+context.addExport("class", t_5);
+}
+output += "\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"locales")),"defaultLocale") != runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"locales")),"locale")) {
+var t_6;
+t_6 = env.getFilter("join").call(context, ["/",runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"locales")),"locale")]);
+frame.set("localePrefix", t_6, true);
+if(frame.topLevel) {
+context.setVariable("localePrefix", t_6);
+}
+if(frame.topLevel) {
+context.addExport("localePrefix", t_6);
+}
+;
+}
+else {
+var t_7;
+t_7 = "";
+frame.set("localePrefix", t_7, true);
+if(frame.topLevel) {
+context.setVariable("localePrefix", t_7);
+}
+if(frame.topLevel) {
+context.addExport("localePrefix", t_7);
+}
+;
+}
+output += "\n";
+var t_8;
+t_8 = "snippet-menu-item";
+frame.set("globalClass", t_8, true);
+if(frame.topLevel) {
+context.setVariable("globalClass", t_8);
+}
+if(frame.topLevel) {
+context.addExport("globalClass", t_8);
+}
+output += "\n";
+var t_9;
+t_9 = "menu";
+frame.set("translationPrefix", t_9, true);
+if(frame.topLevel) {
+context.setVariable("translationPrefix", t_9);
+}
+if(frame.topLevel) {
+context.addExport("translationPrefix", t_9);
+}
+output += "\n<style>\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += ":hover {\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "menuProps")),"menu_item_font_color_hover")), env.opts.autoescape);
+output += ";\n  }\n</style>\n\n<a\n  href=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localePrefix"), env.opts.autoescape);
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "url"), env.opts.autoescape);
+output += "\"\n  class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "class"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isActive")?"active":""), env.opts.autoescape);
+output += "\"\n>\n";
+if(env.getFilter("t").call(context, env.getFilter("join").call(context, [runtime.contextOrFrameLookup(context, frame, "translationPrefix"),runtime.contextOrFrameLookup(context, frame, "title")],".")) === env.getFilter("join").call(context, [runtime.contextOrFrameLookup(context, frame, "translationPrefix"),runtime.contextOrFrameLookup(context, frame, "title")],".")) {
+output += "    ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "title"), env.opts.autoescape);
+output += "\n";
+;
+}
+else {
+output += "    ";
+output += runtime.suppressValue(env.getFilter("t").call(context, env.getFilter("join").call(context, [runtime.contextOrFrameLookup(context, frame, "translationPrefix"),runtime.contextOrFrameLookup(context, frame, "title")],".")), env.opts.autoescape);
+output += "\n";
+;
+}
+output += "</a>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

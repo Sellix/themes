@@ -1,0 +1,81 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"id")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"id"):(env.getFilter("join").call(context, ["ripple-button-",runtime.contextOrFrameLookup(context, frame, "id")])));
+frame.set("button_id", t_2, true);
+if(frame.topLevel) {
+context.setVariable("button_id", t_2);
+}
+if(frame.topLevel) {
+context.addExport("button_id", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"disabled") || false;
+frame.set("disabled", t_3, true);
+if(frame.topLevel) {
+context.setVariable("disabled", t_3);
+}
+if(frame.topLevel) {
+context.addExport("disabled", t_3);
+}
+output += "\n<button\n  id='";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "button_id"), env.opts.autoescape);
+output += "'\n  type=\"";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"type")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"type"):"button"), env.opts.autoescape);
+output += "\"\n  style=\"";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"style")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"style"):""), env.opts.autoescape);
+output += "\"\n  class=\"button ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"class")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"class"):""), env.opts.autoescape);
+output += "\"\n  ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "disabled")?"disabled":""), env.opts.autoescape);
+output += "\n>\n  <div class=\"ripple-button-loader d-none\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Shared: Loader",runtime.makeKeywordArgs({"properties": {"background_color": runtime.contextOrFrameLookup(context, frame, "bgColor") || "button_color","color": runtime.contextOrFrameLookup(context, frame, "labelColor") || "button_text_color"}}), function(t_5,t_4) {
+if(t_5) { cb(t_5); return; }
+output += runtime.suppressValue(t_4, true && env.opts.autoescape);
+output += "  </div>\n\n  <div class=\"ripple-button-label\">\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"plus")) {
+output += "      <i class=\"fa-solid fa-plus mr-2\"></i>\n";
+;
+}
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"icon")) {
+output += "      <div class=\"mr-3\">\n";
+env.getExtension("RenderSnippet")["run"](context,runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"icon"), function(t_7,t_6) {
+if(t_7) { cb(t_7); return; }
+output += runtime.suppressValue(t_6, true && env.opts.autoescape);
+output += "      </div>\n";
+cb()});
+}
+else {
+cb()}
+})(function(t_8) {
+if(t_8) { cb(t_8); return; }output += "    ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"title"), env.opts.autoescape);
+output += "\n  </div>\n</button>\n\n<script type='application/javascript'>\n  $(document).ready(function () {\n    new ripple('#";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "button_id"), env.opts.autoescape);
+output += "');\n  });\n</script>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+})});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

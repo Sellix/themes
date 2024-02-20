@@ -1,0 +1,207 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"invoice");
+frame.set("invoice", t_1, true);
+if(frame.topLevel) {
+context.setVariable("invoice", t_1);
+}
+if(frame.topLevel) {
+context.addExport("invoice", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"info");
+frame.set("info", t_2, true);
+if(frame.topLevel) {
+context.setVariable("info", t_2);
+}
+if(frame.topLevel) {
+context.addExport("info", t_2);
+}
+output += "\n";
+var t_3;
+t_3 = [];
+frame.set("products", t_3, true);
+if(frame.topLevel) {
+context.setVariable("products", t_3);
+}
+if(frame.topLevel) {
+context.addExport("products", t_3);
+}
+frame = frame.push();
+var t_6 = runtime.contextOrFrameLookup(context, frame, "info");
+if(t_6) {t_6 = runtime.fromIterator(t_6);
+var t_4;
+if(runtime.isArray(t_6)) {
+var t_5 = t_6.length;
+for(t_4=0; t_4 < t_6.length; t_4++) {
+var t_7 = t_6[t_4][0];
+frame.set("[object Object]", t_6[t_4][0]);
+var t_8 = t_6[t_4][1];
+frame.set("[object Object]", t_6[t_4][1]);
+frame.set("loop.index", t_4 + 1);
+frame.set("loop.index0", t_4);
+frame.set("loop.revindex", t_5 - t_4);
+frame.set("loop.revindex0", t_5 - t_4 - 1);
+frame.set("loop.first", t_4 === 0);
+frame.set("loop.last", t_4 === t_5 - 1);
+frame.set("loop.length", t_5);
+if(t_7 != "feedback_uniqid") {
+var t_9;
+t_9 = ((lineno = 6, colno = 36, runtime.callWrap(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "products")),"push"), "products[\"push\"]", context, [t_8])),runtime.contextOrFrameLookup(context, frame, "products"));
+frame.set("products", t_9, true);
+if(frame.topLevel) {
+context.setVariable("products", t_9);
+}
+if(frame.topLevel) {
+context.addExport("products", t_9);
+}
+;
+}
+;
+}
+} else {
+t_4 = -1;
+var t_5 = runtime.keys(t_6).length;
+for(var t_10 in t_6) {
+t_4++;
+var t_11 = t_6[t_10];
+frame.set("productId", t_10);
+frame.set("product", t_11);
+frame.set("loop.index", t_4 + 1);
+frame.set("loop.index0", t_4);
+frame.set("loop.revindex", t_5 - t_4);
+frame.set("loop.revindex0", t_5 - t_4 - 1);
+frame.set("loop.first", t_4 === 0);
+frame.set("loop.last", t_4 === t_5 - 1);
+frame.set("loop.length", t_5);
+if(t_10 != "feedback_uniqid") {
+var t_12;
+t_12 = ((lineno = 6, colno = 36, runtime.callWrap(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "products")),"push"), "products[\"push\"]", context, [t_11])),runtime.contextOrFrameLookup(context, frame, "products"));
+frame.set("products", t_12, true);
+if(frame.topLevel) {
+context.setVariable("products", t_12);
+}
+if(frame.topLevel) {
+context.addExport("products", t_12);
+}
+;
+}
+;
+}
+}
+}
+frame = frame.pop();
+output += "\n<div>\n";
+frame = frame.push();
+var t_15 = runtime.fromIterator(runtime.contextOrFrameLookup(context, frame, "products"));
+runtime.asyncEach(t_15, 1, function(product, t_13, t_14,next) {
+frame.set("product", product);
+frame.set("loop.index", t_13 + 1);
+frame.set("loop.index0", t_13);
+frame.set("loop.revindex", t_14 - t_13);
+frame.set("loop.revindex0", t_14 - t_13 - 1);
+frame.set("loop.first", t_13 === 0);
+frame.set("loop.last", t_13 === t_14 - 1);
+frame.set("loop.length", t_14);
+var t_16;
+t_16 = runtime.memberLookup((runtime.memberLookup((product),"product")),"title") || "";
+frame.set("title", t_16, true);
+if(frame.topLevel) {
+context.setVariable("title", t_16);
+}
+if(frame.topLevel) {
+context.addExport("title", t_16);
+}
+var t_17;
+t_17 = runtime.memberLookup((product),"delivery_text");
+frame.set("text", t_17, true);
+if(frame.topLevel) {
+context.setVariable("text", t_17);
+}
+if(frame.topLevel) {
+context.addExport("text", t_17);
+}
+output += "\n";
+if(runtime.memberLookup((product),"status") === "PENDING") {
+var t_18;
+t_18 = "pending";
+frame.set("status", t_18, true);
+if(frame.topLevel) {
+context.setVariable("status", t_18);
+}
+if(frame.topLevel) {
+context.addExport("status", t_18);
+}
+;
+}
+else {
+if(runtime.memberLookup((product),"status") === "PROCESSED") {
+var t_19;
+t_19 = "completed";
+frame.set("status", t_19, true);
+if(frame.topLevel) {
+context.setVariable("status", t_19);
+}
+if(frame.topLevel) {
+context.addExport("status", t_19);
+}
+;
+}
+else {
+var t_20;
+t_20 = "cancelled";
+frame.set("status", t_20, true);
+if(frame.topLevel) {
+context.setVariable("status", t_20);
+}
+if(frame.topLevel) {
+context.addExport("status", t_20);
+}
+;
+}
+;
+}
+output += "\n    <div class=\"sellix-delivery-cart-product\">\n      <div class=\"sellix-delivery-cart-product-title\">\n        <div>";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "title"), env.opts.autoescape);
+output += "</div>\n        <div class=\"badge badge-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "status"), env.opts.autoescape);
+output += "\">\n          ";
+output += runtime.suppressValue(env.getFilter("lower").call(context, env.getFilter("replace").call(context, (runtime.memberLookup((product),"status") || ""),"_"," ")), env.opts.autoescape);
+output += "\n        </div>\n      </div>\n\n";
+if(runtime.contextOrFrameLookup(context, frame, "text")) {
+output += "        <div class=\"sellix-delivery-product skip\">\n          <div class=\"sellix-delivery-product-title is-cart\">Message from ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"name"), env.opts.autoescape);
+output += ":</div>\n          <div class=\"sellix-delivery-product-item skip is-cart\">\n            <div class=\"sellix-text\">\n              <p>";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "text"), env.opts.autoescape);
+output += "</p>\n            </div>\n          </div>\n        </div>\n";
+;
+}
+output += "\n";
+env.getExtension("RenderSnippet")["run"](context,"Delivery digital product",runtime.makeKeywordArgs({"is_cart": true,"invoice": runtime.contextOrFrameLookup(context, frame, "invoice"),"info": product,"product_type": runtime.memberLookup((runtime.memberLookup((product),"product")),"type")}), function(t_22,t_21) {
+if(t_22) { cb(t_22); return; }
+output += runtime.suppressValue(t_21, true && env.opts.autoescape);
+output += "\n    </div>\n";
+next(t_13);
+});
+}, function(t_24,t_23) {
+if(t_24) { cb(t_24); return; }
+frame = frame.pop();
+output += "</div>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

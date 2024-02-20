@@ -1,0 +1,147 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_1, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_1);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"role");
+frame.set("role", t_2, true);
+if(frame.topLevel) {
+context.setVariable("role", t_2);
+}
+if(frame.topLevel) {
+context.addExport("role", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"customer_email");
+frame.set("customerEmail", t_3, true);
+if(frame.topLevel) {
+context.setVariable("customerEmail", t_3);
+}
+if(frame.topLevel) {
+context.addExport("customerEmail", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"message");
+frame.set("message", t_4, true);
+if(frame.topLevel) {
+context.setVariable("message", t_4);
+}
+if(frame.topLevel) {
+context.addExport("message", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_5, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_5);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_5);
+}
+var t_6;
+t_6 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"created_at") * 1000;
+frame.set("created_at", t_6, true);
+if(frame.topLevel) {
+context.setVariable("created_at", t_6);
+}
+if(frame.topLevel) {
+context.addExport("created_at", t_6);
+}
+output += "\n";
+var t_7;
+t_7 = "snippet-ticket-message";
+frame.set("globalClass", t_7, true);
+if(frame.topLevel) {
+context.setVariable("globalClass", t_7);
+}
+if(frame.topLevel) {
+context.addExport("globalClass", t_7);
+}
+var t_8;
+t_8 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_8, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_8);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_8);
+}
+output += "\n<div data-id=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "role"), env.opts.autoescape);
+output += "-";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"created_at"), env.opts.autoescape);
+output += "\" class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__message\">\n  <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__image ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "role") === "SHOP"?"merchant":""), env.opts.autoescape);
+output += "\">\n";
+if(runtime.contextOrFrameLookup(context, frame, "role") == "CUSTOMER") {
+output += "      ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "customerEmail")?env.getFilter("capitalize").call(context, (lineno = 13, colno = 28, runtime.callWrap(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "customerEmail")),"slice"), "customerEmail[\"slice\"]", context, [0,1]))):"C"), env.opts.autoescape);
+output += "\n";
+;
+}
+else {
+output += "      M\n";
+;
+}
+output += "  </div>\n\n  <div class=\"d-flex flex-column\">\n    <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__message-item\">\n      <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__message-name\">\n";
+if(runtime.contextOrFrameLookup(context, frame, "role") == "CUSTOMER") {
+output += "          ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "customerEmail")?runtime.contextOrFrameLookup(context, frame, "customerEmail"):(env.getFilter("t").call(context, "shop.ticket.senders.you"))), env.opts.autoescape);
+output += "\n";
+;
+}
+else {
+output += "          ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "\n";
+;
+}
+output += "      </div>\n\n      <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__message-date\">\n        ";
+output += runtime.suppressValue(env.getFilter("date_format").call(context, runtime.contextOrFrameLookup(context, frame, "created_at"),"fromNow"), env.opts.autoescape);
+output += "\n      </div>\n    </div>\n\n    <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__message-text\">\n      ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "message"), env.opts.autoescape);
+output += "\n    </div>\n  </div>\n  <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__badge ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "role") == "CUSTOMER"?"d-none":""), env.opts.autoescape);
+output += "\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Tag",runtime.makeKeywordArgs({"tag": "Shop"}), function(t_10,t_9) {
+if(t_10) { cb(t_10); return; }
+output += runtime.suppressValue(t_9, true && env.opts.autoescape);
+output += "  </div>\n</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

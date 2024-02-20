@@ -1,0 +1,97 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 24, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"dark"),runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"theme")),"isDark")]));
+frame.set("isDark", t_1, true);
+if(frame.topLevel) {
+context.setVariable("isDark", t_1);
+}
+if(frame.topLevel) {
+context.addExport("isDark", t_1);
+}
+if(runtime.contextOrFrameLookup(context, frame, "isDark")) {
+var t_2;
+t_2 = "#262A30";
+frame.set("color1", t_2, true);
+if(frame.topLevel) {
+context.setVariable("color1", t_2);
+}
+if(frame.topLevel) {
+context.addExport("color1", t_2);
+}
+var t_3;
+t_3 = "#555D67";
+frame.set("color2", t_3, true);
+if(frame.topLevel) {
+context.setVariable("color2", t_3);
+}
+if(frame.topLevel) {
+context.addExport("color2", t_3);
+}
+var t_4;
+t_4 = "#777F89";
+frame.set("color3", t_4, true);
+if(frame.topLevel) {
+context.setVariable("color3", t_4);
+}
+if(frame.topLevel) {
+context.addExport("color3", t_4);
+}
+;
+}
+else {
+var t_5;
+t_5 = "white";
+frame.set("color1", t_5, true);
+if(frame.topLevel) {
+context.setVariable("color1", t_5);
+}
+if(frame.topLevel) {
+context.addExport("color1", t_5);
+}
+var t_6;
+t_6 = "white";
+frame.set("color2", t_6, true);
+if(frame.topLevel) {
+context.setVariable("color2", t_6);
+}
+if(frame.topLevel) {
+context.addExport("color2", t_6);
+}
+var t_7;
+t_7 = "#E9EDF0";
+frame.set("color3", t_7, true);
+if(frame.topLevel) {
+context.setVariable("color3", t_7);
+}
+if(frame.topLevel) {
+context.addExport("color3", t_7);
+}
+;
+}
+output += "\n\n<svg width=\"100\" height=\"99\" viewBox=\"0 0 100 99\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <g class=\"item-first\">\n    <g filter=\"url(#filter0_dd_11312_157707)\">\n      <rect x=\"7\" y=\"20.2292\" width=\"60\" height=\"70\" rx=\"8\" transform=\"rotate(-5 7 20.2292)\" fill=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "color1"), env.opts.autoescape);
+output += "\"/>\n    </g>\n    <rect x=\"11\" y=\"24\" width=\"52\" height=\"52\" rx=\"4\" transform=\"rotate(-5 11 24)\" fill=\"currentColor\"/>\n    <g opacity=\"0.8\">\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M42.1562 33.9134C37.0213 34.3626 33.2227 38.8896 33.6719 44.0246C33.7089 44.4475 33.7737 44.862 33.8645 45.2663C33.9308 45.5616 33.9721 45.7465 33.9972 45.8816C34.0017 45.9057 34.0051 45.9255 34.0077 45.9415L33.997 45.9556C33.9385 46.0324 33.8537 46.1339 33.7011 46.3159L27.5069 53.6978L27.4631 53.7498C27.2998 53.9433 27.0942 54.1871 26.9502 54.4758C26.8254 54.7263 26.7407 54.9949 26.6993 55.2715C26.6516 55.5908 26.6803 55.9083 26.703 56.1605L26.7091 56.2282L26.9146 58.5781C26.9439 58.9134 26.9725 59.2399 27.0192 59.5143C27.0706 59.8158 27.1605 60.169 27.3757 60.5135C27.6741 60.991 28.1161 61.3619 28.6382 61.5728C29.0148 61.7249 29.3782 61.7522 29.684 61.7504C29.9624 61.7488 30.2888 61.7201 30.624 61.6908L33.8544 61.4082C34.588 61.344 35.1306 60.6973 35.0664 59.9637L34.9502 58.6355L36.2785 58.5193C37.0121 58.4551 37.5547 57.8084 37.4905 57.0748L37.3743 55.7465L38.7025 55.6303C39.0549 55.5995 39.3804 55.43 39.6078 55.1591L41.5218 52.8782C41.6744 52.6963 41.7598 52.5951 41.825 52.5241L41.8371 52.5113C41.8533 52.5109 41.8734 52.5109 41.8979 52.5112C42.0355 52.5124 42.2247 52.5209 42.527 52.535C42.9409 52.5542 43.3604 52.546 43.7831 52.509C48.9182 52.0597 52.7168 47.5328 52.2675 42.3977C51.8183 37.2627 47.2913 33.4641 42.1562 33.9134ZM42.8537 41.8826C43.1958 41.8527 43.5446 41.9526 43.827 42.1895C44.1094 42.4264 44.2683 42.7527 44.2982 43.0946C44.3624 43.8282 45.0091 44.3709 45.7427 44.3067C46.4763 44.2425 47.0189 43.5957 46.9547 42.8622C46.8657 41.8445 46.3869 40.8565 45.5411 40.1467C44.6952 39.437 43.639 39.1371 42.6213 39.2261C41.8877 39.2903 41.3451 39.937 41.4093 40.6706C41.4734 41.4042 42.1201 41.9468 42.8537 41.8826Z\" fill=";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "color2"), env.opts.autoescape);
+output += " />\n    </g>\n  </g>\n  <g class=\"item-second\">\n    <g filter=\"url(#filter1_dd_11312_157707)\">\n      <rect x=\"33.0996\" y=\"5\" width=\"60\" height=\"70\" rx=\"8\" transform=\"rotate(5 33.0996 5)\" fill=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "color1"), env.opts.autoescape);
+output += "\"/>\n    </g>\n    <rect x=\"37\" y=\"9\" width=\"52\" height=\"52\" rx=\"4\" transform=\"rotate(5 37 9)\" fill=\"currentColor\"/>\n    <path d=\"M67.7486 42.4769C69.8188 40.8379 71.2429 38.3826 71.491 35.5462C71.9698 30.0737 67.9069 25.2318 62.4346 24.7531C56.9622 24.2743 52.1202 28.3371 51.6415 33.8096C51.3979 36.5936 52.3253 39.2124 54.0268 41.1815L54.028 41.1828L51.1159 45.5616C50.8814 45.9157 50.8733 46.3754 51.1092 46.7387C51.346 47.0914 51.7687 47.2783 52.1924 47.2083L53.868 46.9051L54.1701 48.5913C54.2507 49.0159 54.5743 49.3548 54.9949 49.445C55.0364 49.4594 55.0894 49.464 55.132 49.4678C55.504 49.5003 55.8829 49.3299 56.0924 49.0164L59.3226 44.3855L59.3249 44.3861C60.8395 44.7342 61.9817 44.6214 62.0886 44.6278L64.4656 49.749C64.6281 50.0951 64.9611 50.3277 65.3437 50.3612C65.3862 50.3649 65.4287 50.3686 65.4827 50.3626C65.9124 50.3467 66.29 50.0692 66.4326 49.6641L67.0229 48.056L68.631 48.6465C69.0361 48.789 69.4954 48.6792 69.7802 48.3616C70.0756 48.0448 70.1484 47.58 69.9577 47.1886L67.7486 42.4769ZM59.1387 39.2945C58.7607 39.4542 58.3278 39.3842 58.0189 39.1216C57.7099 38.859 57.5858 38.4412 57.6848 38.0431L58.2743 35.8353L56.7879 34.0992C56.5251 33.7978 56.4561 33.3635 56.6171 32.9921C56.778 32.6207 57.1325 32.3626 57.541 32.3449L59.8109 32.2222L60.9883 30.2694C61.2006 29.9239 61.5929 29.7227 61.9967 29.758C62.4005 29.7933 62.752 30.0596 62.9009 30.4367L63.7223 32.5536L65.9462 33.0802C66.3453 33.1687 66.6496 33.4843 66.7437 33.8781C66.8378 34.2718 66.6944 34.6875 66.3833 34.9387L64.618 36.3903L64.8034 38.6765C64.8327 39.0752 64.6275 39.4642 64.2882 39.6701C64.0849 39.7915 63.8668 39.8367 63.6436 39.8171C63.4736 39.8023 63.3074 39.7449 63.1554 39.6459L61.2391 38.4183L59.1387 39.2945Z\" fill=";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "color2"), env.opts.autoescape);
+output += " />\n  </g>\n  <defs>\n    <filter id=\"filter0_dd_11312_157707\" x=\"0.666016\" y=\"10.6663\" width=\"78.541\" height=\"87.6302\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">\n      <feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\"/>\n      <feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n      <feMorphology radius=\"1\" operator=\"erode\" in=\"SourceAlpha\" result=\"effect1_dropShadow_11312_157707\"/>\n      <feOffset dy=\"2\"/>\n      <feGaussianBlur stdDeviation=\"4\"/>\n      <feColorMatrix type=\"matrix\" values=\"0 0 0 0 0.027451 0 0 0 0 0.054902 0 0 0 0 0.137255 0 0 0 0.05 0\"/>\n      <feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow_11312_157707\"/>\n      <feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n      <feOffset dy=\"1\"/>\n      <feGaussianBlur stdDeviation=\"1.5\"/>\n      <feColorMatrix type=\"matrix\" values=\"0 0 0 0 0.027451 0 0 0 0 0.054902 0 0 0 0 0.137255 0 0 0 0.06 0\"/>\n      <feBlend mode=\"normal\" in2=\"effect1_dropShadow_11312_157707\" result=\"effect2_dropShadow_11312_157707\"/>\n      <feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"effect2_dropShadow_11312_157707\" result=\"shape\"/>\n    </filter>\n    <filter id=\"filter1_dd_11312_157707\" x=\"20.6641\" y=\"0.666382\" width=\"78.541\" height=\"87.6302\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">\n      <feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\"/>\n      <feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n      <feMorphology radius=\"1\" operator=\"erode\" in=\"SourceAlpha\" result=\"effect1_dropShadow_11312_157707\"/>\n      <feOffset dy=\"2\"/>\n      <feGaussianBlur stdDeviation=\"4\"/>\n      <feColorMatrix type=\"matrix\" values=\"0 0 0 0 0.027451 0 0 0 0 0.054902 0 0 0 0 0.137255 0 0 0 0.05 0\"/>\n      <feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow_11312_157707\"/>\n      <feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n      <feOffset dy=\"1\"/>\n      <feGaussianBlur stdDeviation=\"1.5\"/>\n      <feColorMatrix type=\"matrix\" values=\"0 0 0 0 0.027451 0 0 0 0 0.054902 0 0 0 0 0.137255 0 0 0 0.06 0\"/>\n      <feBlend mode=\"normal\" in2=\"effect1_dropShadow_11312_157707\" result=\"effect2_dropShadow_11312_157707\"/>\n      <feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"effect2_dropShadow_11312_157707\" result=\"shape\"/>\n    </filter>\n  </defs>\n</svg>\n\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

@@ -1,0 +1,31 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+output += "\n<div class=\"d-flex w-100 position-relative\" style=\"opacity:0.8;\">\n  <div id=\"sellix-card-container-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\"  class=\"sellix-card-container\">\n    <div class=\"sellix-card unselectable\">\n\n      <div class=\"sellix-card-image skeleton\" style=\"background: var(--buttonColor); opacity:.7;\">\n      </div>\n\n      <div class=\"sellix-card-info\">\n        <div class=\"sellix-card-title skeleton\" style=\"background:var(--buttonColor); width: 70%; height: 12px; margin-top: 12px;\">\n        </div>\n\n        <div class=\"sellix-card-description justify-content-between\">\n          <span class=\"sellix-card-price skeleton\" style=\"background: var(--buttonColor); width: 20%; height: 10px; margin-top: 10px;\">\n          </span>\n          <span class=\"sellix-card-stock\" style=\"background: var(--buttonColor); width: 30%; height: 10px; margin-top: 10px;\"></span>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

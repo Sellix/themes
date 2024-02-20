@@ -1,0 +1,139 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_2, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_2);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_2);
+}
+var t_3;
+t_3 = "snippet-social-links-floating";
+frame.set("globalClass", t_3, true);
+if(frame.topLevel) {
+context.setVariable("globalClass", t_3);
+}
+if(frame.topLevel) {
+context.addExport("globalClass", t_3);
+}
+var t_4;
+t_4 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_4, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_4);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_4);
+}
+output += "\n";
+var t_5;
+t_5 = env.getFilter("selectattr").call(context, [{"link": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"discord_link"),"class": "discord-link","icon": "fa-brands fa-discord"},{"link": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"instagram_link"),"class": "instagram-link","icon": "fa-brands fa-instagram"},{"link": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"twitter_link"),"class": "twitter-link","icon": "fa-brands fa-twitter"},{"link": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"youtube_link"),"class": "youtube-link","icon": "fa-brands fa-youtube"},{"link": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"facebook_link"),"class": "facebook-link","icon": "fa-brands fa-facebook"},{"link": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"reddit_link"),"class": "reddit-link","icon": "fa-brands fa-reddit-alien"},{"link": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"telegram_link"),"class": "telegram-link","icon": "fa-brands fa-telegram"},{"link": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"tiktok_link"),"class": "tiktok-link","icon": "fa-brands fa-tiktok"}],"link");
+frame.set("links", t_5, true);
+if(frame.topLevel) {
+context.setVariable("links", t_5);
+}
+if(frame.topLevel) {
+context.addExport("links", t_5);
+}
+output += "\n";
+var t_6;
+t_6 = env.getFilter("length").call(context, runtime.contextOrFrameLookup(context, frame, "links"));
+frame.set("linksCount", t_6, true);
+if(frame.topLevel) {
+context.setVariable("linksCount", t_6);
+}
+if(frame.topLevel) {
+context.addExport("linksCount", t_6);
+}
+var t_7;
+t_7 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"crisp_website_id") || runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"helpspace_widget_id") || runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"helpspace_client_id") || runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"helpspace_token");
+frame.set("chatEnabled", t_7, true);
+if(frame.topLevel) {
+context.setVariable("chatEnabled", t_7);
+}
+if(frame.topLevel) {
+context.addExport("chatEnabled", t_7);
+}
+output += "\n<div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += " ";
+if(!runtime.contextOrFrameLookup(context, frame, "chatEnabled")) {
+output += "no-crisp";
+;
+}
+output += " unselectable\">\n";
+if(runtime.contextOrFrameLookup(context, frame, "linksCount") > 2) {
+output += "    <a class=\"chevron\">\n      <i class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__more fa-regular fa-chevron-down\"></i>\n    </a>\n";
+;
+}
+output += "\n";
+frame = frame.push();
+var t_10 = runtime.fromIterator(runtime.contextOrFrameLookup(context, frame, "links"));
+runtime.asyncEach(t_10, 1, function(item, t_8, t_9,next) {
+frame.set("item", item);
+frame.set("loop.index", t_8 + 1);
+frame.set("loop.index0", t_8);
+frame.set("loop.revindex", t_9 - t_8);
+frame.set("loop.revindex0", t_9 - t_8 - 1);
+frame.set("loop.first", t_8 === 0);
+frame.set("loop.last", t_8 === t_9 - 1);
+frame.set("loop.length", t_9);
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "loop")),"index0") == 2) {
+output += "      <span class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__toggle-wrap d-none\">\n";
+;
+}
+output += "\n";
+env.getExtension("RenderSnippet")["run"](context,"Shared: Social link",runtime.makeKeywordArgs({"class": runtime.memberLookup((item),"class"),"link": runtime.memberLookup((item),"link"),"icon_class": runtime.memberLookup((item),"icon"),"properties": {"font_size": 22,"font_color": "contrast_light_font_color"}}), function(t_12,t_11) {
+if(t_12) { cb(t_12); return; }
+output += runtime.suppressValue(t_11, true && env.opts.autoescape);
+output += "\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "loop")),"index0") == runtime.contextOrFrameLookup(context, frame, "linksCount") - 1) {
+output += "      </span>\n";
+;
+}
+next(t_8);
+});
+}, function(t_14,t_13) {
+if(t_14) { cb(t_14); return; }
+frame = frame.pop();
+output += "</div>\n\n";
+if(runtime.contextOrFrameLookup(context, frame, "linksCount") > 2) {
+output += "  <script type=\"application/javascript\">\n    $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += " .chevron').on('click', (e) => {\n      e.preventDefault();\n      $(e.target).toggleClass('fa-chevron-up').toggleClass('fa-chevron-down');\n      $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__toggle-wrap').toggleClass('d-none');\n    });\n  </script>\n";
+;
+}
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

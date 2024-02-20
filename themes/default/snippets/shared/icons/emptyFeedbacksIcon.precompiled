@@ -1,0 +1,20 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+output += "<svg width=\"20px\" height=\"18px\" viewBox=\"0 0 20 18\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n  <g transform=\"translate(1.000000, 1.000000)\" fill=\"none\">\n    <path d=\"M3,4.5 L15,4.5 M13,8.5 L3,8.5 M0,12 L0,1 C0,0.44772 0.44772,0 1,0 L17,0 C17.5523,0 18,0.44772 18,1 L18,12 C18,12.5523 17.5523,13 17,13 L3.75,13 L0.16247,15.87 C0.09699,15.9224 0,15.8758 0,15.7919 L0,12 Z\" stroke=\"var(--lightFontColor)\" strokeWidth=\"2\" />\n  </g>\n</svg>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

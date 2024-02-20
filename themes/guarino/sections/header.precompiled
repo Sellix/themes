@@ -1,0 +1,102 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_1, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_1);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"subscription");
+frame.set("subscription", t_2, true);
+if(frame.topLevel) {
+context.setVariable("subscription", t_2);
+}
+if(frame.topLevel) {
+context.addExport("subscription", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_3, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_3);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_3);
+}
+output += "\n<style>\n  header {\n    height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"logo_image_height"), env.opts.autoescape);
+output += ";\n    padding-bottom: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"header_padding_bottom"), env.opts.autoescape);
+output += "px;\n  }\n\n  .sellix-header-in {\n    position: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"header_fluid_row")?"absolute":"relative"), env.opts.autoescape);
+output += ";\n    left: 0;\n    display: flex;\n    align-items: center;\n    justify-content: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"logo_alignment"), env.opts.autoescape);
+output += ";\n    width: 100%;\n    height: 100%;\n  }\n\n</style>\n\n<header>\n  <!-- <Status /> -->\n  <div class=\"sellix-header\">\n";
+(function(cb) {if(runtime.inOperator(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type"),["main","group","contact","terms","trust","feedbacks","feedback","category"])) {
+env.getExtension("RenderSnippet")["run"](context,"Shop message",runtime.makeKeywordArgs({"container_selector": env.getFilter("join").call(context, ["sellix-header-",runtime.contextOrFrameLookup(context, frame, "id")])}), function(t_5,t_4) {
+if(t_5) { cb(t_5); return; }
+output += runtime.suppressValue(t_4, true && env.opts.autoescape);
+cb()});
+}
+else {
+cb()}
+})(function(t_6) {
+if(t_6) { cb(t_6); return; }output += "    <div class=\"sellix-header-in\">\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"logo_image")) {
+output += "        <a href=\"/\">\n          <div class=\"sellix-header-logo-image\">\n            <img\n              style=\"max-height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"logo_image_height"), env.opts.autoescape);
+output += "px;\"\n              src=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"logo_image"), env.opts.autoescape);
+output += "\"\n              alt=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "\"\n            >\n          </div>\n        </a>\n";
+;
+}
+output += "\n        <div class=\"sellix-header-shop-name\" style=\"text-align: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_name_text_align"), env.opts.autoescape);
+output += ";\">\n";
+frame = frame.push();
+var t_9 = runtime.fromIterator(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"block_order"));
+runtime.asyncEach(t_9, 1, function(block_name, t_7, t_8,next) {
+frame.set("block_name", block_name);
+frame.set("loop.index", t_7 + 1);
+frame.set("loop.index0", t_7);
+frame.set("loop.revindex", t_8 - t_7);
+frame.set("loop.revindex0", t_8 - t_7 - 1);
+frame.set("loop.first", t_7 === 0);
+frame.set("loop.last", t_7 === t_8 - 1);
+frame.set("loop.length", t_8);
+env.getExtension("RenderBlock")["run"](context,block_name, function(t_11,t_10) {
+if(t_11) { cb(t_11); return; }
+output += runtime.suppressValue(t_10, true && env.opts.autoescape);
+next(t_7);
+});
+}, function(t_13,t_12) {
+if(t_13) { cb(t_13); return; }
+frame = frame.pop();
+output += "          </a>\n        </div>\n      </div>\n\n\n      <div class=\"sellix-header-cart\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Cart",runtime.makeKeywordArgs({"properties": runtime.contextOrFrameLookup(context, frame, "properties")}), function(t_15,t_14) {
+if(t_15) { cb(t_15); return; }
+output += runtime.suppressValue(t_14, true && env.opts.autoescape);
+output += "      </div>\n    </div>\n  </header>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+})})});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

@@ -1,0 +1,169 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"invoice");
+frame.set("invoice", t_2, true);
+if(frame.topLevel) {
+context.setVariable("invoice", t_2);
+}
+if(frame.topLevel) {
+context.addExport("invoice", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"is_dev");
+frame.set("isDev", t_3, true);
+if(frame.topLevel) {
+context.setVariable("isDev", t_3);
+}
+if(frame.topLevel) {
+context.addExport("isDev", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"is_trial");
+frame.set("isTrial", t_4, true);
+if(frame.topLevel) {
+context.setVariable("isTrial", t_4);
+}
+if(frame.topLevel) {
+context.addExport("isTrial", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"is_product_subscription");
+frame.set("isProductSubscription", t_5, true);
+if(frame.topLevel) {
+context.setVariable("isProductSubscription", t_5);
+}
+if(frame.topLevel) {
+context.addExport("isProductSubscription", t_5);
+}
+var t_6;
+t_6 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_6, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_6);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_6);
+}
+var t_7;
+t_7 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_7, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_7);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_7);
+}
+output += "<style>\n  .sellix-delivery-success-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " {\n    background: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_background")), env.opts.autoescape);
+output += ";\n    border: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_show_border")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += ";\n    box-shadow: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_shadow"), env.opts.autoescape);
+output += ";\n    border-radius: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_border_radius"), env.opts.autoescape);
+output += "rem;\n    padding: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_vert"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_horiz"), env.opts.autoescape);
+output += "px;\n  }\n  .sellix-delivery-success-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " .title {\n    color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_color")), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"font_size"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"font_weight"), env.opts.autoescape);
+output += ";\n    line-height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_line_height"), env.opts.autoescape);
+output += "%;\n    text-align: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_text_align"), env.opts.autoescape);
+output += ";\n  }\n  .sellix-delivery-success-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " .text {\n    color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"text_font_color")), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"text_font_size"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"text_font_weight"), env.opts.autoescape);
+output += ";\n    line-height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"text_line_height"), env.opts.autoescape);
+output += "%;\n    text-align: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"text_text_align"), env.opts.autoescape);
+output += ";\n  }\n</style>\n\n<div class=\"sellix-delivery-success sellix-delivery-success-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\">\n  <div class=\"sellix-delivery-success-header\">\n\n    <div class=\"sw-container\">\n      <div class=\"sw\" style=\"width: 140px; top: -.75rem; background-color: transparent;\">\n\n        <div class=\"sw-icon-success\">\n          <div class=\"elem-1\"></div>\n          <span class=\"elem-2\"></span>\n          <span class=\"elem-3\"></span>\n          <div class=\"elem-4\"></div>\n          <div class=\"elem-5\"></div>\n          <div class=\"elem-6\"></div>\n        </div>\n\n      </div>\n    </div>\n\n    <div class=\"sellix-delivery-success-title title\">\n";
+if(runtime.contextOrFrameLookup(context, frame, "isDev")) {
+output += "        Payment Completed";
+;
+}
+else {
+if(runtime.contextOrFrameLookup(context, frame, "isTrial")) {
+output += "Trial Start";
+;
+}
+else {
+if(runtime.contextOrFrameLookup(context, frame, "isProductSubscription")) {
+output += "Subscription Started\n";
+;
+}
+else {
+output += "        Order completed!\n";
+;
+}
+;
+}
+;
+}
+output += "    </div>\n  </div>\n\n  <div class=\"sellix-delivery-success-info text\">\n";
+if(runtime.contextOrFrameLookup(context, frame, "isDev")) {
+output += "      Your invoice has been paid.<br/>\n      We will send a confirmation email to your address and you will be redirected to the seller's\n      website\n";
+;
+}
+else {
+if(runtime.contextOrFrameLookup(context, frame, "isTrial")) {
+output += "      Your trial has been started. <br/>\n      You will receive the product within minutes, check your email!\n";
+;
+}
+else {
+if(runtime.contextOrFrameLookup(context, frame, "isProductSubscription")) {
+output += "      Your subscription is now active. <br/>\n      You will receive an email with the confirmation of your purchase and a receipt soon.\n";
+;
+}
+else {
+output += "      Your invoice has been paid. <br/>\n      You will receive the product within minutes, check your email!\n";
+;
+}
+;
+}
+;
+}
+output += "  </div>\n</div>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

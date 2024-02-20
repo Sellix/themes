@@ -1,0 +1,235 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"selector")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"selector"):"");
+frame.set("selector", t_2, true);
+if(frame.topLevel) {
+context.setVariable("selector", t_2);
+}
+if(frame.topLevel) {
+context.addExport("selector", t_2);
+}
+var t_3;
+t_3 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"wrapperClassName")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"wrapperClassName"):"");
+frame.set("wrapperClassName", t_3, true);
+if(frame.topLevel) {
+context.setVariable("wrapperClassName", t_3);
+}
+if(frame.topLevel) {
+context.addExport("wrapperClassName", t_3);
+}
+var t_4;
+t_4 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"label")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"label"):"");
+frame.set("label", t_4, true);
+if(frame.topLevel) {
+context.setVariable("label", t_4);
+}
+if(frame.topLevel) {
+context.addExport("label", t_4);
+}
+var t_5;
+t_5 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"name")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"name"):"");
+frame.set("name", t_5, true);
+if(frame.topLevel) {
+context.setVariable("name", t_5);
+}
+if(frame.topLevel) {
+context.addExport("name", t_5);
+}
+var t_6;
+t_6 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"note")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"note"):"");
+frame.set("note", t_6, true);
+if(frame.topLevel) {
+context.setVariable("note", t_6);
+}
+if(frame.topLevel) {
+context.addExport("note", t_6);
+}
+var t_7;
+t_7 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"noteUnder")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"noteUnder"):true);
+frame.set("noteUnder", t_7, true);
+if(frame.topLevel) {
+context.setVariable("noteUnder", t_7);
+}
+if(frame.topLevel) {
+context.addExport("noteUnder", t_7);
+}
+var t_8;
+t_8 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"placeholder")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"placeholder"):"");
+frame.set("placeholder", t_8, true);
+if(frame.topLevel) {
+context.setVariable("placeholder", t_8);
+}
+if(frame.topLevel) {
+context.addExport("placeholder", t_8);
+}
+var t_9;
+t_9 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"className")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"className"):"");
+frame.set("className", t_9, true);
+if(frame.topLevel) {
+context.setVariable("className", t_9);
+}
+if(frame.topLevel) {
+context.addExport("className", t_9);
+}
+var t_10;
+t_10 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"parentHeight")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"parentHeight"):"auto");
+frame.set("parentHeight", t_10, true);
+if(frame.topLevel) {
+context.setVariable("parentHeight", t_10);
+}
+if(frame.topLevel) {
+context.addExport("parentHeight", t_10);
+}
+var t_11;
+t_11 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"autoresize")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"autoresize"):false);
+frame.set("autoresize", t_11, true);
+if(frame.topLevel) {
+context.setVariable("autoresize", t_11);
+}
+if(frame.topLevel) {
+context.addExport("autoresize", t_11);
+}
+var t_12;
+t_12 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"textAreaHeight")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"textAreaHeight"):"auto");
+frame.set("textAreaHeight", t_12, true);
+if(frame.topLevel) {
+context.setVariable("textAreaHeight", t_12);
+}
+if(frame.topLevel) {
+context.addExport("textAreaHeight", t_12);
+}
+var t_13;
+t_13 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"rows")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"rows"):5);
+frame.set("rows", t_13, true);
+if(frame.topLevel) {
+context.setVariable("rows", t_13);
+}
+if(frame.topLevel) {
+context.addExport("rows", t_13);
+}
+var t_14;
+t_14 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"value")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"value"):"");
+frame.set("initialValue", t_14, true);
+if(frame.topLevel) {
+context.setVariable("initialValue", t_14);
+}
+if(frame.topLevel) {
+context.addExport("initialValue", t_14);
+}
+var t_15;
+t_15 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_15, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_15);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_15);
+}
+var t_16;
+t_16 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"inputs");
+frame.set("inputsProps", t_16, true);
+if(frame.topLevel) {
+context.setVariable("inputsProps", t_16);
+}
+if(frame.topLevel) {
+context.addExport("inputsProps", t_16);
+}
+output += "\n<div class=\"mb-3 ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "wrapperClassName")?runtime.contextOrFrameLookup(context, frame, "wrapperClassName"):""), env.opts.autoescape);
+output += "\" style=\"min-height: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "autoresize")?runtime.contextOrFrameLookup(context, frame, "parentHeight"):""), env.opts.autoescape);
+output += "\">\n";
+if(runtime.contextOrFrameLookup(context, frame, "label")) {
+output += "    <label\n      class=\"sellix-label\"\n      for=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "name"), env.opts.autoescape);
+output += "\"\n      style=\"color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_label_font_color")), env.opts.autoescape);
+output += "; font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_label_font_size"), env.opts.autoescape);
+output += "px; font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_label_font_weight"), env.opts.autoescape);
+output += "; line-height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_label_line_height"), env.opts.autoescape);
+output += "%; justify-content: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_label_text_align"), env.opts.autoescape);
+output += ";\"\n    >\n      ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "label"), env.opts.autoescape);
+output += "\n    </label>\n";
+;
+}
+output += "\n";
+if(runtime.contextOrFrameLookup(context, frame, "note") && !runtime.contextOrFrameLookup(context, frame, "noteUnder")) {
+output += "    <p class=\"sellix-note\">";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "note"), env.opts.autoescape);
+output += "</p>\n";
+;
+}
+output += "\n  <textarea\n    autoComplete=\"off\"\n    id=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "name"), env.opts.autoescape);
+output += "\"\n    name=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "name"), env.opts.autoescape);
+output += "\"\n    placeholder=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "placeholder"), env.opts.autoescape);
+output += "\"\n    class=\"sellix-input textarea ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "className"), env.opts.autoescape);
+output += " sellix-input-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "selector"), env.opts.autoescape);
+output += " sellix-text-area-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\"\n    rows=\"";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "rows")?runtime.contextOrFrameLookup(context, frame, "rows"):5), env.opts.autoescape);
+output += "\"\n    style=\"min-height: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "autoresize")?runtime.contextOrFrameLookup(context, frame, "textAreaHeight"):""), env.opts.autoescape);
+output += "; background: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"text_field_background")), env.opts.autoescape);
+output += " !important; border: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_show_border")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += "; color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_color")), env.opts.autoescape);
+output += "; font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_size"), env.opts.autoescape);
+output += "px; font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_weight"), env.opts.autoescape);
+output += ";\"\n  >";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "initialValue"), env.opts.autoescape);
+output += "</textarea>\n\n";
+if(runtime.contextOrFrameLookup(context, frame, "note") && runtime.contextOrFrameLookup(context, frame, "noteUnder")) {
+output += "    <p class=\"sellix-note\">";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "note"), env.opts.autoescape);
+output += "</p>\n";
+;
+}
+output += "</div>\n\n";
+if(runtime.contextOrFrameLookup(context, frame, "autoresize")) {
+output += "  <script src=\"https://cdnjs.cloudflare.com/ajax/libs/textarea-autosize/0.4.2/jquery.textarea_autosize.min.js\" ></script>\n  <script type='application/javascript'>\n    $(document).ready(function () {\n      $('.sellix-text-area-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "').textareaAutoSize();\n    });\n  </script>\n";
+;
+}
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

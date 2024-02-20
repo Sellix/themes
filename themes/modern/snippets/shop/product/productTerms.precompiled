@@ -1,0 +1,155 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"product");
+frame.set("product", t_2, true);
+if(frame.topLevel) {
+context.setVariable("product", t_2);
+}
+if(frame.topLevel) {
+context.addExport("product", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_3, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_3);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_3);
+}
+output += "\n";
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"terms_of_service");
+frame.set("productTerms", t_4, true);
+if(frame.topLevel) {
+context.setVariable("productTerms", t_4);
+}
+if(frame.topLevel) {
+context.addExport("productTerms", t_4);
+}
+output += "\n";
+var t_5;
+t_5 = (lineno = 6, colno = 25, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_background_color"),"background_accent_dark"]));
+frame.set("bgColor", t_5, true);
+if(frame.topLevel) {
+context.setVariable("bgColor", t_5);
+}
+if(frame.topLevel) {
+context.addExport("bgColor", t_5);
+}
+var t_6;
+t_6 = (lineno = 7, colno = 28, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_show_border"),true]));
+frame.set("showBorder", t_6, true);
+if(frame.topLevel) {
+context.setVariable("showBorder", t_6);
+}
+if(frame.topLevel) {
+context.addExport("showBorder", t_6);
+}
+var t_7;
+t_7 = (lineno = 8, colno = 30, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_border_radius"),8]));
+frame.set("borderRadius", t_7, true);
+if(frame.topLevel) {
+context.setVariable("borderRadius", t_7);
+}
+if(frame.topLevel) {
+context.addExport("borderRadius", t_7);
+}
+var t_8;
+t_8 = (lineno = 9, colno = 24, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_shadow"),"none"]));
+frame.set("shadow", t_8, true);
+if(frame.topLevel) {
+context.setVariable("shadow", t_8);
+}
+if(frame.topLevel) {
+context.addExport("shadow", t_8);
+}
+var t_9;
+t_9 = (lineno = 10, colno = 30, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_horiz"),16]));
+frame.set("paddingHoriz", t_9, true);
+if(frame.topLevel) {
+context.setVariable("paddingHoriz", t_9);
+}
+if(frame.topLevel) {
+context.addExport("paddingHoriz", t_9);
+}
+var t_10;
+t_10 = (lineno = 11, colno = 29, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_vert"),16]));
+frame.set("paddingVert", t_10, true);
+if(frame.topLevel) {
+context.setVariable("paddingVert", t_10);
+}
+if(frame.topLevel) {
+context.addExport("paddingVert", t_10);
+}
+output += "\n";
+var t_11;
+t_11 = "snippet-product-terms";
+frame.set("globalClass", t_11, true);
+if(frame.topLevel) {
+context.setVariable("globalClass", t_11);
+}
+if(frame.topLevel) {
+context.addExport("globalClass", t_11);
+}
+var t_12;
+t_12 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_12, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_12);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_12);
+}
+output += "\n<style>\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " {\n    border: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "showBorder")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += ";\n    background: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "bgColor")), env.opts.autoescape);
+output += ";\n    border-radius: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "borderRadius"), env.opts.autoescape);
+output += "px;\n    box-shadow: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "shadow"), env.opts.autoescape);
+output += ";\n    padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingVert"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHoriz"), env.opts.autoescape);
+output += "px;\n  }\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " .empty-message-container {\n    padding: 1rem 0;\n  }\n</style>\n\n<div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Product: TOS Text",runtime.makeKeywordArgs({"product": runtime.contextOrFrameLookup(context, frame, "product")}), function(t_14,t_13) {
+if(t_14) { cb(t_14); return; }
+output += runtime.suppressValue(t_13, true && env.opts.autoescape);
+output += "</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

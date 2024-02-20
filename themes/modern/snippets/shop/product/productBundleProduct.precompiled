@@ -1,0 +1,487 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo");
+frame.set("shopInfo", t_2, true);
+if(frame.topLevel) {
+context.setVariable("shopInfo", t_2);
+}
+if(frame.topLevel) {
+context.addExport("shopInfo", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shopInfo")),"shop");
+frame.set("shop", t_3, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_3);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"product");
+frame.set("product", t_4, true);
+if(frame.topLevel) {
+context.setVariable("product", t_4);
+}
+if(frame.topLevel) {
+context.addExport("product", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_5, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_5);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_5);
+}
+var t_6;
+t_6 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"hide_stock_counter");
+frame.set("hideStockCounter", t_6, true);
+if(frame.topLevel) {
+context.setVariable("hideStockCounter", t_6);
+}
+if(frame.topLevel) {
+context.addExport("hideStockCounter", t_6);
+}
+var t_7;
+t_7 = (lineno = 6, colno = 31, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"common")),"show_stock_info"),false]));
+frame.set("showStockInfo", t_7, true);
+if(frame.topLevel) {
+context.setVariable("showStockInfo", t_7);
+}
+if(frame.topLevel) {
+context.addExport("showStockInfo", t_7);
+}
+output += "\n";
+var t_8;
+t_8 = env.getFilter("float").call(context, ((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"average_score")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"average_score"):0)));
+frame.set("rating", t_8, true);
+if(frame.topLevel) {
+context.setVariable("rating", t_8);
+}
+if(frame.topLevel) {
+context.addExport("rating", t_8);
+}
+var t_9;
+t_9 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"stock");
+frame.set("productStock", t_9, true);
+if(frame.topLevel) {
+context.setVariable("productStock", t_9);
+}
+if(frame.topLevel) {
+context.addExport("productStock", t_9);
+}
+var t_10;
+t_10 = env.getFilter("int").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"on_hold"));
+frame.set("onHold", t_10, true);
+if(frame.topLevel) {
+context.setVariable("onHold", t_10);
+}
+if(frame.topLevel) {
+context.addExport("onHold", t_10);
+}
+var t_11;
+t_11 = runtime.contextOrFrameLookup(context, frame, "rating") > 4;
+frame.set("isRatingGold", t_11, true);
+if(frame.topLevel) {
+context.setVariable("isRatingGold", t_11);
+}
+if(frame.topLevel) {
+context.addExport("isRatingGold", t_11);
+}
+output += "\n";
+var t_12;
+t_12 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"type") == "SUBSCRIPTION";
+frame.set("isSubscription", t_12, true);
+if(frame.topLevel) {
+context.setVariable("isSubscription", t_12);
+}
+if(frame.topLevel) {
+context.addExport("isSubscription", t_12);
+}
+var t_13;
+t_13 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"licensing_enabled");
+frame.set("isLicense", t_13, true);
+if(frame.topLevel) {
+context.setVariable("isLicense", t_13);
+}
+if(frame.topLevel) {
+context.addExport("isLicense", t_13);
+}
+var t_14;
+t_14 = env.getFilter("float").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"price_display")) === 0;
+frame.set("isFree", t_14, true);
+if(frame.topLevel) {
+context.setVariable("isFree", t_14);
+}
+if(frame.topLevel) {
+context.addExport("isFree", t_14);
+}
+var t_15;
+t_15 = env.getFilter("int").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"stock")) === 0 || runtime.contextOrFrameLookup(context, frame, "onHold");
+frame.set("isDisabled", t_15, true);
+if(frame.topLevel) {
+context.setVariable("isDisabled", t_15);
+}
+if(frame.topLevel) {
+context.addExport("isDisabled", t_15);
+}
+var t_16;
+t_16 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"pay_what_you_want");
+frame.set("isPayWhatYouWant", t_16, true);
+if(frame.topLevel) {
+context.setVariable("isPayWhatYouWant", t_16);
+}
+if(frame.topLevel) {
+context.addExport("isPayWhatYouWant", t_16);
+}
+var t_17;
+t_17 = !runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"cloudflare_image_id");
+frame.set("isPlaceholder", t_17, true);
+if(frame.topLevel) {
+context.setVariable("isPlaceholder", t_17);
+}
+if(frame.topLevel) {
+context.addExport("isPlaceholder", t_17);
+}
+var t_18;
+t_18 = (lineno = 19, colno = 23, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "cdn_link"), "cdn_link", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"cloudflare_image_id"),"shopItem"]));
+frame.set("image", t_18, true);
+if(frame.topLevel) {
+context.setVariable("image", t_18);
+}
+if(frame.topLevel) {
+context.addExport("image", t_18);
+}
+output += "\n";
+var t_19;
+t_19 = (lineno = 21, colno = 32, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"bundle_product_title_font_color"),"dark_font_color"]));
+frame.set("titleFontColor", t_19, true);
+if(frame.topLevel) {
+context.setVariable("titleFontColor", t_19);
+}
+if(frame.topLevel) {
+context.addExport("titleFontColor", t_19);
+}
+var t_20;
+t_20 = (lineno = 22, colno = 31, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"bundle_product_title_font_size"),14]));
+frame.set("titleFontSize", t_20, true);
+if(frame.topLevel) {
+context.setVariable("titleFontSize", t_20);
+}
+if(frame.topLevel) {
+context.addExport("titleFontSize", t_20);
+}
+var t_21;
+t_21 = (lineno = 23, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"bundle_product_title_font_weight"),500]));
+frame.set("titleFontWeight", t_21, true);
+if(frame.topLevel) {
+context.setVariable("titleFontWeight", t_21);
+}
+if(frame.topLevel) {
+context.addExport("titleFontWeight", t_21);
+}
+var t_22;
+t_22 = (lineno = 24, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"bundle_product_title_line_height"),20]));
+frame.set("titleLineHeight", t_22, true);
+if(frame.topLevel) {
+context.setVariable("titleLineHeight", t_22);
+}
+if(frame.topLevel) {
+context.addExport("titleLineHeight", t_22);
+}
+output += "\n";
+var t_23;
+t_23 = (lineno = 26, colno = 32, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"bundle_product_price_font_color"),"dark_font_color"]));
+frame.set("priceFontColor", t_23, true);
+if(frame.topLevel) {
+context.setVariable("priceFontColor", t_23);
+}
+if(frame.topLevel) {
+context.addExport("priceFontColor", t_23);
+}
+var t_24;
+t_24 = (lineno = 27, colno = 31, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"bundle_product_price_font_size"),14]));
+frame.set("priceFontSize", t_24, true);
+if(frame.topLevel) {
+context.setVariable("priceFontSize", t_24);
+}
+if(frame.topLevel) {
+context.addExport("priceFontSize", t_24);
+}
+var t_25;
+t_25 = (lineno = 28, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"bundle_product_price_font_weight"),500]));
+frame.set("priceFontWeight", t_25, true);
+if(frame.topLevel) {
+context.setVariable("priceFontWeight", t_25);
+}
+if(frame.topLevel) {
+context.addExport("priceFontWeight", t_25);
+}
+var t_26;
+t_26 = (lineno = 29, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"bundle_product_price_line_height"),20]));
+frame.set("priceLineHeight", t_26, true);
+if(frame.topLevel) {
+context.setVariable("priceLineHeight", t_26);
+}
+if(frame.topLevel) {
+context.addExport("priceLineHeight", t_26);
+}
+output += "\n";
+var t_27;
+t_27 = (lineno = 31, colno = 39, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"bundle_product_initial_price_font_color"),"dark_font_color"]));
+frame.set("initialPriceFontColor", t_27, true);
+if(frame.topLevel) {
+context.setVariable("initialPriceFontColor", t_27);
+}
+if(frame.topLevel) {
+context.addExport("initialPriceFontColor", t_27);
+}
+var t_28;
+t_28 = (lineno = 32, colno = 38, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"bundle_product_initial_price_font_size"),14]));
+frame.set("initialPriceFontSize", t_28, true);
+if(frame.topLevel) {
+context.setVariable("initialPriceFontSize", t_28);
+}
+if(frame.topLevel) {
+context.addExport("initialPriceFontSize", t_28);
+}
+var t_29;
+t_29 = (lineno = 33, colno = 40, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"bundle_product_initial_price_font_weight"),500]));
+frame.set("initialPriceFontWeight", t_29, true);
+if(frame.topLevel) {
+context.setVariable("initialPriceFontWeight", t_29);
+}
+if(frame.topLevel) {
+context.addExport("initialPriceFontWeight", t_29);
+}
+var t_30;
+t_30 = (lineno = 34, colno = 40, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"bundle_product_initial_price_line_height"),20]));
+frame.set("initialPriceLineHeight", t_30, true);
+if(frame.topLevel) {
+context.setVariable("initialPriceLineHeight", t_30);
+}
+if(frame.topLevel) {
+context.addExport("initialPriceLineHeight", t_30);
+}
+output += "\n";
+var t_31;
+t_31 = {"price_font_color": runtime.contextOrFrameLookup(context, frame, "priceFontColor"),"price_font_size": runtime.contextOrFrameLookup(context, frame, "priceFontSize"),"price_font_weight": runtime.contextOrFrameLookup(context, frame, "priceFontWeight"),"price_line_height": runtime.contextOrFrameLookup(context, frame, "priceLineHeight"),"initial_price_font_color": runtime.contextOrFrameLookup(context, frame, "initialPriceFontColor"),"initial_price_font_size": runtime.contextOrFrameLookup(context, frame, "initialPriceFontSize"),"initial_price_font_weight": runtime.contextOrFrameLookup(context, frame, "initialPriceFontWeight"),"initial_price_line_height": runtime.contextOrFrameLookup(context, frame, "initialPriceLineHeight")};
+frame.set("priceProperties", t_31, true);
+if(frame.topLevel) {
+context.setVariable("priceProperties", t_31);
+}
+if(frame.topLevel) {
+context.addExport("priceProperties", t_31);
+}
+output += "\n";
+var t_32;
+t_32 = ["snippet-product-bundle-product"];
+frame.set("globalClass", t_32, true);
+if(frame.topLevel) {
+context.setVariable("globalClass", t_32);
+}
+if(frame.topLevel) {
+context.addExport("globalClass", t_32);
+}
+var t_33;
+t_33 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_33, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_33);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_33);
+}
+output += "\n<style>\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__title {\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "titleFontColor")), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleFontSize"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleFontWeight"), env.opts.autoescape);
+output += ";\n    line-height: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleLineHeight"), env.opts.autoescape);
+output += "px;\n  }\n</style>\n\n<div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isDisabled")?"is-disabled":""), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"cartEnabled")?"no-cart":""), env.opts.autoescape);
+output += "\">\n  <a class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__description ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__description\" href='/product/";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"slug") || runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"uniqid"), env.opts.autoescape);
+output += "' target=\"_blank\">\n    <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__image ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__image ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isPlaceholder")?"image-placeholder":""), env.opts.autoescape);
+output += "\">\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "isPlaceholder")) {
+env.getExtension("RenderSnippet")["run"](context,"Product: Placeholder icon",runtime.makeKeywordArgs({"product": runtime.contextOrFrameLookup(context, frame, "product")}), function(t_35,t_34) {
+if(t_35) { cb(t_35); return; }
+output += runtime.suppressValue(t_34, true && env.opts.autoescape);
+cb()});
+}
+else {
+output += "        <img src=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "image"), env.opts.autoescape);
+output += "\" alt=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"title"), env.opts.autoescape);
+output += "\" loading=\"lazy\" />\n";
+cb();
+}
+})(function(t_36) {
+if(t_36) { cb(t_36); return; }output += "    </div>\n\n    <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__content\">\n      <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__title ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__title\">\n        <span class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__product-name\">\n          ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"title"), env.opts.autoescape);
+output += "\n        </span>\n\n";
+if(runtime.contextOrFrameLookup(context, frame, "rating")) {
+output += "          <span class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__star ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isRatingGold")?"text-gold":""), env.opts.autoescape);
+output += "\">\n              <span class=\"mr-1 position-relative ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isRatingGold")?"text-gold":""), env.opts.autoescape);
+output += "\">\n                  <i class=\"fas fa-star\" style=\"font-size: 11px;\"></i>\n              </span>\n              <span>";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "rating") === 5?5:(env.getFilter("round").call(context, env.getFilter("float").call(context, runtime.contextOrFrameLookup(context, frame, "rating")),2))), env.opts.autoescape);
+output += "</span>\n          </span>\n";
+;
+}
+output += "      </div>\n\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "onHold")) {
+output += "        <span>\n";
+env.getExtension("RenderSnippet")["run"](context,"Tag",runtime.makeKeywordArgs({"tag": (env.getFilter("t").call(context, "shop.shared.titles.onHold"))}), function(t_38,t_37) {
+if(t_38) { cb(t_38); return; }
+output += runtime.suppressValue(t_37, true && env.opts.autoescape);
+output += "        </span>\n";
+cb()});
+}
+else {
+output += "        <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__info ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__info\">\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "isFree")) {
+output += "            ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.shared.titles.free"), env.opts.autoescape);
+output += "\n";
+cb();
+}
+else {
+env.getExtension("RenderSnippet")["run"](context,"Shared: Price",runtime.makeKeywordArgs({"currency": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"currency"),"price": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"min_price"),"discount": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"price_discount"),"show_initial_price": "last","properties": runtime.contextOrFrameLookup(context, frame, "priceProperties"),"show_image": true}), function(t_40,t_39) {
+if(t_40) { cb(t_40); return; }
+output += runtime.suppressValue(t_39, true && env.opts.autoescape);
+cb()});
+}
+})(function(t_41) {
+if(t_41) { cb(t_41); return; }output += "\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "showStockInfo")) {
+output += "            <span class=\"dot\">  ●  </span>\n\n";
+env.getExtension("RenderSnippet")["run"](context,"Product: Stock",runtime.makeKeywordArgs({"stock": runtime.contextOrFrameLookup(context, frame, "productStock"),"hide_stock_counter": runtime.contextOrFrameLookup(context, frame, "hideStockCounter"),"reverse": true}), function(t_43,t_42) {
+if(t_43) { cb(t_43); return; }
+output += runtime.suppressValue(t_42, true && env.opts.autoescape);
+cb()});
+}
+else {
+cb()}
+})(function(t_44) {
+if(t_44) { cb(t_44); return; }output += "        </div>\n";
+cb()})});
+}
+})(function(t_45) {
+if(t_45) { cb(t_45); return; }output += "    </div>\n  </a>\n\n  <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__buttons ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__buttons unselectable ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"cartEnabled")?"with-cart":""), env.opts.autoescape);
+output += "\">\n";
+(function(cb) {if(!runtime.contextOrFrameLookup(context, frame, "isDisabled") && !runtime.contextOrFrameLookup(context, frame, "isSubscription") && !runtime.contextOrFrameLookup(context, frame, "isLicense") && !runtime.contextOrFrameLookup(context, frame, "isPayWhatYouWant")) {
+output += "      <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__cart-button ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__cart-button\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Cart button 1",runtime.makeKeywordArgs({"product": runtime.contextOrFrameLookup(context, frame, "product"),"is_static": true,"possible_cart_effects": ["open_cart_modal"],"show_plus_minus": false}), function(t_47,t_46) {
+if(t_47) { cb(t_47); return; }
+output += runtime.suppressValue(t_46, true && env.opts.autoescape);
+output += "      </div>\n";
+cb()});
+}
+else {
+cb()}
+})(function(t_48) {
+if(t_48) { cb(t_48); return; }if(runtime.contextOrFrameLookup(context, frame, "isDisabled") && runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"cartEnabled")) {
+output += "      <div></div>\n";
+;
+}
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"skipBuyButton")) {
+output += "      <div></div>\n";
+;
+}
+else {
+output += "      <a href=\"";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isDisabled")?"javascript:void(0)":env.getFilter("join").call(context, ["product/",runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"slug") || runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"uniqid")])), env.opts.autoescape);
+output += "\" style=\"color: white;\">\n        <div class=\"";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isDisabled")?"disabled":""), env.opts.autoescape);
+output += " buy-button\">\n";
+if(runtime.contextOrFrameLookup(context, frame, "isFree")) {
+output += "            ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.shared.titles.getIt"), env.opts.autoescape);
+output += "\n";
+;
+}
+else {
+output += "            ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.shared.titles.buy"), env.opts.autoescape);
+output += "\n";
+;
+}
+output += "        </div>\n      </a>\n";
+;
+}
+output += "  </div>\n</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+})})});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

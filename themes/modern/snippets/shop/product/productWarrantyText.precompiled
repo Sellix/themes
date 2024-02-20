@@ -1,0 +1,197 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_2, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_2);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_2);
+}
+output += "\n";
+var t_3;
+t_3 = (lineno = 3, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_3, true);
+if(frame.topLevel) {
+context.setVariable("id", t_3);
+}
+if(frame.topLevel) {
+context.addExport("id", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"product") || runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"productInfo")),"product");
+frame.set("product", t_4, true);
+if(frame.topLevel) {
+context.setVariable("product", t_4);
+}
+if(frame.topLevel) {
+context.addExport("product", t_4);
+}
+output += "\n";
+var t_5;
+t_5 = env.getFilter("int").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"warranty"));
+frame.set("warranty", t_5, true);
+if(frame.topLevel) {
+context.setVariable("warranty", t_5);
+}
+if(frame.topLevel) {
+context.addExport("warranty", t_5);
+}
+var t_6;
+t_6 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"title");
+frame.set("title", t_6, true);
+if(frame.topLevel) {
+context.setVariable("title", t_6);
+}
+if(frame.topLevel) {
+context.addExport("title", t_6);
+}
+var t_7;
+t_7 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"name");
+frame.set("name", t_7, true);
+if(frame.topLevel) {
+context.setVariable("name", t_7);
+}
+if(frame.topLevel) {
+context.addExport("name", t_7);
+}
+var t_8;
+t_8 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"warranty_text");
+frame.set("warrantyText", t_8, true);
+if(frame.topLevel) {
+context.setVariable("warrantyText", t_8);
+}
+if(frame.topLevel) {
+context.addExport("warrantyText", t_8);
+}
+output += "\n";
+var t_9;
+t_9 = (lineno = 11, colno = 27, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"font_color"),"dark_font_color"]));
+frame.set("fontColor", t_9, true);
+if(frame.topLevel) {
+context.setVariable("fontColor", t_9);
+}
+if(frame.topLevel) {
+context.addExport("fontColor", t_9);
+}
+var t_10;
+t_10 = (lineno = 12, colno = 26, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"font_size"),14]));
+frame.set("fontSize", t_10, true);
+if(frame.topLevel) {
+context.setVariable("fontSize", t_10);
+}
+if(frame.topLevel) {
+context.addExport("fontSize", t_10);
+}
+var t_11;
+t_11 = (lineno = 13, colno = 28, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"font_weight"),400]));
+frame.set("fontWeight", t_11, true);
+if(frame.topLevel) {
+context.setVariable("fontWeight", t_11);
+}
+if(frame.topLevel) {
+context.addExport("fontWeight", t_11);
+}
+var t_12;
+t_12 = (lineno = 14, colno = 28, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"line_height"),20]));
+frame.set("lineHeight", t_12, true);
+if(frame.topLevel) {
+context.setVariable("lineHeight", t_12);
+}
+if(frame.topLevel) {
+context.addExport("lineHeight", t_12);
+}
+output += "\n";
+var t_13;
+t_13 = ["snippet-product-warranty-text"];
+frame.set("globalClass", t_13, true);
+if(frame.topLevel) {
+context.setVariable("globalClass", t_13);
+}
+if(frame.topLevel) {
+context.addExport("globalClass", t_13);
+}
+var t_14;
+t_14 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_14, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_14);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_14);
+}
+output += "\n<style>\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " {\n    display: flex;\n    flex-direction: column;\n    gap: 1rem;\n\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "fontColor")), env.opts.autoescape);
+output += "!important;\n    font-size: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "fontSize"), env.opts.autoescape);
+output += "px!important;\n    font-weight: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "fontWeight"), env.opts.autoescape);
+output += "!important;\n    line-height: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "lineHeight"), env.opts.autoescape);
+output += "px;\n    min-height: 5rem!important;\n    white-space: normal!important;\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " .warranty-text {\n    padding: 1rem 0 0 1rem;\n  }\n</style>\n\n<div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "\">\n  <div>\n    <b>";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "title"), env.opts.autoescape);
+output += "</b> by <b>";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "name"), env.opts.autoescape);
+output += "</b>\n";
+if(runtime.contextOrFrameLookup(context, frame, "warranty") == -1) {
+output += "      has an unlimited warranty.\n";
+;
+}
+else {
+output += "      has ";
+output += runtime.suppressValue(env.getFilter("seconds_to_dhms").call(context, runtime.contextOrFrameLookup(context, frame, "warranty")), env.opts.autoescape);
+output += " limited warranty.\n";
+;
+}
+output += "  </div>\n\n";
+if(runtime.contextOrFrameLookup(context, frame, "warrantyText")) {
+output += "    <div>\n      This warranty, as described by the seller, covers:\n      <br/>\n      <div class=\"w-100 warranty-text sellix-text\">\n        ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("html_sanitize").call(context, runtime.contextOrFrameLookup(context, frame, "warrantyText"))), env.opts.autoescape);
+output += "\n      </div>\n    </div>\n";
+;
+}
+output += "\n  <p>\n";
+if(runtime.contextOrFrameLookup(context, frame, "warrantyText")) {
+output += "      Unless stated otherwise in the Terms of Service.\n";
+;
+}
+else {
+output += "      This warranty, as described by the seller,\n      covers any type of occasions unless stated\n      otherwise in the Terms of Service.\n";
+;
+}
+output += "  </p>\n</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

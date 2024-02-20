@@ -1,0 +1,240 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_2, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_2);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"product");
+frame.set("product", t_3, true);
+if(frame.topLevel) {
+context.setVariable("product", t_3);
+}
+if(frame.topLevel) {
+context.addExport("product", t_3);
+}
+output += "\n";
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"image_attachment");
+frame.set("defaultImage", t_4, true);
+if(frame.topLevel) {
+context.setVariable("defaultImage", t_4);
+}
+if(frame.topLevel) {
+context.addExport("defaultImage", t_4);
+}
+var t_5;
+t_5 = [];
+frame.set("attachments", t_5, true);
+if(frame.topLevel) {
+context.setVariable("attachments", t_5);
+}
+if(frame.topLevel) {
+context.addExport("attachments", t_5);
+}
+frame = frame.push();
+var t_8 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"image_attachments")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"image_attachments"):[]);
+if(t_8) {t_8 = runtime.fromIterator(t_8);
+var t_7 = t_8.length;
+for(var t_6=0; t_6 < t_8.length; t_6++) {
+var t_9 = t_8[t_6];
+frame.set("attachment", t_9);
+frame.set("loop.index", t_6 + 1);
+frame.set("loop.index0", t_6);
+frame.set("loop.revindex", t_7 - t_6);
+frame.set("loop.revindex0", t_7 - t_6 - 1);
+frame.set("loop.first", t_6 === 0);
+frame.set("loop.last", t_6 === t_7 - 1);
+frame.set("loop.length", t_7);
+if(runtime.memberLookup((t_9),"id") != runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "defaultImage")),"id") || runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"description_skip_default_image") == 0) {
+var t_10;
+t_10 = ((lineno = 8, colno = 42, runtime.callWrap(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "attachments")),"push"), "attachments[\"push\"]", context, [t_9])),runtime.contextOrFrameLookup(context, frame, "attachments"));
+frame.set("attachments", t_10, true);
+if(frame.topLevel) {
+context.setVariable("attachments", t_10);
+}
+if(frame.topLevel) {
+context.addExport("attachments", t_10);
+}
+;
+}
+;
+}
+}
+frame = frame.pop();
+output += "\n";
+var t_11;
+t_11 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"youtube_link");
+frame.set("youtube_link", t_11, true);
+if(frame.topLevel) {
+context.setVariable("youtube_link", t_11);
+}
+if(frame.topLevel) {
+context.addExport("youtube_link", t_11);
+}
+var t_12;
+t_12 = [];
+frame.set("images", t_12, true);
+if(frame.topLevel) {
+context.setVariable("images", t_12);
+}
+if(frame.topLevel) {
+context.addExport("images", t_12);
+}
+output += "\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"description_image") && ((env.getFilter("length").call(context, runtime.contextOrFrameLookup(context, frame, "attachments"))) || runtime.contextOrFrameLookup(context, frame, "youtube_link")) && !runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"description_youtube_only")) {
+output += "  <div class=\"carousel-root\">\n    <div id=\"sellix-product-carousel-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\" class=\"sellix-product-carousel\">\n";
+var t_13;
+t_13 = 0;
+frame.set("index", t_13, true);
+if(frame.topLevel) {
+context.setVariable("index", t_13);
+}
+if(frame.topLevel) {
+context.addExport("index", t_13);
+}
+frame = frame.push();
+var t_16 = runtime.contextOrFrameLookup(context, frame, "attachments");
+if(t_16) {t_16 = runtime.fromIterator(t_16);
+var t_15 = t_16.length;
+for(var t_14=0; t_14 < t_16.length; t_14++) {
+var t_17 = t_16[t_14];
+frame.set("attachment", t_17);
+frame.set("loop.index", t_14 + 1);
+frame.set("loop.index0", t_14);
+frame.set("loop.revindex", t_15 - t_14);
+frame.set("loop.revindex0", t_15 - t_14 - 1);
+frame.set("loop.first", t_14 === 0);
+frame.set("loop.last", t_14 === t_15 - 1);
+frame.set("loop.length", t_15);
+var t_18;
+t_18 = (lineno = 20, colno = 31, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "cdn_link"), "cdn_link", context, [runtime.memberLookup((t_17),"cloudflare_image_id"),"shopItem"]));
+frame.set("image", t_18, true);
+if(frame.topLevel) {
+context.setVariable("image", t_18);
+}
+if(frame.topLevel) {
+context.addExport("image", t_18);
+}
+output += "\n";
+var t_19;
+t_19 = ((lineno = 22, colno = 36, runtime.callWrap(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "images")),"push"), "images[\"push\"]", context, [runtime.contextOrFrameLookup(context, frame, "image")])),runtime.contextOrFrameLookup(context, frame, "images"));
+frame.set("images", t_19, true);
+if(frame.topLevel) {
+context.setVariable("images", t_19);
+}
+if(frame.topLevel) {
+context.addExport("images", t_19);
+}
+output += "\n        <a href=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "image"), env.opts.autoescape);
+output += "\" data-slide-idx=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "index"), env.opts.autoescape);
+output += "\">\n          <div data-pswp-src=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "image"), env.opts.autoescape);
+output += "\" class=\"shop-product-info-image\">\n            <img src=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "image"), env.opts.autoescape);
+output += "\" alt=\"";
+output += runtime.suppressValue(runtime.memberLookup((t_17),"original_name"), env.opts.autoescape);
+output += "\" />\n          </div>\n        </a>\n\n";
+var t_20;
+t_20 = runtime.contextOrFrameLookup(context, frame, "index") + 1;
+frame.set("index", t_20, true);
+if(frame.topLevel) {
+context.setVariable("index", t_20);
+}
+if(frame.topLevel) {
+context.addExport("index", t_20);
+}
+;
+}
+}
+frame = frame.pop();
+output += "\n";
+if(runtime.contextOrFrameLookup(context, frame, "youtube_link")) {
+output += "        <a href='";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "youtube_link"), env.opts.autoescape);
+output += "' data-slide-idx=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "index"), env.opts.autoescape);
+output += "\">\n          <div class=\"shop-product-info-image\">\n            <div class=\"player-wrapper\">\n              <div style=\"width: auto; height: auto;\">\n                <div style=\"width: 100%; height: 100%;\">\n                  <div id=\"sellix-video-player-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\"></div>\n                </div>\n              </div>\n            </div>\n          </div>\n        </a>\n";
+;
+}
+output += "    </div>\n  </div>\n\n  <script type='application/javascript'>\n    $(document).ready(function () {\n";
+if(runtime.contextOrFrameLookup(context, frame, "youtube_link")) {
+output += "      const container = document.getElementById('sellix-video-player-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "');\n      const url =\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "youtube_link"), env.opts.autoescape);
+output += "\";\n      renderReactPlayer(container, { url, width: 'auth', height: 'auto' });\n";
+;
+}
+output += "\n      const slider = tns({\n        container: '#sellix-product-carousel-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "',\n        items: 1,\n        controls: false,\n        navPosition: 'bottom',\n        autoHeight: true,\n      });\n\n      $(document).on('SellixShowProductDescription SellixInvoiceShowProductDescription', () => {\n        setTimeout(function() {\n          slider.updateSliderHeight();\n        }, 0);\n      });\n\n      $('#sellix-product-carousel-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " a').on('click', function(e) {\n        e.preventDefault();\n\n        const slideIdx = +$(this).data('slide-idx') || 0;\n\n        $.magnificPopup.open({\n          type: 'image',\n          closeBtnInside: false,\n          closeMarkup: '<button title=\"%title%\" type=\"button\" class=\"mfp-close\"></button>',\n          gallery:{\n            enabled:true\n          },\n          items: [\n";
+frame = frame.push();
+var t_23 = runtime.contextOrFrameLookup(context, frame, "attachments");
+if(t_23) {t_23 = runtime.fromIterator(t_23);
+var t_22 = t_23.length;
+for(var t_21=0; t_21 < t_23.length; t_21++) {
+var t_24 = t_23[t_21];
+frame.set("attachment", t_24);
+frame.set("loop.index", t_21 + 1);
+frame.set("loop.index0", t_21);
+frame.set("loop.revindex", t_22 - t_21);
+frame.set("loop.revindex0", t_22 - t_21 - 1);
+frame.set("loop.first", t_21 === 0);
+frame.set("loop.last", t_21 === t_22 - 1);
+frame.set("loop.length", t_22);
+output += "            {\n              src: '";
+output += runtime.suppressValue((lineno = 86, colno = 30, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "cdn_link"), "cdn_link", context, [runtime.memberLookup((t_24),"cloudflare_image_id"),"shopItem"])), env.opts.autoescape);
+output += "',\n              type: 'image',\n            },\n";
+;
+}
+}
+frame = frame.pop();
+if(runtime.contextOrFrameLookup(context, frame, "youtube_link")) {
+output += "            {\n              src: '";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "youtube_link"), env.opts.autoescape);
+output += "',\n              type: 'iframe',\n            },\n";
+;
+}
+output += "          ],\n          iframe: {\n            patterns: {\n              youtube: {\n                index: 'youtube.com/',\n                id: function(url) {\n                  const pattern = /^.*((youtu.be\\/)|(v\\/)|(\\/u\\/\\w\\/)|(embed\\/)|(watch\\?))\\??v?=?([^#\\&\\?]*).*/;\n                  const match = url.match(pattern);\n                  if (match && match[7].length == 11) {\n                    return match[7];\n                  }\n                  return null;\n                },\n              },\n            },\n          },\n        }, slideIdx);\n      });\n    });\n  </script>\n";
+;
+}
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

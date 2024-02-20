@@ -1,0 +1,178 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"product");
+frame.set("product", t_2, true);
+if(frame.topLevel) {
+context.setVariable("product", t_2);
+}
+if(frame.topLevel) {
+context.addExport("product", t_2);
+}
+var t_3;
+t_3 = !runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"image_name");
+frame.set("isPlaceholder", t_3, true);
+if(frame.topLevel) {
+context.setVariable("isPlaceholder", t_3);
+}
+if(frame.topLevel) {
+context.addExport("isPlaceholder", t_3);
+}
+var t_4;
+t_4 = (lineno = 3, colno = 23, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "cdn_link"), "cdn_link", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"cloudflare_image_id"),"shopItem"]));
+frame.set("image", t_4, true);
+if(frame.topLevel) {
+context.setVariable("image", t_4);
+}
+if(frame.topLevel) {
+context.addExport("image", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_5, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_5);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_5);
+}
+var t_6;
+t_6 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"cards");
+frame.set("cardsProps", t_6, true);
+if(frame.topLevel) {
+context.setVariable("cardsProps", t_6);
+}
+if(frame.topLevel) {
+context.addExport("cardsProps", t_6);
+}
+var t_7;
+t_7 = env.getFilter("int").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"on_hold"));
+frame.set("onHold", t_7, true);
+if(frame.topLevel) {
+context.setVariable("onHold", t_7);
+}
+if(frame.topLevel) {
+context.addExport("onHold", t_7);
+}
+var t_8;
+t_8 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"currencyConfig")),"allCurrencies")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"currency"));
+frame.set("currencyOptions", t_8, true);
+if(frame.topLevel) {
+context.setVariable("currencyOptions", t_8);
+}
+if(frame.topLevel) {
+context.addExport("currencyOptions", t_8);
+}
+output += "\n<div class=\"d-flex w-100 position-relative\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Discount badge",runtime.makeKeywordArgs({"product": runtime.contextOrFrameLookup(context, frame, "product")}), function(t_10,t_9) {
+if(t_10) { cb(t_10); return; }
+output += runtime.suppressValue(t_9, true && env.opts.autoescape);
+output += "  <a\n    href=\"";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "onHold")?"javascript:void":env.getFilter("join").call(context, ["product/",runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"slug") || runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"uniqid")])), env.opts.autoescape);
+output += "\"\n    id=\"sellix-card-container-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\"\n    class=\"sellix-card-container\"\n    style=\"border: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_show_border")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += ";\"\n  >\n    <div\n      class=\"sellix-card unselectable\"\n      style=\"background: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_background_color")), env.opts.autoescape);
+output += ";\"\n    >\n      <div class=\"sellix-card-badge\">";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.shared.titles.productType.subscription"), env.opts.autoescape);
+output += "</div>\n\n      <div class=\"sellix-card-image ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isPlaceholder")?"placeholder":""), env.opts.autoescape);
+output += "\">\n";
+if(runtime.contextOrFrameLookup(context, frame, "isPlaceholder")) {
+output += "          <i class=\"fa-light fa-recycle\"></i>\n";
+;
+}
+else {
+output += "          <img src=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "image"), env.opts.autoescape);
+output += "\" alt=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "title"), env.opts.autoescape);
+output += "\" loading=\"lazy\" />\n";
+;
+}
+output += "      </div>\n\n      <div class=\"sellix-card-info\">\n        <div\n          class=\"sellix-card-title ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"centerProduct")?"justify-content-center text-center":""), env.opts.autoescape);
+output += "\"\n          style=\"color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_title_font_color")), env.opts.autoescape);
+output += "; font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_title_font_size"), env.opts.autoescape);
+output += "px; font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_title_font_weight"), env.opts.autoescape);
+output += "; line-height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_title_line_height"), env.opts.autoescape);
+output += "%; justify-content: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_title_text_align"), env.opts.autoescape);
+output += " !important;\"\n        >\n          ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"title"), env.opts.autoescape);
+output += "\n        </div>\n\n";
+if(!runtime.contextOrFrameLookup(context, frame, "onHold")) {
+output += "          <span class=\"sellix-card-tax\" style=\"color: var(--darkFontColor)\"></span>\n";
+;
+}
+output += "\n";
+if(runtime.contextOrFrameLookup(context, frame, "onHold")) {
+output += "          <span\n            class=\"sellix-card-description\"\n            style=\"color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_description_font_color")), env.opts.autoescape);
+output += "; font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_description_font_size"), env.opts.autoescape);
+output += "px; font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_description_font_weight"), env.opts.autoescape);
+output += ";\"\n          >\n            ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.main.cards.subscription.onHold"), env.opts.autoescape);
+output += "\n          </span>\n";
+;
+}
+else {
+output += "          <div\n            class=\"sellix-card-description justify-content-start\"\n            style=\"color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_description_font_color")), env.opts.autoescape);
+output += "; font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_description_font_size"), env.opts.autoescape);
+output += "px; font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_description_font_weight"), env.opts.autoescape);
+output += ";\"\n          >\n            <span class=\"sellix-card-stock\">";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.shared.titles.startingAt"), env.opts.autoescape);
+output += ": </span>\n\n            <span\n              style=\"color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_price_font_color")), env.opts.autoescape);
+output += "; font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_price_font_size"), env.opts.autoescape);
+output += "px; font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_price_font_weight"), env.opts.autoescape);
+output += ";\"\n            >\n              ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "currencyOptions")),"symbol"), env.opts.autoescape);
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"price_display"), env.opts.autoescape);
+output += "\n            </span>\n          </div>\n";
+;
+}
+output += "      </div>\n    </div>\n  </a>\n</div>\n\n\n<script type='application/javascript'>\n  $(document).ready(function () {\n    const { shopInfo } = window.SellixContext.get('common');\n    const ipcountry = Cookies.get('ipcountry');\n\n    let taxAmount = +shopInfo.shop.vat_percentage ? +shopInfo.shop.vat_percentage : '';\n    if(shopInfo.shop.tax_configuration === \"EU\" || shopInfo.shop.tax_configuration === \"CUSTOM\") {\n      if(shopInfo.shop.tax_configuration_data && ipcountry) {\n        if(shopInfo.shop.tax_configuration_data.find(({ country, type }) => country === ipcountry)) {\n          taxAmount = shopInfo.shop.tax_configuration_data.find(({ country, type }) => country === ipcountry).tax_percentage;\n        }\n      }\n    }\n\n    if(shopInfo.shop.display_tax_on_storefront && taxAmount) {\n      taxAmount = parseFloat(Number(taxAmount).toFixed(2));\n      $('#sellix-card-container-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " .sellix-card .sellix-card-tax').append(`<span>${taxAmount}% ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.main.cards.product.tax"), env.opts.autoescape);
+output += "</span>`);\n    }\n  });\n</script>\n\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

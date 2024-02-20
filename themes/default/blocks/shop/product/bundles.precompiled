@@ -1,0 +1,92 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+output += "\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type") == "product") {
+var t_2;
+t_2 = [runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"productInfo")),"product")),"uniqid")];
+frame.set("productIds", t_2, true);
+if(frame.topLevel) {
+context.setVariable("productIds", t_2);
+}
+if(frame.topLevel) {
+context.addExport("productIds", t_2);
+}
+;
+}
+else {
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type") == "checkout") {
+var t_3;
+t_3 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"checkoutInfo")),"productIds");
+frame.set("productIds", t_3, true);
+if(frame.topLevel) {
+context.setVariable("productIds", t_3);
+}
+if(frame.topLevel) {
+context.addExport("productIds", t_3);
+}
+;
+}
+else {
+var t_4;
+t_4 = [];
+frame.set("productIds", t_4, true);
+if(frame.topLevel) {
+context.setVariable("productIds", t_4);
+}
+if(frame.topLevel) {
+context.addExport("productIds", t_4);
+}
+;
+}
+;
+}
+output += "\n";
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"render_mode") == "backend") {
+output += "\n";
+env.getExtension("RenderSnippet")["run"](context,"Bundles",runtime.makeKeywordArgs({"dependencies": [{"type": "bundles","productIds": runtime.contextOrFrameLookup(context, frame, "productIds")}],"properties": runtime.contextOrFrameLookup(context, frame, "properties")}), function(t_6,t_5) {
+if(t_6) { cb(t_6); return; }
+output += runtime.suppressValue(t_5, true && env.opts.autoescape);
+output += "\n";
+cb()});
+}
+else {
+output += "\n  <div id=\"sellix-bundles-async-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\"></div>\n\n  <script type='application/javascript'>\n    $(document).ready(function () {\n      const $container = $('#sellix-bundles-async-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "');\n      const renderOptions = ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("dump").call(context, runtime.contextOrFrameLookup(context, frame, "renderOptions"))), env.opts.autoescape);
+output += ";\n      sellixApi\n        .renderComponent(\n          {\n            ...renderOptions,\n            path: [renderOptions.path, ['snippet', 'Bundles'].join(':')].join(';'),\n          },\n          {\n            dependencies: [\n              {type: 'bundles', productIds : ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("dump").call(context, runtime.contextOrFrameLookup(context, frame, "productIds"))), env.opts.autoescape);
+output += "},\n            ],\n            properties: ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("dump").call(context, runtime.contextOrFrameLookup(context, frame, "properties"))), env.opts.autoescape);
+output += "\n          },\n        )\n        .then((resp) => {\n          const $component = $(resp.html);\n          $container.html($component);\n          setTimeout(function () {\n            $(document).trigger('SellixCartUpdateEvent', { action: 'update' });\n          });\n        })\n        .catch((resp) => {\n          const respJson = resp.responseJSON || {};\n          $(document).trigger('SellixToastify', {\n            type: 'error',\n            text: respJson.message || 'Internal server error',\n          });\n        });\n    });\n  </script>\n\n";
+cb();
+}
+})(function(t_7) {
+if(t_7) { cb(t_7); return; }if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

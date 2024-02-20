@@ -1,0 +1,75 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"productInfo")),"product");
+frame.set("product", t_2, true);
+if(frame.topLevel) {
+context.setVariable("product", t_2);
+}
+if(frame.topLevel) {
+context.addExport("product", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"invoiceInfo")),"invoice");
+frame.set("invoice", t_3, true);
+if(frame.topLevel) {
+context.setVariable("invoice", t_3);
+}
+if(frame.topLevel) {
+context.addExport("invoice", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"type");
+frame.set("type", t_4, true);
+if(frame.topLevel) {
+context.setVariable("type", t_4);
+}
+if(frame.topLevel) {
+context.addExport("type", t_4);
+}
+output += "\n";
+(function(cb) {if(env.getFilter("lower").call(context, runtime.contextOrFrameLookup(context, frame, "type")) == "plain_text") {
+env.getExtension("RenderSnippet")["run"](context,"Product: Description",runtime.makeKeywordArgs({"product": runtime.contextOrFrameLookup(context, frame, "product"),"invoice": runtime.contextOrFrameLookup(context, frame, "invoice"),"properties": runtime.contextOrFrameLookup(context, frame, "properties"),"collapsable": false}), function(t_6,t_5) {
+if(t_6) { cb(t_6); return; }
+output += runtime.suppressValue(t_5, true && env.opts.autoescape);
+cb()});
+}
+else {
+(function(cb) {if(env.getFilter("lower").call(context, runtime.contextOrFrameLookup(context, frame, "type")) == "collapsable") {
+env.getExtension("RenderSnippet")["run"](context,"Product: Description",runtime.makeKeywordArgs({"product": runtime.contextOrFrameLookup(context, frame, "product"),"invoice": runtime.contextOrFrameLookup(context, frame, "invoice"),"properties": runtime.contextOrFrameLookup(context, frame, "properties"),"collapsable": true}), function(t_8,t_7) {
+if(t_8) { cb(t_8); return; }
+output += runtime.suppressValue(t_7, true && env.opts.autoescape);
+cb()});
+}
+else {
+cb()}
+})(function(t_9) {
+if(t_9) { cb(t_9); return; }cb()});
+}
+})(function(t_10) {
+if(t_10) { cb(t_10); return; }if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

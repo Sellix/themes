@@ -1,0 +1,203 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_2, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_2);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"inputs");
+frame.set("inputsProps", t_3, true);
+if(frame.topLevel) {
+context.setVariable("inputsProps", t_3);
+}
+if(frame.topLevel) {
+context.addExport("inputsProps", t_3);
+}
+var t_4;
+t_4 = [];
+frame.set("localesList", t_4, true);
+if(frame.topLevel) {
+context.setVariable("localesList", t_4);
+}
+if(frame.topLevel) {
+context.addExport("localesList", t_4);
+}
+frame = frame.push();
+var t_7 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"locales")),"supportedLocales");
+if(t_7) {t_7 = runtime.fromIterator(t_7);
+var t_5;
+if(runtime.isArray(t_7)) {
+var t_6 = t_7.length;
+for(t_5=0; t_5 < t_7.length; t_5++) {
+var t_8 = t_7[t_5][0];
+frame.set("[object Object]", t_7[t_5][0]);
+var t_9 = t_7[t_5][1];
+frame.set("[object Object]", t_7[t_5][1]);
+frame.set("loop.index", t_5 + 1);
+frame.set("loop.index0", t_5);
+frame.set("loop.revindex", t_6 - t_5);
+frame.set("loop.revindex0", t_6 - t_5 - 1);
+frame.set("loop.first", t_5 === 0);
+frame.set("loop.last", t_5 === t_6 - 1);
+frame.set("loop.length", t_6);
+var t_10;
+t_10 = ((lineno = 5, colno = 40, runtime.callWrap(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "localesList")),"push"), "localesList[\"push\"]", context, [t_9])),runtime.contextOrFrameLookup(context, frame, "localesList"));
+frame.set("localesList", t_10, true);
+if(frame.topLevel) {
+context.setVariable("localesList", t_10);
+}
+if(frame.topLevel) {
+context.addExport("localesList", t_10);
+}
+;
+}
+} else {
+t_5 = -1;
+var t_6 = runtime.keys(t_7).length;
+for(var t_11 in t_7) {
+t_5++;
+var t_12 = t_7[t_11];
+frame.set("locale", t_11);
+frame.set("localeInfo", t_12);
+frame.set("loop.index", t_5 + 1);
+frame.set("loop.index0", t_5);
+frame.set("loop.revindex", t_6 - t_5);
+frame.set("loop.revindex0", t_6 - t_5 - 1);
+frame.set("loop.first", t_5 === 0);
+frame.set("loop.last", t_5 === t_6 - 1);
+frame.set("loop.length", t_6);
+var t_13;
+t_13 = ((lineno = 5, colno = 40, runtime.callWrap(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "localesList")),"push"), "localesList[\"push\"]", context, [t_12])),runtime.contextOrFrameLookup(context, frame, "localesList"));
+frame.set("localesList", t_13, true);
+if(frame.topLevel) {
+context.setVariable("localesList", t_13);
+}
+if(frame.topLevel) {
+context.addExport("localesList", t_13);
+}
+;
+}
+}
+}
+frame = frame.pop();
+output += "\n";
+var t_14;
+t_14 = "snippet-language-selector";
+frame.set("globalClass", t_14, true);
+if(frame.topLevel) {
+context.setVariable("globalClass", t_14);
+}
+if(frame.topLevel) {
+context.addExport("globalClass", t_14);
+}
+var t_15;
+t_15 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_15, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_15);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_15);
+}
+output += "\n<style>\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " .select2-container--sellix-lng-selector .select2-selection--single {\n    background-color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"select_background")), env.opts.autoescape);
+output += "!important;\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " .select2-container--sellix-lng-selector .select2-selection__rendered {\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_color")), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_size"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_weight"), env.opts.autoescape);
+output += ";\n  }\n\n  .select2-container--sellix-lng-selector .select2-dropdown {\n    border: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"dropdown_show_border")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += " !important;\n    background-color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"select_background")), env.opts.autoescape);
+output += " !important;\n  }\n\n  .select2-container--sellix-lng-selector .select2-results__option {\n    font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"dropdown_option_font_size"), env.opts.autoescape);
+output += "px !important;\n    font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"dropdown_option_font_weight"), env.opts.autoescape);
+output += ";\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"dropdown_option_font_color")), env.opts.autoescape);
+output += ";\n  }\n\n  .select2-container--sellix-lng-selector .select2-results__option.select2-results__option--highlighted {\n    background-color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"dropdown_option_background_hover")), env.opts.autoescape);
+output += " !important;\n  }\n</style>\n\n<div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " d-none position-relative\">\n  <select id=\"language-selector\" class=\"\">\n";
+frame = frame.push();
+var t_18 = env.getFilter("sort").call(context, runtime.contextOrFrameLookup(context, frame, "localesList"),false,false,"title");
+if(t_18) {t_18 = runtime.fromIterator(t_18);
+var t_17 = t_18.length;
+for(var t_16=0; t_16 < t_18.length; t_16++) {
+var t_19 = t_18[t_16];
+frame.set("localeInfo", t_19);
+frame.set("loop.index", t_16 + 1);
+frame.set("loop.index0", t_16);
+frame.set("loop.revindex", t_17 - t_16);
+frame.set("loop.revindex0", t_17 - t_16 - 1);
+frame.set("loop.first", t_16 === 0);
+frame.set("loop.last", t_16 === t_17 - 1);
+frame.set("loop.length", t_17);
+output += "      <option\n        value=\"";
+output += runtime.suppressValue(runtime.memberLookup((t_19),"code"), env.opts.autoescape);
+output += "\"\n        ";
+output += runtime.suppressValue((runtime.memberLookup((t_19),"code") == runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"locales")),"locale")?"selected":""), env.opts.autoescape);
+output += "\n        data-img-url=\"";
+output += runtime.suppressValue(runtime.memberLookup((t_19),"imgUrl"), env.opts.autoescape);
+output += "\"\n      >";
+output += runtime.suppressValue(runtime.memberLookup((t_19),"title"), env.opts.autoescape);
+output += "</option>\n";
+;
+}
+}
+frame = frame.pop();
+output += "  </select>\n</div>\n\n<script type='application/javascript'>\n  $(document).ready(function() {\n    let selectedLanguage = '";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"locales")),"locale"), env.opts.autoescape);
+output += "';\n    const optionFactory = (state, isResult) => {\n      const $element = $(state.element);\n      const imgUrl = $element.data('imgUrl');\n\n      if (!state.id) {\n        return state.text;\n      }\n\n      let isMobile = window.sellixHelper.isMobile();\n      let title =  state.text;\n      const chevronSvg = `<svg style=\"min-width: 20px\" width=\"20\" height=\"20\" viewBox=\"0 0 21 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M5.5 12.5L10.5 7.5L15.5 12.5\" stroke=\"#555D67\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n      </svg>`;\n\n      const tickSvg = `<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M4 10.1667L8 14.3333L16 6\" stroke=\"#6A3CE2\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n      </svg>`;\n\n      return $(`\n        <div style=\"display: flex; align-items: center; column-gap: 0.25rem;\">\n          ${isMobile\n            ? imgUrl\n              ? `<img alt=\"${title}\" style=\"height:18px;width: 18px;\" src=\"${imgUrl}\" />`\n              : ''\n            : imgUrl\n              ? `<img alt=\"${title}\" style=\"height:18px;width: 18px;\" src=\"${imgUrl}\" />`\n              : ''\n          }\n          ${isMobile && isResult ? '' : title}\n          ${isResult\n            ? chevronSvg\n            : state.id === selectedLanguage\n              ? tickSvg\n              : ''\n          }\n        </div>\n    `);\n    }\n\n    $('#language-selector').select2({\n      dropdownAutoWidth: true,\n      width: 'auto',\n      dropdownParent: $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "'),\n      minimumResultsForSearch: Infinity,\n      templateSelection: (state) => optionFactory(state, true),\n      templateResult: (state) => optionFactory(state),\n      escapeMarkup: (m) => m,\n      theme: 'sellix-lng-selector',\n    })\n    .on('select2:select', (e) => {\n      selectedLanguage = e.params.data.id;\n      const oldLocale = '";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"locales")),"locale"), env.opts.autoescape);
+output += "';\n      const newLocale = e.params.data.id;\n      if (oldLocale !== newLocale) {\n        const pathParts = window.location.pathname.split('/').filter((p) => !!p);\n        if (pathParts.length && pathParts[0] === oldLocale) {\n          pathParts.shift();\n        }\n\n        if (newLocale !== '";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"locales")),"defaultLocale"), env.opts.autoescape);
+output += "') {\n          pathParts.unshift(newLocale);\n        }\n\n        window.location.href = `/${pathParts.join('/')}` + (pathParts.length === 1 ? '/' : '');\n      }\n    })\n    .on('select2:open', (e) => {\n        $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "').find('.select2-dropdown').addClass('animated flipIn');\n      })\n    .on('select2:closing', (e) => {\n        $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "').find('.select2-dropdown').removeClass('animated flipIn');\n    });\n\n    $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "').removeClass('d-none');\n  });\n</script>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

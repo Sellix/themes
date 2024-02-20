@@ -1,0 +1,173 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"group");
+frame.set("group", t_2, true);
+if(frame.topLevel) {
+context.setVariable("group", t_2);
+}
+if(frame.topLevel) {
+context.addExport("group", t_2);
+}
+var t_3;
+t_3 = !runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "group")),"image_name");
+frame.set("isPlaceholder", t_3, true);
+if(frame.topLevel) {
+context.setVariable("isPlaceholder", t_3);
+}
+if(frame.topLevel) {
+context.addExport("isPlaceholder", t_3);
+}
+var t_4;
+t_4 = (lineno = 3, colno = 23, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "cdn_link"), "cdn_link", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "group")),"cloudflare_image_id"),"shopItem"]));
+frame.set("image", t_4, true);
+if(frame.topLevel) {
+context.setVariable("image", t_4);
+}
+if(frame.topLevel) {
+context.addExport("image", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_5, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_5);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_5);
+}
+var t_6;
+t_6 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"cards");
+frame.set("cardsProps", t_6, true);
+if(frame.topLevel) {
+context.setVariable("cardsProps", t_6);
+}
+if(frame.topLevel) {
+context.addExport("cardsProps", t_6);
+}
+output += "\n<style>\n  .sellix-card-container-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " {\n    border: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_show_border")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += ";\n  }\n  .sellix-card-container-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " .sellix-card {\n    background: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_background_color")), env.opts.autoescape);
+output += ";\n  }\n  .sellix-card-container-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " .sellix-card .sellix-card-title {\n    color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_title_font_color")), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_title_font_size"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_title_font_weight"), env.opts.autoescape);
+output += ";\n    line-height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_title_line_height"), env.opts.autoescape);
+output += "%;\n    justify-content: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_title_text_align"), env.opts.autoescape);
+output += " !important;\n  }\n\n  .sellix-card-container-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " .sellix-card .sellix-group-card-description {\n    color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_description_font_color")), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_description_font_size"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_description_font_weight"), env.opts.autoescape);
+output += ";\n  }\n\n  .sellix-card-container-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " .sellix-card .sellix-group-card-description .sellix-price {\n    color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_price_font_color")), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_price_font_size"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardsProps")),"product_card_price_font_weight"), env.opts.autoescape);
+output += ";\n  }\n</style>\n\n<div\n  id=\"sellix-card-container-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\"\n  class=\"sellix-card-container sellix-card-container-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\"\n  data-group-id=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "group")),"uniqid"), env.opts.autoescape);
+output += "\"\n>\n  <div class=\"sellix-card-badge\">";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.shared.titles.productType.group"), env.opts.autoescape);
+output += "</div>\n  <div class=\"sellix-card unselectable\">\n    <div class=\"sellix-card-image ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isPlaceholder")?"placeholder":""), env.opts.autoescape);
+output += "\">\n";
+if(runtime.contextOrFrameLookup(context, frame, "isPlaceholder")) {
+output += "        <i class=\"fa-light fa-layer-group\"></i>\n";
+;
+}
+else {
+output += "        <img src=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "image"), env.opts.autoescape);
+output += "\" alt=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "group")),"title"), env.opts.autoescape);
+output += "\" loading=\"lazy\" />\n";
+;
+}
+output += "    </div>\n\n    <div class=\"sellix-card-info\">\n      <div class=\"sellix-card-title ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"centerGroup")?"justify-content-center text-center":""), env.opts.autoescape);
+output += "\">\n        ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "group")),"title"), env.opts.autoescape);
+output += "\n      </div>\n\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "group")),"min_price_item")) {
+output += "        <span class=\"sellix-card-tax\" style=\"color: var(--darkFontColor)\"></span>\n";
+;
+}
+output += "\n      <div class=\"sellix-group-card-description\">\n        <span>\n";
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "group")),"min_price_item")) {
+output += "            <div class=\"sellix-group-description-info\">\n              <span>";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.shared.titles.startingAt"), env.opts.autoescape);
+output += ": </span>\n\n              <span class=\"sellix-price\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Price",runtime.makeKeywordArgs({"currency": runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "group")),"min_price_item")),"currency"),"price": runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "group")),"min_price_item")),"price_display")}), function(t_8,t_7) {
+if(t_8) { cb(t_8); return; }
+output += runtime.suppressValue(t_7, true && env.opts.autoescape);
+output += "              </span>\n            </div>\n";
+cb()});
+}
+else {
+output += "            <span>";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.main.cards.group.outOfProducts"), env.opts.autoescape);
+output += "</span>\n";
+cb();
+}
+})(function(t_9) {
+if(t_9) { cb(t_9); return; }output += "        </span>\n      </div>\n    </div>\n  </div>\n</div>\n\n<script type='application/javascript'>\n  $(document).ready(function () {\n    $('#sellix-card-container-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "').on('click', function () {\n      const groupId = $(this).data('group-id');\n      const items = __RENDER_CONTEXT__.common.shopInfo.items;\n      const group = items.find(({uniqid}) => String(uniqid) === String(groupId));\n\n      if (group && group.products_bound.length) {\n        $(document).trigger('SellixSetActiveModalGroup', { groupId });\n        jQuery('#group-card-modal').modal({\n          modalClass: '',\n          blockerClass: '',\n          showClose: false,\n        });\n      }\n    });\n\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type") === "group" && runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"options")),"itemId") === runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "group")),"uniqid")) {
+output += "      setTimeout(function() {\n        $('#sellix-card-container-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "').click();\n      }, 0);\n";
+;
+}
+output += "  });\n</script>\n\n<script type='application/javascript'>\n  $(document).ready(function () {\n    const { shopInfo } = window.SellixContext.get('common');\n    const ipcountry = Cookies.get('ipcountry') || \"\";\n\n    let taxAmount = +shopInfo.shop.vat_percentage ? +shopInfo.shop.vat_percentage : '';\n    if(shopInfo.shop.tax_configuration === \"EU\" || shopInfo.shop.tax_configuration === \"CUSTOM\") {\n      if(shopInfo.shop.tax_configuration_data && ipcountry) {\n        if(shopInfo.shop.tax_configuration_data.find(({ country, type }) => country === ipcountry)) {\n          taxAmount = shopInfo.shop.tax_configuration_data.find(({ country, type }) => country === ipcountry).tax_percentage;\n        }\n      }\n    }\n\n\n    if(shopInfo.shop.display_tax_on_storefront && taxAmount) {\n      taxAmount = parseFloat(Number(taxAmount).toFixed(2));\n      $('#sellix-card-container-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " .sellix-card .sellix-card-tax').append(`<span>${taxAmount}% ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.main.cards.product.tax"), env.opts.autoescape);
+output += "</span>`);\n    }\n  });\n</script>\n\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

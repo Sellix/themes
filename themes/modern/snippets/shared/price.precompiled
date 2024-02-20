@@ -1,0 +1,440 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"currencyConfig")),"allCurrencies")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"currency"));
+frame.set("currency", t_2, true);
+if(frame.topLevel) {
+context.setVariable("currency", t_2);
+}
+if(frame.topLevel) {
+context.addExport("currency", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"currencyConfig")),"usdExchangeRate") || 1;
+frame.set("usdExchangeRate", t_3, true);
+if(frame.topLevel) {
+context.setVariable("usdExchangeRate", t_3);
+}
+if(frame.topLevel) {
+context.addExport("usdExchangeRate", t_3);
+}
+var t_4;
+t_4 = (lineno = 3, colno = 27, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"show_image"),false]));
+frame.set("showImage", t_4, true);
+if(frame.topLevel) {
+context.setVariable("showImage", t_4);
+}
+if(frame.topLevel) {
+context.addExport("showImage", t_4);
+}
+var t_5;
+t_5 = (lineno = 4, colno = 34, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"show_initial_price"),"no"]));
+frame.set("showInitialPrice", t_5, true);
+if(frame.topLevel) {
+context.setVariable("showInitialPrice", t_5);
+}
+if(frame.topLevel) {
+context.addExport("showInitialPrice", t_5);
+}
+var t_6;
+t_6 = (lineno = 5, colno = 29, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"discount"),false]));
+frame.set("hasDiscount", t_6, true);
+if(frame.topLevel) {
+context.setVariable("hasDiscount", t_6);
+}
+if(frame.topLevel) {
+context.addExport("hasDiscount", t_6);
+}
+output += "\n";
+var t_7;
+t_7 = (lineno = 7, colno = 28, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"digits"),2]));
+frame.set("argsDigits", t_7, true);
+if(frame.topLevel) {
+context.setVariable("argsDigits", t_7);
+}
+if(frame.topLevel) {
+context.addExport("argsDigits", t_7);
+}
+var t_8;
+t_8 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"currencyConfig")),"moneyPrecision");
+frame.set("digits", t_8, true);
+if(frame.topLevel) {
+context.setVariable("digits", t_8);
+}
+if(frame.topLevel) {
+context.addExport("digits", t_8);
+}
+var t_9;
+t_9 = (runtime.contextOrFrameLookup(context, frame, "digits") > runtime.contextOrFrameLookup(context, frame, "argsDigits")?runtime.contextOrFrameLookup(context, frame, "digits"):runtime.contextOrFrameLookup(context, frame, "argsDigits"));
+frame.set("digits", t_9, true);
+if(frame.topLevel) {
+context.setVariable("digits", t_9);
+}
+if(frame.topLevel) {
+context.addExport("digits", t_9);
+}
+output += "\n";
+var t_10;
+t_10 = env.getFilter("to_decimal_precision").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"price"),runtime.contextOrFrameLookup(context, frame, "currency"),runtime.contextOrFrameLookup(context, frame, "digits"));
+frame.set("priceInit", t_10, true);
+if(frame.topLevel) {
+context.setVariable("priceInit", t_10);
+}
+if(frame.topLevel) {
+context.addExport("priceInit", t_10);
+}
+var t_11;
+t_11 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"price");
+frame.set("price", t_11, true);
+if(frame.topLevel) {
+context.setVariable("price", t_11);
+}
+if(frame.topLevel) {
+context.addExport("price", t_11);
+}
+if(runtime.contextOrFrameLookup(context, frame, "hasDiscount")) {
+var t_12;
+t_12 = runtime.contextOrFrameLookup(context, frame, "price") - runtime.contextOrFrameLookup(context, frame, "price") * runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"discount") / 100;
+frame.set("price", t_12, true);
+if(frame.topLevel) {
+context.setVariable("price", t_12);
+}
+if(frame.topLevel) {
+context.addExport("price", t_12);
+}
+;
+}
+var t_13;
+t_13 = env.getFilter("to_decimal_precision").call(context, runtime.contextOrFrameLookup(context, frame, "price"),runtime.contextOrFrameLookup(context, frame, "currency"),runtime.contextOrFrameLookup(context, frame, "digits"));
+frame.set("price", t_13, true);
+if(frame.topLevel) {
+context.setVariable("price", t_13);
+}
+if(frame.topLevel) {
+context.addExport("price", t_13);
+}
+output += "\n";
+var t_14;
+t_14 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"price_font_color");
+frame.set("priceFontColor", t_14, true);
+if(frame.topLevel) {
+context.setVariable("priceFontColor", t_14);
+}
+if(frame.topLevel) {
+context.addExport("priceFontColor", t_14);
+}
+var t_15;
+t_15 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"price_font_size");
+frame.set("priceFontSize", t_15, true);
+if(frame.topLevel) {
+context.setVariable("priceFontSize", t_15);
+}
+if(frame.topLevel) {
+context.addExport("priceFontSize", t_15);
+}
+var t_16;
+t_16 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"price_font_weight");
+frame.set("priceFontWeight", t_16, true);
+if(frame.topLevel) {
+context.setVariable("priceFontWeight", t_16);
+}
+if(frame.topLevel) {
+context.addExport("priceFontWeight", t_16);
+}
+var t_17;
+t_17 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"price_line_height");
+frame.set("priceLineHeight", t_17, true);
+if(frame.topLevel) {
+context.setVariable("priceLineHeight", t_17);
+}
+if(frame.topLevel) {
+context.addExport("priceLineHeight", t_17);
+}
+output += "\n";
+var t_18;
+t_18 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"initial_price_font_color");
+frame.set("initialPriceFontColor", t_18, true);
+if(frame.topLevel) {
+context.setVariable("initialPriceFontColor", t_18);
+}
+if(frame.topLevel) {
+context.addExport("initialPriceFontColor", t_18);
+}
+var t_19;
+t_19 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"initial_price_font_size");
+frame.set("initialPriceFontSize", t_19, true);
+if(frame.topLevel) {
+context.setVariable("initialPriceFontSize", t_19);
+}
+if(frame.topLevel) {
+context.addExport("initialPriceFontSize", t_19);
+}
+var t_20;
+t_20 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"initial_price_font_weight");
+frame.set("initialPriceFontWeight", t_20, true);
+if(frame.topLevel) {
+context.setVariable("initialPriceFontWeight", t_20);
+}
+if(frame.topLevel) {
+context.addExport("initialPriceFontWeight", t_20);
+}
+var t_21;
+t_21 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"initial_price_line_height");
+frame.set("initialPriceLineHeight", t_21, true);
+if(frame.topLevel) {
+context.setVariable("initialPriceLineHeight", t_21);
+}
+if(frame.topLevel) {
+context.addExport("initialPriceLineHeight", t_21);
+}
+output += "\n";
+var t_22;
+t_22 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"image_size");
+frame.set("imageSize", t_22, true);
+if(frame.topLevel) {
+context.setVariable("imageSize", t_22);
+}
+if(frame.topLevel) {
+context.addExport("imageSize", t_22);
+}
+output += "\n";
+var t_23;
+t_23 = "snippet-price";
+frame.set("globalClass", t_23, true);
+if(frame.topLevel) {
+context.setVariable("globalClass", t_23);
+}
+if(frame.topLevel) {
+context.addExport("globalClass", t_23);
+}
+var t_24;
+t_24 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_24, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_24);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_24);
+}
+output += "\n<style>\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__price,\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__currency {\n";
+if(runtime.contextOrFrameLookup(context, frame, "priceFontColor")) {
+output += " color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "priceFontColor")), env.opts.autoescape);
+output += "; ";
+;
+}
+if(runtime.contextOrFrameLookup(context, frame, "priceFontSize")) {
+output += "  font-size: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "priceFontSize"), env.opts.autoescape);
+output += "px; ";
+;
+}
+if(runtime.contextOrFrameLookup(context, frame, "priceFontWeight")) {
+output += " font-weight: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "priceFontWeight"), env.opts.autoescape);
+output += "; ";
+;
+}
+if(runtime.contextOrFrameLookup(context, frame, "priceLineHeight")) {
+output += " line-height: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "priceLineHeight"), env.opts.autoescape);
+output += "px; ";
+;
+}
+output += "  }\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__price.initial-price {\n";
+if(runtime.contextOrFrameLookup(context, frame, "initialPriceFontColor")) {
+output += " color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "initialPriceFontColor")), env.opts.autoescape);
+output += "; ";
+;
+}
+if(runtime.contextOrFrameLookup(context, frame, "initialPriceFontSize")) {
+output += "  font-size: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "initialPriceFontSize"), env.opts.autoescape);
+output += "px; ";
+;
+}
+if(runtime.contextOrFrameLookup(context, frame, "initialPriceFontWeight")) {
+output += " font-weight: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "initialPriceFontWeight"), env.opts.autoescape);
+output += "; ";
+;
+}
+if(runtime.contextOrFrameLookup(context, frame, "initialPriceLineHeight")) {
+output += " line-height: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "initialPriceLineHeight"), env.opts.autoescape);
+output += "px; ";
+;
+}
+output += "  }\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__image img {\n";
+if(runtime.contextOrFrameLookup(context, frame, "imageSize")) {
+output += "      height: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "imageSize"), env.opts.autoescape);
+output += "px;\n      width: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "imageSize"), env.opts.autoescape);
+output += "px;\n";
+;
+}
+output += "  }\n</style>\n\n";
+var macro_t_25 = runtime.makeMacro(
+["price"], 
+["initial"], 
+function (l_price, kwargs) {
+var callerFrame = frame;
+frame = new runtime.Frame();
+kwargs = kwargs || {};
+if (Object.prototype.hasOwnProperty.call(kwargs, "caller")) {
+frame.set("caller", kwargs.caller); }
+frame.set("price", l_price);
+frame.set("initial", Object.prototype.hasOwnProperty.call(kwargs, "initial") ? kwargs["initial"] : false);var t_26 = "";t_26 += "  <span class=\"";
+t_26 += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+t_26 += "__container ";
+t_26 += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+t_26 += "__container\">\n    <span class=\"";
+t_26 += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+t_26 += "__price ";
+t_26 += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+t_26 += "__price ";
+t_26 += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "initial")?"initial-price":""), env.opts.autoescape);
+t_26 += "\">";
+t_26 += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "currency")),"symbol"), env.opts.autoescape);
+if(env.getFilter("length").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "currency")),"symbol")) > 1) {
+t_26 += " ";
+;
+}
+t_26 += runtime.suppressValue(l_price, env.opts.autoescape);
+t_26 += "</span>\n  </span>\n";
+;
+frame = callerFrame;
+return new runtime.SafeString(t_26);
+});
+context.addExport("fiatCurrency");
+context.setVariable("fiatCurrency", macro_t_25);
+output += "\n";
+var macro_t_27 = runtime.makeMacro(
+["price"], 
+["initial"], 
+function (l_price, kwargs) {
+var callerFrame = frame;
+frame = new runtime.Frame();
+kwargs = kwargs || {};
+if (Object.prototype.hasOwnProperty.call(kwargs, "caller")) {
+frame.set("caller", kwargs.caller); }
+frame.set("price", l_price);
+frame.set("initial", Object.prototype.hasOwnProperty.call(kwargs, "initial") ? kwargs["initial"] : false);var t_28 = "";t_28 += "  <span class=\"";
+t_28 += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+t_28 += "__price ";
+t_28 += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+t_28 += "__price ";
+t_28 += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "initial")?"initial-price":""), env.opts.autoescape);
+t_28 += "\">";
+t_28 += runtime.suppressValue(l_price, env.opts.autoescape);
+t_28 += "</span>\n";
+;
+frame = callerFrame;
+return new runtime.SafeString(t_28);
+});
+context.addExport("cryptoCurrency");
+context.setVariable("cryptoCurrency", macro_t_27);
+output += "\n<span class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "\">\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "currency")),"type") === "fiat") {
+if(runtime.contextOrFrameLookup(context, frame, "hasDiscount") && runtime.contextOrFrameLookup(context, frame, "showInitialPrice") == "first") {
+output += "      ";
+output += runtime.suppressValue((lineno = 72, colno = 21, runtime.callWrap(macro_t_25, "fiatCurrency", context, [runtime.contextOrFrameLookup(context, frame, "priceInit"),true])), env.opts.autoescape);
+output += "\n";
+;
+}
+output += "\n    ";
+output += runtime.suppressValue((lineno = 75, colno = 19, runtime.callWrap(macro_t_25, "fiatCurrency", context, [runtime.contextOrFrameLookup(context, frame, "price")])), env.opts.autoescape);
+output += "\n\n";
+if(runtime.contextOrFrameLookup(context, frame, "hasDiscount") && runtime.contextOrFrameLookup(context, frame, "showInitialPrice") == "last") {
+output += "      ";
+output += runtime.suppressValue((lineno = 78, colno = 21, runtime.callWrap(macro_t_25, "fiatCurrency", context, [runtime.contextOrFrameLookup(context, frame, "priceInit"),true])), env.opts.autoescape);
+output += "\n";
+;
+}
+output += "\n";
+;
+}
+else {
+output += "\n    <span class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__container ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container\">\n";
+if(runtime.contextOrFrameLookup(context, frame, "showImage")) {
+output += "        <span class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__image ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__image\">\n          <img\n            alt=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "currency")),"title"), env.opts.autoescape);
+output += "\"\n            src=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "currency")),"imgUrl"), env.opts.autoescape);
+output += "\"\n          />\n        </span>\n";
+;
+}
+output += "\n";
+if(runtime.contextOrFrameLookup(context, frame, "hasDiscount") && runtime.contextOrFrameLookup(context, frame, "showInitialPrice") == "first") {
+output += "        ";
+output += runtime.suppressValue((lineno = 94, colno = 25, runtime.callWrap(macro_t_27, "cryptoCurrency", context, [runtime.contextOrFrameLookup(context, frame, "priceInit"),true])), env.opts.autoescape);
+output += "\n";
+;
+}
+output += "\n      ";
+output += runtime.suppressValue((lineno = 97, colno = 23, runtime.callWrap(macro_t_27, "cryptoCurrency", context, [runtime.contextOrFrameLookup(context, frame, "price")])), env.opts.autoescape);
+output += "\n\n";
+if(runtime.contextOrFrameLookup(context, frame, "hasDiscount") && runtime.contextOrFrameLookup(context, frame, "showInitialPrice") == "last") {
+output += "        ";
+output += runtime.suppressValue((lineno = 100, colno = 25, runtime.callWrap(macro_t_27, "cryptoCurrency", context, [runtime.contextOrFrameLookup(context, frame, "priceInit"),true])), env.opts.autoescape);
+output += "\n";
+;
+}
+output += "\n      <span class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__currency ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__currency\">";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "currency")),"symbol"), env.opts.autoescape);
+output += "</span>\n    </span>\n\n";
+;
+}
+output += "</span>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

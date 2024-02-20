@@ -1,0 +1,43 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"isShop")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"isShop"):true);
+frame.set("isShop", t_1, true);
+if(frame.topLevel) {
+context.setVariable("isShop", t_1);
+}
+if(frame.topLevel) {
+context.addExport("isShop", t_1);
+}
+output += "\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop")),"google_analytics_tracking_id")) {
+output += "  <script async src=\"https://www.googletagmanager.com/gtag/js?id=";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop")),"google_analytics_tracking_id"), env.opts.autoescape);
+output += "\"></script>\n  <script type=\"application/javascript\">\n    const euList = ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("dump").call(context, runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"config")),"EU_LIST"))), env.opts.autoescape);
+output += ";\n    const ipcountry = Cookies.get('ipcountry');\n\n    window.dataLayer = window.dataLayer || [];\n    function gtag() {\n      dataLayer.push(arguments);\n    }\n\n    const isShop = ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "isShop"), env.opts.autoescape);
+output += ";\n    const cookieName = isShop ? `shop-cookies-";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop")),"name"), env.opts.autoescape);
+output += "` : 'sellix-cookies';\n    const isEU = euList.includes(ipcountry);\n    const isChina = ipcountry === 'CN';\n\n    let storage;\n    if(!isEU) {\n      storage = ['strictly', 'experience', 'measurement', 'targeting'];\n    } else {\n      const shopCookies = Cookies.get(cookieName);\n      storage = shopCookies ? shopCookies.split(',') : shopCookies;\n    }\n\n    let allowGoogleTag = false;\n\n    if(storage && storage.length && storage.includes(\"targeting\")) {\n      allowGoogleTag = true;\n    }\n\n    if(!isEU) {\n      allowGoogleTag = true;\n    }\n\n    if (isChina) {\n      allowGoogleTag = false;\n    }\n\n    if (allowGoogleTag) {\n      gtag('js', new Date());\n      gtag('config', '";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop")),"google_analytics_tracking_id"), env.opts.autoescape);
+output += "');\n\n      console.log('Google Tag is ready')\n    }\n  </script>\n";
+;
+}
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

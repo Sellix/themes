@@ -1,0 +1,43 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+output += "<style>\n.sellix-banner-image-test {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_new_image_text_size"), env.opts.autoescape);
+output += "px;\n  color: #FFF;\n  text-align: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_new_image_text_alignment"), env.opts.autoescape);
+output += ";\n}\n\n.sellix-banner-image{\n  //width:";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_new_image_width"), env.opts.autoescape);
+output += "%;\n  width:  100%;\n  //height:";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_new_image_height"), env.opts.autoescape);
+output += "%;\n  height: 100%;\n  border-radius: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_new_image_radius"), env.opts.autoescape);
+output += "rem;\n}\n\n</style>\n<div class=\"sellix-banner-image\">\n  <img src=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_new_image"), env.opts.autoescape);
+output += "\" style= \"opacity:";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_new_image_text_bool")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_new_image_opacity"):""), env.opts.autoescape);
+output += ";\" class=\"sellix-banner-image\"/>\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_new_image_text_bool")) {
+output += "  <div class=\"sellix-banner-image-test\">\n  <h2>";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_new_image_text_title"), env.opts.autoescape);
+output += "</h2>\n  <p>";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_new_image_text_description"), env.opts.autoescape);
+output += "</p>\n";
+;
+}
+output += "</div>\n</div>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

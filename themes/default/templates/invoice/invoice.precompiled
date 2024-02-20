@@ -1,0 +1,50 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_1, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_1);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_1);
+}
+frame = frame.push();
+var t_4 = runtime.fromIterator(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"section_order"));
+runtime.asyncEach(t_4, 1, function(section, t_2, t_3,next) {
+frame.set("section", section);
+frame.set("loop.index", t_2 + 1);
+frame.set("loop.index0", t_2);
+frame.set("loop.revindex", t_3 - t_2);
+frame.set("loop.revindex0", t_3 - t_2 - 1);
+frame.set("loop.first", t_2 === 0);
+frame.set("loop.last", t_2 === t_3 - 1);
+frame.set("loop.length", t_3);
+env.getExtension("RenderSection")["run"](context,section, function(t_6,t_5) {
+if(t_6) { cb(t_6); return; }
+output += runtime.suppressValue(t_5, true && env.opts.autoescape);
+next(t_2);
+});
+}, function(t_8,t_7) {
+if(t_8) { cb(t_8); return; }
+frame = frame.pop();
+output += "\n<script type='application/javascript'>\n  $(document).ready(function () {\n    const cart = window.SellixCartStoreFactory.getCart('";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "');\n    $(document).on('SellixCartInitEvent', function() {\n      if (!cart.getItems().length) {\n        window.location.href = '';\n      } else {\n        $(document).off('SellixCartInitEvent');\n        $(document).on('SellixCartUpdateEvent', function() {\n          if (!cart.getItems().length) {\n            window.location.href = '';\n          }\n        })\n      }\n    });\n  });\n</script>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

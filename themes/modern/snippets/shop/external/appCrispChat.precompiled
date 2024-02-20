@@ -1,0 +1,31 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop")),"crisp_website_id");
+frame.set("crispWebsiteId", t_1, true);
+if(frame.topLevel) {
+context.setVariable("crispWebsiteId", t_1);
+}
+if(frame.topLevel) {
+context.addExport("crispWebsiteId", t_1);
+}
+output += "\n<script type='application/javascript'>\n  $(document).ready(function() {\n    const crispWebsiteId = '";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "crispWebsiteId"), env.opts.autoescape);
+output += "';\n\n    if (crispWebsiteId) {\n      window.$crisp = [];\n      window.CRISP_WEBSITE_ID = crispWebsiteId;\n      let script = document.createElement('script');\n      script.src = 'https://client.crisp.chat/l.js';\n      script.type = 'text/javascript';\n      script.async = true;\n      script.id = 'crisp';\n      document.getElementsByTagName('head')[0].appendChild(script);\n    }\n  });\n</script>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

@@ -1,0 +1,132 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"product");
+frame.set("product", t_2, true);
+if(frame.topLevel) {
+context.setVariable("product", t_2);
+}
+if(frame.topLevel) {
+context.addExport("product", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_3, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_3);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_3);
+}
+var t_4;
+t_4 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"page_size")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"page_size"):5);
+frame.set("pageSize", t_4, true);
+if(frame.topLevel) {
+context.setVariable("pageSize", t_4);
+}
+if(frame.topLevel) {
+context.addExport("pageSize", t_4);
+}
+output += "\n";
+var t_5;
+t_5 = env.getFilter("int").call(context, (env.getFilter("length").call(context, runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"feedback")),"list")) / runtime.contextOrFrameLookup(context, frame, "pageSize"))) + 1;
+frame.set("pageCount", t_5, true);
+if(frame.topLevel) {
+context.setVariable("pageCount", t_5);
+}
+if(frame.topLevel) {
+context.addExport("pageCount", t_5);
+}
+output += "\n<style>\n  .view-more-button-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " a {\n    width: 100%;\n    display: flex;\n    justify-content: space-around;\n  }\n</style>\n\n";
+(function(cb) {if(env.getFilter("length").call(context, runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"feedback")),"list")) == 0) {
+output += "  <div class=\"empty-shop-container\" style=\"padding: 1rem 0;\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Empty feedbacks icon", function(t_7,t_6) {
+if(t_7) { cb(t_7); return; }
+output += runtime.suppressValue(t_6, true && env.opts.autoescape);
+output += "    <span class=\"empty-shop-title\">Product <b>";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"title"), env.opts.autoescape);
+output += "</b> has no feedback.</span>\n  </div>\n";
+cb()});
+}
+else {
+frame = frame.push();
+var t_10 = runtime.fromIterator(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"feedback")),"list"));
+runtime.asyncEach(t_10, 1, function(feedback, t_8, t_9,next) {
+frame.set("feedback", feedback);
+frame.set("loop.index", t_8 + 1);
+frame.set("loop.index0", t_8);
+frame.set("loop.revindex", t_9 - t_8);
+frame.set("loop.revindex0", t_9 - t_8 - 1);
+frame.set("loop.first", t_8 === 0);
+frame.set("loop.last", t_8 === t_9 - 1);
+frame.set("loop.length", t_9);
+var t_11;
+t_11 = env.getFilter("int").call(context, (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "loop")),"index0") / runtime.contextOrFrameLookup(context, frame, "pageSize")));
+frame.set("page", t_11, true);
+if(frame.topLevel) {
+context.setVariable("page", t_11);
+}
+if(frame.topLevel) {
+context.addExport("page", t_11);
+}
+output += "    <div class=\"sellix-product-feedback-card-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "page") > 0?"hidden":""), env.opts.autoescape);
+output += "\" data-feedback-page=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "page"), env.opts.autoescape);
+output += "\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Feedback Card",runtime.makeKeywordArgs({"feedback": feedback,"properties": runtime.contextOrFrameLookup(context, frame, "properties")}), function(t_13,t_12) {
+if(t_13) { cb(t_13); return; }
+output += runtime.suppressValue(t_12, true && env.opts.autoescape);
+output += "    </div>\n";
+next(t_8);
+});
+}, function(t_15,t_14) {
+if(t_15) { cb(t_15); return; }
+frame = frame.pop();
+output += "\n";
+if(runtime.contextOrFrameLookup(context, frame, "pageCount") > 1) {
+output += "    <div class=\"view-more-button-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\">\n      <a href=\"javascript:void(0);\">\n        View more\n      </a>\n    </div>\n";
+;
+}
+cb()});
+}
+})(function(t_16) {
+if(t_16) { cb(t_16); return; }output += "\n<script type=\"application/javascript\">\n  $(document).ready(function() {\n    const pageCount = ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "pageCount"), env.opts.autoescape);
+output += ";\n    let activePage = 0;\n    const $viewMoreBtn = $('.view-more-button-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " a');\n    $viewMoreBtn.on('click', function() {\n      activePage += 1;\n      $(`.sellix-product-feedback-card-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "[data-feedback-page=${activePage}]`).removeClass('hidden');\n\n      if ((activePage + 1) >= pageCount) {\n        $viewMoreBtn.addClass('hidden');\n      }\n    });\n  });\n</script>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

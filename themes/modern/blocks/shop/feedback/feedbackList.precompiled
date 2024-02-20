@@ -1,0 +1,234 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_1, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_1);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"feedbacksInfo")),"feedbacks");
+frame.set("feedbacks", t_2, true);
+if(frame.topLevel) {
+context.setVariable("feedbacks", t_2);
+}
+if(frame.topLevel) {
+context.addExport("feedbacks", t_2);
+}
+var t_3;
+t_3 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"offset")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"offset"):0);
+frame.set("offset", t_3, true);
+if(frame.topLevel) {
+context.setVariable("offset", t_3);
+}
+if(frame.topLevel) {
+context.addExport("offset", t_3);
+}
+var t_4;
+t_4 = (lineno = 3, colno = 23, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"limit"),(lineno = 3, colno = 44, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"page_size"),12]))]));
+frame.set("limit", t_4, true);
+if(frame.topLevel) {
+context.setVariable("limit", t_4);
+}
+if(frame.topLevel) {
+context.addExport("limit", t_4);
+}
+var t_5;
+t_5 = env.getFilter("length").call(context, runtime.contextOrFrameLookup(context, frame, "feedbacks")) == 0;
+frame.set("isEmpty", t_5, true);
+if(frame.topLevel) {
+context.setVariable("isEmpty", t_5);
+}
+if(frame.topLevel) {
+context.addExport("isEmpty", t_5);
+}
+output += "\n";
+var t_6;
+t_6 = (lineno = 6, colno = 25, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"background_color"),"background_accent_ligth"]));
+frame.set("bgColor", t_6, true);
+if(frame.topLevel) {
+context.setVariable("bgColor", t_6);
+}
+if(frame.topLevel) {
+context.addExport("bgColor", t_6);
+}
+var t_7;
+t_7 = (lineno = 7, colno = 28, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_border"),false]));
+frame.set("showBorder", t_7, true);
+if(frame.topLevel) {
+context.setVariable("showBorder", t_7);
+}
+if(frame.topLevel) {
+context.addExport("showBorder", t_7);
+}
+var t_8;
+t_8 = (lineno = 8, colno = 29, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_vert"),0]));
+frame.set("paddingVert", t_8, true);
+if(frame.topLevel) {
+context.setVariable("paddingVert", t_8);
+}
+if(frame.topLevel) {
+context.addExport("paddingVert", t_8);
+}
+var t_9;
+t_9 = (lineno = 9, colno = 30, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_horiz"),0]));
+frame.set("paddingHoriz", t_9, true);
+if(frame.topLevel) {
+context.setVariable("paddingHoriz", t_9);
+}
+if(frame.topLevel) {
+context.addExport("paddingHoriz", t_9);
+}
+var t_10;
+t_10 = (lineno = 10, colno = 24, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shadow"),"none"]));
+frame.set("shadow", t_10, true);
+if(frame.topLevel) {
+context.setVariable("shadow", t_10);
+}
+if(frame.topLevel) {
+context.addExport("shadow", t_10);
+}
+var t_11;
+t_11 = (lineno = 11, colno = 30, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"border_radius"),0]));
+frame.set("borderRadius", t_11, true);
+if(frame.topLevel) {
+context.setVariable("borderRadius", t_11);
+}
+if(frame.topLevel) {
+context.addExport("borderRadius", t_11);
+}
+output += "\n";
+var t_12;
+t_12 = (runtime.contextOrFrameLookup(context, frame, "isEmpty")?1:env.getFilter("int").call(context, (lineno = 13, colno = 54, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"items_per_row_desktop"),4]))));
+frame.set("itemsPerRowDesktop", t_12, true);
+if(frame.topLevel) {
+context.setVariable("itemsPerRowDesktop", t_12);
+}
+if(frame.topLevel) {
+context.addExport("itemsPerRowDesktop", t_12);
+}
+var t_13;
+t_13 = (runtime.contextOrFrameLookup(context, frame, "isEmpty")?1:env.getFilter("int").call(context, (lineno = 14, colno = 53, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"items_per_row_tablet"),2]))));
+frame.set("itemsPerRowTablet", t_13, true);
+if(frame.topLevel) {
+context.setVariable("itemsPerRowTablet", t_13);
+}
+if(frame.topLevel) {
+context.addExport("itemsPerRowTablet", t_13);
+}
+var t_14;
+t_14 = (runtime.contextOrFrameLookup(context, frame, "isEmpty")?1:env.getFilter("int").call(context, (lineno = 15, colno = 53, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"items_per_row_mobile"),1]))));
+frame.set("itemsPerRowMobile", t_14, true);
+if(frame.topLevel) {
+context.setVariable("itemsPerRowMobile", t_14);
+}
+if(frame.topLevel) {
+context.addExport("itemsPerRowMobile", t_14);
+}
+output += "\n";
+var t_15;
+t_15 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_15, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_15);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_15);
+}
+output += "\n<style>\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container {\n    background: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "bgColor")), env.opts.autoescape);
+output += ";\n    border: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "showBorder")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += ";\n    padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingVert"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHoriz"), env.opts.autoescape);
+output += "px;\n    box-shadow: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "shadow"), env.opts.autoescape);
+output += ";\n    border-radius: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "borderRadius"), env.opts.autoescape);
+output += "px;\n\n    display: grid;\n    grid-template-columns: repeat(";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "itemsPerRowDesktop"), env.opts.autoescape);
+output += ", minmax(50px, 1fr));\n    grid-column-gap: 1.5rem;\n    grid-row-gap: 1.5rem;\n  }\n  @media (max-width: 768px) {\n    .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container {\n      grid-template-columns: repeat(";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "itemsPerRowTablet"), env.opts.autoescape);
+output += ", minmax(50px, 1fr));\n    }\n  }\n  @media (max-width: 640px) {\n    .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container {\n      grid-template-columns: repeat(";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "itemsPerRowMobile"), env.opts.autoescape);
+output += ", minmax(50px, 1fr));\n    }\n  }\n</style>\n\n<div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__container ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container\">\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "isEmpty")) {
+output += "    <div class=\"empty-message-container ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__empty\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Icons: No feedback", function(t_17,t_16) {
+if(t_17) { cb(t_17); return; }
+output += runtime.suppressValue(t_16, true && env.opts.autoescape);
+output += "\n      <span class=\"empty-message-title ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__empty-title\">\n        <b>";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.feedback.noFeedbacks",{"shopName": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name")}), env.opts.autoescape);
+output += "</b>\n      </span>\n      <span class=\"empty-message-subtitle ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__empty-title\">\n        ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.feedback.noFeedbacksSubtitle"), env.opts.autoescape);
+output += "\n      </span>\n    </div>\n";
+cb()});
+}
+else {
+cb()}
+})(function(t_18) {
+if(t_18) { cb(t_18); return; }output += "\n";
+frame = frame.push();
+var t_21 = runtime.fromIterator((lineno = 58, colno = 32, runtime.callWrap(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "feedbacks")),"slice"), "feedbacks[\"slice\"]", context, [runtime.contextOrFrameLookup(context, frame, "offset"),runtime.contextOrFrameLookup(context, frame, "limit")])));
+runtime.asyncEach(t_21, 1, function(item, t_19, t_20,next) {
+frame.set("item", item);
+frame.set("loop.index", t_19 + 1);
+frame.set("loop.index0", t_19);
+frame.set("loop.revindex", t_20 - t_19);
+frame.set("loop.revindex0", t_20 - t_19 - 1);
+frame.set("loop.first", t_19 === 0);
+frame.set("loop.last", t_19 === t_20 - 1);
+frame.set("loop.length", t_20);
+env.getExtension("RenderSnippet")["run"](context,"Feedback: Card",runtime.makeKeywordArgs({"feedback": item}), function(t_23,t_22) {
+if(t_23) { cb(t_23); return; }
+output += runtime.suppressValue(t_22, true && env.opts.autoescape);
+next(t_19);
+});
+}, function(t_25,t_24) {
+if(t_25) { cb(t_25); return; }
+frame = frame.pop();
+output += "</div>\n\n";
+if((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"group_names_to_hide") || runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"group_name")) && runtime.contextOrFrameLookup(context, frame, "isEmpty")) {
+output += "  <script type=\"application/javascript\">\n    const event = new CustomEvent(\n      'SellixHideGroupEvent',\n      { detail: { groupName: '";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"group_names_to_hide") || runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"group_name"), env.opts.autoescape);
+output += "' } },\n    );\n    setTimeout(() => document.dispatchEvent(event), 0);\n  </script>\n";
+;
+}
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+})});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

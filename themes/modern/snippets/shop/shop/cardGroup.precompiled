@@ -1,0 +1,524 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_2, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_2);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_3, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_3);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"cart")),"is_enabled");
+frame.set("cartEnabled", t_4, true);
+if(frame.topLevel) {
+context.setVariable("cartEnabled", t_4);
+}
+if(frame.topLevel) {
+context.addExport("cartEnabled", t_4);
+}
+var t_5;
+t_5 = (runtime.contextOrFrameLookup(context, frame, "cartEnabled")?runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"cart")),"effect"):"none");
+frame.set("cartEffect", t_5, true);
+if(frame.topLevel) {
+context.setVariable("cartEffect", t_5);
+}
+if(frame.topLevel) {
+context.addExport("cartEffect", t_5);
+}
+var t_6;
+t_6 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"group");
+frame.set("group", t_6, true);
+if(frame.topLevel) {
+context.setVariable("group", t_6);
+}
+if(frame.topLevel) {
+context.addExport("group", t_6);
+}
+var t_7;
+t_7 = !runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "group")),"image_name");
+frame.set("isPlaceholder", t_7, true);
+if(frame.topLevel) {
+context.setVariable("isPlaceholder", t_7);
+}
+if(frame.topLevel) {
+context.addExport("isPlaceholder", t_7);
+}
+var t_8;
+t_8 = (lineno = 7, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"placeholder_type"),runtime.contextOrFrameLookup(context, frame, "undefined")]));
+frame.set("placeholderType", t_8, true);
+if(frame.topLevel) {
+context.setVariable("placeholderType", t_8);
+}
+if(frame.topLevel) {
+context.addExport("placeholderType", t_8);
+}
+var t_9;
+t_9 = (lineno = 8, colno = 23, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "cdn_link"), "cdn_link", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "group")),"cloudflare_image_id"),"shopItem"]));
+frame.set("image", t_9, true);
+if(frame.topLevel) {
+context.setVariable("image", t_9);
+}
+if(frame.topLevel) {
+context.addExport("image", t_9);
+}
+var t_10;
+t_10 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"cards");
+frame.set("cardProps", t_10, true);
+if(frame.topLevel) {
+context.setVariable("cardProps", t_10);
+}
+if(frame.topLevel) {
+context.addExport("cardProps", t_10);
+}
+var t_11;
+t_11 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"count");
+frame.set("count", t_11, true);
+if(frame.topLevel) {
+context.setVariable("count", t_11);
+}
+if(frame.topLevel) {
+context.addExport("count", t_11);
+}
+var t_12;
+t_12 = (lineno = 11, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"items_per_row_type"),"static"]));
+frame.set("itemsPerRowType", t_12, true);
+if(frame.topLevel) {
+context.setVariable("itemsPerRowType", t_12);
+}
+if(frame.topLevel) {
+context.addExport("itemsPerRowType", t_12);
+}
+output += "\n";
+var t_13;
+t_13 = (lineno = 13, colno = 27, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_product_type_badge"),true]));
+frame.set("showBadge", t_13, true);
+if(frame.topLevel) {
+context.setVariable("showBadge", t_13);
+}
+if(frame.topLevel) {
+context.addExport("showBadge", t_13);
+}
+var t_14;
+t_14 = (lineno = 14, colno = 28, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"background_color"),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardProps")),"product_card_background_color")]));
+frame.set("background", t_14, true);
+if(frame.topLevel) {
+context.setVariable("background", t_14);
+}
+if(frame.topLevel) {
+context.addExport("background", t_14);
+}
+var t_15;
+t_15 = ((lineno = 15, colno = 58, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_border"),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardProps")),"product_card_show_border")]))?"1px solid var(--borderColor)":"none");
+frame.set("border", t_15, true);
+if(frame.topLevel) {
+context.setVariable("border", t_15);
+}
+if(frame.topLevel) {
+context.addExport("border", t_15);
+}
+var t_16;
+t_16 = (lineno = 16, colno = 30, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"border_radius"),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardProps")),"product_card_border_radius")]));
+frame.set("borderRadius", t_16, true);
+if(frame.topLevel) {
+context.setVariable("borderRadius", t_16);
+}
+if(frame.topLevel) {
+context.addExport("borderRadius", t_16);
+}
+var t_17;
+t_17 = (lineno = 17, colno = 24, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shadow"),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardProps")),"product_card_shadow")]));
+frame.set("shadow", t_17, true);
+if(frame.topLevel) {
+context.setVariable("shadow", t_17);
+}
+if(frame.topLevel) {
+context.addExport("shadow", t_17);
+}
+var t_18;
+t_18 = (lineno = 18, colno = 35, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"image_border_radius"),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardProps")),"product_card_image_border_radius")]));
+frame.set("imageBorderRadius", t_18, true);
+if(frame.topLevel) {
+context.setVariable("imageBorderRadius", t_18);
+}
+if(frame.topLevel) {
+context.addExport("imageBorderRadius", t_18);
+}
+var t_19;
+t_19 = (lineno = 19, colno = 29, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"image_height"),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardProps")),"product_card_image_height")]));
+frame.set("imageHeight", t_19, true);
+if(frame.topLevel) {
+context.setVariable("imageHeight", t_19);
+}
+if(frame.topLevel) {
+context.addExport("imageHeight", t_19);
+}
+var t_20;
+t_20 = (lineno = 20, colno = 34, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"info_padding_horiz"),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardProps")),"product_card_info_padding_horiz")]));
+frame.set("infoPaddingHoriz", t_20, true);
+if(frame.topLevel) {
+context.setVariable("infoPaddingHoriz", t_20);
+}
+if(frame.topLevel) {
+context.addExport("infoPaddingHoriz", t_20);
+}
+var t_21;
+t_21 = (lineno = 21, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"info_padding_vert"),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardProps")),"product_card_info_padding_vert")]));
+frame.set("infoPaddingVert", t_21, true);
+if(frame.topLevel) {
+context.setVariable("infoPaddingVert", t_21);
+}
+if(frame.topLevel) {
+context.addExport("infoPaddingVert", t_21);
+}
+output += "\n";
+var t_22;
+t_22 = (lineno = 23, colno = 32, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_color"),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardProps")),"product_card_title_font_color")]));
+frame.set("titleFontcolor", t_22, true);
+if(frame.topLevel) {
+context.setVariable("titleFontcolor", t_22);
+}
+if(frame.topLevel) {
+context.addExport("titleFontcolor", t_22);
+}
+var t_23;
+t_23 = (lineno = 24, colno = 31, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_size"),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardProps")),"product_card_title_font_size")]));
+frame.set("titleFontSize", t_23, true);
+if(frame.topLevel) {
+context.setVariable("titleFontSize", t_23);
+}
+if(frame.topLevel) {
+context.addExport("titleFontSize", t_23);
+}
+var t_24;
+t_24 = (lineno = 25, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_weight"),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardProps")),"product_card_title_font_weight")]));
+frame.set("titleFontWeight", t_24, true);
+if(frame.topLevel) {
+context.setVariable("titleFontWeight", t_24);
+}
+if(frame.topLevel) {
+context.addExport("titleFontWeight", t_24);
+}
+var t_25;
+t_25 = (lineno = 26, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_line_height"),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardProps")),"product_card_title_line_height")]));
+frame.set("titleLineHeight", t_25, true);
+if(frame.topLevel) {
+context.setVariable("titleLineHeight", t_25);
+}
+if(frame.topLevel) {
+context.addExport("titleLineHeight", t_25);
+}
+var t_26;
+t_26 = (lineno = 27, colno = 32, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_text_align"),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardProps")),"product_card_title_text_align")]));
+frame.set("titleTextAlign", t_26, true);
+if(frame.topLevel) {
+context.setVariable("titleTextAlign", t_26);
+}
+if(frame.topLevel) {
+context.addExport("titleTextAlign", t_26);
+}
+output += "\n";
+var t_27;
+t_27 = (lineno = 29, colno = 38, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"description_font_color"),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardProps")),"product_card_description_font_color")]));
+frame.set("descriptionFontColor", t_27, true);
+if(frame.topLevel) {
+context.setVariable("descriptionFontColor", t_27);
+}
+if(frame.topLevel) {
+context.addExport("descriptionFontColor", t_27);
+}
+var t_28;
+t_28 = (lineno = 30, colno = 37, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"description_font_size"),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardProps")),"product_card_description_font_size")]));
+frame.set("descriptionFontSize", t_28, true);
+if(frame.topLevel) {
+context.setVariable("descriptionFontSize", t_28);
+}
+if(frame.topLevel) {
+context.addExport("descriptionFontSize", t_28);
+}
+var t_29;
+t_29 = (lineno = 31, colno = 39, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"description_font_weight"),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardProps")),"product_card_description_font_weight")]));
+frame.set("descriptionFontWeight", t_29, true);
+if(frame.topLevel) {
+context.setVariable("descriptionFontWeight", t_29);
+}
+if(frame.topLevel) {
+context.addExport("descriptionFontWeight", t_29);
+}
+output += "\n";
+var t_30;
+t_30 = (lineno = 33, colno = 32, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"price_font_color"),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardProps")),"product_card_price_font_color")]));
+frame.set("priceFontColor", t_30, true);
+if(frame.topLevel) {
+context.setVariable("priceFontColor", t_30);
+}
+if(frame.topLevel) {
+context.addExport("priceFontColor", t_30);
+}
+var t_31;
+t_31 = (lineno = 34, colno = 31, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"price_font_size"),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardProps")),"product_card_price_font_size")]));
+frame.set("priceFontSize", t_31, true);
+if(frame.topLevel) {
+context.setVariable("priceFontSize", t_31);
+}
+if(frame.topLevel) {
+context.addExport("priceFontSize", t_31);
+}
+var t_32;
+t_32 = (lineno = 35, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"price_font_weight"),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cardProps")),"product_card_price_font_weight")]));
+frame.set("priceFontWeight", t_32, true);
+if(frame.topLevel) {
+context.setVariable("priceFontWeight", t_32);
+}
+if(frame.topLevel) {
+context.addExport("priceFontWeight", t_32);
+}
+output += "\n";
+var t_33;
+t_33 = {"price_font_color": runtime.contextOrFrameLookup(context, frame, "priceFontColor"),"price_font_weight": runtime.contextOrFrameLookup(context, frame, "priceFontWeight"),"price_font_size": runtime.contextOrFrameLookup(context, frame, "priceFontSize")};
+frame.set("priceProperties", t_33, true);
+if(frame.topLevel) {
+context.setVariable("priceProperties", t_33);
+}
+if(frame.topLevel) {
+context.addExport("priceProperties", t_33);
+}
+output += "\n";
+var t_34;
+t_34 = "snippet-product-card";
+frame.set("globalClass", t_34, true);
+if(frame.topLevel) {
+context.setVariable("globalClass", t_34);
+}
+if(frame.topLevel) {
+context.addExport("globalClass", t_34);
+}
+var t_35;
+t_35 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_35, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_35);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_35);
+}
+output += "\n<style>\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container {\n    border: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "border"), env.opts.autoescape);
+output += ";\n    border-radius: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "borderRadius"), env.opts.autoescape);
+output += "px;\n    box-shadow: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "shadow"), env.opts.autoescape);
+output += ";\n  }\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__card {\n    background: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "background")), env.opts.autoescape);
+output += ";\n  }\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__title {\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "titleFontcolor")), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleFontSize"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleFontWeight"), env.opts.autoescape);
+output += ";\n    line-height: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleLineHeight"), env.opts.autoescape);
+output += "px;\n  }\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__info {\n    padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "infoPaddingVert"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "infoPaddingHoriz"), env.opts.autoescape);
+output += "px;\n  }\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__description {\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "descriptionFontColor")), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "descriptionFontSize"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "descriptionFontWeight"), env.opts.autoescape);
+output += ";\n  }\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__price {\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "priceFontColor")), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "priceFontSize"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "priceFontWeight"), env.opts.autoescape);
+output += ";\n  }\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__image {\n    min-height: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "imageHeight"), env.opts.autoescape);
+output += "px;\n    height: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "imageHeight"), env.opts.autoescape);
+output += "px;\n  }\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__image, .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__image img {\n    border-radius: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "imageBorderRadius"), env.opts.autoescape);
+output += "px;\n    border-top-left-radius: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "imageBorderRadius") || runtime.contextOrFrameLookup(context, frame, "borderRadius"), env.opts.autoescape);
+output += "px;\n    border-top-right-radius: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "imageBorderRadius") || runtime.contextOrFrameLookup(context, frame, "borderRadius"), env.opts.autoescape);
+output += "px;\n  }\n\n  .group-card-block .snippet-product-card__title {\n    font-weight: 600;\n  }\n\n</style>\n\n<div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "count") == 1 && runtime.contextOrFrameLookup(context, frame, "itemsPerRowType") == "dynamic"?"single-card":""), env.opts.autoescape);
+output += " d-flex w-100 position-relative\">\n  <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__container ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container\" data-group-id=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "group")),"uniqid"), env.opts.autoescape);
+output += "\">\n";
+if(runtime.contextOrFrameLookup(context, frame, "showBadge")) {
+output += "      <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__badge-container\">\n        <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__badge\">\n          ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.shared.titles.productType.group"), env.opts.autoescape);
+output += "\n        </div>\n      </div>\n";
+;
+}
+output += "\n    <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__card ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__card unselectable\">\n      <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__image ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__image ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isPlaceholder")?"image-placeholder":""), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "placeholderType"), env.opts.autoescape);
+output += "\">\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "isPlaceholder")) {
+env.getExtension("RenderSnippet")["run"](context,"Product: Placeholder icon",runtime.makeKeywordArgs({"product": runtime.contextOrFrameLookup(context, frame, "group"),"dark": ((runtime.contextOrFrameLookup(context, frame, "placeholderType") == "dark"?true:runtime.contextOrFrameLookup(context, frame, "undefined")))}), function(t_37,t_36) {
+if(t_37) { cb(t_37); return; }
+output += runtime.suppressValue(t_36, true && env.opts.autoescape);
+cb()});
+}
+else {
+output += "          <img src=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "image"), env.opts.autoescape);
+output += "\" alt=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "group")),"title"), env.opts.autoescape);
+output += "\" loading=\"lazy\" />\n";
+cb();
+}
+})(function(t_38) {
+if(t_38) { cb(t_38); return; }output += "      </div>\n\n      <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__info ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__info\">\n        <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__description ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__description\">\n";
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "group")),"min_price_item")) {
+output += "            <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__group-description-info\">\n              <span class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__starting-at\">\n                ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.shared.titles.startingAt"), env.opts.autoescape);
+output += "\n              </span>\n\n              <span class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__price ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__price\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Shared: Price",runtime.makeKeywordArgs({"currency": runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "group")),"min_price_item")),"currency"),"price": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "group")),"min_price"),"show_image": true,"show_initial_price": "last","properties": runtime.contextOrFrameLookup(context, frame, "priceProperties")}), function(t_40,t_39) {
+if(t_40) { cb(t_40); return; }
+output += runtime.suppressValue(t_39, true && env.opts.autoescape);
+output += "              </span>\n            </div>\n";
+cb()});
+}
+else {
+output += "            <span>\n              ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.main.cards.group.outOfProducts"), env.opts.autoescape);
+output += "\n            </span>\n";
+cb();
+}
+})(function(t_41) {
+if(t_41) { cb(t_41); return; }output += "        </div>\n\n        <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__title ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__title justify-content-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleTextAlign"), env.opts.autoescape);
+output += "\">\n          ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "group")),"title"), env.opts.autoescape);
+output += "\n        </div>\n\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "group")),"min_price_item")) {
+output += "          <span class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__tax ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__tax\"></span>\n";
+;
+}
+output += "      </div>\n    </div>\n  </div>\n</div>\n\n<script type='application/javascript'>\n  $(document).ready(function () {\n    const cart = window.SellixCartStoreFactory.getCart('";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "');\n\n    $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container').on('click', function () {\n      const groupId = $(this).data('group-id');\n      const items = SellixContext.getShopItems();\n      const group = items.find(({uniqid}) => String(uniqid) === String(groupId));\n\n      if (group && group.products_bound.length) {\n        $(document).trigger('SellixSetActiveModalGroup', { groupId });\n        $('#group-card-modal').modal({\n          groupModalId: '";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "',\n          cartItemIds: new Set(cart.getItems().map((item) => item.uniqid)),\n          modalClass: '',\n          blockerClass: 'sellix-overlay',\n          showClose: false,\n        });\n      }\n    });\n\n    $(document).on($.modal.AFTER_CLOSE, (event, context) => {\n      if ('";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "cartEffect"), env.opts.autoescape);
+output += "' !== 'open_cart_modal') {\n        // effect is not enabled\n        return;\n      }\n\n      const { options } = context;\n      if (options.groupModalId !== '";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "') {\n        // another group modal\n        return;\n      }\n\n      const set1 = options.cartItemIds || new Set([]);\n      const set2 = new Set(cart.getItems().map((item) => item.uniqid));\n      const diff = new Set([\n        ...[...set1].filter(x => !set2.has(x)),\n        ...[...set2].filter(x => !set1.has(x)),\n      ]);\n\n      if (diff.size > 0) {\n        $(document).trigger('SellixOpenCheckoutModal', { showContinueShoppingButton: true });\n      }\n    });\n\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type") === "group" && runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"options")),"itemId") === runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "group")),"uniqid")) {
+output += "      setTimeout(function() {\n        $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container').click();\n      }, 0);\n";
+;
+}
+output += "  });\n</script>\n\n<script type='application/javascript'>\n  $(document).ready(function () {\n    const shopInfo = SellixContext.getShopInfo();\n    const ipcountry = Cookies.get('ipcountry') || '';\n\n    let taxAmount = +shopInfo.shop.vat_percentage ? +shopInfo.shop.vat_percentage : '';\n    if (shopInfo.shop.tax_configuration === 'EU' || shopInfo.shop.tax_configuration === 'CUSTOM') {\n      if (shopInfo.shop.tax_configuration_data && ipcountry) {\n        const countryTaxData = shopInfo.shop.tax_configuration_data.find(({ country, type }) => country === ipcountry);\n        if (countryTaxData) {\n          taxAmount = countryTaxData.tax_percentage;\n        }\n      }\n    }\n\n    if (shopInfo.shop.display_tax_on_storefront && taxAmount) {\n      taxAmount = parseFloat(Number(taxAmount).toFixed(2));\n      $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__tax').append(`<span>${taxAmount}% ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.main.cards.product.tax"), env.opts.autoescape);
+output += "</span>`);\n    }\n  });\n</script>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+})});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

@@ -1,0 +1,88 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_1, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_1);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"product");
+frame.set("product", t_2, true);
+if(frame.topLevel) {
+context.setVariable("product", t_2);
+}
+if(frame.topLevel) {
+context.addExport("product", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"subscription");
+frame.set("subscription", t_3, true);
+if(frame.topLevel) {
+context.setVariable("subscription", t_3);
+}
+if(frame.topLevel) {
+context.addExport("subscription", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"cartEnabled");
+frame.set("cartEnabled", t_4, true);
+if(frame.topLevel) {
+context.setVariable("cartEnabled", t_4);
+}
+if(frame.topLevel) {
+context.addExport("cartEnabled", t_4);
+}
+output += "\n";
+if(env.getFilter("int").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"stock")) === 0 || !runtime.contextOrFrameLookup(context, frame, "cartEnabled") || env.getFilter("int").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"on_hold")) !== 0) {
+output += "  ";
+output += "\n";
+;
+}
+else {
+var t_5;
+t_5 = (lineno = 8, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_5, true);
+if(frame.topLevel) {
+context.setVariable("id", t_5);
+}
+if(frame.topLevel) {
+context.addExport("id", t_5);
+}
+output += "  <div id=\"cart-product-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\" class=\"sellix-cart-icon empty ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"isGroup")?"static":""), env.opts.autoescape);
+output += "\">\n    <a href=\"javascript:;\" class=\"cart-product-minus-button\">\n      <i class=\"fa-regular fa-minus\"></i>\n    </a>\n    <a href=\"javascript:;\" class=\"cart-product-quantity-button unselectable\">\n      <span class=\"cart-product-quantity hidden\" style=\"font-weight: 500\"></span>\n      <i class=\"cart-product-cart-icon fa-regular fa-cart-shopping hidden\"></i>\n    </a>\n    <a href=\"javascript:;\" class=\"cart-product-plus-button\">\n      <i class=\"fa-regular fa-plus\"></i>\n    </a>\n  </div>\n\n  <script type='application/javascript'>\n    $(document).ready(function () {\n      const product = ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("dump").call(context, env.getFilter("exclude_attributes").call(context, runtime.contextOrFrameLookup(context, frame, "product"),["shop_terms_of_service"]))), env.opts.autoescape);
+output += ";\n      let cart = window.SellixCartStoreFactory.getCart('";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "');\n      const cartProdComponent = new SellixCartProductComponent(\n        '#cart-product-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "',\n        cart,\n        product,\n        ";
+output += runtime.suppressValue(env.getFilter("default").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"redirectToCheckout"),false), env.opts.autoescape);
+output += ",\n        ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("dump").call(context, runtime.contextOrFrameLookup(context, frame, "renderOptions"))), env.opts.autoescape);
+output += ",\n      );\n    });\n  </script>\n";
+;
+}
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

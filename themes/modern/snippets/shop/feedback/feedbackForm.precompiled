@@ -1,0 +1,482 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"feedbackId");
+frame.set("feedbackId", t_2, true);
+if(frame.topLevel) {
+context.setVariable("feedbackId", t_2);
+}
+if(frame.topLevel) {
+context.addExport("feedbackId", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"feedback");
+frame.set("feedback", t_3, true);
+if(frame.topLevel) {
+context.setVariable("feedback", t_3);
+}
+if(frame.topLevel) {
+context.addExport("feedback", t_3);
+}
+var t_4;
+t_4 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "feedback")),"score")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "feedback")),"score"):5);
+frame.set("score", t_4, true);
+if(frame.topLevel) {
+context.setVariable("score", t_4);
+}
+if(frame.topLevel) {
+context.addExport("score", t_4);
+}
+var t_5;
+t_5 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "feedback")),"message")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "feedback")),"message"):"");
+frame.set("message", t_5, true);
+if(frame.topLevel) {
+context.setVariable("message", t_5);
+}
+if(frame.topLevel) {
+context.addExport("message", t_5);
+}
+var t_6;
+t_6 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_6, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_6);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_6);
+}
+var t_7;
+t_7 = (lineno = 6, colno = 22, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("messageId", t_7, true);
+if(frame.topLevel) {
+context.setVariable("messageId", t_7);
+}
+if(frame.topLevel) {
+context.addExport("messageId", t_7);
+}
+output += "\n";
+var t_8;
+t_8 = (lineno = 8, colno = 26, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"form_size"),"100%"]));
+frame.set("formSize", t_8, true);
+if(frame.topLevel) {
+context.setVariable("formSize", t_8);
+}
+if(frame.topLevel) {
+context.addExport("formSize", t_8);
+}
+var t_9;
+t_9 = (lineno = 9, colno = 25, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_background"),"background_accent_light"]));
+frame.set("bgColor", t_9, true);
+if(frame.topLevel) {
+context.setVariable("bgColor", t_9);
+}
+if(frame.topLevel) {
+context.addExport("bgColor", t_9);
+}
+var t_10;
+t_10 = (lineno = 10, colno = 28, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_show_border"),true]));
+frame.set("showBorder", t_10, true);
+if(frame.topLevel) {
+context.setVariable("showBorder", t_10);
+}
+if(frame.topLevel) {
+context.addExport("showBorder", t_10);
+}
+var t_11;
+t_11 = (lineno = 11, colno = 24, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_shadow"),"none"]));
+frame.set("shadow", t_11, true);
+if(frame.topLevel) {
+context.setVariable("shadow", t_11);
+}
+if(frame.topLevel) {
+context.addExport("shadow", t_11);
+}
+var t_12;
+t_12 = (lineno = 12, colno = 30, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_border_radius"),0]));
+frame.set("borderRadius", t_12, true);
+if(frame.topLevel) {
+context.setVariable("borderRadius", t_12);
+}
+if(frame.topLevel) {
+context.addExport("borderRadius", t_12);
+}
+var t_13;
+t_13 = (lineno = 13, colno = 29, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_vert"),16]));
+frame.set("paddingVert", t_13, true);
+if(frame.topLevel) {
+context.setVariable("paddingVert", t_13);
+}
+if(frame.topLevel) {
+context.addExport("paddingVert", t_13);
+}
+var t_14;
+t_14 = (lineno = 14, colno = 30, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_horiz"),16]));
+frame.set("paddingHoriz", t_14, true);
+if(frame.topLevel) {
+context.setVariable("paddingHoriz", t_14);
+}
+if(frame.topLevel) {
+context.addExport("paddingHoriz", t_14);
+}
+output += "\n";
+var t_15;
+t_15 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title");
+frame.set("title", t_15, true);
+if(frame.topLevel) {
+context.setVariable("title", t_15);
+}
+if(frame.topLevel) {
+context.addExport("title", t_15);
+}
+var t_16;
+t_16 = (lineno = 17, colno = 32, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_color"),"light_font_color"]));
+frame.set("titleFontColor", t_16, true);
+if(frame.topLevel) {
+context.setVariable("titleFontColor", t_16);
+}
+if(frame.topLevel) {
+context.addExport("titleFontColor", t_16);
+}
+var t_17;
+t_17 = (lineno = 18, colno = 31, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_size"),20]));
+frame.set("titleFontSize", t_17, true);
+if(frame.topLevel) {
+context.setVariable("titleFontSize", t_17);
+}
+if(frame.topLevel) {
+context.addExport("titleFontSize", t_17);
+}
+var t_18;
+t_18 = (lineno = 19, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_weight"),500]));
+frame.set("titleFontWeight", t_18, true);
+if(frame.topLevel) {
+context.setVariable("titleFontWeight", t_18);
+}
+if(frame.topLevel) {
+context.addExport("titleFontWeight", t_18);
+}
+var t_19;
+t_19 = (lineno = 20, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_line_height"),20]));
+frame.set("titleLineHeight", t_19, true);
+if(frame.topLevel) {
+context.setVariable("titleLineHeight", t_19);
+}
+if(frame.topLevel) {
+context.addExport("titleLineHeight", t_19);
+}
+var t_20;
+t_20 = (lineno = 21, colno = 32, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_text_align"),"start"]));
+frame.set("titleTextAlign", t_20, true);
+if(frame.topLevel) {
+context.setVariable("titleTextAlign", t_20);
+}
+if(frame.topLevel) {
+context.addExport("titleTextAlign", t_20);
+}
+output += "\n";
+var t_21;
+t_21 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"sub_title");
+frame.set("subtitle", t_21, true);
+if(frame.topLevel) {
+context.setVariable("subtitle", t_21);
+}
+if(frame.topLevel) {
+context.addExport("subtitle", t_21);
+}
+var t_22;
+t_22 = (lineno = 24, colno = 35, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"sub_title_font_color"),"dark_font_color"]));
+frame.set("subtitleFontColor", t_22, true);
+if(frame.topLevel) {
+context.setVariable("subtitleFontColor", t_22);
+}
+if(frame.topLevel) {
+context.addExport("subtitleFontColor", t_22);
+}
+var t_23;
+t_23 = (lineno = 25, colno = 34, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"sub_title_font_size"),14]));
+frame.set("subtitleFontSize", t_23, true);
+if(frame.topLevel) {
+context.setVariable("subtitleFontSize", t_23);
+}
+if(frame.topLevel) {
+context.addExport("subtitleFontSize", t_23);
+}
+var t_24;
+t_24 = (lineno = 26, colno = 36, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"sub_title_font_weight"),400]));
+frame.set("subtitleFontWeight", t_24, true);
+if(frame.topLevel) {
+context.setVariable("subtitleFontWeight", t_24);
+}
+if(frame.topLevel) {
+context.addExport("subtitleFontWeight", t_24);
+}
+var t_25;
+t_25 = (lineno = 27, colno = 36, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"sub_title_line_height"),14]));
+frame.set("subtitleLineHeight", t_25, true);
+if(frame.topLevel) {
+context.setVariable("subtitleLineHeight", t_25);
+}
+if(frame.topLevel) {
+context.addExport("subtitleLineHeight", t_25);
+}
+var t_26;
+t_26 = (lineno = 28, colno = 35, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"sub_title_text_align"),"start"]));
+frame.set("subtitleTextAlign", t_26, true);
+if(frame.topLevel) {
+context.setVariable("subtitleTextAlign", t_26);
+}
+if(frame.topLevel) {
+context.addExport("subtitleTextAlign", t_26);
+}
+output += "\n";
+var t_27;
+t_27 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"star_rating_title");
+frame.set("starRatingTitle", t_27, true);
+if(frame.topLevel) {
+context.setVariable("starRatingTitle", t_27);
+}
+if(frame.topLevel) {
+context.addExport("starRatingTitle", t_27);
+}
+var t_28;
+t_28 = (lineno = 31, colno = 42, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"star_rating_title_font_color"),"light_font_color"]));
+frame.set("starRatingTitleFontColor", t_28, true);
+if(frame.topLevel) {
+context.setVariable("starRatingTitleFontColor", t_28);
+}
+if(frame.topLevel) {
+context.addExport("starRatingTitleFontColor", t_28);
+}
+var t_29;
+t_29 = (lineno = 32, colno = 41, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"star_rating_title_font_size"),20]));
+frame.set("starRatingTitleFontSize", t_29, true);
+if(frame.topLevel) {
+context.setVariable("starRatingTitleFontSize", t_29);
+}
+if(frame.topLevel) {
+context.addExport("starRatingTitleFontSize", t_29);
+}
+var t_30;
+t_30 = (lineno = 33, colno = 43, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"star_rating_title_font_weight"),500]));
+frame.set("starRatingTitleFontWeight", t_30, true);
+if(frame.topLevel) {
+context.setVariable("starRatingTitleFontWeight", t_30);
+}
+if(frame.topLevel) {
+context.addExport("starRatingTitleFontWeight", t_30);
+}
+var t_31;
+t_31 = (lineno = 34, colno = 43, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"star_rating_title_line_height"),20]));
+frame.set("starRatingTitleLineHeight", t_31, true);
+if(frame.topLevel) {
+context.setVariable("starRatingTitleLineHeight", t_31);
+}
+if(frame.topLevel) {
+context.addExport("starRatingTitleLineHeight", t_31);
+}
+var t_32;
+t_32 = (lineno = 35, colno = 42, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"star_rating_title_text_align"),"start"]));
+frame.set("starRatingTitleTextAlign", t_32, true);
+if(frame.topLevel) {
+context.setVariable("starRatingTitleTextAlign", t_32);
+}
+if(frame.topLevel) {
+context.addExport("starRatingTitleTextAlign", t_32);
+}
+output += "\n";
+var t_33;
+t_33 = "snippet-feedback-form";
+frame.set("globalClass", t_33, true);
+if(frame.topLevel) {
+context.setVariable("globalClass", t_33);
+}
+if(frame.topLevel) {
+context.addExport("globalClass", t_33);
+}
+var t_34;
+t_34 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_34, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_34);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_34);
+}
+output += "\n<style>\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__form {\n    margin: auto;\n    width: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "formSize"), env.opts.autoescape);
+output += ";\n    background: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "bgColor")), env.opts.autoescape);
+output += ";\n    border: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "showBorder")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += ";\n    box-shadow: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "shadow"), env.opts.autoescape);
+output += ";\n    border-radius: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "borderRadius"), env.opts.autoescape);
+output += "px;\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__star-rating-wrapper {\n    padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingVert"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHoriz"), env.opts.autoescape);
+output += "px;\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__message-wrapper {\n    padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingVert"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHoriz"), env.opts.autoescape);
+output += "px;\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__delimiter {\n    padding: 0 ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHoriz"), env.opts.autoescape);
+output += "px;\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__title {\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "titleFontColor")), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleFontSize"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleFontWeight"), env.opts.autoescape);
+output += ";\n    line-height: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleLineHeight"), env.opts.autoescape);
+output += "px;\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__text {\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "subtitleFontColor")), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "subtitleFontSize"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "subtitleFontWeight"), env.opts.autoescape);
+output += ";\n    line-height: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "subtitleLineHeight"), env.opts.autoescape);
+output += "px;\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__star-rating-title {\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "starRatingTitleFontColor")), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "starRatingTitleFontSize"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "starRatingTitleFontWeight"), env.opts.autoescape);
+output += ";\n    line-height: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "starRatingTitleLineHeight"), env.opts.autoescape);
+output += "px;\n  }\n</style>\n\n<div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "\">\n  <form class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__form ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__form\" onsubmit=\"return false\">\n    <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__star-rating-wrapper ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__star-rating-wrapper\">\n";
+if(runtime.contextOrFrameLookup(context, frame, "starRatingTitle")) {
+output += "      <h5 class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__star-rating-title ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__star-rating-title text-align-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "starRatingTitleTextAlign"), env.opts.autoescape);
+output += "\">\n        ";
+output += runtime.suppressValue(env.getFilter("t").call(context, runtime.contextOrFrameLookup(context, frame, "starRatingTitle")), env.opts.autoescape);
+output += "\n      </h5>\n";
+;
+}
+output += "\n      <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__star-rating\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Shared: Rating star",runtime.makeKeywordArgs({"rating": runtime.contextOrFrameLookup(context, frame, "score"),"size": 25,"readonly": "false","on_click": env.getFilter("join").call(context, ["onClickRating_",runtime.contextOrFrameLookup(context, frame, "id")],"")}), function(t_36,t_35) {
+if(t_36) { cb(t_36); return; }
+output += runtime.suppressValue(t_35, true && env.opts.autoescape);
+output += "      </div>\n    </div>\n\n    <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__delimiter ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__delimiter\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Shared: Horizontal delimiter", function(t_38,t_37) {
+if(t_38) { cb(t_38); return; }
+output += runtime.suppressValue(t_37, true && env.opts.autoescape);
+output += "    </div>\n\n    <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__message-wrapper ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__message-wrapper\">\n      <div>\n";
+if(runtime.contextOrFrameLookup(context, frame, "title")) {
+output += "          <h5 class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__title ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__title text-align-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleTextAlign"), env.opts.autoescape);
+output += "\">\n            ";
+output += runtime.suppressValue(env.getFilter("t").call(context, runtime.contextOrFrameLookup(context, frame, "title")), env.opts.autoescape);
+output += "\n          </h5>\n";
+;
+}
+output += "\n";
+if(runtime.contextOrFrameLookup(context, frame, "subtitle")) {
+output += "          <p class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__text ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__text text-align-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "subtitleTextAlign"), env.opts.autoescape);
+output += "\">\n            ";
+output += runtime.suppressValue(env.getFilter("t").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"feedback_form_sub_title")), env.opts.autoescape);
+output += "\n          </p>\n";
+;
+}
+output += "      </div>\n\n";
+env.getExtension("RenderSnippet")["run"](context,"Shared: Text area",runtime.makeKeywordArgs({"selector": runtime.contextOrFrameLookup(context, frame, "messageId"),"name": "message","placeholder": (env.getFilter("t").call(context, "shop.feedback.textPlaceholder")),"className": "pt-3 pb-3","value": runtime.contextOrFrameLookup(context, frame, "message")}), function(t_40,t_39) {
+if(t_40) { cb(t_40); return; }
+output += runtime.suppressValue(t_39, true && env.opts.autoescape);
+output += "\n      <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__snippet-feedback-form justify-content-";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"feedback_form_button_position") || runtime.contextOrFrameLookup(context, frame, "start"), env.opts.autoescape);
+output += "\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Shared: Ripple button",runtime.makeKeywordArgs({"button_id": env.getFilter("join").call(context, ["leave-feedback-submit-",runtime.contextOrFrameLookup(context, frame, "id")]),"type": "submit","title": (env.getFilter("t").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"button_title"))),"class": "mt-4"}), function(t_42,t_41) {
+if(t_42) { cb(t_42); return; }
+output += runtime.suppressValue(t_41, true && env.opts.autoescape);
+output += "      </div>\n    </div>\n  </form>\n</div>\n\n<script type='application/javascript'>\n  let formComponent, score = ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "score"), env.opts.autoescape);
+output += ";\n  function onClickRating_";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "(value) {\n    if (formComponent) {\n      score = value;\n      formComponent.setScore(value);\n    }\n  }\n\n  $(document).ready(function () {\n    formComponent = new SellixLeaveFeedbackComponent(\n      '.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__form',\n      '";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "messageId"), env.opts.autoescape);
+output += "',\n      '";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "feedbackId"), env.opts.autoescape);
+output += "',\n      score,\n    );\n\n    $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__form').validate({\n      errorElement: 'div',\n      errorClass: 'invalid-feedback',\n      rules: {\n        message: {\n          maxlength: 256,\n        },\n      },\n      messages: {\n        message: {\n          maxlength: '";
+output += runtime.suppressValue(env.getFilter("t").call(context, runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"feedback")),"tooLongMessage")), env.opts.autoescape);
+output += "',\n        },\n      },\n      highlight: function(element, errorClass) {\n        $(element).addClass('is-invalid').removeClass(errorClass);\n      },\n      unhighlight: function(element, errorClass) {\n        $(element).removeClass('is-invalid').removeClass(errorClass);\n      },\n    });\n  });\n</script>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+})})})});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

@@ -1,0 +1,275 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"productInfo")),"product");
+frame.set("product", t_2, true);
+if(frame.topLevel) {
+context.setVariable("product", t_2);
+}
+if(frame.topLevel) {
+context.addExport("product", t_2);
+}
+output += "\n";
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"terms_visible") == "show" || (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"terms_visible") == "not_empty" && runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"terms_of_service"));
+frame.set("termsVisible", t_3, true);
+if(frame.topLevel) {
+context.setVariable("termsVisible", t_3);
+}
+if(frame.topLevel) {
+context.addExport("termsVisible", t_3);
+}
+output += "\n";
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"feedback_visible") == "show" || (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"feedback_visible") == "not_empty" && env.getFilter("length").call(context, runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"feedback")),"list")) > 0);
+frame.set("feedbackVisible", t_4, true);
+if(frame.topLevel) {
+context.setVariable("feedbackVisible", t_4);
+}
+if(frame.topLevel) {
+context.addExport("feedbackVisible", t_4);
+}
+output += "\n";
+if(runtime.contextOrFrameLookup(context, frame, "feedbackVisible")) {
+var t_5;
+t_5 = "feedback";
+frame.set("activeTab", t_5, true);
+if(frame.topLevel) {
+context.setVariable("activeTab", t_5);
+}
+if(frame.topLevel) {
+context.addExport("activeTab", t_5);
+}
+;
+}
+else {
+if(runtime.contextOrFrameLookup(context, frame, "termsVisible")) {
+var t_6;
+t_6 = "terms";
+frame.set("activeTab", t_6, true);
+if(frame.topLevel) {
+context.setVariable("activeTab", t_6);
+}
+if(frame.topLevel) {
+context.addExport("activeTab", t_6);
+}
+;
+}
+;
+}
+output += "\n";
+var t_7;
+t_7 = 0;
+frame.set("countVisibleTabs", t_7, true);
+if(frame.topLevel) {
+context.setVariable("countVisibleTabs", t_7);
+}
+if(frame.topLevel) {
+context.addExport("countVisibleTabs", t_7);
+}
+var t_8;
+t_8 = runtime.contextOrFrameLookup(context, frame, "countVisibleTabs") + ((runtime.contextOrFrameLookup(context, frame, "feedbackVisible")?1:0));
+frame.set("countVisibleTabs", t_8, true);
+if(frame.topLevel) {
+context.setVariable("countVisibleTabs", t_8);
+}
+if(frame.topLevel) {
+context.addExport("countVisibleTabs", t_8);
+}
+var t_9;
+t_9 = runtime.contextOrFrameLookup(context, frame, "countVisibleTabs") + ((runtime.contextOrFrameLookup(context, frame, "termsVisible")?1:0));
+frame.set("countVisibleTabs", t_9, true);
+if(frame.topLevel) {
+context.setVariable("countVisibleTabs", t_9);
+}
+if(frame.topLevel) {
+context.addExport("countVisibleTabs", t_9);
+}
+output += "\n";
+var t_10;
+t_10 = (lineno = 19, colno = 25, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_background_color"),"background_accent_dark"]));
+frame.set("bgColor", t_10, true);
+if(frame.topLevel) {
+context.setVariable("bgColor", t_10);
+}
+if(frame.topLevel) {
+context.addExport("bgColor", t_10);
+}
+var t_11;
+t_11 = (lineno = 20, colno = 28, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_show_border"),false]));
+frame.set("showBorder", t_11, true);
+if(frame.topLevel) {
+context.setVariable("showBorder", t_11);
+}
+if(frame.topLevel) {
+context.addExport("showBorder", t_11);
+}
+var t_12;
+t_12 = (lineno = 21, colno = 30, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_border_radius"),0]));
+frame.set("borderRadius", t_12, true);
+if(frame.topLevel) {
+context.setVariable("borderRadius", t_12);
+}
+if(frame.topLevel) {
+context.addExport("borderRadius", t_12);
+}
+var t_13;
+t_13 = (lineno = 22, colno = 24, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_shadow"),"none"]));
+frame.set("shadow", t_13, true);
+if(frame.topLevel) {
+context.setVariable("shadow", t_13);
+}
+if(frame.topLevel) {
+context.addExport("shadow", t_13);
+}
+var t_14;
+t_14 = (lineno = 23, colno = 29, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_vert"),0]));
+frame.set("paddingVert", t_14, true);
+if(frame.topLevel) {
+context.setVariable("paddingVert", t_14);
+}
+if(frame.topLevel) {
+context.addExport("paddingVert", t_14);
+}
+var t_15;
+t_15 = (lineno = 24, colno = 30, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_horiz"),0]));
+frame.set("paddingHoriz", t_15, true);
+if(frame.topLevel) {
+context.setVariable("paddingHoriz", t_15);
+}
+if(frame.topLevel) {
+context.addExport("paddingHoriz", t_15);
+}
+output += "\n";
+var t_16;
+t_16 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_16, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_16);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_16);
+}
+output += "\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "countVisibleTabs") > 0) {
+output += "  <style>\n    .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container {\n      border: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "showBorder")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += ";\n      background: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "bgColor")), env.opts.autoescape);
+output += ";\n      border-radius: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "borderRadius"), env.opts.autoescape);
+output += "px;\n      box-shadow: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "shadow"), env.opts.autoescape);
+output += ";\n      padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingVert"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHoriz"), env.opts.autoescape);
+output += "px;\n    }\n  </style>\n\n  <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__container ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container\">\n";
+if(runtime.contextOrFrameLookup(context, frame, "countVisibleTabs") > 1) {
+output += "      <div class=\"tabs ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__tabs ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__tabs\">\n";
+if(runtime.contextOrFrameLookup(context, frame, "feedbackVisible")) {
+output += "        <a class=\"tab ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "activeTab") == "feedback"?"active":""), env.opts.autoescape);
+output += "\" href=\"javascript:void(0);\" data-tab-name=\"feedback\">\n          ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.product.relations.feedback.title"), env.opts.autoescape);
+output += "\n        </a>\n";
+;
+}
+output += "\n";
+if(runtime.contextOrFrameLookup(context, frame, "termsVisible")) {
+output += "        <a class=\"tab ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "activeTab") == "terms"?"active":""), env.opts.autoescape);
+output += "\" href=\"javascript:void(0);\" data-tab-name=\"terms\">\n          ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.product.relations.termsOfService.title"), env.opts.autoescape);
+output += "\n        </a>\n";
+;
+}
+output += "      </div>\n";
+;
+}
+output += "\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "feedbackVisible")) {
+output += "    <div class=\"tab-content ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "activeTab") != "feedback"?"d-non":""), env.opts.autoescape);
+output += "\" data-tab-name=\"feedback\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Product: Feedback",runtime.makeKeywordArgs({"product": runtime.contextOrFrameLookup(context, frame, "product"),"properties": {"page_size": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"feedback_page_size"),"card_background_color": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"feedback_card_background_color"),"card_show_border": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"feedback_card_show_border"),"card_border_radius": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"feedback_card_border_radius"),"card_shadow": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"feedback_card_shadow"),"reply_background_color": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"feedback_reply_background_color")}}), function(t_18,t_17) {
+if(t_18) { cb(t_18); return; }
+output += runtime.suppressValue(t_17, true && env.opts.autoescape);
+output += "    </div>\n";
+cb()});
+}
+else {
+cb()}
+})(function(t_19) {
+if(t_19) { cb(t_19); return; }output += "\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "termsVisible")) {
+output += "    <div class=\"tab-content ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "activeTab") != "terms"?"d-none":""), env.opts.autoescape);
+output += "\" data-tab-name=\"terms\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Product: Terms",runtime.makeKeywordArgs({"product": runtime.contextOrFrameLookup(context, frame, "product"),"properties": {"container_background_color": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"terms_container_background_color"),"container_show_border": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"terms_container_show_border"),"container_border_radius": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"terms_container_border_radius"),"container_shadow": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"terms_container_shadow"),"container_padding_horiz": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"terms_container_padding_horiz"),"container_padding_vert": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"terms_container_padding_vert")}}), function(t_21,t_20) {
+if(t_21) { cb(t_21); return; }
+output += runtime.suppressValue(t_20, true && env.opts.autoescape);
+output += "    </div>\n";
+cb()});
+}
+else {
+cb()}
+})(function(t_22) {
+if(t_22) { cb(t_22); return; }output += "  </div>\n\n  <script type=\"application/javascript\">\n";
+if(runtime.contextOrFrameLookup(context, frame, "countVisibleTabs") > 1) {
+output += "      $(document).ready(function() {\n        let activeTabName = '";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "activeTab"), env.opts.autoescape);
+output += "';\n\n        const $container = $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container');\n        const $tabs = $container.find('.tabs');\n\n        if (activeTabName) {\n          $tabs.find(`.tab[data-tab-name=${activeTabName}]`).addClass('active');\n          $container.find(`.tab-content[data-tab-name=${activeTabName}]`).removeClass('d-none');\n        }\n\n        $tabs.find('.tab').on('click', function(event) {\n          event.preventDefault();\n          const tabName = $(this).data('tabName');\n\n          if (tabName !== activeTabName) {\n            $tabs.find(`.tab[data-tab-name=${activeTabName}]`).removeClass('active');\n            $tabs.find(`.tab[data-tab-name=${tabName}]`).addClass('active');\n\n            $container.find(`.tab-content[data-tab-name=${activeTabName}]`).addClass('d-none');\n            $container.find(`.tab-content[data-tab-name=${tabName}]`).removeClass('d-none');\n            activeTabName = tabName;\n          }\n        });\n      });\n";
+;
+}
+output += "  </script>\n";
+cb()})});
+}
+else {
+cb()}
+})(function(t_23) {
+if(t_23) { cb(t_23); return; }output += "\n";
+if((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"group_names_to_hide") || runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"group_name")) && (runtime.contextOrFrameLookup(context, frame, "countVisibleTabs") == 0 || (runtime.contextOrFrameLookup(context, frame, "countVisibleTabs") == 1 && env.getFilter("length").call(context, runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"feedback")),"list")) == 0))) {
+output += "  <script type=\"application/javascript\">\n      const event = new CustomEvent(\n      'SellixHideGroupEvent',\n      { detail: { groupName: '";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"group_names_to_hide") || runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"group_name"), env.opts.autoescape);
+output += "' } },\n      );\n      setTimeout(() => document.dispatchEvent(event), 0);\n  </script>\n";
+;
+}
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

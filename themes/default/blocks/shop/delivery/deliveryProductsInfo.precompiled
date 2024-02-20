@@ -1,0 +1,250 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+output += "\n";
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"invoiceInfo")),"invoice");
+frame.set("invoice", t_2, true);
+if(frame.topLevel) {
+context.setVariable("invoice", t_2);
+}
+if(frame.topLevel) {
+context.addExport("invoice", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"invoiceInfo")),"info");
+frame.set("info", t_3, true);
+if(frame.topLevel) {
+context.setVariable("info", t_3);
+}
+if(frame.topLevel) {
+context.addExport("info", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"product") || {};
+frame.set("product", t_4, true);
+if(frame.topLevel) {
+context.setVariable("product", t_4);
+}
+if(frame.topLevel) {
+context.addExport("product", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"type") == "PRODUCT_SUBSCRIPTION";
+frame.set("isProductSubscription", t_5, true);
+if(frame.topLevel) {
+context.setVariable("isProductSubscription", t_5);
+}
+if(frame.topLevel) {
+context.addExport("isProductSubscription", t_5);
+}
+var t_6;
+t_6 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"type") == "SUBSCRIPTION";
+frame.set("isSubscription", t_6, true);
+if(frame.topLevel) {
+context.setVariable("isSubscription", t_6);
+}
+if(frame.topLevel) {
+context.addExport("isSubscription", t_6);
+}
+var t_7;
+t_7 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"type") == "SHOPPING_CART";
+frame.set("isShoppingCart", t_7, true);
+if(frame.topLevel) {
+context.setVariable("isShoppingCart", t_7);
+}
+if(frame.topLevel) {
+context.addExport("isShoppingCart", t_7);
+}
+var t_8;
+t_8 = (runtime.contextOrFrameLookup(context, frame, "invoice")?(env.getFilter("int").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"developer_invoice"))):false);
+frame.set("isDev", t_8, true);
+if(frame.topLevel) {
+context.setVariable("isDev", t_8);
+}
+if(frame.topLevel) {
+context.addExport("isDev", t_8);
+}
+var t_9;
+t_9 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"paypal_email_delivery") && runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"gateway") === "PAYPAL";
+frame.set("showAlert", t_9, true);
+if(frame.topLevel) {
+context.setVariable("showAlert", t_9);
+}
+if(frame.topLevel) {
+context.addExport("showAlert", t_9);
+}
+var t_10;
+t_10 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_10, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_10);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_10);
+}
+output += "\n";
+var t_11;
+t_11 = runtime.contextOrFrameLookup(context, frame, "isSubscription") || (!runtime.contextOrFrameLookup(context, frame, "isShoppingCart") && !runtime.contextOrFrameLookup(context, frame, "isSubscription") && runtime.contextOrFrameLookup(context, frame, "info")) || (runtime.contextOrFrameLookup(context, frame, "isShoppingCart") && runtime.contextOrFrameLookup(context, frame, "info")) || runtime.contextOrFrameLookup(context, frame, "isProductSubscription");
+frame.set("notEmpty", t_11, true);
+if(frame.topLevel) {
+context.setVariable("notEmpty", t_11);
+}
+if(frame.topLevel) {
+context.addExport("notEmpty", t_11);
+}
+output += "\n";
+var t_12;
+t_12 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_background_color")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_background_color"):"background_accent_dark");
+frame.set("backgroundColor", t_12, true);
+if(frame.topLevel) {
+context.setVariable("backgroundColor", t_12);
+}
+if(frame.topLevel) {
+context.addExport("backgroundColor", t_12);
+}
+var t_13;
+t_13 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_show_border")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_show_border"):true);
+frame.set("showBorder", t_13, true);
+if(frame.topLevel) {
+context.setVariable("showBorder", t_13);
+}
+if(frame.topLevel) {
+context.addExport("showBorder", t_13);
+}
+var t_14;
+t_14 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_border_radius")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_border_radius"):0.5);
+frame.set("borderRadius", t_14, true);
+if(frame.topLevel) {
+context.setVariable("borderRadius", t_14);
+}
+if(frame.topLevel) {
+context.addExport("borderRadius", t_14);
+}
+var t_15;
+t_15 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_shadow")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_shadow"):"none");
+frame.set("shadow", t_15, true);
+if(frame.topLevel) {
+context.setVariable("shadow", t_15);
+}
+if(frame.topLevel) {
+context.addExport("shadow", t_15);
+}
+var t_16;
+t_16 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_vert")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_vert"):"16");
+frame.set("paddingVert", t_16, true);
+if(frame.topLevel) {
+context.setVariable("paddingVert", t_16);
+}
+if(frame.topLevel) {
+context.addExport("paddingVert", t_16);
+}
+var t_17;
+t_17 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_horiz")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_horiz"):"16");
+frame.set("paddingHoriz", t_17, true);
+if(frame.topLevel) {
+context.setVariable("paddingHoriz", t_17);
+}
+if(frame.topLevel) {
+context.addExport("paddingHoriz", t_17);
+}
+output += "\n<style>\n  .sellix-delivery-products-info-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " {\n    border: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "showBorder")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += "!important;\n    background: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.contextOrFrameLookup(context, frame, "backgroundColor")), env.opts.autoescape);
+output += "!important;\n    border-radius: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "borderRadius"), env.opts.autoescape);
+output += "rem!important;\n    box-shadow: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "shadow"), env.opts.autoescape);
+output += "!important;\n    padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingVert"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHoriz"), env.opts.autoescape);
+output += "px!important;\n  }\n</style>\n\n<div class=\"sellix-delivery-products-info sellix-delivery-products-info-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "notEmpty")?"":"empty"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isShoppingCart")?"is-cart":""), env.opts.autoescape);
+output += "\">\n";
+if(runtime.contextOrFrameLookup(context, frame, "isSubscription")) {
+;
+}
+output += "\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "isDev") || (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"product") && runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"product")),"redirect_link"))) {
+env.getExtension("RenderSnippet")["run"](context,"Delivery dev",runtime.makeKeywordArgs({"invoice": runtime.contextOrFrameLookup(context, frame, "invoice")}), function(t_19,t_18) {
+if(t_19) { cb(t_19); return; }
+output += runtime.suppressValue(t_18, true && env.opts.autoescape);
+cb()});
+}
+else {
+cb()}
+})(function(t_20) {
+if(t_20) { cb(t_20); return; }output += "\n";
+(function(cb) {if(!runtime.contextOrFrameLookup(context, frame, "isDev") && !runtime.contextOrFrameLookup(context, frame, "isShoppingCart") && !runtime.contextOrFrameLookup(context, frame, "isSubscription") && runtime.contextOrFrameLookup(context, frame, "info")) {
+env.getExtension("RenderSnippet")["run"](context,"Delivery product",runtime.makeKeywordArgs({"invoice": runtime.contextOrFrameLookup(context, frame, "invoice"),"info": runtime.contextOrFrameLookup(context, frame, "info")}), function(t_22,t_21) {
+if(t_22) { cb(t_22); return; }
+output += runtime.suppressValue(t_21, true && env.opts.autoescape);
+cb()});
+}
+else {
+cb()}
+})(function(t_23) {
+if(t_23) { cb(t_23); return; }output += "\n";
+(function(cb) {if(!runtime.contextOrFrameLookup(context, frame, "isProductSubscription") && runtime.contextOrFrameLookup(context, frame, "showAlert")) {
+env.getExtension("RenderSnippet")["run"](context,"Alert",runtime.makeKeywordArgs({"show": true,"title": "Searching your product?","text": "Due to security reasons, your product has been delivered to your email linked with the PayPal account you have used to complete the purchase. This is done to avoid fraud attempts."}), function(t_25,t_24) {
+if(t_25) { cb(t_25); return; }
+output += runtime.suppressValue(t_24, true && env.opts.autoescape);
+cb()});
+}
+else {
+cb()}
+})(function(t_26) {
+if(t_26) { cb(t_26); return; }output += "\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "isShoppingCart") && runtime.contextOrFrameLookup(context, frame, "info")) {
+env.getExtension("RenderSnippet")["run"](context,"Delivery cart products",runtime.makeKeywordArgs({"invoice": runtime.contextOrFrameLookup(context, frame, "invoice"),"info": runtime.contextOrFrameLookup(context, frame, "info")}), function(t_28,t_27) {
+if(t_28) { cb(t_28); return; }
+output += runtime.suppressValue(t_27, true && env.opts.autoescape);
+cb()});
+}
+else {
+cb()}
+})(function(t_29) {
+if(t_29) { cb(t_29); return; }output += "\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "isProductSubscription")) {
+env.getExtension("RenderSnippet")["run"](context,"Delivery product subscription",runtime.makeKeywordArgs({"invoice": runtime.contextOrFrameLookup(context, frame, "invoice")}), function(t_31,t_30) {
+if(t_31) { cb(t_31); return; }
+output += runtime.suppressValue(t_30, true && env.opts.autoescape);
+cb()});
+}
+else {
+cb()}
+})(function(t_32) {
+if(t_32) { cb(t_32); return; }output += "\n</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+})})})})});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

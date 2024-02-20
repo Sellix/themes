@@ -1,0 +1,149 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_1, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_1);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"subscription");
+frame.set("subscription", t_2, true);
+if(frame.topLevel) {
+context.setVariable("subscription", t_2);
+}
+if(frame.topLevel) {
+context.addExport("subscription", t_2);
+}
+var t_3;
+t_3 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"first_sale_date")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"first_sale_date") * 1000:runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"created_at") * 1000);
+frame.set("first_activity", t_3, true);
+if(frame.topLevel) {
+context.setVariable("first_activity", t_3);
+}
+if(frame.topLevel) {
+context.addExport("first_activity", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_4, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_4);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_4);
+}
+output += "\n<div class=\"sellix-banner-info\">\n";
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_banner_shop_info_avatar")) {
+output += "    <div class=\"sellix-banner-avatar-container\">\n";
+(function(cb) {if(env.getFilter("int").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"verified")) == 1) {
+output += "        <span\n          class=\"sellix-banner-verified\"\n          data-tooltip-location=\"right\"\n          data-tooltip=\"This shop has verified its brand identity to Sellix.\"\n        >\n";
+env.getExtension("RenderSnippet")["run"](context,"Verified icon",runtime.makeKeywordArgs({"style": "width:20px; height:20px; margin-bottom: 0.25rem;"}), function(t_6,t_5) {
+if(t_6) { cb(t_6); return; }
+output += runtime.suppressValue(t_5, true && env.opts.autoescape);
+output += "        </span>\n";
+cb()});
+}
+else {
+cb()}
+})(function(t_7) {
+if(t_7) { cb(t_7); return; }output += "\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_shop_info_custom_avatar")) {
+output += "        <img\n          src=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_shop_info_custom_avatar"), env.opts.autoescape);
+output += "\"\n          alt=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "\"\n          class=\"sellix-banner-avatar\"\n        />\n";
+;
+}
+else {
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"image_name")) {
+output += "          <img\n            src=\"";
+output += runtime.suppressValue((lineno = 27, colno = 27, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "cdn_link"), "cdn_link", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"cloudflare_image_id"),"avatar"])), env.opts.autoescape);
+output += "\"\n            alt=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "\"\n            class=\"sellix-banner-avatar\"\n          />\n";
+;
+}
+else {
+output += "          <i\n            class=\"fas fa-user-circle sellix-banner-avatar-icon\"\n            style=\"color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_shop_info_avatar_color")), env.opts.autoescape);
+output += "\"\n          ></i>\n";
+;
+}
+;
+}
+output += "    </div>\n";
+cb()});
+}
+else {
+cb()}
+})(function(t_8) {
+if(t_8) { cb(t_8); return; }output += "\n  <div class=\"sellix-banner-description\">\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_banner_shop_info_subscription")) {
+output += "      <div>\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "subscription")),"name")) {
+output += "          <div class=\"sellix-banner-subscription ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "subscription")),"id") == 2?"business":"pro"), env.opts.autoescape);
+output += "\">\n            ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "subscription")),"name") == "pro"?"Professional":runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "subscription")),"name")), env.opts.autoescape);
+output += "\n          </div>\n";
+;
+}
+else {
+output += "          <div class=\"sellix-banner-subscription ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "subscription")),"id") == 2?"business":"pro"), env.opts.autoescape);
+output += "\">\n            ";
+output += runtime.suppressValue((env.getFilter("date_diff").call(context, null,runtime.contextOrFrameLookup(context, frame, "first_activity")) > 86400 * 7?"Entrepreneur":"Starter"), env.opts.autoescape);
+output += "\n          </div>\n";
+;
+}
+output += "      </div>\n";
+;
+}
+output += "\n    <div\n      class=\"sellix-banner-info-message\"\n      style=\"color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_shop_info_font_color")), env.opts.autoescape);
+output += "; font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_shop_info_font_size"), env.opts.autoescape);
+output += "px; font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_shop_info_font_weight"), env.opts.autoescape);
+output += "; line-height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_shop_info_line_height"), env.opts.autoescape);
+output += "%; text-align: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_shop_info_text_align"), env.opts.autoescape);
+output += ";\"\n    >\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_shop_info_custom_text")) {
+output += "        ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_shop_info_custom_text"), env.opts.autoescape);
+output += "\n";
+;
+}
+else {
+output += "        Providing ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "subscription")),"id") == 2?"business":"customer"), env.opts.autoescape);
+output += "\n        services since ";
+output += runtime.suppressValue(env.getFilter("date_format").call(context, runtime.contextOrFrameLookup(context, frame, "first_activity"),"MMMM YYYY"), env.opts.autoescape);
+output += "\n";
+;
+}
+output += "    </div>\n  </div>\n</div>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

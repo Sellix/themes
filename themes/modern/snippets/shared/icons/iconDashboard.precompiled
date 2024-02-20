@@ -1,0 +1,20 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+output += "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <path d=\"M9.9987 12.5001C10.9192 12.5001 11.6654 11.7539 11.6654 10.8334C11.6654 9.91294 10.9192 9.16675 9.9987 9.16675C9.07822 9.16675 8.33203 9.91294 8.33203 10.8334C8.33203 11.7539 9.07822 12.5001 9.9987 12.5001Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M11.207 9.62508L12.9154 7.91675\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M5.33333 16.6667C4.11512 15.6984 3.22826 14.3752 2.79565 12.8804C2.36304 11.3856 2.4061 9.79328 2.91887 8.32405C3.43164 6.85482 4.38873 5.58147 5.65749 4.68046C6.92625 3.77945 8.44386 3.29541 10 3.29541C11.5561 3.29541 13.0737 3.77945 14.3425 4.68046C15.6113 5.58147 16.5684 6.85482 17.0811 8.32405C17.5939 9.79328 17.637 11.3856 17.2044 12.8804C16.7717 14.3752 15.8849 15.6984 14.6667 16.6667H5.33333Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

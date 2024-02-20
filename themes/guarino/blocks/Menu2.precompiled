@@ -1,0 +1,194 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"slug");
+frame.set("slug", t_1, true);
+if(frame.topLevel) {
+context.setVariable("slug", t_1);
+}
+if(frame.topLevel) {
+context.addExport("slug", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_2, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_2);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"menu");
+frame.set("menuProps", t_3, true);
+if(frame.topLevel) {
+context.setVariable("menuProps", t_3);
+}
+if(frame.topLevel) {
+context.addExport("menuProps", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"Guarino_Header");
+frame.set("guarinoColors", t_4, true);
+if(frame.topLevel) {
+context.setVariable("guarinoColors", t_4);
+}
+if(frame.topLevel) {
+context.addExport("guarinoColors", t_4);
+}
+output += "\n<style>\n  .menu-tab.active {\n    font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "menuProps")),"menu_active_tab_font_size"), env.opts.autoescape);
+output += "px !important;\n    font-weight: 600!important;\n    background-color: #ffffff12!important;\n    border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;\n    position: relative;\n    padding: 8 15px;\n    border-bottom-color: transparent!important;\n  }\n</style>\n\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "menuProps")),"menu_bool")) {
+output += "\n<style>\n\n.menu-tab:hover {\n    font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "menuProps")),"menu_active_tab_font_size"), env.opts.autoescape);
+output += "px !important;\n    font-weight: 600!important;\n    background-color: #ffffff12!important;\n    border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;\n    position: relative;\n    padding: 8 15px;\n    margin: 0 10px;\n  }\n  .sellix-menu-container {    background: transparent!important;  }\n  .sellix-menu  {   justify-content: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "menuProps")),"menu_alignment"), env.opts.autoescape);
+output += "; margin-right: 0px!important ; font-weight: 600;       }\n</style>\n\n<div class=\"sellix-menu\">\n";
+frame = frame.push();
+var t_7 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "menu")),"items");
+if(t_7) {t_7 = runtime.fromIterator(t_7);
+var t_6 = t_7.length;
+for(var t_5=0; t_5 < t_7.length; t_5++) {
+var t_8 = t_7[t_5];
+frame.set("item", t_8);
+frame.set("loop.index", t_5 + 1);
+frame.set("loop.index0", t_5);
+frame.set("loop.revindex", t_6 - t_5);
+frame.set("loop.revindex0", t_6 - t_5 - 1);
+frame.set("loop.first", t_5 === 0);
+frame.set("loop.last", t_5 === t_6 - 1);
+frame.set("loop.length", t_6);
+var t_9;
+t_9 = runtime.memberLookup((t_8),"page_slug") == runtime.contextOrFrameLookup(context, frame, "slug");
+frame.set("active", t_9, true);
+if(frame.topLevel) {
+context.setVariable("active", t_9);
+}
+if(frame.topLevel) {
+context.addExport("active", t_9);
+}
+if(runtime.memberLookup((t_8),"page_slug") != "/") {
+var t_10;
+t_10 = runtime.inOperator(runtime.memberLookup((t_8),"page_slug"),runtime.contextOrFrameLookup(context, frame, "slug"));
+frame.set("active", t_10, true);
+if(frame.topLevel) {
+context.setVariable("active", t_10);
+}
+if(frame.topLevel) {
+context.addExport("active", t_10);
+}
+;
+}
+if(runtime.memberLookup((t_8),"page_slug") == "/contact" && runtime.inOperator("/ticket",runtime.contextOrFrameLookup(context, frame, "slug"))) {
+var t_11;
+t_11 = true;
+frame.set("active", t_11, true);
+if(frame.topLevel) {
+context.setVariable("active", t_11);
+}
+if(frame.topLevel) {
+context.addExport("active", t_11);
+}
+;
+}
+output += "      <a\n        href=\"";
+output += runtime.suppressValue(runtime.memberLookup((t_8),"page_slug"), env.opts.autoescape);
+output += "\"\n        class=\"menu-tab ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "active")?"active":""), env.opts.autoescape);
+output += "\"\n        style=\"font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "menuProps")),"menu_tab_font_size"), env.opts.autoescape);
+output += "px; font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "menuProps")),"menu_tab_font_weight"), env.opts.autoescape);
+output += ";margin-top: 20px;\"\n      >\n        ";
+output += runtime.suppressValue(runtime.memberLookup((t_8),"title"), env.opts.autoescape);
+output += "\n      </a>\n";
+;
+}
+}
+frame = frame.pop();
+output += "</div>\n\n<div class=\"divnav\" style=\"height: 80px;    padding-left: 20px;\"\n    <nav role=\"navigation\">\n        <div id=\"menuToggle\" tabindex=\"1\">\n            <input type=\"checkbox\" />\n            <span></span>\n    <span></span>\n    <span></span>\n    <ul id=\"menu\">\n";
+frame = frame.push();
+var t_14 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "menu")),"items");
+if(t_14) {t_14 = runtime.fromIterator(t_14);
+var t_13 = t_14.length;
+for(var t_12=0; t_12 < t_14.length; t_12++) {
+var t_15 = t_14[t_12];
+frame.set("item", t_15);
+frame.set("loop.index", t_12 + 1);
+frame.set("loop.index0", t_12);
+frame.set("loop.revindex", t_13 - t_12);
+frame.set("loop.revindex0", t_13 - t_12 - 1);
+frame.set("loop.first", t_12 === 0);
+frame.set("loop.last", t_12 === t_13 - 1);
+frame.set("loop.length", t_13);
+var t_16;
+t_16 = runtime.memberLookup((t_15),"page_slug") == runtime.contextOrFrameLookup(context, frame, "slug");
+frame.set("active", t_16, true);
+if(frame.topLevel) {
+context.setVariable("active", t_16);
+}
+if(frame.topLevel) {
+context.addExport("active", t_16);
+}
+if(runtime.memberLookup((t_15),"page_slug") != "/") {
+var t_17;
+t_17 = runtime.inOperator(runtime.memberLookup((t_15),"page_slug"),runtime.contextOrFrameLookup(context, frame, "slug"));
+frame.set("active", t_17, true);
+if(frame.topLevel) {
+context.setVariable("active", t_17);
+}
+if(frame.topLevel) {
+context.addExport("active", t_17);
+}
+;
+}
+if(runtime.memberLookup((t_15),"page_slug") == "/contact" && runtime.inOperator("/ticket",runtime.contextOrFrameLookup(context, frame, "slug"))) {
+var t_18;
+t_18 = true;
+frame.set("active", t_18, true);
+if(frame.topLevel) {
+context.setVariable("active", t_18);
+}
+if(frame.topLevel) {
+context.addExport("active", t_18);
+}
+;
+}
+output += "        <a\n        href=\"";
+output += runtime.suppressValue(runtime.memberLookup((t_15),"page_slug"), env.opts.autoescape);
+output += "\"\n        class=\"menu-tab ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "active")?"active":""), env.opts.autoescape);
+output += "\"\n        style=\"font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "menuProps")),"menu_tab_font_size"), env.opts.autoescape);
+output += "px; color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "guarinoColors")),"guarino_header_menu_color_inactive"), env.opts.autoescape);
+output += "; font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "menuProps")),"menu_tab_font_weight"), env.opts.autoescape);
+output += ";\"\n        >\n          ";
+output += runtime.suppressValue(runtime.memberLookup((t_15),"title"), env.opts.autoescape);
+output += "\n        </a>\n";
+;
+}
+}
+frame = frame.pop();
+output += "    </ul>\n  </div>\n</nav>\n</div>\n";
+;
+}
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

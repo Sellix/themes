@@ -1,0 +1,77 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"invoice");
+frame.set("invoice", t_1, true);
+if(frame.topLevel) {
+context.setVariable("invoice", t_1);
+}
+if(frame.topLevel) {
+context.addExport("invoice", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"product");
+frame.set("product", t_2, true);
+if(frame.topLevel) {
+context.setVariable("product", t_2);
+}
+if(frame.topLevel) {
+context.addExport("product", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_3, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_3);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_3);
+}
+output += "\n<div>\n";
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"type") === "SUBSCRIPTION") {
+env.getExtension("RenderSnippet")["run"](context,"Invoice subscription details",runtime.makeKeywordArgs({"properties": runtime.contextOrFrameLookup(context, frame, "properties")}), function(t_5,t_4) {
+if(t_5) { cb(t_5); return; }
+output += runtime.suppressValue(t_4, true && env.opts.autoescape);
+cb()});
+}
+else {
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"type") === "SHOPPING_CART") {
+env.getExtension("RenderSnippet")["run"](context,"Checkout products",runtime.makeKeywordArgs({"invoice": runtime.contextOrFrameLookup(context, frame, "invoice"),"products": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"products"),"properties": {"product_background_color": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_background_color"),"product_show_border": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_show_border"),"product_container_border_radius": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_border_radius"),"product_container_padding_vert": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_vert"),"product_container_padding_horiz": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_horiz"),"product_container_shadow": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_shadow"),"product_title_font_color": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_color"),"product_title_font_size": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_size"),"product_title_text_align": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_text_align"),"product_title_font_weight": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_weight")}}), function(t_7,t_6) {
+if(t_7) { cb(t_7); return; }
+output += runtime.suppressValue(t_6, true && env.opts.autoescape);
+output += "  ";
+output += "\n";
+cb()});
+}
+else {
+env.getExtension("RenderSnippet")["run"](context,"Addons",runtime.makeKeywordArgs({"product": runtime.contextOrFrameLookup(context, frame, "product"),"invoice": runtime.contextOrFrameLookup(context, frame, "invoice"),"currency": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"currency"),"properties": runtime.contextOrFrameLookup(context, frame, "properties")}), function(t_9,t_8) {
+if(t_9) { cb(t_9); return; }
+output += runtime.suppressValue(t_8, true && env.opts.autoescape);
+output += "\n";
+env.getExtension("RenderSnippet")["run"](context,"Product details",runtime.makeKeywordArgs({"invoice": runtime.contextOrFrameLookup(context, frame, "invoice"),"product": runtime.contextOrFrameLookup(context, frame, "product"),"colors": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors"),"properties": runtime.contextOrFrameLookup(context, frame, "properties")}), function(t_11,t_10) {
+if(t_11) { cb(t_11); return; }
+output += runtime.suppressValue(t_10, true && env.opts.autoescape);
+cb()})});
+}
+})(function(t_12) {
+if(t_12) { cb(t_12); return; }cb()});
+}
+})(function(t_13) {
+if(t_13) { cb(t_13); return; }output += "</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

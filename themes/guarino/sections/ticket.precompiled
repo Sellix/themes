@@ -1,0 +1,168 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = (lineno = 1, colno = 22, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("messageId", t_2, true);
+if(frame.topLevel) {
+context.setVariable("messageId", t_2);
+}
+if(frame.topLevel) {
+context.addExport("messageId", t_2);
+}
+var t_3;
+t_3 = (lineno = 2, colno = 21, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("submitId", t_3, true);
+if(frame.topLevel) {
+context.setVariable("submitId", t_3);
+}
+if(frame.topLevel) {
+context.addExport("submitId", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"ticketInfo")),"data")),"query")),"title");
+frame.set("title", t_4, true);
+if(frame.topLevel) {
+context.setVariable("title", t_4);
+}
+if(frame.topLevel) {
+context.addExport("title", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"ticketInfo")),"data")),"query")),"invoice_id");
+frame.set("invoice_id", t_5, true);
+if(frame.topLevel) {
+context.setVariable("invoice_id", t_5);
+}
+if(frame.topLevel) {
+context.addExport("invoice_id", t_5);
+}
+var t_6;
+t_6 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"ticketInfo")),"data")),"query")),"messages");
+frame.set("messages", t_6, true);
+if(frame.topLevel) {
+context.setVariable("messages", t_6);
+}
+if(frame.topLevel) {
+context.addExport("messages", t_6);
+}
+var t_7;
+t_7 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_7, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_7);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_7);
+}
+output += "\n<div\n  class=\"reply-screen shop animated fadeIn\"\n  style=\"margin-bottom: 1rem; border-radius: 0.5rem\"\n>\n  <div\n    class=\"container\"\n    style=\"background: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"ticket_container_background_color")), env.opts.autoescape);
+output += "; border: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"ticket_container_show_border")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += "; padding: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"ticket_container_padding"), env.opts.autoescape);
+output += "px\"\n  >\n    <div class=\"screen-header\">\n      <div class=\"screen-title-container\" style=\"justify-content: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"ticket_title_text_align"), env.opts.autoescape);
+output += ";\">\n        <div>\n          <h1\n            class=\"screen-title back\"\n            style=\"color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"ticket_title_font_color")), env.opts.autoescape);
+output += "; font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"ticket_title_font_size"), env.opts.autoescape);
+output += "px; font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"ticket_title_font_weight"), env.opts.autoescape);
+output += ";\"\n          >\n            Ticket: <span style=\"font-weight: 400; font-size: 20px; margin-left: 1rem;\">";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "title"), env.opts.autoescape);
+output += "</span>\n          </h1>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"reply-screen-container\">\n      <form\n        id=\"ticket-form-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\"\n        class=\"reply-screen-form ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "invoice_id")?"invoice w-70":"w-100"), env.opts.autoescape);
+output += "\"\n        style=\"background: #16132c!important; border: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"ticket_chat_show_border")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += ";\"\n      >\n        <div class=\"reply-screen-message-container\">\n";
+frame = frame.push();
+var t_10 = runtime.fromIterator(runtime.contextOrFrameLookup(context, frame, "messages"));
+runtime.asyncEach(t_10, 1, function(item, t_8, t_9,next) {
+frame.set("item", item);
+frame.set("loop.index", t_8 + 1);
+frame.set("loop.index0", t_8);
+frame.set("loop.revindex", t_9 - t_8);
+frame.set("loop.revindex0", t_9 - t_8 - 1);
+frame.set("loop.first", t_8 === 0);
+frame.set("loop.last", t_8 === t_9 - 1);
+frame.set("loop.length", t_9);
+var t_11;
+t_11 = runtime.memberLookup((item),"role");
+frame.set("role", t_11, true);
+if(frame.topLevel) {
+context.setVariable("role", t_11);
+}
+if(frame.topLevel) {
+context.addExport("role", t_11);
+}
+var t_12;
+t_12 = runtime.memberLookup((item),"message");
+frame.set("message", t_12, true);
+if(frame.topLevel) {
+context.setVariable("message", t_12);
+}
+if(frame.topLevel) {
+context.addExport("message", t_12);
+}
+var t_13;
+t_13 = runtime.memberLookup((item),"created_at");
+frame.set("created_at", t_13, true);
+if(frame.topLevel) {
+context.setVariable("created_at", t_13);
+}
+if(frame.topLevel) {
+context.addExport("created_at", t_13);
+}
+env.getExtension("RenderSnippet")["run"](context,"Ticket Message",runtime.makeKeywordArgs({"role": runtime.contextOrFrameLookup(context, frame, "role"),"message": runtime.contextOrFrameLookup(context, frame, "message"),"created_at": runtime.contextOrFrameLookup(context, frame, "created_at"),"properties": runtime.contextOrFrameLookup(context, frame, "properties")}), function(t_15,t_14) {
+if(t_15) { cb(t_15); return; }
+output += runtime.suppressValue(t_14, true && env.opts.autoescape);
+next(t_8);
+});
+}, function(t_17,t_16) {
+if(t_17) { cb(t_17); return; }
+frame = frame.pop();
+output += "        </div>\n\n        <div class=\"reply-screen-send-form-container\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Text area",runtime.makeKeywordArgs({"selector": runtime.contextOrFrameLookup(context, frame, "messageId"),"name": "message","placeholder": "Type a message","wrapperclass": "reply-screen-send-form","rows": 2,"textAreaHeight": "66px","autoresize": true,"wrapperClassName": "reply-screen-send-form","parentHeight": "66px"}), function(t_19,t_18) {
+if(t_19) { cb(t_19); return; }
+output += runtime.suppressValue(t_18, true && env.opts.autoescape);
+output += "            <i class=\"fa-solid fa-paper-plane-top cursor-pointer\" id=\"ticket-submit-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "submitId"), env.opts.autoescape);
+output += "\"></i>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n\n<script type='application/javascript'>\n  $(document).ready(function () {\n    const ticketComponent = new SellixTicketComponent(\n      '#ticket-form-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "',\n      '";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "messageId"), env.opts.autoescape);
+output += "',\n      '";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "submitId"), env.opts.autoescape);
+output += "',\n      '";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"ticketInfo")),"data")),"query")),"uniqid"), env.opts.autoescape);
+output += "',\n      ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("dump").call(context, runtime.contextOrFrameLookup(context, frame, "renderOptions"))), env.opts.autoescape);
+output += "\n    );\n  });\n</script>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+})});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

@@ -1,0 +1,144 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"product");
+frame.set("product", t_2, true);
+if(frame.topLevel) {
+context.setVariable("product", t_2);
+}
+if(frame.topLevel) {
+context.addExport("product", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_3, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_3);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_4, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_4);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_4);
+}
+output += "\n";
+var t_5;
+t_5 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_background_color")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_background_color"):"background_accent_dark");
+frame.set("backgroundColor", t_5, true);
+if(frame.topLevel) {
+context.setVariable("backgroundColor", t_5);
+}
+if(frame.topLevel) {
+context.addExport("backgroundColor", t_5);
+}
+var t_6;
+t_6 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_show_border")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_show_border"):true);
+frame.set("showBorder", t_6, true);
+if(frame.topLevel) {
+context.setVariable("showBorder", t_6);
+}
+if(frame.topLevel) {
+context.addExport("showBorder", t_6);
+}
+var t_7;
+t_7 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_border_radius")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_border_radius"):0.5);
+frame.set("borderRadius", t_7, true);
+if(frame.topLevel) {
+context.setVariable("borderRadius", t_7);
+}
+if(frame.topLevel) {
+context.addExport("borderRadius", t_7);
+}
+var t_8;
+t_8 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_shadow")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_shadow"):"none");
+frame.set("shadow", t_8, true);
+if(frame.topLevel) {
+context.setVariable("shadow", t_8);
+}
+if(frame.topLevel) {
+context.addExport("shadow", t_8);
+}
+var t_9;
+t_9 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_horiz")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_horiz"):16);
+frame.set("paddingHoriz", t_9, true);
+if(frame.topLevel) {
+context.setVariable("paddingHoriz", t_9);
+}
+if(frame.topLevel) {
+context.addExport("paddingHoriz", t_9);
+}
+var t_10;
+t_10 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_vert")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_vert"):16);
+frame.set("paddingVert", t_10, true);
+if(frame.topLevel) {
+context.setVariable("paddingVert", t_10);
+}
+if(frame.topLevel) {
+context.addExport("paddingVert", t_10);
+}
+output += "\n";
+(function(cb) {if(!runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"terms_of_service")) {
+output += "  <div class=\"empty-shop-container\" style=\"padding: 1rem 0;\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Empty feedbacks icon", function(t_12,t_11) {
+if(t_12) { cb(t_12); return; }
+output += runtime.suppressValue(t_11, true && env.opts.autoescape);
+output += "    <span class=\"empty-shop-title\">Product <b>";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"title"), env.opts.autoescape);
+output += "</b> has no Terms of Service.</span>\n  </div>\n";
+cb()});
+}
+else {
+output += "  <style>\n    .sellix-product-terms-of-service-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " {\n      border: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "showBorder")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += "!important;\n      background: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.contextOrFrameLookup(context, frame, "backgroundColor")), env.opts.autoescape);
+output += "!important;\n      border-radius: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "borderRadius"), env.opts.autoescape);
+output += "rem!important;\n      box-shadow: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "shadow"), env.opts.autoescape);
+output += "!important;\n      padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingVert"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHoriz"), env.opts.autoescape);
+output += "px!important;\n    }\n  </style>\n  <div class=\"sellix-product-terms-of-service-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\">\n    <div class=\"sellix-text\">\n      ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("html_sanitize").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"terms_of_service"))), env.opts.autoescape);
+output += "\n    </div>\n  </div>\n";
+cb();
+}
+})(function(t_13) {
+if(t_13) { cb(t_13); return; }if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

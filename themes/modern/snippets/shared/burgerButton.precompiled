@@ -1,0 +1,81 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"localClass");
+frame.set("localClass", t_2, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_2);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_3, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_3);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_3);
+}
+output += "\n";
+var t_4;
+t_4 = (lineno = 4, colno = 23, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"color"),"light_font_color"]));
+frame.set("color", t_4, true);
+if(frame.topLevel) {
+context.setVariable("color", t_4);
+}
+if(frame.topLevel) {
+context.addExport("color", t_4);
+}
+output += "\n";
+var t_5;
+t_5 = "snippet-burger-button";
+frame.set("globalClass", t_5, true);
+if(frame.topLevel) {
+context.setVariable("globalClass", t_5);
+}
+if(frame.topLevel) {
+context.addExport("globalClass", t_5);
+}
+output += "\n<style>\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__burger-button > div {\n    background: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "color")), env.opts.autoescape);
+output += ";\n  }\n  .snippet-burger-button__burger-button > div::before, .snippet-burger-button__burger-button > div::after {\n    background: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "color")), env.opts.autoescape);
+output += ";\n  }\n  .snippet-burger-button__burger-button.untoggled > div {\n    background: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "color")), env.opts.autoescape);
+output += ";\n  }\n</style>\n\n<div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__burger-button ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__burger-button untoggled\">\n  <div></div>\n</div>\n\n<script type=\"application/javascript\">\n  $(document).ready(function() {\n    $(document).on('SellixMobileMenu', (event, eventInfo) => {\n      const $burgerBtn = $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__burger-button');\n      if (eventInfo && eventInfo.action) {\n        switch (eventInfo.action) {\n          case 'open':\n            $burgerBtn.addClass('toggled');\n            $burgerBtn.removeClass('untoggled');\n            break;\n          case 'close':\n            $burgerBtn.removeClass('toggled');\n            $burgerBtn.addClass('untoggled');\n            break;\n        }\n      }\n    });\n  });\n</script>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

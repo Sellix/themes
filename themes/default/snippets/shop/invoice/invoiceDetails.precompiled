@@ -1,0 +1,39 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+output += "\n";
+env.getExtension("RenderSnippet")["run"](context,"App paypal", function(t_3,t_2) {
+if(t_3) { cb(t_3); return; }
+output += runtime.suppressValue(t_2, true && env.opts.autoescape);
+output += "\n<div id=\"invoice-details-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\"></div>\n\n<script type='application/javascript'>\n  $(document).ready(function () {\n    const { shopInfo, invoiceInfo } = window.SellixContext.get('common');\n    const isDark = ";
+output += runtime.suppressValue((env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"isDark")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"isDark"):runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"color_schema")),"dark_mode")), env.opts.autoescape);
+output += ";\n    let invoice = (invoiceInfo && invoiceInfo.invoice)\n\n    const invoiceDetailsComponent = new SellixInvoiceDetailsComponent({\n      selector: '#invoice-details-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "',\n      config: window.SellixContext.get('config'),\n      shop: shopInfo.shop,\n      invoiceId: invoice.uniqid,\n      invoice: invoice,\n      theme: { isDark },\n    });\n    invoiceDetailsComponent.render();\n  });\n</script>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

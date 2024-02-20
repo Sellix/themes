@@ -1,0 +1,145 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_1, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_1);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"colors");
+frame.set("colors", t_2, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_2);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_3, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_3);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_3);
+}
+output += "\n";
+var t_4;
+t_4 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_shop_info_logo")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_shop_info_logo"):true);
+frame.set("showLogo", t_4, true);
+if(frame.topLevel) {
+context.setVariable("showLogo", t_4);
+}
+if(frame.topLevel) {
+context.addExport("showLogo", t_4);
+}
+var t_5;
+t_5 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_info_logo_color")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_info_logo_color"):"brand_color");
+frame.set("logoColor", t_5, true);
+if(frame.topLevel) {
+context.setVariable("logoColor", t_5);
+}
+if(frame.topLevel) {
+context.addExport("logoColor", t_5);
+}
+var t_6;
+t_6 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_info_position")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_info_position"):"flex-start");
+frame.set("position", t_6, true);
+if(frame.topLevel) {
+context.setVariable("position", t_6);
+}
+if(frame.topLevel) {
+context.addExport("position", t_6);
+}
+var t_7;
+t_7 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_info_padding_horiz")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_info_padding_horiz"):16);
+frame.set("paddingHoriz", t_7, true);
+if(frame.topLevel) {
+context.setVariable("paddingHoriz", t_7);
+}
+if(frame.topLevel) {
+context.addExport("paddingHoriz", t_7);
+}
+var t_8;
+t_8 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_info_padding_vert")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_info_padding_vert"):0);
+frame.set("paddingVert", t_8, true);
+if(frame.topLevel) {
+context.setVariable("paddingVert", t_8);
+}
+if(frame.topLevel) {
+context.addExport("paddingVert", t_8);
+}
+output += "\n<div\n  class=\"shop-product-info-shop ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"classes"), env.opts.autoescape);
+output += "\"\n  style=\"justify-content: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "position"), env.opts.autoescape);
+output += "; padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingVert"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHoriz"), env.opts.autoescape);
+output += "px;\"\n>\n";
+if(runtime.contextOrFrameLookup(context, frame, "showLogo")) {
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_info_custom_logo")) {
+output += "      <img\n        src=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_info_custom_logo"), env.opts.autoescape);
+output += "\"\n        alt={shop.name}\n        class=\"sellix-shop-info-logo\"\n      />\n";
+;
+}
+else {
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"image_name")) {
+output += "        <img\n          src=\"";
+output += runtime.suppressValue((lineno = 24, colno = 25, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "cdn_link"), "cdn_link", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"cloudflare_image_id"),"avatar"])), env.opts.autoescape);
+output += "\"\n          alt={shop.name}\n          class=\"sellix-shop-info-logo\"\n        />\n";
+;
+}
+else {
+output += "        <i\n          class=\"fas fa-user-circle sellix-shop-info-logo-icon\"\n          style=\"color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.contextOrFrameLookup(context, frame, "logoColor")), env.opts.autoescape);
+output += "\"\n        ></i>\n";
+;
+}
+;
+}
+;
+}
+output += "\n  <span>\n    <a\n      href=\"/\"\n      style=\"color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_info_font_color")), env.opts.autoescape);
+output += "!important; font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_info_font_size"), env.opts.autoescape);
+output += "px; font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_info_font_weight"), env.opts.autoescape);
+output += ";\"\n    >\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_name")) {
+output += "        ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_name"), env.opts.autoescape);
+output += "\n";
+;
+}
+else {
+output += "        ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "\n";
+;
+}
+output += "    </a>\n  </span>\n</div>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

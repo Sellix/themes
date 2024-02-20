@@ -1,0 +1,36 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+output += "<style>\n\n.bannertext {\n  position: absolute;\n  width:100%;\n  height: 100%;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 2;\n}\n\n.bannertext h2{\n  text-align: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_Text_title_alignment"), env.opts.autoescape);
+output += ";\n  font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_Text_title_size"), env.opts.autoescape);
+output += "px;\n  font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_Text_title_thickness"), env.opts.autoescape);
+output += ";\n}\n.bannertext p{\n  text-align: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_Text_description_alignment"), env.opts.autoescape);
+output += ";\n  font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_Text_description_size"), env.opts.autoescape);
+output += "px;\n  font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_Text_description_thickness"), env.opts.autoescape);
+output += ";\n  color: transparent;\n  -webkit-text-stroke-width: 1px;\n}\n</style>\n\n<div class=\"bannertext\">\n    <h2>";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_Text_title"), env.opts.autoescape);
+output += "</h2>\n    <p>";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"banner_Text_description"), env.opts.autoescape);
+output += "</p>\n\n</div>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

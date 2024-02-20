@@ -1,0 +1,48 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"invoice");
+frame.set("invoice", t_1, true);
+if(frame.topLevel) {
+context.setVariable("invoice", t_1);
+}
+if(frame.topLevel) {
+context.addExport("invoice", t_1);
+}
+output += "\n<div class=\"sellix-delivery-product skip mb-0 mt-5\">\n  <div class=\"sellix-delivery-product-title\" style=\"margin-top: -2rem\">\n    Subscription Purchase\n  </div>\n  <div class=\"sellix-delivery-product-item\">\n\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"subtype")) {
+output += "      <div class=\"sellix-text\">\n        <p class=\"sellix-delivery-product-item-subtype\">\n          <strong>";
+output += runtime.suppressValue(env.getFilter("lower").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"subtype")), env.opts.autoescape);
+output += "</strong> subscriptions are sent directly to your email, please check for an email sent by\n          <a href=\"mailto:notice@orders.sellix.io\" target=\"_blank\">notice@orders.sellix.io</a> to get your product and/or get in touch with the business.\n        </p>\n      </div>\n";
+;
+}
+output += "\n    <div class=\"sellix-text\">\n";
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"subtype")) {
+env.getExtension("RenderSnippet")["run"](context,"Alert",runtime.makeKeywordArgs({"show": true,"small": true,"blue": true,"title": "Please note","text": "If you need help, please refer to the merchant's contact page using the button below. You can also access our customer billing portal to manage the active subscriptions in your name."}), function(t_3,t_2) {
+if(t_3) { cb(t_3); return; }
+output += runtime.suppressValue(t_2, true && env.opts.autoescape);
+cb()});
+}
+else {
+output += "        <p>\n          You can now return to the merchant's website, where the subscription will be active soon.\n          If you need help, please refer to the merchant's contact page using the button below.\n          You can also access our customer billing portal to manage the active subscriptions in your name.\n        </p>\n";
+cb();
+}
+})(function(t_4) {
+if(t_4) { cb(t_4); return; }output += "    </div>\n\n    <div class=\"sellix-delivery-product-buttons\">\n      <a href=\"/contact\" class=\"w-50 mr-3 medium primary\">\n        <button type=\"button\" class=\"w-100 medium primary\">Contact the merchant</button>\n      </a>\n      <button\n        type=\"button\"\n        class=\"w-50 medium primary\"\n        onclick=\"window.sellixHelper.redirectToSubLink('customer-portal', '/')\"\n      >\n        Go to the customer billing portal\n      </button>\n    </div>\n  </div>\n</div>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

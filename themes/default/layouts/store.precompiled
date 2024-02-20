@@ -1,0 +1,211 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+output += "<!DOCTYPE>\n<html\n  lang=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"locales")),"language"), env.opts.autoescape);
+output += "\"\n  style=\"background-color: var(--backgroundColor);\"\n  class=\"scroll-hidden\"\n>\n  <head>\n    <base id='main-base-tag' href=\"/";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"locales")),"locale"), env.opts.autoescape);
+output += "/\">\n    <meta charset=\"utf-8\"/>\n\n    <script src='";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "js.cookie.min.js"), env.opts.autoescape);
+output += "'></script>\n";
+env.getExtension("RenderSnippet")["run"](context,"App google analytics", function(t_2,t_1) {
+if(t_2) { cb(t_2); return; }
+output += runtime.suppressValue(t_1, true && env.opts.autoescape);
+env.getExtension("RenderSnippet")["run"](context,"Main meta", function(t_4,t_3) {
+if(t_4) { cb(t_4); return; }
+output += runtime.suppressValue(t_3, true && env.opts.autoescape);
+output += "\n    <link rel=\"icon\" type=\"image/x-icon\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "favicon.ico"), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"icon\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "favicon.ico"), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "favicon.ico"), env.opts.autoescape);
+output += "\">\n    <link rel=\"apple-touch-icon\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "favicon.ico"), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"shortcut icon\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "favicon.ico"), env.opts.autoescape);
+output += "\">\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/>\n\n    <link rel=\"preconnect\" href=\"https://cdn.sellix.io/\"/>\n    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\">\n\n    <link rel=\"preload\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "loader.css"), env.opts.autoescape);
+output += "\" as=\"style\"/>\n\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com/\"/>\n    <link rel=\"preload\" href=\"https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap\" as=\"style\" >\n    <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap\" rel=\"stylesheet\">\n\n";
+var t_5;
+t_5 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"typography")),"font");
+frame.set("font", t_5, true);
+if(frame.topLevel) {
+context.setVariable("font", t_5);
+}
+if(frame.topLevel) {
+context.addExport("font", t_5);
+}
+var t_6;
+t_6 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"background")),"background_image");
+frame.set("backgroundImage", t_6, true);
+if(frame.topLevel) {
+context.setVariable("backgroundImage", t_6);
+}
+if(frame.topLevel) {
+context.addExport("backgroundImage", t_6);
+}
+output += "\n    <link href=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "font")),"href"), env.opts.autoescape);
+output += "\" rel=\"stylesheet\">\n\n    <style>\n      @font-face {\n        font-family: \"Inter var\";\n        font-weight: 100 900;\n        font-display: swap;\n        font-style: normal;\n        font-named-instance: \"Regular\";\n        src: url(";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "Inter.woff2"), env.opts.autoescape);
+output += ") format(\"woff2\");\n      }\n\n      body {\n        transition: background 0.9s;\n        background-color: #0000;\n        font-size: 14px;\n        -webkit-font-smoothing: antialiased;\n        margin: 0;\n        font-family: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "font")),"fontFamily") == "Inter"?"Inter var":runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "font")),"fontFamily")), env.opts.autoescape);
+output += ",\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "font")),"systemFont") == "sans-serif") {
+output += "            sans-serif\n";
+;
+}
+else {
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "font")),"systemFont") == "serif") {
+output += "            serif\n";
+;
+}
+else {
+output += "            monospace\n";
+;
+}
+;
+}
+output += " !important;\n      }\n    </style>\n\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "root-styles.css"), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "fa-icons.css"), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "shop-common-styles.css"), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "loader.css"), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "button.css"), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "toastify.css"), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "modal.css"), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "font-awesome.css"), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "badge.css"), env.opts.autoescape);
+output += "\"/>\n\n    ";
+output += "\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "section-header.css"), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "section-footer.css"), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "section-menu.css"), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "section-contact-form.css"), env.opts.autoescape);
+output += "\"/>\n\n    ";
+output += "\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "block-table-pagination.css"), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "block-store-code.css"), env.opts.autoescape);
+output += "\"/>\n\n    ";
+output += "\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-text-text-area.css"), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-product-cards.css"), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-price-variants.css"), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-shop-info.css"), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-alert.css"), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-language-selector.css"), env.opts.autoescape);
+output += "\"/>\n\n";
+var t_7;
+t_7 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"theme");
+frame.set("theme", t_7, true);
+if(frame.topLevel) {
+context.setVariable("theme", t_7);
+}
+if(frame.topLevel) {
+context.addExport("theme", t_7);
+}
+output += "    <style>\n";
+env.getExtension("RenderSnippet")["run"](context,"Root css variables", function(t_9,t_8) {
+if(t_9) { cb(t_9); return; }
+output += runtime.suppressValue(t_8, true && env.opts.autoescape);
+output += "    </style>\n\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "select2.css"), env.opts.autoescape);
+output += "\"/>\n\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "magnific-popup.1.1.0.css"), env.opts.autoescape);
+output += "\" />\n    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css\" />\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css\" />\n    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css\" />\n    <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "jquery.js"), env.opts.autoescape);
+output += "\"></script>\n    <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "quicklink.umd.js"), env.opts.autoescape);
+output += "\"></script>\n  </head>\n\n  <body class=\"";
+output += runtime.suppressValue((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"theme")),"isDark")?"dark is-dark darkTheme":""), env.opts.autoescape);
+output += "\">\n\n    <div id=\"app\">\n      <div class=\"sellix-store\">\n        <div id=\"content\">\n";
+env.getExtension("RenderTemplate")["run"](context,"default", function(t_11,t_10) {
+if(t_11) { cb(t_11); return; }
+output += runtime.suppressValue(t_10, true && env.opts.autoescape);
+output += "        </div>\n      </div>\n    </div>\n\n    <div id=\"modal\">\n\n    </div>\n\n    <script>\n      window.__RENDER_CONTEXT__ = ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("dump").call(context, runtime.contextOrFrameLookup(context, frame, "global"))), env.opts.autoescape);
+output += ";\n      window.RECAPTCHA_PUBLIC_KEY = window.__RENDER_CONTEXT__.config.CAPTCHA_SITE_KEY_V3;\n      window.RECAPTCHA_PUBLIC_KEY_V2 = window.__RENDER_CONTEXT__.config.RECAPTCHA;\n    </script>\n\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"page_loader")),"enabled")) {
+output += "      <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "pace-theme.css"), env.opts.autoescape);
+output += "\"/>\n\n      <style>\n        .pace .pace-progress {\n          height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"page_loader")),"height"), env.opts.autoescape);
+output += "px;\n          background: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"page_loader")),"color"), env.opts.autoescape);
+output += ";\n        }\n      </style>\n      <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "pace.min.js"), env.opts.autoescape);
+output += "\"></script>\n";
+;
+}
+output += "\n    <script type='application/javascript'>\n      (function() {\n        $(document).ready(function () {\n          setTimeout(function () {\n            const html = document.documentElement.classList;\n            const $loader = $('#loader');\n            if($loader) {\n              $loader.remove();\n            }\n            html.remove('scroll-hidden');\n          }, 500);\n        });\n      })();\n    </script>\n\n    <script type='application/javascript'>\n      // Simple toastify handler\n      $(document).ready(function () {\n        $(document).on('SellixToastify', function(e, eventInfo) {\n          const toastifyContainer = $(`\n            <div class=\"toastify-container\">\n              <div class=\"toastify-container-title ${eventInfo.type}\">\n                <i class=\"toastify-container-title-icon fa-solid ${eventInfo.type === 'success' ? \"fa-check\" : \"fa-xmark\"}\"></i>\n                <div class=\"toastify-container-message\">\n                  ${eventInfo.text}\n                </div>\n              </div>\n              <div class=\"toastify-container-note\">\n                ${eventInfo.type === 'success'\n                  ? \"";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.shared.toastify.success"), env.opts.autoescape);
+output += "\"\n                  : \"";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.shared.toastify.fail"), env.opts.autoescape);
+output += "\"\n                }\n              </div>\n            </div>\n          `)[0];\n\n          const toast = Toastify({\n            duration: 5000,\n            selector: 'content',\n            offset: {\n              x: '1rem',\n              y: '70px',\n            },\n            node: toastifyContainer,\n            gravity: \"top\",\n            position: \"right\",\n            onClick: function() {\n              if (toast) {\n                toast.hideToast();\n              }\n            }\n          }).showToast();\n        });\n      });\n    </script>\n\n    <script type='application/javascript'>\n      $(document).ready(function() {\n        const name = '";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop")),"name"), env.opts.autoescape);
+output += "';\n        sellixApi.ping(name);\n      });\n    </script>\n\n    <script async src=\"https://js.stripe.com/v3/\"></script>\n    <script src=\"https://www.google.com/recaptcha/api.js?render=";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"config")),"CAPTCHA_SITE_KEY_V3"), env.opts.autoescape);
+output += "\"></script>\n    <script src=\"https://unpkg.com/react@17.0.2/umd/react.production.min.js\" crossorigin></script>\n    <script src=\"https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js\" crossorigin></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.8.1/prop-types.min.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js\"></script>\n\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jsrender/1.0.11/jsrender.min.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery.waitforimages/1.5.0/jquery.waitforimages.min.js\"></script>\n\n    <script src=\"https://cdn.jsdelivr.net/npm/toastify-js\"></script>\n\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js\"></script>\n\n    <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "copy-to-clipboard.min.js"), env.opts.autoescape);
+output += "\"></script>\n    <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "ripple.js"), env.opts.autoescape);
+output += "\"></script>\n    <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "react-simple-star-rating.js"), env.opts.autoescape);
+output += "\"></script>\n    <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "select2.js"), env.opts.autoescape);
+output += "\"></script>\n    <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "magnific-popup.1.1.0.min.js"), env.opts.autoescape);
+output += "\"></script>\n    <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "ReactPlayer.standalone.js"), env.opts.autoescape);
+output += "\"></script>\n\n    <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-context.js"), env.opts.autoescape);
+output += "\"></script>\n    <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-store.js"), env.opts.autoescape);
+output += "\"></script>\n    <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-api.js"), env.opts.autoescape);
+output += "\"></script>\n    <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-helper.js"), env.opts.autoescape);
+output += "\"></script>\n    <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-store-code-component.js"), env.opts.autoescape);
+output += "\"></script>\n\n";
+env.getExtension("RenderSnippet")["run"](context,"App cookie modal", function(t_13,t_12) {
+if(t_13) { cb(t_13); return; }
+output += runtime.suppressValue(t_12, true && env.opts.autoescape);
+env.getExtension("RenderSnippet")["run"](context,"I18Next", function(t_15,t_14) {
+if(t_15) { cb(t_15); return; }
+output += runtime.suppressValue(t_14, true && env.opts.autoescape);
+output += "\n  </body>\n</html>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+})})})})})});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

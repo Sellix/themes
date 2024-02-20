@@ -1,0 +1,100 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"group");
+frame.set("group", t_1, true);
+if(frame.topLevel) {
+context.setVariable("group", t_1);
+}
+if(frame.topLevel) {
+context.addExport("group", t_1);
+}
+output += "\n";
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo");
+frame.set("shopInfo", t_2, true);
+if(frame.topLevel) {
+context.setVariable("shopInfo", t_2);
+}
+if(frame.topLevel) {
+context.addExport("shopInfo", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shopInfo")),"shop");
+frame.set("shop", t_3, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_3);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_3);
+}
+var t_4;
+t_4 = env.getFilter("int").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"hide_out_of_stock"));
+frame.set("hideOutOfStock", t_4, true);
+if(frame.topLevel) {
+context.setVariable("hideOutOfStock", t_4);
+}
+if(frame.topLevel) {
+context.addExport("hideOutOfStock", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"hide_stock_counter");
+frame.set("hideStockCounter", t_5, true);
+if(frame.topLevel) {
+context.setVariable("hideStockCounter", t_5);
+}
+if(frame.topLevel) {
+context.addExport("hideStockCounter", t_5);
+}
+var t_6;
+t_6 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"cartEnabled") || runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"cart")),"is_enabled");
+frame.set("cartEnabled", t_6, true);
+if(frame.topLevel) {
+context.setVariable("cartEnabled", t_6);
+}
+if(frame.topLevel) {
+context.addExport("cartEnabled", t_6);
+}
+output += "\n";
+var t_7;
+t_7 = "sellix-group-card-products";
+frame.set("globalClass", t_7, true);
+if(frame.topLevel) {
+context.setVariable("globalClass", t_7);
+}
+if(frame.topLevel) {
+context.addExport("globalClass", t_7);
+}
+var t_8;
+t_8 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_8, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_8);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_8);
+}
+output += "\n<div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Product list",runtime.makeKeywordArgs({"cart_enabled": runtime.contextOrFrameLookup(context, frame, "cartEnabled"),"products": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "group")),"products_bound"),"hide_out_of_stock": runtime.contextOrFrameLookup(context, frame, "hideOutOfStock"),"hide_stock_counter": runtime.contextOrFrameLookup(context, frame, "hideStockCounter")}), function(t_10,t_9) {
+if(t_10) { cb(t_10); return; }
+output += runtime.suppressValue(t_9, true && env.opts.autoescape);
+output += "</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

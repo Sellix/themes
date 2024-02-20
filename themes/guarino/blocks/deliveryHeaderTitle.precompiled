@@ -1,0 +1,222 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+output += "\n";
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"invoiceInfo")),"invoice");
+frame.set("invoice", t_2, true);
+if(frame.topLevel) {
+context.setVariable("invoice", t_2);
+}
+if(frame.topLevel) {
+context.addExport("invoice", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"invoiceInfo")),"info");
+frame.set("info", t_3, true);
+if(frame.topLevel) {
+context.setVariable("info", t_3);
+}
+if(frame.topLevel) {
+context.addExport("info", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"product") || {};
+frame.set("product", t_4, true);
+if(frame.topLevel) {
+context.setVariable("product", t_4);
+}
+if(frame.topLevel) {
+context.addExport("product", t_4);
+}
+var t_5;
+t_5 = (runtime.contextOrFrameLookup(context, frame, "invoice")?(env.getFilter("int").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"developer_invoice"))):false);
+frame.set("isDev", t_5, true);
+if(frame.topLevel) {
+context.setVariable("isDev", t_5);
+}
+if(frame.topLevel) {
+context.addExport("isDev", t_5);
+}
+var t_6;
+t_6 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"type") == "PRODUCT_SUBSCRIPTION";
+frame.set("isProductSubscription", t_6, true);
+if(frame.topLevel) {
+context.setVariable("isProductSubscription", t_6);
+}
+if(frame.topLevel) {
+context.addExport("isProductSubscription", t_6);
+}
+var t_7;
+t_7 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"type") == "SUBSCRIPTION";
+frame.set("isSubscription", t_7, true);
+if(frame.topLevel) {
+context.setVariable("isSubscription", t_7);
+}
+if(frame.topLevel) {
+context.addExport("isSubscription", t_7);
+}
+var t_8;
+t_8 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"type") == "SHOPPING_CART";
+frame.set("isShoppingCart", t_8, true);
+if(frame.topLevel) {
+context.setVariable("isShoppingCart", t_8);
+}
+if(frame.topLevel) {
+context.addExport("isShoppingCart", t_8);
+}
+var t_9;
+t_9 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_9, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_9);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_9);
+}
+output += "\n";
+var t_10;
+t_10 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_color")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_color"):"light_font_color");
+frame.set("titleFontColor", t_10, true);
+if(frame.topLevel) {
+context.setVariable("titleFontColor", t_10);
+}
+if(frame.topLevel) {
+context.addExport("titleFontColor", t_10);
+}
+var t_11;
+t_11 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_size")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_size"):24);
+frame.set("titleFontSize", t_11, true);
+if(frame.topLevel) {
+context.setVariable("titleFontSize", t_11);
+}
+if(frame.topLevel) {
+context.addExport("titleFontSize", t_11);
+}
+var t_12;
+t_12 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_weight")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_weight"):400);
+frame.set("titleFontWeight", t_12, true);
+if(frame.topLevel) {
+context.setVariable("titleFontWeight", t_12);
+}
+if(frame.topLevel) {
+context.addExport("titleFontWeight", t_12);
+}
+var t_13;
+t_13 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_text_align")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_text_align"):"left");
+frame.set("titleTextAlign", t_13, true);
+if(frame.topLevel) {
+context.setVariable("titleTextAlign", t_13);
+}
+if(frame.topLevel) {
+context.addExport("titleTextAlign", t_13);
+}
+output += "\n<style>\n  .sellix-delivery-title-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " .sellix-delivery-header-title-text {\n    color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.contextOrFrameLookup(context, frame, "titleFontColor")), env.opts.autoescape);
+output += "!important;\n    font-size: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleFontSize"), env.opts.autoescape);
+output += "px!important;\n    font-weight: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleFontWeight"), env.opts.autoescape);
+output += "!important;\n    justify-content: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleTextAlign"), env.opts.autoescape);
+output += ";\n  }\n\n  .sellix-delivery-title-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " .sellix-delivery-header-title-uniqid {\n    color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.contextOrFrameLookup(context, frame, "titleFontColor")), env.opts.autoescape);
+output += "!important;\n    font-size: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleFontSize") * 0.7, env.opts.autoescape);
+output += "px!important;\n    font-weight: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleFontWeight"), env.opts.autoescape);
+output += "!important;\n    justify-content: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleTextAlign"), env.opts.autoescape);
+output += ";\n  }\n</style>\n\n<div id=\"sellix-delivery-title-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\" class=\"sellix-delivery-title-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\">\n";
+if(runtime.contextOrFrameLookup(context, frame, "isDev")) {
+output += "    <div class=\"sellix-delivery-header-title-text w-100\">Payment Completed</div>\n";
+;
+}
+else {
+if(runtime.contextOrFrameLookup(context, frame, "isSubscription")) {
+output += "    <span class=\"sellix-delivery-header-title-text\">\n      Your Order for <strong>";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"subscription")),"name"), env.opts.autoescape);
+output += " Subscription</strong> is completed.\n    </span>\n";
+;
+}
+else {
+if(runtime.contextOrFrameLookup(context, frame, "isShoppingCart")) {
+output += "    <span class=\"sellix-delivery-header-title-text\">Order for Shopping Cart is completed.</span>\n";
+;
+}
+else {
+if(runtime.contextOrFrameLookup(context, frame, "isProductSubscription")) {
+output += "    <span class=\"sellix-delivery-header-title-text\">Your subscription purchase was successful.</span>\n";
+;
+}
+else {
+output += "    <span class=\"sellix-delivery-header-title-text\">Your Order for <b>";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"title"), env.opts.autoescape);
+output += "</b> is completed.</span>\n";
+;
+}
+;
+}
+;
+}
+;
+}
+output += "\n  <div class=\"sellix-delivery-header-title-uniqid ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isShoppingCart")?"is-cart":""), env.opts.autoescape);
+output += "\">\n    <span class=\"d-flex\">\n      <span>Invoice ID:</span>\n      <span class=\"sellix-copy-invoice-id cursor-pointer\">\n        <b>\n          ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"uniqid"), env.opts.autoescape);
+output += "\n          <div class=\"ml-2\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Copy icon", function(t_15,t_14) {
+if(t_15) { cb(t_15); return; }
+output += runtime.suppressValue(t_14, true && env.opts.autoescape);
+output += "          </div>\n        </b>\n      </span>\n      <div class=\"sellix-copied-label\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Check icon", function(t_17,t_16) {
+if(t_17) { cb(t_17); return; }
+output += runtime.suppressValue(t_16, true && env.opts.autoescape);
+output += "        <span>Copied</span>\n      </div>\n    </span>\n\n";
+if(runtime.contextOrFrameLookup(context, frame, "info") && runtime.contextOrFrameLookup(context, frame, "isShoppingCart")) {
+output += "      <button class=\"sellix-save-invoice-btn medium primary\">\n        <i class=\"fas fa-save\"></i>&nbsp;&nbsp;Download Invoice\n      </button>\n";
+;
+}
+output += "  </div>\n</div>\n\n<script type=\"application/javascript\">\n  $(document).ready(function() {\n    const $container = $('#sellix-delivery-title-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "');\n\n    $container.find('.sellix-save-invoice-btn').on('click', function() {\n      window.sellixHelper.saveInvoiceToFile('";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"uniqid"), env.opts.autoescape);
+output += "', '";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"product_type"), env.opts.autoescape);
+output += "');\n    });\n\n    $container.find('.sellix-copy-invoice-id').on('click', function() {\n      window.copyToClipboard('";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"uniqid"), env.opts.autoescape);
+output += "');\n\n      $container.find('.sellix-delivery-header-title-uniqid .sellix-copied-label').addClass('show');\n      setTimeout(function() {\n        $('.sellix-delivery-header-title-uniqid .sellix-copied-label').removeClass('show');\n      }, 1000)\n    });\n  });\n</script>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+})});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

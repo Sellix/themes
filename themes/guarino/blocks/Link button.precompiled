@@ -1,0 +1,24 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+output += "<style>\n.linkbutton {\n  background-color: #7040F2;\n  color: #FFF;\n  padding: 15px 32px;\n  text-align: center;\n  display: inline-block;\n  font-size: 16px;\n  font-weight: 600;\n  cursor: pointer;\n  border-style: solid;\n  border-color: #7040F2;\n  border-width: 1px 1px 1px 1px;\n  border-radius: 5px 5px 5px 5px;\n}\n.sellix-banner{\n  justify-content: center;\n}\n</style>\n\n<div class=sellix-button2>\n<a href=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"button_link"), env.opts.autoescape);
+output += "\" class=\"linkbutton\">";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"button_label"), env.opts.autoescape);
+output += "</a>\n</div>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

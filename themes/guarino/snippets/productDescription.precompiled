@@ -1,0 +1,73 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_2, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_2);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"product");
+frame.set("product", t_3, true);
+if(frame.topLevel) {
+context.setVariable("product", t_3);
+}
+if(frame.topLevel) {
+context.addExport("product", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"invoiceInfo")),"invoice");
+frame.set("invoice", t_4, true);
+if(frame.topLevel) {
+context.setVariable("invoice", t_4);
+}
+if(frame.topLevel) {
+context.addExport("invoice", t_4);
+}
+output += "\n<div class=\"shop-product-info-product-description\">\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"developer_invoice")) {
+output += "    <div class=\"sellix-text p-3\" style=\"border-radius: .25rem\">\n      <p>\n        You are purchasing a service by ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"title"), env.opts.autoescape);
+output += ".\n        Once your payment is completed and this invoice flagged as paid, you will be redirected back to ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"title"), env.opts.autoescape);
+output += "'s site.\n        If you have any issue, please refer directly to ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"title"), env.opts.autoescape);
+output += "'s support.\n      </p>\n    </div>\n";
+;
+}
+else {
+output += "    <div class=\"sellix-text\">\n      ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("html_sanitize").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"description"))), env.opts.autoescape);
+output += "\n    </div>\n";
+;
+}
+output += "</div>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

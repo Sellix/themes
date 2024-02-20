@@ -1,0 +1,89 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"on_change");
+frame.set("onChange", t_2, true);
+if(frame.topLevel) {
+context.setVariable("onChange", t_2);
+}
+if(frame.topLevel) {
+context.addExport("onChange", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"render_callback") || (env.getFilter("join").call(context, ["render_",runtime.contextOrFrameLookup(context, frame, "id")]));
+frame.set("renderCallback", t_3, true);
+if(frame.topLevel) {
+context.setVariable("renderCallback", t_3);
+}
+if(frame.topLevel) {
+context.addExport("renderCallback", t_3);
+}
+output += "\n";
+var t_4;
+t_4 = "snippet-code-input";
+frame.set("globalClass", t_4, true);
+if(frame.topLevel) {
+context.setVariable("globalClass", t_4);
+}
+if(frame.topLevel) {
+context.addExport("globalClass", t_4);
+}
+var t_5;
+t_5 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_5, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_5);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_5);
+}
+output += "\n<div id=\"widget-react-code-input-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\" class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "\"></div>\n\n<script type='application/javascript'>\n  const domContainer_";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " = document.querySelector('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " .code-input');\n\n  function ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "renderCallback"), env.opts.autoescape);
+output += "(val) {\n    const container = $('<div></div>');\n    ReactDOM.render(\n      React.createElement(ReactCodeInput, {\n        type: 'number',\n        fields: 8,\n        onChange: (val) => {\n";
+if(runtime.contextOrFrameLookup(context, frame, "onChange")) {
+output += "            ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "onChange"), env.opts.autoescape);
+output += "(val);\n";
+;
+}
+output += "        },\n        value: val,\n      }),\n      container.get(0),\n    );\n\n    $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "').html(container);\n  }\n\n  $(document).ready(function () {\n    ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "renderCallback"), env.opts.autoescape);
+output += "('');\n  });\n</script>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

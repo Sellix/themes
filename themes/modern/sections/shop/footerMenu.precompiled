@@ -1,0 +1,565 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_1, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_1);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_1);
+}
+var t_2;
+t_2 = (lineno = 1, colno = 31, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "context"), "context", context, []));
+frame.set("currentContext", t_2, true);
+if(frame.topLevel) {
+context.setVariable("currentContext", t_2);
+}
+if(frame.topLevel) {
+context.addExport("currentContext", t_2);
+}
+output += "\n";
+var t_3;
+t_3 = (lineno = 3, colno = 26, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"common")),"shop_name"),null])) || runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name");
+frame.set("shopName", t_3, true);
+if(frame.topLevel) {
+context.setVariable("shopName", t_3);
+}
+if(frame.topLevel) {
+context.addExport("shopName", t_3);
+}
+var t_4;
+t_4 = (lineno = 4, colno = 27, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"common")),"logo_image"),null]));
+frame.set("logoImage", t_4, true);
+if(frame.topLevel) {
+context.setVariable("logoImage", t_4);
+}
+if(frame.topLevel) {
+context.addExport("logoImage", t_4);
+}
+var t_5;
+t_5 = (lineno = 5, colno = 26, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"logo_type"),"logo"]));
+frame.set("logoType", t_5, true);
+if(frame.topLevel) {
+context.setVariable("logoType", t_5);
+}
+if(frame.topLevel) {
+context.addExport("logoType", t_5);
+}
+var t_6;
+t_6 = (lineno = 6, colno = 31, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"logo_image_size"),30]));
+frame.set("logoImageSize", t_6, true);
+if(frame.topLevel) {
+context.setVariable("logoImageSize", t_6);
+}
+if(frame.topLevel) {
+context.addExport("logoImageSize", t_6);
+}
+var t_7;
+t_7 = (lineno = 7, colno = 39, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"logo_image_border_radius"),30]));
+frame.set("logoImageBorderRadius", t_7, true);
+if(frame.topLevel) {
+context.setVariable("logoImageBorderRadius", t_7);
+}
+if(frame.topLevel) {
+context.addExport("logoImageBorderRadius", t_7);
+}
+var t_8;
+t_8 = (lineno = 8, colno = 35, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_name_font_color"),"dark_font_color"]));
+frame.set("shopNameFontColor", t_8, true);
+if(frame.topLevel) {
+context.setVariable("shopNameFontColor", t_8);
+}
+if(frame.topLevel) {
+context.addExport("shopNameFontColor", t_8);
+}
+var t_9;
+t_9 = (lineno = 9, colno = 34, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_name_font_size"),18]));
+frame.set("shopNameFontSize", t_9, true);
+if(frame.topLevel) {
+context.setVariable("shopNameFontSize", t_9);
+}
+if(frame.topLevel) {
+context.addExport("shopNameFontSize", t_9);
+}
+var t_10;
+t_10 = (lineno = 10, colno = 36, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_name_font_weight"),700]));
+frame.set("shopNameFontWeight", t_10, true);
+if(frame.topLevel) {
+context.setVariable("shopNameFontWeight", t_10);
+}
+if(frame.topLevel) {
+context.addExport("shopNameFontWeight", t_10);
+}
+var t_11;
+t_11 = (lineno = 11, colno = 36, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"shop_name_line_height"),20]));
+frame.set("shopNameLineHeight", t_11, true);
+if(frame.topLevel) {
+context.setVariable("shopNameLineHeight", t_11);
+}
+if(frame.topLevel) {
+context.addExport("shopNameLineHeight", t_11);
+}
+output += "\n";
+var t_12;
+t_12 = (lineno = 13, colno = 36, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"menu_title_font_color"),"black4"]));
+frame.set("menuTitleFontColor", t_12, true);
+if(frame.topLevel) {
+context.setVariable("menuTitleFontColor", t_12);
+}
+if(frame.topLevel) {
+context.addExport("menuTitleFontColor", t_12);
+}
+var t_13;
+t_13 = (lineno = 14, colno = 35, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"menu_title_font_size"),14]));
+frame.set("menuTitleFontSize", t_13, true);
+if(frame.topLevel) {
+context.setVariable("menuTitleFontSize", t_13);
+}
+if(frame.topLevel) {
+context.addExport("menuTitleFontSize", t_13);
+}
+var t_14;
+t_14 = (lineno = 15, colno = 37, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"menu_title_font_weight"),500]));
+frame.set("menuTitleFontWeight", t_14, true);
+if(frame.topLevel) {
+context.setVariable("menuTitleFontWeight", t_14);
+}
+if(frame.topLevel) {
+context.addExport("menuTitleFontWeight", t_14);
+}
+var t_15;
+t_15 = (lineno = 16, colno = 37, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"menu_title_line_height"),20]));
+frame.set("menuTitleLineHeight", t_15, true);
+if(frame.topLevel) {
+context.setVariable("menuTitleLineHeight", t_15);
+}
+if(frame.topLevel) {
+context.addExport("menuTitleLineHeight", t_15);
+}
+output += "\n";
+var t_16;
+t_16 = (lineno = 18, colno = 35, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"menu_item_font_color"),"dark_font_color"]));
+frame.set("menuItemFontColor", t_16, true);
+if(frame.topLevel) {
+context.setVariable("menuItemFontColor", t_16);
+}
+if(frame.topLevel) {
+context.addExport("menuItemFontColor", t_16);
+}
+var t_17;
+t_17 = (lineno = 19, colno = 34, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"menu_item_font_size"),14]));
+frame.set("menuItemFontSize", t_17, true);
+if(frame.topLevel) {
+context.setVariable("menuItemFontSize", t_17);
+}
+if(frame.topLevel) {
+context.addExport("menuItemFontSize", t_17);
+}
+var t_18;
+t_18 = (lineno = 20, colno = 36, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"menu_item_font_weight"),400]));
+frame.set("menuItemFontWeight", t_18, true);
+if(frame.topLevel) {
+context.setVariable("menuItemFontWeight", t_18);
+}
+if(frame.topLevel) {
+context.addExport("menuItemFontWeight", t_18);
+}
+var t_19;
+t_19 = (lineno = 21, colno = 36, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"menu_item_line_height"),20]));
+frame.set("menuItemLineHeight", t_19, true);
+if(frame.topLevel) {
+context.setVariable("menuItemLineHeight", t_19);
+}
+if(frame.topLevel) {
+context.addExport("menuItemLineHeight", t_19);
+}
+output += "\n";
+var t_20;
+t_20 = (lineno = 23, colno = 27, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"fullwidth"),false]));
+frame.set("fullWidth", t_20, true);
+if(frame.topLevel) {
+context.setVariable("fullWidth", t_20);
+}
+if(frame.topLevel) {
+context.addExport("fullWidth", t_20);
+}
+var t_21;
+t_21 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"background_color");
+frame.set("bgColor", t_21, true);
+if(frame.topLevel) {
+context.setVariable("bgColor", t_21);
+}
+if(frame.topLevel) {
+context.addExport("bgColor", t_21);
+}
+var t_22;
+t_22 = (lineno = 25, colno = 34, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"margin_top_desktop"),0]));
+frame.set("marginTopDesktop", t_22, true);
+if(frame.topLevel) {
+context.setVariable("marginTopDesktop", t_22);
+}
+if(frame.topLevel) {
+context.addExport("marginTopDesktop", t_22);
+}
+var t_23;
+t_23 = (lineno = 26, colno = 37, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"margin_bottom_desktop"),120]));
+frame.set("marginBottomDesktop", t_23, true);
+if(frame.topLevel) {
+context.setVariable("marginBottomDesktop", t_23);
+}
+if(frame.topLevel) {
+context.addExport("marginBottomDesktop", t_23);
+}
+var t_24;
+t_24 = (lineno = 27, colno = 35, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_top_desktop"),0]));
+frame.set("paddingTopDesktop", t_24, true);
+if(frame.topLevel) {
+context.setVariable("paddingTopDesktop", t_24);
+}
+if(frame.topLevel) {
+context.addExport("paddingTopDesktop", t_24);
+}
+var t_25;
+t_25 = (lineno = 28, colno = 38, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_bottom_desktop"),0]));
+frame.set("paddingBottomDesktop", t_25, true);
+if(frame.topLevel) {
+context.setVariable("paddingBottomDesktop", t_25);
+}
+if(frame.topLevel) {
+context.addExport("paddingBottomDesktop", t_25);
+}
+var t_26;
+t_26 = (lineno = 29, colno = 37, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_horiz_desktop"),0]));
+frame.set("paddingHorizDesktop", t_26, true);
+if(frame.topLevel) {
+context.setVariable("paddingHorizDesktop", t_26);
+}
+if(frame.topLevel) {
+context.addExport("paddingHorizDesktop", t_26);
+}
+var t_27;
+t_27 = (lineno = 30, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"margin_top_tablet"),0]));
+frame.set("marginTopTablet", t_27, true);
+if(frame.topLevel) {
+context.setVariable("marginTopTablet", t_27);
+}
+if(frame.topLevel) {
+context.addExport("marginTopTablet", t_27);
+}
+var t_28;
+t_28 = (lineno = 31, colno = 36, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"margin_bottom_tablet"),60]));
+frame.set("marginBottomTablet", t_28, true);
+if(frame.topLevel) {
+context.setVariable("marginBottomTablet", t_28);
+}
+if(frame.topLevel) {
+context.addExport("marginBottomTablet", t_28);
+}
+var t_29;
+t_29 = (lineno = 32, colno = 36, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_horiz_tablet"),0]));
+frame.set("paddingHorizTablet", t_29, true);
+if(frame.topLevel) {
+context.setVariable("paddingHorizTablet", t_29);
+}
+if(frame.topLevel) {
+context.addExport("paddingHorizTablet", t_29);
+}
+var t_30;
+t_30 = (lineno = 33, colno = 34, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_top_tablet"),0]));
+frame.set("paddingTopTablet", t_30, true);
+if(frame.topLevel) {
+context.setVariable("paddingTopTablet", t_30);
+}
+if(frame.topLevel) {
+context.addExport("paddingTopTablet", t_30);
+}
+var t_31;
+t_31 = (lineno = 34, colno = 37, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_bottom_tablet"),0]));
+frame.set("paddingBottomTablet", t_31, true);
+if(frame.topLevel) {
+context.setVariable("paddingBottomTablet", t_31);
+}
+if(frame.topLevel) {
+context.addExport("paddingBottomTablet", t_31);
+}
+var t_32;
+t_32 = (lineno = 35, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"margin_top_mobile"),0]));
+frame.set("marginTopMobile", t_32, true);
+if(frame.topLevel) {
+context.setVariable("marginTopMobile", t_32);
+}
+if(frame.topLevel) {
+context.addExport("marginTopMobile", t_32);
+}
+var t_33;
+t_33 = (lineno = 36, colno = 36, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"margin_bottom_mobile"),60]));
+frame.set("marginBottomMobile", t_33, true);
+if(frame.topLevel) {
+context.setVariable("marginBottomMobile", t_33);
+}
+if(frame.topLevel) {
+context.addExport("marginBottomMobile", t_33);
+}
+var t_34;
+t_34 = (lineno = 37, colno = 36, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_horiz_mobile"),130]));
+frame.set("paddingHorizMobile", t_34, true);
+if(frame.topLevel) {
+context.setVariable("paddingHorizMobile", t_34);
+}
+if(frame.topLevel) {
+context.addExport("paddingHorizMobile", t_34);
+}
+var t_35;
+t_35 = (lineno = 38, colno = 34, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_top_mobile"),400]));
+frame.set("paddingTopMobile", t_35, true);
+if(frame.topLevel) {
+context.setVariable("paddingTopMobile", t_35);
+}
+if(frame.topLevel) {
+context.addExport("paddingTopMobile", t_35);
+}
+var t_36;
+t_36 = (lineno = 39, colno = 37, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_bottom_mobile"),400]));
+frame.set("paddingBottomMobile", t_36, true);
+if(frame.topLevel) {
+context.setVariable("paddingBottomMobile", t_36);
+}
+if(frame.topLevel) {
+context.addExport("paddingBottomMobile", t_36);
+}
+output += "\n";
+var t_37;
+t_37 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_37, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_37);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_37);
+}
+output += "\n<style>\n  .sellix-section.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "-global-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " {\n    background-color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "bgColor")), env.opts.autoescape);
+output += ";\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container {\n    margin-top: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "marginTopDesktop"), env.opts.autoescape);
+output += "px;\n    margin-bottom: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "marginBottomDesktop"), env.opts.autoescape);
+output += "px;\n    padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingTopDesktop"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHorizDesktop"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingBottomDesktop"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHorizDesktop"), env.opts.autoescape);
+output += "px;\n  }\n\n  @media (max-width: 768px) {\n    .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container {\n      padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingTopTablet"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHorizTablet"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingBottomTablet"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHorizTablet"), env.opts.autoescape);
+output += "px;\n      margin-top: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "marginTopTablet"), env.opts.autoescape);
+output += "px;\n      margin-bottom: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "marginBottomTablet"), env.opts.autoescape);
+output += "px;\n    }\n  }\n\n  @media (max-width: 640px) {\n    .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container {\n      padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingTopMobile"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHorizMobile"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingBottomMobile"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHorizMobile"), env.opts.autoescape);
+output += "px;\n      margin-top: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "marginTopMobile"), env.opts.autoescape);
+output += "px;\n      margin-bottom: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "marginBottomMobile"), env.opts.autoescape);
+output += "px;\n    }\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__shop-name {\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "shopNameFontColor")), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "shopNameFontSize"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "shopNameFontWeight"), env.opts.autoescape);
+output += ";\n    line-height: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "shopNameLineHeight"), env.opts.autoescape);
+output += "px;\n  }\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__logo-image img {\n    height: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "logoImageSize"), env.opts.autoescape);
+output += "px;\n    width: auto;\n    border-radius: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "logoImageBorderRadius"), env.opts.autoescape);
+output += "px;\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__menu-title {\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "menuTitleFontColor")), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "menuTitleFontSize"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "menuTitleFontWeight"), env.opts.autoescape);
+output += ";\n    line-height: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "menuTitleLineHeight"), env.opts.autoescape);
+output += "px;\n  }\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__menu-items a {\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "menuItemFontColor")), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "menuItemFontSize"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "menuItemFontWeight"), env.opts.autoescape);
+output += ";\n    line-height: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "menuItemLineHeight"), env.opts.autoescape);
+output += "px;\n  }\n</style>\n\n<footer class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__container ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container menus-count-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "menusCount"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "fullWidth")?"full-width":"content-width"), env.opts.autoescape);
+output += "\">\n  <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__logo\">\n    <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__logo-wrapper\">\n";
+if(runtime.contextOrFrameLookup(context, frame, "logoImage") && runtime.inOperator(runtime.contextOrFrameLookup(context, frame, "logoType"),["logo","logo_or_name","logo_and_name"])) {
+output += "        <a href=\"\" class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__logo-image ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__logo-image\">\n          <img\n            src=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "logoImage"), env.opts.autoescape);
+output += "\"\n            alt=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "\"\n          >\n        </a>\n";
+;
+}
+output += "\n";
+if(runtime.contextOrFrameLookup(context, frame, "shopName") && (runtime.inOperator(runtime.contextOrFrameLookup(context, frame, "logoType"),["name","logo_and_name"]) || (!runtime.contextOrFrameLookup(context, frame, "logoImage") && runtime.inOperator(runtime.contextOrFrameLookup(context, frame, "logoType"),["logo_or_name"])))) {
+output += "        <a href=\"\" class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__shop-name ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__shop-name\">\n          ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "shopName"), env.opts.autoescape);
+output += "\n        </a>\n";
+;
+}
+output += "    </div>\n  </div>\n\n  <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__menus\">\n";
+frame = frame.push();
+var t_40 = runtime.fromIterator((lineno = 117, colno = 28, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_range"), "safe_range", context, [1,6])));
+runtime.asyncEach(t_40, 1, function(idx, t_38, t_39,next) {
+frame.set("idx", idx);
+frame.set("loop.index", t_38 + 1);
+frame.set("loop.index0", t_38);
+frame.set("loop.revindex", t_39 - t_38);
+frame.set("loop.revindex0", t_39 - t_38 - 1);
+frame.set("loop.first", t_38 === 0);
+frame.set("loop.last", t_38 === t_39 - 1);
+frame.set("loop.length", t_39);
+var t_41;
+t_41 = runtime.memberLookup(((lineno = 118, colno = 27, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "context"), "context", context, []))),env.getFilter("join").call(context, ["menu",idx]));
+frame.set("menu", t_41, true);
+if(frame.topLevel) {
+context.setVariable("menu", t_41);
+}
+if(frame.topLevel) {
+context.addExport("menu", t_41);
+}
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "menu")) {
+output += "        <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__menu\">\n          <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__menu-title ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__menu-title\">\n            ";
+output += runtime.suppressValue(env.getFilter("t").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),env.getFilter("join").call(context, ["menu",idx,"_title"]))), env.opts.autoescape);
+output += "\n          </div>\n          <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__menu-items ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__menu-items\">\n";
+frame = frame.push();
+var t_44 = runtime.fromIterator(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "menu")),"items"));
+runtime.asyncEach(t_44, 1, function(item, t_42, t_43,next) {
+frame.set("item", item);
+frame.set("loop.index", t_42 + 1);
+frame.set("loop.index0", t_42);
+frame.set("loop.revindex", t_43 - t_42);
+frame.set("loop.revindex0", t_43 - t_42 - 1);
+frame.set("loop.first", t_42 === 0);
+frame.set("loop.last", t_42 === t_43 - 1);
+frame.set("loop.length", t_43);
+env.getExtension("RenderSnippet")["run"](context,"Menu item",runtime.makeKeywordArgs({"url": runtime.memberLookup((item),"page_slug"),"title": runtime.memberLookup((item),"title"),"class": ""}), function(t_46,t_45) {
+if(t_46) { cb(t_46); return; }
+output += runtime.suppressValue(t_45, true && env.opts.autoescape);
+next(t_42);
+});
+}, function(t_48,t_47) {
+if(t_48) { cb(t_48); return; }
+frame = frame.pop();
+output += "          </div>\n        </div>\n";
+cb()});
+}
+else {
+cb()}
+})(function(t_49) {
+if(t_49) { cb(t_49); return; }next(t_38);
+});
+}, function(t_51,t_50) {
+if(t_51) { cb(t_51); return; }
+frame = frame.pop();
+output += "  </div>\n\n";
+(function(cb) {if(runtime.inOperator("Product light list",runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"block_order"))) {
+output += "    <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__products\">\n      <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__products-title\">\n        ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.shared.footer.productsTitle"), env.opts.autoescape);
+output += "\n      </div>\n      <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__products-list\">\n";
+env.getExtension("RenderBlock")["run"](context,"Product light list", function(t_53,t_52) {
+if(t_53) { cb(t_53); return; }
+output += runtime.suppressValue(t_52, true && env.opts.autoescape);
+output += "      </div>\n    </div>\n";
+cb()});
+}
+else {
+cb()}
+})(function(t_54) {
+if(t_54) { cb(t_54); return; }output += "</footer>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+})});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

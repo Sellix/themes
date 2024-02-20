@@ -1,0 +1,57 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_1, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_1);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_1);
+}
+output += "\n<style type='text/css'>\n  .shop-not-found {\n    max-width: 1280px;\n    width: 100%;\n    color: var(--darkFontColor);\n    padding: 2rem;\n    margin: 2rem auto 0;\n    align-items: center;\n    justify-content: center;\n    display: flex;\n    flex-direction: column;\n  }\n\n\n  .shop-not-found div {\n    width: 100%;\n  }\n\n  @media (max-width: 680px) {\n    .shop-not-found {\n      top: auto;\n      left: auto;\n      transform: none;\n    }\n  }\n  .shop-not-found h4 {\n    font-weight: 400;\n    text-align: center;\n  }\n\n  .not-found-container {\n    flex: 1 0 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n  }\n\n  .glitch {\n    font-weight: 600;\n    font-size: 15rem;\n    position: relative;\n    width: 410px;\n    height: 220px;\n    display: flex;\n  }\n  .glitch-container {\n    flex: 1 0 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n  }\n  .glitch.embed {\n    left: 40%;\n    transform: translateX(-50%) scale(0.7);\n    top: -40px;\n    height: 250px;\n  }\n  @media (max-width: 680px) {\n    .glitch {\n      font-size: 12rem;\n      width: 100%;\n      position: relative;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      height: 200px;\n    }\n    .glitch::before {\n      left: 50% !important;\n      transform: translateX(-50%);\n    }\n    .glitch::after {\n      left: 50% !important;\n      transform: translateX(-50%);\n    }\n  }\n  .glitch::after {\n    content: attr(data-text);\n    position: absolute;\n    left: 4px;\n    text-shadow: -1px 0 red;\n    top: 0;\n    color: #6a3ce2 !important;\n    background: transparent;\n    overflow: hidden;\n    animation: noise-anim 5s 3 linear alternate-reverse;\n  }\n  .glitch::before {\n    content: attr(data-text);\n    position: absolute;\n    left: -4px;\n    text-shadow: -1px 0 blue;\n    top: 0;\n    color: #6a3ce2 !important;\n    background: transparent;\n    overflow: hidden;\n    animation: noise-anim-2 20s 3 linear alternate-reverse;\n  }\n\n  @keyframes noise-anim {\n    0% {\n      clip-path: inset(NaN NaN); }\n    5% {\n      clip-path: inset(NaN NaN); }\n    10% {\n      clip-path: inset(NaN NaN); }\n    15% {\n      clip-path: inset(NaN NaN); }\n    20% {\n      clip-path: inset(NaN NaN); }\n    25% {\n      clip-path: inset(NaN NaN); }\n    30% {\n      clip-path: inset(NaN NaN); }\n    35% {\n      clip-path: inset(NaN NaN); }\n    40% {\n      clip-path: inset(NaN NaN); }\n    45% {\n      clip-path: inset(NaN NaN); }\n    50% {\n      clip-path: inset(NaN NaN); }\n    55% {\n      clip-path: inset(NaN NaN); }\n    60% {\n      clip-path: inset(NaN NaN); }\n    65% {\n      clip-path: inset(NaN NaN); }\n    70% {\n      clip-path: inset(NaN NaN); }\n    75% {\n      clip-path: inset(NaN NaN); }\n    80% {\n      clip-path: inset(NaN NaN); }\n    85% {\n      clip-path: inset(NaN NaN); }\n    90% {\n      clip-path: inset(NaN NaN); }\n    95% {\n      clip-path: inset(NaN NaN); }\n    100% {\n      clip-path: inset(NaN NaN); }\n  }\n\n  @keyframes noise-anim-2 {\n    0% { }\n    10% { }\n    20% { }\n    30% { }\n    40% { }\n    50% { }\n    60% { }\n    70% { }\n    80% { }\n    90% { }\n    100% { }\n  }\n</style>\n\n<div class='glitch-container'>\n  <span class='glitch' data-text='404'></span>\n\n  <div class='shop-not-found text-center'>\n    <div>\n      <h2 style=\"color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"404_heading_font_color")), env.opts.autoescape);
+output += "; font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"404_heading_font_size"), env.opts.autoescape);
+output += "px; font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"404_heading_font_weight"), env.opts.autoescape);
+output += "; line-height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"404_heading_line_height"), env.opts.autoescape);
+output += "%; text-align: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"404_heading_text_align"), env.opts.autoescape);
+output += ";\">\n        ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"404_heading_text"), env.opts.autoescape);
+output += "\n      </h2>\n    </div>\n\n    <div>\n      <h4 style=\"color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"404_description_font_color")), env.opts.autoescape);
+output += "; font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"404_description_font_size"), env.opts.autoescape);
+output += "px; font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"404_description_font_weight"), env.opts.autoescape);
+output += "; line-height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"404_description_line_height"), env.opts.autoescape);
+output += "%; text-align: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"404_description_text_align"), env.opts.autoescape);
+output += ";\">\n        ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"404_description_text"), env.opts.autoescape);
+output += "\n      </h4>\n     </div>\n\n    <br><br>\n\n    <div style=\"display: flex; justify-content: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"404_button_position"), env.opts.autoescape);
+output += ";\">\n      <a href='/'>\n        <button type='button' class='button'>\n          ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"404_button_title"), env.opts.autoescape);
+output += "\n        </button>\n      </a>\n    </div>\n  </div>\n</div>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

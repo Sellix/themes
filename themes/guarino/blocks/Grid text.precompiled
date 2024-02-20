@@ -1,0 +1,40 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+output += "<style>\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"grid_suffix_title")) {
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"grid_suffix_title_after")) {
+output += "    .value:after {\n    content: \"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"grid_suffix_title"), env.opts.autoescape);
+output += "\";\n    }\n";
+;
+}
+else {
+output += "    .value:before {\n    content: \"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"grid_suffix_title"), env.opts.autoescape);
+output += "\";\n    }\n";
+;
+}
+;
+}
+output += "</style>\n<div class=\"gridtextcontent\">\n   <div class=\"value\" valore=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"grid_Text_title"), env.opts.autoescape);
+output += "\">0</div>\n  <h2>";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"grid_Text_description"), env.opts.autoescape);
+output += "</h2>\n</div>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

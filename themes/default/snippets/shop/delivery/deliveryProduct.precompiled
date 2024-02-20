@@ -1,0 +1,62 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"invoice");
+frame.set("invoice", t_1, true);
+if(frame.topLevel) {
+context.setVariable("invoice", t_1);
+}
+if(frame.topLevel) {
+context.addExport("invoice", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"info");
+frame.set("info", t_2, true);
+if(frame.topLevel) {
+context.setVariable("info", t_2);
+}
+if(frame.topLevel) {
+context.addExport("info", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "info")),"delivery_text");
+frame.set("text", t_3, true);
+if(frame.topLevel) {
+context.setVariable("text", t_3);
+}
+if(frame.topLevel) {
+context.addExport("text", t_3);
+}
+output += "\n<div>\n";
+if(runtime.contextOrFrameLookup(context, frame, "text")) {
+output += "    <div class=\"sellix-delivery-product skip\">\n      <div class=\"sellix-delivery-product-title\">";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.delivery.messageFrom"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"name"), env.opts.autoescape);
+output += ":</div>\n      <div class=\"sellix-delivery-product-item skip\">\n        <div class=\"sellix-text\">\n          <p>";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "text"), env.opts.autoescape);
+output += "</p>\n        </div>\n      </div>\n    </div>\n";
+;
+}
+output += "\n";
+env.getExtension("RenderSnippet")["run"](context,"Delivery digital product",runtime.makeKeywordArgs({"invoice": runtime.contextOrFrameLookup(context, frame, "invoice"),"info": runtime.contextOrFrameLookup(context, frame, "info"),"product_type": runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"product")),"type")}), function(t_5,t_4) {
+if(t_5) { cb(t_5); return; }
+output += runtime.suppressValue(t_4, true && env.opts.autoescape);
+output += "</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

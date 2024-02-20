@@ -1,0 +1,83 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_2, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_2);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"product");
+frame.set("product", t_3, true);
+if(frame.topLevel) {
+context.setVariable("product", t_3);
+}
+if(frame.topLevel) {
+context.addExport("product", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"stock");
+frame.set("stock", t_4, true);
+if(frame.topLevel) {
+context.setVariable("stock", t_4);
+}
+if(frame.topLevel) {
+context.addExport("stock", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"quantity");
+frame.set("quantity", t_5, true);
+if(frame.topLevel) {
+context.setVariable("quantity", t_5);
+}
+if(frame.topLevel) {
+context.addExport("quantity", t_5);
+}
+output += "\n<div id=\"sellix-product-count-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\" class=\"d-flex flex-column\">\n  <div class=\"sellix-cart-count\">\n    <span\n      class=\"sellix-stock-count-picker minus real unselectable\"\n      style=\"opacity: 0;\"\n      data-modifier=\"-1\"\n    >\n      <i class=\"fa-regular fa-minus\"></i>\n    </span>\n\n    <div class=\"sellix-cart-count-quantity unselectable\">\n      <input type=\"text\" value=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "quantity"), env.opts.autoescape);
+output += "\" ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"quantity_min") == runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"quantity_max")?"disabled":""), env.opts.autoescape);
+output += " />\n    </div>\n\n    <span\n      class=\"sellix-stock-count-picker plus real unselectable\"\n      style=\"opacity: 0;\"\n      data-modifier=\"1\"\n    >\n      <i class=\"fa-regular fa-plus\"></i>\n    </span>\n  </div>\n\n  <div class=\"d-flex align-items-center mt-2 flex-column\">\n    <div class=\"sellix-stock-total unselectable\" style=\"font-size: .8rem;\"></div>\n  </div>\n\n";
+env.getExtension("RenderSnippet")["run"](context,"Product min max note",runtime.makeKeywordArgs({"product": runtime.contextOrFrameLookup(context, frame, "product")}), function(t_7,t_6) {
+if(t_7) { cb(t_7); return; }
+output += runtime.suppressValue(t_6, true && env.opts.autoescape);
+output += "</div>\n\n<script type='application/javascript'>\n  $(document).ready(function () {\n    new SellixProductCountComponent(\n      '#sellix-product-count-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "',\n      '";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "',\n      ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("dump").call(context, env.getFilter("exclude_attributes").call(context, runtime.contextOrFrameLookup(context, frame, "product"),"shop_terms_of_service"))), env.opts.autoescape);
+output += ",\n      ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("dump").call(context, runtime.contextOrFrameLookup(context, frame, "renderOptions"))), env.opts.autoescape);
+output += ",\n    );\n  });\n</script>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

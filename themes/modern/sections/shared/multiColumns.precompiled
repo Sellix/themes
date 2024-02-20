@@ -1,0 +1,445 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 27, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"column_gap"),30]));
+frame.set("columnGap", t_1, true);
+if(frame.topLevel) {
+context.setVariable("columnGap", t_1);
+}
+if(frame.topLevel) {
+context.addExport("columnGap", t_1);
+}
+var t_2;
+t_2 = (lineno = 1, colno = 24, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"row_gap"),30]));
+frame.set("rowGap", t_2, true);
+if(frame.topLevel) {
+context.setVariable("rowGap", t_2);
+}
+if(frame.topLevel) {
+context.addExport("rowGap", t_2);
+}
+var t_3;
+t_3 = (lineno = 2, colno = 38, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"columns_per_row_desktop"),2]));
+frame.set("columnsPerRowDesktop", t_3, true);
+if(frame.topLevel) {
+context.setVariable("columnsPerRowDesktop", t_3);
+}
+if(frame.topLevel) {
+context.addExport("columnsPerRowDesktop", t_3);
+}
+var t_4;
+t_4 = (lineno = 3, colno = 35, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_top_desktop"),130]));
+frame.set("paddingTopDesktop", t_4, true);
+if(frame.topLevel) {
+context.setVariable("paddingTopDesktop", t_4);
+}
+if(frame.topLevel) {
+context.addExport("paddingTopDesktop", t_4);
+}
+var t_5;
+t_5 = (lineno = 4, colno = 38, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_bottom_desktop"),130]));
+frame.set("paddingBottomDesktop", t_5, true);
+if(frame.topLevel) {
+context.setVariable("paddingBottomDesktop", t_5);
+}
+if(frame.topLevel) {
+context.addExport("paddingBottomDesktop", t_5);
+}
+var t_6;
+t_6 = (lineno = 5, colno = 37, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_horiz_desktop"),400]));
+frame.set("paddingHorizDesktop", t_6, true);
+if(frame.topLevel) {
+context.setVariable("paddingHorizDesktop", t_6);
+}
+if(frame.topLevel) {
+context.addExport("paddingHorizDesktop", t_6);
+}
+var t_7;
+t_7 = (lineno = 6, colno = 34, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"margin_top_desktop"),130]));
+frame.set("marginTopDesktop", t_7, true);
+if(frame.topLevel) {
+context.setVariable("marginTopDesktop", t_7);
+}
+if(frame.topLevel) {
+context.addExport("marginTopDesktop", t_7);
+}
+var t_8;
+t_8 = (lineno = 7, colno = 37, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"margin_bottom_desktop"),400]));
+frame.set("marginBottomDesktop", t_8, true);
+if(frame.topLevel) {
+context.setVariable("marginBottomDesktop", t_8);
+}
+if(frame.topLevel) {
+context.addExport("marginBottomDesktop", t_8);
+}
+var t_9;
+t_9 = (lineno = 8, colno = 37, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"columns_per_row_tablet"),2]));
+frame.set("columnsPerRowTablet", t_9, true);
+if(frame.topLevel) {
+context.setVariable("columnsPerRowTablet", t_9);
+}
+if(frame.topLevel) {
+context.addExport("columnsPerRowTablet", t_9);
+}
+var t_10;
+t_10 = (lineno = 9, colno = 34, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_top_tablet"),115]));
+frame.set("paddingTopTablet", t_10, true);
+if(frame.topLevel) {
+context.setVariable("paddingTopTablet", t_10);
+}
+if(frame.topLevel) {
+context.addExport("paddingTopTablet", t_10);
+}
+var t_11;
+t_11 = (lineno = 10, colno = 37, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_bottom_tablet"),115]));
+frame.set("paddingBottomTablet", t_11, true);
+if(frame.topLevel) {
+context.setVariable("paddingBottomTablet", t_11);
+}
+if(frame.topLevel) {
+context.addExport("paddingBottomTablet", t_11);
+}
+var t_12;
+t_12 = (lineno = 11, colno = 36, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_horiz_tablet"),200]));
+frame.set("paddingHorizTablet", t_12, true);
+if(frame.topLevel) {
+context.setVariable("paddingHorizTablet", t_12);
+}
+if(frame.topLevel) {
+context.addExport("paddingHorizTablet", t_12);
+}
+var t_13;
+t_13 = (lineno = 12, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"margin_top_tablet"),130]));
+frame.set("marginTopTablet", t_13, true);
+if(frame.topLevel) {
+context.setVariable("marginTopTablet", t_13);
+}
+if(frame.topLevel) {
+context.addExport("marginTopTablet", t_13);
+}
+var t_14;
+t_14 = (lineno = 13, colno = 36, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"margin_bottom_tablet"),400]));
+frame.set("marginBottomTablet", t_14, true);
+if(frame.topLevel) {
+context.setVariable("marginBottomTablet", t_14);
+}
+if(frame.topLevel) {
+context.addExport("marginBottomTablet", t_14);
+}
+var t_15;
+t_15 = (lineno = 14, colno = 37, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"columns_per_row_mobile"),2]));
+frame.set("columnsPerRowMobile", t_15, true);
+if(frame.topLevel) {
+context.setVariable("columnsPerRowMobile", t_15);
+}
+if(frame.topLevel) {
+context.addExport("columnsPerRowMobile", t_15);
+}
+var t_16;
+t_16 = (lineno = 15, colno = 34, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_top_mobile"),96]));
+frame.set("paddingTopMobile", t_16, true);
+if(frame.topLevel) {
+context.setVariable("paddingTopMobile", t_16);
+}
+if(frame.topLevel) {
+context.addExport("paddingTopMobile", t_16);
+}
+var t_17;
+t_17 = (lineno = 16, colno = 37, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_bottom_mobile"),96]));
+frame.set("paddingBottomMobile", t_17, true);
+if(frame.topLevel) {
+context.setVariable("paddingBottomMobile", t_17);
+}
+if(frame.topLevel) {
+context.addExport("paddingBottomMobile", t_17);
+}
+var t_18;
+t_18 = (lineno = 17, colno = 36, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"padding_horiz_mobile"),36]));
+frame.set("paddingHorizMobile", t_18, true);
+if(frame.topLevel) {
+context.setVariable("paddingHorizMobile", t_18);
+}
+if(frame.topLevel) {
+context.addExport("paddingHorizMobile", t_18);
+}
+var t_19;
+t_19 = (lineno = 18, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"margin_top_mobile"),130]));
+frame.set("marginTopMobile", t_19, true);
+if(frame.topLevel) {
+context.setVariable("marginTopMobile", t_19);
+}
+if(frame.topLevel) {
+context.addExport("marginTopMobile", t_19);
+}
+var t_20;
+t_20 = (lineno = 19, colno = 36, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"margin_bottom_mobile"),400]));
+frame.set("marginBottomMobile", t_20, true);
+if(frame.topLevel) {
+context.setVariable("marginBottomMobile", t_20);
+}
+if(frame.topLevel) {
+context.addExport("marginBottomMobile", t_20);
+}
+var t_21;
+t_21 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"background_image");
+frame.set("bgImage", t_21, true);
+if(frame.topLevel) {
+context.setVariable("bgImage", t_21);
+}
+if(frame.topLevel) {
+context.addExport("bgImage", t_21);
+}
+var t_22;
+t_22 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"background_color");
+frame.set("bgColor", t_22, true);
+if(frame.topLevel) {
+context.setVariable("bgColor", t_22);
+}
+if(frame.topLevel) {
+context.addExport("bgColor", t_22);
+}
+output += "\n";
+var t_23;
+t_23 = env.getFilter("join").call(context, [runtime.contextOrFrameLookup(context, frame, "globalClass"),"-",runtime.contextOrFrameLookup(context, frame, "id")]);
+frame.set("localClass", t_23, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_23);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_23);
+}
+output += "\n<style>\n  .sellix-section.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "-global-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " {\n";
+if(runtime.contextOrFrameLookup(context, frame, "bgImage")) {
+output += "      background: url(";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, runtime.contextOrFrameLookup(context, frame, "bgImage")), env.opts.autoescape);
+output += ");\n      background-repeat: no-repeat, no-repeat;\n      background-position: top;\n      background-size: cover;\n";
+;
+}
+else {
+if(runtime.contextOrFrameLookup(context, frame, "bgColor")) {
+output += "      background-color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.contextOrFrameLookup(context, frame, "bgColor")), env.opts.autoescape);
+output += ";\n";
+;
+}
+;
+}
+output += "  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " {\n    display: grid;\n    grid-template-columns: repeat(";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "columnsPerRowDesktop"), env.opts.autoescape);
+output += ", 1fr);\n    grid-column-gap: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "columnGap"), env.opts.autoescape);
+output += "px;\n    grid-row-gap: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "rowGap"), env.opts.autoescape);
+output += "px;\n    padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingTopDesktop"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHorizDesktop"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingBottomDesktop"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHorizDesktop"), env.opts.autoescape);
+output += "px ;\n    margin-top: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "marginTopDesktop"), env.opts.autoescape);
+output += "px;\n    margin-bottom: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "marginBottomDesktop"), env.opts.autoescape);
+output += "px;\n  }\n  @media (max-width: 768px) {\n    .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " {\n      grid-template-columns: repeat(";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "columnsPerRowTablet"), env.opts.autoescape);
+output += ", 1fr);\n      padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingTopTablet"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHorizTablet"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingBottomTablet"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHorizTablet"), env.opts.autoescape);
+output += "px;\n      margin-top: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "marginTopTablet"), env.opts.autoescape);
+output += "px;\n      margin-bottom: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "marginBottomTablet"), env.opts.autoescape);
+output += "px;\n    }\n  }\n\n  @media (max-width: 640px) {\n    .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " {\n      grid-template-columns: repeat(";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "columnsPerRowMobile"), env.opts.autoescape);
+output += ", 1fr);\n      padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingTopMobile"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHorizMobile"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingBottomMobile"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHorizMobile"), env.opts.autoescape);
+output += "px;\n      margin-top: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "marginTopTablet"), env.opts.autoescape);
+output += "px;\n      margin-bottom: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "marginBottomTablet"), env.opts.autoescape);
+output += "px;\n    }\n  }\n\n";
+frame = frame.push();
+var t_26 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"block_order");
+if(t_26) {t_26 = runtime.fromIterator(t_26);
+var t_25 = t_26.length;
+for(var t_24=0; t_24 < t_26.length; t_24++) {
+var t_27 = t_26[t_24];
+frame.set("block_name", t_27);
+frame.set("loop.index", t_24 + 1);
+frame.set("loop.index0", t_24);
+frame.set("loop.revindex", t_25 - t_24);
+frame.set("loop.revindex0", t_25 - t_24 - 1);
+frame.set("loop.first", t_24 === 0);
+frame.set("loop.last", t_24 === t_25 - 1);
+frame.set("loop.length", t_25);
+var t_28;
+t_28 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"blocks")),t_27);
+frame.set("block", t_28, true);
+if(frame.topLevel) {
+context.setVariable("block", t_28);
+}
+if(frame.topLevel) {
+context.addExport("block", t_28);
+}
+var t_29;
+t_29 = env.getFilter("join").call(context, [runtime.contextOrFrameLookup(context, frame, "localClass"),"__col__",runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "loop")),"index0")]);
+frame.set("columnClass", t_29, true);
+if(frame.topLevel) {
+context.setVariable("columnClass", t_29);
+}
+if(frame.topLevel) {
+context.addExport("columnClass", t_29);
+}
+output += "\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "block")),"name") == "Column") {
+output += "      .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "columnClass"), env.opts.autoescape);
+output += " {\n        grid-column: span ";
+output += runtime.suppressValue((lineno = 70, colno = 32, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "min"), "min", context, [runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "block")),"settings")),"properties")),"col_span_desktop") || 1,runtime.contextOrFrameLookup(context, frame, "columnsPerRowDesktop")])), env.opts.autoescape);
+output += ";\n      }\n      @media (max-width: 768px) {\n        .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "columnClass"), env.opts.autoescape);
+output += " {\n          grid-column: span ";
+output += runtime.suppressValue((lineno = 74, colno = 34, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "min"), "min", context, [runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "block")),"settings")),"properties")),"col_span_tablet") || 1,runtime.contextOrFrameLookup(context, frame, "columnsPerRowTablet")])), env.opts.autoescape);
+output += ";\n        }\n      }\n      @media (max-width: 640px) {\n        .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "columnClass"), env.opts.autoescape);
+output += " {\n          grid-column: span ";
+output += runtime.suppressValue((lineno = 79, colno = 34, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "min"), "min", context, [runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "block")),"settings")),"properties")),"col_span_mobile") || 1,runtime.contextOrFrameLookup(context, frame, "columnsPerRowMobile")])), env.opts.autoescape);
+output += ";\n        }\n      }";
+;
+}
+;
+}
+}
+frame = frame.pop();
+output += "</style>\n\n<div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"fullwidth")?"full-width":"content-width"), env.opts.autoescape);
+output += "\">\n";
+frame = frame.push();
+var t_32 = runtime.fromIterator(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"block_order"));
+runtime.asyncEach(t_32, 1, function(block_name, t_30, t_31,next) {
+frame.set("block_name", block_name);
+frame.set("loop.index", t_30 + 1);
+frame.set("loop.index0", t_30);
+frame.set("loop.revindex", t_31 - t_30);
+frame.set("loop.revindex0", t_31 - t_30 - 1);
+frame.set("loop.first", t_30 === 0);
+frame.set("loop.last", t_30 === t_31 - 1);
+frame.set("loop.length", t_31);
+var t_33;
+t_33 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"blocks")),block_name);
+frame.set("block", t_33, true);
+if(frame.topLevel) {
+context.setVariable("block", t_33);
+}
+if(frame.topLevel) {
+context.addExport("block", t_33);
+}
+output += "\n";
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "block")),"name") == "Column") {
+var t_34;
+t_34 = (lineno = 91, colno = 27, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("columnId", t_34, true);
+if(frame.topLevel) {
+context.setVariable("columnId", t_34);
+}
+if(frame.topLevel) {
+context.addExport("columnId", t_34);
+}
+output += "      <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__col__";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "loop")),"index0"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "columnId"), env.opts.autoescape);
+output += "\">";
+env.getExtension("RenderBlock")["run"](context,block_name,runtime.makeKeywordArgs({"id": runtime.contextOrFrameLookup(context, frame, "columnId")}), function(t_36,t_35) {
+if(t_36) { cb(t_36); return; }
+output += runtime.suppressValue(t_35, true && env.opts.autoescape);
+frame = frame.push();
+var t_39 = runtime.fromIterator(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"block_order"));
+runtime.asyncEach(t_39, 1, function(blk_name, t_37, t_38,next) {
+frame.set("blk_name", blk_name);
+frame.set("loop.index", t_37 + 1);
+frame.set("loop.index0", t_37);
+frame.set("loop.revindex", t_38 - t_37);
+frame.set("loop.revindex0", t_38 - t_37 - 1);
+frame.set("loop.first", t_37 === 0);
+frame.set("loop.last", t_37 === t_38 - 1);
+frame.set("loop.length", t_38);
+var t_40;
+t_40 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"blocks")),blk_name);
+frame.set("blk", t_40, true);
+if(frame.topLevel) {
+context.setVariable("blk", t_40);
+}
+if(frame.topLevel) {
+context.addExport("blk", t_40);
+}
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "blk")),"name") != "Column" && runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "blk")),"settings")),"properties")),"column_index") == runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "block")),"settings")),"properties")),"column_index")) {
+env.getExtension("RenderBlock")["run"](context,blk_name, function(t_42,t_41) {
+if(t_42) { cb(t_42); return; }
+output += runtime.suppressValue(t_41, true && env.opts.autoescape);
+cb()});
+}
+else {
+cb()}
+})(function(t_43) {
+if(t_43) { cb(t_43); return; }next(t_37);
+});
+}, function(t_45,t_44) {
+if(t_45) { cb(t_45); return; }
+frame = frame.pop();
+output += "      </div>\n";
+cb()})});
+}
+else {
+cb()}
+})(function(t_46) {
+if(t_46) { cb(t_46); return; }next(t_30);
+});
+}, function(t_48,t_47) {
+if(t_48) { cb(t_48); return; }
+frame = frame.pop();
+output += "</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

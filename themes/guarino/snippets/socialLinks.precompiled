@@ -1,0 +1,116 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+output += "<style type='text/css'>\n  .sellix-social {\n    display: flex;\n    flex-direction: column;\n    position: fixed;\n    bottom: 5.6rem;\n    right: 2rem;\n    z-index: 9999;\n  }\n  .sellix-social-report {\n    color: white !important;\n    font-size: 1.2rem;\n  }\n  @media (max-width:553px) {\n    .sellix-social {\n      bottom: 4.7rem;\n      right: 1rem;\n    }\n  }\n  .sellix-social a {\n    border-radius: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    transition: all .3s ease !important;\n    width: 50px;\n    height: 50px;\n    margin: 10px 0;\n    cursor: pointer;\n  }\n  @media (max-width:553px) {\n    .sellix-social a {\n      width: 45px;\n      height: 45px;\n      margin: 5px 0;\n    }\n  }\n  .sellix-social a svg {\n    transition: all .3s ease;\n    width: 28px;\n  }\n  @media (max-width:553px) {\n    .sellix-social a svg {\n      width: 23px;\n    }\n  }\n  .sellix-social a svg:hover {\n    transform: scale(1.2);\n  }\n  .sellix-social a img {\n    transition: all .3s ease;\n    width: 1.8rem;\n    height: 1.8rem;\n  }\n  @media (max-width:553px) {\n    .sellix-social a img {\n      width: 1.7rem;\n    }\n  }\n  .sellix-social a img:hover {\n    transform: scale(1.2);\n  }\n  .sellix-social a i {\n    transition: all .3s ease;\n  }\n  .sellix-social a i:hover {\n    transform: scale(1.2);\n  }\n  .sellix-social-more {\n    transform: scale(1.3);\n  }\n  .sellix-social.no-crisp {\n    bottom: 1.25rem;\n    right: 1.25rem;\n  }\n  @media (max-width:553px) {\n    .sellix-social.no-crisp {\n      bottom: 1rem;\n      right: 1rem;\n    }\n  }\n  .sellix-social a.discord_link {\n    background: #6f85dc;\n  }\n  .sellix-social a.instagram_link {\n    background: #C13584;\n  }\n  .sellix-social a.twitter_link {\n    background: #1DA1F2;\n  }\n  .sellix-social a.youtube_link {\n    background: #FF0000;\n  }\n  .sellix-social a.facebook_link {\n    background: #4267B2;\n  }\n  .sellix-social a.reddit_link {\n    background: #FF4500;\n  }\n  .sellix-social a.telegram_link {\n    background: #0088cc;\n  }\n  .sellix-social a.tiktok_link {\n    background: #EE1D52;\n  }\n  .sellix-social a.crisp_website_id {\n    background: purple;\n  }\n  .sellix-social a.helpspace {\n    background: white;\n  }\n  .sellix-social a.google_analytics_tracking_id {\n    background: transparent;\n  }\n  .sellix-social a.chevron {\n    background: var(--buttonColor);\n  }\n  .sellix-social-toggle-wrap {\n    display: flex;\n    flex-direction: column;\n  }\n  .sellix-social-toggle-wrap.hide {\n    display: none;\n  }\n</style>\n\n";
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_1, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_1);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_1);
+}
+var t_2;
+t_2 = env.getFilter("selectattr").call(context, [{"link": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"discord_link"),"class": "discord_link","icon": "<i style=\"font-size: 22px; color: white;\" class=\"fa-brands fa-discord\"></i>"},{"link": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"instagram_link"),"class": "instagram_link","icon": "<i style=\"font-size: 22px; color: white\" class=\"fa-brands fa-instagram\"></i>"},{"link": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"twitter_link"),"class": "twitter_link","icon": "<i style=\"font-size: 22px; color: white\" class=\"fa-brands fa-twitter\"></i>"},{"link": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"youtube_link"),"class": "youtube_link","icon": "<i style=\"font-size: 22px; color: white\" class=\"fa-brands fa-youtube\"></i>"},{"link": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"facebook_link"),"class": "facebook_link","icon": "<i style=\"font-size: 22px; color: white\" class=\"fa-brands fa-facebook\"></i>"},{"link": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"reddit_link"),"class": "reddit_link","icon": "<i style=\"font-size: 22px; color: white\" class=\"fa-brands fa-reddit-alien\"></i>"},{"link": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"telegram_link"),"class": "telegram_link","icon": "<i style=\"font-size: 22px; color: white\" class=\"fa-brands fa-telegram\"></i>"},{"link": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"tiktok_link"),"class": "tiktok_link","icon": "<i style=\"font-size: 22px; color: white\" class=\"fa-brands fa-tiktok\"></i>"}],"link");
+frame.set("links", t_2, true);
+if(frame.topLevel) {
+context.setVariable("links", t_2);
+}
+if(frame.topLevel) {
+context.addExport("links", t_2);
+}
+var t_3;
+t_3 = env.getFilter("length").call(context, runtime.contextOrFrameLookup(context, frame, "links"));
+frame.set("link_length", t_3, true);
+if(frame.topLevel) {
+context.setVariable("link_length", t_3);
+}
+if(frame.topLevel) {
+context.addExport("link_length", t_3);
+}
+output += "\n";
+var macro_t_4 = runtime.makeMacro(
+["item"], 
+[], 
+function (l_item, kwargs) {
+var callerFrame = frame;
+frame = new runtime.Frame();
+kwargs = kwargs || {};
+if (Object.prototype.hasOwnProperty.call(kwargs, "caller")) {
+frame.set("caller", kwargs.caller); }
+frame.set("item", l_item);
+var t_5 = "";t_5 += "      <a href=\"";
+t_5 += runtime.suppressValue(runtime.memberLookup((l_item),"link"), env.opts.autoescape);
+t_5 += "\" target=\"_blank\" class=\"";
+t_5 += runtime.suppressValue(runtime.memberLookup((l_item),"class"), env.opts.autoescape);
+t_5 += "\">\n        ";
+t_5 += runtime.suppressValue(env.getFilter("safe").call(context, runtime.memberLookup((l_item),"icon")), env.opts.autoescape);
+t_5 += "\n      </a>\n";
+;
+frame = callerFrame;
+return new runtime.SafeString(t_5);
+});
+context.addExport("social_link");
+context.setVariable("social_link", macro_t_4);
+output += "\n<div class=\"sellix-social ";
+if(!runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"crisp_website_id") && !runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"helpspace_widget_id") && !runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"helpspace_client_id") && !runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"helpspace_token")) {
+output += "no-crisp";
+;
+}
+output += " unselectable\">\n";
+if(runtime.contextOrFrameLookup(context, frame, "link_length") > 2) {
+output += "    <a class=\"chevron\">\n      <i style=\"font-size: 16px; color: white; padding: 1rem;\" class=\"sellix-social-more fa-regular fa-chevron-down\"></i>\n    </a>\n";
+;
+}
+frame = frame.push();
+var t_8 = runtime.contextOrFrameLookup(context, frame, "links");
+if(t_8) {t_8 = runtime.fromIterator(t_8);
+var t_7 = t_8.length;
+for(var t_6=0; t_6 < t_8.length; t_6++) {
+var t_9 = t_8[t_6];
+frame.set("item", t_9);
+frame.set("loop.index", t_6 + 1);
+frame.set("loop.index0", t_6);
+frame.set("loop.revindex", t_7 - t_6);
+frame.set("loop.revindex0", t_7 - t_6 - 1);
+frame.set("loop.first", t_6 === 0);
+frame.set("loop.last", t_6 === t_7 - 1);
+frame.set("loop.length", t_7);
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "loop")),"index0") == 2) {
+output += "      <span class=\"sellix-social-toggle-wrap hide\">\n";
+;
+}
+output += "    ";
+output += runtime.suppressValue((lineno = 187, colno = 18, runtime.callWrap(macro_t_4, "social_link", context, [t_9])), env.opts.autoescape);
+output += "\n";
+;
+}
+}
+frame = frame.pop();
+output += "\n";
+if(runtime.contextOrFrameLookup(context, frame, "link_length") > 2) {
+output += "    </span>\n";
+;
+}
+output += "</div>\n\n";
+if(runtime.contextOrFrameLookup(context, frame, "link_length") > 2) {
+output += "  <script type=\"application/javascript\">\n    $('.sellix-social .chevron').on('click', (e) => {\n      e.preventDefault();\n      $(e.target).toggleClass('fa-chevron-up').toggleClass('fa-chevron-down');\n      $('.sellix-social-toggle-wrap').toggleClass('hide');\n    });\n  </script>\n";
+;
+}
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

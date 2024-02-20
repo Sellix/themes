@@ -1,0 +1,399 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo");
+frame.set("shopInfo", t_2, true);
+if(frame.topLevel) {
+context.setVariable("shopInfo", t_2);
+}
+if(frame.topLevel) {
+context.addExport("shopInfo", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shopInfo")),"shop");
+frame.set("shop", t_3, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_3);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shopInfo")),"categories");
+frame.set("categories", t_4, true);
+if(frame.topLevel) {
+context.setVariable("categories", t_4);
+}
+if(frame.topLevel) {
+context.addExport("categories", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"inputs");
+frame.set("inputsProps", t_5, true);
+if(frame.topLevel) {
+context.setVariable("inputsProps", t_5);
+}
+if(frame.topLevel) {
+context.addExport("inputsProps", t_5);
+}
+output += "\n";
+var t_6;
+t_6 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"filter_name");
+frame.set("filterName", t_6, true);
+if(frame.topLevel) {
+context.setVariable("filterName", t_6);
+}
+if(frame.topLevel) {
+context.addExport("filterName", t_6);
+}
+var t_7;
+t_7 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_search_filter");
+frame.set("showSearchFilter", t_7, true);
+if(frame.topLevel) {
+context.setVariable("showSearchFilter", t_7);
+}
+if(frame.topLevel) {
+context.addExport("showSearchFilter", t_7);
+}
+var t_8;
+t_8 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_categories_filter");
+frame.set("showCategoriesFilter", t_8, true);
+if(frame.topLevel) {
+context.setVariable("showCategoriesFilter", t_8);
+}
+if(frame.topLevel) {
+context.addExport("showCategoriesFilter", t_8);
+}
+var t_9;
+t_9 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_sort_filter");
+frame.set("showSortFilter", t_9, true);
+if(frame.topLevel) {
+context.setVariable("showSortFilter", t_9);
+}
+if(frame.topLevel) {
+context.addExport("showSortFilter", t_9);
+}
+output += "\n";
+var t_10;
+t_10 = "all";
+frame.set("activeCategory", t_10, true);
+if(frame.topLevel) {
+context.setVariable("activeCategory", t_10);
+}
+if(frame.topLevel) {
+context.addExport("activeCategory", t_10);
+}
+if((lineno = 12, colno = 35, runtime.callWrap(runtime.memberLookup((["category","shop"]),"includes"), "--expression--[\"includes\"]", context, [runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type")]))) {
+var t_11;
+t_11 = (lineno = 13, colno = 34, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"options")),"itemId"),"all"]));
+frame.set("activeCategory", t_11, true);
+if(frame.topLevel) {
+context.setVariable("activeCategory", t_11);
+}
+if(frame.topLevel) {
+context.addExport("activeCategory", t_11);
+}
+;
+}
+output += "\n";
+var t_12;
+t_12 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_12, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_12);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_12);
+}
+output += "\n<style>\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container {\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_background_color")) {
+output += "background: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_background_color")), env.opts.autoescape);
+output += ";";
+;
+}
+output += "    border: ";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_border")) {
+output += "1px solid var(--borderColor)";
+;
+}
+else {
+output += "none";
+;
+}
+output += ";\n    box-shadow: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_shadow"), env.opts.autoescape);
+output += ";\n    border-radius: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_border_radius"), env.opts.autoescape);
+output += "rem;\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding")) {
+output += "padding: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding"), env.opts.autoescape);
+output += "px;";
+;
+}
+output += "  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__search input {\n    font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_size"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_weight"), env.opts.autoescape);
+output += ";\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_color")), env.opts.autoescape);
+output += ";\n    background-color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"input_background_color")), env.opts.autoescape);
+output += ";\n    border: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_show_border")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += ";\n    height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_height"), env.opts.autoescape);
+output += "px;\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__search input:focus {\n    outline: none;\n    border: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_show_border")?"1px solid var(--brandColor)":"none"), env.opts.autoescape);
+output += ";\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__search input::placeholder {\n    opacity: 0.7;\n    font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_size"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_weight"), env.opts.autoescape);
+output += ";\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_color")), env.opts.autoescape);
+output += ";\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__search .shop-search-icon {\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_color")), env.opts.autoescape);
+output += " !important;\n  }\n\n  ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__categories-select {\n    background: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"select_background")), env.opts.autoescape);
+output += "\n  }\n\n  .sellix-dropdown .select2-container--sellix .select2-selection--single {\n    min-height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_height"), env.opts.autoescape);
+output += "px;\n    background-color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"input_background_color")), env.opts.autoescape);
+output += ";\n    border: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_show_border")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += ";\n  }\n\n  .sellix-dropdown .select2-container--sellix .select2-selection__rendered {\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_color")), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_size"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_weight"), env.opts.autoescape);
+output += ";\n  }\n\n  .select2-container--sellix .select2-dropdown {\n    border: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"dropdown_show_border")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += " !important;\n    background-color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"input_background_color")), env.opts.autoescape);
+output += " !important;\n  }\n\n  .select2-container--sellix .select2-results__option {\n    font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"dropdown_option_font_size"), env.opts.autoescape);
+output += "px !important;\n    font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"dropdown_option_font_weight"), env.opts.autoescape);
+output += ";\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"dropdown_option_font_color")), env.opts.autoescape);
+output += ";\n  }\n\n  .select2-container--sellix .select2-results__option.select2-results__option--highlighted {\n    background-color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"dropdown_option_background_hover")), env.opts.autoescape);
+output += " !important;\n  }\n</style>\n\n<div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__container ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__container\">\n";
+if(runtime.contextOrFrameLookup(context, frame, "showSearchFilter") && runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"search_enabled")) {
+output += "    <label for=\"shop-search-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\" class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__item ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__search ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__search\">\n      <svg class=\"shop-search-icon\" width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M7.80469 13.2C10.7042 13.2 13.0547 10.8494 13.0547 7.94995C13.0547 5.05046 10.7042 2.69995 7.80469 2.69995C4.90519 2.69995 2.55469 5.05046 2.55469 7.94995C2.55469 10.8494 4.90519 13.2 7.80469 13.2Z\" stroke=\"#555D67\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n        <path d=\"M15.4594 14.85L11.8594 11.25\" stroke=\"#555D67\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n      </svg>\n      <input\n        type=\"text\"\n        id=\"shop-search-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\"\n        value=\"\"\n        placeholder=\"";
+output += runtime.suppressValue(env.getFilter("t").call(context, "Search for a product...",{"keyPrefix": "shop.content"}), env.opts.autoescape);
+output += "\"\n      />\n    </label>\n";
+;
+}
+output += "\n";
+if((runtime.contextOrFrameLookup(context, frame, "showCategoriesFilter") && env.getFilter("length").call(context, runtime.contextOrFrameLookup(context, frame, "categories"))) || (runtime.contextOrFrameLookup(context, frame, "showSortFilter") && runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"sort_enabled"))) {
+output += "    <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__filters-group ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__filters-group d-none\">\n\n";
+if(runtime.contextOrFrameLookup(context, frame, "showCategoriesFilter") && env.getFilter("length").call(context, runtime.contextOrFrameLookup(context, frame, "categories"))) {
+output += "      <div class=\"sellix-dropdown ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__item ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__categories-dropdown ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__categories-dropdown d-none\">\n        <select class=\"category-select ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__categories-select\"></select>\n      </div>\n";
+;
+}
+output += "\n";
+if(runtime.contextOrFrameLookup(context, frame, "showSortFilter") && runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"sort_enabled")) {
+output += "      <div class=\"sellix-dropdown ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__item ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__sort-dropdown ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__sort-dropdown d-none\">\n        <select class=\"sort-select ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__sort-select\">\n";
+frame = frame.push();
+var t_15 = [{"value": "DEFAULT","title": "Default"},{"value": "PRICE","title": "Price"},{"value": "NAME","title": "Name"},{"value": "TYPE","title": "Type"},{"value": "STOCK","title": "Stock"}];
+if(t_15) {t_15 = runtime.fromIterator(t_15);
+var t_14 = t_15.length;
+for(var t_13=0; t_13 < t_15.length; t_13++) {
+var t_16 = t_15[t_13];
+frame.set("option", t_16);
+frame.set("loop.index", t_13 + 1);
+frame.set("loop.index0", t_13);
+frame.set("loop.revindex", t_14 - t_13);
+frame.set("loop.revindex0", t_14 - t_13 - 1);
+frame.set("loop.first", t_13 === 0);
+frame.set("loop.last", t_13 === t_14 - 1);
+frame.set("loop.length", t_14);
+output += "            <option\n              value=\"";
+output += runtime.suppressValue(runtime.memberLookup((t_16),"value"), env.opts.autoescape);
+output += "\"\n              ";
+output += runtime.suppressValue((runtime.memberLookup((t_16),"value") == runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"default_sort")?"selected":""), env.opts.autoescape);
+output += "\n            >\n              ";
+output += runtime.suppressValue(env.getFilter("t").call(context, runtime.memberLookup((t_16),"title"),{"keyPrefix": "shop.content"}), env.opts.autoescape);
+output += "\n            </option>\n";
+;
+}
+}
+frame = frame.pop();
+output += "        </select>\n      </div>\n";
+;
+}
+output += "\n    </div>\n";
+;
+}
+output += "</div>\n\n<script type='application/javascript'>\n  $(document).ready(function () {\n    const filterStore = new window.SellixProductFilterStore(\n      '";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "',\n      '";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "filterName"), env.opts.autoescape);
+output += "',\n      {\n        search: '',\n        category: '";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "activeCategory"), env.opts.autoescape);
+output += "',\n        sort: '";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"default_sort"), env.opts.autoescape);
+output += "'\n      },\n    );\n\n    const optionFactory = (state, isResult, isSort) => {\n      const currentFilter = filterStore.get();\n\n      const chevronSvg = `<svg class=\"chevron\" width=\"21\" height=\"20\" viewBox=\"0 0 21 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M5.5 12.5L10.5 7.5L15.5 12.5\" stroke=\"#555D67\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n      </svg>`;\n\n      const tickSvg = `<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M4 10.1667L8 14.3333L16 6\" stroke=\"#6A3CE2\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n      </svg>`;\n\n      if (isSort && isResult) {\n        return $(`\n            <div class=\"select2-results__option-text-wrapper\">\n              ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "Sort by",{"keyPrefix": "shop.content"}), env.opts.autoescape);
+output += ": ${state.text}\n              ${chevronSvg}\n            </div>\n        `);\n      }\n\n      const selectedItem = isSort ? currentFilter.sort : currentFilter.category;\n      return $(`\n        <div class=\"select2-results__option-text-wrapper\">\n          <span>${state.text}</span>\n          ${isResult\n            ? chevronSvg\n            : (state.id === selectedItem)\n              ? tickSvg\n              : ''\n          }\n        </div>\n      `);\n    }\n\n    const onChange = () => {\n      $(document).trigger('SellixProductListFilterChangeEvent', { name: '";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "filterName"), env.opts.autoescape);
+output += "' });\n    }\n\n    $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__item').removeClass('d-none');\n    $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__filters-group').removeClass('d-none');\n\n    $('.block-product-list-items__empty-container button').on('click', () => {\n      $('#shop-search-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "').val('').trigger('keyup');\n      $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__categories-select').val('all');\n      $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__categories-select').trigger('change');\n    });\n\n    $('#shop-search-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "').on('keyup', function (e) {\n      filterStore.set({ search: e.target.value });\n      onChange();\n    });\n\n    $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__categories-select').select2({\n      data: [\n        {\n          text: \"";
+output += runtime.suppressValue(env.getFilter("t").call(context, "All Categories",{"keyPrefix": "shop.content"}), env.opts.autoescape);
+output += "\",\n          id: \"all\",\n        },\n";
+frame = frame.push();
+var t_19 = runtime.contextOrFrameLookup(context, frame, "categories");
+if(t_19) {t_19 = runtime.fromIterator(t_19);
+var t_18 = t_19.length;
+for(var t_17=0; t_17 < t_19.length; t_17++) {
+var t_20 = t_19[t_17];
+frame.set("category", t_20);
+frame.set("loop.index", t_17 + 1);
+frame.set("loop.index0", t_17);
+frame.set("loop.revindex", t_18 - t_17);
+frame.set("loop.revindex0", t_18 - t_17 - 1);
+frame.set("loop.first", t_17 === 0);
+frame.set("loop.last", t_17 === t_18 - 1);
+frame.set("loop.length", t_18);
+if(!runtime.memberLookup((t_20),"unlisted")) {
+output += "          {\n            text: \"";
+output += runtime.suppressValue(env.getFilter("t").call(context, runtime.memberLookup((t_20),"title"),{"keyPrefix": "shop.content"}), env.opts.autoescape);
+output += "\",\n            id: \"";
+output += runtime.suppressValue(runtime.memberLookup((t_20),"uniqid"), env.opts.autoescape);
+output += "\"\n          },\n";
+;
+}
+;
+}
+}
+frame = frame.pop();
+output += "      ],\n      minimumResultsForSearch: -1,\n      theme: 'sellix',\n      dropdownAutoWidth: true,\n      width: 'auto',\n      dropdownParent: $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__categories-dropdown'),\n      templateSelection: (state) => optionFactory(state, true, false),\n      templateResult: (state) => optionFactory(state, false, false),\n      escapeMarkup: (m) => m,\n    })\n      .on('change', (e) => {\n        filterStore.set({ category: e.target.value });\n        onChange();\n      })\n      .on('select2:open', (e) => {\n        $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__categories-dropdown').find('.select2-dropdown').addClass('animated flipIn');\n      })\n      .on('select2:closing', (e) => {\n        $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__categories-dropdown').find('.select2-dropdown').removeClass('animated flipIn');\n      });\n\n    $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__sort-select').select2({\n      dropdownAutoWidth: true,\n      width: 'auto',\n      dropdownParent: $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__sort-dropdown'),\n      templateSelection: (state) => optionFactory(state, true, true),\n      templateResult: (state) => optionFactory(state, false, true),\n      escapeMarkup: (m) => m,\n      minimumResultsForSearch: -1,\n      theme: 'sellix',\n    })\n      .on('change', (e) => {\n        filterStore.set({ sort: e.target.value });\n        onChange();\n      })\n      .on('select2:open', (e) => {\n        $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__sort-dropdown').find('.select2-dropdown').addClass('animated flipIn');\n      })\n      .on('select2:closing', (e) => {\n        $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__sort-dropdown').find('.select2-dropdown').removeClass('animated flipIn');\n      });\n\n    $(document).on('SellixProductListFilterChangeEvent', (e, eventInfo) => {\n      const { name } = eventInfo;\n      if (name === '";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "filterName"), env.opts.autoescape);
+output += "') {\n        const currentFilter = filterStore.get();\n\n        $('#shop-search-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "').val(currentFilter.search);\n\n        if (currentFilter.category !== $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__categories-select').val()) {\n          $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__categories-select').val(currentFilter.category);\n          $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__categories-select').trigger('change');\n        }\n        if (currentFilter.sort !== $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__sort-select').val()) {\n          $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__sort-select').val(currentFilter.sort);\n          $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__sort-select').trigger('change');\n        }\n      }\n    });\n\n    setTimeout(function() {\n";
+if((lineno = 273, colno = 41, runtime.callWrap(runtime.memberLookup((["category","shop"]),"includes"), "--expression--[\"includes\"]", context, [runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type")]))) {
+output += "        $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__categories-select').val('";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"options")),"itemId") || "all", env.opts.autoescape);
+output += "');\n        $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__categories-select').trigger('change');\n";
+;
+}
+output += "    }, 0);\n  });\n</script>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

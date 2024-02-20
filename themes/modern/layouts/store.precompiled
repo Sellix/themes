@@ -1,0 +1,364 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+output += "<!DOCTYPE html>\n";
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"locales")),"rtl");
+frame.set("rtl", t_1, true);
+if(frame.topLevel) {
+context.setVariable("rtl", t_1);
+}
+if(frame.topLevel) {
+context.addExport("rtl", t_1);
+}
+output += "<html\n  lang=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"locales")),"language"), env.opts.autoescape);
+output += "\"\n  style=\"background-color: var(--backgroundColor);\"\n  class=\"scroll-hidden\"\n";
+if(runtime.contextOrFrameLookup(context, frame, "rtl")) {
+output += "    dir=\"rtl\"\n";
+;
+}
+else {
+output += "    dir=\"ltr\"\n";
+;
+}
+output += ">\n  <head>\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"locales")),"defaultLocale") != runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"locales")),"locale")) {
+output += "      <base id='main-base-tag' href=\"/";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"locales")),"locale"), env.opts.autoescape);
+output += "/\">\n";
+;
+}
+else {
+output += "      <base href=\"/\">\n";
+;
+}
+output += "    <meta charset=\"utf-8\"/>\n\n    <script src='";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "js.cookie.min.js"), env.opts.autoescape);
+output += "'></script>\n";
+env.getExtension("RenderSnippet")["run"](context,"App google analytics", function(t_3,t_2) {
+if(t_3) { cb(t_3); return; }
+output += runtime.suppressValue(t_2, true && env.opts.autoescape);
+env.getExtension("RenderSnippet")["run"](context,"Main meta", function(t_5,t_4) {
+if(t_5) { cb(t_5); return; }
+output += runtime.suppressValue(t_4, true && env.opts.autoescape);
+output += "\n    <link rel=\"icon\" type=\"image/x-icon\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "favicon.ico"), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"icon\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "favicon.ico"), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "favicon.ico"), env.opts.autoescape);
+output += "\">\n    <link rel=\"apple-touch-icon\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "favicon.ico"), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"shortcut icon\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "favicon.ico"), env.opts.autoescape);
+output += "\">\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/>\n\n    <link rel=\"preconnect\" href=\"https://cdn.sellix.io/\"/>\n    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\">\n\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com/\"/>\n    <link rel=\"preload\" href=\"https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap\" as=\"style\" >\n    <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap\" rel=\"stylesheet\">\n\n";
+var t_6;
+t_6 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"typography")),"font");
+frame.set("font", t_6, true);
+if(frame.topLevel) {
+context.setVariable("font", t_6);
+}
+if(frame.topLevel) {
+context.addExport("font", t_6);
+}
+var t_7;
+t_7 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"page")),"background_image");
+frame.set("backgroundImage", t_7, true);
+if(frame.topLevel) {
+context.setVariable("backgroundImage", t_7);
+}
+if(frame.topLevel) {
+context.addExport("backgroundImage", t_7);
+}
+var t_8;
+t_8 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"page")),"background_attachment");
+frame.set("backgroundAttachment", t_8, true);
+if(frame.topLevel) {
+context.setVariable("backgroundAttachment", t_8);
+}
+if(frame.topLevel) {
+context.addExport("backgroundAttachment", t_8);
+}
+output += "\n    <link href=\"";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "font")),"href"), env.opts.autoescape);
+output += "\" rel=\"stylesheet\">\n\n    <style>\n      @font-face {\n        font-family: \"Inter var\";\n        font-weight: 100 900;\n        font-display: swap;\n        font-style: normal;\n        font-named-instance: \"Regular\";\n        src: url(";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "Inter.woff2"), env.opts.autoescape);
+output += ") format(\"woff2\");\n      }\n\n      body {\n        transition: background 0.9s;\n        background-color: #0000;\n        font-size: 14px;\n        -webkit-font-smoothing: antialiased;\n        margin: 0;\n        font-family: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "font")),"fontFamily"), env.opts.autoescape);
+output += ",\n        ";
+output += runtime.suppressValue((runtime.inOperator(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "font")),"systemFont"),["sans-serif","serif"])?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "font")),"systemFont"):"monospace"), env.opts.autoescape);
+output += " !important;\n\n";
+if(runtime.contextOrFrameLookup(context, frame, "backgroundImage")) {
+output += "        background-image: url(";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "backgroundImage"), env.opts.autoescape);
+output += ");\n        background-attachment: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "backgroundAttachment"), env.opts.autoescape);
+output += ";\n        background-repeat: no-repeat, no-repeat;\n        background-position: top;\n        background-size: cover;\n";
+;
+}
+output += "      }\n    </style>\n\n    <style>\n";
+env.getExtension("RenderSnippet")["run"](context,"Root css variables", function(t_10,t_9) {
+if(t_10) { cb(t_10); return; }
+output += runtime.suppressValue(t_9, true && env.opts.autoescape);
+output += "    </style>\n\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "ui-elements.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "fa-icons.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "font-awesome.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "modal.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "root-styles.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "shop.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sliding-panel.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "swiper.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "toastify.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n\n    ";
+output += "\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "section-faq.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "section-footer.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "section-footer-menu.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "section-header.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "section-product-list.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n\n    ";
+output += "\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "block-cart.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "block-customer-login.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "block-products-filter.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "block-products-grid.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "block-store-code.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "block-title.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n\n    ";
+output += "\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-cart-button-1.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-cart-button-2.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-checkout-products.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-checkout-product-count.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-code-input.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-burger-button.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-feedback-cards.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-language-selector.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-loader.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-mobile-sidebar-menu.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-product-addons.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-product-bundles.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-product-bundle-product.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-product-cards.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-product-gallery.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-product-info.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-product-list.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-product-review-stat.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-product-variants.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-purchase-details.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-shop-message.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "snippet-social-links-floating.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n\n";
+var t_11;
+t_11 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"theme");
+frame.set("theme", t_11, true);
+if(frame.topLevel) {
+context.setVariable("theme", t_11);
+}
+if(frame.topLevel) {
+context.addExport("theme", t_11);
+}
+output += "\n    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "select2.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\"/>\n";
+if(runtime.inOperator(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type"),["checkout","product","subscription"])) {
+output += "      <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "widget-purchase-details.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\" />\n";
+;
+}
+if(runtime.inOperator(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type"),["invoice"])) {
+output += "      <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "widget-invoice-checkout.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\" />\n";
+;
+}
+output += "    <link rel=\"stylesheet\" href=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "magnific-popup.1.1.0.css",runtime.contextOrFrameLookup(context, frame, "rtl")), env.opts.autoescape);
+output += "\" />\n    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css\" />\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css\" />\n    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css\" />\n\n    <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "jquery.js"), env.opts.autoescape);
+output += "\"></script>\n  </head>\n\n";
+var t_12;
+t_12 = (lineno = 144, colno = 21, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("layoutId", t_12, true);
+if(frame.topLevel) {
+context.setVariable("layoutId", t_12);
+}
+if(frame.topLevel) {
+context.addExport("layoutId", t_12);
+}
+output += "\n<body class=\"";
+output += runtime.suppressValue((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"theme")),"isDark")?"dark is-dark darkTheme":""), env.opts.autoescape);
+output += "\">\n\n  <div id=\"app\">\n    <div class=\"sellix-store sellix-ui-container height-100vh\">\n      <div id=\"content\" class=\"template\">\n";
+env.getExtension("RenderTemplate")["run"](context,"default", function(t_14,t_13) {
+if(t_14) { cb(t_14); return; }
+output += runtime.suppressValue(t_13, true && env.opts.autoescape);
+output += "      </div>\n    </div>\n  </div>\n\n  <div id=\"modal\"></div>\n";
+env.getExtension("RenderSnippet")["run"](context,"Mobile sidebar menu",runtime.makeKeywordArgs({"menu": "Main Menu"}), function(t_16,t_15) {
+if(t_16) { cb(t_16); return; }
+output += runtime.suppressValue(t_15, true && env.opts.autoescape);
+output += "\n  <script>\n    window.__RENDER_CONTEXT__ = ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("dump").call(context, runtime.contextOrFrameLookup(context, frame, "global"))), env.opts.autoescape);
+output += ";\n    window.RECAPTCHA_PUBLIC_KEY = window.__RENDER_CONTEXT__.config.CAPTCHA_SITE_KEY_V3;\n    window.RECAPTCHA_PUBLIC_KEY_V2 = window.__RENDER_CONTEXT__.config.RECAPTCHA;\n  </script>\n\n";
+env.getExtension("RenderSnippet")["run"](context,"Page loader", function(t_18,t_17) {
+if(t_18) { cb(t_18); return; }
+output += runtime.suppressValue(t_17, true && env.opts.autoescape);
+env.getExtension("RenderSnippet")["run"](context,"Toastify", function(t_20,t_19) {
+if(t_20) { cb(t_20); return; }
+output += runtime.suppressValue(t_19, true && env.opts.autoescape);
+env.getExtension("RenderSnippet")["run"](context,"Heart beat", function(t_22,t_21) {
+if(t_22) { cb(t_22); return; }
+output += runtime.suppressValue(t_21, true && env.opts.autoescape);
+output += "\n  <script async src=\"https://js.stripe.com/v3/\"></script>\n  <script src=\"https://www.google.com/recaptcha/api.js?render=";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"config")),"CAPTCHA_SITE_KEY_V3"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"https://unpkg.com/react@17.0.2/umd/react.production.min.js\" crossorigin></script>\n  <script src=\"https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js\" crossorigin></script>\n\n  <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jsrender/1.0.11/jsrender.min.js\"></script>\n  <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js\"></script>\n  <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery.waitforimages/1.5.0/jquery.waitforimages.min.js\"></script>\n  <script src=\"https://cdnjs.cloudflare.com/ajax/libs/textarea-autosize/0.4.2/jquery.textarea_autosize.min.js\" ></script>\n\n  <script src=\"https://cdn.jsdelivr.net/npm/toastify-js\"></script>\n\n";
+if(runtime.inOperator(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type"),["contact"])) {
+output += "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js\"></script>\n";
+;
+}
+output += "\n";
+if(runtime.inOperator(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type"),["product","checkout"])) {
+output += "    <script src=\"https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js\"></script>\n";
+;
+}
+output += "\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "copy-to-clipboard.min.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "file-saver.min.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "ripple.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "widget-react-simple-star-rating.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "widget-react-code-input.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "select2.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "magnific-popup.1.1.0.min.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "react-player.standalone.js"), env.opts.autoescape);
+output += "\"></script>\n";
+if(runtime.inOperator(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type"),["checkout","product","subscription"])) {
+output += "    <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "widget-purchase-details.js"), env.opts.autoescape);
+output += "\"></script>\n";
+;
+}
+output += "\n";
+if(runtime.inOperator(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type"),["invoice"])) {
+output += "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js\"></script>\n    <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "widget-invoice-checkout.js"), env.opts.autoescape);
+output += "\"></script>\n";
+;
+}
+output += "\n  ";
+output += "\n\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-store.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-api.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-context.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-helper.js"), env.opts.autoescape);
+output += "\"></script>\n\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-cart-store.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-product-addons-store.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-product-variants-store.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-cart-component.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-customer-login-component.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-cart-product-component.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-contact-form-component.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-checkout-product.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-checkout-products.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-faq-component.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-feedback-pagination.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-feedback-pagination-component.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-invoice-checkout-component.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-product-addons-component.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-product-bundle-component.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-product-count-component.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-product-variants-component.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-purchase-details-component.js"), env.opts.autoescape);
+output += "\"></script>\n  <script src=\"";
+output += runtime.suppressValue(env.getFilter("asset_url").call(context, "sellix-store-code-component.js"), env.opts.autoescape);
+output += "\"></script>\n\n";
+env.getExtension("RenderSnippet")["run"](context,"App cookie modal", function(t_24,t_23) {
+if(t_24) { cb(t_24); return; }
+output += runtime.suppressValue(t_23, true && env.opts.autoescape);
+env.getExtension("RenderSnippet")["run"](context,"I18Next", function(t_26,t_25) {
+if(t_26) { cb(t_26); return; }
+output += runtime.suppressValue(t_25, true && env.opts.autoescape);
+output += "  </body>\n</html>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+})})})})})})})})})});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

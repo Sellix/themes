@@ -1,0 +1,271 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"selector")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"selector"):"");
+frame.set("selector", t_2, true);
+if(frame.topLevel) {
+context.setVariable("selector", t_2);
+}
+if(frame.topLevel) {
+context.addExport("selector", t_2);
+}
+var t_3;
+t_3 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"wrapperClassName")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"wrapperClassName"):"");
+frame.set("wrapperClassName", t_3, true);
+if(frame.topLevel) {
+context.setVariable("wrapperClassName", t_3);
+}
+if(frame.topLevel) {
+context.addExport("wrapperClassName", t_3);
+}
+var t_4;
+t_4 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"showPassword")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"showPassword"):false);
+frame.set("showPassword", t_4, true);
+if(frame.topLevel) {
+context.setVariable("showPassword", t_4);
+}
+if(frame.topLevel) {
+context.addExport("showPassword", t_4);
+}
+var t_5;
+t_5 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"label")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"label"):"");
+frame.set("label", t_5, true);
+if(frame.topLevel) {
+context.setVariable("label", t_5);
+}
+if(frame.topLevel) {
+context.addExport("label", t_5);
+}
+var t_6;
+t_6 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"nowrap")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"nowrap"):false);
+frame.set("nowrap", t_6, true);
+if(frame.topLevel) {
+context.setVariable("nowrap", t_6);
+}
+if(frame.topLevel) {
+context.addExport("nowrap", t_6);
+}
+var t_7;
+t_7 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"name")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"name"):"");
+frame.set("name", t_7, true);
+if(frame.topLevel) {
+context.setVariable("name", t_7);
+}
+if(frame.topLevel) {
+context.addExport("name", t_7);
+}
+var t_8;
+t_8 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"note")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"note"):"");
+frame.set("note", t_8, true);
+if(frame.topLevel) {
+context.setVariable("note", t_8);
+}
+if(frame.topLevel) {
+context.addExport("note", t_8);
+}
+var t_9;
+t_9 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"noteUnder")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"noteUnder"):true);
+frame.set("noteUnder", t_9, true);
+if(frame.topLevel) {
+context.setVariable("noteUnder", t_9);
+}
+if(frame.topLevel) {
+context.addExport("noteUnder", t_9);
+}
+var t_10;
+t_10 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"type")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"type"):"text");
+frame.set("type", t_10, true);
+if(frame.topLevel) {
+context.setVariable("type", t_10);
+}
+if(frame.topLevel) {
+context.addExport("type", t_10);
+}
+var t_11;
+t_11 = false;
+frame.set("isVisible", t_11, true);
+if(frame.topLevel) {
+context.setVariable("isVisible", t_11);
+}
+if(frame.topLevel) {
+context.addExport("isVisible", t_11);
+}
+var t_12;
+t_12 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"style")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"style"):"");
+frame.set("style", t_12, true);
+if(frame.topLevel) {
+context.setVariable("style", t_12);
+}
+if(frame.topLevel) {
+context.addExport("style", t_12);
+}
+var t_13;
+t_13 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"disabled")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"disabled"):false);
+frame.set("disabled", t_13, true);
+if(frame.topLevel) {
+context.setVariable("disabled", t_13);
+}
+if(frame.topLevel) {
+context.addExport("disabled", t_13);
+}
+var t_14;
+t_14 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"placeholder")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"placeholder"):"");
+frame.set("placeholder", t_14, true);
+if(frame.topLevel) {
+context.setVariable("placeholder", t_14);
+}
+if(frame.topLevel) {
+context.addExport("placeholder", t_14);
+}
+var t_15;
+t_15 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"className")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"className"):"");
+frame.set("className", t_15, true);
+if(frame.topLevel) {
+context.setVariable("className", t_15);
+}
+if(frame.topLevel) {
+context.addExport("className", t_15);
+}
+var t_16;
+t_16 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_16, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_16);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_16);
+}
+var t_17;
+t_17 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"inputs");
+frame.set("inputsProps", t_17, true);
+if(frame.topLevel) {
+context.setVariable("inputsProps", t_17);
+}
+if(frame.topLevel) {
+context.addExport("inputsProps", t_17);
+}
+output += "\n<style>\n  .sellix-input::placeholder {\n    color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_color")), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_size"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_weight"), env.opts.autoescape);
+output += ";\n  }\n</style>\n\n<div class=\"";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "wrapperClassName")?runtime.contextOrFrameLookup(context, frame, "wrapperClassName"):""), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "showPassword")?"position-relative":""), env.opts.autoescape);
+output += " mb-3\">\n";
+if(runtime.contextOrFrameLookup(context, frame, "label")) {
+output += "    <label\n      class=\"sellix-label ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "nowrap")?"text-nowrap":""), env.opts.autoescape);
+output += "\"\n      htmlFor=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "name"), env.opts.autoescape);
+output += "\"\n      style=\"color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_label_font_color")), env.opts.autoescape);
+output += "; font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_label_font_size"), env.opts.autoescape);
+output += "px; font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_label_font_weight"), env.opts.autoescape);
+output += "; line-height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_label_line_height"), env.opts.autoescape);
+output += "%; justify-content: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_label_text_align"), env.opts.autoescape);
+output += ";\"\n    >\n      ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "label"), env.opts.autoescape);
+output += "\n    </label>\n";
+;
+}
+output += "\n";
+if(runtime.contextOrFrameLookup(context, frame, "note") && !runtime.contextOrFrameLookup(context, frame, "noteUnder")) {
+output += "    <p class=\"sellix-note\">";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "note"), env.opts.autoescape);
+output += "</p>\n";
+;
+}
+output += "\n  <input\n    autoComplete=\"";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "type") == "email"?"":"off"), env.opts.autoescape);
+output += "\"\n    type=\"";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "showPassword") && runtime.contextOrFrameLookup(context, frame, "isVisible")?"text":""), env.opts.autoescape);
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "showPassword") && !runtime.contextOrFrameLookup(context, frame, "isVisible")?"password":""), env.opts.autoescape);
+output += runtime.suppressValue((!runtime.contextOrFrameLookup(context, frame, "showPassword") && runtime.contextOrFrameLookup(context, frame, "type")?runtime.contextOrFrameLookup(context, frame, "type"):""), env.opts.autoescape);
+output += runtime.suppressValue((!runtime.contextOrFrameLookup(context, frame, "type") && !runtime.contextOrFrameLookup(context, frame, "showPassword")?"text":""), env.opts.autoescape);
+output += "\"\n    id=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "name"), env.opts.autoescape);
+output += "\"\n    name=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "name"), env.opts.autoescape);
+output += "\"\n    ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "disabled")?"disabled":""), env.opts.autoescape);
+output += "\n    placeholder=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "placeholder"), env.opts.autoescape);
+output += "\"\n    class=\"sellix-input";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "className"), env.opts.autoescape);
+output += " sellix-input-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " sellix-input-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "selector"), env.opts.autoescape);
+output += "\"\n    style=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "style"), env.opts.autoescape);
+output += "; height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_height"), env.opts.autoescape);
+output += "px; background: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"text_field_background")), env.opts.autoescape);
+output += "; border: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_show_border")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += "; color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_color")), env.opts.autoescape);
+output += "; font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_size"), env.opts.autoescape);
+output += "px; font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_weight"), env.opts.autoescape);
+output += ";\"\n  >\n\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "showPassword")) {
+env.getExtension("RenderSnippet")["run"](context,"Hide Password Icon",runtime.makeKeywordArgs({"id": runtime.contextOrFrameLookup(context, frame, "id"),"class": "sellix-input-visible"}), function(t_19,t_18) {
+if(t_19) { cb(t_19); return; }
+output += runtime.suppressValue(t_18, true && env.opts.autoescape);
+cb()});
+}
+else {
+cb()}
+})(function(t_20) {
+if(t_20) { cb(t_20); return; }output += "\n";
+if(runtime.contextOrFrameLookup(context, frame, "note") && runtime.contextOrFrameLookup(context, frame, "noteUnder")) {
+output += "    <p class=\"sellix-note\">";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "note"), env.opts.autoescape);
+output += "</p>\n";
+;
+}
+output += "</div>\n\n<script type='application/javascript'>\n  $(document).ready(function () {\n    $('#sellix-input-visible-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "').on('click', function () {\n      const type = $('.sellix-input-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "').attr('type');\n      if( type === 'password' ){\n        $('.sellix-input-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "').attr('type', 'text');\n      } else {\n        $('.sellix-input-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "').attr('type', 'password');\n      }\n    });\n  });\n</script>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

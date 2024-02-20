@@ -1,0 +1,67 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+output += "<style>\n  .sellix-text p{\n    color:#fff!important;\n  }\n</style>\n";
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_1, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_1);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_2, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_2);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_2);
+}
+output += "\n<div class=\"sellix-terms-screen\">\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"terms_of_service")) {
+output += "    <div\n      class=\"sellix-terms\"\n      style=\"width: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"terms_size"), env.opts.autoescape);
+output += "%;";
+output += " background: #160e2c;";
+output += " border: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"terms_show_border")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += ";";
+output += " box-shadow: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"terms_shadow"), env.opts.autoescape);
+output += ";";
+output += " border-radius: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"terms_border_radius"), env.opts.autoescape);
+output += "rem;";
+output += " padding: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"terms_padding"), env.opts.autoescape);
+output += "px;\"\n    >\n      <div class=\"sellix-text\" style=\"color:#fff!important;\">\n        ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("html_sanitize").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"terms_of_service"))), env.opts.autoescape);
+output += "\n      </div>\n    </div>\n";
+;
+}
+else {
+output += "    <div class=\"empty-shop-container\">\n      <i class=\"fa-regular fa-gavel\"></i>\n\n      <span class=\"empty-shop-title\"><b>";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "</b>'s shop has no terms and condition.</span>\n    </div>\n";
+;
+}
+output += "</div>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

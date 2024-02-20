@@ -1,0 +1,151 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_2, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_2);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"product");
+frame.set("product", t_3, true);
+if(frame.topLevel) {
+context.setVariable("product", t_3);
+}
+if(frame.topLevel) {
+context.addExport("product", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"quantity_min");
+frame.set("quantity_min", t_4, true);
+if(frame.topLevel) {
+context.setVariable("quantity_min", t_4);
+}
+if(frame.topLevel) {
+context.addExport("quantity_min", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"quantity_max");
+frame.set("quantity_max", t_5, true);
+if(frame.topLevel) {
+context.setVariable("quantity_max", t_5);
+}
+if(frame.topLevel) {
+context.addExport("quantity_max", t_5);
+}
+var t_6;
+t_6 = ((runtime.contextOrFrameLookup(context, frame, "quantity_min") == runtime.contextOrFrameLookup(context, frame, "quantity_max")?true:false));
+frame.set("equal", t_6, true);
+if(frame.topLevel) {
+context.setVariable("equal", t_6);
+}
+if(frame.topLevel) {
+context.addExport("equal", t_6);
+}
+var t_7;
+t_7 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"currencyConfig")),"allCurrencies")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"currency"));
+frame.set("currency", t_7, true);
+if(frame.topLevel) {
+context.setVariable("currency", t_7);
+}
+if(frame.topLevel) {
+context.addExport("currency", t_7);
+}
+output += "\n";
+var t_8;
+t_8 = ["snippet-product-minmax-note"];
+frame.set("globalClass", t_8, true);
+if(frame.topLevel) {
+context.setVariable("globalClass", t_8);
+}
+if(frame.topLevel) {
+context.addExport("globalClass", t_8);
+}
+var t_9;
+t_9 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_9, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_9);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_9);
+}
+output += "\n<style>\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " .quantity-message {\n    width: 100%;\n    padding: 0.5rem 0;\n    color: var(--darkFontColor);\n  }\n\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " .quantity-message span {\n    font-size: 11px;\n  }\n</style>\n\n<div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "\">\n  <div class=\"sellix-quantity\" style=\"height: 0; overflow: hidden;\">\n    <div class=\"quantity-message text-align-left\" style=\"padding-bottom: 0;\">\n      <span class=\"min\"></span>\n      <span class=\"max\"></span>\n";
+if(runtime.contextOrFrameLookup(context, frame, "equal")) {
+output += "        <span>Only <b>";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "quantity_max"), env.opts.autoescape);
+output += "</b> items per order</span>\n";
+;
+}
+output += "    </div>\n  </div>\n\n  <div class=\"sellix-next-discount\" style=\"height: 0; overflow: hidden;\">\n    <div class=\"quantity-message pb-0\">\n      <span></span>\n    </div>\n  </div>\n</div>\n\n<script type='application/javascript'>\n  $(document).ready(function() {\n    const cart = window.SellixCartStoreFactory.getCart('";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "');\n    const currencyConfig = SellixContext.getCurrencyConfig();\n    const productId = '";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"uniqid"), env.opts.autoescape);
+output += "';\n    const discountList = JSON.parse(";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("dump").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"volume_discounts"))), env.opts.autoescape);
+output += ")\n      .volume_discounts\n      .sort((a, b) => +a.quantity - +b.quantity);\n\n    const render = function ({ quantity }) {\n      let nextDiscount = discountList.find(discount => !(+quantity >= +discount.quantity));\n\n      const minimum = +quantity === +";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "quantity_min"), env.opts.autoescape);
+output += " && ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "quantity_min"), env.opts.autoescape);
+output += " !== ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "quantity_max"), env.opts.autoescape);
+output += " && ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "quantity_min"), env.opts.autoescape);
+output += " > 1;\n      const maximum = +quantity === +";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "quantity_max"), env.opts.autoescape);
+output += " && ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "quantity_min"), env.opts.autoescape);
+output += " !== ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "quantity_max"), env.opts.autoescape);
+output += ";\n\n      const $quantityMessage = $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " .sellix-quantity');\n\n      if (minimum || maximum) {\n        $quantityMessage.find('.quantity-message .min').html(\n          minimum\n            ? `${window.sellixI18Next.t('shop.product.productMinMaxNote.minQuantity')}: <b>";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "quantity_min"), env.opts.autoescape);
+output += "</b>`\n            : ''\n        );\n        $quantityMessage.find('.quantity-message .max').html(\n          maximum\n            ? `${window.sellixI18Next.t('shop.product.productMinMaxNote.maxQuantity')}: <b>";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "quantity_max"), env.opts.autoescape);
+output += "</b>`\n            : ''\n        );\n        $quantityMessage.css({ height: 'auto', overflow: 'initial' });\n      } else {\n        $quantityMessage.css({ height: '0', overflow: 'hidden' });\n      }\n\n      const $discountMessage = $('.";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += " .sellix-next-discount');\n      const addMoreTranslations = [\n        window.sellixI18Next.t('shop.product.productMinMaxNote.addMore.0'),\n        window.sellixI18Next.t('shop.product.productMinMaxNote.addMore.1'),\n        window.sellixI18Next.t('shop.product.productMinMaxNote.addMore.2'),\n      ]\n      if (nextDiscount) {\n        const nextQuantity = +nextDiscount.quantity - +quantity,\n          currency = nextDiscount.type === 'FIXED' ? '";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "currency")),"symbol"), env.opts.autoescape);
+output += "' : '',\n          currencyType = '";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "currency")),"type"), env.opts.autoescape);
+output += "',\n          percent = nextDiscount.type !== 'FIXED' ? '%' : '',\n          nextPrice = nextDiscount.type === 'FIXED'\n            ? window.sellixHelper.toDecimalPrecision(nextDiscount.value, currencyConfig.moneyPrecision)\n            : nextDiscount.value;\n\n        const priceTitle = nextDiscount.type === 'FIXED'\n          ? (\n            currencyType === 'fiat'\n              ? `${currency}${nextPrice}`\n              : `${nextPrice} ${currency}`\n          )\n          : `${nextPrice}${percent}`;\n\n        $discountMessage.find(\".quantity-message > span\").html(\n          `${addMoreTranslations[0]} <b>${nextQuantity}</b> ` +\n          `${addMoreTranslations[1]} <b>${priceTitle}</b> ` +\n          `${addMoreTranslations[2]}`\n        );\n        $discountMessage.css({ height: 'auto', overflow: 'initial' });\n      } else {\n        $discountMessage.css({ height: '0', overflow: 'hidden' });\n        $discountMessage.find(\".quantity-message > span\").html('');\n      }\n    }\n\n    const renderOptions = ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("dump").call(context, runtime.contextOrFrameLookup(context, frame, "renderOptions"))), env.opts.autoescape);
+output += ";\n    const renderEvent = sellixHelper.getEventName({\n      name: 'SellixRenderComponent',\n      namespace: renderOptions.id,\n    });\n    $(document).on(`SellixCartUpdateEvent ${renderEvent}`, (e, eventInfo) => {\n      if (!eventInfo || !eventInfo.productId || eventInfo.productId === productId) {\n        const product = cart.getItemById(productId);\n        if (product) {\n          render(product);\n        }\n      }\n    });\n  });\n</script>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

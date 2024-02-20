@@ -1,0 +1,32 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"productInfo")),"product");
+frame.set("product", t_1, true);
+if(frame.topLevel) {
+context.setVariable("product", t_1);
+}
+if(frame.topLevel) {
+context.addExport("product", t_1);
+}
+output += "\n";
+env.getExtension("RenderSnippet")["run"](context,"Addons",runtime.makeKeywordArgs({"product": runtime.contextOrFrameLookup(context, frame, "product"),"properties": runtime.contextOrFrameLookup(context, frame, "properties"),"currency": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"currency")}), function(t_3,t_2) {
+if(t_3) { cb(t_3); return; }
+output += runtime.suppressValue(t_2, true && env.opts.autoescape);
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

@@ -1,0 +1,95 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_2, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_2);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"invoice");
+frame.set("invoice", t_3, true);
+if(frame.topLevel) {
+context.setVariable("invoice", t_3);
+}
+if(frame.topLevel) {
+context.addExport("invoice", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"products");
+frame.set("products", t_4, true);
+if(frame.topLevel) {
+context.setVariable("products", t_4);
+}
+if(frame.topLevel) {
+context.addExport("products", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_5, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_5);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_5);
+}
+output += "\n<div id='checkout-products-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "'>\n";
+frame = frame.push();
+var t_8 = runtime.fromIterator(runtime.contextOrFrameLookup(context, frame, "products"));
+runtime.asyncEach(t_8, 1, function(product, t_6, t_7,next) {
+frame.set("product", product);
+frame.set("loop.index", t_6 + 1);
+frame.set("loop.index0", t_6);
+frame.set("loop.revindex", t_7 - t_6);
+frame.set("loop.revindex0", t_7 - t_6 - 1);
+frame.set("loop.first", t_6 === 0);
+frame.set("loop.last", t_6 === t_7 - 1);
+frame.set("loop.length", t_7);
+env.getExtension("RenderSnippet")["run"](context,"Checkout product",runtime.makeKeywordArgs({"product": product,"invoice": runtime.contextOrFrameLookup(context, frame, "invoice"),"quantity": runtime.memberLookup((product),"quantity"),"properties": runtime.contextOrFrameLookup(context, frame, "properties")}), function(t_10,t_9) {
+if(t_10) { cb(t_10); return; }
+output += runtime.suppressValue(t_9, true && env.opts.autoescape);
+next(t_6);
+});
+}, function(t_12,t_11) {
+if(t_12) { cb(t_12); return; }
+frame = frame.pop();
+output += "</div>\n\n<script type='application/javascript'>\n  $(document).ready(function () {\n    const cart = window.SellixCartStoreFactory.getCart('";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "');\n    new SellixCheckoutProductsComponent(\n      '#checkout-products-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "',\n      cart,\n      ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("dump").call(context, runtime.contextOrFrameLookup(context, frame, "renderOptions"))), env.opts.autoescape);
+output += ",\n      ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("dump").call(context, runtime.contextOrFrameLookup(context, frame, "properties"))), env.opts.autoescape);
+output += ",\n    );\n  });\n</script>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

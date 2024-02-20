@@ -1,0 +1,112 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"config")),"CURRENCY_LIST");
+frame.set("currencyList", t_1, true);
+if(frame.topLevel) {
+context.setVariable("currencyList", t_1);
+}
+if(frame.topLevel) {
+context.addExport("currencyList", t_1);
+}
+var t_2;
+t_2 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"digits")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"digits"):2);
+frame.set("digits", t_2, true);
+if(frame.topLevel) {
+context.setVariable("digits", t_2);
+}
+if(frame.topLevel) {
+context.addExport("digits", t_2);
+}
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"priceVariants")) {
+var t_3;
+t_3 = null;
+frame.set("minPrice", t_3, true);
+if(frame.topLevel) {
+context.setVariable("minPrice", t_3);
+}
+if(frame.topLevel) {
+context.addExport("minPrice", t_3);
+}
+frame = frame.push();
+var t_6 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"priceVariants");
+if(t_6) {t_6 = runtime.fromIterator(t_6);
+var t_5 = t_6.length;
+for(var t_4=0; t_4 < t_6.length; t_4++) {
+var t_7 = t_6[t_4];
+frame.set("variant", t_7);
+frame.set("loop.index", t_4 + 1);
+frame.set("loop.index0", t_4);
+frame.set("loop.revindex", t_5 - t_4);
+frame.set("loop.revindex0", t_5 - t_4 - 1);
+frame.set("loop.first", t_4 === 0);
+frame.set("loop.last", t_4 === t_5 - 1);
+frame.set("loop.length", t_5);
+if(runtime.contextOrFrameLookup(context, frame, "minPrice") === null || runtime.memberLookup((t_7),"price") < runtime.contextOrFrameLookup(context, frame, "minPrice")) {
+var t_8;
+t_8 = runtime.memberLookup((t_7),"price");
+frame.set("minPrice", t_8, true);
+if(frame.topLevel) {
+context.setVariable("minPrice", t_8);
+}
+if(frame.topLevel) {
+context.addExport("minPrice", t_8);
+}
+;
+}
+;
+}
+}
+frame = frame.pop();
+var t_9;
+t_9 = runtime.contextOrFrameLookup(context, frame, "minPrice");
+frame.set("productPrice", t_9, true);
+if(frame.topLevel) {
+context.setVariable("productPrice", t_9);
+}
+if(frame.topLevel) {
+context.addExport("productPrice", t_9);
+}
+;
+}
+else {
+var t_10;
+t_10 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"price");
+frame.set("productPrice", t_10, true);
+if(frame.topLevel) {
+context.setVariable("productPrice", t_10);
+}
+if(frame.topLevel) {
+context.addExport("productPrice", t_10);
+}
+;
+}
+output += "\n";
+var t_11;
+t_11 = env.getFilter("to_fixed").call(context, ((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"discount")?env.getFilter("round").call(context, (runtime.contextOrFrameLookup(context, frame, "productPrice") - runtime.contextOrFrameLookup(context, frame, "productPrice") * runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"discount") / 100),2):runtime.contextOrFrameLookup(context, frame, "productPrice"))),runtime.contextOrFrameLookup(context, frame, "digits"));
+frame.set("price", t_11, true);
+if(frame.topLevel) {
+context.setVariable("price", t_11);
+}
+if(frame.topLevel) {
+context.addExport("price", t_11);
+}
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "currencyList")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"currency")), env.opts.autoescape);
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "price"), env.opts.autoescape);
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

@@ -1,0 +1,363 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo");
+frame.set("shopInfo", t_1, true);
+if(frame.topLevel) {
+context.setVariable("shopInfo", t_1);
+}
+if(frame.topLevel) {
+context.addExport("shopInfo", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shopInfo")),"shop");
+frame.set("shop", t_2, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_2);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"products");
+frame.set("products", t_3, true);
+if(frame.topLevel) {
+context.setVariable("products", t_3);
+}
+if(frame.topLevel) {
+context.addExport("products", t_3);
+}
+output += "\n";
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"hide_out_of_stock") || env.getFilter("int").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"hide_out_of_stock"));
+frame.set("hideOutOfStock", t_4, true);
+if(frame.topLevel) {
+context.setVariable("hideOutOfStock", t_4);
+}
+if(frame.topLevel) {
+context.addExport("hideOutOfStock", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"hide_stock_counter") || env.getFilter("int").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"hide_stock_counter"));
+frame.set("hideStockCounter", t_5, true);
+if(frame.topLevel) {
+context.setVariable("hideStockCounter", t_5);
+}
+if(frame.topLevel) {
+context.addExport("hideStockCounter", t_5);
+}
+var t_6;
+t_6 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"cart_enabled") || runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"cart")),"is_enabled");
+frame.set("cartEnabled", t_6, true);
+if(frame.topLevel) {
+context.setVariable("cartEnabled", t_6);
+}
+if(frame.topLevel) {
+context.addExport("cartEnabled", t_6);
+}
+var t_7;
+t_7 = (lineno = 7, colno = 31, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "safe_get"), "safe_get", context, [runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"common")),"show_stock_info"),false]));
+frame.set("showStockInfo", t_7, true);
+if(frame.topLevel) {
+context.setVariable("showStockInfo", t_7);
+}
+if(frame.topLevel) {
+context.addExport("showStockInfo", t_7);
+}
+output += "\n";
+var t_8;
+t_8 = "snippet-product-list";
+frame.set("globalClass", t_8, true);
+if(frame.topLevel) {
+context.setVariable("globalClass", t_8);
+}
+if(frame.topLevel) {
+context.addExport("globalClass", t_8);
+}
+var t_9;
+t_9 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_9, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_9);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_9);
+}
+output += "\n<div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "\">\n";
+frame = frame.push();
+var t_12 = runtime.fromIterator(runtime.contextOrFrameLookup(context, frame, "products"));
+runtime.asyncEach(t_12, 1, function(product, t_10, t_11,next) {
+frame.set("product", product);
+frame.set("loop.index", t_10 + 1);
+frame.set("loop.index0", t_10);
+frame.set("loop.revindex", t_11 - t_10);
+frame.set("loop.revindex0", t_11 - t_10 - 1);
+frame.set("loop.first", t_10 === 0);
+frame.set("loop.last", t_10 === t_11 - 1);
+frame.set("loop.length", t_11);
+var t_13;
+t_13 = env.getFilter("int").call(context, runtime.memberLookup((product),"on_hold"));
+frame.set("onHold", t_13, true);
+if(frame.topLevel) {
+context.setVariable("onHold", t_13);
+}
+if(frame.topLevel) {
+context.addExport("onHold", t_13);
+}
+var t_14;
+t_14 = runtime.memberLookup((product),"stock") === 0 || runtime.contextOrFrameLookup(context, frame, "onHold");
+frame.set("isDisabled", t_14, true);
+if(frame.topLevel) {
+context.setVariable("isDisabled", t_14);
+}
+if(frame.topLevel) {
+context.addExport("isDisabled", t_14);
+}
+var t_15;
+t_15 = env.getFilter("float").call(context, runtime.memberLookup((product),"price_display")) === 0;
+frame.set("isFree", t_15, true);
+if(frame.topLevel) {
+context.setVariable("isFree", t_15);
+}
+if(frame.topLevel) {
+context.addExport("isFree", t_15);
+}
+var t_16;
+t_16 = !runtime.memberLookup((product),"cloudflare_image_id");
+frame.set("isPlaceholder", t_16, true);
+if(frame.topLevel) {
+context.setVariable("isPlaceholder", t_16);
+}
+if(frame.topLevel) {
+context.addExport("isPlaceholder", t_16);
+}
+var t_17;
+t_17 = runtime.memberLookup((product),"licensing_enabled");
+frame.set("isLicense", t_17, true);
+if(frame.topLevel) {
+context.setVariable("isLicense", t_17);
+}
+if(frame.topLevel) {
+context.addExport("isLicense", t_17);
+}
+var t_18;
+t_18 = runtime.memberLookup((product),"type") == "SUBSCRIPTION";
+frame.set("isSubscription", t_18, true);
+if(frame.topLevel) {
+context.setVariable("isSubscription", t_18);
+}
+if(frame.topLevel) {
+context.addExport("isSubscription", t_18);
+}
+var t_19;
+t_19 = runtime.memberLookup((product),"pay_what_you_want");
+frame.set("isPayWhatYouWant", t_19, true);
+if(frame.topLevel) {
+context.setVariable("isPayWhatYouWant", t_19);
+}
+if(frame.topLevel) {
+context.addExport("isPayWhatYouWant", t_19);
+}
+var t_20;
+t_20 = (lineno = 21, colno = 27, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "cdn_link"), "cdn_link", context, [runtime.memberLookup((product),"cloudflare_image_id"),"shopItem"]));
+frame.set("image", t_20, true);
+if(frame.topLevel) {
+context.setVariable("image", t_20);
+}
+if(frame.topLevel) {
+context.addExport("image", t_20);
+}
+var t_21;
+t_21 = env.getFilter("float").call(context, ((runtime.memberLookup((product),"average_score")?runtime.memberLookup((product),"average_score"):0)));
+frame.set("rating", t_21, true);
+if(frame.topLevel) {
+context.setVariable("rating", t_21);
+}
+if(frame.topLevel) {
+context.addExport("rating", t_21);
+}
+var t_22;
+t_22 = env.getFilter("float").call(context, runtime.contextOrFrameLookup(context, frame, "rating")) > 4;
+frame.set("isRatingGold", t_22, true);
+if(frame.topLevel) {
+context.setVariable("isRatingGold", t_22);
+}
+if(frame.topLevel) {
+context.addExport("isRatingGold", t_22);
+}
+var t_23;
+t_23 = runtime.memberLookup((product),"stock");
+frame.set("productStock", t_23, true);
+if(frame.topLevel) {
+context.setVariable("productStock", t_23);
+}
+if(frame.topLevel) {
+context.addExport("productStock", t_23);
+}
+output += "\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "hideOutOfStock") && runtime.memberLookup((product),"stock") == 0) {
+output += "      ";
+output += "\n";
+cb();
+}
+else {
+output += "      <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__option ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isDisabled")?"is-disabled":""), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "cartEnabled")?"":""), env.opts.autoescape);
+output += "\">\n        <a\n          href=\"";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isDisabled")?"javascript:void(0)":env.getFilter("join").call(context, ["product/",runtime.memberLookup((product),"slug") || runtime.memberLookup((product),"uniqid")])), env.opts.autoescape);
+output += "\"\n          class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__option-description\"\n        >\n          <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__option-image ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isPlaceholder")?"image-placeholder":""), env.opts.autoescape);
+output += "\">\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "isPlaceholder")) {
+env.getExtension("RenderSnippet")["run"](context,"Product: Placeholder icon",runtime.makeKeywordArgs({"product": product}), function(t_25,t_24) {
+if(t_25) { cb(t_25); return; }
+output += runtime.suppressValue(t_24, true && env.opts.autoescape);
+cb()});
+}
+else {
+output += "              <img src=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "image"), env.opts.autoescape);
+output += "\" alt=\"";
+output += runtime.suppressValue(runtime.memberLookup((product),"title"), env.opts.autoescape);
+output += "\" loading=\"lazy\" />\n";
+cb();
+}
+})(function(t_26) {
+if(t_26) { cb(t_26); return; }output += "          </div>\n\n          <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__option-content\">\n            <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__option-title\">\n              <span>";
+output += runtime.suppressValue(runtime.memberLookup((product),"title"), env.opts.autoescape);
+output += "</span>\n\n";
+if(runtime.contextOrFrameLookup(context, frame, "rating")) {
+output += "                <span class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__option-star ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isRatingGold")?"text-gold":""), env.opts.autoescape);
+output += "\">\n                  <span class=\"mr-1 position-relative ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isRatingGold")?"text-gold":""), env.opts.autoescape);
+output += "\">\n                    <i class=\"fas fa-star\" style=\"font-size: 11px;\"></i>\n                  </span>\n                  <span>\n                    ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "rating") === 5?5:(env.getFilter("round").call(context, env.getFilter("float").call(context, runtime.contextOrFrameLookup(context, frame, "rating")),2))), env.opts.autoescape);
+output += "\n                  </span>\n                </span>\n";
+;
+}
+output += "            </div>\n\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "onHold")) {
+output += "              <span>\n                ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.main.cards.group.onHold"), env.opts.autoescape);
+output += "\n              </span>\n";
+cb();
+}
+else {
+output += "              <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__option-info\">\n                <span class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__option-info-price\" >\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "isFree")) {
+output += "                    <span style='color: var(--green6)'>\n                      ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.shared.titles.free"), env.opts.autoescape);
+output += "\n                    </span>\n";
+cb();
+}
+else {
+env.getExtension("RenderSnippet")["run"](context,"Shared: Price",runtime.makeKeywordArgs({"currency": runtime.memberLookup((product),"currency"),"price": runtime.memberLookup((product),"min_price"),"discount": runtime.memberLookup((product),"price_discount"),"show_image": true,"show_initial_price": "last"}), function(t_28,t_27) {
+if(t_28) { cb(t_28); return; }
+output += runtime.suppressValue(t_27, true && env.opts.autoescape);
+cb()});
+}
+})(function(t_29) {
+if(t_29) { cb(t_29); return; }output += "                </span>\n\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "showStockInfo")) {
+output += "                  <span class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__option-dot\">  ●  </span>\n\n";
+env.getExtension("RenderSnippet")["run"](context,"Product: Stock",runtime.makeKeywordArgs({"stock": runtime.contextOrFrameLookup(context, frame, "productStock"),"hide_stock_counter": runtime.contextOrFrameLookup(context, frame, "hideStockCounter"),"reverse": true}), function(t_31,t_30) {
+if(t_31) { cb(t_31); return; }
+output += runtime.suppressValue(t_30, true && env.opts.autoescape);
+cb()});
+}
+else {
+cb()}
+})(function(t_32) {
+if(t_32) { cb(t_32); return; }output += "              </div>\n";
+cb()})});
+}
+})(function(t_33) {
+if(t_33) { cb(t_33); return; }output += "          </div>\n        </a>\n\n        <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__option-buttons unselectable ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "cartEnabled")?"with-cart":""), env.opts.autoescape);
+output += "\">\n";
+(function(cb) {if(!runtime.contextOrFrameLookup(context, frame, "isDisabled") && !runtime.contextOrFrameLookup(context, frame, "isSubscription") && !runtime.contextOrFrameLookup(context, frame, "isLicense") && !runtime.contextOrFrameLookup(context, frame, "isPayWhatYouWant")) {
+output += "            <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__quantity-button\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Cart button 1",runtime.makeKeywordArgs({"product": product,"is_static": true,"possible_cart_effects": ["quick_checkout_button"]}), function(t_35,t_34) {
+if(t_35) { cb(t_35); return; }
+output += runtime.suppressValue(t_34, true && env.opts.autoescape);
+output += "            </div>\n";
+cb()});
+}
+else {
+output += "            <div></div>\n";
+cb();
+}
+})(function(t_36) {
+if(t_36) { cb(t_36); return; }output += "\n          <a href=\"";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isDisabled")?"javascript:void(0)":env.getFilter("join").call(context, ["product/",runtime.memberLookup((product),"slug") || runtime.memberLookup((product),"uniqid")])), env.opts.autoescape);
+output += "\" class=\"button ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isDisabled")?"disabled":""), env.opts.autoescape);
+output += "\">\n";
+if(runtime.contextOrFrameLookup(context, frame, "isFree")) {
+output += "              ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.shared.titles.get"), env.opts.autoescape);
+output += "\n";
+;
+}
+else {
+output += "              ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.shared.titles.buy"), env.opts.autoescape);
+output += "\n";
+;
+}
+output += "          </a>\n        </div>\n      </div>\n";
+cb()})})});
+}
+})(function(t_37) {
+if(t_37) { cb(t_37); return; }next(t_10);
+});
+}, function(t_39,t_38) {
+if(t_39) { cb(t_39); return; }
+frame = frame.pop();
+output += "</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

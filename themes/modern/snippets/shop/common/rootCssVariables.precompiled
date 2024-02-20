@@ -1,0 +1,121 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_1, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_1);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"theme")),"isDark");
+frame.set("isDark", t_2, true);
+if(frame.topLevel) {
+context.setVariable("isDark", t_2);
+}
+if(frame.topLevel) {
+context.addExport("isDark", t_2);
+}
+output += "\n:root {\n--brandColor: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"brand_color"), env.opts.autoescape);
+output += ";\n--backgroundColor: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"background_main_color"), env.opts.autoescape);
+output += ";\n--backgroundAccentLight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"background_accent_light"), env.opts.autoescape);
+output += ";\n--backgroundAccentDark: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"background_accent_dark"), env.opts.autoescape);
+output += ";\n--backgroundActive: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"background_active"), env.opts.autoescape);
+output += ";\n--backgroundHover: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"background_hover"), env.opts.autoescape);
+output += ";\n--lightFontColor: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"light_font_color"), env.opts.autoescape);
+output += ";\n--darkFontColor: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"dark_font_color"), env.opts.autoescape);
+output += ";\n--checkboxColor: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"checkbox_color"), env.opts.autoescape);
+output += ";\n--contrastLightFontColor: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"contrast_light_font_color"), env.opts.autoescape);
+output += ";\n--contrastDarkFontColor: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"contrast_dark_font_color"), env.opts.autoescape);
+output += ";\n--buttonColor: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"button_color"), env.opts.autoescape);
+output += ";\n--buttonTextColor: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"button_text_color"), env.opts.autoescape);
+output += ";\n--borderColor: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"border_color"), env.opts.autoescape);
+output += ";\n--borderColorLight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"border_color_light"), env.opts.autoescape);
+output += ";\n--borderColorActive: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"border_color_active"), env.opts.autoescape);
+output += ";\n--linkColor: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"link_color"), env.opts.autoescape);
+output += ";\n--menuBackground: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"menu_background"), env.opts.autoescape);
+output += ";\n--gridLine: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"grid_line"), env.opts.autoescape);
+output += ";\n--thinColor: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"thin_color"), env.opts.autoescape);
+output += ";\n--inputBorder: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"input_border"), env.opts.autoescape);
+output += ";\n--inputBorderHover: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"input_border_hover"), env.opts.autoescape);
+output += ";\n--menuBackgroundHover: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"menu_background_hover"), env.opts.autoescape);
+output += ";\n--menuItemFontColorHover: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"menu_item_font_color_hover"), env.opts.autoescape);
+output += "\n--transparent: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"transparent"), env.opts.autoescape);
+output += ";\n--imagePlaceholder: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"image_placeholder"), env.opts.autoescape);
+output += ";\n\n--black9: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"black9"), env.opts.autoescape);
+output += ";\n--black8: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"black8"), env.opts.autoescape);
+output += ";\n--black7: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"black7"), env.opts.autoescape);
+output += ";\n--black6: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"black6"), env.opts.autoescape);
+output += ";\n--black5: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"black5"), env.opts.autoescape);
+output += ";\n--black4: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"black4"), env.opts.autoescape);
+output += ";\n--black3: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"black3"), env.opts.autoescape);
+output += ";\n--black2: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"black2"), env.opts.autoescape);
+output += ";\n--black1: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"black1"), env.opts.autoescape);
+output += ";\n--black0: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"black0"), env.opts.autoescape);
+output += ";\n--white: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"white"), env.opts.autoescape);
+output += ";\n--black: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),"black"), env.opts.autoescape);
+output += ";\n\n--purple9: #43248E;\n--purple8: #5129AE;\n--purple7: #6132cf;\n--purple6: #6a3ce2;\n--purple5: #8164ee;\n--purple4: #a191f4;\n--purple3: #c0b9f9;\n--purple2: #dbd8fc;\n--purple1: #eceafd;\n--purple0: #f4f4fe;\n\n--red9: #381E1D;\n--red8: #60211F;\n--red7: #A53E3E;\n--red6: #D24242;\n--red5: #E85757;\n--red4: #f87171;\n--red3: #fca5a5;\n--red2: #fecaca;\n--red1: #fee2e2;\n--red0: #fef2f2;\n\n--orange9: #35241E;\n--orange8: #753621;\n--orange7: #BC542A;\n--orange6: #E16727;\n--orange5: #F17C2A;\n--orange4: #F69546;\n--orange3: #FCB871;\n--orange2: #fed7aa;\n--orange1: #F9ECDB;\n--orange0: #fff7ed;\n\n--green9: #143120;\n--green8: #166534;\n--green7: #15803d;\n--green6: #239F51;\n--green5: #35C068;\n--green4: #66DB91;\n--green3: #8CEDAF;\n--green2: #bbf7d0;\n--green1: #E3F5E9;\n--green0: #f0fdf4;\n\n--blue9: #1E3A8A;\n--blue8: #1E40AF;\n--blue7: #1D4ED8;\n--blue6: #2563EB;\n--blue5: #3B82F6;\n--blue4: #60A5FA;\n--blue3: #93C5FD;\n--blue2: #BFDBFE;\n--blue1: #DBEAFE;\n--blue0: #EFF6FF;\n\n--cyan9: #164E63;\n--cyan8: #155E75;\n--cyan7: #0E7490;\n--cyan6: #0891B2;\n--cyan5: #06B6D4;\n--cyan4: #22D3EE;\n--cyan3: #67E8F9;\n--cyan2: #A5F3FC;\n--cyan1: #D4F6F9;\n--cyan0: #EEF7F8;\n\n--pink9: #701338;\n--pink8: #9D174D;\n--pink7: #BE185D;\n--pink6: #DB2777;\n--pink5: #EC4899;\n--pink4: #F472B6;\n--pink3: #F9A8D4;\n--pink2: #FBCFE8;\n--pink1: #FCE7F3;\n--pink0: #FDF2F8;\n\n";
+if(runtime.contextOrFrameLookup(context, frame, "isDark")) {
+output += "  --purple0: #43248e57;\n  --purple1: #43248e57;\n\n  --red0: #381E1D;\n  --orange0: #35241E;\n\n  --green0: #143120;\n  --green1: #143120;\n  --green6: #35C068;\n";
+;
+}
+output += "\n--contentWidth: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"page")),"content_width"), env.opts.autoescape);
+output += "px;\n}\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

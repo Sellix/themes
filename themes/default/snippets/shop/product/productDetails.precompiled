@@ -1,0 +1,270 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_2, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_2);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"product");
+frame.set("product", t_3, true);
+if(frame.topLevel) {
+context.setVariable("product", t_3);
+}
+if(frame.topLevel) {
+context.addExport("product", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"invoice");
+frame.set("invoice", t_4, true);
+if(frame.topLevel) {
+context.setVariable("invoice", t_4);
+}
+if(frame.topLevel) {
+context.addExport("invoice", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"colors");
+frame.set("colors", t_5, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_5);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_5);
+}
+output += "\n";
+var t_6;
+t_6 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"hide_products_sold") || (!runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"hide_products_sold") && !runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"sold_count"))) && !runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"sold_count");
+frame.set("hideSold", t_6, true);
+if(frame.topLevel) {
+context.setVariable("hideSold", t_6);
+}
+if(frame.topLevel) {
+context.addExport("hideSold", t_6);
+}
+output += "\n";
+var t_7;
+t_7 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"properties");
+frame.set("properties", t_7, true);
+if(frame.topLevel) {
+context.setVariable("properties", t_7);
+}
+if(frame.topLevel) {
+context.addExport("properties", t_7);
+}
+var t_8;
+t_8 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_background_color")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_background_color"):"background_accent_dark");
+frame.set("backgroundColor", t_8, true);
+if(frame.topLevel) {
+context.setVariable("backgroundColor", t_8);
+}
+if(frame.topLevel) {
+context.addExport("backgroundColor", t_8);
+}
+var t_9;
+t_9 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_show_border")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_show_border"):true);
+frame.set("showBorder", t_9, true);
+if(frame.topLevel) {
+context.setVariable("showBorder", t_9);
+}
+if(frame.topLevel) {
+context.addExport("showBorder", t_9);
+}
+var t_10;
+t_10 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_border_radius")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_border_radius"):0.5);
+frame.set("borderRadius", t_10, true);
+if(frame.topLevel) {
+context.setVariable("borderRadius", t_10);
+}
+if(frame.topLevel) {
+context.addExport("borderRadius", t_10);
+}
+var t_11;
+t_11 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_shadow")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_shadow"):"none");
+frame.set("shadow", t_11, true);
+if(frame.topLevel) {
+context.setVariable("shadow", t_11);
+}
+if(frame.topLevel) {
+context.addExport("shadow", t_11);
+}
+var t_12;
+t_12 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_vert")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_vert"):"16");
+frame.set("paddingVert", t_12, true);
+if(frame.topLevel) {
+context.setVariable("paddingVert", t_12);
+}
+if(frame.topLevel) {
+context.addExport("paddingVert", t_12);
+}
+var t_13;
+t_13 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_horiz")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding_horiz"):"16");
+frame.set("paddingHoriz", t_13, true);
+if(frame.topLevel) {
+context.setVariable("paddingHoriz", t_13);
+}
+if(frame.topLevel) {
+context.addExport("paddingHoriz", t_13);
+}
+var t_14;
+t_14 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_color")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_color"):"light_font_color");
+frame.set("titleFontColor", t_14, true);
+if(frame.topLevel) {
+context.setVariable("titleFontColor", t_14);
+}
+if(frame.topLevel) {
+context.addExport("titleFontColor", t_14);
+}
+var t_15;
+t_15 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_size")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_font_size"):24);
+frame.set("titleFontSize", t_15, true);
+if(frame.topLevel) {
+context.setVariable("titleFontSize", t_15);
+}
+if(frame.topLevel) {
+context.addExport("titleFontSize", t_15);
+}
+var t_16;
+t_16 = (env.getTest("defined").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_text_align")) === true?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"title_text_align"):"left");
+frame.set("titleTextAlign", t_16, true);
+if(frame.topLevel) {
+context.setVariable("titleTextAlign", t_16);
+}
+if(frame.topLevel) {
+context.addExport("titleTextAlign", t_16);
+}
+output += "\n<style>\n  .sellix-product-description-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " {\n    border: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "showBorder")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += "!important;\n    background: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.contextOrFrameLookup(context, frame, "backgroundColor")), env.opts.autoescape);
+output += "!important;\n    border-radius: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "borderRadius"), env.opts.autoescape);
+output += "rem!important;\n    box-shadow: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "shadow"), env.opts.autoescape);
+output += "!important;\n    padding: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingVert"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "paddingHoriz"), env.opts.autoescape);
+output += "px!important;\n    position: relative;\n    margin-bottom: 1rem;\n  }\n  .shop-product-info-product-title-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " {\n    color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.contextOrFrameLookup(context, frame, "titleFontColor")), env.opts.autoescape);
+output += "!important;\n    font-size: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleFontSize"), env.opts.autoescape);
+output += "px!important;\n    justify-content: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleTextAlign"), env.opts.autoescape);
+output += "!important;\n  }\n</style>\n\n<div\n  id=\"sellix-product-description-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\"\n  class=\"sellix-product-description-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\"\n>\n  <div class=\"shop-product-info-product-title ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "hideSold")?"mb-0":""), env.opts.autoescape);
+output += " shop-product-info-product-title-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\">\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"title")) {
+output += "      ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"title"), env.opts.autoescape);
+output += "\n";
+;
+}
+else {
+if(runtime.contextOrFrameLookup(context, frame, "invoice") && runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"developer_invoice")) {
+output += "        ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "invoice")),"developer_title"), env.opts.autoescape);
+output += "\n";
+;
+}
+else {
+output += "        ";
+output += runtime.suppressValue("", env.opts.autoescape);
+output += "\n";
+;
+}
+;
+}
+output += "  </div>\n\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"type") === "SUBSCRIPTION") {
+output += "    <div class=\"shop-product-info-subscription-badge\" style=\"background-color: var(--backgroundColor)\">\n      ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.shared.titles.productType.subscription"), env.opts.autoescape);
+output += "\n    </div>\n";
+;
+}
+output += "\n  <div class=\"shop-product-info-product-info\">\n";
+(function(cb) {if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"sold_count")) {
+if(!runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"hide_products_sold")) {
+output += "        <span style=\"white-space: nowrap\">\n          <span>";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.product.soldTitle.0"), env.opts.autoescape);
+output += "</span> <i style=\"white: nowrap\">";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"sold_count"), env.opts.autoescape);
+output += "</i> ";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.product.soldTitle.1"), env.opts.autoescape);
+output += "\n        </span>\n";
+;
+}
+output += "\n      <span>\n";
+env.getExtension("RenderSnippet")["run"](context,"Rating star",runtime.makeKeywordArgs({"rating": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"average_score") || 4,"iconsCount": 1}), function(t_18,t_17) {
+if(t_18) { cb(t_18); return; }
+output += runtime.suppressValue(t_17, true && env.opts.autoescape);
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"average_score")) {
+output += "          ";
+output += runtime.suppressValue(env.getFilter("round").call(context, env.getFilter("float").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"average_score")),1), env.opts.autoescape);
+output += "\n";
+;
+}
+output += "        <i>(";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.shared.reviews.reviewsWithCount",{"count": runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"feedback")),"total")}), env.opts.autoescape);
+output += ")</i>\n      </span>\n";
+cb()});
+}
+else {
+cb()}
+})(function(t_19) {
+if(t_19) { cb(t_19); return; }output += "  </div>\n\n  <div class=\"shop-product-info-collapse\" style=\"height: 0; overflow: hidden;\">\n    <div class=\"shop-product-info-wrapper\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Product gallery",runtime.makeKeywordArgs({"product": runtime.contextOrFrameLookup(context, frame, "product")}), function(t_21,t_20) {
+if(t_21) { cb(t_21); return; }
+output += runtime.suppressValue(t_20, true && env.opts.autoescape);
+env.getExtension("RenderSnippet")["run"](context,"Product description",runtime.makeKeywordArgs({"product": runtime.contextOrFrameLookup(context, frame, "product")}), function(t_23,t_22) {
+if(t_23) { cb(t_23); return; }
+output += runtime.suppressValue(t_22, true && env.opts.autoescape);
+output += "    </div>\n  </div>\n</div>\n\n<script type=\"application/javascript\">\n  $(document).ready(function() {\n    const productId = '";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "product")),"uniqid"), env.opts.autoescape);
+output += "';\n    const priceVariantsStore = new SellixPriceVariantsStore('";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "');\n\n    $('#sellix-product-description-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " .shop-product-info-collapse').css({ height: 'auto', overflow: 'initial'});\n\n    $(document).on('SellixVariantsUpdateEvent', (event, eventInfo) => {\n      if (!eventInfo || !eventInfo.productId || eventInfo.productId === productId) {\n        const activeVariant = priceVariantsStore.get(productId);\n        if (activeVariant) {\n          $('#sellix-product-description-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += " .shop-product-info-product-title').text(activeVariant.title);\n        }\n      }\n    });\n  });\n</script>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+})})});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

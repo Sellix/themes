@@ -1,0 +1,147 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_1, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_1);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_1);
+}
+var t_2;
+t_2 = (lineno = 1, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_2, true);
+if(frame.topLevel) {
+context.setVariable("id", t_2);
+}
+if(frame.topLevel) {
+context.addExport("id", t_2);
+}
+var t_3;
+t_3 = (lineno = 2, colno = 20, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("titleId", t_3, true);
+if(frame.topLevel) {
+context.setVariable("titleId", t_3);
+}
+if(frame.topLevel) {
+context.addExport("titleId", t_3);
+}
+var t_4;
+t_4 = (lineno = 3, colno = 20, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("emailId", t_4, true);
+if(frame.topLevel) {
+context.setVariable("emailId", t_4);
+}
+if(frame.topLevel) {
+context.addExport("emailId", t_4);
+}
+var t_5;
+t_5 = (lineno = 4, colno = 22, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("messageId", t_5, true);
+if(frame.topLevel) {
+context.setVariable("messageId", t_5);
+}
+if(frame.topLevel) {
+context.addExport("messageId", t_5);
+}
+var t_6;
+t_6 = (lineno = 5, colno = 22, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("invoiceId", t_6, true);
+if(frame.topLevel) {
+context.setVariable("invoiceId", t_6);
+}
+if(frame.topLevel) {
+context.addExport("invoiceId", t_6);
+}
+var t_7;
+t_7 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_7, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_7);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_7);
+}
+var t_8;
+t_8 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"contact_form_size") == 100;
+frame.set("isWide", t_8, true);
+if(frame.topLevel) {
+context.setVariable("isWide", t_8);
+}
+if(frame.topLevel) {
+context.addExport("isWide", t_8);
+}
+output += "\n<div class=\"sellix-contact-screen\">\n  <form\n    class=\"sellix-contact-form\"\n    id=\"contact-form-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\"\n    onsubmit=\"return false\"\n    style=\"width: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"contact_form_size"), env.opts.autoescape);
+output += "%;";
+output += " background: transparent;";
+output += " border: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"contact_form_show_border")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += ";";
+output += " padding: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"contact_form_padding_x"), env.opts.autoescape);
+output += "px ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"contact_form_padding_y"), env.opts.autoescape);
+output += "px;";
+output += " box-shadow: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"contact_form_shadow"), env.opts.autoescape);
+output += ";";
+output += " border-radius: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"contact_form_border_radius"), env.opts.autoescape);
+output += "rem;\"\n  >\n    <div>\n      <div class=\"";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isWide")?"wide-screen":""), env.opts.autoescape);
+output += "\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Text",runtime.makeKeywordArgs({"selector": runtime.contextOrFrameLookup(context, frame, "titleId"),"name": "title","label": "Title","placeholder": "e.g : Terms and Conditions for dropshipper","wrapperClassName": "title"}), function(t_10,t_9) {
+if(t_10) { cb(t_10); return; }
+output += runtime.suppressValue(t_9, true && env.opts.autoescape);
+env.getExtension("RenderSnippet")["run"](context,"Text",runtime.makeKeywordArgs({"selector": runtime.contextOrFrameLookup(context, frame, "emailId"),"name": "email","label": "Email","placeholder": "Enter your email"}), function(t_12,t_11) {
+if(t_12) { cb(t_12); return; }
+output += runtime.suppressValue(t_11, true && env.opts.autoescape);
+env.getExtension("RenderSnippet")["run"](context,"Text",runtime.makeKeywordArgs({"selector": runtime.contextOrFrameLookup(context, frame, "invoiceId"),"name": "invoice_id","label": "Invoice Id (optional field)","placeholder": "Enter 12 digit invoice id"}), function(t_14,t_13) {
+if(t_14) { cb(t_14); return; }
+output += runtime.suppressValue(t_13, true && env.opts.autoescape);
+output += "      </div>\n\n      <div>\n";
+env.getExtension("RenderSnippet")["run"](context,"Text area",runtime.makeKeywordArgs({"selector": runtime.contextOrFrameLookup(context, frame, "messageId"),"name": "message","label": "Message","placeholder": "What would you like to ask?"}), function(t_16,t_15) {
+if(t_16) { cb(t_16); return; }
+output += runtime.suppressValue(t_15, true && env.opts.autoescape);
+output += "      </div>\n    </div>\n\n    <div style=\"display: flex; justify-content: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"contact_form_button_position"), env.opts.autoescape);
+output += ";\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Ripple button",runtime.makeKeywordArgs({"button_id": env.getFilter("join").call(context, ["contact-form-submit-",runtime.contextOrFrameLookup(context, frame, "id")]),"type": "submit","title": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"contact_form_button_title")}), function(t_18,t_17) {
+if(t_18) { cb(t_18); return; }
+output += runtime.suppressValue(t_17, true && env.opts.autoescape);
+output += "    <div>\n  </form>\n</div>\n\n<script type='application/javascript'>\n  $(document).ready(function () {\n    const formComponent = new SellixFormComponent(\n      '#contact-form-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "',\n      '";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "titleId"), env.opts.autoescape);
+output += "',\n      '";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "emailId"), env.opts.autoescape);
+output += "',\n      '";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "messageId"), env.opts.autoescape);
+output += "',\n      '";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "invoiceId"), env.opts.autoescape);
+output += "',\n      '";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "',\n    );\n    $('#contact-form-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "').validate({\n      errorElement: 'div',\n      errorClass: 'invalid-feedback',\n      rules: {\n        title: 'required',\n        email: 'required',\n        message: 'required',\n      },\n      messages: {\n        title: 'Title is required',\n        email: 'Email is required',\n        message: 'Message is required',\n      },\n      highlight: function(element, errorClass) {\n        $(element).addClass('is-invalid').removeClass(errorClass);\n      },\n      unhighlight: function(element, errorClass) {\n        $(element).removeClass('is-invalid').removeClass(errorClass);\n      },\n    });\n  });\n</script>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+})})})})});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

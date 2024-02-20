@@ -1,0 +1,297 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"group");
+frame.set("group", t_1, true);
+if(frame.topLevel) {
+context.setVariable("group", t_1);
+}
+if(frame.topLevel) {
+context.addExport("group", t_1);
+}
+output += "\n";
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo");
+frame.set("shopInfo", t_2, true);
+if(frame.topLevel) {
+context.setVariable("shopInfo", t_2);
+}
+if(frame.topLevel) {
+context.addExport("shopInfo", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shopInfo")),"shop");
+frame.set("shop", t_3, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_3);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_3);
+}
+var t_4;
+t_4 = env.getFilter("int").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"hide_out_of_stock"));
+frame.set("hideOutOfStock", t_4, true);
+if(frame.topLevel) {
+context.setVariable("hideOutOfStock", t_4);
+}
+if(frame.topLevel) {
+context.addExport("hideOutOfStock", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"cartEnabled") || runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"cartEnabled");
+frame.set("cartEnabled", t_5, true);
+if(frame.topLevel) {
+context.setVariable("cartEnabled", t_5);
+}
+if(frame.topLevel) {
+context.addExport("cartEnabled", t_5);
+}
+output += "\n";
+frame = frame.push();
+var t_8 = runtime.fromIterator(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "group")),"products_bound"));
+runtime.asyncEach(t_8, 1, function(product, t_6, t_7,next) {
+frame.set("product", product);
+frame.set("loop.index", t_6 + 1);
+frame.set("loop.index0", t_6);
+frame.set("loop.revindex", t_7 - t_6);
+frame.set("loop.revindex0", t_7 - t_6 - 1);
+frame.set("loop.first", t_6 === 0);
+frame.set("loop.last", t_6 === t_7 - 1);
+frame.set("loop.length", t_7);
+var t_9;
+t_9 = env.getFilter("int").call(context, runtime.memberLookup((product),"on_hold"));
+frame.set("onHold", t_9, true);
+if(frame.topLevel) {
+context.setVariable("onHold", t_9);
+}
+if(frame.topLevel) {
+context.addExport("onHold", t_9);
+}
+var t_10;
+t_10 = runtime.memberLookup((product),"stock") === 0 || runtime.contextOrFrameLookup(context, frame, "onHold");
+frame.set("isDisabled", t_10, true);
+if(frame.topLevel) {
+context.setVariable("isDisabled", t_10);
+}
+if(frame.topLevel) {
+context.addExport("isDisabled", t_10);
+}
+var t_11;
+t_11 = env.getFilter("float").call(context, runtime.memberLookup((product),"price_display")) === 0;
+frame.set("isFree", t_11, true);
+if(frame.topLevel) {
+context.setVariable("isFree", t_11);
+}
+if(frame.topLevel) {
+context.addExport("isFree", t_11);
+}
+var t_12;
+t_12 = !runtime.memberLookup((product),"cloudflare_image_id");
+frame.set("isPlaceholder", t_12, true);
+if(frame.topLevel) {
+context.setVariable("isPlaceholder", t_12);
+}
+if(frame.topLevel) {
+context.addExport("isPlaceholder", t_12);
+}
+var t_13;
+t_13 = (lineno = 12, colno = 25, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "cdn_link"), "cdn_link", context, [runtime.memberLookup((product),"cloudflare_image_id"),"shopItem"]));
+frame.set("image", t_13, true);
+if(frame.topLevel) {
+context.setVariable("image", t_13);
+}
+if(frame.topLevel) {
+context.addExport("image", t_13);
+}
+var t_14;
+t_14 = env.getFilter("float").call(context, ((runtime.memberLookup((product),"average_score")?runtime.memberLookup((product),"average_score"):0)));
+frame.set("rating", t_14, true);
+if(frame.topLevel) {
+context.setVariable("rating", t_14);
+}
+if(frame.topLevel) {
+context.addExport("rating", t_14);
+}
+var t_15;
+t_15 = env.getFilter("float").call(context, runtime.contextOrFrameLookup(context, frame, "rating")) > 4;
+frame.set("isRatingGold", t_15, true);
+if(frame.topLevel) {
+context.setVariable("isRatingGold", t_15);
+}
+if(frame.topLevel) {
+context.addExport("isRatingGold", t_15);
+}
+var t_16;
+t_16 = ((runtime.memberLookup((product),"stock") === -1?"∞":(lineno = 15, colno = 67, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "get_stock"), "get_stock", context, [runtime.memberLookup((product),"stock")]))));
+frame.set("productStock", t_16, true);
+if(frame.topLevel) {
+context.setVariable("productStock", t_16);
+}
+if(frame.topLevel) {
+context.addExport("productStock", t_16);
+}
+output += "\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "hideOutOfStock") && runtime.memberLookup((product),"stock") == 0) {
+output += "    ";
+output += "\n";
+cb();
+}
+else {
+output += "      <div class=\"group-option ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isDisabled")?"is-disabled":""), env.opts.autoescape);
+output += " ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "cartEnabled")?"":"no-cart"), env.opts.autoescape);
+output += "\">\n      <a href=\"";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isDisabled")?"javascript:void":env.getFilter("join").call(context, ["/product/",runtime.memberLookup((product),"uniqid")])), env.opts.autoescape);
+output += "\" class=\"group-option-description\">\n";
+(function(cb) {if(!runtime.contextOrFrameLookup(context, frame, "isFree")) {
+env.getExtension("RenderSnippet")["run"](context,"Discount badge",runtime.makeKeywordArgs({"product": product,"isGroup": true}), function(t_18,t_17) {
+if(t_18) { cb(t_18); return; }
+output += runtime.suppressValue(t_17, true && env.opts.autoescape);
+cb()});
+}
+else {
+cb()}
+})(function(t_19) {
+if(t_19) { cb(t_19); return; }output += "\n        <div class=\"group-option-image ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isPlaceholder")?"placeholder":""), env.opts.autoescape);
+output += "\">\n";
+if(runtime.contextOrFrameLookup(context, frame, "isPlaceholder")) {
+output += "            <i class=\"fa-light fa-layer-group\"></i>\n";
+;
+}
+else {
+output += "            <img src=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "image"), env.opts.autoescape);
+output += "\" alt=\"";
+output += runtime.suppressValue(runtime.memberLookup((product),"title"), env.opts.autoescape);
+output += "\" loading=\"lazy\" />\n";
+;
+}
+output += "        </div>\n\n        <div class=\"group-option-content\">\n          <div class=\"group-option-title\">\n            <span>";
+output += runtime.suppressValue(runtime.memberLookup((product),"title"), env.opts.autoescape);
+output += "</span>\n\n";
+if(runtime.contextOrFrameLookup(context, frame, "rating")) {
+output += "              <span class=\"group-option-star ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isRatingGold")?"text-gold":""), env.opts.autoescape);
+output += "\">\n                <span class=\"mr-1 position-relative ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isRatingGold")?"text-gold":""), env.opts.autoescape);
+output += "\">\n                  <i class=\"fas fa-star\" style=\"font-size: 11px;\"></i>\n                </span>\n                <span>";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "rating") === 5?5:(env.getFilter("round").call(context, env.getFilter("float").call(context, runtime.contextOrFrameLookup(context, frame, "rating")),2))), env.opts.autoescape);
+output += "</span>\n              </span>\n";
+;
+}
+output += "          </div>\n\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "onHold")) {
+output += "            <span>Product on hold</span>\n";
+cb();
+}
+else {
+output += "            <div class=\"group-option-info\">\n";
+(function(cb) {if(runtime.memberLookup((product),"price_discount") && !runtime.contextOrFrameLookup(context, frame, "isFree")) {
+output += "                <span class=\"group-option-info-price with-discount\" >\n                  <i>";
+env.getExtension("RenderSnippet")["run"](context,"Price",runtime.makeKeywordArgs({"currency": runtime.memberLookup((product),"currency"),"price": runtime.memberLookup((product),"price_display")}), function(t_21,t_20) {
+if(t_21) { cb(t_21); return; }
+output += runtime.suppressValue(t_20, true && env.opts.autoescape);
+output += "</i>";
+env.getExtension("RenderSnippet")["run"](context,"Price",runtime.makeKeywordArgs({"currency": runtime.memberLookup((product),"currency"),"price": runtime.memberLookup((product),"price_display"),"discount": runtime.memberLookup((product),"price_discount")}), function(t_23,t_22) {
+if(t_23) { cb(t_23); return; }
+output += runtime.suppressValue(t_22, true && env.opts.autoescape);
+output += "</span>\n";
+cb()})});
+}
+else {
+output += "                <span class=\"group-option-info-price\" >\n";
+(function(cb) {if(runtime.contextOrFrameLookup(context, frame, "isFree")) {
+output += "                    Free\n";
+cb();
+}
+else {
+env.getExtension("RenderSnippet")["run"](context,"Price",runtime.makeKeywordArgs({"currency": runtime.memberLookup((product),"currency"),"price": runtime.memberLookup((product),"price_display"),"priceVariants": runtime.memberLookup((product),"price_variants")}), function(t_25,t_24) {
+if(t_25) { cb(t_25); return; }
+output += runtime.suppressValue(t_24, true && env.opts.autoescape);
+cb()});
+}
+})(function(t_26) {
+if(t_26) { cb(t_26); return; }output += "                </span>\n";
+cb()});
+}
+})(function(t_27) {
+if(t_27) { cb(t_27); return; }output += "\n              <span class=\"group-option-dot\">  ●  </span>\n\n              <span class=\"stock\">\n                <span\n                  class=\"";
+output += runtime.suppressValue((env.getFilter("int").call(context, runtime.contextOrFrameLookup(context, frame, "productStock")) === 0?"text-red":"text-green"), env.opts.autoescape);
+output += "\"\n                  style=\"color: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "productStock") == 0?"#dc3545":"#28a745"), env.opts.autoescape);
+output += "; position: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "productStock") === "∞"?"relative":"static"), env.opts.autoescape);
+output += "; top: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "productStock") === "∞"?"auto":"auto"), env.opts.autoescape);
+output += "\"\n                >\n";
+if(runtime.contextOrFrameLookup(context, frame, "productStock") === "∞") {
+output += "                    <i class=\"fa-solid fa-infinity\" style=\"font-size: 10px; color: ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "productStock") === 0?"#dc3545":"#28a745"), env.opts.autoescape);
+output += "\"></i>\n";
+;
+}
+else {
+output += "                    ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "productStock"), env.opts.autoescape);
+output += "\n";
+;
+}
+output += "                </span> in stock\n              </span>\n            </div>\n";
+cb()});
+}
+})(function(t_28) {
+if(t_28) { cb(t_28); return; }output += "        </div>\n      </a>\n\n      <div class=\"group-option-buttons unselectable ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "cartEnabled")?"with-cart":""), env.opts.autoescape);
+output += "\">\n";
+(function(cb) {if(!runtime.contextOrFrameLookup(context, frame, "isDisabled") && !runtime.contextOrFrameLookup(context, frame, "isFree") && runtime.memberLookup((product),"type") != "SUBSCRIPTION") {
+env.getExtension("RenderSnippet")["run"](context,"Cart button",runtime.makeKeywordArgs({"product": product,"isGroup": true}), function(t_30,t_29) {
+if(t_30) { cb(t_30); return; }
+output += runtime.suppressValue(t_29, true && env.opts.autoescape);
+cb()});
+}
+else {
+output += "          <div></div>\n";
+cb();
+}
+})(function(t_31) {
+if(t_31) { cb(t_31); return; }output += "\n        <a href=\"";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isDisabled")?"javascript:void":env.getFilter("join").call(context, ["/product/",runtime.memberLookup((product),"uniqid")])), env.opts.autoescape);
+output += "\" style=\"color: white;\">\n          <div class=\"buy-button ";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "isDisabled")?"disabled":""), env.opts.autoescape);
+output += "\">\n";
+if(runtime.contextOrFrameLookup(context, frame, "isFree")) {
+output += "              Get it\n";
+;
+}
+else {
+output += "              Buy\n";
+;
+}
+output += "          </div>\n        </a>\n      </div>\n    </div>\n";
+cb()})})});
+}
+})(function(t_32) {
+if(t_32) { cb(t_32); return; }next(t_6);
+});
+}, function(t_34,t_33) {
+if(t_34) { cb(t_34); return; }
+frame = frame.pop();
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

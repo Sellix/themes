@@ -1,0 +1,49 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+output += "\n";
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_1, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_1);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"container_selector");
+frame.set("containerSelector", t_2, true);
+if(frame.topLevel) {
+context.setVariable("containerSelector", t_2);
+}
+if(frame.topLevel) {
+context.addExport("containerSelector", t_2);
+}
+output += "\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"popup_message")) {
+output += "  <style>\n    .sellix-toastify.t-shop-message {\n      position: absolute!important;\n      right: 1rem!important;\n      top: 5rem!important;\n      word-break: break-word;\n      background: var(--backgroundColor);\n      color: var(--lightFontColor);\n      border: 1px solid var(--borderColor);\n      border-radius: 3px;\n      box-shadow: none;\n      max-width: 350px;\n      width: 100%;\n      max-height: 290px;\n      padding: 1rem;\n    }\n    @media (max-width: 768px) {\n      .sellix-toastify.t-shop-message {\n        max-width: calc(100% - 3rem);\n        right: 1.5rem!important;\n      }\n    }\n    .t-shop-message .t-content {\n      word-break: break-word;\n      white-space: pre-line;\n    }\n    .t-shop-message .t-header {\n      margin-bottom: 1rem;\n      font-weight: 500;\n      line-height: 1;\n      font-size: 1rem;\n    }\n    .t-shop-message .t-close {\n      position: absolute;\n      top: 1rem;\n      right: 1rem;\n    }\n  </style>\n  <script>\n    jQuery(document).ready(() => {\n      const msg = `";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"popup_message"), env.opts.autoescape);
+output += "`;\n      const hash = btoa(encodeURIComponent(msg));\n      if (!localStorage.getItem(hash)) {\n        setTimeout(() => {\n          window._shopMessage = Toastify({\n            selector: '";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "containerSelector"), env.opts.autoescape);
+output += "',\n            duration: 0,\n            className: `sellix-toastify t-shop-message`,\n            node: $(`<div>\n                      <div class=\"t-close\" onClick=\"window._shopMessage.removeElement(window._shopMessage.toastElement)\"><i class=\"fas fa-times\"></i></div>\n                      <div class=\"t-header\">Message from ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop")),"name"), env.opts.autoescape);
+output += "</div>\n                      <div class=\"t-content\">${msg}</div>\n                    </div>\n              `)[0],\n            gravity: \"top\",\n            position: \"right\",\n            callback() {\n              localStorage.setItem(hash, 'true');\n              delete window._shopMessage;\n            },\n          }).showToast();\n        }, 2000);\n      }\n    });\n  </script>\n";
+;
+}
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

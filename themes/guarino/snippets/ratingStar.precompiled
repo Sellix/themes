@@ -1,0 +1,90 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_2, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_2);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"rating");
+frame.set("rating", t_3, true);
+if(frame.topLevel) {
+context.setVariable("rating", t_3);
+}
+if(frame.topLevel) {
+context.addExport("rating", t_3);
+}
+var t_4;
+t_4 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"size")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"size"):25);
+frame.set("size", t_4, true);
+if(frame.topLevel) {
+context.setVariable("size", t_4);
+}
+if(frame.topLevel) {
+context.addExport("size", t_4);
+}
+var t_5;
+t_5 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"color")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"color"):"#FCAB06");
+frame.set("color", t_5, true);
+if(frame.topLevel) {
+context.setVariable("color", t_5);
+}
+if(frame.topLevel) {
+context.addExport("color", t_5);
+}
+var t_6;
+t_6 = (runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"readonly")?runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"readonly"):true);
+frame.set("readonly", t_6, true);
+if(frame.topLevel) {
+context.setVariable("readonly", t_6);
+}
+if(frame.topLevel) {
+context.addExport("readonly", t_6);
+}
+output += "\n<div id='rating-widget-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "'></div>\n\n<script type='application/javascript'>\n  $(document).ready(function () {\n    const domContainer = document.querySelector('#rating-widget-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "');\n    ReactDOM.render(\n      React.createElement(ReactSimpleStarRating.Rating, {\n        ratingValue: Number(";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "rating")?runtime.contextOrFrameLookup(context, frame, "rating") / 5 * 100:0), env.opts.autoescape);
+output += "),\n        initialValue: Number(";
+output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "rating")?runtime.contextOrFrameLookup(context, frame, "rating") / 5 * 100:0), env.opts.autoescape);
+output += "),\n        className: 'sellix-feedback-rating-stars',\n        fillColor: '";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "color"), env.opts.autoescape);
+output += "',\n        emptyColor: 'grey',\n        size: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "size"), env.opts.autoescape);
+output += ",\n        iconsCount: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "args")),"iconsCount") || 5, env.opts.autoescape);
+output += ",\n        readonly: ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "readonly"), env.opts.autoescape);
+output += ",\n      }),\n      domContainer,\n    );\n  });\n</script>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

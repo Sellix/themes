@@ -1,0 +1,246 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo");
+frame.set("shopInfo", t_2, true);
+if(frame.topLevel) {
+context.setVariable("shopInfo", t_2);
+}
+if(frame.topLevel) {
+context.addExport("shopInfo", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shopInfo")),"shop");
+frame.set("shop", t_3, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_3);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_3);
+}
+var t_4;
+t_4 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shopInfo")),"categories");
+frame.set("categories", t_4, true);
+if(frame.topLevel) {
+context.setVariable("categories", t_4);
+}
+if(frame.topLevel) {
+context.addExport("categories", t_4);
+}
+var t_5;
+t_5 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"current_colors");
+frame.set("colors", t_5, true);
+if(frame.topLevel) {
+context.setVariable("colors", t_5);
+}
+if(frame.topLevel) {
+context.addExport("colors", t_5);
+}
+var t_6;
+t_6 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"inputs");
+frame.set("inputsProps", t_6, true);
+if(frame.topLevel) {
+context.setVariable("inputsProps", t_6);
+}
+if(frame.topLevel) {
+context.addExport("inputsProps", t_6);
+}
+output += "\n<style>\n  .sellix-product-list-header {\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_background_color")) {
+output += "background: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_background_color")), env.opts.autoescape);
+output += ";";
+;
+}
+output += "    border: ";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"show_border")) {
+output += "1px solid var(--borderColor)";
+;
+}
+else {
+output += "none";
+;
+}
+output += ";\n    box-shadow: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_shadow"), env.opts.autoescape);
+output += ";\n    border-radius: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_border_radius"), env.opts.autoescape);
+output += "rem;\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding")) {
+output += "padding: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"container_padding"), env.opts.autoescape);
+output += "px;";
+;
+}
+output += "  }\n  .sellix-shop-search input {\n    border-radius: 0.5rem;\n    padding: 1rem 2.5rem 1rem 1rem;\n    font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_size"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_weight"), env.opts.autoescape);
+output += ";\n    color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_color")), env.opts.autoescape);
+output += ";\n    background-color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"input_background_color")), env.opts.autoescape);
+output += ";\n    box-shadow: none;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n    appearance: none;\n    border: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_show_border")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += ";\n    width: 100%;\n    height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_height"), env.opts.autoescape);
+output += "px;\n    font-family: inherit;\n  }\n\n  .sellix-shop-search input:focus {\n    outline: none;\n    border: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_show_border")?"1px solid var(--brandColor)":"none"), env.opts.autoescape);
+output += ";\n  }\n\n  .sellix-shop-search input::placeholder {\n    font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_size"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_weight"), env.opts.autoescape);
+output += ";\n    color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_color")), env.opts.autoescape);
+output += ";\n    opacity: 0.7;\n  }\n\n  .sellix-shop-search .fas {\n    position: absolute;\n    right: 3rem;\n    font-size: 14px;\n    margin-top: 1px;\n    color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_color")), env.opts.autoescape);
+output += " !important;\n  }\n\n  .sellix-dropdown .select2-container--sellix .select2-selection--single {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    min-height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_height"), env.opts.autoescape);
+output += "px;\n    background-color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"input_background_color")), env.opts.autoescape);
+output += ";\n    border-radius: 0.5rem;\n    border: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_show_border")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += ";\n  }\n\n  .sellix-dropdown .select2-container--sellix .select2-selection__rendered {\n    padding-left: 1rem !important;\n    color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_color")), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_size"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_font_weight"), env.opts.autoescape);
+output += ";\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    display: inline;\n    max-width: 90%;\n  }\n\n  .sellix-dropdown .select2-container--sellix .select2-selection__arrow b:before {\n    position: relative;\n    content: '';\n    display: inline-block;\n    width: 0.4em;\n    height: 0.4em;\n    border-right: 0.2em solid var(--thinColor);\n    border-top: 0.2em solid var(--thinColor);\n    transform: rotate(135deg);\n    margin-right: 0.5em;\n  }\n\n  .select2-container--sellix .select2-dropdown {\n    border: ";
+output += runtime.suppressValue((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"show_dropdown_border")?"1px solid var(--borderColor)":"none"), env.opts.autoescape);
+output += " !important;\n    margin-top: 8px;\n    margin-bottom: 8px;\n    box-shadow: none;\n    border-radius: 4px !important;\n    padding-top: 4px;\n    padding-bottom: 4px;\n    background-color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "properties")),"input_background_color")), env.opts.autoescape);
+output += " !important;\n  }\n\n  .select2-container--sellix .select2-results__option {\n    font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"dropdown_option_font_size"), env.opts.autoescape);
+output += "px !important;\n    font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"dropdown_option_font_weight"), env.opts.autoescape);
+output += ";\n    color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"dropdown_option_font_color")), env.opts.autoescape);
+output += " !important;\n    padding: 0 1rem !important;\n    display: flex !important;\n    align-items: center;\n    height: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"common_height"), env.opts.autoescape);
+output += "px;\n  }\n\n  .select2-container--sellix .select2-results__option.select2-results__option--highlighted {\n    background-color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"dropdown_option_background_hover")), env.opts.autoescape);
+output += " !important;\n  }\n\n  .select2-container--sellix .select2-results__option[aria-selected='true'] {\n    background-color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"dropdown_active_option_background")), env.opts.autoescape);
+output += " !important;\n    color: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"dropdown_active_option_font_color")), env.opts.autoescape);
+output += " !important;\n  }\n\n\n</style>\n\n<div class=\"sellix-product-list-header\">\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"search_enabled")) {
+output += "    <label for=\"shop-search-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\" class=\"sellix-shop-search\">\n      <i class=\"fa-regular fas fa-search\"></i>\n      <input\n        type=\"text\"\n        id=\"shop-search-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\"\n        value=\"\"\n        placeholder=\"";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.main.productList.filter.placeholder"), env.opts.autoescape);
+output += "\"\n      />\n    </label>\n";
+;
+}
+output += "\n";
+if(env.getFilter("length").call(context, runtime.contextOrFrameLookup(context, frame, "categories"))) {
+output += "    <div class=\"sellix-dropdown sellix-categories-select\">\n      <select id=\"category-select-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\" class=\"category-select\" style=\"background: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "colors")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "inputsProps")),"select_background")), env.opts.autoescape);
+output += " \"></select>\n    </div>\n";
+;
+}
+output += "\n";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"sort_enabled")) {
+output += "    <div class=\"sellix-dropdown sellix-sort-select\">\n      <select id=\"sort-select-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\" class=\"sort-select\">\n        <option value=\"DEFAULT\">";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.main.productList.filter.default"), env.opts.autoescape);
+output += "</option>\n        <option value=\"PRICE\">";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.main.productList.filter.price"), env.opts.autoescape);
+output += "</option>\n        <option value=\"NAME\">";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.main.productList.filter.name"), env.opts.autoescape);
+output += "</option>\n        <option value=\"TYPE\">";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.main.productList.filter.type"), env.opts.autoescape);
+output += "</option>\n        <option value=\"STOCK\">";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.main.productList.filter.stock"), env.opts.autoescape);
+output += "</option>\n      </select>\n    </div>\n";
+;
+}
+output += "</div>\n\n<script type='application/javascript'>\n  $(document).ready(function () {\n    const categories = __RENDER_CONTEXT__.common.shopInfo.categories;\n\n    let search = '', category = 'all', sort = 'DEFAULT';\n\n    $('.empty-shop-container button').on('click', () => {\n      $('#shop-search-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "').val('').trigger('keyup');\n    });\n\n    $('#shop-search-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "').on('keyup', function (e) {\n      search = e.target.value;\n      $(document).trigger('SellixProductListFilterChangeEvent', { search, category, sort });\n    });\n\n    $('#category-select-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "').select2({\n      data: [\n        {\n          text: \"";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.main.productList.filter.allCategories"), env.opts.autoescape);
+output += "\",\n          id: \"all\",\n        },\n";
+frame = frame.push();
+var t_9 = runtime.contextOrFrameLookup(context, frame, "categories");
+if(t_9) {t_9 = runtime.fromIterator(t_9);
+var t_8 = t_9.length;
+for(var t_7=0; t_7 < t_9.length; t_7++) {
+var t_10 = t_9[t_7];
+frame.set("category", t_10);
+frame.set("loop.index", t_7 + 1);
+frame.set("loop.index0", t_7);
+frame.set("loop.revindex", t_8 - t_7);
+frame.set("loop.revindex0", t_8 - t_7 - 1);
+frame.set("loop.first", t_7 === 0);
+frame.set("loop.last", t_7 === t_8 - 1);
+frame.set("loop.length", t_8);
+if(!runtime.memberLookup((t_10),"unlisted")) {
+output += "          {\n            text: \"";
+output += runtime.suppressValue(runtime.memberLookup((t_10),"title"), env.opts.autoescape);
+output += "\",\n            id: \"";
+output += runtime.suppressValue(runtime.memberLookup((t_10),"uniqid"), env.opts.autoescape);
+output += "\"\n          },\n";
+;
+}
+;
+}
+}
+frame = frame.pop();
+output += "      ],\n      minimumResultsForSearch: -1,\n      theme: 'sellix',\n    }).on('change', (e) => {\n      category = e.target.value;\n      $(document).trigger('SellixProductListFilterChangeEvent', { search, category, sort });\n    });\n\n    $('#sort-select-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "').select2({\n      templateSelection: (state) => {\n        if (state.id) {\n          return `";
+output += runtime.suppressValue(env.getFilter("t").call(context, "shop.main.productList.filter.indexBy"), env.opts.autoescape);
+output += ": ${state.text}`;\n        }\n        return state.text;\n      },\n      minimumResultsForSearch: -1,\n      theme: 'sellix',\n    }).on('change', (e) => {\n      sort = e.target.value;\n      $(document).trigger('SellixProductListFilterChangeEvent', { search, category, sort });\n    });\n\n    setTimeout(function() {\n";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"type") === "category") {
+output += "        $('#category-select-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "').val('";
+output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"options")),"itemId"), env.opts.autoescape);
+output += "');\n        $('#category-select-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "').trigger('change');\n";
+;
+}
+output += "\n      $('#sort-select-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "').val('";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"default_sort"), env.opts.autoescape);
+output += "');\n      $('#sort-select-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "').trigger('change');\n    }, 0);\n  });\n</script>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

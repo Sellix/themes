@@ -1,0 +1,85 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = runtime.memberLookup((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"common")),"shopInfo")),"shop");
+frame.set("shop", t_1, true);
+if(frame.topLevel) {
+context.setVariable("shop", t_1);
+}
+if(frame.topLevel) {
+context.addExport("shop", t_1);
+}
+var t_2;
+t_2 = (lineno = 1, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_2, true);
+if(frame.topLevel) {
+context.setVariable("id", t_2);
+}
+if(frame.topLevel) {
+context.addExport("id", t_2);
+}
+var t_3;
+t_3 = (lineno = 2, colno = 19, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("codeId", t_3, true);
+if(frame.topLevel) {
+context.setVariable("codeId", t_3);
+}
+if(frame.topLevel) {
+context.addExport("codeId", t_3);
+}
+output += "\n<div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__container\">\n  <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__icon\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Icons: Shop code", function(t_5,t_4) {
+if(t_5) { cb(t_5); return; }
+output += runtime.suppressValue(t_4, true && env.opts.autoescape);
+output += "  </div>\n\n  <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__title\">\n    <h3>";
+output += runtime.suppressValue(env.getFilter("t").call(context, "Store Locked",{"keyPrefix": "shop.content"}), env.opts.autoescape);
+output += "</h3>\n    <h4>";
+output += runtime.suppressValue(env.getFilter("t").call(context, "Enter the password to access the website",{"keyPrefix": "shop.content"}), env.opts.autoescape);
+output += "</h4>\n  </div>\n\n  <div class=\"";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "globalClass"), env.opts.autoescape);
+output += "__form\">\n    <form id=\"store-code-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "\" onsubmit=\"return false\">\n";
+env.getExtension("RenderSnippet")["run"](context,"Shared: Text",runtime.makeKeywordArgs({"id": runtime.contextOrFrameLookup(context, frame, "codeId"),"name": "code","label": (env.getFilter("t").call(context, "password",{"keyPrefix": "shop.content"})),"placeholder": (env.getFilter("t").call(context, "Password",{"keyPrefix": "shop.content"})),"show_password": true,"enable_spy_mode": false}), function(t_7,t_6) {
+if(t_7) { cb(t_7); return; }
+output += runtime.suppressValue(t_6, true && env.opts.autoescape);
+output += "\n";
+env.getExtension("RenderSnippet")["run"](context,"Shared: Ripple button",runtime.makeKeywordArgs({"button_id": env.getFilter("join").call(context, ["store-code-submit-",runtime.contextOrFrameLookup(context, frame, "id")]),"type": "submit","title": (env.getFilter("t").call(context, "Submit",{"keyPrefix": "shop.content"}))}), function(t_9,t_8) {
+if(t_9) { cb(t_9); return; }
+output += runtime.suppressValue(t_8, true && env.opts.autoescape);
+output += "    </form>\n  </div>\n</div>\n\n<script type='application/javascript'>\n  $(document).ready(function () {\n    const formComponent = new SellixStoreCodeComponent(\n      '#store-code-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "',\n      '";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "codeId"), env.opts.autoescape);
+output += "',\n      '";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "shop")),"name"), env.opts.autoescape);
+output += "'\n    );\n\n    if($('#store-code-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "')) {\n\n      $('#store-code-";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"), env.opts.autoescape);
+output += "').validate({\n        errorElement: 'div',\n        errorClass: 'invalid-feedback',\n        rules: {\n          code: 'required',\n        },\n        messages: {\n          code: '";
+output += runtime.suppressValue(env.getFilter("t").call(context, "Password is required",{"keyPrefix": "shop.content"}), env.opts.autoescape);
+output += "',\n        },\n        highlight: function(element, errorClass) {\n          $(element).addClass('is-invalid').removeClass(errorClass);\n        },\n        unhighlight: function(element, errorClass) {\n          $(element).removeClass('is-invalid').removeClass(errorClass);\n        },\n      });\n\n    }\n  })\n</script>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+})})});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

@@ -1,0 +1,137 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+output += "\n";
+var t_2;
+t_2 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "global")),"request")),"slug");
+frame.set("slug", t_2, true);
+if(frame.topLevel) {
+context.setVariable("slug", t_2);
+}
+if(frame.topLevel) {
+context.addExport("slug", t_2);
+}
+var t_3;
+t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "themeProperties")),"menu");
+frame.set("menuProps", t_3, true);
+if(frame.topLevel) {
+context.setVariable("menuProps", t_3);
+}
+if(frame.topLevel) {
+context.addExport("menuProps", t_3);
+}
+output += "\n";
+var t_4;
+t_4 = runtime.contextOrFrameLookup(context, frame, "id");
+frame.set("localClass", t_4, true);
+if(frame.topLevel) {
+context.setVariable("localClass", t_4);
+}
+if(frame.topLevel) {
+context.addExport("localClass", t_4);
+}
+output += "\n<style>\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__menu-tab {\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "menuProps")),"menu_item_font_color")), env.opts.autoescape);
+output += ";\n    font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "menuProps")),"menu_item_font_size"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "menuProps")),"menu_item_font_weight"), env.opts.autoescape);
+output += ";\n  }\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__menu-tab.active {\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "menuProps")),"menu_active_item_font_color")), env.opts.autoescape);
+output += ";\n    ";
+output += "\n    font-size: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "menuProps")),"menu_active_item_font_size"), env.opts.autoescape);
+output += "px;\n    font-weight: ";
+output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "menuProps")),"menu_active_item_font_weight"), env.opts.autoescape);
+output += ";\n    background: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "menuProps")),"menu_active_item_background")), env.opts.autoescape);
+output += ";\n  }\n  .";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "__menu-tab:hover {\n    color: ";
+output += runtime.suppressValue(env.getFilter("get_color").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "menuProps")),"menu_item_font_color_hover")), env.opts.autoescape);
+output += ";\n    font-weight: 600;\n  }\n</style>\n\n<div class=\"sellix-menu ";
+output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "localClass"), env.opts.autoescape);
+output += "\">\n";
+frame = frame.push();
+var t_7 = runtime.fromIterator(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "menu")),"items"));
+runtime.asyncEach(t_7, 1, function(item, t_5, t_6,next) {
+frame.set("item", item);
+frame.set("loop.index", t_5 + 1);
+frame.set("loop.index0", t_5);
+frame.set("loop.revindex", t_6 - t_5);
+frame.set("loop.revindex0", t_6 - t_5 - 1);
+frame.set("loop.first", t_5 === 0);
+frame.set("loop.last", t_5 === t_6 - 1);
+frame.set("loop.length", t_6);
+var t_8;
+t_8 = runtime.memberLookup((item),"page_slug") == runtime.contextOrFrameLookup(context, frame, "slug");
+frame.set("active", t_8, true);
+if(frame.topLevel) {
+context.setVariable("active", t_8);
+}
+if(frame.topLevel) {
+context.addExport("active", t_8);
+}
+if(runtime.memberLookup((item),"page_slug") != "/") {
+var t_9;
+t_9 = runtime.inOperator(runtime.memberLookup((item),"page_slug"),runtime.contextOrFrameLookup(context, frame, "slug"));
+frame.set("active", t_9, true);
+if(frame.topLevel) {
+context.setVariable("active", t_9);
+}
+if(frame.topLevel) {
+context.addExport("active", t_9);
+}
+;
+}
+if(runtime.memberLookup((item),"page_slug") == "/contact" && runtime.inOperator("/ticket",runtime.contextOrFrameLookup(context, frame, "slug"))) {
+var t_10;
+t_10 = true;
+frame.set("active", t_10, true);
+if(frame.topLevel) {
+context.setVariable("active", t_10);
+}
+if(frame.topLevel) {
+context.addExport("active", t_10);
+}
+;
+}
+output += "\n";
+env.getExtension("RenderSnippet")["run"](context,"Menu item",runtime.makeKeywordArgs({"url": runtime.memberLookup((item),"page_slug"),"title": runtime.memberLookup((item),"title"),"is_active": runtime.contextOrFrameLookup(context, frame, "active"),"class": env.getFilter("join").call(context, ["menu-tab ",runtime.contextOrFrameLookup(context, frame, "localClass"),"__menu-tab"],"")}), function(t_12,t_11) {
+if(t_12) { cb(t_12); return; }
+output += runtime.suppressValue(t_11, true && env.opts.autoescape);
+next(t_5);
+});
+}, function(t_14,t_13) {
+if(t_14) { cb(t_14); return; }
+frame = frame.pop();
+output += "</div>\n";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+});
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};

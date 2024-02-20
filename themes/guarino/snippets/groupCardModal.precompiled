@@ -1,0 +1,31 @@
+function root(env, context, frame, runtime, cb) {
+var lineno = 0;
+var colno = 0;
+var output = "";
+try {
+var parentTemplate = null;
+var t_1;
+t_1 = (lineno = 0, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "uid"), "uid", context, []));
+frame.set("id", t_1, true);
+if(frame.topLevel) {
+context.setVariable("id", t_1);
+}
+if(frame.topLevel) {
+context.addExport("id", t_1);
+}
+output += "\n<style>\n  .group-body {\n    overflow-y: scroll;\n    flex: 1 0 auto;\n    max-height: calc(90vh - 120px);\n  }\n\n  @media (max-width: 768px) {\n    .group-body {\n      padding: 2rem 1rem !important;\n    }\n  }\n</style>\n\n<div id=\"group-card-modal\" class=\"sellix-modal group-modal\" style=\"display:none\">\n  <a href='#' class=\"sellix-modal-close\" rel=\"modal:close\">\n    <i class=\"fa-light fa-times\" style=\"color: var(--darkFontColor); font-size: 1.25rem;\"></i>\n  </a>\n  <div class=\"sellix-modal-header group-header\" style=\"padding-right:2.5rem\"></div>\n  <div class=\"sellix-modal-body group-body\"></div>\n</div>\n\n<script type=\"application/javascript\">\n  $(document).ready(function() {\n    const items = __RENDER_CONTEXT__.common.shopInfo.items;\n\n    $(document).on('SellixSetActiveModalGroup', function(e, eventInfo) {\n      const renderOptions = ";
+output += runtime.suppressValue(env.getFilter("safe").call(context, env.getFilter("dump").call(context, runtime.contextOrFrameLookup(context, frame, "renderOptions"))), env.opts.autoescape);
+output += ";\n      const group = items.find(({uniqid}) => String(uniqid) === String(eventInfo.groupId));\n      const $modalBody = $('#group-card-modal .sellix-modal-body');\n\n      const productsCount = group.products_bound.length;\n      const headerHtml = '<span>' + group.title + '</span>' +\n        (productsCount > 0\n          ? (\n            ' <span class=\"group-header-small\">(' +\n            String(productsCount) + ' ' +\n            (productsCount === 1 ? 'product' : 'products') +\n            ')</span>'\n          )\n          : '');\n\n      $('#group-card-modal .sellix-modal-header').html(headerHtml);\n\n      $modalBody.html('Loading...');\n      sellixApi\n        .renderComponent(\n          {\n            ...renderOptions,\n            path: [renderOptions.path, ['snippet', 'Group card products'].join(':')].join(';'),\n          },\n          {\n            group: {\n              ...group,\n              products_bound: (group.products_bound || []).map((product) => {\n                const { description, ...rest } = product;\n                return rest;\n              }),\n            }\n          },\n        )\n        .then((resp) => {\n          const $component = $(resp.html);\n          $component.css('display', 'none');\n          $('#group-card-modal .sellix-modal-body').html($component);\n          setTimeout(function () {\n            $(document).trigger('SellixCartUpdateEvent', { action: 'update' });\n            $component.css('display', '');\n          });\n        })\n        .catch((resp) => {\n          const respJson = resp.responseJSON || {};\n          jQuery(document).trigger('SellixToastify', {\n            type: 'error',\n            text: respJson.message || 'Internal server error',\n          });\n        });\n    });\n  });\n</script>";
+if(parentTemplate) {
+parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+} else {
+cb(null, output);
+}
+;
+} catch (e) {
+  cb(runtime.handleError(e, lineno, colno));
+}
+}
+return {
+root: root
+};
