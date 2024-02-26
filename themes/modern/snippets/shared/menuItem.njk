@@ -24,9 +24,5 @@
   href="{{ localePrefix }}{{url}}"
   class="{{ globalClass }} {{ class }} {{'active' if isActive else ''}}"
 >
-  {% if [translationPrefix, title] | join('.') | t === [translationPrefix, title] | join('.') %}
-    {{ title }}
-  {% else %}
-    {{[translationPrefix, title] | join('.') | t}}
-  {% endif %}
+  {{ title | t({ keyPrefix: 'menu' }) }}
 </a>
