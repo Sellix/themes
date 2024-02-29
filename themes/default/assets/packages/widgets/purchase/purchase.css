@@ -2935,21 +2935,74 @@ input[type=number] {
 .rewards-list-row {
   display: flex;
   justify-content: space-between;
+  gap: 0.25rem;
   font-size: 14px;
   line-height: normal;
   font-style: normal;
 }
 .rewards-list-row-title {
+  text-wrap: nowrap;
   display: flex;
   justify-content: flex-start;
   color: var(--lightFontColor);
   font-weight: 500;
 }
 .rewards-list-row-price {
+  text-align: end;
   display: flex;
   justify-content: flex-end;
   color: var(--darkFontColor);
   font-weight: 500;
+}
+#reward-product.react-tooltip {
+  padding: 0 !important;
+}
+
+.reward-product-tooltip {
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+.reward-product-tooltip .reward-product-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--backgroundAccentDark);
+  border-radius: 0.25rem;
+  width: 200px;
+  height: 100px;
+}
+.reward-product-tooltip .reward-product-icon img {
+  object-fit: cover;
+  border-radius: 0.25rem;
+  min-width: 200px;
+  width: 200px;
+  height: 100px;
+}
+.reward-product-tooltip .reward-product-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.reward-product-tooltip .reward-product-price {
+  display: flex;
+  justify-content: flex-start;
+  color: white;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+}
+.reward-product-tooltip .reward-product-title {
+  text-align: start;
+  display: flex;
+  justify-content: flex-start;
+  color: white;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 .sellix-widget-purchase-details .ReactCollapse--collapse {
   transition: all 0.5s;
@@ -6993,6 +7046,9 @@ video {
 .text-sky-600 {
   color: #0284c7;
 }
+.text-slate-300 {
+  color: #A2AAB4;
+}
 .text-slate-400 {
   color: #777F89;
 }
@@ -9751,19 +9807,6 @@ dark:!bg-[#25272a] dark:hover:!bg-[#3c3e42]*/
   to {
     transform: perspective(600px)
   }
-}
-.widget-price {
-  display: inline-flex;
-}
-
-.widget-price--image img {
-  width: 1.25rem;
-  height: 1.25rem;
-}
-
-.widget-price--initial-price {
-  color: var(--black3)!important;
-  text-decoration: line-through;
 }
 .embed-gateway.is-trial .gateway-list-item {
   border: none;

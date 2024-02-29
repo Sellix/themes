@@ -242,6 +242,7 @@
           onAddToCart: this.onAddToCart,
           onUpdateCart: this.onUpdateCart,
           onApplyCoupon: this.onApplyCoupon,
+          onBackToShop: () => (window.location.href = 'shop'),
           onCreateInvoice: this.onCreateInvoice,
           onGetCalculation: this.onGetCalculation,
           onShowMessage: this.onShowMessage,
