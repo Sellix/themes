@@ -1,5 +1,14 @@
+{% set shop = global.common.shopInfo.shop %}
+
 {% for section in settings.section_order %}
   {% render_section section %}
 {% endfor %}
 {% render_snippet 'Product: TOS Modal' %}
 {% render_snippet 'Product: Warranty modal' %}
+
+
+<script type='application/javascript'>
+  $(document).ready(() => {
+    window.SellixAnalyticsManager.sendViewItem();
+  })
+</script>

@@ -1,0 +1,55 @@
+{% set isShop = args.isShop if args.isShop is defined else true %}
+{% set shop = global.common.shopInfo.shop %}
+
+{% if shop.google_analytics_tracking_id or shop.facebook_pixel_id or shop.tiktok_pixel_id or shop.microsoft_clarity_analytics_id %}
+  <script type="application/javascript">
+    const euList = {{ global.config.EU_LIST | dump | safe }};
+    const ipcountry = Cookies.get('ipcountry');
+
+    const isShop = {{ isShop }};
+    const cookieName = isShop ? `shop-cookies-{{ global.common.shopInfo.shop.name }}` : 'sellix-cookies';
+    const isEU = euList.includes(ipcountry);
+    const isChina = ipcountry === 'CN';
+
+    let storage;
+    if (!isEU) {
+      storage = ['strictly', 'experience', 'measurement', 'targeting'];
+    } else {
+      const shopCookies = Cookies.get(cookieName);
+      storage = shopCookies ? shopCookies.split(',') : shopCookies;
+    }
+
+    let allowAnalytics = false;
+
+    if (storage && storage.length && storage.includes("targeting")) {
+      allowAnalytics = true;
+    }
+
+    if (!isEU) {
+      allowAnalytics = true;
+    }
+
+    if (isChina) {
+      allowAnalytics = false;
+    }
+
+    if (allowAnalytics) {
+      window.analyticsManager = new Services.AnalyticsEventManager({ debug: true });
+      analyticsManager.initAll({
+        google_tag_id: '{{ shop.google_analytics_tracking_id }}',
+        facebook_pixel_id: '{{ shop.facebook_pixel_id }}',
+        tiktok_pixel_id: '{{ shop.tiktok_pixel_id }}',
+        microsoft_clarity_tag_id: '{{ shop.microsoft_clarity_analytics_id }}',
+      });
+
+      if (analyticsManager.isEnabled) {
+        console.log('Analytics Enabled', {
+          google: analyticsManager.google.isEnabled,
+          facebook: analyticsManager.facebook.isEnabled,
+          tiktok: analyticsManager.tiktok.isEnabled,
+          microsoft: analyticsManager.microsoft.isEnabled,
+        })
+      }
+    }
+  </script>
+{% endif %}

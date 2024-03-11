@@ -74,7 +74,8 @@
     }
 
     add(product, quantity = 1, updateBackend = true) {
-      let isNew = true;
+      let isNew = true,
+        affectedItem;
       let updatedState = this.state.map((item) => {
         if (item.uniqid === product.uniqid) {
           item = {
@@ -82,15 +83,25 @@
             quantity: item.quantity + quantity,
           };
           isNew = false;
+          affectedItem = { ...item, quantity };
         }
         return item;
       });
 
       if (isNew) {
+        affectedItem = { ...product, quantity };
         updatedState = [...updatedState, { ...product, quantity }];
       }
 
       this.state = updatedState;
+
+      if (affectedItem) {
+        if (quantity > 0) {
+          window.SellixAnalyticsManager.sendAddToCart([affectedItem]);
+        } else if (quantity < 0) {
+          window.SellixAnalyticsManager.sendRemoveFromCart([affectedItem]);
+        }
+      }
 
       const action = isNew ? 'insert' : 'update';
       if (updateBackend) {
@@ -118,15 +129,6 @@
         }
       }
 
-      if (typeof customerPrice !== 'undefined') {
-        // temporarly commented
-        // const item = this.getItemById(product.uniqid);
-        // if (item) {
-        //   this.state = this.state.map((item) => (item.uniqid === product.uniqid ? { ...item, customerPrice } : item));
-        //   action = action || 'update';
-        // }
-      }
-
       this.updateBackend([{ action, productId: product.uniqid }]);
     }
 
@@ -141,18 +143,17 @@
         return;
       }
 
-      let isDeleted = false;
+      let isDeleted = false,
+        affectedItem;
       this.state = this.state
         .map((item) => {
-          let newQuantity = quantity > 0 ? item.quantity - quantity : 0;
-          if (newQuantity < 0) {
-            newQuantity = 0;
-          }
+          let newQuantity = item.quantity - Math.min(item.quantity, quantity);
           if (item.uniqid === id) {
             item = {
               ...item,
               quantity: newQuantity,
             };
+            affectedItem = { ...item, quantity: Math.min(item.quantity, quantity) };
             isDeleted = newQuantity === 0;
           }
 
@@ -160,13 +161,25 @@
         })
         .filter((item) => item.quantity > 0);
 
+      if (affectedItem) {
+        if (quantity > 0) {
+          window.SellixAnalyticsManager.sendRemoveFromCart([affectedItem]);
+        } else if (quantity < 0) {
+          window.SellixAnalyticsManager.sendAddToCart([affectedItem]);
+        }
+      }
+
       if (updateBackend) {
         this.updateBackend([{ action: isDeleted ? 'delete' : 'update', productId: id }]);
       }
     }
 
-    clear(updateBackend = true) {
+    clear(updateBackend = true, sendAnalytics = true) {
+      if (sendAnalytics && this.state.length) {
+        window.SellixAnalyticsManager.sendRemoveFromCart(this.state);
+      }
       this.state = [];
+
       if (updateBackend) {
         this.updateBackend().then(() => this.triggerEvents([{ action: 'delete' }]));
       }
