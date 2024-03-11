@@ -22,6 +22,8 @@
 
 <script type='application/javascript'>
   $(document).ready(() => {
-    window.SellixAnalyticsManager.sendViewCart();
-  })
+    $(document).on('SellixCartInitEvent', () => {
+      window.SellixAnalyticsManager.sendViewCart();
+    });
+  });
 </script>

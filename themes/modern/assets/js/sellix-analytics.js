@@ -1,10 +1,5 @@
 (function (window, document) {
   class AnalyticsManager {
-    //   sendSelectItem(listId: string, listName: string, items: Item[]): void
-    //   sendShare(method: string, content_type: string, item_id: string): void
-
-    //   sendPurchase(invoice: Invoice): void
-
     static get manager() {
       return window.analyticsManager;
     }
@@ -39,16 +34,14 @@
         return;
       }
 
-      $(document).on('SellixCartInitEvent', () => {
-        const cart = window.SellixCartStoreFactory.getCart(shop.name);
-        const cartProducts = cart.getItems();
+      const cart = window.SellixCartStoreFactory.getCart(shop.name);
+      const cartProducts = cart.getItems();
 
-        const currencyConfig = window.SellixContext.getCurrencyConfig();
+      const currencyConfig = window.SellixContext.getCurrencyConfig();
 
-        const cartItems = cartProducts.map((product) => this._prepareProduct(shop.name, product));
-        const cartPrice = cartItems.reduce((acc, item) => acc + item.price, 0);
-        this.manager.sendViewCart(currencyConfig.default, cartPrice, cartItems);
-      });
+      const cartItems = cartProducts.map((product) => this._prepareProduct(shop.name, product));
+      const cartPrice = cartItems.reduce((acc, item) => acc + item.price, 0);
+      this.manager.sendViewCart(currencyConfig.default, cartPrice, cartItems);
     }
 
     static sendAddToCart(products) {
