@@ -143,16 +143,12 @@
         return;
       }
 
-      if (quantity <= 0) {
-        return;
-      }
-
       let isDeleted = false,
         analyticsItem;
       this.state = this.state
         .map((item) => {
-          const quantityToRemove = Math.min(item.quantity, quantity);
-          const newQuantity = item.quantity - quantityToRemove;
+          const newQuantity = Math.max(quantity > 0 ? item.quantity - quantity : 0, 0);
+          const quantityToRemove = item.quantity - newQuantity;
           if (item.uniqid === id) {
             item = {
               ...item,
