@@ -75,7 +75,7 @@
 
     add(product, quantity = 1, updateBackend = true) {
       let isNew = true,
-        affectedItem;
+        analyticsItem;
       let updatedState = this.state.map((item) => {
         if (item.uniqid === product.uniqid) {
           item = {
@@ -83,23 +83,23 @@
             quantity: item.quantity + quantity,
           };
           isNew = false;
-          affectedItem = { ...item, quantity };
+          analyticsItem = { ...item, quantity };
         }
         return item;
       });
 
       if (isNew) {
-        affectedItem = { ...product, quantity };
+        analyticsItem = { ...product, quantity };
         updatedState = [...updatedState, { ...product, quantity }];
       }
 
       this.state = updatedState;
 
-      if (affectedItem) {
+      if (analyticsItem) {
         if (quantity > 0) {
-          window.SellixAnalyticsManager.sendAddToCart([affectedItem]);
+          window.SellixAnalyticsManager.sendAddToCart([analyticsItem]);
         } else if (quantity < 0) {
-          window.SellixAnalyticsManager.sendRemoveFromCart([affectedItem]);
+          window.SellixAnalyticsManager.sendRemoveFromCart([analyticsItem]);
         }
       }
 
@@ -143,17 +143,22 @@
         return;
       }
 
+      if (quantity <= 0) {
+        return;
+      }
+
       let isDeleted = false,
-        affectedItem;
+        analyticsItem;
       this.state = this.state
         .map((item) => {
-          let newQuantity = item.quantity - Math.min(item.quantity, quantity);
+          const quantityToRemove = Math.min(item.quantity, quantity);
+          const newQuantity = item.quantity - quantityToRemove;
           if (item.uniqid === id) {
             item = {
               ...item,
               quantity: newQuantity,
             };
-            affectedItem = { ...item, quantity: Math.min(item.quantity, quantity) };
+            analyticsItem = { ...item, quantity: quantityToRemove };
             isDeleted = newQuantity === 0;
           }
 
@@ -161,12 +166,8 @@
         })
         .filter((item) => item.quantity > 0);
 
-      if (affectedItem) {
-        if (quantity > 0) {
-          window.SellixAnalyticsManager.sendRemoveFromCart([affectedItem]);
-        } else if (quantity < 0) {
-          window.SellixAnalyticsManager.sendAddToCart([affectedItem]);
-        }
+      if (analyticsItem) {
+        window.SellixAnalyticsManager.sendRemoveFromCart([analyticsItem]);
       }
 
       if (updateBackend) {

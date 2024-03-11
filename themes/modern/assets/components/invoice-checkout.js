@@ -11,11 +11,12 @@
 
     onGetInvoice = (id) => {
       return sellixApi.getInvoice(id).then((response) => {
-        const {
-          data: { invoice },
-        } = response;
-        if (this.invoice && invoice && this.invoice.status !== 'COMPLETED' && invoice.status === 'COMPLETED') {
-          window.SellixAnalyticsManager.sendPurchase(invoice);
+        const { status, data } = response;
+        if (status === 200) {
+          const { invoice } = data || {};
+          if (this.invoice && invoice && this.invoice.status !== 'COMPLETED' && invoice.status === 'COMPLETED') {
+            window.SellixAnalyticsManager.sendPurchase(invoice);
+          }
         }
         return response;
       });
