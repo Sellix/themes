@@ -68,6 +68,10 @@
       return this.get('theme', {});
     }
 
+    static getProductInfo() {
+      return this.get('common', {}).productInfo || {};
+    }
+
     static getInvoiceInfo() {
       return this.get('common', {}).invoiceInfo || {};
     }

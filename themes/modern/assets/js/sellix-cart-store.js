@@ -150,10 +150,7 @@
           const newQuantity = Math.max(quantity > 0 ? item.quantity - quantity : 0, 0);
           const quantityToRemove = item.quantity - newQuantity;
           if (item.uniqid === id) {
-            item = {
-              ...item,
-              quantity: newQuantity,
-            };
+            item = { ...item, quantity: newQuantity };
             analyticsItem = { ...item, quantity: quantityToRemove };
             isDeleted = newQuantity === 0;
           }
