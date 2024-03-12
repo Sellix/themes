@@ -4,12 +4,14 @@
       return window.analyticsManager;
     }
 
-    static sendViewItem() {
+    static sendViewItem(uniqid = null) {
       if (!this.manager) {
         return;
       }
 
-      const product = window.SellixContext.getProductInfo().product;
+      const product = !uniqid
+        ? window.SellixContext.getProductInfo().product
+        : window.SellixContext.getShopProduct(uniqid);
       if (!product) {
         return;
       }
@@ -182,7 +184,7 @@
       const priceVariants = product.price_variants || [];
       let priceVariant = undefined;
       if (priceVariants.length) {
-        const variantsStore = new window.SellixProductVariantsStore(shopName);
+        const variantsStore = new window.SellixPriceVariantsStore(shopName);
         priceVariant = variantsStore.get(product.uniqid, priceVariants[0]);
       }
 
@@ -192,7 +194,7 @@
 
       return {
         uniqid: product.uniqid,
-        type: product.type,
+        type: product.item_type,
         title: product.title,
         price: price,
         quantity: product.quantity || product.unit_quantity || 1,

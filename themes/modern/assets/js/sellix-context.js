@@ -48,7 +48,7 @@
     }
 
     static getShopProduct(id) {
-      const products = this.getShopProducts([id]);
+      const products = this.getShopProducts();
       return products.find((product) => product.uniqid === id);
     }
 

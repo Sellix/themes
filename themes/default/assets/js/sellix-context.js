@@ -24,40 +24,21 @@
       return this.get('common', {}).shopInfo || {};
     }
 
-    static async getShopItems() {
-      const productIds = this.getShopInfo().items;
-      return await this.getShopProducts(productIds);
+    static getShopItems() {
+      return this.getShopInfo().items;
     }
 
-    static async getShopProducts(ids) {
-      let products = this.getShopInfo().products || {};
+    static getShopProducts(ids) {
+      let products = this.getShopItems();
       if (!ids) {
         return products;
       }
-
-      const missedIds = ids.filter((id) => !Boolean(products[id]));
-      if (missedIds.length) {
-        const { products: missedProducts } = (await api.getProducts(missedIds)) || [];
-        products = this.updateShopProducts(missedProducts);
-      }
-
-      return ids.filter((id) => Boolean(products[id])).map((id) => products[id]);
+      return products.filter((product) => ids.includes(product.uniqid));
     }
 
-    static async getShopProduct(id) {
-      const products = await this.getShopProducts([id]);
+    static getShopProduct(id) {
+      const products = this.getShopProducts();
       return products.find((product) => product.uniqid === id);
-    }
-
-    static updateShopProducts(updatedProducts) {
-      let products = this.getShopInfo().products || {};
-      products = {
-        ...products,
-        ...Object.fromEntries(updatedProducts.map((product) => [product.uniqid, product])),
-      };
-      this.getShopInfo().products = products;
-
-      return products;
     }
 
     static getShopCategories() {
