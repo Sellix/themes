@@ -41,7 +41,7 @@
     static getShopProducts(ids) {
       let products = this.getShopInfo().products || {};
       if (!ids) {
-        return products;
+        return Object.values(products);
       }
 
       return ids.filter((id) => Boolean(products[id])).map((id) => products[id]);

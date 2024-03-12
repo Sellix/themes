@@ -23,7 +23,9 @@
 
       const currencyConfig = window.SellixContext.getCurrencyConfig();
       const item = this._prepareProduct(shop.name, product);
-      this.manager.sendViewItem(currencyConfig.default, item.price, [item]);
+      const items = [item];
+      const price = item.price * item.quantity;
+      this.manager.sendViewItem(currencyConfig.default, price, items);
     }
 
     static sendViewCart() {
@@ -42,7 +44,7 @@
       const currencyConfig = window.SellixContext.getCurrencyConfig();
 
       const cartItems = cartProducts.map((product) => this._prepareProduct(shop.name, product));
-      const cartPrice = cartItems.reduce((acc, item) => acc + item.price, 0);
+      const cartPrice = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
       this.manager.sendViewCart(currencyConfig.default, cartPrice, cartItems);
     }
 
@@ -63,7 +65,7 @@
 
       const currencyConfig = window.SellixContext.getCurrencyConfig();
       const items = products.map((product) => this._prepareProduct(shop.name, product));
-      const price = items.reduce((acc, item) => acc + item.price, 0);
+      const price = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
       this.manager.sendAddToCart(currencyConfig.default, price, items);
     }
 
@@ -84,7 +86,7 @@
 
       const currencyConfig = window.SellixContext.getCurrencyConfig();
       const items = products.map((product) => this._prepareProduct(shop.name, product));
-      const price = items.reduce((acc, item) => acc + item.price, 0);
+      const price = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
       this.manager.sendRemoveFromCart(currencyConfig.default, price, items);
     }
 
@@ -102,35 +104,9 @@
         return;
       }
 
-      const invoiceItems = invoice.products.map((product) => this._prepareProduct(shop.name, product));
-      const invoicePrice = invoiceItems.reduce((acc, item) => acc + item.price, 0);
-
-      const payload = {
-        type: invoice.type,
-        uniqid: invoice.uniqid,
-        currency: invoice.currency,
-        gateway: invoice.gateway,
-        content_name: type === 'invoice-trial' ? 'Trial' : 'Invoice',
-        price: invoicePrice,
-        items: invoiceItems,
-      };
-
-      const couponInfo = invoice.discount_breakdown.coupon;
-      if (couponInfo) {
-        payload.coupon = couponInfo.amount_display;
-      }
-
-      const affiliateRevenueInfo = invoice.discount_breakdown.affiliate_revenue;
-      if (affiliateRevenueInfo) {
-        payload.affiliate_revenue = affiliateRevenueInfo.total_display;
-        payload.affiliate_revenue_currency = invoice.currency;
-      }
-
-      const taxInfo = invoice.discount_breakdown.tax;
-      if (taxInfo) {
-        payload.tax = taxInfo.percentage;
-      }
-
+      const payload = this._prepareInvoicePayload(invoice);
+      payload.content_name = type === 'invoice-trial' ? 'Trial' : 'Invoice';
+      console.log('Log #1', payload);
       this.manager.sendBeginCheckout(payload);
     }
 
@@ -148,36 +124,66 @@
         return;
       }
 
-      const invoiceItems = invoice.products.map((product) => this._prepareProduct(shop.name, product));
-      const invoicePrice = invoiceItems.reduce((acc, item) => acc + item.price, 0);
+      const payload = this._prepareInvoicePayload(invoice);
+      payload.content_name = 'Purchase';
+      this.manager.sendPurchase(payload);
+    }
+
+    static _prepareInvoicePayload(invoice) {
+      const shop = window.SellixContext.getShopInfo().shop;
+      const discountBreakdown = invoice.discount_breakdown || {};
+      const priceDiscount = discountBreakdown.price_discount || {};
+      const volumeDiscount = discountBreakdown.volume_discounts || {};
+      const productVariants = invoice.product_variants || {};
+
+      const invoiceItems = invoice.products.map((product) => {
+        const item = this._prepareProduct(shop.name, product);
+
+        item.quantity = product.unit_quantity || 1;
+        item.price = product.unit_price_display;
+
+        item.discount = 0;
+        if (priceDiscount[item.uniqid]) {
+          item.discount += priceDiscount[item.uniqid].amount_display;
+        }
+        if (volumeDiscount[item.uniqid]) {
+          item.discount += volumeDiscount[item.uniqid].amount_display;
+        }
+
+        if (productVariants[item.uniqid]) {
+          item.variant = productVariants[item.uniqid].title;
+        }
+
+        return item;
+      });
 
       const payload = {
         type: invoice.type,
         uniqid: invoice.uniqid,
         currency: invoice.currency,
         gateway: invoice.gateway,
-        content_name: `Purchase`,
-        price: invoicePrice,
+        content_name: 'Invoice',
+        price: invoice.total_display,
         items: invoiceItems,
       };
 
-      const couponInfo = invoice.discount_breakdown.coupon;
+      const couponInfo = discountBreakdown.coupon;
       if (couponInfo) {
         payload.coupon = couponInfo.amount_display;
       }
 
-      const affiliateRevenueInfo = invoice.discount_breakdown.affiliate_revenue;
+      const affiliateRevenueInfo = discountBreakdown.affiliate_revenue;
       if (affiliateRevenueInfo) {
         payload.affiliate_revenue = affiliateRevenueInfo.total_display;
         payload.affiliate_revenue_currency = invoice.currency;
       }
 
-      const taxInfo = invoice.discount_breakdown.tax;
+      const taxInfo = discountBreakdown.tax;
       if (taxInfo) {
         payload.tax = taxInfo.percentage;
       }
 
-      this.manager.sendPurchase(payload);
+      return payload;
     }
 
     static _prepareProduct(shopName, product) {
