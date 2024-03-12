@@ -106,7 +106,6 @@
 
       const payload = this._prepareInvoicePayload(invoice);
       payload.content_name = type === 'invoice-trial' ? 'Trial' : 'Invoice';
-      console.log('Log #1', payload);
       this.manager.sendBeginCheckout(payload);
     }
 
