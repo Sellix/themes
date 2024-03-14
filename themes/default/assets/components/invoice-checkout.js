@@ -45,6 +45,10 @@
       return sellixApi.getInvoiceInfo(id, secret);
     };
 
+    onGetInvoiceStatus = (id) => {
+      return sellixApi.getInvoiceStatus(id);
+    };
+
     onGetInvoiceTelegramInfo = (id, secret) => {
       return sellixApi.getInvoiceTelegramInfo(id, secret);
     };
@@ -114,6 +118,7 @@
           onRefreshInvoice: this.onRefreshInvoice,
           onGetInvoiceSecret: this.onGetInvoiceSecret,
           onGetInvoiceInfo: this.onGetInvoiceInfo,
+          onGetInvoiceStatus: this.onGetInvoiceStatus,
           onGetInvoiceTelegramInfo: this.onGetInvoiceTelegramInfo,
           onGetFeedback: this.onGetFeedback,
           onCreateFeedback: this.onCreateFeedback,
