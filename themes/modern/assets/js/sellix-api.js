@@ -179,11 +179,18 @@
       });
     }
 
-
     async getInvoiceInfo(id, secret) {
       return jQuery.ajax({
         method: 'GET',
         url: `${this.apiUrl}/api/shop/invoices/info/${id}/${secret}`,
+        contentType: 'application/json; charset=utf-8',
+      });
+    }
+
+    async getInvoiceStatus(id) {
+      return jQuery.ajax({
+        method: 'GET',
+        url: `${this.apiUrl}/api/shop/invoices/status/${id}`,
         contentType: 'application/json; charset=utf-8',
       });
     }

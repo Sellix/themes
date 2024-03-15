@@ -38,6 +38,9 @@
 
       const productsToAdd = this.getProductsToAdd();
 
+      // bundle is invisible if
+      // - there is no products
+      // - there are some products that customer can't add, so, bundle discount is unreachable
       this.$bundle.toggleClass('d-none', !productsLeft.length || productsLeft.length !== productsToAdd.length);
 
       const $products = this.$bundle.find('[data-product-id]');

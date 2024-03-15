@@ -180,7 +180,8 @@
         case 'invoice-trial':
           break;
         case 'invoice':
-          this.cart.clear(false);
+          window.SellixAnalyticsManager.sendBeginCheckout(type, invoice);
+          this.cart.clear(false, false);
           window.location.href = `invoice/${invoice.uniqid}`;
           break;
       }

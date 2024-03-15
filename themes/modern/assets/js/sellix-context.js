@@ -41,14 +41,14 @@
     static getShopProducts(ids) {
       let products = this.getShopInfo().products || {};
       if (!ids) {
-        return products;
+        return Object.values(products);
       }
 
       return ids.filter((id) => Boolean(products[id])).map((id) => products[id]);
     }
 
     static getShopProduct(id) {
-      const products = this.getShopProducts([id]);
+      const products = this.getShopProducts();
       return products.find((product) => product.uniqid === id);
     }
 
@@ -71,6 +71,10 @@
 
     static getTheme() {
       return this.get('theme', {});
+    }
+
+    static getProductInfo() {
+      return this.get('common', {}).productInfo || {};
     }
 
     static getInvoiceInfo() {

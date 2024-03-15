@@ -66,7 +66,8 @@
     }
 
     add(product, quantity = 1, updateBackend = true) {
-      let isNew = true;
+      let isNew = true,
+        analyticsItem;
       let updatedState = this.state.map((item) => {
         if (item.uniqid === product.uniqid) {
           item = {
@@ -74,15 +75,25 @@
             quantity: item.quantity + quantity,
           };
           isNew = false;
+          analyticsItem = { ...item, quantity };
         }
         return item;
       });
 
       if (isNew) {
         updatedState = [...updatedState, { ...product, quantity }];
+        analyticsItem = { ...product, quantity };
       }
 
       this.state = updatedState;
+
+      if (analyticsItem) {
+        if (quantity > 0) {
+          window.SellixAnalyticsManager.sendAddToCart([analyticsItem]);
+        } else if (quantity < 0) {
+          window.SellixAnalyticsManager.sendRemoveFromCart([analyticsItem]);
+        }
+      }
 
       if (updateBackend) {
         this.update().then(() => {
@@ -115,24 +126,25 @@
         return;
       }
 
-      let isDeleted = false;
+      let isDeleted = false,
+        analyticsItem;
       this.state = this.state
         .map((item) => {
-          let newQuantity = quantity > 0 ? item.quantity - quantity : 0;
-          if (newQuantity < 0) {
-            newQuantity = 0;
-          }
+          const newQuantity = Math.max(quantity > 0 ? item.quantity - quantity : 0, 0);
+          const quantityToRemove = item.quantity - newQuantity;
           if (item.uniqid === id) {
-            item = {
-              ...item,
-              quantity: newQuantity,
-            };
+            item = { ...item, quantity: newQuantity };
+            analyticsItem = { ...item, quantity: quantityToRemove };
             isDeleted = newQuantity === 0;
           }
 
           return item;
         })
         .filter((item) => item.quantity > 0);
+
+      if (analyticsItem) {
+        window.SellixAnalyticsManager.sendRemoveFromCart([analyticsItem]);
+      }
 
       this.update().then(() => {
         jQuery(document).trigger('SellixCartUpdateEvent', {
@@ -142,7 +154,10 @@
       });
     }
 
-    clear(updateBackend = true) {
+    clear(updateBackend = true, sendAnalytics = true) {
+      if (sendAnalytics && this.state.length) {
+        window.SellixAnalyticsManager.sendRemoveFromCart(this.state);
+      }
       this.state = [];
       if (updateBackend) {
         this.update().then(() => jQuery(document).trigger('SellixCartUpdateEvent', { action: 'delete' }));

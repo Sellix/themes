@@ -10,7 +10,16 @@
     }
 
     onGetInvoice = (id) => {
-      return sellixApi.getInvoice(id);
+      return sellixApi.getInvoice(id).then((response) => {
+        const { status, data } = response;
+        if (status === 200) {
+          const { invoice } = data || {};
+          if (this.invoice && invoice && this.invoice.status !== 'COMPLETED' && invoice.status === 'COMPLETED') {
+            window.SellixAnalyticsManager.sendPurchase(invoice);
+          }
+        }
+        return response;
+      });
     };
 
     onGetInvoiceRewards = (id) => {
@@ -33,6 +42,10 @@
 
     onGetInvoiceInfo = (id, secret) => {
       return sellixApi.getInvoiceInfo(id, secret);
+    };
+
+    onGetInvoiceStatus = (id) => {
+      return sellixApi.getInvoiceStatus(id);
     };
 
     onGetInvoiceTelegramInfo = (id, secret) => {
@@ -104,6 +117,7 @@
           onRefreshInvoice: this.onRefreshInvoice,
           onGetInvoiceSecret: this.onGetInvoiceSecret,
           onGetInvoiceInfo: this.onGetInvoiceInfo,
+          onGetInvoiceStatus: this.onGetInvoiceStatus,
           onGetInvoiceTelegramInfo: this.onGetInvoiceTelegramInfo,
           onGetFeedback: this.onGetFeedback,
           onCreateFeedback: this.onCreateFeedback,

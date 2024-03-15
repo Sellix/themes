@@ -62,6 +62,7 @@
           setTimeout(function () {
             $(document).trigger('SellixCartUpdateEvent', { action: 'update' });
             $component.css('display', '');
+            window.SellixAnalyticsManager.sendViewItem(group.uniqid);
           });
         })
         .catch((resp) => {
