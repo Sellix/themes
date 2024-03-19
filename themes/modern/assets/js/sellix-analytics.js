@@ -106,7 +106,7 @@
 
       const payload = this._prepareInvoicePayload(invoice);
       payload.content_name = type === 'invoice-trial' ? 'Trial' : 'Invoice';
-
+      console.log('Log #1', invoice, payload);
       this.manager.sendBeginCheckout(payload);
     }
 
@@ -140,7 +140,7 @@
         const item = this._prepareProduct(shop.name, product);
 
         item.quantity = product.unit_quantity || 1;
-        item.price = product.unit_price_display;
+        item.price = product.unit_price_display || product.price_display;
 
         item.discount = 0;
         if (priceDiscount[item.uniqid]) {

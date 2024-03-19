@@ -6,7 +6,12 @@
 {% set hashImage = not not product.image_name %}
 {% set image = cdn_link(product.cloudflare_image_id, 'shopItem') %}
 {% set title = product.title | html_sanitize %}
-{% set description = [product.description.slice(0, 100), '...'] | join('') | html_sanitize %}
+{% set description = (product.description or '') | string %}
+{% if description.length > 100 %}
+  {% set description = [description.slice(0, 100), '...'] | join('') | html_sanitize %}
+{% else %}
+  {% set description = description | html_sanitize %}
+{% endif %}
 
 {% set formSize = safe_get(properties.form_size, '100%') %}
 {% set imageSize = safe_get(properties.image_size, '100') %}

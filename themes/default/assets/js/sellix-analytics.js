@@ -139,7 +139,7 @@
         const item = this._prepareProduct(shop.name, product);
 
         item.quantity = product.unit_quantity || 1;
-        item.price = product.unit_price_display;
+        item.price = product.unit_price_display || product.price_display;
 
         item.discount = 0;
         if (priceDiscount[item.uniqid]) {
