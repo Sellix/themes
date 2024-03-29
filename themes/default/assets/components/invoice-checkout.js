@@ -57,6 +57,10 @@
       return sellixApi.postCashAppIdentifier(data);
     };
 
+    onPostCashAppVerifyPayment = (data) => {
+      return sellixApi.postCashAppVerifyPayment(data);
+    };
+
     onGetStripeLink = (id) => {
       return sellixApi.getStripeLink(id);
     };
@@ -123,6 +127,7 @@
           onGetFeedback: this.onGetFeedback,
           onCreateFeedback: this.onCreateFeedback,
           onPostCashAppIdentifier: this.onPostCashAppIdentifier,
+          onPostCashAppVerifyPayment: this.onPostCashAppVerifyPayment,
           onGetStripeLink: this.onGetStripeLink,
           onGetProductStripeLink: this.onGetProductStripeLink,
           onSaveInvoiceToFile: this.onSaveInvoiceToFile,
