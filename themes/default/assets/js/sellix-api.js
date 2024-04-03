@@ -298,6 +298,16 @@
       });
     }
 
+    async postSquareRefreshPaymentStatus(data) {
+      return jQuery.ajax({
+        method: 'POST',
+        url: `${this.apiUrl}/api/shop/square/payment_status`,
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        data: JSON.stringify(data),
+      });
+    }
+
     async createTicket(data) {
       const onSuccess = (captcha) => {
         return jQuery.ajax({
