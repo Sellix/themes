@@ -3358,39 +3358,6 @@ button.secondary .lds-ellipsis div {
 .sellix-widget-invoice-checkout--info-modal .sellix-modal-close {
   display: none;
 }
-.qr-wrapper {
-  overflow: hidden;
-  width: auto;
-  padding: 0;
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0;
-  position: relative;
-}
-.qr-wrapper canvas {
-  cursor: pointer;
-  width: auto;
-}
-.qr-wrapper > img {
-  cursor: pointer;
-}
-.qr-wrapper .qr-logo {
-  background: white;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 48px;
-  padding: 0 !important;
-  border-radius: 0.25rem;
-  outline: 9px solid white;
-}
-.qr-wrapper .qr-corner {
-  background: white;
-  position: absolute;
-  padding: 3px;
-}
 .darkTheme .moving-mouse-holder {
   background: transparent;
 }
@@ -3716,101 +3683,89 @@ button.secondary .lds-ellipsis div {
 .embed-loader-sellix {
   position: absolute;
 }
-.dark .cashapp-guide-list-icon circle {
-  fill: var(--white);
-  stroke: var(--gateway-cashapp);
-  stroke-width: 2px;
-}
-
-.dark .cashapp-guide-line {
-  background: var(--gateway-cashapp);
-}
-
-.cashapp-guide-list-icon circle {
-  fill: #cbffd7;
-}
-
-.cashapp-guide {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-.cashapp-guide-line {
-  height: calc(100% - 3rem);
-  width: 1px;
-  background: #cbffd7;
-  position: absolute;
-  left: 1.25rem;
-  z-index: -1;
-}
-.cashapp-guide-block {
-  position: relative;
-}
-.cashapp-guide-list > div {
-  margin-bottom: 1rem;
-  display: flex;
-}
-.cashapp-guide-list-title {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-  color: var(--black9);
-  text-align: left;
-  margin-bottom: 4px;
-}
-.cashapp-guide-list-description {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 18px;
-  color: var(--black4);
-  text-align: left;
-}
-.cashapp-guide-list-icon {
-  margin-right: 1rem;
-}
-.cashapp-guide-title {
-  display: flex;
-  flex-wrap: nowrap;
-  width: 100%;
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 17px;
-  color: var(--black9);
-  margin-bottom: 1.5rem;
-}
-.cashapp-mode-note {
-  width: calc(50% - 0.5rem);
-}
-@media (max-width: 500px) {
-  .cashapp-mode-note {
-    margin: 0.5rem 0;
-    width: 100%;
-  }
-  .cashapp-mode-note:first-child {
-    margin-top: 0;
-  }
-}
-.cashapp-mode-note-container {
+.qr-wrapper {
+  overflow: hidden;
+  width: auto;
+  padding: 0;
+  border-radius: 5px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+  position: relative;
+}
+.qr-wrapper canvas {
+  cursor: pointer;
+  width: auto;
+}
+.qr-wrapper > img {
+  cursor: pointer;
+}
+.qr-wrapper .qr-logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  padding: 0 !important;
+  border-radius: 0.25rem;
+  outline: 9px solid white;
+  background: white;
+}
+.qr-wrapper .qr-corner {
+  background: white;
+  position: absolute;
+  padding: 3px;
+}
+.cashapp-note {
+  margin: 0.5rem 0 1.5rem 0;
+}
+.cashapp-note-instruction {
+  border: 1px solid var(--black2);
+  display: flex;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  line-height: 1.25rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  background: var(--black0);
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--black5);
+}
+.cashapp-note-copy-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
   width: 100%;
 }
+.cashapp-note-copy-wrapper > div {
+  width: 50%;
+}
+.cashapp-note-copy-wrapper > div > .sellix-label {
+  justify-content: center;
+  font-weight: 400;
+}
+@media (max-width: 640px) {
+  .cashapp-note-copy-wrapper > div {
+    width: 100%;
+  }
+}
+.cashapp-note-copy-wrapper > span {
+  display: flex;
+  width: 100%;
+}
+.cashapp-note-copy-wrapper .sellix-label {
+  color: var(--black5);
+}
 @media (max-width: 500px) {
-  .cashapp-mode-note-container {
+  .cashapp-note-copy-wrapper {
     flex-direction: column;
   }
 }
-.cashapp-mode-note-item {
+.cashapp-note-copy-cashtag {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   transition: all 0.2s ease;
   cursor: pointer;
@@ -3819,84 +3774,21 @@ button.secondary .lds-ellipsis div {
   margin: 0;
   background-color: var(--black0);
   font-weight: 600;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 17px;
   position: relative;
+  gap: 0.5rem;
 }
-.cashapp-mode-note-item.success .default-mode-copy {
-  display: flex;
-  background-color: var(--gateway-cashapp);
+.cashapp-note-copy-cashtag svg {
+  width: 1.5rem;
+  height: 1.5rem;
 }
-.cashapp-mode-note .sellix-label {
-  margin-bottom: 0.5rem;
-  font-weight: 400;
-  color: var(--black4);
+.cashapp-note-copy-cashtag svg path {
+  stroke: var(--black9);
+  stroke-width: 1;
 }
-.cashapp-mode-countdown {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin: 0;
-}
-.cashapp-mode-countdown .lds-ellipsis {
-  margin-top: -0.5rem;
-  margin-bottom: 1rem;
-}
-.cashapp-mode-countdown .lds-ellipsis > div {
-  background: var(--gateway-cashapp);
-}
-.cashapp-mode-input {
-  outline: none;
-  padding-left: 1rem;
-  color: var(--black9);
-  border: var(--borderColor) 1px solid;
-  width: 100%;
-  display: flex;
-  border-radius: 0.5rem;
-  overflow: hidden;
-  position: relative;
-  height: 36px;
-}
-.cashapp-mode-input input {
-  border: none;
-  background: transparent;
-  width: 80%;
-  padding: 0;
-  color: var(--black9);
-  font-weight: 700;
-}
-.cashapp-mode-input input:focus {
-  outline: none;
-}
-.cashapp-mode-input-loader {
-  position: absolute;
-  right: 0.625rem;
-  top: 0.625rem;
-}
-.cashapp-mode-input-loader svg {
-  width: 1.25rem;
-  height: 1.25rem;
-}
-.cashapp-mode-input button {
-  top: 4px;
-  right: 4px;
-  position: absolute;
-  padding: 0;
-  width: 28px;
-  height: 28px;
-  background: var(--purple6);
-  border-radius: 0.375rem;
-  cursor: pointer;
-}
-.cashapp-mode-input button:disabled {
-  background-color: var(--borderColor);
-}
-.cashapp-mode-input button:disabled svg {
-  color: var(--white);
-}
-.cashapp-mode-input button svg {
-  color: white;
+.cashapp-note .sellix-input:hover, .cashapp-note .sellix-input:focus {
+  border-color: var(--gateway-cashapp);
 }
 .paypal-btn.light .sk-circle-fade-dot:before {
   background-color: var(--purple6) !important;
@@ -4060,8 +3952,13 @@ button.secondary .lds-ellipsis div {
   color: var(--black4);
 }
 .sellix-widget-invoice-checkout--invoice-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   font-size: 14px;
+  border-bottom: 1px solid var(--black2);
   margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
   width: 100%;
 }
 .sellix-widget-invoice-checkout--invoice-details-item {
@@ -4070,7 +3967,6 @@ button.secondary .lds-ellipsis div {
   align-items: center;
   font-size: 14px;
   font-weight: 400;
-  margin: 0.75rem 0;
 }
 .sellix-widget-invoice-checkout--invoice-details-item span:first-child {
   color: var(--black4);
@@ -4103,7 +3999,7 @@ button.secondary .lds-ellipsis div {
   align-items: center;
   font-size: 14px;
   font-weight: 400;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.5rem;
 }
 .sellix-widget-invoice-checkout--invoice-details-main div {
   display: flex;
@@ -4447,6 +4343,12 @@ button.secondary .lds-ellipsis div {
   fill: var(--gateway-bitcoin-cash);
 }
 
+.default-mode-buttons {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap: 1rem;
+}
 .default-mode-message {
   font-size: 13px;
   line-height: 18px;
@@ -7178,6 +7080,9 @@ video {
 .\!bg-white {
   background-color: #ffffff !important;
 }
+.bg-\[\#27a17b\] {
+  background-color: #27a17b;
+}
 .bg-\[\#f3f4f9\] {
   background-color: #f3f4f9;
 }
@@ -7579,6 +7484,9 @@ video {
 }
 .\!pt-3 {
   padding-top: 0.75rem !important;
+}
+.\!pt-4 {
+  padding-top: 1rem !important;
 }
 .pb-1 {
   padding-bottom: 0.25rem;
@@ -8713,7 +8621,7 @@ a:hover {
   padding: 1.25rem;
   text-align: center;
   color: #fff;
-  border-bottom: 1px solid #e7eaf32e;;
+  border-bottom: 1px solid transparent;
 }
 
 @media (max-width: 374px) {
@@ -8810,10 +8718,11 @@ dark:!bg-[#25272a] dark:hover:!bg-[#3c3e42]*/
   border: none;
   padding: .75rem;
   font-size: 13px;
-  border-top: 1px solid #3c3e42;
+  border-top: 1px solid transparent;
   align-self: flex-end;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   background-color: transparent;
   color: white;
   width: 100%;
