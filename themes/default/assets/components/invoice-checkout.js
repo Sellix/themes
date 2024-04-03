@@ -69,6 +69,14 @@
       return sellixApi.getProductStripeLink(id);
     };
 
+    onPostSquareCreatePayment = (data) => {
+      return sellixApi.postSquareCreatePayment(data);
+    };
+
+    onPostSquareRefreshPaymentStatus = (data) => {
+      return sellixApi.postSquareRefreshPaymentStatus(data);
+    };
+
     onGetFeedback = (id) => {
       return sellixApi.getFeedback(id);
     };
@@ -130,6 +138,8 @@
           onPostCashAppVerifyPayment: this.onPostCashAppVerifyPayment,
           onGetStripeLink: this.onGetStripeLink,
           onGetProductStripeLink: this.onGetProductStripeLink,
+          onPostSquareCreatePayment: this.onPostSquareCreatePayment,
+          onPostSquareRefreshPaymentStatus: this.onPostSquareRefreshPaymentStatus,
           onSaveInvoiceToFile: this.onSaveInvoiceToFile,
           onShowMessage: this.onShowMessage,
           onGetInsightsTransaction: this.onGetInsightsTransaction,
