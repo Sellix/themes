@@ -17,6 +17,17 @@
   )
 %}
 
+{% set fiatCnt = 0 %}
+{% set cryptoCnt = 0 %}
+{% for currency in availableCurrencies %}
+  {% set currencyInfo = allCurrencies[currency] %}
+  {% if currencyInfo.type == 'fiat' %}
+    {% set fiatCnt = fiatCnt + 1 %}
+  {% else %}
+    {% set cryptoCnt = cryptoCnt + 1 %}
+  {% endif %}
+{% endfor %}
+
 <style>
   .{{ localClass  }} .select2-container--sellix-currency-selector .select2-selection--single {
     background-color: {{ inputsProps.select_background | get_color }}!important;
@@ -54,6 +65,7 @@
         data-img-url="{{ currencyInfo.imgUrl }}"
         data-currency-type="{{ currencyInfo.type }}"
         data-currency-smb="{{ currencyInfo.symbol }}"
+        data-currency-name="{{ currencyInfo.name }}"
       >
         {{- currencyInfo.title if currencyInfo.type == 'crypto' else currencyInfo.name -}}
       </option>
@@ -63,6 +75,8 @@
 
 <script type='application/javascript'>
   $(document).ready(function() {
+    const fiatCnt = {{ fiatCnt }};
+    const cryptoCnt = {{ cryptoCnt }};
     let selectedCurrency = '{{ defaultCurrency.name }}';
     let selectedType = '{{ defaultCurrency.type }}';
 
@@ -71,6 +85,7 @@
       const $container = $(container);
       const currencyType = $element.data('currencyType');
       const currencySmb = $element.data('currencySmb');
+      const currencyName = $element.data('currencyName');
       const imgUrl = $element.data('imgUrl');
 
       $container.attr('data-currency-type', currencyType);
@@ -96,14 +111,17 @@
       return $(`
         <div style="display: flex; align-items: center; column-gap: 0.25rem;">
           ${isMobile
-            ? imgUrl
+            ? imgUrl && !isResult
               ? `<img alt="${title}" style="height:18px;width: 18px;" src="${imgUrl}" />`
               : ''
             : imgUrl
               ? `<img alt="${title}" style="height:18px;width: 18px;" src="${imgUrl}" />`
               : ''
           }
-          ${isMobile && isResult ? '' : `${currencyType === 'fiat' ? `${currencySmb} ` : ''}${title}`}
+          ${isMobile && isResult
+            ? `${currencyType === 'fiat' ? `${currencySmb} ` : ''}${currencyName === 'USDC_NATIVE' ? 'USDC' : currencyName}`
+            : `${currencyType === 'fiat' ? `${currencySmb} ` : ''}${title}`
+          }
           ${isResult
             ? chevronSvg
             : state.id === selectedCurrency
@@ -147,8 +165,9 @@
         dropdownWithSearch.prototype.render = function() {
           // Copy and modify default search render method
           const $rendered = Dropdown.prototype.render.call(this);
+
           const $tabs = $(
-            '<span class="select2-currencies-tabs">' +
+            `<span class="select2-currencies-tabs ${fiatCnt === 0 || cryptoCnt === 0 ? 'd-none' : ''}">` +
               '<a id="currency-tab-fiat-{{ id }}" class="select2-currency-tab {{ 'active' if defaultCurrency.type === 'fiat' }}" href="javascript:void(0)">Fiat</a>' +
               '<a id="currency-tab-crypto-{{ id }}" class="select2-currency-tab {{ 'active' if defaultCurrency.type === 'crypto' }}" href="javascript:void(0)">Crypto</a>' +
             '</span>'
@@ -166,6 +185,7 @@
           this.$search = $tabs.find('input');
 
           $rendered.prepend($tabs);
+
           return $rendered;
         };
 
