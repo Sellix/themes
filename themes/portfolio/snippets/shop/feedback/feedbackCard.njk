@@ -1,0 +1,83 @@
+{% set id = uid() %}
+{% set created_at = args.feedback.created_at * 1000 %}
+{% set message = args.feedback.message %}
+{% set reply = args.feedback.reply %}
+{% set score = args.feedback.score %}
+{% set color = 'var(--brandColor)' %}
+{% set colors = themeProperties.current_colors %}
+{% set cardsProps = themeProperties.cards %}
+{% set properties = args.properties %}
+
+{% set containerBackgroundColor = properties.card_background_color if properties.card_background_color is defined else cardsProps.feedback_card_background_color %}
+{% set containerShowBorder = properties.card_show_border if properties.card_show_border is defined else cardsProps.feedback_card_show_border %}
+{% set containerBorderRadius = properties.card_border_radius if properties.card_border_radius is defined else themeProperties.cards.feedback_card_border_radius %}
+{% set containerShadow = properties.card_shadow if properties.card_shadow is defined else themeProperties.cards.feedback_card_shadow %}
+{% set replyBackgroundColor = properties.reply_background_color if properties.reply_background_color is defined else cardsProps.feedback_card_reply_background_color %}
+
+<style>
+  .sellix-feedback-card-{{ id }} {
+    background: {{ colors[containerBackgroundColor] }};
+    border-radius: {{ containerBorderRadius }}rem;
+    box-shadow: {{ containerShadow }};
+    border: {{ "1px solid var(--borderColor)" if containerShowBorder else "none" }};
+    margin-bottom: 1rem;
+    min-height: inherit;
+  }
+
+  .sellix-feedback-card-{{ id }} .sellix-feedback-text {
+    color: {{ colors[cardsProps.feedback_card_message_text_font_color] }};
+    font-size: {{ cardsProps.feedback_card_message_text_font_size }}px;
+    font-weight: {{ cardsProps.feedback_card_message_text_font_weight }};
+    line-height: {{ cardsProps.feedback_card_message_text_line_height }}%;
+    text-align: {{ cardsProps.feedback_card_message_text_text_align }};
+  }
+
+  .sellix-feedback-card-{{ id }} .sellix-feedback-reply {
+    background: {{ colors[replyBackgroundColor] }};
+    border: {{ "1px solid var(--borderColor)" if cardsProps.feedback_card_reply_show_border else "none" }};
+    color: {{ colors[cardsProps.feedback_card_reply_text_font_color] }};
+    font-size: {{ cardsProps.feedback_card_reply_text_font_size }}px;
+    font-weight: {{ cardsProps.feedback_card_reply_text_font_weight }};
+    line-height: {{ cardsProps.feedback_card_reply_text_line_height }}%;
+    text-align: {{ cardsProps.feedback_card_reply_text_text_align }};
+  }
+</style>
+
+<div class="sellix-feedback-card-wrapper sellix-feedback-card-{{ id }}">
+  <div class="sellix-feedback-card">
+    <div class="sellix-feedback-card-head">
+      {% render_snippet 'Rating star', rating=score, size=20, color=color %}
+
+      <div class="sellix-feedback-rating-info-date">
+        {{created_at | date_format('DD')}}
+        {{['shared.months', created_at | date_format('MMMM')] | join('.') | lower | t({'context': 'short'})}}
+        {{created_at | date_format('YYYY')}}
+      </div>
+    </div>
+
+    <div class="sellix-feedback-card-review">
+      <div>
+        <div class="sellix-feedback-text">
+          {{message}}
+        </div>
+
+        {% if reply %}
+          <div class="sellix-feedback-reply">
+            <span>{{reply}}</span>
+
+            <span class="sellix-feedback-reply-seller">
+              — {{ 'shop.feedback.card.reply' | t }}
+            </span>
+          </div>
+
+        {% endif %}
+      </div>
+
+      <div class="sellix-feedback-checked">
+        <i class="fa-solid fa-check"></i>
+
+        <span>{{ 'shop.feedback.card.verifiedPurchase' | t }}</span>
+      </div>
+    </div>
+  </div>
+</div>

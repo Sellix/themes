@@ -1,0 +1,103 @@
+.blocker.current {
+  text-align: inherit !important;
+  z-index: 2147483647 !important;
+  background-color: #030a16c4;
+}
+
+.sellix-modal {
+  width: 100%;
+  max-width: 640px;
+  padding: 0;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--backgroundAccentDark);
+  border-radius: 0.5rem;
+  position: absolute;
+  max-height: 90vh;
+  overflow: auto;
+  border: 1px solid var(--borderColor);
+  box-shadow: 0px 1px 3px rgba(7, 14, 35, 0.06), 0px 2px 8px rgba(7, 14, 35, 0.05);
+  outline: none;
+}
+
+.sellix-modal:hover {
+  outline: none;
+}
+
+.sellix-modal.visible {
+  overflow: visible;
+}
+
+@media (max-width: 768px) {
+  .sellix-modal {
+    width: calc(100% - 2rem);
+    transform: translate(-50%, 0%);
+    top: 1rem;
+  }
+}
+
+.sellix-modal.confirm {
+  max-width: 400px;
+  overflow: hidden;
+}
+.sellix-modal-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--borderColor);
+  color: var(--lightFontColor);
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
+@media (max-width: 768px) {
+  .sellix-modal-header {
+    padding: 1rem 1.25rem;
+  }
+}
+.sellix-modal-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  cursor: pointer;
+}
+.sellix-modal-close svg {
+  fill: grey;
+}
+.sellix-modal-body {
+  padding: 1.25rem 1.5rem;
+  min-height: 5rem;
+  color: var(--lightFontColor);
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+}
+@media (max-width: 768px) {
+  .sellix-modal-body {
+    padding: 1rem 1.25rem;
+  }
+}
+.sellix-modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-top: 1px solid var(--borderColor);
+}
+@media (max-width: 768px) {
+  .sellix-modal-footer {
+    padding: 1rem 1.25rem;
+  }
+}
+.sellix-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999999;
+  background-color: #030a16 c4 !important;
+}

@@ -1,0 +1,22 @@
+<style>
+.sellix-cart-icon.empty a:nth-child(2){
+      transform: translateX(0rem)!important;
+}
+.sellix-cart-icon{
+      width: 100%!important;
+      border-radius: 15px!important;
+}
+</style>
+
+{% set shop = global.common.shopInfo.shop %}
+
+{% for section in settings.section_order %}
+  {% render_section section %}
+{% endfor %}
+{% render_snippet 'Product terms' %}
+
+<script type='application/javascript'>
+  $(document).ready(() => {
+    window.SellixAnalyticsManager.sendViewItem();
+  })
+</script>

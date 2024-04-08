@@ -1,0 +1,65 @@
+{% set id = uid() %}
+{% set properties = args.properties %}
+{% set shop = global.common.shopInfo.shop %}
+{% set colors = themeProperties.current_colors %}
+{% set product = args.product %}
+{% set currency = args.currency %}
+{% set is_cart = args.is_cart or false %}
+{% set price_variants = product.price_variants or [] %}
+{% set hideStockCounter = shop.hide_stock_counter %}
+
+<style>
+  .variant-badge-{{ id }} {
+    background-color: {{ colors[properties.container_background_color] }};
+  }
+</style>
+
+{% if price_variants | length and product.stock %}
+  {% for variant in price_variants %}
+    {% if variant.stock === 0 %}
+    {% else %}
+      <div
+        class="variant-{{ id}} variant-badge-{{ id }} variants-badge {{ 'is-cart' if is_cart else '' }}"
+        data-variant="{{ variant.title }}"
+      >
+        <div class="variants-badge-title">{{ variant.title }}</div>
+        <div class="variants-badge-description">{{ variant.description }}</div>
+        <div class="variants-badge-info">
+            {% if hideStockCounter %}
+              {{ 'shop.shared.titles.inStock' |t }}
+            {% else %}
+              <div>
+                {{ 'shop.shared.titles.stock' |t }}&nbsp<b>
+                  {%- if product.type === 'SERIALS' -%}
+                    {{ get_stock(variant.stock) }}
+                  {%- else -%}
+                    {{ get_stock(product.stock) }}
+                  {%- endif -%}
+                </b>
+              </div>
+            {% endif %}
+            <div>
+              {{ 'shop.shared.titles.startingAt' | t }}
+              <b>{% render_snippet 'Price', currency=currency, price=variant.price_conversions[currency] %}</b>
+            </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+<script type='application/javascript'>
+  $(document).ready(function() {
+    $(document).ready(function() {
+      const productId = '{{ product.uniqid }}';
+      const priceVariantsComponent = new SellixVariantsComponent(
+        `.variant-{{ id}}`,
+        '{{ shop.name }}',
+        productId,
+        {{ (product.price_variants or []) | dump | safe }},
+        {{ is_cart }}
+      );
+      priceVariantsComponent.render();
+    });
+  });
+</script>

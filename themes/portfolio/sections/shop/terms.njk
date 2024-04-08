@@ -1,0 +1,20 @@
+{% set shop = global.common.shopInfo.shop %}
+{% set colors = themeProperties.current_colors %}
+
+<div class="col-md-12" >
+  <div class="about-details-inner shadow-box p-4">
+    {% if shop.terms_of_service %}
+      <div class="sellix-text" style="color: {{ colors[properties.terms_font_color] }}">
+        {{shop.terms_of_service | html_sanitize | safe}}
+      </div>
+    {% else %}
+      <div class="empty-shop-container">
+        <i class="fa-regular fa-gavel"></i>
+
+        <span class="empty-shop-title">
+          {{ 'shop.terms.noTerms' | t({shopName: ['<b>', shop.name, '</b>'] | join(' ')}) | safe }}
+        </span>
+      </div>
+    {% endif %}
+  </div>
+</div>

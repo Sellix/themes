@@ -1,0 +1,8 @@
+{% if global.request.type in ['invoice'] %}
+  {% set id = uid() %}
+
+  {% set localClass = id %}
+
+  {% render_snippet 'Invoice: Checkout', properties=properties %}
+
+{% endif %}

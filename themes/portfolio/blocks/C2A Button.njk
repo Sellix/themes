@@ -1,0 +1,27 @@
+{% set id = uid() %}
+
+<button type="button" 
+        class="button {{properties.button_size}} {{properties.button_style}}" 
+        onclick="window.location.href='{{properties.button_link}}'"
+        style="border: {{ '1px solid var(--borderColor)' if properties.button_show_border else '0px;' }}!important;">
+        
+{{properties.button_label}}
+
+{% if  properties.button_show_icon %}
+
+        {% if properties.button_media %}
+        <img    src="{{ properties.button_media }}" 
+                style="
+                width: 24px; 
+                height: 24px;
+                object-fit: contain;
+                margin-left: 0.5rem;"/>
+                
+        {% else %}
+        
+        <i class="{{properties.button_icon}} ml-2"></i>
+        
+        {% endif %}
+
+{% endif %}
+</button>

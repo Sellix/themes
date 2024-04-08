@@ -1,0 +1,33 @@
+{% if global.paypal.merchantId %}
+  {% set shop = global.common.shopInfo.shop %}
+  {% set invoice = global.common.invoiceInfo.invoice %}
+  {% set product = global.common.productInfo.product %}
+
+  {% set allCurrencies = global.currencyConfig.allCurrencies %}
+  {% set defaultCurrency = allCurrencies[global.currencyConfig.default] %}
+  {% set isDefaultCurrencyCrypto = defaultCurrency.type === 'crypto' %}
+  {% if isDefaultCurrencyCrypto %}
+    {% set currency = product.original_currency or shop.original_currency %}
+  {% else %}
+    {% set currency = invoice.currency or product.currency or shop.currency %}
+  {% endif %}
+
+  {% set type = invoice.type or ('PRODUCT_SUBSCRIPTION' if product.type === 'SUBSCRIPTION' else product.type) %}
+  <script type='application/javascript'>
+    $(document).ready(function() {
+      if (!window.paypal) {
+        const client = '{{ global.paypal.clientId }}';
+        const merchantId = '{{ global.paypal.merchantId }}';
+        const currency = '{{ currency }}';
+        const vault = '{{ type }}' === 'PRODUCT_SUBSCRIPTION' ? 'true' : 'false';
+
+        const script = document.createElement('script');
+        script.src = `https://www.paypal.com/sdk/js?client-id=${client}&merchant-id=${merchantId}&components=buttons,funding-eligibility&currency=${currency}&commit=true&vault=${vault}`;
+        script.async = true;
+        script.id = 'paypal-sdk';
+        document.body.appendChild(script);
+      }
+    });
+  </script>
+
+{% endif %}

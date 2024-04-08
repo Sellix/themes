@@ -1,0 +1,74 @@
+{% set shop = global.common.shopInfo.shop %}
+{% set id = uid() %}
+{% set titleId = uid() %}
+{% set emailId = uid() %}
+{% set messageId = uid() %}
+{% set invoiceId = uid() %}
+{% set colors = themeProperties.current_colors %}
+{% set isWide = properties.contact_form_size == 100 %}
+<div class="col-md-12">
+  <div class="sellix-contact-screen">
+    <form class="sellix-contact-form shadow-box" id="contact-form-{{ id }}" onsubmit="return false">
+      <div>
+        <div>
+          {% render_snippet 'Text',
+                            selector=titleId,
+                            name="title",
+                            label=('shop.contact.title' | t),
+                            placeholder=('shop.contact.titlePlaceholder' | t),
+                            wrapperClassName="title" %}
+          {% render_snippet 'Text',
+                            selector=emailId,
+                            name="email",
+                            label=('shop.contact.email' | t),
+                            placeholder=('shop.contact.emailPlaceholder' | t) %}
+          {% render_snippet 'Text',
+                            selector=invoiceId,
+                            name="invoice_id",
+                            label=('shop.contact.invoiceId' | t),
+                            placeholder=('shop.contact.invoiceIdPlaceholder' | t) %}
+        </div>
+        <div>
+          {% render_snippet 'Text area',
+                        selector=messageId,
+                        name="message",
+                        label=('shop.contact.message' | t),
+                        placeholder=('shop.contact.messagePlaceholder' | t) %}
+        </div>
+      </div>
+      <div style="display: flex; justify-content: {{ properties.contact_form_button_position }};">
+        {% render_snippet 'Ripple button',
+                        button_id=['contact-form-submit-', id] | join, type='submit',
+                        title=(properties.contact_form_button_title | t) %}
+      </div>
+    </form>
+  </div>
+</div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const formComponent = new SellixFormComponent(
+      '#contact-form-     {{ id }}', '{{ titleId }}', '{{ emailId }}', '{{ messageId }}', '{{ invoiceId }}', '{{ shop.name }}',
+    );
+    $('#contact-form-     {{ id }}').validate({
+      errorElement: 'div',
+      errorClass: 'invalid-feedback',
+      rules: {
+        title: 'required',
+        email: 'required',
+        message: 'required'
+      },
+      messages: {
+        title: 'Title is required',
+        email: 'Email is required',
+        message: 'Message is required'
+      },
+      highlight: function (element, errorClass) {
+        $(element).addClass('is-invalid').removeClass(errorClass);
+      },
+      unhighlight: function (element, errorClass) {
+        $(element).removeClass('is-invalid').removeClass(errorClass);
+      }
+    });
+  });
+</script>
