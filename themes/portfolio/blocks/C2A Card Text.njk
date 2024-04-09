@@ -1,0 +1,31 @@
+{% set colors = themeProperties.current_colors %}
+
+{% if properties.portfolio_c2a_text_link%}
+<a class="overlay-link" href="{{ properties.portfolio_c2a_text_link }}" aria-label="Head to the page {{ properties.portfolio_c2a_text_link }}"> </a>
+{% endif %}
+
+<img    src="{{ 'icon2.png' | asset_url }}" 
+        alt="Icon" 
+        class="star-icon"
+        style="width:37px; height:76px">
+                    
+<h1 style="
+    font-size: {{ properties.portfolio_c2a_font_size }}px; 
+    color: {{ colors[properties.portfolio_c2a_font_color] }};
+    font-weight: {{ properties.portfolio_c2a_text_weight }};
+    text-align: {{ properties.portfolio_c2a_text_position }}">
+        
+            {{ properties.portfolio_c2a_text | safe }}
+        
+</h1>
+
+{% if properties.portfolio_c2a_text_link%} 
+<a  class="about-btn"
+    href="{{ properties.portfolio_c2a_text_link }}" 
+    aria-label="Head to the page {{ properties.portfolio_c2a_text_link }}">
+
+    <img    src="{{ 'button.png' | asset_url }}" 
+            alt="Button" 
+            style="width:46px; height:42px">
+</a>
+{% endif %}

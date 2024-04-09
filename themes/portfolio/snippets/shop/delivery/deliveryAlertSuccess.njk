@@ -1,0 +1,77 @@
+{% set id = uid() %}
+{% set invoice = args.invoice %}
+{% set isDev = args.is_dev %}
+{% set isTrial = args.is_trial %}
+{% set isProductSubscription = args.is_product_subscription %}
+{% set properties = args.properties %}
+{% set colors = themeProperties.current_colors %}
+
+<style>
+  .sellix-delivery-success-{{id}} {
+    background: {{ colors[properties.container_background] }};
+    border: {{ "1px solid var(--borderColor)" if properties.container_show_border else "none" }};
+    box-shadow: {{ properties.container_shadow }};
+    border-radius: {{ properties.container_border_radius }}rem;
+    padding: {{ properties.container_padding_vert }}px {{ properties.container_padding_horiz }}px;
+  }
+
+  .sellix-delivery-success-{{id}} .title {
+    color: {{colors[properties.title_font_color] }};
+    font-size: {{ properties.font_size }}px;
+    font-weight: {{ properties.font_weight }};
+    line-height: {{ properties.title_line_height }}%;
+    text-align: {{ properties.title_text_align }};
+  }
+
+  .sellix-delivery-success-{{id}} .text {
+    color: {{colors[properties.text_font_color] }};
+    font-size: {{ properties.text_font_size }}px;
+    font-weight: {{ properties.text_font_weight }};
+    line-height: {{ properties.text_line_height }}%;
+    text-align: {{ properties.text_text_align }};
+  }
+</style>
+
+<div class="sellix-delivery-success sellix-delivery-success-{{id}}">
+  <div class="sellix-delivery-success-header">
+
+    <div class="sw-container">
+      <div class="sw" style="width: 140px; top: -.75rem; background-color: transparent;">
+
+        <div class="sw-icon-success">
+          <div class="elem-1"></div>
+          <span class="elem-2"></span>
+          <span class="elem-3"></span>
+          <div class="elem-4"></div>
+          <div class="elem-5"></div>
+          <div class="elem-6"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="sellix-delivery-success-title title">
+      {% if isDev %}
+        {{ 'shop.delivery.paymentCompleted' | t }}
+      {%- elif isTrial -%}
+        {{ 'shop.delivery.trialStarted' | t }}
+      {%- elif isProductSubscription -%}
+        {{ 'shop.delivery.subscriptionStarted' | t }}
+      {% else %}
+        {{ 'shop.delivery.orderCompleted' | t }}
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="sellix-delivery-success-info text">
+    {% if isDev %}
+      {{ 'shop.delivery.invoiceConfirmationEmailText' | t | safe }}
+    {% elif isTrial %}
+      {{ 'shop.delivery.trialText' | t | safe }}
+    {% elif isProductSubscription %}
+      {{ 'shop.delivery.subscriptionText' | t | safe }}
+    {% else %}
+      {{ 'shop.delivery.invoiceProductText' | t | safe }}
+    {% endif %}
+  </div>
+</div>

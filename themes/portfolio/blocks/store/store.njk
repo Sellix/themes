@@ -1,0 +1,58 @@
+{% set shop = global.common.shopInfo.shop %}
+{% set id = uid() %}
+{% set codeId = uid() %}
+
+
+<div class="sellix-store-code">
+  <div class="sellix-store-code-title">
+    This store is protected by a password <br>
+    In order to view its content, please input the required code
+  </div>
+
+  <div class="sellix-store-code-form">
+    <form id="store-code-{{id}}" onsubmit="return false">
+      {% render_snippet 'Text',
+        selector=codeId,
+        name="code",
+        label=('code' | t),
+        placeholder=('code' | t),
+        wrapperClassName="title"
+      %}
+      {% render_snippet 'Ripple button',
+        button_id=['store-code-submit-', id] | join, type='submit',
+        title=('Connect' | t)
+      %}
+    </form>
+  </div>
+</div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const formComponent = new SellixStoreCodeComponent(
+      '#store-code-{{id}}',
+      '{{codeId}}',
+      '{{shop.name}}'
+    );
+
+    if($('#store-code-{{id}}')) {
+
+      $('#store-code-{{id}}').validate({
+        errorElement: 'div',
+        errorClass: 'invalid-feedback',
+        rules: {
+          code: 'required',
+        },
+        messages: {
+          code: 'Code is required',
+        },
+        highlight: function(element, errorClass) {
+          $(element).addClass('is-invalid').removeClass(errorClass);
+        },
+        unhighlight: function(element, errorClass) {
+          $(element).removeClass('is-invalid').removeClass(errorClass);
+        },
+      });
+
+    }
+  })
+</script>

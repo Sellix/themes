@@ -1,0 +1,60 @@
+{% set colors = themeProperties.current_colors %}
+
+<div class="inner-profile-icons shadow-box">
+    {% if properties.portfolio_ulinks_social_1%} 
+        <a  href="{{ properties.portfolio_ulinks_social_1 }}" 
+            aria-label="Reach us on  {{ properties.portfolio_ulinks_social_1 }}">
+        
+            {% if properties.portfolio_ulinks_icon_social_1%} 
+                <i class="{{ properties.portfolio_ulinks_icon_social_1 }}"></i>
+            {% endif %}
+        </a>
+    {% endif %}
+                        
+    {% if properties.portfolio_ulinks_social_2%} 
+        <a  href="{{ properties.portfolio_ulinks_social_2 }}" 
+            aria-label="Reach us on  {{ properties.portfolio_ulinks_social_2 }}">
+
+            {% if properties.portfolio_ulinks_icon_social_2%} 
+                <i class="{{ properties.portfolio_ulinks_icon_social_2 }}"></i>
+            {% endif %}
+        </a>
+    {% endif %}
+</div>
+                    
+<div class="d-flex align-items-center justify-content-between">
+    <div class="infos">
+        {% if properties.portfolio_ulinks_social_pre_header_custom_text %}
+            <h4 style="
+                color: {{ colors[properties.portfolio_ulinks_social_pre_header_font_color] }}; 
+                font-size: {{properties.portfolio_ulinks_social_pre_header_font_size }}px; 
+                font-weight: {{ properties.portfolio_ulinks_social_pre_header_font_weight }};">
+
+                    {{ properties.portfolio_ulinks_social_pre_header_custom_text }}
+
+            </h4>
+        {% endif %}
+                            
+        {% if properties.portfolio_ulinks_social_header_custom_text %}
+            <h1 style="
+                color: {{ colors[properties.portfolio_ulinks_social_header_font_color] }}; 
+                font-size: {{properties.portfolio_ulinks_social_header_font_size }}; 
+                font-weight: {{ properties.portfolio_ulinks_social_header_font_weight }};">
+
+                    {{ properties.portfolio_ulinks_social_header_custom_text }}
+
+            </h1>
+        {% endif %}
+    </div>
+                        
+    {% if properties.portfolio_ulinks_social_link%} 
+        <a  class="about-btn"
+            href="{{ properties.portfolio_ulinks_social_link }}" 
+            aria-label="Head to the page {{ properties.portfolio_ulinks_social_header_custom_text }}">
+
+            <img    src="{{ 'button.png' | asset_url }}" 
+                    alt="Button" 
+                    style="width:46px; height:42px">
+        </a>
+    {% endif %}
+</div>

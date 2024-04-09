@@ -1,0 +1,103 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set cartEnabled = themeProperties.cart.is_enabled %}
+{% set subscription = global.common.shopInfo.subscription %}
+{% set colors = themeProperties.current_colors %}
+{% set slug = global.request.slug %}
+{% set menuProps = themeProperties.menu %}
+
+{% set backgroundColor = properties.header_background_color if properties.header_background_color is defined else 'background_main_color' %}
+
+  <!-- <Status /> -->
+  <div class="sellix-header col-md-12" id="sellix-header-{{ id }}" style="z-index: 12">
+    {% if global.request.type in ['main', 'group', 'contact', 'terms', 'trust', 'feedbacks', 'feedback', 'category'] %}
+      {% render_snippet 'Shop message', container_selector=["sellix-header-", id] | join %}
+    {% endif %}
+    <div class="sidebar-toggler d-md-none"">
+        {% render_snippet 'Burger button', localClass=['sellix-header-', id] | join, properties={ 'color': white } %}
+    </div>
+
+    <div class="col-md-2">
+      {% if properties.logo_image %}
+        <a href="#">
+          <div class="sellix-header-logo-image d-flex justify-content-center">
+            <img
+              style="max-height: {{ properties.logo_image_height }}px;"
+              src="{{ properties.logo_image }}"
+              alt="{{ shop.name }}"
+            >
+          </div>
+        </a>
+      
+      {% else %}
+
+      <div class="sellix-header-shop-name" style="text-align: center;">
+        <a href="">
+          <span style="color: {{ colors[properties.shop_name_font_color] if properties.shop_name_font_color else 'inherit' }}; font-size: {{ properties.shop_name_font_size }}px; font-weight: {{ properties.shop_name_font_weight }};">
+            {% if properties.shop_name %}
+              {{ properties.shop_name }}
+            {% else %}
+              {{shop.name}}
+            {% endif %}
+          </span>
+        </a>
+      </div>
+      {% endif %}
+
+      {% render_snippet 'Language selector', properties=properties %}
+
+    </div>
+
+    <div class="col-md-9 d-none d-md-block">
+      <div class="sellix-menu">
+      {% for item in menu.items %}
+        {% set active = item.page_slug == slug %}
+        {% if item.page_slug != "/" %}
+          {% set active = item.page_slug in slug %}
+        {% endif %}
+        {% if item.page_slug == "/contact" and "/ticket" in slug %}
+          {% set active = true %}
+        {% endif %}
+        <a
+          href="{{ locale_prefix }}{{item.page_slug}}"
+          class="menu-tab {{'active' if active else ''}}"
+          style="font-size: {{ menuProps.menu_tab_font_size }}px;
+          color: {{ colors[menuProps.menu_tab_font_color] }};
+          font-weight: {{ menuProps.menu_tab_font_weight }};
+          aria-label="Go to {{item.title | t}} page";"
+        >
+          {{item.title | t}}
+        </a>
+      {% endfor %}
+      </div>
+    </div>
+
+    <div class="col-md-1">
+      <div class="sellix-header-cart">
+        {% if cartEnabled %}
+          {% render_snippet 'Cart', properties=properties %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+<script>
+  $(document).ready(function() {
+    $('.sidebar-toggler').click(function() {
+      const $mobileMenu = $('.snippet-mobile-sidebar-menu');
+      const $toggler = $('.sidebar-toggler');
+
+      if ($mobileMenu.hasClass('open')) {
+        $mobileMenu.removeClass('open');
+        $toggler.removeClass('open');
+        window.sellixHelper.enableScroll();
+        $(document).trigger('SellixMobileMenu', { action: 'close' });
+      } else {
+        $mobileMenu.addClass('open');
+        $toggler.addClass('open');
+        window.sellixHelper.disableScroll();
+        $(document).trigger('SellixMobileMenu', { action: 'open' });
+      }
+    });
+  });
+</script>

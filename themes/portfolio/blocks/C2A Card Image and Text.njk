@@ -1,0 +1,39 @@
+{% set colors = themeProperties.current_colors %}
+
+{% if properties.portfolio_ulinks_text_link %}
+    <a class="overlay-link" href="{{ properties.portfolio_ulinks_text_link }}" aria-label="Head to the page {{ properties.portfolio_ulinks_text_link }}"></a>
+{% endif %}
+
+{% if properties.portfolio_ulinks_custom_image %}
+    <img src="{{ properties.portfolio_ulinks_custom_image }}" alt="{{ shop.name }}" style="width:224px; height:126px; object-fit:contain;"/>
+{% elif shop.image_name %}
+    <img src="{{ cdn_link(shop.cloudflare_image_id, 'avatar') }}" alt="{{ shop.name }}" style="width:224px; height:126px; object-fit:contain;"/>
+{% endif %}
+
+<div class="d-flex align-items-center justify-content-between">
+    <div class="infos">
+        {% if properties.portfolio_ulinks_info_pre_header_custom_text %}
+            <h4 style=" color: {{ colors[properties.portfolio_ulinks_info_pre_header_font_color] }}; 
+                        font-size: {{ properties.portfolio_ulinks_info_pre_header_font_size }}px; 
+                        font-weight: {{ properties.portfolio_ulinks_info_pre_header_font_weight }};">
+
+                {{ properties.portfolio_ulinks_info_pre_header_custom_text }}
+
+            </h4>
+        {% endif %}
+
+        {% if properties.portfolio_ulinks_info_header_custom_text %}
+            <h1 style=" color: {{ colors[properties.portfolio_ulinks_info_header_font_color] }}; 
+                        font-size: {{ properties.portfolio_ulinks_info_header_font_size }}px; 
+                        font-weight: {{ properties.portfolio_ulinks_info_header_font_weight }};">
+
+                {{ properties.portfolio_ulinks_info_header_custom_text }}
+            </h1>
+        {% endif %}
+
+    </div>
+    {% if properties.portfolio_ulinks_text_link %}
+        <a class="about-btn" href="{{ properties.portfolio_ulinks_text_link }}" aria-label="Head to the page {{ properties.portfolio_ulinks_info_header_custom_text }}">
+            <img src="{{ 'button.png' | asset_url }}" alt="Button" style="width:46px; height:42px"></a>
+    {% endif %}
+</div>

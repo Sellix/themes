@@ -1,0 +1,170 @@
+{% set shop = global.common.shopInfo.shop %}
+{% set colors = themeProperties.current_colors %}
+{% set id = uid() %}
+
+<style>
+  .sellix-trust.sellix-trust-{{ id }} {
+    {% if properties.is_wide %}
+      width: 100%;
+    {% endif %}
+    {% if not properties.show_border %}
+      border: none;
+    {% endif %}
+    {% if properties.container_background_color %}
+      background: {{ colors[properties.container_background_color] }};
+    {% endif %}
+    box-shadow: {{ properties.container_shadow }};
+    border-radius: {{ properties.container_border_radius }}rem;
+    padding: {{ properties.container_padding }}px;
+  }
+
+  .sellix-trust-{{ id }} .sellix-trust-title h1 {
+    {% if properties.title_font_size %}
+      font-size: {{ properties.title_font_size }}px;
+    {% endif %}
+    {% if properties.title_font_color %}
+      color: {{ colors[properties.title_font_color] }};
+    {% endif %}
+    {% if properties.title_line_height %}
+      line-height: {{ properties.title_line_height }}%;
+    {% endif %}
+  }
+
+  .sellix-trust-{{ id }} .sellix-trust-block-title {
+    {% if properties.subheader_font_size %}
+      font-size: {{ properties.subheader_font_size }}px;
+    {% endif %}
+    {% if properties.subheader_font_color %}
+      color: {{ colors[properties.subheader_font_color] }};
+    {% endif %}
+    {% if properties.subheader_line_height %}
+      line-height: {{ properties.subheader_line_height }}%;
+    {% endif %}
+    {% if properties.subheader_text_align %}
+      text-align: {{ properties.subheader_text_align }};
+    {% endif %}
+  }
+
+  .sellix-trust-{{ id }} .sellix-trust-block>div {
+    {% if properties.body_font_size %}
+      font-size: {{ properties.body_font_size }}px;
+    {% endif %}
+    {% if properties.body_font_color %}
+      color: {{ colors[properties.body_font_color] }};
+    {% endif %}
+    {% if properties.body_line_height %}
+      line-height: {{ properties.body_line_height }}%;
+    {% endif %}
+    {% if properties.body_text_align %}
+      text-align: {{ properties.body_text_align }};
+    {% endif %}
+  }
+</style>
+
+<div class="sellix-trust-screen">
+  <div
+    class="sellix-trust sellix-trust-{{ id }}"
+  >
+    <div>
+      <div
+        class="sellix-trust-title"
+        style="justify-content: {{ properties.title_text_align }};"
+      >
+        <h1>{{ 'shop.trust.title' | t }}</h1>
+      </div>
+    </div>
+
+    <div>
+      <div class="sellix-trust-block">
+        <h3 class="sellix-trust-block-title">
+          {% if shop.trusted_checks.identity_verified %}
+            <i class="fa-solid fa-circle-check text-green mr-2"></i>
+            {{ 'shop.trust.identityVerified.yes' | t }}
+          {% else %}
+            <i class="fa-solid fa-circle-xmark text-red mr-2"></i>
+            {{ 'shop.trust.identityVerified.no' | t }}
+          {% endif %}
+        </h3>
+        <div>
+          {% if shop.trusted_checks.identity_verified %}
+            {{ 'shop.trust.identityText.yes' | t }}
+          {% else %}
+            {{ 'shop.trust.identityText.no' | t }}
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="sellix-trust-block">
+        <h3 class="sellix-trust-block-title">
+          {% if shop.trusted_checks.sales_last14days_metric === "low" %}
+            <i class="fa-solid fa-circle-xmark text-red mr-2"></i>
+          {% else %}
+            <i class="fa-solid fa-circle-check text-green mr-2"></i>
+          {% endif %}
+          <b style="text-transform: capitalize">
+            {{['shop', 'trust', shop.trusted_checks.sales_last14days_metric] | join('.') | lower | t}}
+          </b> {{ 'shop.trust.sales' | t }}
+        </h3>
+        <div>
+          {{ 'shop.trust.salesText' | t }}
+        </div>
+      </div>
+
+      <div class="sellix-trust-block">
+        <h3 class="sellix-trust-block-title">
+          {% if shop.trusted_checks.feedback_appeal_ratio * 100 > 35 %}
+            <i class="fa-solid fa-circle-xmark text-red mr-2"></i>
+            {% elif shop.trusted_checks.feedback_appealed * 100 < 75 and shop.trusted_checks.feedback_appealed * 100 > 35 %}
+            <i class="fa-solid fa-triangle-exclamation text-gold mr-2"></i>
+          {% else %}
+            <i class="fa-solid fa-circle-check text-green mr-2"></i>
+          {% endif %}
+          {{shop.trusted_checks.feedback_appeal_ratio}} {{ 'shop.trust.feedback' | t }}</h3>
+        <div>
+          {{ 'shop.trust.feedbackText' | t }}
+        </div>
+      </div>
+
+      <div class="sellix-trust-block">
+        <h3 class="sellix-trust-block-title">
+          {% if shop.trusted_checks.feedback_score < 1 %}
+            <i class="fa-solid fa-circle-xmark text-red mr-2"></i>
+            {% elif shop.trusted_checks.feedback_score > 1 and shop.trusted_checks.feedback_score < 4 %}
+            <i class="fa-solid fa-triangle-exclamation text-gold mr-2"></i>
+          {% else %}
+            <i class="fa-solid fa-circle-check text-green mr-2"></i>
+          {% endif %}
+          {{shop.trusted_checks.feedback_score | round(2) if shop.trusted_checks.feedback_score else 0 | round(2)}} {{ 'shop.trust.feedbackScore' | t }}
+        </h3>
+        <div>
+          {{ 'shop.trust.feedbackScoreText' | t }}
+        </div>
+      </div>
+
+      <div class="sellix-trust-block">
+        <h3 class="sellix-trust-block-title">
+          {% if not shop.trusted_checks.no_chargeback_gateways %}
+            <i class="fa-solid fa-circle-check text-green mr-2"></i>
+            {{ 'shop.trust.paypalAccepted.yes' | t }}
+          {% else %}
+            <i class="fa-solid fa-circle-xmark text-red mr-2"></i>
+            {{ 'shop.trust.paypalAccepted.no' | t }}
+          {% endif %}
+        </h3>
+        <div>
+          {% if shop.trusted_checks.no_chargeback_gateways %}
+            {{ 'shop.trust.paypalText.0' | t }}
+          {% else %}
+            {{ 'shop.trust.paypalText.1' | t }}
+          {% endif %}
+        </div>
+      </div>
+
+      <span style="font-size:13px;line-height:24px">
+        <a href="{{properties.what_is_trusted_advisor_url}}" target="_blank">
+          {{ 'shop.trust.help' | t }}
+        </a> <br/>
+      </span>
+    </div>
+  </div>
+</div>

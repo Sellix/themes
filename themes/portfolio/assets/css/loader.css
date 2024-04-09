@@ -1,0 +1,49 @@
+.scroll-hidden {
+  overflow: hidden;
+}
+
+#loader {
+  display: flex;
+  opacity: 1;
+  position: fixed;
+  z-index: 99999999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: #0a1730;
+  transition: opacity 1s ease-in;
+  overflow: hidden;
+}
+
+#spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#spinner img {
+  animation-name: spin;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-delay: 1.5s;
+  width: 35px !important;
+  height: 35px !important;
+  z-index: 9;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

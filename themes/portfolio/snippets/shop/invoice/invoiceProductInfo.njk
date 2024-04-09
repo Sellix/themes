@@ -1,0 +1,41 @@
+{% set invoice = args.invoice %}
+{% set product = args.product %}
+{% set properties = args.properties %}
+
+<div>
+  {% if invoice.type === 'SUBSCRIPTION' %}
+    {% render_snippet 'Invoice subscription details', properties=properties %}
+  {% elif invoice.type === 'SHOPPING_CART' %}
+    {% render_snippet 'Checkout products',
+      invoice=invoice,
+      products=invoice.products,
+      properties={
+        'product_background_color': properties.container_background_color,
+        'product_show_border': properties.container_show_border,
+        'product_container_border_radius': properties.container_border_radius,
+        'product_container_padding_vert': properties.container_padding_vert,
+        'product_container_padding_horiz': properties.container_padding_horiz,
+        'product_container_shadow': properties.container_shadow,
+        'product_title_font_color': properties.title_font_color,
+        'product_title_font_size': properties.title_font_size,
+        'product_title_text_align': properties.title_text_align,
+        'product_title_font_weight': properties.title_font_weight
+      }
+    %}
+  {#  {% elif invoice.type === 'PRODUCT' or invoice.type === 'PRODUCT_SUBSCRIPTION' %}#}
+  {% else %}
+    {% render_snippet 'Addons',
+      product=product,
+      invoice=invoice,
+      currency=product.currency,
+      properties=properties
+    %}
+
+    {% render_snippet 'Product details',
+      invoice=invoice,
+      product=product,
+      colors=themeProperties.current_colors,
+      properties=properties
+    %}
+  {% endif%}
+</div>

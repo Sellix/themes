@@ -1,0 +1,15 @@
+{% set colors = themeProperties.current_colors %}
+
+<div class="col-md-12">
+  <div  class="info-box shadow-box h-full d-flex flex-column justify-content-center"
+        style="{% if properties.banner_background_image %} background-image: url({{  properties.portfolio_aboutme_custom_background  }}); {% else %}{#
+        #} background-color: {{ colors[properties.banner_background_color] }}; {% endif %}
+        ">
+
+    {% for block_name in settings.block_order %}
+      {%- render_block block_name -%}
+    {% endfor%}
+
+  </div>
+
+</div>

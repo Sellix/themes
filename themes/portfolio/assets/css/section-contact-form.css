@@ -1,0 +1,51 @@
+.sellix-contact-screen {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.sellix-contact-form {
+  color: var(--darkFontColor);
+  padding: 1.5rem;
+  background: var(--backgroundAccentDark);
+  border-radius: 30px;
+  width: 100%;
+}
+
+.sellix-contact-form .wide-screen {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 10px;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .sellix-contact-form .wide-screen {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .sellix-contact-form .wide-screen .title {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .sellix-contact-screen {
+    margin-top: 0;
+  }
+
+  .sellix-contact-form {
+    width: 100% !important;
+  }
+
+  .sellix-contact-form .wide-screen {
+    grid-template-columns: 1fr;
+  }
+
+  .sellix-contact-form .wide-screen .title {
+    grid-column-start: 1;
+    grid-column-end: 1;
+  }
+}

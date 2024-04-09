@@ -1,0 +1,5 @@
+{% set invoice = global.common.invoiceInfo.invoice %}
+
+{% if invoice.gateway %}
+  {% render_snippet 'Invoice track badge', invoiceId=invoice.uniqid, properties=properties %}
+{% endif %}

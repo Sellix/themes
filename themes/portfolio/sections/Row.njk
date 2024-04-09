@@ -1,0 +1,6 @@
+{% for block_name in settings.block_order %}
+  <div class="{{  properties.portfolio_row_custom_class  }}" 
+  {% if properties.show_portfolio_row_custom_background %} style="background-image: url({{  properties.portfolio_aboutme_custom_background  }});" {% endif %}>
+    {%- render_block block_name -%}
+  </div>
+{% endfor%}
