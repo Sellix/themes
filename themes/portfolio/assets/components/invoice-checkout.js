@@ -8,6 +8,8 @@
       this.invoiceId = invoiceId;
       this.invoice = invoice;
       this.options = options;
+
+      this.selectorCaptchaV2 = '#invoice-checkout-recaptcha-v2';
     }
 
     onGetInvoice = (id) => {
@@ -65,8 +67,18 @@
       return sellixApi.getStripeLink(id);
     };
 
-    onGetProductStripeLink = (id) => {
-      return sellixApi.getProductStripeLink(id);
+    onPostProductStripeLink = (id, data) => {
+      return sellixApi.postProductStripeLink(id, data, {
+        useCaptchaV2: true,
+        selectorCaptchaV2: this.selectorCaptchaV2,
+      });
+    };
+
+    onPostStripeConfirmPayment = (data) => {
+      return sellixApi.postStripeConfirmPayment(data, {
+        useCaptchaV2: true,
+        selectorCaptchaV2: this.selectorCaptchaV2,
+      });
     };
 
     onPostSquareCreatePayment = (data) => {
@@ -137,7 +149,8 @@
           onPostCashAppIdentifier: this.onPostCashAppIdentifier,
           onPostCashAppVerifyPayment: this.onPostCashAppVerifyPayment,
           onGetStripeLink: this.onGetStripeLink,
-          onGetProductStripeLink: this.onGetProductStripeLink,
+          onPostProductStripeLink: this.onPostProductStripeLink,
+          onPostStripeConfirmPayment: this.onPostStripeConfirmPayment,
           onPostSquareCreatePayment: this.onPostSquareCreatePayment,
           onPostSquareRefreshPaymentStatus: this.onPostSquareRefreshPaymentStatus,
           onSaveInvoiceToFile: this.onSaveInvoiceToFile,
