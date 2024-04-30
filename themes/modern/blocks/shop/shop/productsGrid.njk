@@ -316,7 +316,7 @@
 
       const items = filterItems(SellixContext.getShopItems());
       const categories = SellixContext.getShopCategories();
-      const itemsMap = items.reduce((m, item) => ({...m, [item.uniqid]: item}), {});
+      const itemsMap = Object.fromEntries(SellixContext.getShopProducts().map((product) => [product.uniqid, product]));
 
       function filterItems(items) {
         return items.filter((item) => {
@@ -383,6 +383,13 @@
           filterProducts();
         }
       });
+
+      try{
+        $('.{{ localClass }}__products-loader').addClass('d-none');
+        filterProducts();
+      } catch (e) {
+        $('.{{ localClass }}__cards').show();
+      }
     });
   </script>
 {% elif settings.group_names_to_hide or settings.group_name %}

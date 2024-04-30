@@ -1,4 +1,4 @@
-(function (window, jQuery) {
+(function (window, jQuery, SellixContext) {
   class ProductFilterStore {
     constructor(shop, name, value) {
       this.shop = shop;
@@ -16,6 +16,14 @@
 
     set({ search, category, sort }) {
       let filters = this.store.get(this.key, {});
+
+      if (category) {
+        const categories = SellixContext.getShopCategories();
+        const categoryObj = categories.find(
+          (cat) => cat.uniqid === category || (cat.title || '').toLowerCase() === category.toLowerCase(),
+        );
+        category = categoryObj ? categoryObj.uniqid : category;
+      }
 
       const currentFilter = filters[this.filterName] || {};
       const oldCategory = currentFilter.category;
@@ -48,4 +56,4 @@
   }
 
   window.SellixProductFilterStore = ProductFilterStore;
-})(window, jQuery);
+})(window, jQuery, SellixContext);
