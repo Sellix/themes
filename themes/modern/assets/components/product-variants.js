@@ -70,7 +70,9 @@
         this.$container.find('[data-variant]').removeClass('active');
         this.$container.find('[data-active-checkbox] input').prop('checked', false);
 
-        const $activeVariant = this.$container.find(`[data-variant='${activeVariant.title}']`);
+        const $activeVariant = this.$container.find('[data-variant]').filter(function () {
+          return $(this).data('variant') === activeVariant.title;
+        });
         $activeVariant.addClass('active');
         $activeVariant.find('[data-active-checkbox] input').prop('checked', true);
       }

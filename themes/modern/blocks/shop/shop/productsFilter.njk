@@ -221,8 +221,10 @@
       escapeMarkup: (m) => m,
     })
       .on('change', (e) => {
-        filterStore.set({ category: e.target.value });
-        onChange();
+        if ($(this).val() !== e.target.value) {
+          filterStore.set({ category: e.target.value });
+          onChange();
+        }
       })
       .on('select2:open', (e) => {
         $('.{{ localClass }}__categories-dropdown').find('.select2-dropdown').addClass('animated flipIn');
@@ -272,8 +274,12 @@
 
     setTimeout(function() {
       {% if ['category', 'shop'].includes(global.request.type) %}
-        $('.{{ localClass }}__categories-select').val('{{ global.request.options.itemId or 'all' }}');
+        const category = '{{ global.request.options.itemId or 'all' }}';
+        $('.{{ localClass }}__categories-select').val(category);
         $('.{{ localClass }}__categories-select').trigger('change');
+
+        filterStore.set({ category });
+        onChange();
       {% endif %}
     }, 0);
   });
