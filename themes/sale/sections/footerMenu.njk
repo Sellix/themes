@@ -1,0 +1,229 @@
+{% set shop = global.common.shopInfo.shop %}
+{% set currentContext = context() %}
+
+{% set shopName = safe_get(themeProperties.common.shop_name, null) or shop.name %}
+{% set logoImage = safe_get(themeProperties.common.logo_image, null) %}
+{% set logoType = safe_get(properties.logo_type, 'logo') %}
+{% set logoImageSize = safe_get(properties.logo_image_size, 30) %}
+{% set logoImageBorderRadius = safe_get(properties.logo_image_border_radius, 30) %}
+{% set shopNameFontColor = safe_get(properties.shop_name_font_color, 'dark_font_color') %}
+{% set shopNameFontSize = safe_get(properties.shop_name_font_size, 18) %}
+{% set shopNameFontWeight = safe_get(properties.shop_name_font_weight, 700) %}
+{% set shopNameLineHeight = safe_get(properties.shop_name_line_height, 20) %}
+
+{% set copyright = safe_get(properties.copyright, 'shop.main.copyright') %}
+{% set copyrightFontColor = safe_get(properties.copyright_font_color, 'light_font_color') %}
+{% set copyrightFontSize = safe_get(properties.copyright_font_size, 14) %}
+{% set copyrightFontWeight = safe_get(properties.copyright_font_weight, 400) %}
+{% set copyrightLineHeight = safe_get(properties.copyright_line_height, 20) %}
+
+{% set menuTitleFontColor = safe_get(properties.menu_title_font_color, 'black4') %}
+{% set menuTitleFontSize = safe_get(properties.menu_title_font_size, 14) %}
+{% set menuTitleFontWeight = safe_get(properties.menu_title_font_weight, 500) %}
+{% set menuTitleLineHeight = safe_get(properties.menu_title_line_height, 20) %}
+
+{% set menuItemFontColor = safe_get(properties.menu_item_font_color, 'dark_font_color') %}
+{% set menuItemFontSize = safe_get(properties.menu_item_font_size, 14) %}
+{% set menuItemFontWeight = safe_get(properties.menu_item_font_weight, 400) %}
+{% set menuItemLineHeight = safe_get(properties.menu_item_line_height, 20) %}
+
+{% set fullWidth = safe_get(properties.fullwidth, false) %}
+{% set bgColor = properties.background_color %}
+{% set marginTopDesktop = safe_get(properties.margin_top_desktop, 0) %}
+{% set marginBottomDesktop = safe_get(properties.margin_bottom_desktop, 120) %}
+{% set paddingTopDesktop = safe_get(properties.padding_top_desktop, 0) %}
+{% set paddingBottomDesktop = safe_get(properties.padding_bottom_desktop, 0) %}
+{% set paddingHorizDesktop = safe_get(properties.padding_horiz_desktop, 0) %}
+{% set marginTopTablet = safe_get(properties.margin_top_tablet, 0) %}
+{% set marginBottomTablet = safe_get(properties.margin_bottom_tablet, 60) %}
+{% set paddingHorizTablet = safe_get(properties.padding_horiz_tablet, 0) %}
+{% set paddingTopTablet = safe_get(properties.padding_top_tablet, 0) %}
+{% set paddingBottomTablet = safe_get(properties.padding_bottom_tablet, 0) %}
+{% set marginTopMobile = safe_get(properties.margin_top_mobile, 0) %}
+{% set marginBottomMobile = safe_get(properties.margin_bottom_mobile, 60) %}
+{% set paddingHorizMobile = safe_get(properties.padding_horiz_mobile, 130) %}
+{% set paddingTopMobile = safe_get(properties.padding_top_mobile, 400) %}
+{% set paddingBottomMobile = safe_get(properties.padding_bottom_mobile, 400) %}
+
+{% set borderRadius = safe_get(properties.border_radius, 0) %}
+{% set iconColor = safe_get(properties.icon_color, 'var(--black6)') %}
+{% set iconSize = safe_get(properties.icon_size, 16) %}
+
+{% set links = [
+  {
+    link: shop.discord_link,
+    class: 'discord-link',
+    icon: 'fa-brands fa-discord'
+  },
+  {
+    link: shop.instagram_link,
+    class: 'instagram-link',
+    icon: 'fa-brands fa-instagram'
+  },
+  {
+    link: shop.twitter_link,
+    class: 'twitter-link',
+    icon: 'fa-brands fa-twitter'
+  },
+  {
+    link: shop.youtube_link,
+    class: 'youtube_link',
+    icon: 'fa-brands fa-youtube'
+  },
+  {
+    link: shop.facebook_link,
+    class: 'facebook_link',
+    icon: 'fa-brands fa-facebook'
+  },
+  {
+    link: shop.reddit_link,
+    class: 'reddit_link',
+    icon: 'fa-brands fa-reddit-alien'
+  },
+  {
+    link: shop.telegram_link,
+    class: 'telegram_link',
+    icon: 'fa-brands fa-telegram'
+  },
+  {
+    link: shop.tiktok_link,
+    class: 'tiktok_link',
+    icon: 'fa-brands fa-tiktok'
+  }
+] | selectattr('link')
+%}
+
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }}__container {
+    background-color: {{ bgColor | get_color }};
+    border-radius: {{ borderRadius }}px;
+    margin-top: {{ marginTopDesktop }}px;
+    margin-bottom: {{ marginBottomDesktop }}px;
+    padding: {{ paddingTopDesktop }}px {{ paddingHorizDesktop }}px {{ paddingBottomDesktop }}px {{ paddingHorizDesktop }}px;
+  }
+
+  @media (max-width: 768px) {
+    .{{ localClass }}__container {
+      padding: {{ paddingTopTablet }}px {{ paddingHorizTablet }}px {{ paddingBottomTablet }}px {{ paddingHorizTablet }}px;
+      margin-top: {{ marginTopTablet }}px;
+      margin-bottom: {{ marginBottomTablet }}px;
+    }
+
+    .{{ globalClass }}__links {
+      margin-top: 30px !important;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .{{ localClass }}__container {
+      padding: {{ paddingTopMobile }}px {{ paddingHorizMobile }}px {{ paddingBottomMobile }}px {{ paddingHorizMobile }}px;
+      margin-top: {{ marginTopMobile }}px;
+      margin-bottom: {{ marginBottomMobile }}px;
+    }
+  }
+
+  .{{ localClass }}__shop-name {
+    color: {{ shopNameFontColor | get_color }};
+    font-size: {{ shopNameFontSize }}px;
+    font-weight: {{ shopNameFontWeight }};
+    line-height: {{ shopNameLineHeight }}px;
+  }
+  .{{ localClass }}__logo-image img {
+    height: {{ logoImageSize }}px;
+    width: auto;
+    border-radius: {{ logoImageBorderRadius }}px;
+  }
+
+  .{{ localClass }}__menu-title {
+    color: {{ menuTitleFontColor | get_color }};
+    font-size: {{ menuTitleFontSize }}px;
+    font-weight: {{ menuTitleFontWeight }};
+    line-height: {{ menuTitleLineHeight }}px;
+  }
+  .{{ localClass }}__menu-items a {
+    color: {{ menuItemFontColor | get_color }};
+    font-size: {{ menuItemFontSize }}px;
+    font-weight: {{ menuItemFontWeight }};
+    line-height: {{ menuItemLineHeight }}px;
+  }
+  .{{ globalClass }}__copyright {
+    margin-top: 16px;
+    color: {{ menuItemFontColor | get_color }};
+    font-size: {{ menuItemFontSize }}px;
+    font-weight: {{ menuItemFontWeight }};
+    line-height: {{ menuItemLineHeight }}px;
+  }
+
+  .{{ globalClass }}__links {
+    margin-top: 150px;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  </style>
+
+<footer class="{{ globalClass }}__container {{ localClass }}__container menus-count-{{ menusCount}} {{ 'full-width' if fullWidth else 'content-width' }}">
+  <div class="{{ globalClass }}__logo">
+    <div class="{{ globalClass }}__logo-wrapper">
+      {% if logoImage and logoType in ['logo', 'logo_or_name', 'logo_and_name'] %}
+        <a href="" class="{{ globalClass }}__logo-image {{ localClass }}__logo-image">
+          <img
+            src="{{ logoImage }}"
+            alt="{{ shop.name }}"
+          >
+        </a>
+      {% endif %}
+
+      {% if shopName and (logoType in ['name', 'logo_and_name'] or (not logoImage and logoType in ['logo_or_name'])) %}
+        <a href="" class="{{ globalClass }}__shop-name {{ localClass }}__shop-name">
+          {{ shopName }}
+        </a>
+      {% endif %}
+    </div>
+
+    <div class="{{ globalClass }}__copyright {{ localClass }}__copyright">
+      {{ copyright | t({year: (undefined | date_format('YYYY')), storeName: shopName }) }}
+    </div>
+
+    <div class="{{ globalClass }}__links">
+      {% for item in links %}
+        {% render_snippet
+          'Shared: Social link',
+          class=item.class,
+          link=item.link,
+          icon_class=item.icon,
+          properties={
+          font_size: iconSize,
+          font_color: iconColor
+        }
+        %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="{{ globalClass }}__menus">
+    {% for idx in safe_range(1, 6) %}
+      {% set menu = context()[['menu', idx] | join] %}
+      {% if menu %}
+        <div class="{{ globalClass }}__menu">
+          <div class="{{ globalClass }}__menu-title {{ localClass }}__menu-title">
+            {{ properties[['menu', idx, '_title'] | join] | t }}
+          </div>
+          <div class="{{ globalClass }}__menu-items {{ localClass }}__menu-items">
+            {% for item in menu.items %}
+              {% render_snippet
+                'Menu item',
+                url=item.page_slug,
+                title=item.title,
+                class=''
+              %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</footer>

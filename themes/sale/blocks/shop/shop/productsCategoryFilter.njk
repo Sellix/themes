@@ -1,0 +1,67 @@
+{% set id = uid() %}
+{% set shopInfo = global.common.shopInfo %}
+{% set shop = shopInfo.shop %}
+{% set categories = shopInfo.categories %}
+
+{% set activeCategory = 'all' %}
+{% if ['category', 'shop'].includes(global.request.type) %}
+  {% set activeCategory = safe_get(global.request.options.itemId, 'all') %}
+{% endif %}
+
+{% set filterName = properties.filter_name %}
+
+{% set localClass = id %}
+
+{% if categories.length %}
+  <div class="{{ globalClass }}__container {{ localClass }}__container">
+    <a
+      href="javascript:void(0);"
+      class="{{ globalClass }}__item {{ localClass }}__item {{ 'active' if activeCategory == 'all' }}"
+      data-category-id="all"
+    >
+      {{ 'Show All' | t({keyPrefix: 'shop.content'}) }}
+    </a>
+    {% for category in categories %}
+      {% if not category.unlisted %}
+        <a
+          href="javascript:void(0);"
+          class="{{ globalClass }}__item {{ localClass }}__item {{ 'active' if activeCategory == category.uniqid }}"
+          data-category-id="{{ category.uniqid }}"
+        >
+          {{category.title | t({keyPrefix: 'shop.content'})}}
+        </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <script type="application/javascript">
+    $(document).ready(function() {
+      const filterStore = new window.SellixProductFilterStore(
+        '{{ shop.name }}',
+        '{{ filterName }}',
+        {
+          search: '',
+          category: '',
+          sort: '{{ shop.default_sort }}'
+        },
+      );
+
+      $('.{{ localClass }}__item').on('click', (event) => {
+        filterStore.set({ category: $(event.currentTarget).data('category-id')})
+        $(document).trigger('SellixProductListFilterChangeEvent', { name: '{{ filterName }}' });
+      });
+
+      $(document).on('SellixProductListFilterChangeEvent', (e, eventInfo) => {
+        const { name } = eventInfo;
+        if (name === '{{ filterName }}') {
+          const currentFilter = filterStore.get();
+
+          $('.{{ localClass }}__item').removeClass('active');
+          if (currentFilter.category) {
+            $(`.{{ localClass }}__item[data-category-id=${currentFilter.category}]`).addClass('active');
+          }
+        }
+      });
+    });
+  </script>
+{% endif %}

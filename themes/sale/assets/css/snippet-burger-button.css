@@ -1,0 +1,113 @@
+.snippet-burger-button__burger-button {
+  cursor: pointer;
+}
+.snippet-burger-button__burger-button > div {
+  width: 16px;
+  height: 2px;
+  border-radius: 1em;
+  background: var(--darkFontColor);
+}
+.snippet-burger-button__burger-button > div::before, .snippet-burger-button__burger-button > div::after {
+  transition: font-size 0s;
+  content: "";
+  display: block;
+  position: absolute;
+  width: 16px;
+  height: 2px;
+  background: var(--darkFontColor);
+  border-radius: 1em;
+}
+.snippet-burger-button__burger-button > div::before {
+  margin-top: -6px;
+}
+.snippet-burger-button__burger-button > div::after {
+  margin-top: 6px;
+}
+
+.snippet-burger-button__burger-button > div {
+  transition: background 0.4s, font-size 0s;
+}
+.snippet-burger-button__burger-button > div::before, .snippet-burger-button__burger-button2 > div::after {
+  transition: font-size 0s;
+  transform-origin: center center;
+}
+.snippet-burger-button__burger-button.toggled > div::before {
+  animation: burg2top 0.4s linear forwards;
+}
+.snippet-burger-button__burger-button.toggled > div {
+  background: transparent;
+}
+.snippet-burger-button__burger-button.toggled > div::after {
+  animation: burg2bottom 0.4s linear forwards;
+}
+.snippet-burger-button__burger-button.untoggled > div::before {
+  animation: burg2topReset 0.4s linear forwards;
+}
+.snippet-burger-button__burger-button.untoggled > div {
+  background: var(--darkFontColor);
+}
+.snippet-burger-button__burger-button.untoggled > div::after {
+  animation: burg2bottomReset 0.4s linear forwards;
+}
+@keyframes burg2top {
+  20% {
+    margin-top: 0;
+    transform: rotate(0deg);
+  }
+  60% {
+    margin-top: 0;
+    transform: rotate(55deg);
+  }
+  100% {
+    margin-top: 0;
+    transform: rotate(45deg);
+  }
+}
+@keyframes burg2bottom {
+  20% {
+    margin-top: 0;
+    transform: rotate(0deg);
+  }
+  60% {
+    margin-top: 0;
+    transform: rotate(-55deg);
+  }
+  100% {
+    margin-top: 0;
+    transform: rotate(-45deg);
+  }
+}
+@keyframes burg2topReset {
+  0% {
+    margin-top: 0;
+    transform: rotate(45deg);
+  }
+  20% {
+    transform: rotate(0deg);
+  }
+  60% {
+    margin-top: 8px;
+    transform: rotate(0deg);
+  }
+  100% {
+    margin-top: 6px;
+    transform: rotate(0deg);
+  }
+}
+@keyframes burg2bottomReset {
+  0% {
+    margin-top: 0;
+    transform: rotate(-45deg);
+  }
+  20% {
+    transform: rotate(0deg);
+  }
+  60% {
+    margin-top: -8px;
+    transform: rotate(0deg);
+  }
+  100% {
+    margin-top: -6px;
+    transform: rotate(0deg);
+  }
+}

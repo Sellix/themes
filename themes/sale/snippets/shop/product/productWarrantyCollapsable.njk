@@ -1,0 +1,84 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set product = args.product %}
+{% set invoice = args.invoice %}
+{% set properties = args.properties %}
+
+{% set collapsable = safe_get(args.collapsable, true) %}
+{% set warranty = product.warranty | int %}
+
+{% set bodyProps = {
+  "padding_vert": properties.body_padding_vert,
+  "padding_horiz": properties.body_padding_horiz,
+  "font_color": properties.body_font_color,
+  "font_size": properties.body_font_size,
+  "font_weight": properties.body_font_weight,
+  "line_height": properties.body_line_height
+} %}
+
+{% set titleFontColor = safe_get(properties.title_font_color, 'dark_font_color') %}
+{% set titleFontSize = safe_get(properties.title_font_size, 16) %}
+{% set titleFontWeight = safe_get(properties.title_font_weight, 500) %}
+{% set titleLineHeight = safe_get(properties.title_line_height, 24) %}
+
+{% set bodyFontColor = safe_get(properties.body_font_color, 'dark_font_color') %}
+{% set bodyFontSize = safe_get(properties.body_font_size, 14) %}
+{% set bodyFontWeight = safe_get(properties.body_font_weight, 400) %}
+{% set bodyLineHeight = safe_get(properties.body_line_height, 20) %}
+
+{% set globalClass = ['snippet-product-warranty-collapsable'] %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }}__header {
+    color: {{ titleFontColor | get_color }};
+    font-size: {{ titleFontSize }}px;
+    font-weight: {{ titleFontWeight }};
+    line-height: {{ titleLineHeight }}px;
+    gap: 8px;
+  }
+
+  .{{ localClass }}__body {
+    color: {{ bodyFontColor | get_color }};
+    font-size: {{ bodyFontSize }}px;
+    font-weight: {{ bodyFontWeight }};
+    line-height: {{ bodyLineHeight }}px;
+  }
+</style>
+
+<div class="sellix-collapsable {{ globalClass }} {{ localClass }} d-flex">
+  <div class="sellix-collapsable__header {{ globalClass }}__header {{ localClass }}__header {{ 'collapsable' if collapsable }}">
+  <i class="fa-regular fa-plus"></i>
+    <span>
+      {{ 'shop.shared.titles.productWarranty' | t }}
+    </span>
+
+    <span class="chevron d-none">
+      {% render_snippet 'Icons: Chevron up' %}
+    </span>
+
+    <span class="chevron {{ 'd-none' if not collapsable }}">
+      {% render_snippet 'Icons: Chevron down' %}
+    </span>
+  </div>
+
+  <div
+    class="sellix-collapsable__body {{ globalClass }}__body {{ localClass }}__body {{ 'collapsable' if collapsable }}"
+  >
+    <div class="mt-2"></div>
+    {% if warranty %}
+      {% render_snippet 'Product: Warranty text', properties=bodyProps, product=product %}
+    {% else %}
+      {{ 'shop.shared.titles.noProductWarranty' | t }}
+    {% endif %}
+  </div>
+</div>
+
+<script type="application/javascript">
+  $(document).ready(function() {
+    const collapsable = {{ collapsable }};
+    if (collapsable) {
+      (new window.SellixCollapsableComponent('.{{ localClass }}__header', '.{{ localClass}}__body', {maxHeight: 400}));
+    }
+  });
+</script>
