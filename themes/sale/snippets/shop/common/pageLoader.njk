@@ -1,0 +1,26 @@
+{% if themeProperties.page_loader.enabled %}
+  <link rel="stylesheet" href="{{ 'pace-theme.css' | asset_url }}"/>
+
+  <style>
+    .pace .pace-progress {
+      height: {{ themeProperties.page_loader.height }}px;
+      background: {{ themeProperties.page_loader.color }};
+    }
+  </style>
+  <script src="{{ 'pace.min.js' | asset_url }}"></script>
+
+  <script type='application/javascript'>
+    $(document).ready(function() {
+      addEventListener('beforeunload', (event) => {
+        Pace.trigger('restart');
+        Pace.stop();
+        return Pace.start({
+          initialRate: 0.03,
+          minTime: 1750,
+          maxProgressPerFrame: 1,
+          ghostTime: 120000
+        });
+      });
+    });
+  </script>
+{% endif %}

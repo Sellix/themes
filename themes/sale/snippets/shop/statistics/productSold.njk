@@ -1,0 +1,51 @@
+{% set id = uid() %}
+{% set properties = args.properties %}
+
+{% set shop = global.common.shopInfo.shop %}
+
+{% set align = safe_get(properties.align, 'center') %}
+
+{% set valueFontColor = safe_get(properties.value_font_color, 'dark_font_color') %}
+{% set valueFontSize = safe_get(properties.value_font_size, 24) %}
+{% set valueFontWeight = safe_get(properties.value_font_weight, 500) %}
+{% set valueLineHeight = safe_get(properties.value_line_height, 29) %}
+
+{% set labelContent = properties.label_content or 'Products Sold' %}
+{% set labelFontColor = safe_get(properties.label_font_color, 'light_font_color') %}
+{% set labelFontSize = safe_get(properties.label_font_size, 14) %}
+{% set labelFontWeight = safe_get(properties.label_font_weight, 500) %}
+{% set labelLineHeight = safe_get(properties.label_line_height, 20) %}
+
+{% set localClass = ['shop-statistics-', id, '__product_sold'] | join %}
+
+<style>
+  .{{ localClass }} {
+    display: flex;
+    flex-direction: column;
+    align-items: {{ align }};
+    text-align: {{ align }};
+  }
+  .{{ localClass }}__value {
+    display: flex;
+    align-items: center;
+    color: {{ valueFontColor | get_color }};
+    font-size: {{ valueFontSize }}px;
+    font-weight: {{ valueFontWeight }};
+    line-height: {{ valueLineHeight }}px;
+  }
+  .{{ localClass }}__label {
+    color: {{ labelFontColor | get_color }};
+    font-size: {{ labelFontSize }}px;
+    font-weight: {{ labelFontWeight }};
+    line-height: {{ labelLineHeight }}px;
+  }
+</style>
+
+<div class="{{ localClass }}">
+  <div class="{{ localClass }}__value">
+    {{shop.products_sold_count or '0'}}
+  </div>
+  <div class="{{ localClass }}__label">
+    {{ labelContent | t({keyPrefix: 'shop.content'}) }}
+  </div>
+</div>

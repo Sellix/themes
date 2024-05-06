@@ -1,0 +1,81 @@
+{% set id = uid() %}
+{% set properties = args.properties %}
+
+{% set product = args.product %}
+{% set onHold = product.on_hold %}
+{% set hashImage = not not product.image_name %}
+{% set image = cdn_link(product.cloudflare_image_id, 'shopItem') %}
+{% set title = product.title | html_sanitize %}
+{% set description = (product.description or '') | string %}
+{% if description.length > 100 %}
+  {% set description = [description.slice(0, 100), '...'] | join('') | html_sanitize %}
+{% else %}
+  {% set description = description | html_sanitize %}
+{% endif %}
+
+{% set formSize = safe_get(properties.form_size, '100%') %}
+{% set imageSize = safe_get(properties.image_size, '100') %}
+{% set imageBorderRadius = safe_get(properties.image_border_radius, 8) %}
+{% set bgColor = safe_get(properties.container_background, 'background_accent_light') %}
+{% set showBorder = safe_get(properties.container_show_border, true) %}
+{% set shadow = safe_get(properties.container_shadow, 'none') %}
+{% set borderRadius = safe_get(properties.container_border_radius, 0) %}
+{% set paddingVert = safe_get(properties.container_padding_vert, 16) %}
+{% set paddingHoriz = safe_get(properties.container_padding_horiz, 16) %}
+
+{% set globalClass = 'snippet-product-shortcut' %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }} {
+    margin: auto;
+    width: {{ formSize }};
+    background: {{ bgColor | get_color }};
+    border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
+    box-shadow: {{ shadow }};
+    border-radius: {{ borderRadius }}px;
+    padding: {{ paddingVert }}px {{ paddingHoriz }}px;
+  }
+  .{{ localClass }}__image img {
+    width: {{ imageSize }}px;
+    height: {{ imageSize }}px;
+    border-radius: {{ imageBorderRadius }}px;
+  }
+</style>
+
+<div class="{{ globalClass}} {{ localClass }}">
+  <div class="{{ globalClass}}__image {{ localClass }}__image {{'image-placeholder' if isPlaceholder else ''}}">
+    {% if not hashImage %}
+      {% render_snippet 'Product: Placeholder icon', product=product %}
+    {% else %}
+      <img src="{{image}}" alt="{{title}}" loading="lazy" />
+    {% endif %}
+  </div>
+
+  <div class="{{ globalClass }}__info">
+    <div class="{{ globalClass }}__title {{ localClass }}__title">
+      {{ title | safe }}
+    </div>
+
+    <div class="{{ globalClass }}__description {{ localClass }}__description">
+      {{ description | safe }}
+    </div>
+
+    <div class="{{ globalClass }}__view-button {{ localClass }}__view-button">
+      {% if not onHold %}
+        {% render_snippet 'Shared: Link button',
+          properties={
+          label: 'shop.shared.titles.viewProduct' | t,
+          url: ['product/', product.slug or product.uniqid] | join,
+          icon_snippet: 'Icons: Arrow right 1',
+          is_link: true,
+          label_font_weight: 500,
+          label_color: 'dark_font_color',
+          label_font_size: 14,
+          background_color: 'transparent'
+        }
+        %}
+      {% endif %}
+    </div>
+  </div>
+</div>
