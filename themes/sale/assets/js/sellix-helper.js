@@ -203,7 +203,7 @@
         return value;
       }
       value = +value;
-      if (value === 0 || Math.abs(value) >= 0.1) {
+      if (value === 0 || Math.abs(value) >= 0.01) {
         return value.toFixed(digits);
       }
 
