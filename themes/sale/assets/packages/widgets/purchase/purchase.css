@@ -109,6 +109,7 @@
   }
 
   .daterangepicker .drp-calendar {
+    //display: none;
     max-width: 270px;
   }
 
@@ -538,6 +539,10 @@ div.daterangepicker {
         display: none;
       }
 
+        div.daterangepicker .drp-calendar.left .calendar-table, div.daterangepicker .drp-calendar.right .calendar-table {
+          //width: 100%;
+        }
+
     div.daterangepicker div.drp-buttons {
       display: none !important;
     }
@@ -647,6 +652,9 @@ div.daterangepicker {
         div.daterangepicker.show-calendar.ltr div.drp-calendar.left {
           border-right: none !important;
           border-bottom: none !important;
+        }
+        div.daterangepicker.show-calendar.ltr div.drp-calendar.right {
+          //border-bottom: none !important;
         }
   }
 
@@ -897,6 +905,7 @@ div.daterangepicker .ranges ul {
 
 div.daterangepicker .ranges ul li {
         padding: 0 .75rem;
+        //height: 34px;
         line-height: 34px;
         border-top: 1px solid transparent;
         border-bottom: 1px solid transparent;
@@ -978,9 +987,11 @@ div.daterangepicker .drp-calendar .calendar-table thead {
 
       }
 
-.sellix-stock-count-picker {
-  margin: -10px;
-}
+
+div.daterangepicker .drp-calendar .calendar-table thead tr:first-child th {
+
+            }
+
 
 div.daterangepicker .drp-calendar .calendar-table thead tr:last-child th {
               margin-top: 0.25rem;
@@ -1068,6 +1079,12 @@ div.daterangepicker .drp-calendar .calendar-table tbody td.in-range {
 div.daterangepicker .drp-calendar .calendar-table tbody td.in-range.available {
               color: var(--purple6);
             }
+
+
+div.daterangepicker .drp-calendar .calendar-table tbody td.in-range.weekend {
+
+            }
+
 
 div.daterangepicker .drp-calendar .calendar-table tbody td.start-date.active {
             position: relative;
@@ -1165,6 +1182,7 @@ div.daterangepicker .drp-calendar .calendar-table .prev:hover {
 
 
 div.daterangepicker .drp-selected {
+    //display: none;
     color: var(--black9) !important;
     font-family: 'Inter';
     font-style: normal;
@@ -1384,6 +1402,7 @@ div.daterangepicker::before {
 
 .Toastify__toast-container {
   z-index: var(--toastify-z-index);
+  -webkit-transform: translate3d(0, 0, var(--toastify-z-index));
   position: fixed;
   padding: 4px;
   width: var(--toastify-toast-width);
@@ -2165,6 +2184,7 @@ button.secondary .lds-ellipsis div {
 }
 .coupon-input-container {
   position: relative;
+  margin-bottom: 1.25rem;
 }
 .coupon-input-container--tag-icon {
   height: calc(2.5rem - 4px);
@@ -2179,9 +2199,8 @@ button.secondary .lds-ellipsis div {
   line-height: 16px;
 }
 .coupon-input-container--tag-icon svg {
-  height: 20px;
-  width: 20px;
-  color: var(--black5);
+  height: 1rem;
+  width: 1rem;
   margin-right: 0.5rem;
 }
 .coupon-input-container--tag-icon.success-coupon {
@@ -2201,11 +2220,10 @@ button.secondary .lds-ellipsis div {
   height: 1.75rem;
   display: flex;
   align-items: center;
-  
   justify-content: center;
+  color: var(--black3);
   background-color: var(--backgroundAccentDark);
-  border: 1px solid var(--borderColor);
-  border-radius: 50px;
+  border-radius: 0.375rem;
 }
 .coupon-input-container--apply-button svg, .coupon-input-container--cancel-button svg {
   height: 1rem;
@@ -2544,7 +2562,7 @@ input[type=number] {
 .tos-note-container .switcher-label .sellix-label {
   font-size: 14px;
   line-height: 16px;
-  color: var(--darkFontColor);
+  color: var(--lightFontColor);
   margin-bottom: 0 !important;
 }
 .tos-note-container .switcher-label .sellix-label span {
@@ -3252,6 +3270,7 @@ input[type=number] {
   font-style: normal;
 }
 .rewards-list-row-title {
+  text-wrap: nowrap;
   display: flex;
   justify-content: flex-start;
   color: var(--lightFontColor);
@@ -3266,7 +3285,6 @@ input[type=number] {
 }
 .sellix-widget-purchase-details .ReactCollapse--collapse {
   transition: all 0.5s;
-  display: flex;
 }
 .sellix-widget-purchase-details .react-tooltip {
   animation: none;
@@ -3346,7 +3364,6 @@ input[type=number] {
 }
 
 .items-group-list-wrapper {
-  margin-top: 1.25rem;
   margin-bottom: 1.25rem;
   border: 1px solid var(--borderColor);
   border-radius: 0.5rem;
@@ -3707,8 +3724,7 @@ input[type=number] {
   }
 }
 .sellix-product-card .sellix-input {
-  background-color: var(--white);
-  border-radius: 40px;
+  background-color: var(--backgroundAccentLight);
 }
 @media (max-width: 420px) {
   .sellix-product-card {
@@ -3927,7 +3943,7 @@ input[type=number] {
 }
 
 .pay-what-you-want-form {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 .pay-what-you-want-form .sellix-label {
   margin-bottom: 0.25rem;
@@ -3937,8 +3953,8 @@ input[type=number] {
   color: var(--lightFontColor);
 }
 .pay-what-you-want-form .sellix-input {
+  border-radius: 0.5rem;
   height: 40px;
-  border-radius: 40px;
   font-weight: 500;
   font-size: 14px;
   line-height: 24px;
@@ -3964,6 +3980,7 @@ input[type=number] {
   position: absolute;
   left: 1rem;
   top: 0;
+  border-right: 1px solid var(--borderColor);
 }
 .feedback-reward-notice {
   display: flex;
@@ -4087,7 +4104,7 @@ input[type=number] {
   border-radius: 0.5rem;
   padding: 0.5rem;
   font-size: 14px;
-  background: var(--white);
+  background: var(--backgroundAccentLight);
 }
 .sellix-stock-count.skip-back {
   background: var(--buttonColor);
@@ -4116,7 +4133,9 @@ input[type=number] {
   box-shadow: none;
   border-radius: 0.5rem;
 }
-
+.sellix-stock-count-picker {
+  padding: 0.25rem;
+}
 .sellix-stock-count-picker.invisible {
   visibility: hidden;
   pointer-events: none;
@@ -5153,7 +5172,6 @@ Add the correct font size in all browsers.
 
 small {
   font-size: 80%;
-  color: var(--black6)!important;
 }
 
 /*
@@ -5401,6 +5419,7 @@ iframe,
 embed,
 object {
   display: block; /* 1 */
+  vertical-align: middle; /* 2 */
 }
 
 /*
@@ -6440,7 +6459,9 @@ video {
 .whitespace-nowrap {
   white-space: nowrap;
 }
-
+.text-nowrap {
+  text-wrap: nowrap;
+}
 .break-words {
   overflow-wrap: break-word;
 }
@@ -7453,6 +7474,8 @@ video {
 }
 .transition {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -7913,6 +7936,11 @@ a:hover {
 .dark .wallet-adapter-button {
   color: #fff;
 }
+
+.dark .wallet-adapter-dropdown .wallet-adapter-button {
+
+}
+
 
 .wallet-adapter-dropdown .wallet-adapter-button {
   color: #121417;
@@ -10556,6 +10584,7 @@ dark:!bg-[#25272a] dark:hover:!bg-[#3c3e42]*/
 
 .Toastify__toast-container {
   z-index: var(--toastify-z-index);
+  -webkit-transform: translate3d(0, 0, var(--toastify-z-index));
   position: fixed;
   padding: 4px;
   width: var(--toastify-toast-width);
@@ -11230,6 +11259,7 @@ dark:!bg-[#25272a] dark:hover:!bg-[#3c3e42]*/
   }
 
   .daterangepicker .drp-calendar {
+    //display: none;
     max-width: 270px;
   }
 
@@ -11659,6 +11689,10 @@ div.daterangepicker {
         display: none;
       }
 
+        div.daterangepicker .drp-calendar.left .calendar-table, div.daterangepicker .drp-calendar.right .calendar-table {
+          //width: 100%;
+        }
+
     div.daterangepicker div.drp-buttons {
       display: none !important;
     }
@@ -11768,6 +11802,9 @@ div.daterangepicker {
         div.daterangepicker.show-calendar.ltr div.drp-calendar.left {
           border-right: none !important;
           border-bottom: none !important;
+        }
+        div.daterangepicker.show-calendar.ltr div.drp-calendar.right {
+          //border-bottom: none !important;
         }
   }
 
@@ -12018,6 +12055,7 @@ div.daterangepicker .ranges ul {
 
 div.daterangepicker .ranges ul li {
         padding: 0 .75rem;
+        //height: 34px;
         line-height: 34px;
         border-top: 1px solid transparent;
         border-bottom: 1px solid transparent;
@@ -12098,6 +12136,12 @@ div.daterangepicker .drp-calendar .calendar-table thead {
         border-top: 1px solid #0000;
 
       }
+
+
+div.daterangepicker .drp-calendar .calendar-table thead tr:first-child th {
+
+            }
+
 
 div.daterangepicker .drp-calendar .calendar-table thead tr:last-child th {
               margin-top: 0.25rem;
@@ -12185,6 +12229,12 @@ div.daterangepicker .drp-calendar .calendar-table tbody td.in-range {
 div.daterangepicker .drp-calendar .calendar-table tbody td.in-range.available {
               color: var(--purple6);
             }
+
+
+div.daterangepicker .drp-calendar .calendar-table tbody td.in-range.weekend {
+
+            }
+
 
 div.daterangepicker .drp-calendar .calendar-table tbody td.start-date.active {
             position: relative;
@@ -12282,6 +12332,7 @@ div.daterangepicker .drp-calendar .calendar-table .prev:hover {
 
 
 div.daterangepicker .drp-selected {
+    //display: none;
     color: var(--black9) !important;
     font-family: 'Inter';
     font-style: normal;
