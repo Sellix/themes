@@ -161,7 +161,6 @@
                 <span class="{{ globalClass }}__starting-at">
                   {{ 'shop.shared.titles.startingAt' | t }}
                 </span>
-                <span class="{{ globalClass }}__tax {{ localClass }}__tax">+</span>
               {% endif %}
 
               <div class="{{ globalClass }}__price {{ localClass }}__price">
@@ -169,7 +168,7 @@
                   {% render_snippet 'Tag', tag=('shop.shared.titles.free' | t), type='success' %}
                 {% elif isPayWhatYouWant %}
                   {% render_snippet 'Tag', tag=('shop.main.cards.product.yourPrice' | t) %}
-                    <span class="{{ globalClass }}__tax {{ localClass }}__tax">+</span>
+                  <span class="{{ globalClass }}__tax {{ localClass }}__tax">+</span>
                 {% else %}
                   {% render_snippet
                     'Shared: Price',
