@@ -36,7 +36,7 @@
   }
 </style>
 
-<div class="{{ globalClass }} {{ localClass  }} d-flex justify-content-center p-2 position-relative">
+<div class="{{ globalClass }} {{ localClass  }} d-none justify-content-center p-2 position-relative">
   <select id="language-selector" class="">
     {% for localeInfo in localesList | sort(false, false, 'title') %}
       <option
@@ -126,6 +126,6 @@
         $('.{{ localClass  }}').find('.select2-dropdown').removeClass('animated flipIn');
       });
 
-    $('.{{ localClass  }}').removeClass('d-none');
+    $('.{{ localClass  }}').removeClass('d-none').addClass('d-flex');
   });
 </script>
