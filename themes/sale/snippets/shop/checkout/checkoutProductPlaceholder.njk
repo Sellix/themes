@@ -76,7 +76,7 @@
 <div class="{{ globalClass }} {{ localClass }}" data-checkout-product="{{ product.uniqid }}">
   <div class="{{ globalClass }}__details">
     <div class="{{ globalClass }}__image {{'image-placeholder' if isPlaceholder}}">
-      <div class="skeleton skeleton6" style="height: 100px; width: {{ 200 + 10 * [1,2,3,4,5,6] | random }}px"></div>
+      <div class="skeleton skeleton6" style="height: 100%; width: {{ 200 + 10 * [1,2,3,4,5,6] | random }}px"></div>
     </div>
 
     <div class="{{ globalClass }}__title unselectable">
@@ -96,29 +96,9 @@
         </div>
       </div>
 
-      {% if descriptionEnabled %}
-        <div class="{{ globalClass }}__chevron-icon">
-          <span class="chevron d-none" data-checkout-product-toggle-description-button="1">
-            {% render_snippet 'Icons: Chevron up' %}
-          </span>
-
-          <span class="chevron" data-checkout-product-toggle-description-button="1">
-            {% render_snippet 'Icons: Chevron down' %}
-          </span>
-        </div>
-      {% endif %}
-
       {% if not isInvoice %}
         <div class="{{ globalClass }}__product-count">
           <div class="skeleton skeleton6" style="width: {{ 120 }}px"></div>
-        </div>
-
-        <div
-          class="remove-icon {{ globalClass }}__remove-icon"
-          data-product-id="{{product.uniqid}}"
-          data-remove-button="1"
-        >
-          {% render_snippet 'Icons: Trash' %}
         </div>
       {% endif %}
     </div>
