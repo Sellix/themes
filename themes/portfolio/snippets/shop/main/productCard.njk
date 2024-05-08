@@ -91,10 +91,6 @@
           </span>
         {% endif %}
 
-        {% if not isFree and not isOut and not onHold %}
-          <span class="sellix-card-tax" style="color: var(--darkFontColor)"></span>
-        {% endif %}
-
         {% if not onHold and not isOut %}
           <div class="sellix-card-description justify-content-between">
             {% if product.price_discount and not isFree %}
@@ -141,6 +137,7 @@
               {% endif %}
             </span>
           </div>
+          <span class="sellix-card-tax" style="color: var(--darkFontColor)">+</span>
         {% endif %}
       </div>
     </div>
