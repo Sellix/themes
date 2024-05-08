@@ -24,12 +24,12 @@
 
 <style>
 
-  .{{ localClass }}__container {
+  .{{ localClass }}__wrapper {
+    background-color: {{ bgColor | get_color }};
     display: grid;
     grid-template-columns: repeat({{ settings.block_order | length }}, 1fr);
     align-items: center;
     flex-wrap: wrap;
-    background-color: {{ bgColor | get_color }};
     padding: {{ paddingTopDesktop }}px {{ paddingHorizDesktop }}px {{ paddingBottomDesktop }}px {{ paddingHorizDesktop }}px;
     margin-top: {{ marginTopDesktop }}px;
     margin-bottom: {{ marginBottomDesktop }}px;
@@ -41,7 +41,7 @@
   }
 
   @media (max-width: 768px) {
-    .{{ localClass }}__container {
+    .{{ localClass }}__wrapper {
       grid-template-columns: repeat(1, 1fr);
       padding: {{ paddingTopTablet }}px {{ paddingHorizTablet }}px {{ paddingBottomTablet }}px {{ paddingHorizTablet }}px;
       margin-top: {{ marginTopTablet }}px;
@@ -55,7 +55,7 @@
   }
 
   @media (max-width: 640px) {
-    .{{ localClass }}__container {
+    .{{ localClass }}__wrapper {
       padding: {{ paddingTopMobile }}px {{ paddingHorizMobile }}px {{ paddingBottomMobile }}px {{ paddingHorizMobile }}px;
       margin-top: {{ marginTopMobile }}px;
       margin-bottom: {{ marginBottomMobile }}px;
@@ -64,9 +64,11 @@
 </style>
 
 <div class="{{ globalClass}}__container  {{ localClass }}__container {{ 'full-width' if fullWidth else 'content-width' }}">
+  <div class="{{ localClass }}__wrapper">
     {% for block_name in settings.block_order %}
       <div class="{{ localClass }}__item_wrapper">
         {%- render_block block_name -%}
       </div>
     {% endfor%}
+  </div>
 </div>
