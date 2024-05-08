@@ -42,7 +42,7 @@
       <option
         value="{{ localeInfo.code }}"
         {{'selected' if localeInfo.code == global.locales.locale else ''}}
-       
+
       >
         {{- localeInfo.title -}}
       </option>
@@ -72,8 +72,7 @@
 
       return $(`
         <div style="display: flex; align-items: center; column-gap: 0.25rem;">
-          
-          ${isMobile && isResult ? '' : title}
+          ${isMobile && isResult ? title : title}
           ${isResult
             ? chevronSvg
             : state.id === selectedLanguage
