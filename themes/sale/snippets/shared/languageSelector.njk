@@ -42,7 +42,7 @@
       <option
         value="{{ localeInfo.code }}"
         {{'selected' if localeInfo.code == global.locales.locale else ''}}
-
+        data-img-url="{{ localeInfo.imgUrl }}"
       >
         {{- localeInfo.title -}}
       </option>
@@ -55,6 +55,7 @@
     let selectedLanguage = '{{ global.locales.locale }}';
     const optionFactory = (state, isResult) => {
       const $element = $(state.element);
+      const imgUrl = $element.data('imgUrl');
 
       if (!state.id) {
         return state.text;
@@ -72,7 +73,11 @@
 
       return $(`
         <div style="display: flex; align-items: center; column-gap: 0.25rem;">
-          ${isMobile && isResult ? title : title}
+          ${isMobile && isResult && imgUrl
+            ? `<img alt="${title}" style="height:18px;width: 18px;" src="${imgUrl}" />`
+            : ''
+          }
+          ${isMobile && isResult && imgUrl ? '' : title}
           ${isResult
             ? chevronSvg
             : state.id === selectedLanguage
