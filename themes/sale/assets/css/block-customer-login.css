@@ -1,0 +1,106 @@
+.block-customer-login__container {
+  position: relative;
+}
+
+.block-customer-login__icon {
+  cursor: pointer;
+  padding: 1rem 0.625rem;
+  color: var(--darkFontColor);
+}
+
+@media (max-width: 450px) {
+  .block-customer-login__icon {
+    padding: 1rem 0.3125rem;
+  }
+}
+
+.block-customer-login__dropdown {
+  padding: 0.5rem;
+  background: var(--backgroundAccentLight);
+  box-shadow: 0 2px 24px -2px rgba(7, 14, 35, 0.12), 0 2px 4px -1px rgba(7, 14, 35, 0.08);
+  position: absolute;
+  top: calc(100% - 1rem);
+  min-width: 250px;
+  width: 100%;
+  border-radius: 8px;
+  right: 0;
+  display: none;
+}
+
+.block-customer-login__dropdown.open {
+  display: flex;
+  flex-direction: column;
+}
+
+.block-customer-login__dropdown-item {
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  column-gap: 0.75rem;
+  color: var(--darkFontColor);
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.block-customer-login__dropdown-item:hover {
+  border-radius: 0.5rem;
+  background: var(--backgroundHover);
+}
+
+.is-dark .block-customer-login__dropdown-item:hover {
+  color: black;
+}
+
+.block-customer-login__modal {
+  max-width: 500px;
+}
+
+.block-customer-login__modal-container {
+  padding: 1.875rem;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+}
+
+.block-customer-login__close-icon {
+  color: var(--darkFontColor);
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+}
+
+.block-customer-login__modal-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 0.5rem;
+}
+
+.block-customer-login__modal-title {
+  color: var(--darkFontColor);
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.block-customer-login__modal-subtitle {
+  color: var(--darkFontColor);
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+
+}
+
+.is-dark .block-customer-login__modal-field input {
+  color: var(--darkFontColor)!important;
+}

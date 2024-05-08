@@ -1,0 +1,28 @@
+{% set menuProps = themeProperties.menu %}
+{% set url = safe_get(args.url, '') %}
+{% set title = safe_get(args.title, 'Menu Link') %}
+{% set isActive = safe_get(args.is_active, false) %}
+{% set class = safe_get(args.class, 'menu-tab') %}
+
+{% if global.locales.defaultLocale != global.locales.locale %}
+  {% set localePrefix = ["/", global.locales.locale] | join %}
+{% else %}
+  {% set localePrefix = "" %}
+{% endif %}
+
+{% set globalClass = 'snippet-menu-item' %}
+
+{% set translationPrefix = 'menu' %}
+
+<style>
+  .{{ globalClass }}:hover {
+    color: {{ menuProps.menu_item_font_color_hover | get_color }};
+  }
+</style>
+
+<a
+  href="{{ localePrefix }}{{url}}"
+  class="{{ globalClass }} {{ class }} {{'active' if isActive else ''}}"
+>
+  {{ title | t({ keyPrefix: 'menu' }) }}
+</a>

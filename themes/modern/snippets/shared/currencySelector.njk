@@ -119,8 +119,8 @@
               : ''
           }
           ${isMobile && isResult
-            ? `${currencyType === 'fiat' ? `${currencySmb} ` : ''}${currencyName === 'USDC_NATIVE' ? 'USDC' : currencyName}`
-            : `${currencyType === 'fiat' ? `${currencySmb} ` : ''}${title}`
+            ? `${currencyType === 'fiat' && currencySmb !== currencyName ? `${currencySmb} ` : ''}${currencyName === 'USDC_NATIVE' ? 'USDC' : currencyName}`
+            : `${currencyType === 'fiat' && currencySmb !== title ? `${currencySmb} ` : ''}${title}`
           }
           ${isResult
             ? chevronSvg

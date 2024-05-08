@@ -1,0 +1,124 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set product = args.product %}
+{% set quantity_min = product.quantity_min %}
+{% set quantity_max = product.quantity_max %}
+{% set equal = (true if quantity_min == quantity_max else false) %}
+{% set currency = global.currencyConfig.allCurrencies[product.currency] %}
+
+{% set globalClass = ['snippet-product-minmax-note'] %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }} .quantity-message {
+    width: 100%;
+    padding: 0.5rem 0;
+    color: var(--darkFontColor);
+  }
+
+  .{{ localClass }} .quantity-message span {
+    font-size: 11px;
+  }
+</style>
+
+<div class="{{ globalClass }} {{ localClass }}">
+  <div class="sellix-quantity" style="height: 0; overflow: hidden;">
+    <div class="quantity-message text-align-left" style="padding-bottom: 0;">
+      <span class="min"></span>
+      <span class="max"></span>
+      {% if equal %}
+        <span>Only <b>{{quantity_max}}</b> items per order</span>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="sellix-next-discount" style="height: 0; overflow: hidden;">
+    <div class="quantity-message pb-0">
+      <span></span>
+    </div>
+  </div>
+</div>
+
+<script type='application/javascript'>
+  $(document).ready(function() {
+    const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
+    const currencyConfig = SellixContext.getCurrencyConfig();
+    const productId = '{{product.uniqid}}';
+    const discountList = JSON.parse({{product.volume_discounts  | dump | safe}})
+      .volume_discounts
+      .sort((a, b) => +a.quantity - +b.quantity);
+
+    const render = function ({ quantity }) {
+      let nextDiscount = discountList.find(discount => !(+quantity >= +discount.quantity));
+
+      const minimum = +quantity === +{{quantity_min}} && {{quantity_min}} !== {{quantity_max}} && {{quantity_min}} > 1;
+      const maximum = +quantity === +{{quantity_max}} && {{quantity_min}} !== {{quantity_max}};
+
+      const $quantityMessage = $('.{{ localClass}} .sellix-quantity');
+
+      if (minimum || maximum) {
+        $quantityMessage.find('.quantity-message .min').html(
+          minimum
+            ? `${window.sellixI18Next.t('shop.product.productMinMaxNote.minQuantity')}: <b>{{ quantity_min }}</b>`
+            : ''
+        );
+        $quantityMessage.find('.quantity-message .max').html(
+          maximum
+            ? `${window.sellixI18Next.t('shop.product.productMinMaxNote.maxQuantity')}: <b>{{ quantity_max }}</b>`
+            : ''
+        );
+        $quantityMessage.css({ height: 'auto', overflow: 'initial' });
+      } else {
+        $quantityMessage.css({ height: '0', overflow: 'hidden' });
+      }
+
+      const $discountMessage = $('.{{ localClass }} .sellix-next-discount');
+      const addMoreTranslations = [
+        window.sellixI18Next.t('shop.product.productMinMaxNote.addMore.0'),
+        window.sellixI18Next.t('shop.product.productMinMaxNote.addMore.1'),
+        window.sellixI18Next.t('shop.product.productMinMaxNote.addMore.2'),
+      ]
+      if (nextDiscount) {
+        const nextQuantity = +nextDiscount.quantity - +quantity,
+          currency = nextDiscount.type === 'FIXED' ? '{{ currency.symbol }}' : '',
+          currencyType = '{{ currency.type }}',
+          percent = nextDiscount.type !== 'FIXED' ? '%' : '',
+          nextPrice = nextDiscount.type === 'FIXED'
+            ? window.sellixHelper.toDecimalPrecision(nextDiscount.value, currencyConfig.moneyPrecision)
+            : nextDiscount.value;
+
+        const priceTitle = nextDiscount.type === 'FIXED'
+          ? (
+            currencyType === 'fiat'
+              ? `${currency}${nextPrice}`
+              : `${nextPrice} ${currency}`
+          )
+          : `${nextPrice}${percent}`;
+
+        $discountMessage.find(".quantity-message > span").html(
+          `${addMoreTranslations[0]} <b>${nextQuantity}</b> ` +
+          `${addMoreTranslations[1]} <b>${priceTitle}</b> ` +
+          `${addMoreTranslations[2]}`
+        );
+        $discountMessage.css({ height: 'auto', overflow: 'initial' });
+      } else {
+        $discountMessage.css({ height: '0', overflow: 'hidden' });
+        $discountMessage.find(".quantity-message > span").html('');
+      }
+    }
+
+    const renderOptions = {{renderOptions | dump | safe}};
+    const renderEvent = sellixHelper.getEventName({
+      name: 'SellixRenderComponent',
+      namespace: renderOptions.id,
+    });
+    $(document).on(`SellixCartUpdateEvent ${renderEvent}`, (e, eventInfo) => {
+      if (!eventInfo || !eventInfo.productId || eventInfo.productId === productId) {
+        const product = cart.getItemById(productId);
+        if (product) {
+          render(product);
+        }
+      }
+    });
+  });
+</script>

@@ -1,0 +1,593 @@
+{
+    "FAQ": {
+      "name": "FAQ",
+      "settings": {
+        "title": "{{ 'pages.shop.faq.title' | t | safe }}"
+      },
+      "slug": "/FAQ",
+      "template_type": "FAQ"
+    },
+    "category": {
+      "name": "Category",
+      "settings": {
+        "meta_tags": [
+          {
+            "name": "og:title",
+            "content": "{{ 'pages.shop.category.metaTags.title' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "twitter:title",
+            "content": "{{ 'pages.shop.category.metaTags.title' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "description",
+            "content": "{{ 'pages.shop.category.metaTags.description' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "og:description",
+            "content": "{{ 'pages.shop.category.metaTags.description' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "twitter:description",
+            "content": "{{ 'pages.shop.category.metaTags.description' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "twitter:site",
+            "content": "@{{global.common.shopInfo.shop.name}}"
+          },
+          {
+            "name": "og:image",
+            "content": "{{ cdn_link(global.common.shopInfo.shop.cloudflare_image_id, 'avatar') if global.common.shopInfo.shop.cloudflare_image_id else [global.config.CDN_PREVIEWS_URL, '/shop.png'] | join }}"
+          },
+          {
+            "name": "twitter:image",
+            "content": "{{ cdn_link(global.common.shopInfo.shop.cloudflare_image_id, 'avatar') if global.common.shopInfo.shop.cloudflare_image_id else [global.config.CDN_PREVIEWS_URL, '/shop.png'] | join }}"
+          },
+          {
+            "name": "twitter:card",
+            "content": "summary_large_image"
+          }
+        ],
+        "title": "{{ 'pages.shop.category.title' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+      },
+      "slug": "/category/:id",
+      "template_type": "MAIN"
+    },
+    "checkout": {
+      "name": "Checkout",
+      "settings": {
+        "title": "{{ 'pages.shop.checkout.title' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+      },
+      "slug": "/checkout",
+      "template_type": "CHECKOUT"
+    },
+    "collections": {
+      "name": "Collections",
+      "settings": {
+        "meta_tags": [
+          {
+            "name": "og:title",
+            "content": "{{ 'pages.shop.shop.metaTags.title' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "twitter:title",
+            "content": "{{ 'pages.shop.shop.metaTags.title' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "description",
+            "content": "{{ 'pages.shop.shop.metaTags.description' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "og:description",
+            "content": "{{ 'pages.shop.shop.metaTags.description' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "twitter:description",
+            "content": "{{ 'pages.shop.shop.metaTags.description' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "twitter:site",
+            "content": "@{{global.common.shopInfo.shop.name}}"
+          },
+          {
+            "name": "og:image",
+            "content": "{{ cdn_link(global.common.shopInfo.shop.cloudflare_image_id, 'avatar') if global.common.shopInfo.shop.cloudflare_image_id else [global.config.CDN_PREVIEWS_URL, '/shop.png'] | join }}"
+          },
+          {
+            "name": "twitter:image",
+            "content": "{{ cdn_link(global.common.shopInfo.shop.cloudflare_image_id, 'avatar') if global.common.shopInfo.shop.cloudflare_image_id else [global.config.CDN_PREVIEWS_URL, '/shop.png'] | join }}"
+          },
+          {
+            "name": "twitter:card",
+            "content": "summary_large_image"
+          }
+        ],
+        "title": "{{ 'pages.shop.shop.title' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+      },
+      "slug": "/collections",
+      "template_type": "COLLECTIONS"
+    },
+    "contact": {
+      "name": "Contact",
+      "settings": {
+        "meta_tags": [
+          {
+            "name": "og:title",
+            "content": "{{ 'pages.shop.contact.metaTags.title' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "twitter:title",
+            "content": "{{ 'pages.shop.contact.metaTags.title' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "description",
+            "content": "{{ 'pages.shop.contact.metaTags.description' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "og:description",
+            "content": "{{ 'pages.shop.contact.metaTags.description' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "twitter:description",
+            "content": "If you need help with a recent purchase, would like more information about a digital product we are offering or you're just curious about our solutions, do not hesitate to get in touch with us. It's as easy as filling in 3 inputs and clicking a button."
+          },
+          {
+            "name": "twitter:site",
+            "content": "@{{global.common.shopInfo.shop.name}}"
+          },
+          {
+            "name": "og:image",
+            "content": "{{ cdn_link(global.common.shopInfo.shop.cloudflare_image_id, 'avatar') if global.common.shopInfo.shop.cloudflare_image_id else [global.config.CDN_PREVIEWS_URL, '/shop.png'] | join }}"
+          },
+          {
+            "name": "twitter:image",
+            "content": "{{ cdn_link(global.common.shopInfo.shop.cloudflare_image_id, 'avatar') if global.common.shopInfo.shop.cloudflare_image_id else [global.config.CDN_PREVIEWS_URL, '/shop.png'] | join }}"
+          },
+          {
+            "name": "twitter:card",
+            "content": "summary_large_image"
+          }
+        ],
+        "title": "{{ 'pages.shop.contact.title' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+      },
+      "slug": "/contact",
+      "template_type": "CONTACT"
+    },
+    "delivery": {
+      "name": "Delivery",
+      "settings": {
+        "meta_tags": [],
+        "title": "{{ 'pages.shop.delivery.title' | t({invoiceId: global.common.invoiceInfo.invoice.uniqid}) | safe }}"
+      },
+      "slug": "/delivery/:id",
+      "template_type": "DELIVERY"
+    },
+    "feedback": {
+      "name": "Feedback",
+      "settings": {
+        "meta_tags": [
+          {
+            "name": "robots",
+            "content": "noindex"
+          }
+        ],
+        "title": "{{ 'pages.shop.feedback.title' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+      },
+      "slug": "/feedback/:id",
+      "template_type": "FEEDBACK"
+    },
+    "feedback_list": {
+      "name": "Feedback List",
+      "settings": {
+        "meta_tags": [
+          {
+            "name": "og:title",
+            "content": "{{ 'pages.shop.feedbackList.metaTags.title' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "twitter:title",
+            "content": "{{ 'pages.shop.feedbackList.metaTags.title' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "description",
+            "content": "{{ 'pages.shop.feedbackList.metaTags.description' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "og:description",
+            "content": "{{ 'pages.shop.feedbackList.metaTags.description' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "twitter:description",
+            "content": "{{ 'pages.shop.feedbackList.metaTags.description' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "twitter:site",
+            "content": "@{{global.common.shopInfo.shop.name}}"
+          },
+          {
+            "name": "og:image",
+            "content": "{{ cdn_link(global.common.shopInfo.shop.cloudflare_image_id, 'avatar') if global.common.shopInfo.shop.cloudflare_image_id else [global.config.CDN_PREVIEWS_URL, '/shop.png'] | join }}"
+          },
+          {
+            "name": "twitter:image",
+            "content": "{{ cdn_link(global.common.shopInfo.shop.cloudflare_image_id, 'avatar') if global.common.shopInfo.shop.cloudflare_image_id else [global.config.CDN_PREVIEWS_URL, '/shop.png'] | join }}"
+          },
+          {
+            "name": "twitter:card",
+            "content": "summary_large_image"
+          }
+        ],
+        "title": "{{ 'pages.shop.feedbackList.title' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+      },
+      "slug": "/feedback",
+      "template_type": "FEEDBACK_LIST"
+    },
+    "group": {
+      "name": "Group",
+      "settings": {
+        "meta_tags": [
+          {
+            "name": "og:title",
+            "content": "{{ 'pages.shop.group.metaTags.title' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "twitter:title",
+            "content": "{{ 'pages.shop.group.metaTags.title' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "description",
+            "content": "{{ 'pages.shop.group.metaTags.description' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "og:description",
+            "content": "{{ 'pages.shop.group.metaTags.description' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "twitter:description",
+            "content": "{{ 'pages.shop.group.metaTags.description' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "twitter:site",
+            "content": "@{{global.common.shopInfo.shop.name}}"
+          },
+          {
+            "name": "og:image",
+            "content": "{{ cdn_link(global.common.shopInfo.shop.cloudflare_image_id, 'avatar') if global.common.shopInfo.shop.cloudflare_image_id else [global.config.CDN_PREVIEWS_URL, '/shop.png'] | join }}"
+          },
+          {
+            "name": "twitter:image",
+            "content": "{{ cdn_link(global.common.shopInfo.shop.cloudflare_image_id, 'avatar') if global.common.shopInfo.shop.cloudflare_image_id else [global.config.CDN_PREVIEWS_URL, '/shop.png'] | join }}"
+          },
+          {
+            "name": "twitter:card",
+            "content": "summary_large_image"
+          }
+        ],
+        "title": "{{ 'pages.shop.group.title' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+      },
+      "slug": "/group/:id",
+      "template_type": "MAIN"
+    },
+    "invoice": {
+      "name": "Invoice",
+      "settings": {
+        "meta_tags": [
+          {
+            "name": "og:title",
+            "content": "{{ 'pages.shop.invoice.metaTags.title' | t({invoiceId: global.common.invoiceInfo.invoice.uniqid}) | safe }}"
+          },
+          {
+            "name": "twitter:title",
+            "content": "{{ 'pages.shop.invoice.metaTags.title' | t({invoiceId: global.common.invoiceInfo.invoice.uniqid}) | safe }}"
+          },
+          {
+            "name": "description",
+            "content": "{{ 'pages.shop.invoice.metaTags.description' | t | safe }}"
+          },
+          {
+            "name": "og:description",
+            "content": "{{ 'pages.shop.invoice.metaTags.description' | t | safe }}"
+          },
+          {
+            "name": "twitter:description",
+            "content": "{{ 'pages.shop.invoice.metaTags.description' | t | safe }}"
+          },
+          {
+            "name": "twitter:site",
+            "content": "https://sellix.io/invoice/{{global.common.invoiceInfo.invoice.uniqid}}"
+          },
+          {
+            "name": "og:image",
+            "content": "https://cdn.sellix.io/static/previews/landing/new/payments.png"
+          },
+          {
+            "name": "twitter:image",
+            "content": "https://cdn.sellix.io/static/previews/landing/new/payments.png"
+          },
+          {
+            "name": "twitter:card",
+            "content": "summary_large_image"
+          },
+          {
+            "name": "robots",
+            "content": "noindex"
+          }
+        ],
+        "title": "{{ 'pages.shop.invoice.title' | t({invoiceId: global.common.invoiceInfo.invoice.uniqid}) | safe }}"
+      },
+      "slug": "/invoice/:id",
+      "template_type": "INVOICE"
+    },
+    "mainpage": {
+      "name": "Main page",
+      "settings": {
+        "meta_tags": [
+          {
+            "name": "og:title",
+            "content": "{{ 'pages.shop.main.metaTags.title' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "twitter:title",
+            "content": "{{ 'pages.shop.main.metaTags.title' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "description",
+            "content": "{{ 'pages.shop.main.metaTags.description' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "og:description",
+            "content": "{{ 'pages.shop.main.metaTags.description' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "twitter:description",
+            "content": "{{ 'pages.shop.main.metaTags.description' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "twitter:site",
+            "content": "@{{global.common.shopInfo.shop.name}}"
+          },
+          {
+            "name": "og:image",
+            "content": "{{ cdn_link(global.common.shopInfo.shop.cloudflare_image_id, 'avatar') if global.common.shopInfo.shop.cloudflare_image_id else [global.config.CDN_PREVIEWS_URL, '/shop.png'] | join }}"
+          },
+          {
+            "name": "twitter:image",
+            "content": "{{ cdn_link(global.common.shopInfo.shop.cloudflare_image_id, 'avatar') if global.common.shopInfo.shop.cloudflare_image_id else [global.config.CDN_PREVIEWS_URL, '/shop.png'] | join }}"
+          },
+          {
+            "name": "twitter:card",
+            "content": "summary_large_image"
+          }
+        ],
+        "title": "{{ 'pages.shop.main.title' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+      },
+      "slug": "/",
+      "template_type": "MAIN"
+    },
+    "not_found": {
+      "name": "404",
+      "settings": {
+        "title": "{{ 'pages.shop.notFound.title' | t | safe }}"
+      },
+      "slug": "/not_found",
+      "template_type": "NOT_FOUND"
+    },
+    "payment": {
+      "name": "Payment",
+      "settings": {
+        "title": "{{ 'pages.shop.payment.title' | t | safe }}"
+      },
+      "slug": "/payment/:id",
+      "template_type": "PAYMENT"
+    },
+    "payment_list": {
+      "name": "Payment List",
+      "settings": {
+        "title": "{{ 'pages.shop.paymentList.title' | t | safe }}"
+      },
+      "slug": "/payment",
+      "template_type": "PAYMENT_LIST"
+    },
+    "product": {
+      "name": "Product",
+      "settings": {
+        "meta_tags": [
+          {
+            "name": "og:title",
+            "content": "{{global.common.productInfo.product.title}}"
+          },
+          {
+            "name": "twitter:title",
+            "content": "{{global.common.productInfo.product.title}}"
+          },
+          {
+            "name": "description",
+            "content": "Check out {{global.common.productInfo.product.title}} by {{global.common.shopInfo.shop.name}}. Purchase it within minutes by using one of our many payment gateways, or get in touch with us for additional details."
+          },
+          {
+            "name": "og:description",
+            "content": "Check out {{global.common.productInfo.product.title}} by {{global.common.shopInfo.shop.name}}. Purchase it within minutes by using one of our many payment gateways, or get in touch with us for additional details."
+          },
+          {
+            "name": "twitter:description",
+            "content": "Check out {{global.common.productInfo.product.title}} by {{global.common.shopInfo.shop.name}}. Purchase it within minutes by using one of our many payment gateways, or get in touch with us for additional details."
+          },
+          {
+            "name": "twitter:site",
+            "content": "@{{global.common.shopInfo.shop.name}}"
+          },
+          {
+            "name": "og:image",
+            "content": "{% set first_img = global.common.productInfo.product.image_attachments | d([]) | first %}{{ cdn_link(first_img.cloudflare_image_id, 'shopItem') if first_img else [global.config.CDN_PREVIEWS_URL,'/product.png'] | join }}"
+          },
+          {
+            "name": "twitter:image",
+            "content": "{% set first_img = global.common.productInfo.product.image_attachments | d([]) | first %}{{ cdn_link(first_img.cloudflare_image_id, 'shopItem') if first_img else [global.config.CDN_PREVIEWS_URL,'/product.png'] | join }}"
+          },
+          {
+            "name": "twitter:card",
+            "content": "summary_large_image"
+          }
+        ],
+        "title": "{{global.common.productInfo.product.title}}"
+      },
+      "slug": "/product/:id",
+      "template_type": "PRODUCT"
+    },
+    "shop": {
+      "name": "Shop",
+      "settings": {
+        "meta_tags": [
+          {
+            "name": "og:title",
+            "content": "{{ 'pages.shop.shop.metaTags.title' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "twitter:title",
+            "content": "{{ 'pages.shop.shop.metaTags.title' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "description",
+            "content": "{{ 'pages.shop.shop.metaTags.description' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "og:description",
+            "content": "{{ 'pages.shop.shop.metaTags.description' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "twitter:description",
+            "content": "{{ 'pages.shop.shop.metaTags.description' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+          },
+          {
+            "name": "twitter:site",
+            "content": "@{{global.common.shopInfo.shop.name}}"
+          },
+          {
+            "name": "og:image",
+            "content": "{{ cdn_link(global.common.shopInfo.shop.cloudflare_image_id, 'avatar') if global.common.shopInfo.shop.cloudflare_image_id else [global.config.CDN_PREVIEWS_URL, '/shop.png'] | join }}"
+          },
+          {
+            "name": "twitter:image",
+            "content": "{{ cdn_link(global.common.shopInfo.shop.cloudflare_image_id, 'avatar') if global.common.shopInfo.shop.cloudflare_image_id else [global.config.CDN_PREVIEWS_URL, '/shop.png'] | join }}"
+          },
+          {
+            "name": "twitter:card",
+            "content": "summary_large_image"
+          }
+        ],
+        "title": "{{ 'pages.shop.shop.title' | t({shopName: global.common.shopInfo.shop.name}) | safe }}"
+      },
+      "slug": "/shop",
+      "template_type": "SHOP"
+    },
+    "store_code": {
+      "name": "Store Code",
+      "settings": {
+        "meta_tags": [],
+        "title": "{{ 'pages.customer.profile.title' | t({invoiceId: global.common.invoiceInfo.invoice.uniqid}) | safe }}"
+      },
+      "slug": "/store/code",
+      "template_type": "STORE_CODE"
+    },
+    "subscription": {
+      "name": "Subscription",
+      "settings": {
+        "meta_tags": [
+          {
+            "name": "og:title",
+            "content": "{{global.common.productInfo.product.title}}"
+          },
+          {
+            "name": "twitter:title",
+            "content": "{{global.common.productInfo.product.title}}"
+          },
+          {
+            "name": "description",
+            "content": "Check out {{global.common.productInfo.product.title}} by {{global.common.shopInfo.shop.name}}. Purchase it within minutes by using one of our many payment gateways, or get in touch with us for additional details."
+          },
+          {
+            "name": "og:description",
+            "content": "Check out {{global.common.productInfo.product.title}} by {{global.common.shopInfo.shop.name}}. Purchase it within minutes by using one of our many payment gateways, or get in touch with us for additional details."
+          },
+          {
+            "name": "twitter:description",
+            "content": "Check out {{global.common.productInfo.product.title}} by {{global.common.shopInfo.shop.name}}. Purchase it within minutes by using one of our many payment gateways, or get in touch with us for additional details."
+          },
+          {
+            "name": "twitter:site",
+            "content": "@{{global.common.shopInfo.shop.name}}"
+          },
+          {
+            "name": "og:image",
+            "content": "{% set first_img = global.common.productInfo.product.image_attachments | d([]) | first %}{{ cdn_link(first_img.cloudflare_image_id, 'shopItem') if first_img else [global.config.CDN_PREVIEWS_URL,'/product.png'] | join }}"
+          },
+          {
+            "name": "twitter:image",
+            "content": "{% set first_img = global.common.productInfo.product.image_attachments | d([]) | first %}{{ cdn_link(first_img.cloudflare_image_id, 'shopItem') if first_img else [global.config.CDN_PREVIEWS_URL,'/product.png'] | join }}"
+          },
+          {
+            "name": "twitter:card",
+            "content": "summary_large_image"
+          }
+        ],
+        "title": "{{global.common.productInfo.product.title}}"
+      },
+      "slug": "/subscription/:id",
+      "template_type": "PRODUCT"
+    },
+    "terms": {
+      "name": "Terms",
+      "settings": {
+        "meta_tags": [
+          {
+            "name": "og:title",
+            "content": "{{ 'pages.shop.terms.metaTags.title' | t | safe }}"
+          },
+          {
+            "name": "twitter:title",
+            "content": "{{ 'pages.shop.terms.metaTags.title' | t | safe }}"
+          },
+          {
+            "name": "description",
+            "content": "{{ 'pages.shop.terms.metaTags.description' | t | safe }}"
+          },
+          {
+            "name": "og:description",
+            "content": "{{ 'pages.shop.terms.metaTags.description' | t | safe }}"
+          },
+          {
+            "name": "twitter:description",
+            "content": "{{ 'pages.shop.terms.metaTags.description' | t | safe }}"
+          },
+          {
+            "name": "twitter:site",
+            "content": "@{{global.common.shopInfo.shop.name}}"
+          },
+          {
+            "name": "og:image",
+            "content": "{{ cdn_link(global.common.shopInfo.shop.cloudflare_image_id, 'avatar') if global.common.shopInfo.shop.cloudflare_image_id else [global.config.CDN_PREVIEWS_URL, '/shop.png'] | join }}"
+          },
+          {
+            "name": "twitter:image",
+            "content": "{{ cdn_link(global.common.shopInfo.shop.cloudflare_image_id, 'avatar') if global.common.shopInfo.shop.cloudflare_image_id else [global.config.CDN_PREVIEWS_URL, '/shop.png'] | join }}"
+          },
+          {
+            "name": "twitter:card",
+            "content": "summary_large_image"
+          }
+        ],
+        "title": "{{ 'pages.shop.terms.title' | t | safe }}"
+      },
+      "slug": "/terms",
+      "template_type": "TERMS"
+    },
+    "ticket": {
+      "name": "Ticket",
+      "settings": {
+        "title": "{{ 'pages.shop.ticket.title' | t | safe }}"
+      },
+      "slug": "/ticket/:id",
+      "template_type": "TICKET"
+    }
+  }
+  

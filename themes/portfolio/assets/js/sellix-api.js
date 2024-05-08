@@ -256,7 +256,7 @@
         const onSuccess = (captcha) => {
           return sendRequest({ ...data, captcha });
         };
-        return this.requestWithCaptchaV3('createStripePayment', onSuccess);
+        return this.requestWithCaptchaV3('validateCaptcha', onSuccess);
       }
 
       return sendRequest(data);
@@ -296,6 +296,32 @@
         url: `${this.apiUrl}/api/shop/stripe/product_subscriptions/checkout_link/${id}?ui_elements=true`,
         contentType: 'application/json; charset=utf-8',
       });
+    }
+
+    async postProductStripeLink(id, data, options) {
+      const onSuccess = (captcha) => {
+        return jQuery.ajax({
+          method: 'POST',
+          url: `${this.apiUrl}/api/shop/stripe/product_subscriptions/checkout_link/${id}`,
+          contentType: 'application/json; charset=utf-8',
+          dataType: 'json',
+          data: JSON.stringify({ ...data, captcha }),
+        });
+      };
+      return this.requestWithCaptchaV3('postProductStripeLink', onSuccess, null, options);
+    }
+
+    async postStripeConfirmPayment(data, options) {
+      const onSuccess = (captcha) => {
+        return jQuery.ajax({
+          method: 'POST',
+          url: `${this.apiUrl}/api/shop/stripe/confirm_payment`,
+          contentType: 'application/json; charset=utf-8',
+          dataType: 'json',
+          data: JSON.stringify({ ...data, captcha }),
+        });
+      };
+      return this.requestWithCaptchaV3('postStripeConfirmPayment', onSuccess, null, options);
     }
 
     async postSquareCreatePayment(data) {
@@ -417,7 +443,8 @@
     }
 
     async requestWithCaptchaV2(action, onSuccess, onError, options) {
-      options ??= options;
+      options ??= {};
+      options.removeAfterComplete ??= true;
 
       return new Promise((resolve, reject) => {
         try {

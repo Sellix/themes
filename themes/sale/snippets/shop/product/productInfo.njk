@@ -1,0 +1,155 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set product = args.product %}
+{% set isPayWhatYouWant = product.pay_what_you_want %}
+{% set isFree = product.price_display | float === 0 and not isPayWhatYouWant %}
+{% set onHold = product.on_hold | int %}
+{% set isOut = (product.stock | int === 0) %}
+
+{% set tags = [] %}
+{% if product.type === 'SUBSCRIPTION' %}
+  {% set tags = (tags.push('shop.shared.titles.productType.subscription'), tags) %}
+{% endif %}
+{% if isFree %}
+  {% set tags = (tags.push('shop.shared.titles.free'), tags) %}
+{% endif %}
+{% if isPayWhatYouWant %}
+  {% set tags = (tags.push('shop.main.cards.product.yourPrice'), tags) %}
+{% endif %}
+{% if onHold %}
+  {% set tags = (tags.push('shop.main.cards.product.onHold'), tags) %}
+{% endif %}
+
+{% set titleFontColor = safe_get(properties.title_font_color, 'dark_font_color') %}
+{% set titleFontSize = safe_get(properties.title_font_size, 24) %}
+{% set titleFontWeight = safe_get(properties.title_font_weight, 600) %}
+{% set titleLineHeight = safe_get(properties.title_line_height, 32) %}
+
+{% set priceFontColor = safe_get(properties.price_font_color, 'dark_font_color') %}
+{% set priceFontSize = safe_get(properties.price_font_size, 18) %}
+{% set priceFontWeight = safe_get(properties.price_font_weight, 600) %}
+{% set priceLineHeight = safe_get(properties.price_line_height, 28) %}
+
+{% set initialPriceFontColor = safe_get(properties.initial_price_font_color, 'black3') %}
+{% set initialPriceFontSize = safe_get(properties.initial_price_font_size, 18) %}
+{% set initialPriceFontWeight = safe_get(properties.initial_price_font_weight, 400) %}
+{% set initialPriceLineHeight = safe_get(properties.initial_price_line_height, 28) %}
+
+{% set taxFontColor = safe_get(properties.tax_font_color, 'black6') %}
+{% set taxFontSize = safe_get(properties.tax_size, 14) %}
+{% set taxFontWeight = safe_get(properties.tax_font_weight, 400) %}
+{% set taxLineHeight = safe_get(properties.tax_line_height, 20) %}
+
+{% set priceProperties = {
+  image_size: 20,
+  price_font_color: priceFontColor,
+  price_font_size: priceFontSize,
+  price_font_weight: priceFontWeight,
+  price_line_height: priceLineHeight,
+  initial_price_font_color: initialPriceFontColor,
+  initial_price_font_size: initialPriceFontSize,
+  initial_price_font_weight: initialPriceFontWeight,
+  initial_title_price_height: initialPriceLineHeight
+} %}
+
+{% set globalClass = ['snippet-product-info'] %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }}__title {
+    color: {{ titleFontColor | get_color }};
+    font-size: {{ titleFontSize }}px;
+    font-weight: {{ titleFontWeight }};
+    line-height: {{ titleLineHeight }}px;
+  }
+
+  @media (max-width: 768px) {
+    .{{ localClass }}__title {
+      font-size: 25px;
+      line-height: 32px;
+      padding: 0.5rem 0;
+    }
+  }
+
+  .{{ localClass }}__price-starting-at {
+    color: var(--lightFontColor);
+    font-size: {{ priceFontSize }}px;
+    font-weight: 400;
+  }
+
+  .{{ localClass }}__price-tax {
+    color: {{ priceFontColor | get_color }};
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+  }
+</style>
+
+<div class="{{ globalClass }} {{ localClass }}">
+  <div class="{{ globalClass }}__title {{ localClass }}__title">
+    {% if product.title %}
+      {{product.title}}
+    {% else %}
+      {% if invoice and invoice.developer_invoice %}
+        {{invoice.developer_title}}
+      {% else %}
+        {{''}}
+      {% endif %}
+    {% endif %}
+  </div>
+
+  {% if not isFree and not isPayWhatYouWant %}
+    <div class="{{ globalClass }}__price-info {{ localClass }}__price-info">
+      {% if product.price_variants %}
+        <span class="{{ globalClass }}__price-starting-at {{ localClass }}__price-starting-at">
+          {{ 'shop.shared.titles.startingAt' | t }}
+        </span>
+      {% endif %}
+
+      <span class="{{ globalClass }}__price {{ localClass }}__price">
+        {% render_snippet
+          'Shared: Price',
+          currency=product.currency,
+          price=product.min_price_item.price_display,
+          discount=product.price_discount,
+          show_initial_price='last',
+          show_image=true,
+          properties=priceProperties
+        %}
+      </span>
+      <span class="{{ globalClass }}__price-tax {{ localClass }}__price-tax">+</span>
+
+      {% if product.price_discount %}
+        {% render_snippet
+          'Tag',
+          tag=([product.price_discount, '%', ' OFF'] | join | t),
+          is_warning=true
+        %}
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% render_snippet 'Product: Review stat', product=product %}
+</div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const shopInfo = SellixContext.getShopInfo();
+    const ipcountry = Cookies.get('ipcountry') || '';
+
+    let taxAmount = +shopInfo.shop.vat_percentage ? +shopInfo.shop.vat_percentage : '';
+    if (shopInfo.shop.tax_configuration === 'EU' || shopInfo.shop.tax_configuration === 'CUSTOM') {
+      if (shopInfo.shop.tax_configuration_data && ipcountry) {
+        const countryTaxData = shopInfo.shop.tax_configuration_data.find(({ country, type }) => country === ipcountry);
+        if (countryTaxData) {
+          taxAmount = countryTaxData.tax_percentage;
+        }
+      }
+    }
+
+    if (shopInfo.shop.display_tax_on_storefront && taxAmount) {
+      taxAmount = parseFloat(Number(taxAmount).toFixed(2));
+      $('.{{ localClass }}__price-tax').append(`<span>${taxAmount}% {{ 'shop.main.cards.product.tax' | t }}</span>`);
+    }
+  });
+</script>

@@ -1,0 +1,217 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set isInvoice = global.request.type == 'invoice' %}
+
+{% set properties = args.properties %}
+{% set invoice = args.invoice %}
+{% set product = args.product %}
+{% set quantity = args.quantity %}
+{% set image = cdn_link(product.cloudflare_image_id, 'shopItem') %}
+
+{% set isPlaceholder = not product.cloudflare_image_id %}
+{% set isFree = product.price_display | float === 0 %}
+
+{% set descriptionEnabled = safe_get(properties.description_enabled, true) %}
+
+{% set productBgColor = safe_get(properties.product_container_background_color, 'background_accent_dark') %}
+{% set productShowBorder = safe_get(properties.product_container_show_border, true) %}
+{% set productShadow = safe_get(properties.product_container_shadow, 'none') %}
+{% set productBorderRadius = safe_get(properties.product_container_border_radius, 8) %}
+{% set titleFontColor = safe_get(properties.product_title_font_color, 'light_font_color') %}
+{% set titleFontSize = safe_get(properties.product_title_font_size, 18) %}
+{% set titleFontWeight = safe_get(properties.product_title_font_weight, 500) %}
+{% set titleLineHeight =  safe_get(properties.product_title_line_height, 20) %}
+
+{% set productPaddingVertDesktop = safe_get(properties.product_container_padding_vert_desktop, 16) %}
+{% set productPaddingHorizDesktop = safe_get(properties.product_container_padding_horiz_desktop, 16) %}
+{% set productPaddingVertTablet = safe_get(properties.product_container_padding_vert_tablet, 16) %}
+{% set productPaddingHorizTablet = safe_get(properties.product_container_padding_horiz_tablet, 16) %}
+{% set productPaddingVertMobile = safe_get(properties.product_container_padding_vert_mobile, 16) %}
+{% set productPaddingHorizMobile = safe_get(properties.product_container_padding_horiz_mobile, 16) %}
+
+{% set addonsProps = {} %}
+{% set variantsProps = {} %}
+{% for key, value in properties %}
+  {% if key.slice(0, 6) === 'addons' %}
+    {% set addonsProps = addonsProps | set_attribute(key | replace('addons_', ''), value) %}
+  {% endif %}
+
+  {% if key.slice(0, 8) === 'variants' %}
+    {% set variantsProps = variantsProps | set_attribute(key | replace('variants_', ''), value) %}
+  {% endif %}
+{% endfor %}
+
+{% set globalClass = ['snippet-checkout-product'] %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }} {
+    background: {{ productBgColor | get_color }};
+    border: {{ "1px solid var(--borderColor)" if productShowBorder else "none" }};
+    box-shadow: {{ productShadow }};
+    border-radius: {{ productBorderRadius }}px;
+    padding: {{ productPaddingVertDesktop }}px {{ productPaddingHorizDesktop }}px;
+  }
+
+  @media (max-width: 768px) {
+    .{{ localClass }} {
+      padding: {{ productPaddingVertTablet }}px {{ productPaddingHorizTablet }}px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .{{ localClass }} {
+      padding: {{ productPaddingVertMobile }}px {{ productPaddingHorizMobile }}px;
+    }
+  }
+
+  .{{ localClass }}__title-text {
+    color: {{ titleFontColor | get_color }};
+    font-size: {{ titleFontSize }}px;
+    font-weight: {{ titleFontWeight }};
+    line-height: {{ titleLineHeight }}px;
+  }
+</style>
+
+<div class="{{ globalClass }} {{ localClass }}" data-checkout-product="{{ product.uniqid }}">
+  <div class="{{ globalClass }}__details">
+    <div class="{{ globalClass }}__image {{'image-placeholder' if isPlaceholder}}">
+      {% if isPlaceholder %}
+        {% render_snippet 'Product: Placeholder icon', product=product %}
+      {% else %}
+        <img src="{{image}}" alt="{{product.title}}" loading="lazy" />
+      {% endif %}
+    </div>
+
+    <div class="{{ globalClass }}__title unselectable">
+      <div class="{{ globalClass }}__title-text {{ localClass }}__title-text">
+        <div>
+          {{product.title}}
+        </div>
+
+        {% if isInvoice %}
+          <div class="{{ globalClass }}__product-quantity total unselectable">
+            {{ 'shop.checkout.stock' | t }}: {{product.quantity if product.quantity else product.unit_quantity}}
+          </div>
+        {% endif %}
+
+        <div class="{{ globalClass }}__product-price">
+          {% if isFree %}
+            {{ 'shop.shared.titles.free' | t }}
+          {% else %}
+            {% render_snippet
+              'Shared: Price',
+              currency=product.currency,
+              price=product.price_display,
+              discount=product.price_discount,
+              show_initial_price='last',
+              show_image=true
+            %}
+          {% endif %}
+        </div>
+      </div>
+
+      {% if not isInvoice %}
+        {% if product.stock !== 0 %}
+          <div class="{{ globalClass }}__product-count">
+            {% render_snippet
+              'Checkout: Product count',
+              product=product,
+              quantity=quantity,
+              show_stock_info=false
+            %}
+          </div>
+        {% else %}
+          {% render_snippet 'Tag', tag=('shop.main.cards.product.soldOut' | t), type='warning' %}
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+
+  {% if descriptionEnabled %}
+    <div
+      class="{{ globalClass }}__description"
+      style="height: 0; overflow: hidden"
+      data-description-wrapper="1"
+    >
+      <div class="{{ globalClass }}__description-container">
+        <div class="{{ globalClass }}__description-left">
+          {% render_snippet
+            'Product: Gallery',
+            product=product,
+            properties={
+              'slider_show_whole_image': false,
+              'slider_height': 250,
+              'thumbnails_height': 125,
+              'slider_height_without_thumbnails': 375
+            }
+          %}
+        </div>
+        <div class="{{ globalClass }}__description-right">
+          {% render_snippet
+            'Product: Description',
+            product=product,
+            properties={'collapsable': true}
+          %}
+          {% render_snippet
+            'Product: Warranty collapsable',
+            product=product,
+            properties={
+              'body_padding_horiz': 0
+            }
+          %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if (product.price_variants or []) | length and product.stock %}
+    <div class="{{ globalClass }}__variants">
+      {% render_snippet
+        'Product: Variants',
+        is_cart=true,
+        product=product,
+        properties=variantsProps,
+        currency=shop.currency
+      %}
+    </div>
+  {% endif %}
+
+  {% if (product.addons or []) | length and product.stock %}
+    <div class="{{ globalClass }}__addons">
+      {% render_snippet
+        'Product: Addons',
+        product=product,
+        invoice=invoice,
+        properties=addonsProps,
+        currency=shop.currency
+      %}
+    </div>
+  {% endif %}
+
+  {# do not remove, the last product gallery is laggy without this line (only Safari) #}
+  <div style="width: 100%; height: 0; position: relative;"></div>
+</div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const productId = '{{product.uniqid}}';
+
+    new SellixCheckoutProductComponent(
+      `.{{ localClass }}`,
+      '{{shop.name}}',
+      productId,
+      {{renderOptions | dump | safe}},
+    );
+
+    $(document).on(`SellixCartUpdateEvent`, (e, eventInfo) => {
+      const id = eventInfo && eventInfo.productId;
+      const action = (eventInfo && eventInfo.action) || 'update';
+
+      if (action === 'delete' && (!productId || id === productId)) {
+        const addonsStore = new SellixProductAddonsStore('{{ shop.name }}');
+        addonsStore.clear(productId);
+      }
+    });
+  });
+</script>

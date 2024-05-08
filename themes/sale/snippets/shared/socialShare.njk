@@ -1,0 +1,43 @@
+{% set id = uid() %}
+
+{% set properties = args.properties %}
+
+{% set fontSize = safe_get(properties.icon_size, 16) %}
+{% set fontColor = safe_get(properties.icon_color, 'light_font_color') %}
+
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }} {
+    font-size: {{ fontSize }}px;
+    color: {{ fontColor | get_color }};
+  }
+
+  .{{ localClass }} svg {
+    width: {{ fontSize }}px;
+    height: {{ fontSize }}px;
+  }
+</style>
+
+<a
+  href="javascript:void(0);"
+  class="social-share-button {{ localClass }} {{ args.class }}"
+  data-sharer="{{ args.name }}"
+  data-url="{{ args.url or global.currentUrl }}"
+  data-title="{{ args.title }}"
+>
+  {% if args.name == 'instapaper' %}
+    {% render_snippet 'Icons: Instapaper' %}
+  {% elif args.name == 'baidu' %}
+    {% render_snippet 'Icons: Baidu' %}
+  {% else %}
+    <i class="{{ args.icon_class }}"></i>
+  {% endif %}
+</a>
+
+<script type="application/javascript">
+  const element_{{ id }} = document.querySelector('.{{ localClass }}');
+  if (element_{{ id }}) {
+    element_{{ id }}.setAttribute('data-url', '{{ args.url }}' || window.location.href);
+  }
+</script>

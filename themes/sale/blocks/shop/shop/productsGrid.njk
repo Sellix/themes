@@ -1,0 +1,413 @@
+{% set shopInfo = global.common.shopInfo %}
+{% set shop = shopInfo.shop %}
+{% set theme = global.common.theme %}
+
+{% set visibility = safe_get(properties.visibility, 'visible') %}
+{% set limit = safe_get(properties.grid_limit, 0) | int %}
+{% set customClass = safe_get(properties.custom_class, '') %}
+{% set orderType = safe_get(properties.grid_order_type, 'none') %}
+{% set orderDirection = safe_get(properties.grid_order_direction, 'asc') %}
+{% set defaultOrderType = shop.default_sort %}
+{% set filterType = safe_get(properties.grid_filter_type, 'none') %}
+{% set filterName = safe_get(properties.grid_filter_name, id) %}
+{% set expandGroup = safe_get(properties.grid_expand_group, false) %}
+{% set showGroup = safe_get(properties.grid_show_group, true) %}
+{% set showInfo = safe_get(properties.grid_show_info, true) %}
+{% set showProduct = safe_get(properties.grid_show_product, true) %}
+{% set showSubscription = safe_get(properties.grid_show_subscription, true) %}
+{% set showViewAllButton = safe_get(properties.grid_show_view_all_button, false) %}
+
+{% set products = [] %}
+{% if expandGroup %}
+  {% for productId, product in shopInfo.products %}
+    {% set products = (products.push(product), products) %}
+  {% endfor %}
+{% else %}
+  {% for itemId in shopInfo.items %}
+    {% set products = (products.push(shopInfo.products[itemId]), products) %}
+  {% endfor %}
+{% endif %}
+
+{% set items = [] %}
+{% for product in products %}
+  {% if product.isGroup and showGroup %}
+    {% set items = (items.push(product), items) %}
+  {% elif product.isInfo and showInfo %}
+    {% set items = (items.push(product), items) %}
+  {% elif product.isProduct and showProduct %}
+    {% set items = (items.push(product), items) %}
+  {% elif product.isSubscription and showSubscription %}
+    {% set items = (items.push(product), items) %}
+  {% else %}
+  {% endif %}
+{% endfor %}
+
+{% if orderType and orderType != 'none' %}
+  {% set items = items | sort_products({ 'sortType': orderType, 'direction': orderDirection, field: orderField }) %}
+{% endif %}
+
+{% set orderField = null %}
+{% if orderType == 'none' %}
+  {% if defaultOrderType in ['PRICE', 'NAME', 'TYPE', 'STOCK'] %}
+    {% if defaultOrderType == 'PRICE' %}
+      {% set orderField = 'min_price' %}
+    {% elif defaultOrderType == 'NAME' %}
+      {% set orderField = 'title' %}
+    {% elif defaultOrderType == 'TYPE' %}
+      {% set orderField = 'product_type_weight' %}
+      {% set orderDirection = 'desc' %}
+    {% elif defaultOrderType == 'STOCK' %}
+      {% set orderField = 'stock' %}
+      {% set orderDirection = 'desc' %}
+    {% endif %}
+
+    {% set items = items | sort_products({ 'sortType': 'field', 'direction': orderDirection, field: orderField }) %}
+  {% endif %}
+{% endif %}
+
+{% if filterType and product %}
+  {% set items = items | filter_products({
+    'filterType': filterType,
+    'productId': product.uniqid,
+    'excludeProductIds': [product.uniqid]
+  }) %}
+{% endif %}
+
+{% set hideOutOfStock = shop.hide_out_of_stock %}
+
+{% set placeholderType = safe_get(properties.grid_card_placeholder_type, 'auto') %}
+{% set containerShadow = safe_get(properties.container_shadow, 'none') %}
+{% set containerBorderRadius = safe_get(properties.container_border_radius, '0.5') %}
+{% set backgroundColor = safe_get(properties.grid_background_color, 'transparent') %}
+{% set showBorder = safe_get(properties.grid_show_border, true) %}
+{% set paddingVert = safe_get(properties.container_padding_vert, 0) %}
+{% set paddingHoriz = safe_get(properties.container_padding_horiz, 0) %}
+{% set columnGap = safe_get(properties.grid_column_gap, 30) %}
+{% set rowGap = safe_get(properties.grid_row_gap, 30) %}
+{% set itemsPerRowType = safe_get(properties.grid_items_per_row_type, 'static') %}
+{% set itemsPerRowDesktop = safe_get(properties.grid_items_per_row_desktop, 4) | int %}
+{% set itemsPerRowTablet = safe_get(properties.grid_items_per_row_tablet, 2) | int %}
+{% set itemsPerRowMobile = safe_get(properties.grid_items_per_row_mobile, 1) | int %}
+
+{% set globalCardProps = themeProperties.cards %}
+{% set customCardPropsEnabled = safe_get(properties.grid_card_properties_enabled, false) %}
+{% if customCardPropsEnabled %}
+  {% set cardProps = {
+    'items_per_row_type': itemsPerRowType,
+    'placeholder_type': placeholderType,
+    'show_product_type_badge': safe_get(properties.grid_show_product_type_badge, true),
+    'image_height': safe_get(properties.grid_card_image_height, globalCardProps.product_card_image_height),
+    'image_border_radius': safe_get(properties.grid_card_image_border_radius, globalCardProps.product_card_image_border_radius),
+    'background_color': safe_get(properties.grid_card_background_color, globalCardProps.product_card_background_color),
+    'show_border': safe_get(properties.grid_card_show_border, globalCardProps.product_card_show_border),
+    'border_radius': safe_get(properties.grid_card_border_radius, globalCardProps.product_card_border_radius),
+    'shadow': safe_get(properties.grid_card_shadow, globalCardProps.product_card_shadow),
+    'info_padding_horiz': safe_get(properties.grid_card_info_padding_horiz, globalCardProps.product_card_info_padding_horiz),
+    'info_padding_vert': safe_get(properties.grid_card_info_padding_vert, globalCardProps.product_card_info_padding_vert),
+    'title_font_color': safe_get(properties.grid_card_title_font_color, globalCardProps.product_card_title_font_color),
+    'title_font_size': safe_get(properties.grid_card_title_font_size, globalCardProps.product_card_title_font_size),
+    'title_font_weight': safe_get(properties.grid_card_title_font_weight, globalCardProps.product_card_title_font_weight),
+    'title_line_height': safe_get(properties.grid_card_title_line_height, globalCardProps.product_card_title_line_height),
+    'title_text_align': safe_get(properties.grid_card_title_text_align, globalCardProps.product_card_title_text_align),
+    'description_font_color': safe_get(properties.grid_card_description_font_color, globalCardProps.product_card_description_font_color),
+    'description_font_size': safe_get(properties.grid_card_description_font_size, globalCardProps.product_card_description_font_size),
+    'description_font_weight': safe_get(properties.grid_card_description_font_weight, globalCardProps.product_card_description_font_weight),
+    'price_font_color': safe_get(properties.grid_card_price_font_color, globalCardProps.product_card_price_font_color),
+    'price_font_size': safe_get(properties.grid_card_price_font_size, globalCardProps.product_card_price_font_size),
+    'price_font_weight': safe_get(properties.grid_card_price_font_weight, globalCardProps.product_card_price_font_weight)
+  } %}
+{% else %}
+  {% set cardProps = {
+    'items_per_row_type': itemsPerRowType,
+    'placeholder_type': placeholderType,
+    'show_product_type_badge': safe_get(properties.grid_show_product_type_badge, true),
+    'image_height': safe_get(globalCardProps.product_card_image_height, 247),
+    'image_border_radius': safe_get(globalCardProps.product_card_image_border_radius, 8),
+    'background_color': safe_get(globalCardProps.product_card_background_color, 'background_accent_dark'),
+    'show_border': safe_get(globalCardProps.product_card_show_border, true),
+    'border_radius': safe_get(globalCardProps.product_card_border_radius, 8),
+    'shadow': safe_get(globalCardProps.product_card_shadow, 'none'),
+    'info_padding_horiz': safe_get(globalCardProps.product_card_info_padding_horiz, 0),
+    'info_padding_vert': safe_get(globalCardProps.product_card_info_padding_vert, 0),
+    'title_font_color': safe_get(globalCardProps.product_card_title_font_color, 'light_font_color'),
+    'title_font_size': safe_get(globalCardProps.product_card_title_font_size, 16),
+    'title_font_weight': safe_get(globalCardProps.product_card_title_font_weight, 400),
+    'title_line_height': safe_get(globalCardProps.product_card_title_line_height, 24),
+    'title_text_align': safe_get(globalCardProps.product_card_title_text_align, 'start'),
+    'description_font_color': safe_get(globalCardProps.product_card_description_font_color, 'dark_font_color'),
+    'description_font_size': safe_get(globalCardProps.product_card_description_font_size, 14),
+    'description_font_weight': safe_get(globalCardProps.product_card_description_font_weight, 400),
+    'price_font_color': safe_get(globalCardProps.product_card_price_font_color, 'brand_color'),
+    'price_font_size': safe_get(globalCardProps.product_card_price_font_size, 16),
+    'price_font_weight': safe_get(globalCardProps.product_card_price_font_weight, 500)
+  } %}
+{% endif %}
+
+{% if itemsPerRowType == 'dynamic' %}
+  {% if limit > 0 and limit < items | length  %}
+    {% set itemsCount = limit %}
+  {% else %}
+    {% set itemsCount = items | length %}
+  {% endif %}
+
+  {% set itemsPerRowDesktop = itemsPerRowDesktop if itemsPerRowDesktop < itemsCount else itemsCount %}
+  {% set itemsPerRowTablet = itemsPerRowTablet if itemsPerRowTablet < itemsCount else itemsCount %}
+  {% set itemsPerRowMobile = itemsPerRowMobile if itemsPerRowMobile < itemsCount else itemsCount %}
+{% endif %}
+
+{% set activeCategory = 'all' %}
+{% if ['category', 'shop'].includes(global.request.type) %}
+  {% set activeCategory = safe_get(global.request.options.itemId, 'all') %}
+{% endif %}
+
+{% set localClass = [globalClass, '-', id] | join %}
+
+<style>
+  .{{ localClass }}__container {
+    background: {{ backgroundColor | get_color }};
+    border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
+    padding: {{ paddingVert }}px {{ paddingHoriz }}px;
+    box-shadow: {{ containerShadow }};
+    border-radius: {{ containerBorderRadius }}px;
+  }
+
+  .{{ localClass }}__products {
+    display: grid;
+    grid-template-columns: repeat({{ itemsPerRowDesktop }}, minmax(50px, 1fr));
+    grid-column-gap: {{ columnGap }}px;
+    grid-row-gap: {{ rowGap }}px;
+  }
+
+  @media (max-width: 768px) {
+    .{{ localClass }}__products {
+      grid-template-columns: repeat({{ itemsPerRowTablet }}, minmax(50px, 1fr));
+    }
+  }
+  @media (max-width: 640px) {
+    .{{ localClass }}__products {
+      grid-template-columns: repeat({{ itemsPerRowMobile }}, minmax(50px, 1fr));
+    }
+  }
+
+  .grid-one-column {
+    grid-template-columns: repeat(1, 1fr)!important;
+  }
+</style>
+
+<div class="{{ globalClass }}__container {{ localClass }}__container {{ 'grid-one-column' if items.length == 0 }} {{ customClass }}">
+  <div class="{{ globalClass }}__products-loader {{ localClass }}__products-loader {{ 'd-none' if activeCategory == 'all' }}">
+    {% render_snippet
+      'Shared: Loader',
+      properties={
+        background_color: bgColor or 'button_text_color',
+        color: labelColor or 'button_color'
+      }
+    %}
+  </div>
+  <div class="{{ globalClass }}__products {{ localClass }}__products">
+    {% set visibleProductsCnt = 0 %}
+    {% for item in items %}
+      {% if limit > 0 and visibleProductsCnt >= limit %}
+        {# Skip items out of limit #}
+      {% else %}
+        {% if hideOutOfStock and item.type !== "INFO_CARD" and item.stock === 0 %}
+          {# hide Out of stock products #}
+          {% elif item.unlisted == 1 %}
+          {# hide unlisted products #}
+        {% else %}
+          {% set visibleProductsCnt = visibleProductsCnt + 1 %}
+          <div
+            data-product-id="{{item.uniqid}}"
+            class="{{ globalClass }}__cards {{ localClass }}__cards"
+            style="{{ 'display: none' if activeCategory != 'all' }}"
+          >
+            {% if item.isInfo %}
+              {% set atLeastOneHasImages = items | atLeastOneHasImages %}
+              {% render_snippet
+                'Card: Info',
+                count=items.length,
+                atLeastOneHasImages=atLeastOneHasImages,
+                product=item,
+                theme=theme,
+                properties=cardProps
+              %}
+            {% elif item.isSubscription %}
+              {% render_snippet
+                'Card: Subscription',
+                product=item,
+                theme=theme,
+                properties=cardProps
+              %}
+            {% elif item.isProduct %}
+              {% render_snippet
+                'Card: Product',
+                product=item,
+                theme=theme,
+                properties=cardProps
+              %}
+            {% elif item.isGroup %}
+              {% render_snippet
+                'Card: Group',
+                count=items.length,
+                group=item,
+                theme=theme,
+                properties=cardProps
+              %}
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  {% if showViewAllButton %}
+    <div class="{{ globalClass }}__view-all-button">
+      {% render_snippet 'Shared: Link button',
+        properties={
+        'label': 'shop.shared.titles.viewAllProducts' | t,
+        'url': 'shop'
+      }
+      %}
+    </div>
+  {% endif %}
+
+  <div
+    class="empty-message-container empty-search {{ localClass}}__empty-container {{ globalClass}}__empty-container {{ 'd-none' if items.length > 0 or (items.length === 0 and visibility !== 'visible') }}"
+  >
+    {% render_snippet 'Icons: No products' %}
+
+    <div class="empty-message-info {{ globalClass }}__empty-info">
+      <div class="empty-message-title">
+        <b>{{ 'shop.main.productList.items.noProductsTitle' | t }}</b>
+      </div>
+      <div class="empty-message-subtitle">
+        {{ 'shop.main.productList.items.noProductsSubtitle' | t }}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if items | length > 0 %}
+  <script type='application/javascript'>
+    $(document).ready(function () {
+      const filterStore = new window.SellixProductFilterStore(
+        '{{ shop.name }}',
+        '{{ filterName }}',
+        {
+          search: '',
+          category: '{{ activeCategory }}',
+          sort: '{{ shop.default_sort }}'
+        },
+      );
+
+      const sortByDefault = (a, b) => items.findIndex((it) => it.uniqid === a.uniqid) - items.findIndex((it) => it.uniqid === b.uniqid);
+      const sortByPrice = (a, b) => +a.min_price - +b.min_price;
+      const sortByName = (a, b) => a.title < b.title ? -1 : a.title > b.title ? 1 : 0;
+      const sortByType = (a, b) => b.product_type_weight - a.product_type_weight;
+      const sortByStock = (a, b) => (b.stock === -1 ? 1000000000 : b.stock) - (a.stock === -1 ? 1000000000 : a.stock);
+
+      const sortFunc = {
+        "DEFAULT": sortByDefault,
+        "PRICE": sortByPrice,
+        "NAME": sortByName,
+        "TYPE": sortByType,
+        "STOCK": sortByStock
+      };
+
+      const items = filterItems(SellixContext.getShopItems());
+      const categories = SellixContext.getShopCategories();
+      const itemsMap = Object.fromEntries(SellixContext.getShopProducts().map((product) => [product.uniqid, product]));
+
+      function filterItems(items) {
+        return items.filter((item) => {
+          return (item.isGroup && {{ showGroup }}) || (item.isInfo && {{ showInfo }}) ||
+            (item.isProduct && {{ showProduct }}) || (item.isSubscription && {{ showSubscription }})
+        });
+      }
+
+      function filterProducts() {
+        const currentFilter = filterStore.get();
+
+        let filteredItems = items;
+
+        if (currentFilter.category !== 'all') {
+          const categoryObj = categories.filter((cat) => cat.uniqid === currentFilter.category)?.[0];
+          if (categoryObj) {
+            filteredItems = [...categoryObj.products_bound, ...categoryObj.groups_bound];
+          }
+        }
+
+        filteredItems = filteredItems.filter(item => {
+          let hasProduct = false;
+          if (item.isGroup) {
+            if (item.products_bound && item.products_bound.length) {
+              hasProduct = item.products_bound.find(
+                ({ title }) => title.toLowerCase().includes(currentFilter.search.toLowerCase())
+              );
+            }
+          }
+
+          return hasProduct || item.title.toLowerCase().includes(currentFilter.search.toLowerCase());
+        });
+
+        filteredItems = filterItems(filteredItems);
+
+        const filteredItemIds = filteredItems.map(item => `${item.uniqid}`);
+        $('.{{ localClass }}__cards[data-product-id]')
+          .hide()
+          .filter((idx, el) => filteredItemIds.includes(`${$(el).data('product-id')}`))
+          .show();
+
+        if (filteredItemIds.length === 0) {
+          $('.{{ localClass }}__products').addClass('grid-one-column')
+          $('.{{ localClass }}__empty-container.empty-search').removeClass('d-none');
+        } else {
+          $('.{{ localClass }}__products').removeClass('grid-one-column')
+          $('.{{ localClass }}__empty-container').addClass('d-none');
+        }
+
+        if (currentFilter.sort) {
+          const sf = sortFunc[currentFilter.sort] ?? sortFunc.DEFAULT;
+          const sorted = $('.{{ localClass }}__cards[data-product-id]').detach().sort((a, b) => {
+            const prA = itemsMap[$(a).data('product-id')];
+            const prB = itemsMap[$(b).data('product-id')];
+            return sf(prA, prB);
+          });
+          $('.{{ localClass }}__products').append(sorted);
+        }
+      }
+
+      $(document).on('SellixProductListFilterChangeEvent', (e, eventInfo) => {
+        const { name } = eventInfo;
+        if (name === '{{ filterName }}') {
+          filterProducts();
+        }
+      });
+      
+      try{
+        $('.{{ localClass }}__products-loader').addClass('d-none');
+        filterProducts();
+      } catch (e) {
+        $('.{{ localClass }}__cards').show();
+      }
+    });
+  </script>
+{% elif settings.group_names_to_hide or settings.group_name %}
+
+  <script type="application/javascript">
+    switch ('{{ properties.visibility }}') {
+      case 'invisible_empty':
+        break;
+      case 'invisible_group_empty':
+        const event = new CustomEvent(
+          'SellixHideGroupEvent',
+          { detail: { groupName: '{{ settings.group_names_to_hide or settings.group_name }}' } },
+        );
+        setTimeout(() => document.dispatchEvent(event), 0);
+        break;
+      default:
+        break
+    }
+  </script>
+
+{% endif %}

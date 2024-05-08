@@ -27,7 +27,10 @@
       const activeVariant = this.store.get(this.productId);
       if (activeVariant) {
         jQuery(this.selector).removeClass('active');
-        jQuery(`${this.selector}[data-variant='${activeVariant.title}']`).addClass('active');
+        const $activeVariant = jQuery(`${this.selector}[data-variant]`).filter(function () {
+          return $(this).data('variant') === activeVariant.title;
+        });
+        $activeVariant.addClass('active');
       }
     };
 
