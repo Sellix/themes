@@ -475,51 +475,5 @@
         "slug": "/products",
         "template_type": "PRODUCT_LIST",
         "settings": []
-    },
-    "trust": {
-      "name": "Trust",
-      "slug": "/trust",
-      "template_type": "TRUST",
-      "settings": {
-        "title": "{{ 'pages.shop.trust.title' | t | safe }}",
-        "meta_tags": [
-          {
-            "name": "og:title",
-            "content": "{{ 'pages.shop.trust.title' | t | safe }}"
-          },
-          {
-            "name": "twitter:title",
-            "content": "{{ 'pages.shop.trust.title' | t | safe }}"
-          },
-          {
-            "name": "description",
-            "content": "{{ 'pages.shop.trust.description' | t | safe }}"
-          },
-          {
-            "name": "og:description",
-            "content": "{{ 'pages.shop.trust.description' | t | safe }}"
-          },
-          {
-            "name": "twitter:description",
-            "content": "{{ 'pages.shop.trust.description' | t | safe }}"
-          },
-          {
-            "name": "twitter:site",
-            "content": "@{{global.common.shopInfo.shop.name}}"
-          },
-          {
-            "name": "og:image",
-            "content": "{{ cdn_link(global.common.shopInfo.shop.cloudflare_image_id, 'avatar') if global.common.shopInfo.shop.cloudflare_image_id else [global.config.CDN_PREVIEWS_URL, '/shop.png'] | join }}"
-          },
-          {
-            "name": "twitter:image",
-            "content": "{{ cdn_link(global.common.shopInfo.shop.cloudflare_image_id, 'avatar') if global.common.shopInfo.shop.cloudflare_image_id else [global.config.CDN_PREVIEWS_URL, '/shop.png'] | join }}"
-          },
-          {
-            "name": "twitter:card",
-            "content": "summary_large_image"
-          }
-        ]
-      }
     }
   }

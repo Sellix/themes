@@ -37,10 +37,6 @@
           {{product.title}}
         </div>
 
-        {% if not onHold %}
-          <span class="sellix-card-tax" style="color: var(--darkFontColor)"></span>
-        {% endif %}
-
         {% if onHold %}
           <span
             class="sellix-card-description"
@@ -59,8 +55,9 @@
               style="color: {{ colors[cardsProps.product_card_price_font_color] }}; font-size: {{ cardsProps.product_card_price_font_size }}px; font-weight: {{ cardsProps.product_card_price_font_weight }};"
             >
               {{currencyOptions.symbol}}{{product.price_display}}
-            </span>
+            </span>            
           </div>
+          <span class="sellix-card-tax" style="color: var(--darkFontColor)">+</span>
         {% endif %}
       </div>
     </div>
