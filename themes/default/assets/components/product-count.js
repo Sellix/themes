@@ -7,7 +7,7 @@
       this.productId = product.uniqid;
       this.renderOptions = renderOptions;
       this.activePriceVariant = null;
-      this.hideStockCounter = hideStockCounter
+      this.hideStockCounter = hideStockCounter;
 
       this.$root = jQuery(selector);
 

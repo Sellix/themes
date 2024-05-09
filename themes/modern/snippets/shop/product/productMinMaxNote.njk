@@ -53,15 +53,28 @@
 
 <script type='application/javascript'>
   $(document).ready(function() {
+    const variantsStore = new window.SellixProductVariantsStore('{{ shop.name }}');
     const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
     const currencyConfig = SellixContext.getCurrencyConfig();
     const productId = '{{product.uniqid}}';
-    const discountList = JSON.parse({{product.volume_discounts  | dump | safe}})
+    const product = window.SellixContext.getShopProduct(productId);
+    const isVariant = product.price_variants && product.price_variants.length;
+    const discountList = JSON.parse(product.volume_discounts)
       .volume_discounts
       .sort((a, b) => +a.quantity - +b.quantity);
 
     const render = function ({ quantity }) {
-      let nextDiscount = discountList.find(discount => !(+quantity >= +discount.quantity));
+      const activePriceVariant = isVariant
+        ? variantsStore.get(productId, null)
+        : null;
+      const stock = isVariant && activePriceVariant && product.type === 'SERIALS'
+        ? activePriceVariant.stock
+        : product.stock;
+      let nextDiscount = discountList.find(discount => {
+        return !(+quantity >= +discount.quantity)
+          && (+discount.quantity <= product.quantity_max || product.quantity_max === -1)
+          && (+discount.quantity <= stock || stock === -1);
+      });
 
       const minimum = +quantity === +{{quantity_min}} && {{quantity_min}} !== {{quantity_max}} && {{quantity_min}} > 1;
       const maximum = +quantity === +{{quantity_max}} && {{quantity_min}} !== {{quantity_max}};
@@ -131,6 +144,14 @@
       namespace: renderOptions.id,
     });
     $(document).on(`SellixCartUpdateEvent ${renderEvent}`, (e, eventInfo) => {
+      if (!eventInfo || !eventInfo.productId || eventInfo.productId === productId) {
+        const product = cart.getItemById(productId);
+        if (product) {
+          render(product);
+        }
+      }
+    });
+    $(document).on('SellixProductVariantsUpdateEvent', (e, eventInfo) => {
       if (!eventInfo || !eventInfo.productId || eventInfo.productId === productId) {
         const product = cart.getItemById(productId);
         if (product) {
