@@ -49,10 +49,18 @@
 
 .snippet-checkout-product__title {
   display: flex;
+  gap: 0.5rem;
   flex-direction: column;
   justify-content: space-between;
   align-items: start;
   margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .snippet-checkout-product__title {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 .snippet-checkout-product__title-text {
@@ -333,4 +341,40 @@
   .snippet-checkout-product__details {
     flex-direction: column;
   }
+}
+
+.snippet-checkout-product__product-min-max-note .snippet-product-minmax-note {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-end;
+}
+
+@media (max-width: 768px) {
+  .snippet-checkout-product__product-min-max-note .snippet-product-minmax-note {
+    align-items: flex-start;
+  }
+}
+
+.snippet-checkout-product__product-min-max-note .snippet-product-minmax-note .sellix-next-discount {
+  width: 100%;
+}
+
+.snippet-product-minmax-note__next-discount-button {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex!important;
+  gap: 0.25rem!important;
+  font-weight: 400!important;
+  color: var(--black5)!important;
+  background-color: var(--white)!important;
+  border: 1px solid var(--borderColor)!important;
+}
+
+.snippet-product-minmax-note__next-discount-button b {
+  color: var(--darkFontColor);
+}
+
+.snippet-product-minmax-note .quantity-message .min {
+  display: inline-block;
 }
