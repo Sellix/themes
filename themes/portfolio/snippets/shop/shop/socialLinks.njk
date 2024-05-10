@@ -122,6 +122,9 @@
   .sellix-social-toggle-wrap.hide {
     display: none;
   }
+  .sellix-social .fa-chevron-down:before{
+    color: var(--white);
+  }
 </style>
 
 {% set shop = global.common.shopInfo.shop %}
@@ -178,7 +181,7 @@
 <div class="sellix-social {% if not shop.crisp_website_id and not shop.helpspace_widget_id and not shop.helpspace_client_id and not shop.helpspace_token %}no-crisp{% endif %} unselectable">
   {% if link_length > 2 %}
     <a class="chevron">
-      <i style="font-size: 16px; color: white; padding: 1rem;" class="sellix-social-more fa-regular fa-chevron-down"></i>
+      <i style="font-size: 16px; color: var(--white); padding: 1rem;" class="sellix-social-more fa-regular fa-chevron-down"></i>
     </a>
   {% endif %}
   {% for item in links %}
