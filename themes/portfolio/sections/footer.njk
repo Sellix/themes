@@ -3,8 +3,8 @@
 
 {% set menuProps = themeProperties.menu %}
 
-<footer>
-<div style="display: flex; align-items: center;flex-direction: column;">
+<footer class="{{ 'mt-5' if global.request.type != 'invoice' }}">
+  <div style="display: flex; align-items: center;flex-direction: column;">
       {% if properties.footer_logo_image %}
         <a href="">
           <div class="sellix-footer-logo-image">
@@ -17,37 +17,37 @@
         </a>
       {% endif %}
 
-      <div class="sellix-footer-shop-name">
-        <a href="" style="width: 230px;align-items: center;height: 100%;padding: 0 1rem 0 0;">
-          <span style="color: {{ colors[properties.footer_shop_name_font_color] if properties.footer_shop_name_font_color else 'inherit' }}; font-size: {{ properties.footer_shop_name_font_size }}px; font-weight: {{ properties.footer_shop_name_font_weight }};">
-            {% if properties.footer_shop_name %}
-              {{ properties.footer_shop_name }}
-            {% else %}
-              {{shop.name}}
-            {% endif %}
-          </span>
-        </a>
-      </div>
+{#      <div class="sellix-footer-shop-name">#}
+{#        <a href="" style="width: 230px;align-items: center;height: 100%;padding: 0 1rem 0 0;">#}
+{#          <span style="color: {{ colors[properties.footer_shop_name_font_color] if properties.footer_shop_name_font_color else 'inherit' }}; font-size: {{ properties.footer_shop_name_font_size }}px; font-weight: {{ properties.footer_shop_name_font_weight }};">#}
+{#            {% if properties.footer_shop_name %}#}
+{#              {{ properties.footer_shop_name }}#}
+{#            {% else %}#}
+{#              {{shop.name}}#}
+{#            {% endif %}#}
+{#          </span>#}
+{#        </a>#}
+{#      </div>#}
     </div>
 
-    <div class="sellix-menu">
-    {% for item in menu.items %}
-      {% set active = item.page_slug == slug %}
-      {% if item.page_slug != "/" %}
-        {% set active = item.page_slug in slug %}
-      {% endif %}
-      {% if item.page_slug == "/contact" and "/ticket" in slug %}
-        {% set active = true %}
-      {% endif %}
-      <a
-        href="{{ locale_prefix }}{{item.page_slug}}"
-        class="menu-tab {{'active' if active else ''}}"
-        style="font-size: {{ menuProps.menu_tab_font_size }}px; color: {{ colors[menuProps.menu_tab_font_color] }}; font-weight: {{ menuProps.menu_tab_font_weight }};"
-      >
-        {{item.title | t}}
-      </a>
-    {% endfor %}
-    </div>
+{#    <div class="sellix-menu">#}
+{#    {% for item in menu.items %}#}
+{#      {% set active = item.page_slug == slug %}#}
+{#      {% if item.page_slug != "/" %}#}
+{#        {% set active = item.page_slug in slug %}#}
+{#      {% endif %}#}
+{#      {% if item.page_slug == "/contact" and "/ticket" in slug %}#}
+{#        {% set active = true %}#}
+{#      {% endif %}#}
+{#      <a#}
+{#        href="{{ locale_prefix }}{{item.page_slug}}"#}
+{#        class="menu-tab {{'active' if active else ''}}"#}
+{#        style="font-size: {{ menuProps.menu_tab_font_size }}px; color: {{ colors[menuProps.menu_tab_font_color] }}; font-weight: {{ menuProps.menu_tab_font_weight }};"#}
+{#      >#}
+{#        {{item.title | t}}#}
+{#      </a>#}
+{#    {% endfor %}#}
+{#    </div>#}
 
     <div class="sellix-footer"
     style="background: {{ colors[properties.footer_background_color] }};
