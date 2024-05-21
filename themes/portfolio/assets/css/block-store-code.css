@@ -5,58 +5,146 @@
   width: 100%;
   align-items: center;
   justify-content: center;
-  background: var(--black9);
+  background: white;
+}
+
+.is-dark .sellix-template {
+  background: #1B1F23;
 }
 
 #app {
   overflow: hidden;
 }
 
-.sellix-store-code-container {
-
+.block-store-code-form {
+  display: flex;
+  justify-content: center;
 }
 
-.sellix-store-code {
+.block-store-code-form__container {
+  min-width: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  row-gap: 1.5rem;
 }
 
-.sellix-store-code-title {
-  font-size: 1rem;
-  line-height: 1.5rem;
+@media (max-width: 400px) {
+  .block-store-code-form__container {
+    min-width: initial;
+    padding: 0 1rem;
+  }
+}
+
+.block-store-code-form__icon svg {
+  width: 184px;
+  height: 144px;
+  flex-shrink: 0;
+}
+
+.block-store-code-form__title {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+}
+
+.block-store-code-form__title h3 {
+  margin: 0;
+  color: var(--darkFontColor);
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.is-dark .block-store-code-form__title h3 {
+  color: #ffffff;
+}
+
+.block-store-code-form__title h4 {
+  margin: 0;
+  color: var(--lightFontColor);
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
   font-weight: 400;
-  color: white;
-  text-align: center;
-  margin-bottom: 1rem;
+  line-height: 20px;
 }
 
-.sellix-store-code-form {
-
+.is-dark .block-store-code-form__title h4 {
+  color: #A2AAB4;
 }
 
-.sellix-store-code .sellix-store-code-form input {
+.block-store-code-form__form {
+  align-self: stretch;
+}
+
+.block-store-code-form__form input {
   font-size: 1rem !important;
-  text-align: center;
-  background: var(--black6) !important;
-  color: white !important;
-  border-color: var(--black3) !important;
+  text-align: start;
+  color: var(--darkFontColor);
+
+  display: flex;
+  height: 40px!important;
+  padding: 11px 14px 12px 14px;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+
+  border: 1px solid var(--borderColor);
+  border-radius: 0.5rem;
+  width: 100%;
+  transition: border 0.3s ease;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
 }
 
-
-.sellix-store-code .sellix-store-code-form input::placeholder {
-  font-size: 1rem;
-  color: var(--black2);
+.is-dark .block-store-code-form__form input {
+  background: #121417!important;
+  border-color: #262A30!important;
 }
 
-.sellix-store-code .sellix-store-code-form .sellix-label {
+.block-store-code-form__form input::placeholder {
+  color: var(--black3);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.block-store-code-form__form .sellix-label {
   display: none;
 }
 
-.sellix-store-code .sellix-store-code-form button {
-  margin: 0 auto;
+.block-store-code-form__form button.button {
+  min-height: 36px;
   width: 100%;
-  min-height: 32px;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600!important;
+  line-height: normal;
+
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--black1);
+  user-select: none;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0 1.25rem;
+  white-space: nowrap;
+  background-color: var(--black9);
+  outline: none;
+  border-radius: 0.5rem;
   border: none;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.block-store-code-form__form .snippet-input-text {
+  margin-bottom: 1rem;
 }
