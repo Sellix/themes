@@ -3,7 +3,7 @@
 {% set rating = args.rating %}
 {% set size = safe_get(args.size, 25) %}
 {% set iconsCount = safe_get(args.iconsCount, 5) %}
-{% set iconName = safe_get(args.icon_name, 'smooth') %}
+{% set iconName = safe_get(args.icon_name, 'smooth2') %}
 {% set color = safe_get(args.color, 'var(--orange6)') %}
 {% set emptyColor = safe_get(args.empty_color, 'transparent') %}
 {% set borderColor = safe_get(args.empty_color, 'var(--orange6)') %}
@@ -28,6 +28,8 @@
         iconsCount: {{ iconsCount or 5 }},
         readonly: {{ readonly }},
         iconName: '{{ iconName }}',
+        strokeColor: '{{ color }}',
+        strokeWidth: 4,
         onClick: (value) => {
           {% if onClickFuncName %}
             {{ onClickFuncName }}(value / 20);
