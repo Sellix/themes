@@ -61,14 +61,14 @@
               <span class="sellix-price">
                 {% render_snippet 'Price', currency=group.min_price_item.currency, price=group.min_price_item.price_display %}
               </span>
-              
+
             </div>
           {% else %}
             <span>{{ 'shop.main.cards.group.outOfProducts' | t }}</span>
           {% endif %}
         </span>
       </div>
-      <span class="sellix-card-tax" style="color: var(--darkFontColor)">+</span>
+      <span class="sellix-card-tax" style="color: var(--darkFontColor)"></span>
     </div>
   </div>
 </div>
@@ -115,7 +115,7 @@
 
     if(shopInfo.shop.display_tax_on_storefront && taxAmount) {
       taxAmount = parseFloat(Number(taxAmount).toFixed(2));
-      $('#sellix-card-container-{{ id }} .sellix-card .sellix-card-tax').append(`<span>${taxAmount}% {{ 'shop.main.cards.product.tax' | t }}</span>`);
+      $('#sellix-card-container-{{ id }} .sellix-card .sellix-card-tax').append(`<span>+${taxAmount}% {{ 'shop.main.cards.product.tax' | t }}</span>`);
     }
   });
 </script>

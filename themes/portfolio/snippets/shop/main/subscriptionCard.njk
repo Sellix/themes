@@ -55,9 +55,9 @@
               style="color: {{ colors[cardsProps.product_card_price_font_color] }}; font-size: {{ cardsProps.product_card_price_font_size }}px; font-weight: {{ cardsProps.product_card_price_font_weight }};"
             >
               {{currencyOptions.symbol}}{{product.price_display}}
-            </span>            
+            </span>
           </div>
-          <span class="sellix-card-tax" style="color: var(--darkFontColor)">+</span>
+          <span class="sellix-card-tax" style="color: var(--darkFontColor)"></span>
         {% endif %}
       </div>
     </div>
@@ -81,7 +81,7 @@
 
     if(shopInfo.shop.display_tax_on_storefront && taxAmount) {
       taxAmount = parseFloat(Number(taxAmount).toFixed(2));
-      $('#sellix-card-container-{{ id }} .sellix-card .sellix-card-tax').append(`<span>${taxAmount}% {{ 'shop.main.cards.product.tax' | t }}</span>`);
+      $('#sellix-card-container-{{ id }} .sellix-card .sellix-card-tax').append(`<span>+${taxAmount}% {{ 'shop.main.cards.product.tax' | t }}</span>`);
     }
   });
 </script>
