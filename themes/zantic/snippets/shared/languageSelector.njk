@@ -1,0 +1,127 @@
+{% set id = uid() %}
+{% set properties = args.properties %}
+{% set inputsProps = themeProperties.inputs %}
+{% set localesList = [] %}
+{% for locale, localeInfo in global.locales.supportedLocales %}
+  {% set localesList = (localesList.push(localeInfo), localesList) %}
+{% endfor %}
+
+{% set globalClass = 'snippet-language-selector' %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass  }} .select2-container--sellix-lng-selector .select2-selection--single {
+    background-color: {{ inputsProps.select_background | get_color }}!important;
+  }
+
+  .{{ localClass  }} .select2-container--sellix-lng-selector .select2-selection__rendered {
+    color: {{ inputsProps.common_font_color | get_color }};
+    font-size: {{ inputsProps.common_font_size }}px;
+    font-weight: {{ inputsProps.common_font_weight }};
+  }
+
+  .select2-container--sellix-lng-selector .select2-dropdown {
+    border: {{ "1px solid var(--borderColor)" if inputsProps.dropdown_show_border else "none" }} !important;
+    background-color: {{ inputsProps.select_background | get_color }} !important;
+  }
+
+  .select2-container--sellix-lng-selector .select2-results__option {
+    font-size: {{ inputsProps.dropdown_option_font_size }}px !important;
+    font-weight: {{ inputsProps.dropdown_option_font_weight }};
+    color: {{ inputsProps.dropdown_option_font_color | get_color }};
+  }
+
+  .select2-container--sellix-lng-selector .select2-results__option.select2-results__option--highlighted {
+    background-color: {{ inputsProps.dropdown_option_background_hover | get_color }} !important;
+  }
+</style>
+
+<div class="{{ globalClass }} {{ localClass  }} d-none position-relative">
+  <select id="language-selector" class="">
+    {% for localeInfo in localesList | sort(false, false, 'title') %}
+      <option
+        value="{{ localeInfo.code }}"
+        {{'selected' if localeInfo.code == global.locales.locale else ''}}
+        data-img-url="{{ localeInfo.imgUrl }}"
+      >
+        {{- localeInfo.title -}}
+      </option>
+    {% endfor %}
+  </select>
+</div>
+
+<script type='application/javascript'>
+  $(document).ready(function() {
+    let selectedLanguage = '{{ global.locales.locale }}';
+    const optionFactory = (state, isResult) => {
+      const $element = $(state.element);
+      const imgUrl = $element.data('imgUrl');
+
+      if (!state.id) {
+        return state.text;
+      }
+
+      let isMobile = window.sellixHelper.isMobile();
+      let title =  state.text;
+      const chevronSvg = `<svg style="min-width: 20px" width="20" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5.5 12.5L10.5 7.5L15.5 12.5" stroke="#555D67" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`;
+
+      const tickSvg = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 10.1667L8 14.3333L16 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`;
+
+      return $(`
+        <div style="display: flex; align-items: center; column-gap: 0.25rem;">
+          ${isMobile && isResult && imgUrl
+            ? `<img alt="${title}" style="height:18px;width: 18px;" src="${imgUrl}" />`
+            : ''
+          }
+          ${isMobile && isResult && imgUrl ? '' : title}
+          ${isResult
+            ? chevronSvg
+            : state.id === selectedLanguage
+              ? tickSvg
+              : ''
+          }
+        </div>
+    `);
+    }
+
+    $('#language-selector').select2({
+      dropdownAutoWidth: true,
+      width: 'auto',
+      dropdownParent: $('.{{ localClass  }}'),
+      minimumResultsForSearch: Infinity,
+      templateSelection: (state) => optionFactory(state, true),
+      templateResult: (state) => optionFactory(state),
+      escapeMarkup: (m) => m,
+      theme: 'sellix-lng-selector',
+    })
+    .on('select2:select', (e) => {
+      selectedLanguage = e.params.data.id;
+      const oldLocale = '{{ global.locales.locale }}';
+      const newLocale = e.params.data.id;
+      if (oldLocale !== newLocale) {
+        const pathParts = window.location.pathname.split('/').filter((p) => !!p);
+        if (pathParts.length && pathParts[0] === oldLocale) {
+          pathParts.shift();
+        }
+
+        if (newLocale !== '{{ global.locales.defaultLocale }}') {
+          pathParts.unshift(newLocale);
+        }
+
+        window.location.href = `/${pathParts.join('/')}` + (pathParts.length === 1 ? '/' : '');
+      }
+    })
+    .on('select2:open', (e) => {
+        $('.{{ localClass  }}').find('.select2-dropdown').addClass('animated flipIn');
+      })
+    .on('select2:closing', (e) => {
+        $('.{{ localClass  }}').find('.select2-dropdown').removeClass('animated flipIn');
+    });
+
+    $('.{{ localClass  }}').removeClass('d-none');
+  });
+</script>

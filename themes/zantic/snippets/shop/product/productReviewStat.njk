@@ -1,0 +1,38 @@
+{% set id = uid() %}
+{% set product = args.product %}
+{% set properties = args.properties %}
+
+{% set size = safe_get(args.size, 16) %}
+{% set iconsCount = safe_get(args.icons_count, 5) %}
+
+{% set globalClass = ['snippet-product-review-stat'] %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }} {
+    {{ safe_get_style('color', properties.font_color | get_color, '') }}
+    {{ safe_get_style('font-size', properties.font_size, 'px') }}
+    {{ safe_get_style('font-weight', properties.font_weight) }}
+    {{ safe_get_style('line-height', properties.line_height, 'px') }}
+  }
+</style>
+
+<div class="{{ globalClass }} {{ localClass }}">
+  {% if product.average_score %}
+    <div class="{{ globalClass }}__stars {{ localClass }}__stars">
+      {% render_snippet
+        'Shared: Rating star',
+        rating=product.average_score,
+        size=size,
+        iconsCount=iconsCount,
+        color=(fontColor | get_color)
+      %}
+    </div>
+    <div class="{{ globalClass }}__score {{ localClass }}__score">
+      {{ product.average_score | float | round(1) | to_fixed(1) }}
+      <span class="reviews-count">
+          ({{ 'shop.shared.reviews.reviewsWithCount' | t({count: product.feedback.total}) }})
+        </span>
+    </div>
+  {% endif %}
+</div>

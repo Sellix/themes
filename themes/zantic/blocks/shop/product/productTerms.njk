@@ -1,0 +1,11 @@
+{% set id = uid() %}
+{% set product = global.common.productInfo.product %}
+{% set type = properties.type %}
+
+{% if type | lower == 'badge' %}
+  {% render_snippet 'Product: TOS Badge', product=product, properties=properties %}
+{% elif type | lower == 'plain_text' %}
+  {% render_snippet 'Product: TOS Collapsable', product=product, properties=properties, collapsable=false %}
+{% elif type | lower == 'collapsable' %}
+  {% render_snippet 'Product: TOS Collapsable', product=product, properties=properties, collapsable=true %}
+{% endif %}

@@ -1,0 +1,42 @@
+<style>
+.d-flex.flex-column.align-items-end {
+  color: var(--darkFontColor) !important;
+}
+
+.snippet-product-info .snippet-product-info__title {
+  color: var(--brandColor)!important;
+  font-size: 36px!important;
+  font-weight: 700!important;
+  margin-bottom: 16px!important;
+}
+
+.snippet-product-info .snippet-price__price, .snippet-product-info .initial-price {
+  color: var(--brandColor)!important;
+  font-size: 24px!important;
+  font-weight: 500!important;
+  line-height: 32px!important;
+}
+
+.snippet-product-info__price-info {
+  margin-top: 16px!important;
+}
+.snippet-product-info .initial-price {
+  color: var(--black3)!important;
+}
+
+</style>
+
+{% set shop = global.common.shopInfo.shop %}
+
+{% for section in settings.section_order %}
+  {% render_section section %}
+{% endfor %}
+{% render_snippet 'Product: TOS Modal' %}
+{% render_snippet 'Product: Warranty modal' %}
+
+
+<script type='application/javascript'>
+  $(document).ready(() => {
+    window.SellixAnalyticsManager.sendViewItem();
+  })
+</script>

@@ -1,0 +1,75 @@
+{% set id = uid() %}
+{% set product = args.product %}
+{% set properties = args.properties %}
+{% set pageSize = properties.page_size if properties.page_size is defined else 5 %}
+
+{% set pageCount = (product.feedback.list | length / pageSize) | int + 1 %}
+
+{% set globalClass = 'snippet-product-feedback' %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }} {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(50px, 1fr));
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+  }
+
+  .{{ localClass }}.is-empty {
+    grid-template-columns: repeat(1, minmax(50px, 1fr));
+  }
+
+  @media (max-width: 768px) {
+    .{{ localClass }} {
+      grid-template-columns: repeat(1, minmax(50px, 1fr));
+    }
+  }
+</style>
+
+<div class="{{ globalClass }} {{ localClass }} is-empty">
+  {% if product.feedback.list | length == 0 %}
+    <div class="empty-message-container {{ globalClass }}__empty">
+      {% render_snippet 'Icons: No feedback' %}
+
+      <span class="empty-message-title {{ globalClass }}__empty-title">
+        <b>{{ 'shop.shared.reviews.notFoundTitle' | t }}</b>
+      </span>
+      <span class="empty-message-subtitle {{ globalClass }}__empty-title">
+        {{ 'shop.shared.reviews.notFoundMessage' | t }}
+      </span>
+    </div>
+  {% else %}
+    {% for feedback in product.feedback.list %}
+      {% set page = (loop.index0 / pageSize) | int %}
+      <div
+        class="{{ globalClass}}__feedback-card {{ localClass }}__feedback-card  {{ 'd-none' if page > 0 else '' }}"
+        data-feedback-page="{{ page }}"
+      >
+        {% render_snippet 'Feedback: Card', feedback=feedback, properties=properties %}
+      </div>
+    {% endfor %}
+
+    {% if pageCount > 1 %}
+      <div class="{{ globalClass }}__btn-view-more {{ localClass }}__btn-view-more">
+        {{ 'shop.shared.titles.viewMore' | t }}
+      </div>
+    {% endif %}
+  {% endif %}
+</div>
+
+<script type="application/javascript">
+  $(document).ready(function() {
+    const pageCount = {{ pageCount }};
+    let activePage = 0;
+    const $viewMoreBtn = $('.{{ localClass }}__btn-view-more');
+    $viewMoreBtn.on('click', function() {
+      activePage += 1;
+      $(`.{{ localClass }}__feedback-card[data-feedback-page=${activePage}]`).removeClass('d-none');
+
+      if ((activePage + 1) >= pageCount) {
+        $viewMoreBtn.addClass('d-none');
+      }
+    });
+  });
+</script>

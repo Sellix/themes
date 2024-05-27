@@ -1,0 +1,129 @@
+{% set layoutId = args.layoutId or uid() %}
+{% set menuProps = themeProperties.mobile_menu %}
+{% set shop = global.common.shopInfo.shop %}
+{% set subscription = global.common.shopInfo.subscription %}
+
+{% set fullWidth = safe_get(properties.fullwidth, false) %}
+{% set bgColor = safe_get(properties.background_color, 'background_main_color') %}
+
+{% set fullWidth = safe_get(properties.fullwidth, false) %}
+{% set shadow = safe_get(properties.shadow, 'none') %}
+{% set showBorder = safe_get(properties.show_border, true) %}
+{% set logoImage = safe_get(themeProperties.common.logo_image, null) %}
+{% set logoType = safe_get(properties.logo_type, 'logo') %}
+{% set logoImageSize = safe_get(properties.logo_image_size, 30) %}
+{% set logoImageBorderRadisu = safe_get(properties.logo_image_border_radius, 8) %}
+{% set shopName = safe_get(themeProperties.common.shop_name, null) or shop.name %}
+{% set shopNameFontColor = safe_get(properties.shop_name_font_color, 'dark_font_color') %}
+{% set shopNameFontSize = safe_get(properties.shop_name_font_size, 18) %}
+{% set shopNameFontWeight = safe_get(properties.shop_name_font_weight, 700) %}
+{% set shopNameLineHeight = safe_get(properties.shop_name_line_height, 20) %}
+
+{% set localClass = id %}
+
+<style>
+  .{{ globalClass }} {
+    box-shadow: {{ shadow }};
+    border-bottom: {{ "1px solid var(--borderColorLight)" if showBorder else "none" }};
+    background-color: {{ bgColor | get_color }};
+  }
+  .{{ localClass }}__shop-name {
+    color: {{ shopNameFontColor | get_color }};
+    font-family: Aclonica;
+    font-size: {{ shopNameFontSize }}px;
+    font-weight: {{ shopNameFontWeight }};
+    line-height: {{ shopNameLineHeight }}px;
+  }
+  .{{ localClass }} .sidebar-toggler {
+    color: {{ shopNameFontColor | get_color }};
+  }
+  .{{ localClass }}__logo-image img {
+    height: {{ logoImageSize }}px;
+    width: auto;
+    border-radius: {{ logoImageBorderRadisu }}px;
+  }
+</style>
+
+<header id="sellix-header-{{ layoutId }}" class="{{ globalClass }}__header {{ localClass }}__header {{ 'full-width' if fullWidth else 'content-width' }}">
+  <div class="{{ globalClass }}__container {{ localClass }}__container">
+    <div class="{{ globalClass }}__logo">
+      <div class="sidebar-toggler">
+        {% render_snippet
+          'Burger button',
+          localClass=['sellix-header-', id] | join,
+          properties={
+            'color': menuProps.menu_icon_font_color
+          }
+        %}
+      </div>
+
+      <div class="{{ globalClass }}__logo-wrapper">
+        {% if logoImage and logoType in ['logo', 'logo_or_name', 'logo_and_name'] %}
+          <a href="" class="{{ globalClass }}__logo-image {{ localClass }}__logo-image">
+            <img
+              src="{{ logoImage }}"
+              alt="{{ shop.name }}"
+            >
+          </a>
+        {% endif %}
+
+        {% if shopName and (logoType in ['name', 'logo_and_name'] or (not logoImage and logoType in ['logo_or_name'])) %}
+          <a href="" class="{{ globalClass }}__shop-name {{ localClass }}__shop-name">
+            <span>
+              {{ shopName }}
+            </span>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="{{ globalClass }}__main-menu justify-content-end">
+      {% render_block 'Menu' %}
+    </div>
+
+    {% if themeProperties.currency.is_selector_enabled %}
+      <div class="{{ globalClass }}__currency-selector">
+        {% render_snippet 'Currency selector', properties=properties %}
+      </div>
+    {% endif %}
+
+    {% if themeProperties.locale.is_selector_enabled %}
+      <div class="{{ globalClass }}__language-selector">
+        {% render_snippet 'Language selector', properties=properties %}
+      </div>
+    {% endif %}
+
+    {% if themeProperties.customer_login.is_enabled %}
+      <div class="{{ globalClass }}__customer-login">
+        {% render_block 'Customer login' %}
+      </div>
+    {% endif %}
+
+    {% if themeProperties.cart.is_enabled and global.request.type !== 'invoice' %}
+      <div class="{{ globalClass }}__cart">
+          {% render_block 'Cart' %}
+      </div>
+    {% endif %}
+  </div>
+</header>
+
+<script>
+  $(document).ready(function() {
+    $('.{{ globalClass }}-global-{{ id }} .sidebar-toggler').click(function() {
+      const $mobileMenu = $('.snippet-mobile-sidebar-menu');
+      const $toggler = $('.sidebar-toggler');
+
+      if ($mobileMenu.hasClass('open')) {
+        $mobileMenu.removeClass('open');
+        $toggler.removeClass('open');
+        window.sellixHelper.enableScroll();
+        $(document).trigger('SellixMobileMenu', { action: 'close' });
+      } else {
+        $mobileMenu.addClass('open');
+        $toggler.addClass('open');
+        window.sellixHelper.disableScroll();
+        $(document).trigger('SellixMobileMenu', { action: 'open' });
+      }
+    });
+  });
+</script>

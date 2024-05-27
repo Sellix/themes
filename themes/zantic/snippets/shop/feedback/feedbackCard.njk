@@ -1,0 +1,136 @@
+{% set id = uid() %}
+{% set created_at = args.feedback.created_at * 1000 %}
+{% set message = args.feedback.message %}
+{% set reply = args.feedback.reply %}
+{% set score = args.feedback.score %}
+{% set color = 'var(--orange6)' %}
+{% set cardsProps = themeProperties.cards %}
+{% set properties = args.properties %}
+
+{% set containerBackgroundColor = safe_get(properties.card_background_color, cardsProps.feedback_card_background_color) %}
+{% set containerShowBorder = safe_get(properties.card_show_border, cardsProps.feedback_card_show_border) %}
+{% set containerBorderRadius = safe_get(properties.card_border_radius, cardsProps.feedback_card_border_radius) %}
+{% set containerShadow = safe_get(properties.card_shadow, cardsProps.feedback_card_shadow) %}
+{% set containerPaddingHoriz = safe_get(properties.card_padding_horiz, cardsProps.feedback_card_padding_horiz) %}
+{% set containerPaddingVert = safe_get(properties.card_padding_vert, cardsProps.feedback_card_padding_vert) %}
+
+{% set messageColor = safe_get(properties.message_font_color, cardsProps.feedback_card_message_text_font_color) %}
+{% set messageFontSize = safe_get(properties.message_font_size, cardsProps.feedback_card_message_text_font_size) %}
+{% set messageFontWeight = safe_get(properties.message_font_weight, cardsProps.feedback_card_message_text_font_weight) %}
+{% set messageLineHeight = safe_get(properties.message_line_height, cardsProps.feedback_card_message_text_line_height) %}
+{% set messageAlign = safe_get(properties.message_align, cardsProps.feedback_card_message_text_align) %}
+
+{% set replyBgColor = safe_get(properties.reply_background_color, cardsProps.feedback_card_reply_background_color) %}
+{% set replyShowBorder = safe_get(properties.reply_show_border, cardsProps.feedback_card_reply_show_border) %}
+{% set replyColor = safe_get(properties.reply_font_color, cardsProps.feedback_card_reply_text_font_color) %}
+{% set replyFontSize = safe_get(properties.reply_font_size, cardsProps.feedback_card_reply_text_font_size) %}
+{% set replyFontWeight = safe_get(properties.reply_font_weight, cardsProps.feedback_card_reply_text_font_weight) %}
+{% set replyLineHeight = safe_get(properties.reply_line_height, cardsProps.feedback_card_reply_text_line_height) %}
+{% set replyAlign = safe_get(properties.reply_align, cardsProps.feedback_card_reply_text_align) %}
+
+{% set globalClass = 'snippet-feedback-card' %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }} {
+    display: flex;
+    min-height: 124px;
+    gap: 24px;
+    background: {{ containerBackgroundColor | get_color }};
+    border-radius: {{ containerBorderRadius }}px!important;
+    box-shadow: {{ containerShadow }};
+    border: {{ "1px solid var(--borderColor)" if containerShowBorder else "none" }};
+    padding: {{ containerPaddingVert }}px {{ containerPaddingHoriz }}px;
+    
+  }
+
+  .snippet-feedback-card:not(:last-child) {
+    border-bottom: 1px solid var(--borderColor);
+  }
+
+  .{{ localClass }}__leftColumn {
+    width: 188px;
+    display: flex;
+    padding-right: 24px;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid var(--borderColor)
+  }
+
+  .{{ localClass }}__message {
+    color: {{ messageColor | get_color }};
+    font-size: {{ messageFontSize }}px;
+    font-weight: {{ messageFontWeight }};
+    line-height: {{ messageLineHeight }}px;
+  }
+
+  .{{ localClass }}__reply {
+    background: {{ replyBgColor | get_color }};
+    border: {{ "1px solid var(--borderColor)" if replyShowBorder else "none" }};
+    color: {{ replyColor | get_color }};
+    font-size: {{ replyFontSize }}px;
+    font-weight: {{ replyFontWeight }};
+    line-height: {{ replyLineHeight }}px;
+  }
+
+  .{{ localClass }}__header {
+  }
+
+  .{{ localClass }}__verification {
+    margin-top: 0px;
+    color: var(--brandColor);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+  }
+  
+  .{{ localClass }}__date {
+    color: var(--contrastDarkFontColor);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+  }
+
+  .{{ localClass }}__rating {
+
+  }
+</style>
+
+<div class="{{ globalClass }} {{ localClass }}">
+  <div class="{{ globalClass }}__leftColumn {{ localClass }}__leftColumn">
+    <div class="{{ globalClass }}__verification {{ localClass }}__verification">
+      <span class="{{ globalClass }}__rating {{ localClass }}__rating">
+        {% render_snippet 'Icons: Check circular' %}
+      </span>
+
+      <span>{{ 'shop.feedback.card.verifiedPurchase' | t }}</span>
+    </div>
+
+    <div class="{{ globalClass }}__date {{ localClass }}__date">
+      {{['shared.months', created_at | date_format('MMMM')] | join('.') | lower | t()}}
+      {{created_at | date_format('DD')}},
+      {{created_at | date_format('YYYY')}}
+    </div>
+
+  </div>
+
+  <div class="{{ globalClass }}__rightColumn {{ localClass }}__rightColumn">
+    <div class="{{ globalClass }}__card-rating {{ localClass }}__card-rating">
+      {% render_snippet 'Shared: Rating star', rating=score, size=12, color=color %}
+    </div>
+
+    <div class="{{ globalClass }}__review {{ localClass }}__review">
+      <div class="{{ globalClass }}__message {{ localClass }}__message text-align-{{ messageAlign }}">
+        {{message}}
+      </div>
+      {% if reply %}
+        <div class="{{ globalClass }}__reply {{ localClass }}__reply text-align-{{ replyAlign }}">
+          {{reply}}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  
+</div>

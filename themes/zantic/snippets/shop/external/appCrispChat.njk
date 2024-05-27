@@ -1,0 +1,18 @@
+{% set crispWebsiteId = global.common.shopInfo.shop.crisp_website_id %}
+
+<script type='application/javascript'>
+  $(document).ready(function() {
+    const crispWebsiteId = '{{ crispWebsiteId }}';
+
+    if (crispWebsiteId) {
+      window.$crisp = [];
+      window.CRISP_WEBSITE_ID = crispWebsiteId;
+      let script = document.createElement('script');
+      script.src = 'https://client.crisp.chat/l.js';
+      script.type = 'text/javascript';
+      script.async = true;
+      script.id = 'crisp';
+      document.getElementsByTagName('head')[0].appendChild(script);
+    }
+  });
+</script>
