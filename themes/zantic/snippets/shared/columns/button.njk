@@ -1,0 +1,24 @@
+{% set id = uid() %}
+{% set properties = args.properties %}
+
+{% set bgColor = safe_get(properties.background_color, 'dark_font_color') %}
+{% set label = properties.label %}
+{% set labelColor = properties.label_color %}
+{% set labelFontSize = properties.label_font_size %}
+{% set labelFontWeight = properties.label_font_weight %}
+{% set url = properties.url %}
+{% set showButtonBorder = safe_get(properties.showButtonBorder, false) %}
+
+
+{% render_snippet 'Shared: Link button',
+  properties={
+    'background_color': bgColor,
+    'label': label,
+    'label_color': labelColor,
+    'label_font_size': labelFontSize,
+    'label_font_weight': labelFontWeight,
+    'url': url,
+    'icon_snippet': 'Icons: Arrow right 1',
+    'show_button_border': showButtonBorder
+}
+%}

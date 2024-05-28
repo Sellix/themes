@@ -1,0 +1,182 @@
+{% set id = uid() %}
+{% set feedbackId = args.feedbackId %}
+{% set feedback = args.feedback %}
+{% set score = feedback.score if feedback.score else 5 %}
+{% set message = feedback.message if feedback.message else '' %}
+{% set properties = args.properties %}
+{% set messageId = uid() %}
+
+{% set formSize = safe_get(properties.form_size, '100%') %}
+{% set bgColor = safe_get(properties.container_background, 'background_accent_light') %}
+{% set showBorder = safe_get(properties.container_show_border, true) %}
+{% set shadow = safe_get(properties.container_shadow, 'none') %}
+{% set borderRadius = safe_get(properties.container_border_radius, 0) %}
+{% set paddingVert = safe_get(properties.container_padding_vert, 16) %}
+{% set paddingHoriz = safe_get(properties.container_padding_horiz, 16) %}
+
+{% set title = properties.title %}
+{% set titleFontColor = safe_get(properties.title_font_color, 'light_font_color') %}
+{% set titleFontSize = safe_get(properties.title_font_size, 20) %}
+{% set titleFontWeight = safe_get(properties.title_font_weight, 500) %}
+{% set titleLineHeight = safe_get(properties.title_line_height, 20) %}
+{% set titleTextAlign = safe_get(properties.title_text_align, 'start') %}
+
+{% set subtitle = properties.sub_title %}
+{% set subtitleFontColor = safe_get(properties.sub_title_font_color, 'dark_font_color') %}
+{% set subtitleFontSize = safe_get(properties.sub_title_font_size, 14) %}
+{% set subtitleFontWeight = safe_get(properties.sub_title_font_weight, 400) %}
+{% set subtitleLineHeight = safe_get(properties.sub_title_line_height, 14) %}
+{% set subtitleTextAlign = safe_get(properties.sub_title_text_align, 'start') %}
+
+{% set starRatingTitle = properties.star_rating_title %}
+{% set starRatingTitleFontColor = safe_get(properties.star_rating_title_font_color, 'light_font_color') %}
+{% set starRatingTitleFontSize = safe_get(properties.star_rating_title_font_size, 20) %}
+{% set starRatingTitleFontWeight = safe_get(properties.star_rating_title_font_weight, 500) %}
+{% set starRatingTitleLineHeight = safe_get(properties.star_rating_title_line_height, 20) %}
+{% set starRatingTitleTextAlign = safe_get(properties.star_rating_title_text_align, 'start') %}
+
+{% set globalClass = 'snippet-feedback-form' %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }}__form {
+    margin: auto;
+    width: {{ formSize }};
+    background: {{ bgColor | get_color }};
+    border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
+    box-shadow: {{ shadow }};
+    border-radius: {{ borderRadius }}px;
+  }
+
+  .{{ localClass }}__star-rating-wrapper {
+    padding: {{ paddingVert }}px {{ paddingHoriz }}px;
+  }
+
+  .{{ localClass }}__message-wrapper {
+    padding: {{ paddingVert }}px {{ paddingHoriz }}px;
+  }
+
+  .{{ localClass }}__delimiter {
+    padding: 0 {{ paddingHoriz }}px;
+  }
+
+  .{{ localClass }}__title {
+    color: {{titleFontColor | get_color }};
+    font-size: {{ titleFontSize }}px;
+    font-weight: {{ titleFontWeight }};
+    line-height: {{ titleLineHeight }}px;
+  }
+
+  .{{ localClass }}__text {
+    color: {{subtitleFontColor | get_color }};
+    font-size: {{ subtitleFontSize }}px;
+    font-weight: {{ subtitleFontWeight }};
+    line-height: {{ subtitleLineHeight }}px;
+  }
+
+  .{{ localClass }}__star-rating-title {
+    color: {{starRatingTitleFontColor | get_color }};
+    font-size: {{ starRatingTitleFontSize }}px;
+    font-weight: {{ starRatingTitleFontWeight }};
+    line-height: {{ starRatingTitleLineHeight }}px;
+  }
+</style>
+
+<div class="{{ globalClass }}">
+  <form class="{{ globalClass }}__form {{ localClass }}__form" onsubmit="return false">
+    <div class="{{ globalClass }}__star-rating-wrapper {{ localClass }}__star-rating-wrapper">
+      {% if starRatingTitle %}
+      <h5 class="{{ globalClass }}__star-rating-title {{ localClass }}__star-rating-title text-align-{{ starRatingTitleTextAlign }}">
+        {{ starRatingTitle | t}}
+      </h5>
+      {% endif %}
+
+      <div class="{{ globalClass }}__star-rating">
+        {% render_snippet
+          'Shared: Rating star',
+          rating=score,
+          size=25,
+          readonly='false',
+          on_click=['onClickRating_', id] | join('')
+        %}
+      </div>
+    </div>
+
+    <div class="{{ globalClass }}__delimiter {{ localClass }}__delimiter">
+      {% render_snippet 'Shared: Horizontal delimiter' %}
+    </div>
+
+    <div class="{{ globalClass }}__message-wrapper {{ localClass }}__message-wrapper">
+      <div>
+        {% if title %}
+          <h5 class="{{ globalClass }}__title {{ localClass }}__title text-align-{{ titleTextAlign }}">
+            {{ title | t}}
+          </h5>
+        {% endif %}
+
+        {% if subtitle %}
+          <p class="{{ globalClass }}__text {{ localClass }}__text text-align-{{ subtitleTextAlign }}">
+            {{ properties.feedback_form_sub_title | t}}
+          </p>
+        {% endif %}
+      </div>
+
+      {% render_snippet 'Shared: Text area',
+        selector=messageId,
+        name="message",
+        placeholder=("shop.feedback.textPlaceholder" | t),
+        className="pt-3 pb-3",
+        value=message
+      %}
+
+      <div class="{{ globalClass }}__snippet-feedback-form justify-content-{{ properties.feedback_form_button_position or start }}">
+        {% render_snippet 'Shared: Ripple button',
+          button_id=['leave-feedback-submit-', id] | join,
+          type='submit',
+          title=(properties.button_title | t),
+          class="mt-4"
+        %}
+      </div>
+    </div>
+  </form>
+</div>
+
+<script type='application/javascript'>
+  let formComponent, score = {{ score }};
+  function onClickRating_{{ id }}(value) {
+    if (formComponent) {
+      score = value;
+      formComponent.setScore(value);
+    }
+  }
+
+  $(document).ready(function () {
+    formComponent = new SellixLeaveFeedbackComponent(
+      '.{{ localClass }}__form',
+      '{{messageId}}',
+      '{{feedbackId}}',
+      score,
+    );
+
+    $('.{{ localClass }}__form').validate({
+      errorElement: 'div',
+      errorClass: 'invalid-feedback',
+      rules: {
+        message: {
+          maxlength: 256,
+        },
+      },
+      messages: {
+        message: {
+          maxlength: '{{ shop.feedback.tooLongMessage | t }}',
+        },
+      },
+      highlight: function(element, errorClass) {
+        $(element).addClass('is-invalid').removeClass(errorClass);
+      },
+      unhighlight: function(element, errorClass) {
+        $(element).removeClass('is-invalid').removeClass(errorClass);
+      },
+    });
+  });
+</script>
