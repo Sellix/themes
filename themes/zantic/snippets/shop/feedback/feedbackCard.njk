@@ -41,7 +41,6 @@
     box-shadow: {{ containerShadow }};
     border: {{ "1px solid var(--borderColor)" if containerShowBorder else "none" }};
     padding: {{ containerPaddingVert }}px {{ containerPaddingHoriz }}px;
-    
   }
 
   .snippet-feedback-card:not(:last-child) {
@@ -49,15 +48,19 @@
   }
 
   .{{ localClass }}__leftColumn {
-    width: 188px;
+    min-width: 190px;
     display: flex;
-    padding-right: 24px;
     flex-direction: column;
     justify-content: space-between;
-    border-right: 1px solid var(--borderColor)
+  }
+
+  .{{ localClass }}__rightColumn {
+    padding-left: 24px;
+    border-left: 1px solid var(--borderColor)
   }
 
   .{{ localClass }}__message {
+    text-wrap: balance;
     color: {{ messageColor | get_color }};
     font-size: {{ messageFontSize }}px;
     font-weight: {{ messageFontWeight }};
@@ -96,6 +99,12 @@
   .{{ localClass }}__rating {
 
   }
+
+  @media only screen and (max-width: 600px) {
+  .snippet-feedback-card {
+    flex-direction: column;
+  }
+}
 </style>
 
 <div class="{{ globalClass }} {{ localClass }}">

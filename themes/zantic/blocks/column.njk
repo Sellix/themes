@@ -1,6 +1,8 @@
 {% set id = args.id or uid() %}
 
 {% set itemsAlign = safe_get(properties.items_align, 'center') %}
+{% set contentAlign = safe_get(properties.content_align, 'center') %}
+
 {% set minWidthDesktop = properties.min_width_desktop %}
 {% set maxWidthDesktop = properties.max_width_desktop %}
 {% set minHeightDesktop = properties.min_height_desktop %}
@@ -20,26 +22,35 @@
 {% set paddingVertMobile = safe_get(properties.padding_vert_mobile, 96) %}
 {% set paddingHorizMobile = safe_get(properties.padding_horiz_mobile, 36) %}
 
+{% set borderRadiusTopLeft = safe_get(properties.border_top_left_radius, 0) %}
+{% set borderRadiusTopRight = safe_get(properties.border_top_right_radius, 0) %}
+{% set borderRadiusBottomLeft = safe_get(properties.border_bottom_left_radius, 0) %}
+{% set borderRadiusBottomRight = safe_get(properties.border_bottom_right_radius, 0) %}
+
 {% set showOnDesktop = safe_get(properties.show_desktop, true) %}
 {% set showOnTablet = safe_get(properties.show_tablet, true) %}
 {% set showOnMobile = safe_get(properties.show_mobile, true) %}
 
 {% set bgImage = properties.background_image %}
 {% set bgColor = properties.background_color %}
-{% set borderRadius = safe_get(properties.border_radius, 0) %}
 
 {% set localClass = id %}
 
 <style>
   .{{ localClass }} {
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: {{ contentAlign }};
     padding: {{ paddingVertDesktop }}px {{ paddingHorizDesktop }}px;
     justify-self: {{ itemsAlign }};
-    border-radius: {{ borderRadius }}px;
+    border-top-left-radius: {{ borderRadiusTopLeft }}px;
+    border-top-right-radius: {{ borderRadiusTopRight }}px;
+    border-bottom-left-radius: {{ borderRadiusBottomLeft }}px;
+    border-bottom-right-radius: {{ borderRadiusBottomRight }}px;
     {% if bgImage %}
       background: url({{bgImage | asset_url}});
       background-repeat: no-repeat, no-repeat;
-      background-position: top;
+      background-position: right;
       background-size: cover;
     {% elif bgColor %}
       background-color: {{ bgColor | get_color }};
