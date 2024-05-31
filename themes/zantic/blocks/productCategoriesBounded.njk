@@ -1,0 +1,52 @@
+{% set textFontColor = safe_get(properties.text_font_color, 'dark_font_color') %}
+{% set textFontSize = safe_get(properties.text_font_size, 16) %}
+{% set textFontWeight = safe_get(properties.text_font_weight, 400) %}
+{% set textLineHeight = safe_get(properties.text_line_height, 24) %}
+
+{% set categoryFontColor = safe_get(properties.category_font_color, 'brand_color') %}
+{% set categoryFontSize = safe_get(properties.category_font_size, 16) %}
+{% set categoryFontWeight = safe_get(properties.category_font_weight, 400) %}
+{% set categoryLineHeight = safe_get(properties.category_line_height, 24) %}
+
+{% set globalClass = ['block-product-categories-bundled'] %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }} {
+    display: flex;
+    margin-bottom: 8px;
+  }
+
+  .{{ localClass }}__text {
+    color: {{ textFontColor | get_color }};
+    font-size: {{ textFontSize }}px;
+    font-weight: {{ textFontWeight }};
+    line-height: {{ textLineHeight }}px;
+  }
+
+  .{{ localClass }}__category {
+    margin-left: 6px;
+    color: {{ categoryFontColor | get_color }};
+    font-size: {{ categoryFontSize }}px;
+    font-weight: {{ categoryFontWeight }};
+    line-height: {{ categoryLineHeight }}px;
+  }
+</style>
+{% set categories = global.common.shopInfo.categories %}
+{% set product = global.common.productInfo.product %}
+
+{% set productCategoryNames = [] %}
+{% for category in product.categories %}
+  {% set productCategoryNames = (productCategoryNames.push(category.title), productCategoryNames) %}
+{% endfor %}
+
+{% if productCategoryNames.length > 0 %}
+  <div class="{{ globalClass }} {{ localClass }}">
+    <div class="{{ globalClass }}__text {{ localClass }}__text">
+      in 
+    </div>
+    <div class="{{ globalClass }}__category {{ localClass }}__category">
+        {{ productCategoryNames | join(', ') }}
+    </div>
+  </div>
+{% endif %}
