@@ -68,11 +68,6 @@
 
   }
 
-  .{{ localClass }}__crumbs {
-    display: flex;
-    align-items: center;
-  }
-
   .{{ localClass }}__link-crumb {
     text-transform: capitalize;
     display: flex;
@@ -107,7 +102,7 @@
 {% endfor %}
 
 <div class="{{ globalClass }}__container {{ localClass }}__container {{ 'full-width' if properties.fullwidth else 'content-width' }}">
-  <div class="{{ localClass }}__crumbs">
+  <div class="{{ globalClass }}__crumbs">
     {% for idx in safe_range(1, 11) %}
       {% set crumbLabel = properties[['crumb_label_', idx] | join] %}
       {% set crumbUrl = properties[['crumb_url_', idx] | join] %}
