@@ -43,22 +43,31 @@
     padding: {{ containerPaddingVert }}px {{ containerPaddingHoriz }}px;
   }
 
-  .snippet-feedback-card:not(:last-child) {
-    border-bottom: 1px solid var(--borderColor);
+  
+
+  @media (min-width:1281px) { 
+    .snippet-feedback-card:not(:last-child) {
+      border-bottom: 1px solid var(--borderColor);
+    }
+
+    .{{ localClass }}__leftColumn {
+      min-width: 190px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .{{ localClass }}__rightColumn {
+      padding-left: 24px;
+      border-left: 1px solid var(--borderColor)
+    }
   }
 
   .{{ localClass }}__leftColumn {
-    min-width: 190px;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
   }
-
-  .{{ localClass }}__rightColumn {
-    padding-left: 24px;
-    border-left: 1px solid var(--borderColor)
-  }
-
+  
   .{{ localClass }}__message {
     text-wrap: balance;
     color: {{ messageColor | get_color }};

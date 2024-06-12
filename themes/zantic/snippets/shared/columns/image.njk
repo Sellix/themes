@@ -13,6 +13,12 @@
     border-bottom-left-radius: {{ properties.image_border_bottom_left_radius }}px;
     border-bottom-right-radius: {{ properties.image_border_bottom_right_radius }}px;
   }
+  
+  {% if properties.invert_image_color %}
+    .is-dark .{{ localClass }} img {
+       filter: invert(1); 
+    }
+  {% endif %}
 </style>
 
 <div class="{{ globalClass }} {{ localClass }}">

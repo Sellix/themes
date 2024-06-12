@@ -26,6 +26,7 @@
 {% set borderRadiusTopRight = safe_get(properties.border_top_right_radius, 0) %}
 {% set borderRadiusBottomLeft = safe_get(properties.border_bottom_left_radius, 0) %}
 {% set borderRadiusBottomRight = safe_get(properties.border_bottom_right_radius, 0) %}
+{% set borderRadiusMobile = safe_get(properties.border_radius_mobile, 0) %}
 
 {% set showOnDesktop = safe_get(properties.show_desktop, true) %}
 {% set showOnTablet = safe_get(properties.show_tablet, true) %}
@@ -47,6 +48,7 @@
     border-top-right-radius: {{ borderRadiusTopRight }}px;
     border-bottom-left-radius: {{ borderRadiusBottomLeft }}px;
     border-bottom-right-radius: {{ borderRadiusBottomRight }}px;
+    
     {% if bgImage %}
       background: url({{bgImage | asset_url}});
       background-repeat: no-repeat, no-repeat;
@@ -79,6 +81,7 @@
       max-width: {{ [maxWidthTablet, 'px'] | join if maxWidthTablet | int > 0 else 'none' }};
       min-height: {{ [minHeightTablet, 'px'] | join if minHeightTablet | int > 0 else 'auto' }};
       max-height: {{ [maxHeightTablet, 'px'] | join if maxHeightTablet | int > 0 else 'none' }};
+      border-radius: {{ borderRadiusMobile }}px;
     }
   }
 

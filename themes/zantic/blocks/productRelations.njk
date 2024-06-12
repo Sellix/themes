@@ -27,16 +27,16 @@
 
 {% if countVisibleTabs > 0 %}
   <style>
+    @media (min-width:1281px) { 
+      .{{ localClass }}__container {
+        padding: {{ paddingVert }}px {{ paddingHoriz }}px;
+      } 
+    }
+
     .{{ localClass }}__container {
       background: {{ bgColor | get_color }};
       border-radius: {{ borderRadius }}px;
       box-shadow: {{ shadow }};
-      padding: {{ paddingVert }}px {{ paddingHoriz }}px;
-    }
-    
-    .snippet-product-feedback__feedback-card:not(:last-child) {
-      border-bottom: 1px solid var(--borderColor)!important;
-      width: 100%;
     }
   </style>
 
