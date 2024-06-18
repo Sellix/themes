@@ -99,7 +99,12 @@
     height: {{ imageHeight }}px;
   }
   .{{ localClass }}__image, .{{ localClass }}__image img {
-    padding: 4px;
+    {% if isPlaceholder %}
+      margin: 8px;
+      width: calc(100% - 16px);
+    {% else %}
+      padding: 4px;
+    {% endif %}
     border-radius: {{ imageBorderRadius }}px;
   }
 </style>

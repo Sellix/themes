@@ -46,7 +46,7 @@
     border-radius: {{ borderRadius }}px;
     box-shadow: {{ shadow }};
   }
-  
+
   .{{ localClass }}__container:hover {
     border: 1px solid var(--brandColor);
   }
@@ -78,7 +78,12 @@
     height: {{ imageHeight }}px;
   }
   .{{ localClass }}__image, .{{ localClass }}__image img {
-    padding: 4px;
+    {% if isPlaceholder %}
+      margin: 8px;
+      width: calc(100% - 16px);
+    {% else %}
+      padding: 4px;
+    {% endif %}
     border-radius: {{ imageBorderRadius }}px;
   }
 </style>
@@ -122,7 +127,7 @@
           <div class="{{ globalClass }}__title {{ localClass }}__title justify-content-{{ titleTextAlign }}">
             {{product.title}}
           </div>
-          
+
           <div class="{{ globalClass }}__group-description-info">
             <span class="{{ globalClass }}__starting-at">
               {{ 'shop.shared.titles.startingAt' | t }}

@@ -10,6 +10,12 @@
 {% set globalClass =  'snippet-product-list' %}
 {% set localClass = id %}
 
+<style>
+  .is-dark .{{ localClass }}__option {
+    border-color: var(--black4);
+  }
+</style>
+
 <div class="{{ globalClass }} {{ localClass }}">
   {% for product in products %}
     {% set onHold = product.on_hold | int %}
@@ -27,7 +33,7 @@
     {% if hideOutOfStock and product.stock == 0 %}
       {# hide Out of stock products #}
     {% else %}
-      <div class="{{ globalClass }}__option {{'is-disabled' if isDisabled}} {{'' if cartEnabled}}">
+      <div class="{{ globalClass }}__option {{ localClass }}__option {{'is-disabled' if isDisabled}} {{'' if cartEnabled}}">
         <a
           href="{{'javascript:void(0)' if isDisabled else ['product/', product.slug or product.uniqid] | join}}"
           class="{{ globalClass }}__option-description"

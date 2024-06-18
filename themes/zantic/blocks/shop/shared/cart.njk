@@ -81,11 +81,17 @@
     border-radius: {{ bodyBorderRadius }}px;
     box-shadow: {{ bodyShadow }};
   }
+  .is-dark .{{ localClass }}__dropdown-products {
+    border: {{ '1px solid var(--black4)' if bodyShowBorder else 'none' }};
+  }
   .{{ localClass }}__dropdown-item {
     padding: {{ bodyPaddingVert }}px {{ bodyPaddingHoriz }}px;
   }
   .{{ localClass }}__dropdown-item:not(:last-of-type) {
     border-bottom: {{ '1px solid var(--borderColor)' if bodyShowBorder else 'none' }};
+  }
+  .is-dark .{{ localClass }}__dropdown-item:not(:last-of-type) {
+    border-bottom: {{ '1px solid var(--black4)' if bodyShowBorder else 'none' }};
   }
   .{{ localClass }}__dropdown-item-image img {
     width: {{ imageWidth }}px;

@@ -6,13 +6,12 @@
   word-break: break-word;
   background: var(--brandColor);
   color: var(--lightFontColor);
-  border: 1px solid var(--borderColor);
   max-width: 350px;
   width: 100%;
   padding: 2px;
   max-height: 290px;
-  border-radius: 12px;
-  box-shadow: 0px 2px 24px -2px rgba(7, 14, 35, 0.12), 0px 2px 4px -1px rgba(7, 14, 35, 0.08);
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px -1px rgba(7, 14, 35, 0.08), 0px 2px 24px -2px rgba(7, 14, 35, 0.12);;
 }
 
 @media (max-width: 768px) {
@@ -28,7 +27,7 @@
 }
 
 .is-dark div.toastify.snippet-shop-message .t-message {
-  color: var(--contrastLightFontColor);
+  color: var(--black);
 }
 
 .snippet-shop-message .t-container {
@@ -37,7 +36,7 @@
 
 .snippet-shop-message .t-content {
   align-self: stretch;
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 20px;
   background: var(--backgroundColor);
 }
@@ -64,7 +63,7 @@
     word-break: break-word;
     max-height: calc(100% - 1rem);
     overflow: auto;
-    color: var(--black4, #777F89);
+    color: var(--black, #777F89);
     font-family: Inter;
     font-size: 13px;
     font-style: normal;
@@ -74,6 +73,23 @@
 
 .snippet-shop-message .t-message::-webkit-scrollbar {
   width: 2px;
+}
+
+.t-icon {
+  display: flex;
+  align-items: center;
+}
+
+.t-close {
+  display: flex;
+  align-items: center;
+  opacity: 1;
+}
+@media (hover: hover) {
+  .t-close:hover {
+    opacity: 0.8;
+    transition: all 0.3s ease;
+  }
 }
 
 @media (hover: none) {
