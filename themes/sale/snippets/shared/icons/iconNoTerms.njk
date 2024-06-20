@@ -1,31 +1,42 @@
 {% set id = uid() %}
 
+{% set isDark = themeProperties.color_schema.dark_mode %}
+{% if isDark %}
+  {% set bgColor = 'var(--backgroundAccentDark)' %}
+  {% set line1Color = 'var(--black1)' %}
+  {% set line2Color = 'var(--black5)' %}
+{% else %}
+  {% set bgColor = 'var(--white)' %}
+  {% set line1Color = 'var(--black1)' %}
+  {% set line2Color = 'var(--black2)' %}
+{% endif %}
+
 <svg width="198" height="158" viewBox="0 0 198 158" fill="none" xmlns="http://www.w3.org/2000/svg">
   <g filter="url(#filter0_{{ id }})">
-    <rect x="7" y="5" width="184" height="120" rx="8" fill="var(--white)"/>
+    <rect x="7" y="5" width="184" height="120" rx="8" fill="{{ bgColor }}"/>
   </g>
   <mask id="mask0_10272_146793" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="7" y="5" width="184" height="120">
     <rect x="7" y="5" width="184" height="120" rx="8" fill="var(--white)"/>
   </mask>
   <g mask="url(#mask0_10272_146793)">
-    <rect x="19" y="17" width="136" height="6" rx="3" fill="var(--black2)"/>
-    <rect x="19" y="29" width="152" height="6" rx="3" fill="var(--black2)"/>
-    <rect x="19" y="41" width="125" height="6" rx="3" fill="var(--black1)"/>
-    <rect x="19" y="53" width="88" height="6" rx="3" fill="var(--black1)"/>
-    <rect x="19" y="71" width="157" height="6" rx="3" fill="var(--black2)"/>
-    <rect x="19" y="83" width="133" height="6" rx="3" fill="var(--black2)"/>
-    <rect x="19" y="95" width="150" height="6" rx="3" fill="var(--black2)"/>
-    <rect x="19" y="107" width="88" height="6" rx="3" fill="var(--black2)"/>
+    <rect x="19" y="17" width="136" height="6" rx="3" fill="{{ line2Color }}"/>
+    <rect x="19" y="29" width="152" height="6" rx="3" fill="{{ line2Color }}"/>
+    <rect x="19" y="41" width="125" height="6" rx="3" fill="{{ line1Color }}"/>
+    <rect x="19" y="53" width="88" height="6" rx="3" fill="{{ line1Color }}"/>
+    <rect x="19" y="71" width="157" height="6" rx="3" fill="{{ line2Color }}"/>
+    <rect x="19" y="83" width="133" height="6" rx="3" fill="{{ line2Color }}"/>
+    <rect x="19" y="95" width="150" height="6" rx="3" fill="{{ line2Color }}"/>
+    <rect x="19" y="107" width="88" height="6" rx="3" fill="{{ line2Color }}"/>
     <rect x="7" y="69" width="184" height="56" rx="8" fill="url(#paint0_{{ id }})"/>
   </g>
   <g filter="url(#filter1_{{ id }})">
     <circle cx="99" cy="125" r="24" fill="var(--purple0)"/>
     <circle cx="99" cy="125" r="23.5" stroke="var(--purple6)"/>
   </g>
-  <path d="M101 116V120C101 120.265 101.105 120.52 101.293 120.707C101.48 120.895 101.735 121 102 121H106" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M104 134H94C93.4696 134 92.9609 133.789 92.5858 133.414C92.2107 133.039 92 132.53 92 132V118C92 117.47 92.2107 116.961 92.5858 116.586C92.9609 116.211 93.4696 116 94 116H101L106 121V132C106 132.53 105.789 133.039 105.414 133.414C105.039 133.789 104.53 134 104 134Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M96 130H102" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M96 126H102" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M101 116V120C101 120.265 101.105 120.52 101.293 120.707C101.48 120.895 101.735 121 102 121H106" stroke="var(--purple6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M104 134H94C93.4696 134 92.9609 133.789 92.5858 133.414C92.2107 133.039 92 132.53 92 132V118C92 117.47 92.2107 116.961 92.5858 116.586C92.9609 116.211 93.4696 116 94 116H101L106 121V132C106 132.53 105.789 133.039 105.414 133.414C105.039 133.789 104.53 134 104 134Z" stroke="var(--purple6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M96 130H102" stroke="var(--purple6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M96 126H102" stroke="var(--purple6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   <defs>
     <filter id="filter0_{{ id }}" x="0" y="0" width="198" height="134" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
       <feFlood flood-opacity="0" result="BackgroundImageFix"/>
@@ -58,8 +69,8 @@
       <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_10272_146793" result="shape"/>
     </filter>
     <linearGradient id="paint0_{{ id }}" x1="99" y1="69" x2="99" y2="125" gradientUnits="userSpaceOnUse">
-      <stop stop-color="var(--white)" stop-opacity="0"/>
-      <stop offset="1" stop-color="var(--white)"/>
+      <stop stop-color="{{ bgColor }}" stop-opacity="0"/>
+      <stop offset="1" stop-color="{{ bgColor }}"/>
     </linearGradient>
   </defs>
 </svg>
