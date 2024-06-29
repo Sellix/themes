@@ -1,0 +1,84 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set product = args.product %}
+{% set subscription = global.common.shopInfo.subscription %}
+{% set cartEnabled = themeProperties.cart.is_enabled %}
+{% set possibleCartEffects = safe_get(args.possible_cart_effects, ['open_cart_modal', 'quick_checkout_button']) %}
+{% set cartEffect =
+  themeProperties.cart.effect
+  if cartEnabled and global.request.type != 'checkout' and themeProperties.cart.effect in possibleCartEffects
+  else 'none'
+%}
+{% set onHold = product.on_hold | int %}
+{% set isFree = product.price_display | float === 0 %}
+{% set isSubscription = product.type === 'SUBSCRIPTION' %}
+{% set isLicense = product.licensing_enabled %}
+{% set isPayWhatYouWant = product.pay_what_you_want %}
+
+{% set globalClass = 'snippet-cart-button-2' %}
+{% set localClass = id %}
+
+{% if product.stock | int === 0 or not cartEnabled or product.on_hold | int !== 0 %}
+  {# Do Nothing #}
+{% else %}
+  <div class="{{ globalClass }} {{ localClass }} empty {{'static' if args.isGroup else ''}} d-none">
+    <div class="{{ globalClass }}__container">
+
+      <div class="{{ globalClass }}__button" data-cart-product-minus-button="1">
+        {% render_snippet 'Icons: Minus' %}
+      </div>
+
+      <div class="{{ globalClass }}__button unselectable" data-cart-product-quantity-button="1">
+        <span class="d-none" data-cart-product-quantity-value="1">...</span>
+        <span class="cart-button-animation-wrapper" data-cart-product-first-button="cart-product-first-button">
+          {% if isSubscription %}
+            {{ 'shop.shared.titles.subscribe' | t }}
+          {% elif isLicense or isPayWhatYouWant %}
+            {{ 'shop.shared.titles.buy' | t }}
+          {% elif isFree %}
+            <span class="cart-button-animation">
+              <span class="add-to-cart">{{ 'shop.shared.titles.getIt' | t }}</span>
+              <i class="fas fa-shopping-cart"></i>
+              <i class="fas fa-box"></i>
+            </span>
+          {% else %}
+            <span class="cart-button-animation">
+              <span class="add-to-cart">{{ 'shop.shared.titles.addToCart' | t }}</span>
+              <i class="fas fa-shopping-cart"></i>
+              <i class="fas fa-box"></i>
+            </span>
+          {% endif %}
+        </span>
+      </div>
+
+      <div class="{{ globalClass }}__button" data-cart-product-plus-button="1">
+        {% render_snippet 'Icons: Plus' %}
+      </div>
+    </div>
+
+    {% if cartEffect == 'quick_checkout_button' and not isSubscription and not isLicense %}
+      <div class="d-none {{ globalClass }}__quick-checkout-container" data-quick-checkout-btn="1">
+        {% render_snippet 'Shared: Ripple button',
+          button_id=['quick-checkout-btn-', id] | join,
+          title=('shop.checkout.title' | t)
+        %}
+      </div>
+    {% endif %}
+  </div>
+
+  <script type='application/javascript'>
+    $(document).ready(function () {
+      $('.{{ localClass }}').removeClass('d-none');
+      const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
+
+      const cartProdComponent = new SellixCartProductComponent(
+        '.{{ localClass }}',
+        cart,
+        '{{ product.uniqid }}',
+        '{{ cartEffect }}',
+        {{renderOptions | dump | safe}},
+      );
+      setTimeout(() => cartProdComponent.render(), 0);
+    });
+  </script>
+{% endif %}

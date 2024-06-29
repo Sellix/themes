@@ -1,0 +1,22 @@
+{% set id = uid() %}
+{% set product = args.product %}
+{% set type = product.type or 'UNDEFINED' %}
+{% set isLicense = product.licensing_enabled %}
+
+{% if product.isGroup %}
+  {% render_snippet 'Icons: No image Group' %}
+{% elif isLicense %}
+  {% render_snippet 'Icons: No image License' %}
+{% elif type == 'FILE' %}
+  {% render_snippet 'Icons: No image File' %}
+{% elif type == 'INFO_CARD' %}
+  {% render_snippet 'Icons: No image Default' %}
+{% elif type == 'SERIALS' %}
+  {% render_snippet 'Icons: No image Serials' %}
+{% elif type == 'SERVICE' %}
+  {% render_snippet 'Icons: No image Service' %}
+{% elif type == 'SUBSCRIPTION' %}
+  {% render_snippet 'Icons: No image Subscription' %}
+{% else %}
+  {% render_snippet 'Icons: No image Default' %}
+{% endif %}

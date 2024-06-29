@@ -1,0 +1,64 @@
+{% set ticketInfo = global.common.ticketInfo.data.query %}
+
+{% set bgColor = safe_get(properties.container_background_color, 'background_accent_light') %}
+{% set showBorder = safe_get(properties.container_show_border, true) %}
+{% set borderRadius = safe_get(properties.container_border_radius, 8) %}
+{% set paddingVert = safe_get(properties.container_padding_vert, 16) %}
+{% set paddingHoriz = safe_get(properties.container_padding_horiz, 20) %}
+{% set shadow = safe_get(properties.container_shadow, 'none') %}
+
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }}__container {
+    background: {{ bgColor | get_color }};
+    border: {{ '1px solid var(--borderColor)' if showBorder else 'none' }};
+    border-radius: {{ borderRadius }}px;
+    box-shadow: {{ shadow }};
+  }
+  .{{ localClass }}__header {
+    padding: {{ paddingVert }}px {{ paddingHoriz }}px;
+  }
+  .{{ localClass }}__body>div {
+    border-top: {{ '1px solid var(--borderColor)' if showBorder else 'none' }};
+    padding: {{ paddingVert }}px {{ paddingHoriz }}px;
+  }
+</style>
+
+<div class="{{ globalClass }}__container {{ localClass }}__container">
+  <div class="{{ globalClass }}__header {{ localClass }}__header">
+    Details
+  </div>
+
+  <div class="{{ globalClass }}__body {{ localClass }}__body">
+    <div>
+      <span>Customer:</span>
+      <span>{{ ticketInfo.customer_email }}</span>
+    </div>
+
+    <div>
+      <span>Status:</span>
+      <span>
+        {% if ticketInfo.status == 'PENDING' %}
+          {% render_snippet 'Tag', tag='Pending' %}
+        {% elif ticketInfo.status == 'SHOP_REPLY' %}
+          {% render_snippet 'Tag', tag='Answered', type='success' %}
+        {% elif ticketInfo.status == 'CUSTOMER_REPLY' %}
+          {% render_snippet 'Tag', tag='Customer Reply', type='info' %}
+        {% elif ticketInfo.status == 'CLOSED' %}
+          {% render_snippet 'Tag', tag='Closed', type='warning' %}
+        {% endif %}
+      </span>
+    </div>
+
+    <div>
+      <span>Created At:</span>
+      <span>
+        {{created_at | date_format('HH:MM')}}
+        {{created_at | date_format('DD')}},
+        {{['shared.months', created_at | date_format('MMMM')] | join('.') | lower | t()}}
+        {{created_at | date_format('YYYY')}}
+      </span>
+    </div>
+  </div>
+</div>

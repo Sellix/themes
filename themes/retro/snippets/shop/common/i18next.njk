@@ -1,0 +1,19 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/22.4.9/i18next.min.js"></script>
+
+<script type='application/javascript'>
+  const localesConfig = window.SellixContext.get('locales');
+  window.sellixI18Next = i18next.createInstance({
+    lng: localesConfig.locale,
+    fallbackLng: localesConfig.fallbackLocales,
+    lowerCaseLng: true,
+    resources: Object.fromEntries(Object.keys(localesConfig.resources).map(( locale ) => {
+      return [
+        locale,
+        {
+          translation: localesConfig.resources[locale],
+        }
+      ]
+    })),
+  }, function(err, t) {
+  });
+</script>

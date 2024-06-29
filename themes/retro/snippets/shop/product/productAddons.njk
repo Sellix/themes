@@ -1,0 +1,194 @@
+{% set id = uid() %}
+
+{% set shop = global.common.shopInfo.shop %}
+{% set product = args.product %}
+{% set invoice = args.invoice %}
+{% set currency = args.currency %}
+
+{% set properties = args.properties %}
+{% set hideUnderCheckbox = safe_get(properties.hide_under_checkbox, false) %}
+{% set bgColor = safe_get(properties.container_background_color, 'background_accent_light') %}
+{% set showBorder = safe_get(properties.container_show_border, true) %}
+{% set shadow = safe_get(properties.container_shadow, 'none') %}
+{% set borderRadius = safe_get(properties.container_border_radius, 8) %}
+{% set titleFontColor = safe_get(properties.title_font_color, 'dark_font_color') %}
+{% set titleFontSize = safe_get(properties.title_font_size, 14) %}
+{% set titleFontWeight = safe_get(properties.title_font_weight, 600) %}
+{% set titleLineHeight = safe_get(properties.title_line_height, 20) %}
+{% set bodyFontColor = safe_get(properties.body_font_color, 'dark_font_color') %}
+{% set bodyFontSize = safe_get(properties.body_font_size, 14) %}
+{% set bodyFontWeight = safe_get(properties.body_font_weight, 500) %}
+{% set bodyLineHeight = safe_get(properties.body_line_height, 20) %}
+
+{% set paddingVertDesktop = safe_get(properties.container_padding_vert_desktop, 20) %}
+{% set paddingHorizDesktop = safe_get(properties.container_padding_horiz_desktop, 16) %}
+{% set paddingVertTablet = safe_get(properties.container_padding_vert_tablet, 20) %}
+{% set paddingHorizTablet = safe_get(properties.container_padding_horiz_tablet, 16) %}
+{% set paddingVertMobile = safe_get(properties.container_padding_vert_mobile, 20) %}
+{% set paddingHorizMobile = safe_get(properties.container_padding_horiz_mobile, 16) %}
+
+{% set isInvoice = global.request.type == 'invoice' %}
+
+{% if isInvoice %}
+  {% set addons = invoice.addons[product.uniqid] or [] %}
+{% else %}
+  {% set addons = product.addons %}
+{% endif %}
+
+{% set globalClass = ['snippet-product-addons'] %}
+{% set localClass = id %}
+
+{% if product.type === 'SUBSCRIPTION' and product.trial_period %}
+  {# Do nothing #}
+{% elif addons | length %}
+  <style>
+    .{{ localClass }} {
+      background: {{ bgColor | get_color }};
+      border: {{ '1px solid var(--borderColor)' if showBorder else 'none' }};
+      box-shadow: {{ shadow }};
+      border-radius: {{ borderRadius }}px;
+      padding: {{ paddingVertDesktop }}px {{ paddingHorizDesktop }}px;
+    }
+    @media (max-width: 768px) {
+      .{{ localClass }} {
+        padding: {{ paddingVertTablet }}px {{ paddingHorizTablet }}px;
+      }
+    }
+    @media (max-width: 640px) {
+      .{{ localClass }} {
+        padding: {{ paddingVertMobile }}px {{ paddingHorizMobile }}px;
+      }
+    }
+    .{{ localClass }}__title {
+      color: {{ titleFontColor | get_color }};
+      font-size: {{ titleFontSize }}px;
+      font-weight: {{ titleFontWeight }}!important;
+      line-height: {{ titleLineHeight }}px;
+    }
+
+    .{{ localClass }}__description {
+      color: {{ bodyFontColor | get_color }};
+      font-size: {{ bodyFontSize }}px;
+      font-weight: {{ bodyFontWeight }};
+      line-height: {{ bodyLineHeight }}px;
+    }
+
+    .{{ globalClass }}__price {
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 20px;
+      color: var(--black9);
+    }
+
+    .{{ globalClass }}__title {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .sellix-ui-container .button.small {
+      border: 1px solid var(--borderColor);
+      color: var(--borderColor);
+      background: var(--backgroundColor);
+      box-shadow: 2px 2px 0px 0px var(--borderColor);
+      display: inline-flex;
+      height: 36px;
+      padding: 10px 16px;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+    }
+  </style>
+
+  <div class="{{ globalClass }} {{ localClass }}">
+    <div
+      class="{{ globalClass }}__header {{ localClass }}__header {{ 'd-none' if not hideUnderCheckbox }}"
+      data-checkbox-header="1"
+    >
+      <div class="{{ globalClass }}__addons-checkbox {{ localClass }}__addons-checkbox sellix-checkbox mb-0 mr-0">
+        <input
+          type="checkbox"
+          id="{{ localClass }}__addons-checkbox"
+          data-checkbox-input="1" {{ 'checked' if not hideUnderCheckbox else 1 }}
+        >
+        <label for="{{ localClass }}__addons-checkbox">
+          {{ 'shop.shared.titles.addons' | t }}
+        </label>
+      </div>
+    </div>
+
+    <div
+      class="{{ globalClass }}__addons"
+      style="{{ 'height: 0; overflow: hidden' if hideUnderCheckbox }}"
+      data-addons-container="1"
+    >
+      {% for addon in addons %}
+        <div class="{{ globalClass}}__addon {{ localClass }}__addon">
+          <div class="{{ globalClass}}__wrapper">
+            <div
+              class="{{ globalClass}}__title {{ localClass}}__title"
+              data-addon-id="{{ addon.uniqid }}"
+              data-addon-title="1"
+            >
+              <div class="{{ globalClass }}__title-text">
+                <span>{{ addon.title }}</span>
+                {% if addon.description %}
+                  {% render_snippet 'Icons: Chevron down 2' %}
+                {% endif %}
+              </div>
+              <div class="{{ globalClass }}__price">
+                {% render_snippet
+                  'Shared: Price',
+                  currency=currency,
+                  price=addon.price_conversions[currency]
+                %}
+              </div>
+            </div>
+
+            <div class="{{ globalClass }}__button">
+              {% if not isInvoice %}
+                <button
+                  type="button"
+                  class="button small"
+                  data-addon-id="{{ addon.uniqid }}"
+                  data-addon-button="1"
+                >
+                  ...
+                </button>
+              {% endif %}
+            </div>
+          </div>
+
+          <div
+            class="{{ globalClass }}__collapsable-wrapper"
+            style="height: 0; overflow: hidden;"
+            data-addon-id="{{ addon.uniqid }}"
+            data-collapsable-wrapper="1"
+          >
+            <div class="{{ globalClass }}__description {{ localClass }}__description">
+              {{addon.description | html_sanitize | safe}}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <script type="application/javascript">
+    $(document).ready(function() {
+      const productId = '{{ product.uniqid }}';
+      const component = new SellixProductAddonsComponent(
+        `.{{ localClass }}`,
+        '{{ shop.name }}',
+        productId,
+        {{ (product.addons or []) | dump | safe }},
+        {{ hideUnderCheckbox }}
+      );
+      component.render();
+
+      {% if addons | length and global.builder %}
+        $('{{ localClass}} .{{ localClass }}__title[data-addon-id="{{ addons[0].uniqid }}"]').click();
+      {% endif %}
+    });
+  </script>
+{% endif %}

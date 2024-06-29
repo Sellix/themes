@@ -1,0 +1,121 @@
+.blocker.current {
+  text-align: inherit !important;
+  z-index: 2147480000 !important;
+}
+
+.sellix-modal {
+  cursor: default;
+  width: 100%;
+  max-width: 500px;
+  padding: 0;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--backgroundColor);
+  border-radius: 0rem;
+  position: absolute;
+  max-height: 90vh;
+  overflow: auto;
+  border: 1px solid var(--borderColor);
+  box-shadow: 4px 4px 0px 0px var(--borderColor);
+  outline: none;
+}
+
+.sellix-modal:hover {
+  outline: none;
+}
+
+.sellix-modal.visible {
+  overflow: visible;
+}
+
+@media (max-width: 768px) {
+  .sellix-modal {
+    width: calc(100% - 2rem);
+    transform: translate(-50%, 0%);
+    top: 1rem;
+  }
+}
+
+.sellix-modal.confirm {
+  max-width: 400px;
+  overflow: hidden;
+}
+.sellix-modal-header {
+  padding: 1.5rem 1.875rem 0 1.875rem;
+  color: var(--darkFontColor);
+  font-family: "Pixel Operator Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 30px;
+}
+@media (max-width: 768px) {
+  .sellix-modal-header {
+    padding: 1rem 1.25rem;
+  }
+}
+.sellix-modal-header-subtitle {
+  color: var(--darkFontColor);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+.sellix-modal-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  cursor: pointer;
+  padding: 6px 10px;
+  border: 1px solid #565D54;
+  background: #0E100D;
+  box-shadow: 2px 2px 0px 0px #565D54;
+}
+.sellix-modal-close svg {
+  fill: grey;
+}
+.sellix-modal-body {
+  border-bottom: 1px solid var(--borderColor);
+  padding: 1.875rem;
+  min-height: 5rem;
+  color: var(--darkFontColor);
+  font-family: "Pixel Operator Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+}
+.sellix-modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+}
+@media (max-width: 768px) {
+  .sellix-modal-footer {
+    padding: 1rem 1.25rem;
+  }
+}
+.sellix-overlay {
+  position: fixed;
+  background: #00000050;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  z-index: 999999999;
+  backdrop-filter: blur(2px);
+}
+
+.mfp-bg {
+  opacity: 1 !important;
+  position: fixed !important;
+  background: #00000050 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  top: 0 !important;
+  right: 0 !important;
+  cursor: pointer !important;
+  backdrop-filter: blur(2px) !important;
+}

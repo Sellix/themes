@@ -1,0 +1,31 @@
+{% set id = uid() %}
+{% set class = args.class %}
+{% set link = args.link %}
+{% set iconClass = args.icon_class %}
+{% set properties = args.properties %}
+
+{% set fontSize = safe_get(properties.font_size, 16) %}
+{% set fontColor = safe_get(properties.font_color, 'contrast_light_font_color') %}
+
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }} {
+    font-size: {{ fontSize }}px;
+    color: {{ fontColor | get_color }};
+  }
+</style>
+
+<a href="{{link}}" target="_blank" class="{{ localClass }} {{class}}">
+  {% if 'twitter' in iconClass %}
+    {% render_snippet 'Icons: Twitter' %}
+  {% elif 'instagram' in iconClass %}
+    {% render_snippet 'Icons: Instagram' %}
+  {% elif 'facebook' in iconClass %}
+    {% render_snippet 'Icons: Facebook' %}
+  {% elif 'tiktok' in iconClass %}
+    {% render_snippet 'Icons: TikTok' %}
+  {% else %}
+    <i class="{{ iconClass }}"></i>
+  {% endif %}
+</a>

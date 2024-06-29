@@ -1,0 +1,17 @@
+{% set id = uid() %}
+
+{% set localClass = id %}
+
+<div class="{{ globalClass }}__container {{ localClass }}__container">
+  <div class="{{ globalClass }}__item">
+    {% render_snippet 'Shop statistics: Products quality', properties=properties %}
+  </div>
+  <div class="{{ globalClass }}__delimiter"></div>
+  <div class="{{ globalClass }}__item">
+    {% render_snippet 'Shop statistics: Products sold', properties=properties %}
+  </div>
+  <div class="{{ globalClass }}__delimiter"></div>
+  <div class="{{ globalClass }}__item">
+    {% render_snippet 'Shop statistics: Reviews count', properties=properties %}
+  </div>
+</div>

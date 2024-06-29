@@ -1,0 +1,65 @@
+{% set id = uid() %}
+
+{% set bgColor = safe_get(properties.background_color, 'background_accent_dark') %}
+{% set borderRadius = safe_get(properties.border_radius, 8) %}
+{% set showBorder = safe_get(properties.show_border, true) %}
+{% set paddingTop = safe_get(properties.padding_top, 0) %}
+{% set paddingBottom = safe_get(properties.padding_bottom, 0) %}
+{% set paddingHoriz = safe_get(properties.padding_horiz, 0) %}
+
+{% set showText = safe_get(properties.show_text, true) %}
+{% set textAlign = safe_get(properties.title_align, 'left') %}
+{% set textContent = safe_get(properties.text_content, ('shop.shared.titles.putYourText' | t)) %}
+{% set fontColor = safe_get(properties.font_color, 'dark_font_color') %}
+{% set fontSize = safe_get(properties.font_size, 14) %}
+{% set fontWeight = safe_get(properties.font_weight, 400) %}
+{% set lineHeight = safe_get(properties.line_height, 20) %}
+{% set alignHoriz = safe_get(properties.align_horiz, 'start') %}
+{% set alignVert = safe_get(properties.align_vert, 'center') %}
+
+{% set showImage = safe_get(properties.show_image, true) %}
+{% set imageSize = safe_get(properties.image_size, 20) %}
+{% set imageUrl = safe_get(properties.image_url, null) %}
+
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }}__container {
+    display: flex;
+    background-color: {{ bgColor | get_color }};
+    border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
+    border-radius: {{ borderRadius }}px;
+    padding: {{ paddingTop }}px {{ paddingHoriz }}px {{ paddingBottom }}px {{ paddingHoriz }}px;
+  }
+  .{{ localClass }}__image {
+    margin-right: 0.75rem;
+  }
+  .{{ localClass }}__image img {
+    width: {{ imageSize }}px;
+    height: {{ imageSize }}px;
+  }
+
+  .{{ localClass }}__text {
+    color: {{ fontColor | get_color }};
+    font-size: {{ fontSize }}px;
+    font-weight: {{ fontWeight }};
+    line-height: {{ lineHeight }}px;
+
+    flex: 1;
+    display: flex;
+    align-items: {{ alignVert }};
+  }
+</style>
+
+<div class="{{ globalClass }}__container {{ localClass }}__container">
+  {% if showImage and imageUrl %}
+    <div class="{{ globalClass }}__image {{ localClass }}__image">
+      <img src='{{imageUrl | asset_url}}' alt=''>
+    </div>
+  {% endif %}
+  {% if showText %}
+    <div class="{{ globalClass }}__text {{ localClass }}__text justify-content-{{ alignHoriz }}">
+      {{ textContent | t({keyPrefix: 'shop.content'}) }}
+    </div>
+  {% endif %}
+</div>

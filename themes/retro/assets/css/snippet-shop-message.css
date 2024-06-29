@@ -1,0 +1,102 @@
+.sellix-toastify.snippet-shop-message {
+    word-break: break-word;
+    max-width: 500px;
+    padding: 2px;
+    max-height: 290px;
+    border: 1px solid var(--borderColor);
+    box-shadow: -4px -4px 0px 0px var(--borderColor)!important;
+    left: 50%;
+    width: calc(50% - 2rem);
+    transform: translate(-50%, -40%)!important;
+}
+
+@media (max-width: 768px) {
+  .sellix-toastify.snippet-shop-message {
+    max-width: calc(100% - 2.5rem);
+    min-width: initial;
+  }
+}
+
+.is-dark div.toastify.snippet-shop-message {
+  background: var(--backgroundColor);
+  box-shadow: 0px 2px 24px -2px rgba(7, 14, 35, 0.12), 0px 2px 4px -1px rgba(7, 14, 35, 0.08);
+}
+
+.is-dark div.toastify.snippet-shop-message .t-message {
+  color: var(--contrastLightFontColor);
+}
+
+.snippet-shop-message .t-container {
+  flex: 1;
+}
+
+.snippet-shop-message .t-content {
+  align-self: stretch;
+  padding: 20px;
+  background: var(--backgroundColor);
+}
+
+.snippet-shop-message .t-header {
+  display: flex;
+  padding: 12px 20px;
+  align-items: center;
+  gap: 8px;
+}
+
+.snippet-shop-message .t-title {
+  color: #FFF;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.snippet-shop-message .t-message {
+    word-break: break-word;
+    max-height: calc(100% - 1rem);
+    overflow: auto;
+    color: var(--black4, #777F89);
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+}
+
+.snippet-shop-message .t-message::-webkit-scrollbar {
+  width: 2px;
+}
+
+.t-icon {
+  display: flex;
+  align-items: center;
+}
+
+.t-close {
+  display: flex;
+  align-items: center;
+  opacity: 1;
+  border: 1px solid var(--white);
+  background: var(--backgroundColor);
+  box-shadow: 2px 2px 0px 0px var(--white);
+}
+@media (hover: hover) {
+  .t-close:hover {
+    opacity: 0.8;
+    transition: all 0.3s ease;
+  }
+}
+
+@media (hover: none) {
+  .snippet-shop-message .t-message {
+    overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .snippet-shop-message .t-message::-webkit-scrollbar {
+    width: 0;
+    display: none;
+  }
+}

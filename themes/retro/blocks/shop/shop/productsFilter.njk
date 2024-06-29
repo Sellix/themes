@@ -1,0 +1,286 @@
+{% set id = uid() %}
+{% set shopInfo = global.common.shopInfo %}
+{% set shop = shopInfo.shop %}
+{% set categories = shopInfo.categories %}
+{% set inputsProps = themeProperties.inputs %}
+
+{% set filterName = properties.filter_name %}
+{% set showSearchFilter = properties.show_search_filter %}
+{% set showCategoriesFilter = properties.show_categories_filter %}
+{% set showSortFilter = properties.show_sort_filter %}
+
+{% set activeCategory = 'all' %}
+{% if ['category', 'shop'].includes(global.request.type) %}
+  {% set activeCategory = safe_get(global.request.options.itemId, 'all') %}
+{% endif %}
+
+{% set localClass = id %}
+
+<style>
+  .{{ localClass}}__container {
+    {% if properties.container_background_color %}background: {{ properties.container_background_color | get_color }};{% endif %}
+    box-shadow: {{ properties.container_shadow }};
+    border-radius: {{ properties.container_border_radius }}rem;
+    {% if properties.container_padding %}padding: {{ properties.container_padding }}px;{% endif %}
+  }
+
+  .{{ localClass}}__search input {
+    border-radius: {{ properties.container_border_radius }}rem;
+    font-size: {{ inputsProps.common_font_size }}px;
+    font-weight: {{ inputsProps.common_font_weight }};
+    color: {{ inputsProps.common_font_color | get_color }};
+    background-color: {{ properties.input_background_color | get_color }};
+    border: {% if properties.show_border %}1px solid var(--borderColor){% else %}none{% endif %};
+    height: {{ inputsProps.common_height }}px;
+    box-shadow: 2px 2px 0px 0px var(--borderColor);
+  }
+
+  .{{ localClass }}__search input:focus {
+    outline: none;
+    border: {% if properties.show_border %}1px solid var(--brandColor){% else %}none{% endif %};
+  }
+
+  .{{ localClass }}__search input::placeholder {
+    opacity: 0.7;
+    font-size: {{ inputsProps.common_font_size }}px;
+    font-weight: {{ inputsProps.common_font_weight }};
+    color: {{ inputsProps.common_font_color | get_color }};
+  }
+
+  .{{ localClass }}__search .shop-search-icon {
+    color: {{ inputsProps.common_font_color | get_color }} !important;
+  }
+
+  {{ localClass }}__categories-select {
+    border-radius: {{ properties.container_border_radius }}rem;
+    background: {{ inputsProps.select_background | get_color }}
+  }
+
+  .sellix-dropdown .select2-container--sellix .select2-selection--single {
+    border-radius: {{ properties.container_border_radius }}rem;
+    min-height: {{ inputsProps.common_height }}px;
+    background-color: {{ properties.select_background | get_color }};
+    border: {% if inputsProps.dropdown_show_border %}1px solid var(--borderColor){% else %}none{% endif %};
+  }
+
+  .sellix-dropdown .select2-container--sellix .select2-selection__rendered {
+    color: {{ inputsProps.common_font_color | get_color }};
+    font-size: {{ inputsProps.common_font_size }}px;
+    font-weight: {{ inputsProps.common_font_weight }};
+  }
+
+  .select2-container--sellix .select2-dropdown {
+    border: {% if inputsProps.dropdown_show_border %}1px solid var(--borderColor){% else %}none{% endif %};
+    background-color: {{ inputsProps.dropdown_background | get_color }} !important;
+  }
+
+  .select2-container--sellix .select2-results__option {
+    font-size: {{ inputsProps.dropdown_option_font_size }}px !important;
+    font-weight: {{ inputsProps.dropdown_option_font_weight }};
+    color: {{ inputsProps.dropdown_option_font_color | get_color }};
+  }
+
+  .select2-container--sellix .select2-results__option.select2-results__option--highlighted {
+    background-color: {{ inputsProps.dropdown_option_background_hover | get_color }} !important;
+  }
+</style>
+
+<div class="{{ globalClass }}__container {{ localClass }}__container">
+  {% if (showCategoriesFilter and categories | length) or (showSortFilter and shop.sort_enabled) %}
+    <div class="{{ globalClass }}__filters-group {{ localClass}}__filters-group d-none">
+
+    {% if showCategoriesFilter and categories | length %}
+      <div class="sellix-dropdown {{ globalClass }}__item {{ globalClass }}__categories-dropdown {{ localClass }}__categories-dropdown d-none">
+        <select class="category-select {{ localClass }}__categories-select"></select>
+      </div>
+    {% endif %}
+
+    {% if showSortFilter and shop.sort_enabled %}
+      <div class="sellix-dropdown {{ globalClass }}__item {{ globalClass }}__sort-dropdown {{ localClass }}__sort-dropdown d-none">
+        <select class="sort-select {{ localClass }}__sort-select">
+          {% for option in [
+            {value: 'DEFAULT', title: 'Default'},
+            {value: 'PRICE', title: 'Price'},
+            {value: 'NAME', title: 'Name'},
+            {value: 'TYPE', title: 'Type'},
+            {value: 'STOCK', title: 'Stock'}
+          ] %}
+            <option
+              value="{{ option.value }}"
+              {{'selected' if option.value == shop.default_sort else ''}}
+            >
+              {{ option.title | t({keyPrefix: 'shop.content'}) }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+    {% endif %}
+
+    </div>
+  {% endif %}
+  
+  {% if showSearchFilter and shop.search_enabled %}
+    <label for="shop-search-{{id}}" class="{{ globalClass }}__item {{ globalClass }}__search {{ localClass }}__search">
+      {% render_snippet 'Icons: Search' %}
+      <input
+        type="text"
+        id="shop-search-{{id}}"
+        value=""
+        placeholder="{{ 'Search...' | t({keyPrefix: 'shop.content'}) }}"
+      />
+    </label>
+  {% endif %}
+</div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const filterStore = new window.SellixProductFilterStore(
+      '{{ shop.name }}',
+      '{{ filterName }}',
+      {
+        search: '',
+        category: '{{ activeCategory }}',
+        sort: '{{ shop.default_sort }}'
+      },
+    );
+
+    const optionFactory = (state, isResult, isSort) => {
+      const currentFilter = filterStore.get();
+
+      const chevronSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M3.33335 8.33335V6.66669L16.6667 6.66669V8.33335L15 8.33335V10H12.5V11.6667H10.8334V13.3334H9.16669V11.6667H7.50002V10H5.00002V8.33335L3.33335 8.33335Z" fill="currentColor"/>
+</svg>`;
+
+      const tickSvg = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 10.1667L8 14.3333L16 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`;
+
+      if (isSort && isResult) {
+        return $(`
+            <div class="select2-results__option-text-wrapper">
+              {{ 'Sort by' | t({keyPrefix: 'shop.content'}) }}: ${state.text}
+              ${chevronSvg}
+            </div>
+        `);
+      }
+
+      const selectedItem = isSort ? currentFilter.sort : currentFilter.category;
+      return $(`
+        <div class="select2-results__option-text-wrapper">
+          <span>${state.text}</span>
+          ${isResult
+            ? chevronSvg
+            : (state.id === selectedItem)
+              ? tickSvg
+              : ''
+          }
+        </div>
+      `);
+    }
+
+    const onChange = () => {
+      $(document).trigger('SellixProductListFilterChangeEvent', { name: '{{ filterName }}' });
+    }
+
+    $('.{{ globalClass }}__item').removeClass('d-none');
+    $('.{{ localClass}}__filters-group').removeClass('d-none');
+
+    $('.block-product-list-items__empty-container button').on('click', () => {
+      $('#shop-search-{{id}}').val('').trigger('keyup');
+      $('.{{ localClass }}__categories-select').val('all');
+      $('.{{ localClass }}__categories-select').trigger('change');
+    });
+
+    $('#shop-search-{{id}}').on('keyup', function (e) {
+      filterStore.set({ search: e.target.value });
+      onChange();
+    });
+
+    $('.{{ localClass }}__categories-select').select2({
+      data: [
+        {
+          text: "{{ 'All Categories' | t({keyPrefix: 'shop.content'}) }}",
+          id: "all",
+        },
+        {% for category in categories %}
+          {% if not category.unlisted %}
+          {
+            text: "{{category.title | t({keyPrefix: 'shop.content'})}}",
+            id: "{{category.uniqid}}"
+          },
+          {% endif %}
+        {% endfor %}
+      ],
+      minimumResultsForSearch: -1,
+      theme: 'sellix',
+      dropdownAutoWidth: true,
+      width: 'auto',
+      dropdownParent: $('.{{ localClass }}__categories-dropdown'),
+      templateSelection: (state) => optionFactory(state, true, false),
+      templateResult: (state) => optionFactory(state, false, false),
+      escapeMarkup: (m) => m,
+    })
+      .on('change', (e) => {
+        if ($(this).val() !== e.target.value) {
+          filterStore.set({ category: e.target.value });
+          onChange();
+        }
+      })
+      .on('select2:open', (e) => {
+        $('.{{ localClass }}__categories-dropdown').find('.select2-dropdown').addClass('animated flipIn');
+      })
+      .on('select2:closing', (e) => {
+        $('.{{ localClass }}__categories-dropdown').find('.select2-dropdown').removeClass('animated flipIn');
+      });
+
+    $('.{{ localClass }}__sort-select').select2({
+      dropdownAutoWidth: true,
+      width: 'auto',
+      dropdownParent: $('.{{ localClass }}__sort-dropdown'),
+      templateSelection: (state) => optionFactory(state, true, true),
+      templateResult: (state) => optionFactory(state, false, true),
+      escapeMarkup: (m) => m,
+      minimumResultsForSearch: -1,
+      theme: 'sellix',
+    })
+      .on('change', (e) => {
+        filterStore.set({ sort: e.target.value });
+        onChange();
+      })
+      .on('select2:open', (e) => {
+        $('.{{ localClass }}__sort-dropdown').find('.select2-dropdown').addClass('animated flipIn');
+      })
+      .on('select2:closing', (e) => {
+        $('.{{ localClass }}__sort-dropdown').find('.select2-dropdown').removeClass('animated flipIn');
+      });
+
+    $(document).on('SellixProductListFilterChangeEvent', (e, eventInfo) => {
+      const { name } = eventInfo;
+      if (name === '{{ filterName }}') {
+        const currentFilter = filterStore.get();
+
+        $('#shop-search-{{id}}').val(currentFilter.search);
+
+        if (currentFilter.category !== $('.{{ localClass }}__categories-select').val()) {
+          $('.{{ localClass }}__categories-select').val(currentFilter.category);
+          $('.{{ localClass }}__categories-select').trigger('change');
+        }
+        if (currentFilter.sort !== $('.{{ localClass }}__sort-select').val()) {
+          $('.{{ localClass }}__sort-select').val(currentFilter.sort);
+          $('.{{ localClass }}__sort-select').trigger('change');
+        }
+      }
+    });
+
+    setTimeout(function() {
+      {% if ['category', 'shop'].includes(global.request.type) %}
+        const category = '{{ global.request.options.itemId or 'all' }}';
+        $('.{{ localClass }}__categories-select').val(category);
+        $('.{{ localClass }}__categories-select').trigger('change');
+
+        filterStore.set({ category });
+        onChange();
+      {% endif %}
+    }, 0);
+  });
+</script>

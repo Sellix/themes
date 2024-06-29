@@ -1,0 +1,68 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set invoice = args.invoice %}
+{% set products = args.products %}
+{% set properties = args.properties %}
+
+{% set bgColor = safe_get(properties.container_background_color, 'background_accent_dark') %}
+{% set showBorder = safe_get(properties.container_show_border, true) %}
+{% set shadow = safe_get(properties.container_shadow, 'none') %}
+{% set borderRadius = safe_get(properties.container_border_radius, 8) %}
+
+{% set paddingVertDesktop = safe_get(properties.container_padding_vert_desktop, 20) %}
+{% set paddingHorizDesktop = safe_get(properties.container_padding_horiz_desktop, 20) %}
+{% set paddingVertTablet = safe_get(properties.container_padding_vert_tablet, 16) %}
+{% set paddingHorizTablet = safe_get(properties.container_padding_horiz_tablet, 16) %}
+{% set paddingVertMobile = safe_get(properties.container_padding_vert_mobile, 16) %}
+{% set paddingHorizMobile = safe_get(properties.container_padding_horiz_mobile, 16) %}
+
+{% set productShowBorder = safe_get(properties.product_container_show_border, true) %}
+
+{% set globalClass = ['snippet-checkout-products'] %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }} {
+    padding: {{ paddingVertDesktop }}px {{ paddingHorizDesktop }}px;
+  }
+
+  @media (max-width: 768px) {
+    .{{ localClass }} {
+      padding: {{ paddingVertTablet }}px {{ paddingHorizTablet }}px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .{{ localClass }} {
+      padding: {{ paddingVertMobile }}px {{ paddingHorizMobile }}px;
+    }
+  }
+</style>
+
+<div class="{{ globalClass }} {{ localClass }}">
+  <div class='d-none snippet-checkout-product' data-product-placeholder='1'>
+    {% render_snippet 'Checkout: Product placeholder' %}
+  </div>
+
+  {% for product in products %}
+    {% render_snippet
+      'Checkout: Product',
+      product=product,
+      invoice=invoice,
+      quantity=product.quantity,
+      properties=properties
+    %}
+  {% endfor %}
+</div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
+    new SellixCheckoutProductsComponent(
+      '.{{ localClass }}',
+      cart,
+      {{renderOptions | dump | safe}},
+      {{properties | dump | safe}},
+    );
+  });
+</script>

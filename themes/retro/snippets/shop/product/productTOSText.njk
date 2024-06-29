@@ -1,0 +1,15 @@
+{% set id = uid() %}
+{% set product = args.product or global.common.productInfo.product %}
+{% set productTerms = product.terms_of_service %}
+
+{% if not productTerms %}
+  <div class="empty-message-container">
+      <span class="empty-message-title">
+        {{ 'shop.terms.noProductTerms' | t({productName: ['<b>', product.title, '</b>'] | join('')}) | safe }}
+      </span>
+  </div>
+{% else %}
+  <div class="sellix-text">
+    {{ productTerms | html_sanitize | safe }}
+  </div>
+{% endif %}

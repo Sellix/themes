@@ -1,0 +1,10 @@
+{% set shop = global.common.shopInfo.shop %}
+{% set averageScore = safe_get(shop.average_score, 0) %}
+{% set reviewsCount = shop.feedback.total if shop.feedback else 0 %}
+
+{% render_snippet
+  'Feedback: Stat',
+  properties=properties,
+  average_score=averageScore,
+  reviews_count = reviewsCount
+%}

@@ -1,0 +1,28 @@
+{% set isShop = args.isShop if args.isShop is defined else true %}
+{% set shop = global.common.shopInfo.shop %}
+{% set analyticsApps = shop.analytics_apps %}
+
+{% if analyticsApps.google_analytics_tracking_id
+  or analyticsApps.facebook_pixel_id
+  or analyticsApps.tiktok_pixel_id
+  or analyticsApps.microsoft_clarity_analytics_id
+%}
+  <script type="application/javascript">
+    window.analyticsManager = new Services.AnalyticsEventManager();
+    analyticsManager.initAll({
+      google_tag_id: '{{ analyticsApps.google_analytics_tracking_id }}',
+      facebook_pixel_id: '{{ analyticsApps.facebook_pixel_id }}',
+      tiktok_pixel_id: '{{ analyticsApps.tiktok_pixel_id }}',
+      microsoft_clarity_tag_id: '{{ analyticsApps.microsoft_clarity_analytics_id }}',
+    });
+
+    if (analyticsManager.isEnabled) {
+      console.log('Analytics Enabled', {
+        google: analyticsManager.google.isEnabled,
+        facebook: analyticsManager.facebook.isEnabled,
+        tiktok: analyticsManager.tiktok.isEnabled,
+        microsoft: analyticsManager.microsoft.isEnabled,
+      })
+    }
+  </script>
+{% endif %}

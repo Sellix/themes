@@ -1,0 +1,26 @@
+{% set id = uid() %}
+
+{% set properties = args.properties %}
+
+{% set colorClass = args.color_class %}
+
+{% set bgColor = properties.background_color %}
+{% set color = properties.color %}
+
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }} {
+    {%- if bgColor %}background: {{ bgColor | get_color }} {% endif %}
+  }
+  .{{ localClass }} div {
+    {%- if color -%}background: {{ color | get_color }} {% endif %}
+  }
+</style>
+
+<div class="lds-ellipsis spin-2 {{ localClass }} {{ colorClass }}">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>

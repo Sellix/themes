@@ -1,0 +1,43 @@
+{% set id = uid() %}
+{% set localClass = args.localClass %}
+{% set properties = args.properties %}
+
+{% set color = safe_get(properties.color, 'light_font_color') %}
+
+{% set globalClass = 'snippet-burger-button' %}
+
+<style>
+  .{{ localClass }}__burger-button > div {
+    background: {{ color | get_color }};
+  }
+  .snippet-burger-button__burger-button > div::before, .snippet-burger-button__burger-button > div::after {
+    background: {{ color | get_color }};
+  }
+  .snippet-burger-button__burger-button.untoggled > div {
+    background: {{ color | get_color }};
+  }
+</style>
+
+<div class="{{ globalClass }}__burger-button {{ localClass }}__burger-button untoggled">
+  <div></div>
+</div>
+
+<script type="application/javascript">
+  $(document).ready(function() {
+    $(document).on('SellixMobileMenu', (event, eventInfo) => {
+      const $burgerBtn = $('.{{ globalClass }}__burger-button');
+      if (eventInfo && eventInfo.action) {
+        switch (eventInfo.action) {
+          case 'open':
+            $burgerBtn.addClass('toggled');
+            $burgerBtn.removeClass('untoggled');
+            break;
+          case 'close':
+            $burgerBtn.removeClass('toggled');
+            $burgerBtn.addClass('untoggled');
+            break;
+        }
+      }
+    });
+  });
+</script>

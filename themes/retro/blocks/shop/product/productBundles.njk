@@ -1,0 +1,61 @@
+{% set id = uid() %}
+
+{% if global.request.type == 'product' %}
+  {% set productIds = [global.common.productInfo.product.uniqid] %}
+{% elif global.request.type == 'checkout' %}
+  {% set productIds = global.common.checkoutInfo.productIds %}
+{% else %}
+  {% set productIds = [] %}
+{% endif %}
+
+{% set renderMode = safe_get(properties.render_mode, 'backend') %}
+
+{% if renderMode == "backend" %}
+
+  {% render_snippet
+    'Product: Bundles',
+    dependencies=[{'type': 'bundles', 'productIds': productIds}],
+    properties=properties
+  %}
+
+{% else %}
+
+  <div id="sellix-bundles-async-{{ id }}"></div>
+
+  <script type='application/javascript'>
+    $(document).ready(function () {
+      const $container = $('#sellix-bundles-async-{{ id }}');
+      const renderOptions = {{ renderOptions | dump | safe }};
+      sellixApi
+        .renderComponent(
+          {
+            ...renderOptions,
+            path: [renderOptions.path, ['snippet', 'Product: Bundles'].join(':')].join(';'),
+          },
+          SellixContext.get('request'),
+          {
+            dependencies: [
+              {type: 'bundles', productIds : {{ productIds | dump | safe }}},
+            ],
+            properties: {{ properties | dump | safe }}
+          },
+        )
+        .then((resp) => {
+          const $component = $(resp.html);
+          $container.html($component);
+          setTimeout(function () {
+            $(document).trigger('SellixCartUpdateEvent', { action: 'update' });
+          });
+        })
+        .catch((resp) => {
+          console.log(resp);
+          const respJson = resp.responseJSON || {};
+          $(document).trigger('SellixToastify', {
+            type: 'error',
+            text: respJson.message || 'Internal server error',
+          });
+        });
+    });
+  </script>
+
+{% endif %}

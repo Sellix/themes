@@ -1,0 +1,72 @@
+{% set shop = global.common.shopInfo.shop %}
+{% set feedbacks = global.common.feedbacksInfo.feedbacks %}
+{% set offset = args.offset if args.offset else 0 %}
+{% set limit = safe_get(args.limit, safe_get(properties.page_size, 12)) %}
+{% set isEmpty = feedbacks | length == 0 %}
+
+{% set bgColor = safe_get(properties.background_color, 'background_accent_ligth') %}
+{% set showBorder = safe_get(properties.show_border, false) %}
+{% set paddingVert = safe_get(properties.padding_vert, 0) %}
+{% set paddingHoriz = safe_get(properties.padding_horiz, 0) %}
+{% set shadow = safe_get(properties.shadow, 'none') %}
+{% set borderRadius = safe_get(properties.border_radius, 0) %}
+
+{% set itemsPerRowDesktop = 1 if isEmpty else safe_get(properties.items_per_row_desktop, 4) | int %}
+{% set itemsPerRowTablet = 1 if isEmpty else safe_get(properties.items_per_row_tablet, 2) | int %}
+{% set itemsPerRowMobile = 1 if isEmpty else safe_get(properties.items_per_row_mobile, 1) | int %}
+
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }}__container {
+    background: {{ bgColor | get_color }};
+    border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
+    padding: {{ paddingVert }}px {{ paddingHoriz }}px;
+    box-shadow: {{ shadow }};
+    border-radius: {{ borderRadius }}px;
+
+    display: grid;
+    grid-template-columns: repeat({{ itemsPerRowDesktop }}, minmax(50px, 1fr));
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+  }
+  @media (max-width: 768px) {
+    .{{ localClass }}__container {
+      grid-template-columns: repeat({{ itemsPerRowTablet }}, minmax(50px, 1fr));
+    }
+  }
+  @media (max-width: 640px) {
+    .{{ localClass }}__container {
+      grid-template-columns: repeat({{ itemsPerRowMobile }}, minmax(50px, 1fr));
+    }
+  }
+</style>
+
+<div class="{{ globalClass }}__container {{ localClass }}__container">
+  {% if isEmpty %}
+    <div class="empty-message-container {{ globalClass }}__empty">
+      {% render_snippet 'Icons: No feedback' %}
+
+      <span class="empty-message-title {{ globalClass }}__empty-title">
+        <b>{{ 'shop.feedback.noFeedbacks' | t({shopName: shop.name}) }}</b>
+      </span>
+      <span class="empty-message-subtitle {{ globalClass }}__empty-title">
+        {{ 'shop.feedback.noFeedbacksSubtitle' | t }}
+      </span>
+    </div>
+  {% endif %}
+
+  {% for item in feedbacks.slice(offset, limit) %}
+    {% render_snippet 'Feedback: Card', feedback=item %}
+  {% endfor %}
+</div>
+
+{% if (settings.group_names_to_hide or settings.group_name) and isEmpty %}
+  <script type="application/javascript">
+    const event = new CustomEvent(
+      'SellixHideGroupEvent',
+      { detail: { groupName: '{{ settings.group_names_to_hide or settings.group_name }}' } },
+    );
+    setTimeout(() => document.dispatchEvent(event), 0);
+  </script>
+{% endif %}

@@ -1,0 +1,63 @@
+{% set shop = global.common.shopInfo.shop %}
+{% set id = uid() %}
+{% set codeId = uid() %}
+
+<div class="{{ globalClass }}__container">
+  <div class="{{ globalClass }}__icon">
+    {% render_snippet 'Icons: Shop code' %}
+  </div>
+
+  <div class="{{ globalClass }}__title">
+    <h3>{{ 'Store Locked' |t({keyPrefix: 'shop.content'}) }}</h3>
+    <h4>{{ 'Enter the password to access the website' |t({keyPrefix: 'shop.content'}) }}</h4>
+  </div>
+
+  <div class="{{ globalClass }}__form">
+    <form id="store-code-{{id}}" onsubmit="return false">
+      {% render_snippet 'Shared: Text',
+        id=codeId,
+        name='code',
+        label=('password' | t({keyPrefix: 'shop.content'})),
+        placeholder=('Password' | t({keyPrefix: 'shop.content'})),
+        show_password=true,
+        enable_spy_mode=false
+      %}
+
+      {% render_snippet 'Shared: Ripple button',
+        button_id=['store-code-submit-', id] | join, type='submit',
+        title=('Submit' | t({keyPrefix: 'shop.content'}))
+      %}
+    </form>
+  </div>
+</div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const formComponent = new SellixStoreCodeComponent(
+      '#store-code-{{id}}',
+      '{{codeId}}',
+      '{{shop.name}}'
+    );
+
+    if($('#store-code-{{id}}')) {
+
+      $('#store-code-{{id}}').validate({
+        errorElement: 'div',
+        errorClass: 'invalid-feedback',
+        rules: {
+          code: 'required',
+        },
+        messages: {
+          code: '{{ 'Password is required' | t({keyPrefix: 'shop.content'}) }}',
+        },
+        highlight: function(element, errorClass) {
+          $(element).addClass('is-invalid').removeClass(errorClass);
+        },
+        unhighlight: function(element, errorClass) {
+          $(element).removeClass('is-invalid').removeClass(errorClass);
+        },
+      });
+
+    }
+  })
+</script>

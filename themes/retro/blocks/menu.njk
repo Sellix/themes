@@ -1,0 +1,45 @@
+{% set id = uid() %}
+
+{% set slug = global.request.slug %}
+{% set menuProps = themeProperties.menu %}
+
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }}__menu-tab {
+    color: {{ menuProps.menu_item_font_color | get_color }};
+    font-size: {{ menuProps.menu_item_font_size }}px;
+    font-weight: {{ menuProps.menu_item_font_weight }};
+  }
+  .{{ localClass }}__menu-tab.active {
+    color: {{ menuProps.menu_active_item_font_color | get_color }};
+    {#border-bottom: 2px solid {{ menuProps.menu_active_item_font_color | get_color }};#}
+    font-size: {{ menuProps.menu_active_item_font_size }}px;
+    font-weight: {{ menuProps.menu_active_item_font_weight }};
+    background: {{ menuProps.menu_active_item_background | get_color }};
+  }
+  .{{ localClass }}__menu-tab:hover {
+    color: {{ menuProps.menu_item_font_color_hover | get_color }};
+    font-weight: 600;
+  }
+</style>
+
+<div class="sellix-menu {{ localClass }}">
+    {% for item in menu.items %}
+      {% set active = item.page_slug == slug %}
+      {% if item.page_slug != "/" %}
+        {% set active = item.page_slug in slug %}
+      {% endif %}
+      {% if item.page_slug == "/contact" and "/ticket" in slug %}
+        {% set active = true %}
+      {% endif %}
+
+      {% render_snippet
+        'Menu item',
+        url=item.page_slug,
+        title=item.title,
+        is_active=active,
+        class=['menu-tab ', localClass, '__menu-tab'] | join('')
+      %}
+    {% endfor %}
+</div>

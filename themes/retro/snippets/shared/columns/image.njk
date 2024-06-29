@@ -1,0 +1,17 @@
+{% set id = uid() %}
+{% set properties = args.properties %}
+
+{% set globalClass = 'snippet-multy-columns__image' %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }} img {
+    width: {{ properties.size }}px;
+    height: {{ properties.size }}px;
+    border-radius: {{ properties.border_radius }}px;
+  }
+</style>
+
+<div class="{{ globalClass }} {{ localClass }}">
+  <img src='{{properties.url | asset_url}}' alt=''>
+</div>

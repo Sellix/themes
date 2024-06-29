@@ -1,0 +1,54 @@
+{% set id = uid() %}
+{% set slug = global.request.slug %}
+{% set menuProps = themeProperties.mobile_menu %}
+
+{% if global.locales.defaultLocale != global.locales.locale %}
+  {% set locale_prefix = ["/", global.locales.locale] | join %}
+{% else %}
+  {% set locale_prefix = "" %}
+{% endif %}
+
+{% set globalClass = 'snippet-mobile-sidebar-menu' %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }} {
+    background-color: {{ menuProps.menu_item_background | get_color }};
+  }
+
+  .{{ localClass }}__item {
+    color: {{ menuProps.menu_item_font_color | get_color }} !important;
+    font-size: {{ menuProps.menu_item_font_size }}px !important;
+    font-weight: {{ menuProps.menu_item_font_weight }} !important;
+  }
+
+  .{{ localClass }}__item.active {
+    color: {{ menuProps.menu_active_item_font_color | get_color }} !important;
+    font-size: {{ menuProps.menu_active_item_font_size }}px !important;
+    font-weight: {{ menuProps.menu_active_item_font_weight }} !important;
+    background: {{ menuProps.menu_active_item_background | get_color }};
+  }
+
+  .{{ localClass }}__item:hover {
+    background: {{ menuProps.menu_item_background_hover | get_color }} !important;
+    color: {{ menuProps.menu_active_item_font_color | get_color }} !important;
+  }
+</style>
+
+<div class="mobile-sidebar-menu {{ globalClass }} {{ localClass }}">
+  {% for item in menu.items %}
+    {% set active = item.page_slug == slug %}
+    {% if item.page_slug != "/" %}
+      {% set active = item.page_slug in slug %}
+    {% endif %}
+    {% if item.page_slug == "/contact" and "/ticket" in slug %}
+      {% set active = true %}
+    {% endif %}
+    <a
+      href="{{ locale_prefix }}{{item.page_slug}}"
+      class="{{ globalClass }}__item {{ localClass }}__item {{'active' if active else ''}}"
+    >
+      {{ item.title | t({ keyPrefix: 'menu' }) }}
+    </a>
+  {% endfor %}
+</div>
