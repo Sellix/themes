@@ -112,7 +112,11 @@
             {% if isFree %}
               {{ 'shop.shared.titles.get' | t }}
             {% else %}
-              {{ 'shop.shared.titles.buy' | t }}
+              {% if not isSubscription and not isLicense and not isPayWhatYouWant %}
+                {{ 'shop.shared.titles.view' | t }}
+              {% else %}
+                {{ 'shop.shared.titles.buy' | t }}
+              {% endif %}
             {% endif %}
           </a>
         </div>
