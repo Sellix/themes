@@ -16,15 +16,15 @@
 {% endif %}
 {% set price = price | to_decimal_precision(currency, digits) %}
 
-{% set priceFontColor = properties.price_font_color %}
-{% set priceFontSize = properties.price_font_size %}
-{% set priceFontWeight = properties.price_font_weight %}
-{% set priceLineHeight = properties.price_line_height %}
+{% set priceFontColor = properties.price_font_color or args.properties.price_font_color %}
+{% set priceFontSize = properties.price_font_size or args.properties.price_font_size %}
+{% set priceFontWeight = properties.price_font_weight or args.properties.price_font_weight %}
+{% set priceLineHeight = properties.price_line_height or args.properties.price_line_height %}
 
-{% set initialPriceFontColor = properties.initial_price_font_color %}
-{% set initialPriceFontSize = properties.initial_price_font_size %}
-{% set initialPriceFontWeight = properties.initial_price_font_weight %}
-{% set initialPriceLineHeight = properties.initial_price_line_height %}
+{% set initialPriceFontColor = properties.initial_price_font_color or args.properties.initial_price_font_color %}
+{% set initialPriceFontSize = properties.initial_price_font_size or args.properties.initial_price_font_size %}
+{% set initialPriceFontWeight = properties.initial_price_font_weight or args.properties.initial_price_font_weight %}
+{% set initialPriceLineHeight = properties.initial_price_line_height or args.properties.initial_price_line_height %}
 
 {% set imageSize = properties.image_size %}
 
