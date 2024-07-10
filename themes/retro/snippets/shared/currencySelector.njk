@@ -29,10 +29,6 @@
 {% endfor %}
 
 <style>
-  .{{ localClass  }} .select2-container--sellix-currency-selector .select2-selection--single {
-    background-color: {{ inputsProps.select_background | get_color }}!important;
-  }
-
   .{{ localClass  }} .select2-container--sellix-currency-selector .select2-selection__rendered {
     color: {{ inputsProps.common_font_color | get_color }};
     font-size: {{ inputsProps.common_font_size }}px;
@@ -98,8 +94,8 @@
 
       let isMobile = (window || {}).innerWidth < 768;
       let title =  state.text;
-      const chevronSvg = `<svg style="min-width: 20px" width="20" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M5.5 12.5L10.5 7.5L15.5 12.5" stroke="#555D67" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      const chevronSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" fill="none">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M1.83335 0.666687H0.166687V2.33335H1.83335V4.00002H3.50002V5.66669H5.16669V7.33335H6.83335V5.66669H8.50002V4.00002H10.1667V2.33335H11.8334V0.666687H10.1667V2.33335L8.50002 2.33335L8.50002 4.00002H6.83335L6.83335 5.66669H5.16669V4.00002H3.50002V2.33335L1.83335 2.33335V0.666687Z" fill="currentColor"/>
       </svg>`;
 
       const tickSvg = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -104,6 +104,15 @@
 
   {# Template #}
   <link rel="stylesheet" href="{{ 'template-invoice.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'customcheckout.css' | asset_url(rtl) }}"/>
+  {# Animations #}
+  <link rel="stylesheet" href="{{ 'animation-scan-line.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'monitor-frame.css' | asset_url(rtl) }}"/>
+  <link rel="stylesheet" href="{{ 'animation-glitch.css' | asset_url(rtl) }}"/>
+  <script src="{{ 'animation-background.js' | asset_url}}"></script>
+
+  <link rel="stylesheet" href="{{ 'animation-noise.css' | asset_url(rtl) }}"/>
+  <script src="{{ 'animation-noise.js' | asset_url}}"></script>
 
   {% if not optimizeImports %}
     {# Sections #}
@@ -182,6 +191,8 @@
 
 <body class="{{ 'dark is-dark darkTheme' if global.theme.isDark }}">
   <div id="app" class="sellix-ui-container {{ 'is-dark' if global.theme.isDark }}">
+    <canvas style="position: fixed;"></canvas>
+    <canvas id="noise-canvas"></canvas>
     <div class="sellix-store height-100vh">
       <div id="content" class="template">
         {% render_template 'default' %}

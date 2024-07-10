@@ -2,11 +2,8 @@
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
-// Get the document elements
-const headerDiv = document.querySelector('.sellix-header');
-
 // Setting the width and height of the canvas
-canvas.width = headerDiv.scrollWidth;
+canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 // Setting up the letters
