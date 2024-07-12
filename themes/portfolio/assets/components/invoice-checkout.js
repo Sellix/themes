@@ -125,6 +125,16 @@
       return sellixApi.payEvm(data);
     };
 
+
+    onGetMeshNetworks = () => {
+      return sellixApi.getMeshNetworks();
+    };
+
+    onGetMeshToken = (data) => {
+      return sellixApi.getMeshToken(data);
+    };
+
+
     render() {
       ReactDOM.render(
         React.createElement(InvoiceCheckout.InvoiceCheckout, {
@@ -160,6 +170,8 @@
           onGetEvmSpenders: this.onGetEvmSpenders,
           onSaveEvm: this.onSaveEvm,
           onPayEvm: this.onPayEvm,
+          onGetMeshNetworks: this.onGetMeshNetworks,
+          onGetMeshToken: this.onGetMeshToken,
         }),
         this.domContainer,
       );
