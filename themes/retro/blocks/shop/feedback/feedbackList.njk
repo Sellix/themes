@@ -3,6 +3,7 @@
 {% set offset = args.offset if args.offset else 0 %}
 {% set limit = safe_get(args.limit, safe_get(properties.page_size, 12)) %}
 {% set isEmpty = feedbacks | length == 0 %}
+{% set isEmpty = true %}
 
 {% set bgColor = safe_get(properties.background_color, 'background_accent_ligth') %}
 {% set showBorder = safe_get(properties.show_border, false) %}
@@ -45,7 +46,7 @@
 <div class="{{ globalClass }}__container {{ localClass }}__container">
   {% if isEmpty %}
     <div class="empty-message-container {{ globalClass }}__empty">
-      {% render_snippet 'Icons: No feedback' %}
+      {% render_snippet 'Icons: No images' %}
 
       <span class="empty-message-title {{ globalClass }}__empty-title">
         <b>{{ 'shop.feedback.noFeedbacks' | t({shopName: shop.name}) }}</b>

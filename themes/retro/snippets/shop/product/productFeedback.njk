@@ -29,6 +29,7 @@
 
 <div class="{{ globalClass }} {{ localClass }} is-empty">
   {% if product.feedback.list | length == 0 %}
+    <div></div>
     <div class="empty-message-container {{ globalClass }}__empty">
       {% render_snippet 'Icons: No feedback' %}
 
@@ -39,6 +40,7 @@
         {{ 'shop.shared.reviews.notFoundMessage' | t }}
       </span>
     </div>
+    <div></div>
   {% else %}
     {% for feedback in product.feedback.list %}
       {% set page = (loop.index0 / pageSize) | int %}

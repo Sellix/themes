@@ -117,7 +117,7 @@
           properties=priceProperties
         %}
       </span>
-      <span class="{{ globalClass }}__price-tax {{ localClass }}__price-tax">+</span>
+      <span class="{{ globalClass }}__price-tax {{ localClass }}__price-tax"></span>
 
       {% if product.price_discount %}
         {% render_snippet
@@ -149,7 +149,7 @@
 
     if (shopInfo.shop.display_tax_on_storefront && taxAmount) {
       taxAmount = parseFloat(Number(taxAmount).toFixed(2));
-      $('.{{ localClass }}__price-tax').append(`<span>${taxAmount}% {{ 'shop.main.cards.product.tax' | t }}</span>`);
+      $('.{{ localClass }}__price-tax').append(`<span>+ ${taxAmount}% {{ 'shop.main.cards.product.tax' | t }}</span>`);
     }
   });
 </script>
