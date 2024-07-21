@@ -50,6 +50,7 @@
       bundles.push(bundle);
     {% endfor %}
 
+    const themeProperties = {{ themeProperties | dump | safe }};
     const purchaseDetailsComponent = new SellixPurchaseDetailsComponent({
       selector: '#purchase-detail-wrapper-{{ id }} .purchase-details',
       selectorCaptchaV2: '#purchase-detail-recaptcha-v2',
@@ -61,7 +62,7 @@
       cart,
       product: (product || {}),
       bundles,
-      theme: { isDark },
+      theme: { isDark, properties: themeProperties },
       renderOptions: {{renderOptions | dump | safe}},
     });
   });

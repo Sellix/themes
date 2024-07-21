@@ -10,7 +10,7 @@
 {% set cardsProps = themeProperties.cards %}
 {% set shopInfo = global.common.shopInfo %}
 {% set shop = shopInfo.shop %}
-{% set hideStockCounter = shop.hide_stock_counter %}
+{% set hideStockCounter = safe_get(themeProperties.common.hide_stock_counter, false) %}
 
 <style>
   .sellix-card-container-{{ id }} {

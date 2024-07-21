@@ -3,7 +3,7 @@
 {% set products = args.products %}
 
 {% set hideOutOfStock = args.hide_out_of_stock or shop.hide_out_of_stock | int %}
-{% set hideStockCounter = args.hide_stock_counter or shop.hide_stock_counter | int %}
+{% set hideStockCounter = args.hide_stock_counter or safe_get(themeProperties.common.hide_stock_counter, false) %}
 {% set cartEnabled = args.cart_enabled or themeProperties.cart.is_enabled %}
 {% set showStockInfo = safe_get(themeProperties.common.show_stock_info, false) %}
 

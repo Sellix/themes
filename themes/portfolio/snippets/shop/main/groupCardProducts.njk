@@ -4,7 +4,7 @@
 {% set shop = shopInfo.shop %}
 {% set hideOutOfStock = shop.hide_out_of_stock | int %}
 {% set cartEnabled = args.cartEnabled or themeProperties.cart.is_enabled %}
-{% set hideStockCounter = shop.hide_stock_counter %}
+{% set hideStockCounter = safe_get(themeProperties.common.hide_stock_counter, false) %}
 
 {% for product in group.products_bound %}
   {% set onHold = product.on_hold | int %}

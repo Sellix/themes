@@ -15,7 +15,7 @@
 {% set showBadge = safe_get(properties.show_product_type_badge, true) %}
 
 {% set showStockInfo = safe_get(themeProperties.common.show_stock_info, false) %}
-{% set hideStockCounter = shop.hide_stock_counter %}
+{% set hideStockCounter = safe_get(themeProperties.common.hide_stock_counter, false) %}
 
 {% set background = safe_get(properties.background_color, cardProps.product_card_background_color) %}
 {% set border = '1px solid var(--borderColor)' if safe_get(properties.show_border, cardProps.product_card_show_border) else 'none' %}

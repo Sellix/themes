@@ -211,7 +211,7 @@
           bundles: this.bundles,
           affiliateConversions: this.affiliateConversions,
           priceVariants: this.priceVariantsStore.getAll(),
-          theme: { isDark: this.theme.isDark },
+          theme: this.theme,
           sellixHelper: window.sellixHelper,
           sellixI18Next: window.sellixI18Next,
           onAddToCart: this.onAddToCart,

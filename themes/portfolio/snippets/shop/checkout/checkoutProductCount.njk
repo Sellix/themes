@@ -36,9 +36,7 @@
 
 <script type='application/javascript'>
   $(document).ready(function () {
-    const { shopInfo } = window.SellixContext.get('common');
-
-    let hideStockCounter = shopInfo && shopInfo.shop && shopInfo.shop.hide_stock_counter;
+    const hideStockCounter = {{ 'true' if safe_get(themeProperties.common.hide_stock_counter, false) else 'false' }};
 
     new SellixProductCountComponent(
       '#sellix-product-count-{{id}}',

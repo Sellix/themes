@@ -6,7 +6,7 @@
 {% set currency = args.currency %}
 {% set is_cart = args.is_cart or false %}
 {% set price_variants = product.price_variants or [] %}
-{% set hideStockCounter = shop.hide_stock_counter %}
+{% set hideStockCounter = safe_get(themeProperties.common.hide_stock_counter, false) %}
 
 <style>
   .variant-badge-{{ id }} {
