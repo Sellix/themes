@@ -432,6 +432,26 @@
       });
     }
 
+
+    async getMeshNetworks() {
+      return jQuery.ajax({
+        method: 'GET',
+        url: `${this.apiUrl}/api/shop/mesh/networks`,
+        contentType: 'application/json; charset=utf-8',
+      });
+    }
+
+    async getMeshToken(data) {
+      return jQuery.ajax({
+        method: 'POST',
+        url: `${this.apiUrl}/api/shop/mesh/link_token`,
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        data: JSON.stringify(data, (key, value) => (typeof value === 'bigint' ? value.toString() : value)),
+      });
+    }
+
+
     async requestWithCaptchaV2(action, onSuccess, onError, options) {
       options ??= {};
       options.removeAfterComplete ??= true;
