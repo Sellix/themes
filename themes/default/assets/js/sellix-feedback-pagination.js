@@ -6,7 +6,7 @@
       this.pageLimit = pageLimit;
       this.dataLimit = 12;
       this.feedbacksLength = feedbacksLength;
-      this.pages = Math.round(this.feedbacksLength / this.dataLimit);
+      this.pages = Math.ceil(this.feedbacksLength / this.dataLimit);
     }
 
     useMobile(paginationId) {
