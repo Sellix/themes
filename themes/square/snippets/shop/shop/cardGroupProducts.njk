@@ -1,0 +1,20 @@
+{% set group = args.group %}
+
+{% set shopInfo = global.common.shopInfo %}
+{% set shop = shopInfo.shop %}
+{% set hideOutOfStock = shop.hide_out_of_stock | int %}
+{% set hideStockCounter = safe_get(themeProperties.common.hide_stock_counter, false) %}
+{% set cartEnabled = args.cartEnabled or themeProperties.cart.is_enabled %}
+
+{% set globalClass =  'sellix-group-card-products' %}
+{% set localClass = id %}
+
+<div class="{{ globalClass }}">
+  {% render_snippet
+    'Product list',
+    cart_enabled=cartEnabled,
+    products=group.products_bound,
+    hide_out_of_stock=hideOutOfStock,
+    hide_stock_counter=hideStockCounter
+  %}
+</div>

@@ -1,0 +1,30 @@
+{% set shop = global.common.shopInfo.shop %}
+{% set logoImage = safe_get(themeProperties.common.logo_image, null) %}
+
+<div class="row content-width g-4 text-center text-md-start d-flex justify-content-md-start justify-content-center align-items-start">
+  <!-- Logo and Description Column -->
+  <div class="col-12 col-md-4">
+    <div class="d-flex flex-column align-items-md-start align-items-center">
+      <!-- Logo Wrapper -->
+      {% if logoImage %}
+        <div class="align-self-md-start">
+          <a href="">
+            <img src="{{ logoImage }}" 
+                 class="img-fluid rounded" 
+                 style="width: 100px; height: 100px;" 
+                 alt="{{ shop.name }}">
+          </a>
+        </div>
+      {% endif %}
+      <!-- Text Description -->
+      <p class="text-muted mt-3 fw-bold text-md-start text-center">
+        {{ properties.text_content }}
+      </p>
+    </div>
+  </div>
+
+  <!-- Render Blocks Dynamically (Menu Items) -->
+  {% for block_name in settings.block_order %}
+    {%- render_block block_name -%}
+  {% endfor %}
+</div>

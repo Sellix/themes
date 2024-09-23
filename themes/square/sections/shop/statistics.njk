@@ -1,0 +1,72 @@
+{% set shop = global.common.shopInfo.shop %}
+
+{% set fullWidth = safe_get(properties.fullwidth, false) %}
+{% set paddingTopDesktop = safe_get(properties.padding_top_desktop, 32) %}
+{% set paddingBottomDesktop = safe_get(properties.padding_bottom_desktop, 32) %}
+{% set paddingHorizDesktop = safe_get(properties.padding_horiz_desktop, 0) %}
+{% set marginTopDesktop = safe_get(properties.margin_top_desktop, 0) %}
+{% set marginBottomDesktop = safe_get(properties.margin_bottom_desktop, 60) %}
+{% set paddingTopTablet = safe_get(properties.padding_top_tablet, 24) %}
+{% set paddingBottomTablet = safe_get(properties.padding_bottom_tablet, 24) %}
+{% set paddingHorizTablet = safe_get(properties.padding_horiz_tablet, 0) %}
+{% set marginTopTablet = safe_get(properties.margin_top_tablet, 0) %}
+{% set marginBottomTablet = safe_get(properties.margin_bottom_tablet, 30) %}
+{% set paddingTopMobile = safe_get(properties.padding_top_mobile, 16) %}
+{% set paddingBottomMobile = safe_get(properties.padding_bottom_mobile, 16) %}
+{% set paddingHorizMobile = safe_get(properties.padding_horiz_mobile, 0) %}
+{% set marginTopMobile = safe_get(properties.margin_top_mobile, 0) %}
+{% set marginBottomMobile = safe_get(properties.margin_bottom_mobile, 30) %}
+
+{% set bgColor = properties.background_color %}
+
+{% set localClass = id %}
+
+<style>
+  .sellix-section.{{ globalClass}}-global-{{ id }} {
+    background-color: {{ bgColor | get_color }};
+  }
+  .{{ localClass }}__container {
+    display: grid;
+    grid-template-columns: repeat({{ settings.block_order | length }}, 1fr);
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: {{ bgColor | get_color }};
+    padding: {{ paddingTopDesktop }}px {{ paddingHorizDesktop }}px {{ paddingBottomDesktop }}px {{ paddingHorizDesktop }}px;
+    margin-top: {{ marginTopDesktop }}px;
+    margin-bottom: {{ marginBottomDesktop }}px;
+  }
+
+  .{{ localClass }}__item_wrapper:not(:last-child) {
+    border-right: 1px solid var(--black2);
+  }
+
+  @media (max-width: 768px) {
+    .{{ localClass }}__container {
+      grid-template-columns: repeat(1, 1fr);
+      padding: {{ paddingTopTablet }}px {{ paddingHorizTablet }}px {{ paddingBottomTablet }}px {{ paddingHorizTablet }}px;
+      margin-top: {{ marginTopTablet }}px;
+      margin-bottom: {{ marginBottomTablet }}px;
+    }
+
+    .{{ localClass }}__item_wrapper:not(:last-child) {
+      border-right: none;
+      padding-bottom: 0.5rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .{{ localClass }}__container {
+      padding: {{ paddingTopMobile }}px {{ paddingHorizMobile }}px {{ paddingBottomMobile }}px {{ paddingHorizMobile }}px;
+      margin-top: {{ marginTopMobile }}px;
+      margin-bottom: {{ marginBottomMobile }}px;
+    }
+  }
+</style>
+
+<div class="{{ globalClass}}__container  {{ localClass }}__container {{ 'full-width' if fullWidth else 'content-width' }}">
+    {% for block_name in settings.block_order %}
+      <div class="{{ localClass }}__item_wrapper">
+        {%- render_block block_name -%}
+      </div>
+    {% endfor%}
+</div>

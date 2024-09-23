@@ -1,0 +1,122 @@
+{% set layoutId = args.layoutId or uid() %}
+{% set menuProps = themeProperties.mobile_menu %}
+{% set shop = global.common.shopInfo.shop %}
+{% set subscription = global.common.shopInfo.subscription %}
+{% set shopInfo = themeProperties.common %}
+
+{% set fullWidth = safe_get(properties.fullwidth, false) %}
+{% set showCurrency = safe_get(properties.show_currency_selector , true) %}
+{% set showLocale = safe_get(properties.show_language_selector, true) %}
+
+{% set bgColor = safe_get(properties.background_color, 'background_main_color') %}
+
+{% set shadow = safe_get(properties.shadow, 'none') %}
+{% set showBorder = safe_get(properties.show_border, true) %}
+{% set logoImage = safe_get(shopInfo.logo_image, null) %}
+{% set logoType = safe_get(properties.logo_type, 'logo') %}
+{% set logoImageSize = safe_get(properties.logo_image_size, 30) %}
+{% set logoImageBorderRadius = safe_get(properties.logo_image_border_radius, 8) %}
+{% set shopName = safe_get(shopInfo.shop_name, shop.name) %}
+{% set shopNameFontColor = safe_get(properties.shop_name_font_color, 'dark_font_color') %}
+{% set shopNameFontSize = safe_get(properties.shop_name_font_size, 18) %}
+{% set shopNameFontWeight = safe_get(properties.shop_name_font_weight, 700) %}
+{% set shopNameLineHeight = safe_get(properties.shop_name_line_height, 20) %}
+
+{% set localClass = id %}
+
+<style>
+  .{{ globalClass }} {
+    box-shadow: {{ shadow }};
+    border-bottom: {{ "1px solid var(--borderColorLight)" if showBorder else "none" }};
+  }
+
+  .{{ localClass }}__shop-name {
+    color: {{ shopNameFontColor | get_color }};
+    font-size: {{ shopNameFontSize }}px;
+    font-weight: {{ shopNameFontWeight }};
+    line-height: {{ shopNameLineHeight }}px;
+  }
+
+  .{{ localClass }} .sidebar-toggler {
+    color: {{ shopNameFontColor | get_color }};
+  }
+
+</style>
+
+<header id="sellix-header-{{ layoutId }}" class="{{ globalClass }}__header {{ localClass }}__header {{ 'full-width' if fullWidth else 'content-width' }}">
+  <div class="header__container">
+    <div class="header-left">
+      <div class="sidebar-toggler">
+        {% render_snippet 'Burger button', localClass=['sellix-header-', id] | join, properties={'color': menuProps.menu_icon_font_color} %}
+      </div>
+
+      {% for block_name in settings.block_order %}
+        {% set block = settings.blocks[block_name] %}
+        {% if block.name == 'Image' %}
+          <div class="section-header__logo">
+            {%- render_block block_name -%}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="header-center">
+      {% for block_name in settings.block_order %}
+        {% set block = settings.blocks[block_name] %}
+        {% if block.name == 'Menu' %}
+          <div class="menu-block">
+            {%- render_block block_name -%}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="header-right">
+      {% if showCurrency %}
+        <div class="currency-selector">
+          {% render_snippet 'Currency selector', properties=properties %}
+        </div>
+      {% endif %}
+
+      {% if showLocale %}
+        <div class="language-selector">
+          {% render_snippet 'Language selector', properties=properties %}
+        </div>
+      {% endif %}
+
+      {% for block_name in settings.block_order %}
+        {% set block = settings.blocks[block_name] %}
+        {% if block.name == 'Cart' and global.request.type !== 'invoice' %}
+          <div class="cart-selector">
+            {%- render_block block_name -%}
+          </div>
+        {% elif block.name == 'Customer login' %}
+          <div class="login-block">
+            {%- render_block block_name -%}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</header>
+
+<script>
+  $(document).ready(function() {
+    $('.{{ globalClass }}-global-{{ id }} .sidebar-toggler').click(function() {
+      const $mobileMenu = $('.snippet-mobile-sidebar-menu');
+      const $toggler = $('.sidebar-toggler');
+
+      if ($mobileMenu.hasClass('open')) {
+        $mobileMenu.removeClass('open');
+        $toggler.removeClass('open');
+        window.sellixHelper.enableScroll();
+        $(document).trigger('SellixMobileMenu', { action: 'close' });
+      } else {
+        $mobileMenu.addClass('open');
+        $toggler.addClass('open');
+        window.sellixHelper.disableScroll();
+        $(document).trigger('SellixMobileMenu', { action: 'open' });
+      }
+    });
+  });
+</script>

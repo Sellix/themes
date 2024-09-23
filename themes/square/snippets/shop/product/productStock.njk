@@ -1,0 +1,39 @@
+{% set id = uid() %}
+{% set stock = args.stock %}
+{% set stockTitle = get_stock(stock) %}
+{% set isHightStock = stock == -1 or stock > 1 %}
+{% set hideStockCounter = safe_get(themeProperties.common.hide_stock_counter, false) %}
+{% set reverse = safe_get(args.reverse, false) %}
+
+{% set globalClass = 'snippet-product-stock' %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }}__stock-value {
+    {% if reverse %}
+      margin-right: 0.5rem;
+    {% else %}
+      margin-left: 0.5rem;
+    {% endif %}
+  }
+</style>
+
+<span class="{{ globalClass }}__stock {{ 'stock-high' if isHightStock else 'stock-low' }}">
+  {% if hideStockCounter %}
+    {{ 'shop.shared.titles.inStock' | t }}
+  {% else %}
+    {% if not reverse %}
+      {{ 'shop.shared.titles.stock' | t }}
+    {% endif %}
+    <span class="{{ globalClass }}__stock-value {{ localClass }}__stock-value">
+      {% if stock === -1 %}
+        <i class="fa-solid fa-infinity"></i>
+      {% else %}
+        {{stockTitle}}
+      {% endif %}
+    </span>
+    {% if reverse %}
+      {{ 'shop.shared.titles.inStock' | t | lower }}
+    {% endif %}
+  {% endif %}
+</span>

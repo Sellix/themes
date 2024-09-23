@@ -1,0 +1,181 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+
+{% set fullWidth = safe_get(properties.fullwidth, false) %}
+{% set showBorder = safe_get(properties.container_show_border, false) %}
+{% set bgColor = safe_get(properties.container_background_color, 'transparent') %}
+{% set shadow = safe_get(properties.container_shadow, 'none') %}
+{% set borderRadius = safe_get(properties.container_border_radius, 0) %}
+{% set paddingVert = safe_get(properties.container_padding_vert, 0) %}
+{% set paddingHoriz = safe_get(properties.container_padding_horiz, 0) %}
+
+{% set itemShowBorder = safe_get(properties.item_show_border, false) %}
+{% set itemBgColor = safe_get(properties.item_background_color, 'background_accent_dark') %}
+{% set itemShadow = safe_get(properties.item_shadow, 'none') %}
+{% set itemBorderRadius = safe_get(properties.item_border_radius, 8) %}
+{% set itemPaddingVert = safe_get(properties.item_padding_vert, 24) %}
+{% set itemPaddingHoriz = safe_get(properties.item_padding_horiz, 24) %}
+
+{% set titleFontColor = safe_get(properties.item_title_font_color, 'dark_font_color') %}
+{% set titleFontSize = safe_get(properties.item_title_font_size, 16) %}
+{% set titleFontWeight = safe_get(properties.item_title_font_weight, 500) %}
+{% set titleLineHeight = safe_get(properties.item_title_line_height, 24) %}
+{% set titleTextAlign = safe_get(properties.item_title_text_align, 'start') %}
+
+{% set bodyFontColor = safe_get(properties.item_body_font_color, 'dark_font_color') %}
+{% set bodyFontSize = safe_get(properties.item_body_font_size, 14) %}
+{% set bodyFontWeight = safe_get(properties.item_body_font_weight, 400) %}
+{% set bodyLineHeight = safe_get(properties.item_body_line_height, 20) %}
+{% set bodyTextAlign = safe_get(properties.item_body_text_align, 'start') %}
+
+{% set localClass = id %}
+
+<style>
+  .{{ localClass}}__container {
+    border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
+    background: {{ bgColor | get_color }};
+    box-shadow: {{ shadow }};
+    border-radius: {{ borderRadius }}px;
+    padding: {{ paddingVert }}px {{ paddingHoriz }}px;
+  }
+  .{{ localClass }}__item {
+    margin-bottom: 0.5rem;
+    border: {{ "1px solid var(--borderColor)" if itemShowBorder else "none" }};
+    background: {{ itemBgColor | get_color }};
+    box-shadow: {{ itemShadow }};
+    border-radius: {{ itemBorderRadius }}px;
+    padding: {{ itemPaddingVert }}px {{ itemPaddingHoriz }}px;
+  }
+
+  .{{ localClass }}__item-title {
+    color: {{ titleFontColor | get_color }};
+    font-size: {{ titleFontSize }}px;
+    font-weight: {{ titleFontWeight }};
+    line-height: {{ titleLineHeight }}px;
+  }
+  .{{ localClass }}__item h3 {
+    margin-top: 0;
+  }
+
+  .{{ localClass }}__item-body {
+    color: {{ bodyFontColor | get_color }};
+    font-size: {{ bodyFontSize }}px;
+    font-weight: {{ bodyFontWeight }};
+    line-height: {{ bodyLineHeight }}px;
+  }
+
+  .{{ localClass }}__help-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+  }
+  .{{ localClass }}__help-link a {
+    display: flex;
+    align-items: center;
+    color: var(--darkFontColor);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+  }
+</style>
+
+{#class="sellix-trust-screen"#}
+<div class="{{ globalClass }}__container {{ localClass }}__container {{ 'full-width' if fullWidth else 'content-width' }}">
+  <div class="sellix-trust sellix-trust-{{ id }}">
+
+    <div class="{{ globalClass }}__item {{ localClass }}__item">
+      <h3 class="{{ globalClass }}__item-title {{ localClass }}__item-title text-align-{{ titleTextAlign }}">
+        {% if shop.trusted_checks.identity_verified %}
+          <i class="fa-regular fa-circle-check text-green mr-2"></i>
+          {{ 'shop.trust.identityVerified.yes' | t }}
+        {% else %}
+          <i class="fa-regular fa-circle-xmark text-red mr-2"></i>
+          {{ 'shop.trust.identityVerified.no' | t }}
+        {% endif %}
+      </h3>
+      <div class="{{ globalClass }}__item-body {{ localClass }}__item-body text-align-{{ bodyTextAlign }}">
+        {% if shop.trusted_checks.identity_verified %}
+          {{ 'shop.trust.identityText.yes' | t }}
+        {% else %}
+          {{ 'shop.trust.identityText.no' | t }}
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="{{ globalClass }}__item {{ localClass }}__item">
+      <h3 class="{{ globalClass }}__item-title {{ localClass }}__item-title">
+        {% if shop.trusted_checks.sales_last14days_metric === "low" %}
+          <i class="fa-regular fa-circle-xmark text-red mr-2"></i>
+        {% else %}
+          <i class="fa-regular fa-circle-check text-green mr-2"></i>
+        {% endif %}
+
+        {{['shop', 'trust', shop.trusted_checks.sales_last14days_metric] | join('.') | lower | t}}
+        {{ 'shop.trust.sales' | t }}
+      </h3>
+      <div class="{{ globalClass }}__item-body {{ localClass }}__item-body">
+        {{ 'shop.trust.salesText' | t }}
+      </div>
+    </div>
+
+    <div class="{{ globalClass }}__item {{ localClass }}__item">
+      <h3 class="{{ globalClass }}__item-title {{ localClass }}__item-title">
+        {% if shop.trusted_checks.feedback_appeal_ratio * 100 > 35 %}
+          <i class="fa-regular fa-circle-xmark text-red mr-2"></i>
+          {% elif shop.trusted_checks.feedback_appealed * 100 < 75 and shop.trusted_checks.feedback_appealed * 100 > 35 %}
+          <i class="fa-regular fa-triangle-exclamation text-gold mr-2"></i>
+        {% else %}
+          <i class="fa-regular fa-circle-check text-green mr-2"></i>
+        {% endif %}
+        {{shop.trusted_checks.feedback_appeal_ratio}} {{ 'shop.trust.feedback' | t }}
+      </h3>
+      <div class="{{ globalClass }}__item-body {{ localClass }}__item-body">
+        {{ 'shop.trust.feedbackText' | t }}
+      </div>
+    </div>
+
+    <div class="{{ globalClass }}__item {{ localClass }}__item">
+      <h3 class="{{ globalClass }}__item-title {{ localClass }}__item-title">
+        {% if shop.trusted_checks.feedback_score < 1 %}
+          <i class="fa-regular fa-circle-xmark text-red mr-2"></i>
+          {% elif shop.trusted_checks.feedback_score > 1 and shop.trusted_checks.feedback_score < 4 %}
+          <i class="fa-regular fa-triangle-exclamation text-gold mr-2"></i>
+        {% else %}
+          <i class="fa-regular fa-circle-check text-green mr-2"></i>
+        {% endif %}
+        {{shop.trusted_checks.feedback_score | round(2) if shop.trusted_checks.feedback_score else 0 | round(2)}} {{ 'shop.trust.feedbackScore' | t }}
+      </h3>
+      <div class="{{ globalClass }}__item-body {{ localClass }}__item-body">
+        {{ 'shop.trust.feedbackScoreText' | t }}
+      </div>
+    </div>
+
+    <div class="{{ globalClass }}__item {{ localClass }}__item">
+      <h3 class="{{ globalClass }}__item-title {{ localClass }}__item-title">
+        {% if not shop.trusted_checks.no_chargeback_gateways %}
+          <i class="fa-regular fa-circle-check text-green mr-2"></i>
+          {{ 'shop.trust.paypalAccepted.yes' | t }}
+        {% else %}
+          <i class="fa-regular fa-circle-xmark text-red mr-2"></i>
+          {{ 'shop.trust.paypalAccepted.no' | t }}
+        {% endif %}
+      </h3>
+      <div class="{{ globalClass }}__item-body {{ localClass }}__item-body">
+        {% if shop.trusted_checks.no_chargeback_gateways %}
+          {{ 'shop.trust.paypalText.0' | t }}
+        {% else %}
+          {{ 'shop.trust.paypalText.1' | t }}
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="{{ globalClass }}__help-link {{ localClass }}__help-link">
+      <a href="{{properties.what_is_trusted_advisor_url}}" target="_blank">
+        {{ 'shop.trust.help' | t }}
+        {{ '&nbsp;' | safe }}
+        {% render_snippet 'Icons: Arrow right 1' %}
+      </a>
+    </div>
+  </div>
+</div>

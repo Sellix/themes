@@ -1,0 +1,26 @@
+{% set id = uid() %}
+{% set localClass = id %}
+
+<style>
+  .block-custom-header__{{ localClass }} {
+    font-size: {{ properties.font_size }};
+    text-align: {{ properties.text_align }};
+    color: {{ properties.text_color }};
+
+    {% if properties.text_style >= 300 %}
+      font-weight: {{ properties.text_style }};
+    {% else %}
+      font-style: italic;
+    {% endif %}
+  }
+
+  @media (max-width: 768px) {
+    .block-custom-header__{{ localClass }} {
+      font-size: calc({{ properties.font_size }} * 0.5vw);
+    }
+  }
+</style>
+
+<div class="block-custom-header__{{ localClass }}">
+  {{ properties.text_content }}
+</div>

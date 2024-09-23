@@ -1,0 +1,8 @@
+{% set id = uid() %}
+{% set localClass = id %}
+
+<div class="{{ globalClass }} {{ localClass }} content-width">
+  {% for block_name in settings.block_order %}
+      {%- render_block block_name -%}
+  {% endfor %}
+</div>

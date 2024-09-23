@@ -1,0 +1,10 @@
+{% set id = uid() %}
+{% set properties = args.properties %}
+
+{% set globalClass = 'snippet-multy-columns__link' %}
+{% set localClass = id %}
+{% set url = properties.url %}
+
+<a href="{{ url }}" style="color: {{ properties.label_color | get_color }}; font-size: {{ properties.label_font_size}}px; font-weight: {{ properties.label_font_weight}};">
+  {{ properties.label}}
+</a>

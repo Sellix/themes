@@ -1,0 +1,20 @@
+{% set id = uid() %}
+{% set localClass = id %}
+
+<style>
+  .block-custom-link__{{ localClass }}{
+    font-size: {{ properties.font_size }};
+    text-align: {{ properties.text_align }};
+    color: {{ properties.text_color }};
+
+    {% if properties.text_style >= 300 %}
+      font-weight: {{ properties.text_style }};
+    {% else %}
+      font-style: italic;
+    {% endif %}
+  }
+</style>
+
+<div class="block-custom-link__{{ localClass }}">
+  <a href="{{properties.text_link}}"> {{ properties.text_content }} </a>
+</div>

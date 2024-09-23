@@ -1,0 +1,38 @@
+{% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set rating = args.rating %}
+{% set size = safe_get(args.size, 25) %}
+{% set iconsCount = safe_get(args.iconsCount, 5) %}
+{% set iconName = safe_get(args.icon_name, 'smooth') %}
+{% set color = safe_get(args.color, '#FCAB06') %}
+{% set emptyColor = safe_get(args.empty_color, '#CCCCCC') %}
+{% set readonly = safe_get(args.readonly, true) %}
+{% set onClickFuncName = safe_get(args.on_click, false) %}
+
+<div id='rating-widget-{{id}}'></div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const domContainer = document.querySelector('#rating-widget-{{id}}');
+    ReactDOM.render(
+      React.createElement(ReactSimpleStarRating.Rating, {
+        rtl: {{ global.locales.rtl }},
+        ratingValue: Number({{rating / 5 * 100 if rating else 0}}),
+        initialValue: Number({{rating / 5 * 100 if rating else 0}}),
+        className: 'sellix-rating-stars',
+        fillColor: '{{ color }}',
+        emptyColor: '{{ emptyColor }}',
+        size: {{ size }},
+        iconsCount: {{ iconsCount or 5 }},
+        readonly: {{ readonly }},
+        iconName: '{{ iconName }}',
+        onClick: (value) => {
+          {% if onClickFuncName %}
+            {{ onClickFuncName }}(value / 20);
+          {% endif %}
+        }
+      }),
+      domContainer,
+    );
+  });
+</script>

@@ -1,0 +1,21 @@
+{% set id = uid() %}
+{% set localClass = id %}
+
+<style>
+  .{{ globalClass }}__{{ localClass }} {
+    width: {{ properties.width }}%!important;
+    height: {{ properties.height }}%;
+  }
+</style>
+
+{% if properties.image_url %}
+  <div class="{{ globalClass }}__{{ localClass }}">
+    {% if properties.page_url %}
+      <a href="{{ properties.page_url }}">
+    {% endif %}
+      <img src='{{properties.image_url | asset_url}}' alt=''>
+    {% if properties.page_url %}
+      </a>
+    {% endif %}
+  </div>
+{% endif %}

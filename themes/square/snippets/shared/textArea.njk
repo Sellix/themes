@@ -1,0 +1,80 @@
+{% set id = args.id or uid() %}
+{% set inputsProps = themeProperties.inputs %}
+{% set autosize = safe_get(args.autosize, true) %}
+
+{% set label = safe_get(args.label, '') %}
+{% set name = safe_get(args.name, id) %}
+{% set placeholder = safe_get(args.placeholder, '') %}
+{% set autoresize = safe_get(args.autoresize, false) %}
+{% set textAreaHeight = safe_get(args.text_area_height, 'auto') %}
+{% set rows = safe_get(args.rows, 5) %}
+{% set initialValue = safe_get(args.value, '') %}
+
+{% set commonHeight = safe_get(inputsProps.common_height, 48) %}
+{% set commonShowBorder = safe_get(inputsProps.common_show_border, true) %}
+{% set commonFontColor = safe_get(inputsProps.common_font_color, 'light_font_color') %}
+{% set commonFontSize = safe_get(inputsProps.common_font_size, 16) %}
+{% set commonFontWeight = safe_get(inputsProps.common_font_weight, 400) %}
+{% set commonLineHeight = safe_get(inputsProps.common_line_height, 24) %}
+
+{% set labelFontColor = safe_get(inputsProps.common_label_font_color, 'light_font_color') %}
+{% set labelFontSize = safe_get(inputsProps.common_label_font_size, 14) %}
+{% set labelFontWeight = safe_get(inputsProps.common_label_font_weight, 500) %}
+{% set labelLineHeight = safe_get(inputsProps.common_label_line_height, 17) %}
+{% set labelAlign = safe_get(inputsProps.common_label_text_align, 'start') %}
+
+{% set textFieldBackground = safe_get(inputsProps.text_field_background, background_accent_dark) %}
+
+{% set globalClass = 'snippet-input-text-area' %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }}__label {
+    display: flex;
+    color: {{ labelFontColor | get_color }};
+    font-size: {{ labelFontSize }}px;
+    font-weight: {{ labelFontWeight }};
+    line-height: {{ labelLineHeight }}px;
+  }
+  .{{ localClass }}__text-area {
+    min-height: {{textAreaHeight if autoresize else ''}};
+    background: {{ textFieldBackground | get_color }};
+    border: {{ "1px solid var(--borderColor)" if commonShowBorder else "none" }};
+    color: {{ commonFontColor | get_color }};
+    font-size: {{ commonFontSize }}px;
+    font-weight: {{ commonFontWeight }};
+    position: relative;
+  }
+</style>
+
+<div class="{{ globalClass }} {{ localClass }}">
+  {% if label %}
+    <label
+      class="sellix-label {{ globalClass }}__label {{ localClass }}__label justify-content-{{ labelAlign }}"
+      for="{{name}}"
+    >
+      {{label}}
+    </label>
+  {% endif %}
+
+  <textarea
+    autoComplete="off"
+    id="{{name}}"
+    name="{{name}}"
+    placeholder="{{placeholder}}"
+    class="sellix-input textarea {{ globalClass }}__text-area {{ localClass }}__text-area {{ localClass }}__input"
+    rows="{{rows if rows else 5}}"
+  >
+    {{-initialValue-}}
+  </textarea>
+</div>
+
+{% if autoresize %}
+  <script type='application/javascript'>
+    $(document).ready(function () {
+      {% if autosize %}
+        $('.{{ localClass }}__text-area').textareaAutoSize();
+      {% endif %}
+    });
+  </script>
+{% endif %}

@@ -1,0 +1,59 @@
+{% set id = uid() %}
+
+{% set bgColor = safe_get(properties.background_color, 'background_accent_dark') %}
+{% set showBorder = safe_get(properties.show_border, true) %}
+{% set shadow = safe_get(properties.shadow, 'none') %}
+{% set borderRadius = safe_get(properties.border_radius, 8) %}
+{% set paddingVert = safe_get(properties.padding_vert, 16) %}
+{% set paddingHoriz = safe_get(properties.padding_horiz, 16) %}
+
+{% set questionTextAlign = safe_get(properties.question_text_align, 'start') %}
+{% set contentTextAlign = safe_get(properties.answer_text_align, 'start') %}
+
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }}__container {
+    cursor: pointer;
+    border: {{ '1px solid var(--borderColor)' if showBorder else 'none' }};
+    background: {{ bgColor | get_color }};
+    border-radius: {{ borderRadius }}px!important;
+    box-shadow: {{ shadow }};
+    padding: {{ paddingVert }}px {{ paddingHoriz }}px;
+  }
+
+  .{{ localClass }}__question {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    color: {{ (properties.question_font_color | get_color) if properties.question_font_color else 'inherit' }};
+    font-size: {{ properties.question_font_size }}px;
+    font-weight: {{ properties.question_font_weight }};
+  }
+
+  .{{ localClass }}__content {
+    height: 0;
+    overflow: hidden;
+    transition: opacity 200ms linear, max-height 200ms linear;
+    will-change: opacity, max-height;
+    color: {{ (properties.answer_font_color | get_color) if properties.answer_font_color else 'inherit' }};
+    font-size: {{ properties.answer_font_size }}px;
+    font-weight: {{ properties.answer_font_weight }};
+  }
+</style>
+
+<div class="accordion-item {{ globalClass }}__container {{ localClass }}__container" data-faq-item-id="{{ id }}">
+  <div class="{{ globalClass }}__question {{ localClass }}__question text-align-{{ questionTextAlign }}">
+    <div class="{{ globalClass }}__question-text {{ localClass }}__question-text">
+      {{ properties.question | t }}
+    </div>
+    <div class="chevron {{ globalClass }}__chevron {{ localClass }}__chevron" data-faq-item-chevron="1">
+      {% render_snippet 'IconsNextSlide' %}
+    </div>
+  </div>
+  <div class="{{ globalClass}}__content {{ localClass }}__content text-align-{{ contentTextAlign }}" data-faq-item-answer="1">
+    <div class="pr-4 pt-0">
+      {{ properties.answer | t | safe }}
+    </div>
+  </div>
+</div>

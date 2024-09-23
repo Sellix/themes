@@ -1,0 +1,29 @@
+{% set id = uid() %}
+{% set localClass = id %}
+
+<div class="swiper-container {{localClass}} marquee-section">
+  <div class="swiper-wrapper">
+    {% for block_name in settings.block_order %}
+      <div class="swiper-slide">
+        {%- render_block block_name -%}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script type="application/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    const marqueeSlider = new Swiper('.{{localClass}}', {
+      spaceBetween: 0,
+      centeredSlides: true,
+      speed: 6000,
+      autoplay: {
+        delay: 1
+      },
+      loop: true,
+      slidesPerView: 'auto',
+      allowTouchMove: false,
+      disableOnInteraction: false
+    });
+  });
+</script>

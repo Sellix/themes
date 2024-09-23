@@ -1,0 +1,77 @@
+{% set id = uid() %}
+
+{% set showProductInfo = safe_get(properties.show_product_info, true) %}
+
+{% if global.request.type == 'delivery' %}
+  {% set feedbackId = global.common.invoiceInfo.info.feedback_uniqid %}
+  {% set feedback = global.common.invoiceInfo.feedback %}
+{% elif global.request.type == 'feedback' %}
+  {% set feedback = global.common.feedbackInfo.feedback %}
+  {% set feedbackId =  feedback.invoice.info.feedback_uniqid or global.request.options.itemId %}
+{% endif %}
+
+{% set localClass = id %}
+
+{% if feedback %}
+  <div class="{{ globalClass }}__container">
+    {% if showProductInfo %}
+      <div class="{{ globalClass }}__product">
+        {% render_snippet
+          'Product: Shortcut',
+          product=feedback.product,
+          properties={
+            form_size: properties.product_form_size,
+            container_background: properties.products_container_background,
+            container_show_border: properties.product_container_show_border,
+            container_shadow: properties.product_container_shadow,
+            container_border_radius: properties.product_container_border_radius,
+            container_padding_vert: properties.product_container_padding_vert,
+            container_padding_horiz: properties.product_container_padding_horiz,
+            image_size: properties.product_image_size,
+            image_border_radius: properties.product_image_border_radius
+        }
+        %}
+      </div>
+
+      <div class="{{ globalClass }}__delimiter">
+        {% render_snippet 'Shared: Horizontal delimiter', properties=properties %}
+      </div>
+    {% endif %}
+
+    <div class="{{ globalClass }}__feedback-form">
+      {% render_snippet
+        'Feedback: Form',
+        feedbackId=feedbackId,
+        feedback=feedback,
+        properties={
+          form_size: properties.feedback_form_size,
+          container_background: properties.feedback_container_background,
+          container_show_border: properties.feedback_container_show_border,
+          container_shadow: properties.feedback_container_shadow,
+          container_border_radius: properties.feedback_container_border_radius,
+          container_padding_vert: properties.feedback_container_padding_vert,
+          container_padding_horiz: properties.feedback_container_padding_horiz,
+          title: properties.feedback_form_title,
+          title_font_color: properties.feedback_form_title_font_color,
+          title_font_size: properties.feedback_form_title_font_size,
+          title_font_weight: properties.feedback_form_title_font_weight,
+          title_line_height: properties.feedback_form_title_line_height,
+          title_text_align: properties.feedback_form_title_text_align,
+          sub_title: properties.feedback_form_sub_title,
+          sub_title_font_color: properties.feedback_form_sub_title_font_color,
+          sub_title_font_size: properties.feedback_form_sub_title_font_size,
+          sub_title_font_weight: properties.feedback_form_sub_title_font_weight,
+          sub_title_line_height: properties.feedback_form_sub_title_line_height,
+          sub_title_text_align: properties.feedback_form_sub_title_text_align,
+          star_rating_title: properties.feedback_star_rating_title,
+          star_rating_title_font_color: properties.feedback_star_rating_title_font_color,
+          star_rating_title_font_size: properties.feedback_star_rating_title_font_size,
+          star_rating_title_font_weight: properties.feedback_star_rating_title_font_weight,
+          star_rating_title_line_height: properties.feedback_star_rating_title_line_height,
+          star_rating_title_text_align: properties.feedback_star_rating_title_text_align,
+          button_title: properties.feedback_form_button_title
+        }
+      %}
+    </div>
+  </div>
+{% endif %}

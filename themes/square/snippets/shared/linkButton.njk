@@ -1,0 +1,116 @@
+{% set id = args.id or uid() %}
+{% set properties = args.properties %}
+
+{% set iconSnippet = safe_get(properties.icon_snippet, '') %}
+{% set iconPosition = safe_get(properties.icon_position, 'right') %}
+{% set iconImage = safe_get(properties.icon_image, '') %}
+
+{% set bgColor = safe_get(properties.background_color | get_color, '') %}
+{% set labelColor = safe_get(properties.label_color | get_color, '') %}
+{% set labelFontSize = safe_get(properties.label_font_size, false) %}
+{% set labelFontSize = [labelFontSize, 'px'] | join if labelFontSize else '' %}
+{% set labelFontWeight = safe_get(properties.label_font_weight, '') %}
+{% set url = properties.url %}
+{% set isLink = safe_get(properties.is_link, false) %}
+{% set withLoader = safe_get(args.with_loader, false) %}
+
+{% set label = properties.label | t({keyPrefix: 'shop.shared.titles'}) %}
+
+{% set buttonStyle = safe_get(properties.button_style, 'primary') %}
+{% set buttonSize = safe_get(properties.button_size, 'medium') %}
+
+
+{% set globalClass = 'snippet-link-button' %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }} .button {
+    color: {{ labelColor }};
+    background-color: {{ bgColor }};
+    font-size: {{ labelFontSize }};
+    font-weight: {{ labelFontWeight }};
+    line-height: normal;
+    text-transform: uppercase;
+    padding: 0;
+  }
+
+  .{{ localClass }} .link-button-label {
+    display: flex;
+    align-items: center;
+
+    display: inline-flex;
+    position: relative;
+    -webkit-transition: all 0.3s linear 0s;
+    transition: all 0.3s linear 0s;
+
+    width: 100%;
+    justify-content: space-between;
+    column-gap: 1.5rem;
+  }
+
+  .{{ localClass }} .link-button-label:hover {
+    background-color: var(--brandColor);
+  }
+
+  .{{ localClass }} .link-button-label:hover:last-child {
+    color: var(--buttonTextColor);
+  }
+
+</style>
+
+<div class="{{ globalClass }} {{ localClass }}">
+  <a id="{{ id }}" href="{{ url }}" class="{{ buttonStyle }} {{ buttonSize }} button {{ 'button-link' if isLink }}">
+    <div class="link-button-loader d-none">
+      {% render_snippet
+        'Shared: Loader',
+        properties={
+          background_color: bgColor or 'button_color',
+          color: labelColor or 'button_text_color'
+        }
+      %}
+    </div>
+
+    <div class="link-button-label">
+      <div class="link-button-side-icon-left">
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 15 52" style="width: 15px;" xml:space="preserve" stroke="currentColor">
+          <g>
+            <path d="M7,22.8v25h1v-25H7z"/>
+            <rect x="4" y="12.8" width="7" height="7" fill="currentColor"/>
+            <path d="M11,10.8H4v-7h7V10.8z M5,9.8h5v-5H5V9.8z"/>
+          </g>
+        </svg>
+      </div>
+      {% if iconSnippet and iconPosition == 'left' %}
+        <span class="mr-2 d-flex">
+          {% render_snippet iconSnippet %}
+        </span>
+      {% endif %}
+
+      <span>
+        {{ label }}
+      </span>
+
+      {% if iconSnippet and iconPosition == 'right' %}
+        <span class="ml-2 d-flex">
+          {% render_snippet iconSnippet %}
+        </span>
+      {% endif %}
+
+      {% if iconImage %}
+        <span class="ml-2 d-flex">
+          <img src='{{iconImage | asset_url}}' alt=''>
+        </span>
+      {% endif %}
+
+      <div class="link-button-side-icon-right">
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 15 52" style="width: 15px; transform: scaleY(-1);" xml:space="preserve" stroke="currentColor">
+          <g>
+            <path d="M7,22.8v25h1v-25H7z"/>
+            <rect x="4" y="12.8" width="7" height="7" fill="currentColor"/>
+            <path d="M11,10.8H4v-7h7V10.8z M5,9.8h5v-5H5V9.8z"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </a>
+</div>

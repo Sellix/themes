@@ -1,0 +1,95 @@
+{% set id=uid() %}
+{% set feedbacks = global.common.feedbacksInfo.feedbacks %}
+{% set pageLimit = 10 %}
+{% set currentPage = 1 %}
+
+{% set pageSize = safe_get(properties.page_size, 12) %}
+{% set bgColor = safe_get(properties.background_color, 'background_accent_light') %}
+{% set showBorder = safe_get(properties.show_border, false) %}
+{% set borderRadius = safe_get(properties.border_radius, 0) %}
+{% set shadow = safe_get(properties.shadow, 'none') %}
+{% set paddingHoriz = safe_get(properties.padding_horiz, 0) %}
+{% set paddingVert = safe_get(properties.padding_vert, 0) %}
+
+{% set btnBgColor = safe_get(properties.button_background_color, 'background_accent_light') %}
+{% set btnShowBorder = safe_get(properties.button_show_border, false) %}
+{% set btnBorderRadius = safe_get(properties.button_border_radius, 8) %}
+{% set btnShadow = safe_get(properties.button_shadow, 'none') %}
+{% set btnPaddingHoriz = safe_get(properties.button_padding_horiz, 0) %}
+{% set btnPaddingVert = safe_get(properties.button_padding_vert, 0) %}
+
+{% set btnFontColor = safe_get(properties.button_text_font_color, 'dark_font_color') %}
+{% set btnFontSize = safe_get(properties.button_text_font_size, 14) %}
+{% set btnFontWeight = safe_get(properties.button_text_font_weight, 400) %}
+{% set btnLineHeight = safe_get(properties.button_text_line_height, 20) %}
+
+{% set activeBtnBgColor = safe_get(properties.active_button_background_color, 'background_accent_dark') %}
+{% set activeBtnFontColor = safe_get(properties.active_button_text_font_color, 'brand_color') %}
+{% set activeBtnFontSize = safe_get(properties.active_button_text_font_size, 15) %}
+{% set activeBtnFontWeight = safe_get(properties.active_button_text_font_weight, 500) %}
+
+
+{% set localClass = id %}
+
+{% if feedbacks.length > pageSize %}
+  <style>
+    .{{ localClass}}__container {
+      display: flex;
+      margin: 0 auto;
+      padding: {{ paddingVert }}px {{ paddingHoriz }}px;
+      background: {{ bgColor | get_color }};
+      border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
+      box-shadow: {{ shadow }};
+      border-radius: {{ borderRadius }}px;
+    }
+
+    .{{ localClass}}__container .item,
+    .{{ localClass}}__container .prev,
+    .{{ localClass}}__container .next {
+      cursor: pointer;
+      padding: {{ btnPaddingVert }}px {{ btnPaddingHoriz }}px;
+      background: {{ btnBgColor | get_color }};
+      border: {{ "1px solid var(--borderColor)" if btnShowBorder else "none" }};
+      box-shadow: {{ btnShadow }};
+      border-radius: {{ btnBorderRadius }}px;
+
+      color: {{ btnFontColor | get_color }};
+      font-size: {{ btnFontSize }}px;
+      font-weight: {{ btnFontWeight }};
+      line-height: {{ btnLineHeight }}px;
+    }
+    .{{ localClass }}__container .item.active {
+      background: {{ activeBtnBgColor | get_color }};
+      color: {{ activeBtnFontColor | get_color }};
+      font-size: {{ activeBtnFontSize }}px;
+      font-weight: {{ activeBtnFontWeight }};
+    }
+  </style>
+  <div class="{{ globalClass }}__container {{ localClass }}__container">
+    <div class="prev d-none">
+      <i class="fa-solid fa-chevron-left"></i>
+    </div>
+
+    <div class="next d-none">
+      <i class="fa-solid fa-chevron-right"></i>
+    </div>
+  </div>
+
+  <script type='application/javascript'>
+    $(document).ready(function () {
+      let feedbackPaginationInstance = new window.SellixFeedbackPagination(
+        {{ currentPage }},
+        {{ feedbacks.length }},
+        {{ pageLimit }},
+        {{ pageSize }}
+      );
+      const feedbackComponent = new SellixFeedbackPaginationComponent(
+        '.{{ localClass }}__container',
+        '.sellix-block.block-feedback-list',
+        feedbackPaginationInstance,
+        '{{id}}',
+        {{renderOptions | dump | safe}},
+      );
+    });
+  </script>
+{% endif %}
