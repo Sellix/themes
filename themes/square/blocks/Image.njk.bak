@@ -8,20 +8,26 @@
 {% set primaryButtonUrl = properties.primary_button_link_content %}
 {% set secondaryButtonLabel = properties.secondary_button_text_content %}
 {% set secondaryButtonUrl = properties.secondary_button_link_content %}
+<link rel="preload" as="image" href="{{ bgImage | asset_url }}>">
 
-<div class="{{ localClass }} d-flex justify-content-lg-{{ textPosition }} justify-content-sm-center align-items-lg-{{ paragraphPosition }} align-items-sm-center text-lg-{{ textAlignment }} w-100 h-100 position-relative" style="background-image: url('{{ bgImage | asset_url }}'); background-size: cover; background-position: center;">
-
+<!-- Struttura del div che userà l'immagine come sfondo -->
+<div class="{{ localClass }} d-flex justify-content-lg-{{ textPosition }} justify-content-sm-center align-items-lg-{{ paragraphPosition }} align-items-sm-center text-lg-{{ textAlignment }} w-100 h-100 position-relative">
     {% if properties.video_id %}
-        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/{{ properties.video_id }}" sandbox="allow-scripts allow-same-origin allow-presentation" loading="lazy"></iframe>
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/{{ properties.video_id }}" sandbox="allow-scripts allow-same-origin allow-presentation"></iframe>
     {% else %}
 
-    <div class="image-text content-width p-4 d-flex flex-column{% if showParagraphBackground %} bg-light shadow-sm backdrop-blur{% endif %} position-relative">
+    <!-- Immagine principale della slide con lazy loading nativo, visibile come sfondo -->
+    <img class="swiper-lazy w-100 h-100 position-absolute top-0 start-0" src="{{ bgImage | asset_url }}" alt="Descrizione dell'immagine" style="object-fit: cover; z-index: -1;">
+
+    <!-- Contenuto di testo della slide, posizionato sopra l'immagine -->
+    <div class="image-text content-width p-4 d-flex flex-column {% if showParagraphBackground %} bg-light shadow-sm backdrop-blur {% endif %} position-relative" style="z-index: 1;">
         
+        <!-- Preheader -->
         {% if properties.preheader_text_content %}
             <div class="d-flex justify-content-lg-{{ textPosition }} justify-content-sm-center mb-2">
                 {% if textAlignment == 'end' or textAlignment == 'center' %}
                     <div class="me-2" style="transform: rotate(180deg);"> 
-                        {% render_snippet 'Icons: Title Separator' %} 
+                        {% render_snippet 'IconsTitleSeparator' %} 
                     </div>
                 {% endif %}
 
@@ -29,24 +35,28 @@
 
                 {% if textAlignment == 'start' or textAlignment == 'center' %}
                     <div class="ms-2"> 
-                        {% render_snippet 'Icons: Title Separator' %} 
+                        {% render_snippet 'IconsTitleSeparator' %} 
                     </div>
                 {% endif %}
             </div>
         {% endif %}
 
+        <!-- Header -->
         {% if properties.header_text_content %}
             <h2 class="display-4 fw-bold">{{ properties.header_text_content }}</h2>
         {% endif %}
 
+        <!-- Subheader -->
         {% if properties.subheader_text_content %}
             <h4 class="h4">{{ properties.subheader_text_content }}</h4>
         {% endif %}
 
+        <!-- Testo della slide -->
         {% if properties.text_content %}
             <p style="color: var(--lightFontColor);">{{ properties.text_content }}</p>
         {% endif %}
 
+        <!-- Pulsanti della slide -->
         <div class="slide-buttons justify-content-lg-{{ textPosition }} justify-content-sm-center d-flex flex-sm-column flex-lg-row gap-3 mt-3">
             {% if primaryButtonLabel %}
                 {% render_snippet 'Shared: Link button', properties={ 'label': primaryButtonLabel, 'url': primaryButtonUrl, 'button_style': 'primary btn btn-primary rounded-0' } %}

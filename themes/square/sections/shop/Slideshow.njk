@@ -1,0 +1,97 @@
+{% set localClass = id %}
+
+<div class="{{ localClass }}__slider swiper-slider-container">
+  <div class="swiper-wrapper">
+    {% for block_name in settings.block_order %}
+      {% render_block block_name %}
+    {% endfor %}
+  </div>
+
+  {% if properties.showPagination %}
+    <div class="swiper-pagination swiper-pagination-vertical"></div>
+  {% endif %}
+
+  {% if properties.showThumbs %}
+    <div class="{{ localClass }}__thumbs swiper-slider-container__gallery-thumbs d-sm-none d-lg-flex col-12">
+      <div class="swiper-wrapper">
+        {% for block_name in settings.block_order %}
+          {% render_block block_name %}
+          <div class="swiper-next-icon">
+            {% render_snippet 'Icons: Next Slide' %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+<script type="application/javascript">
+  document.addEventListener('DOMContentLoaded', function () {
+    {% if properties.showThumbs %}
+      var galleryThumbs = new Swiper(".{{ localClass }}__thumbs", {
+        watchSlidesVisibility: true,
+        watchSlidesProgress: true,
+        slidesPerView: 'auto',
+      });
+    {% endif %}
+
+    var swiperOptions = {
+      preventInteractionOnTransition: true,
+      loop: true,
+      speed: 1500,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: true,
+      },
+      on: {
+        slideChangeTransitionStart: function () {
+          var swiper = this;
+          var prevSlide = swiper.slides[swiper.previousIndex];
+          var nextSlideIndex = (swiper.activeIndex + 1) % swiper.slides.length;
+          var nextSlide = swiper.slides[nextSlideIndex];
+
+          if (prevSlide) {
+            toggleImageText(prevSlide, false);
+          }
+          if (nextSlide) {
+            toggleImageText(nextSlide, false);
+          }
+        },
+        slideChangeTransitionEnd: function () {
+          var swiper = this;
+          var currentSlide = swiper.slides[swiper.activeIndex];
+
+          if (currentSlide) {
+            toggleImageText(currentSlide, true);
+            animateSlideBackground(currentSlide);
+          }
+        }
+      }
+    };
+
+    {% if properties.showThumbs %}
+      swiperOptions.thumbs = {
+        swiper: galleryThumbs
+      };
+    {% endif %}
+
+    {% if properties.showPagination %}
+      swiperOptions.pagination = {
+        el: '.swiper-pagination',
+        clickable: true,
+        renderBullet: function (index, className) {
+          var formattedNumber = ('0' + (index + 1)).slice(-2);
+          return '<span class="' + className + '">' + formattedNumber + '</span>';
+        },
+      };
+    {% endif %}
+
+    var galleryMain = new Swiper('.{{ localClass }}__slider', swiperOptions);
+
+    var firstSlide = galleryMain.slides[galleryMain.activeIndex];
+    if (firstSlide) {
+      toggleImageText(firstSlide, true);
+      animateSlideBackground(firstSlide);
+    }
+  });
+</script>

@@ -1,32 +1,14 @@
-.swiper-container {
-  width: 100vw;
-  position: relative;
-  overflow: hidden;
-}
-
 .marquee-section {
-  border-top: 1px solid var(--borderColor);
-  border-bottom: 1px solid var(--borderColor);
-  padding-top: 36px;
-  padding-bottom: 36px;
+  border-top: 1px solid var(--borderColor, #ccc);
+  border-bottom: 1px solid var(--borderColor, #ccc);
+  padding: 2rem 0;
 }
 
-/* Effetto animazione inversa per swiper-bottom */
-.swiper-container.swiper--bottom::after {
+.marquee-section.swiper--bottom::after {
   animation-direction: reverse;
 }
 
-@keyframes scroll-left {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-/* Gradient overlay all'inizio del container */
-.swiper-container:before {
+.marquee-section:before {
     left: 0;
     right: auto;
     background-image: linear-gradient(90deg, rgb(18 19 22 / 85%) 80%, transparent);
@@ -42,12 +24,21 @@
     transition: all .25s linear;
   }
 
-.swiper-container:hover:before {
+.marquee-section:hover:before {
   background-size: 0% 100%;
 }
 
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
 /* Animazione dello swiper */
-.swiper-container .marquee-slider .swiper-wrapper {
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee-section .swiper-wrapper {
   animation: scroll-left 20s linear infinite;
   display: flex;
   align-items: center;
@@ -56,16 +47,11 @@
 }
 
 @media (max-width: 768px) {
-  .swiper-container {
-    width: 100vw;
-  }
-
   .marquee-section {
-    padding-top: 24px;
-    padding-bottom: 24px;
+    padding: 1.5rem 0;
   }
 
-  .swiper-container:before {
-    width: 40vw;
-  }
+  .marquee-section::before {
+    width: 40%;
+}
 }

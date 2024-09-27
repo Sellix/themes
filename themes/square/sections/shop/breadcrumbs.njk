@@ -1,0 +1,178 @@
+{% set localClass = [globalClass, '-', id] | join %}
+
+{% set paddingDesktop = {
+  'padding-top': safe_get(properties.padding_top_desktop, 60),
+  'padding-bottom': safe_get(properties.padding_bottom_desktop, 60),
+  'padding-left': safe_get(properties.padding_horiz_desktop, 0),
+  'padding-right': safe_get(properties.padding_horiz_desktop, 0),
+  'margin-top': safe_get(properties.margin_top_desktop, 0),
+  'margin-bottom': safe_get(properties.margin_bottom_desktop, 60)
+} %}
+
+{% set paddingTablet = {
+  'padding-top': safe_get(properties.padding_top_tablet, 45),
+  'padding-bottom': safe_get(properties.padding_bottom_tablet, 45),
+  'padding-left': safe_get(properties.padding_horiz_tablet, 0),
+  'padding-right': safe_get(properties.padding_horiz_tablet, 0),
+  'margin-top': safe_get(properties.margin_top_tablet, 0),
+  'margin-bottom': safe_get(properties.margin_bottom_tablet, 30)
+} %}
+
+{% set paddingMobile = {
+  'padding-top': safe_get(properties.padding_top_mobile, 30),
+  'padding-bottom': safe_get(properties.padding_bottom_mobile, 30),
+  'padding-left': safe_get(properties.padding_horiz_mobile, 0),
+  'padding-right': safe_get(properties.padding_horiz_mobile, 0),
+  'margin-top': safe_get(properties.margin_top_mobile, 0),
+  'margin-bottom': safe_get(properties.margin_bottom_mobile, 30)
+} %}
+
+{% set titleStyles = {
+  'display': 'block' if properties.title_visible else 'none',
+  'color': (properties.title_font_color | get_color) or 'var(--dark-font-color)',
+  'font-size': properties.title_font_size or 40,
+  'font-weight': properties.title_font_weight or 500,
+  'line-height': properties.title_line_height or 48
+} %}
+
+{% set subtitleStyles = {
+  'display': 'block' if properties.subtitle_visible else 'none',
+  'color': (properties.subtitle_font_color | get_color) or 'var(--light-font-color)',
+  'font-size': properties.subtitle_font_size or 16,
+  'font-weight': properties.subtitle_font_weight or 400,
+  'line-height': properties.subtitle_line_height or 32
+} %}
+
+{% set crumbStyles = {
+  'color': (properties.crumb_font_color | get_color) or 'var(--black4)',
+  'font-size': properties.crumb_font_size or 13,
+  'font-weight': properties.crumb_font_weight or 500,
+  'line-height': properties.crumb_line_height or 16
+} %}
+
+{% set lastCrumbColor = (properties.last_crumb_font_color | get_color) or 'var(--dark-font-color)' %}
+
+{% set bgStyles = '' %}
+{% if properties.background_image %}
+  {% set bgStyles = 'background: url(' ~ (properties.background_image | asset_url) ~ ') no-repeat center center / cover;' %}
+{% elif properties.background_color %}
+  {% set bgStyles = 'background-color: ' ~ (properties.background_color | get_color) ~ ';' %}
+{% endif %}
+
+
+{% set lastItemIdx = 0 %}
+{% for idx in [1,2,3,4,5] %}
+  {% set crumbLabel = properties['crumb_label_' ~ idx] %}
+  {% if crumbLabel %}
+    {% set lastItemIdx = idx %}
+  {% endif %}
+{% endfor %}
+
+<style>
+.{{ localClass }}__container {
+  {{ bgStyles }}
+  padding: {{ paddingDesktop['padding-top'] }}px {{ paddingDesktop['padding-right'] }}px {{ paddingDesktop['padding-bottom'] }}px {{ paddingDesktop['padding-left'] }}px;
+  margin-top: {{ paddingDesktop['margin-top'] }}px;
+  margin-bottom: {{ paddingDesktop['margin-bottom'] }}px;
+  z-index: 2;
+}
+
+.{{ localClass }}__title {
+  text-transform: capitalize;
+  margin-top: 1rem;
+  display: {{ titleStyles['display'] }};
+  color: {{ titleStyles['color'] }};
+  font-size: {{ titleStyles['font-size'] }}px;
+  font-weight: {{ titleStyles['font-weight'] }};
+  line-height: {{ titleStyles['line-height'] }}px;
+}
+
+.{{ localClass }}__subtitle {
+  margin-top: 1rem;
+  display: {{ subtitleStyles['display'] }};
+  color: {{ subtitleStyles['color'] }};
+  font-size: {{ subtitleStyles['font-size'] }}px;
+  font-weight: {{ subtitleStyles['font-weight'] }};
+  line-height: {{ subtitleStyles['line-height'] }}px;
+}
+
+.{{ localClass }}__crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.{{ localClass }}__link-crumb {
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  color: {{ crumbStyles['color'] }};
+  font-size: {{ crumbStyles['font-size'] }}px;
+  font-weight: {{ crumbStyles['font-weight'] }};
+  line-height: {{ crumbStyles['line-height'] }}px;
+  margin-right: 0.5rem;
+}
+
+.{{ localClass }}__link-crumb a {
+  color: inherit;
+  text-decoration: none;
+  margin-right: 0.35rem;
+}
+
+.{{ localClass }}__link-crumb svg {
+  margin-right: 0.35rem;
+}
+
+.{{ localClass }}__last-link-crumb {
+  color: {{ lastCrumbColor }};
+}
+
+@media (max-width: 768px) {
+  .{{ localClass }}__container {
+    padding: {{ paddingMobile['padding-top'] }}px {{ paddingMobile['padding-right'] }}px {{ paddingMobile['padding-bottom'] }}px {{ paddingMobile['padding-left'] }}px;
+    margin-top: {{ paddingMobile['margin-top'] }}px;
+    margin-bottom: {{ paddingMobile['margin-bottom'] }}px;
+  }
+
+  .{{ localClass }}__title {
+    font-size: 30px;
+    line-height: 32px;
+  }
+}
+</style>
+
+<div class="{{ globalClass }}__container {{ localClass }}__container {{ 'full-width' if properties.fullwidth else 'content-width' }}">
+  {% if lastItemIdx > 0 %}
+    <div class="{{ globalClass }}__crumbs {{ localClass }}__crumbs">
+      {% for idx in [1,2,3,4,5] %}
+        {% set crumbLabel = properties['crumb_label_' ~ idx] %}
+        {% if crumbLabel %}
+          {% set crumbUrl = properties['crumb_url_' ~ idx] %}
+          <div class="{{ globalClass }}__link-crumb {{ localClass }}__link-crumb">
+            {% if idx != lastItemIdx %}
+              <a href="{{ crumbUrl }}">
+                <span>{{ crumbLabel | t({keyPrefix: 'shop.content'}) }}</span>
+              </a>
+              {% render_snippet 'Icons: Arrow right 2' %}
+            {% else %}
+              <span class="{{ globalClass }}__last-link-crumb {{ localClass }}__last-link-crumb">
+                {{ crumbLabel | t({keyPrefix: 'shop.content'}) }}
+              </span>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if properties.title_visible %}
+    <div class="{{ globalClass }}__title {{ localClass }}__title">
+      {{ properties.title | t({keyPrefix: 'shop.content'}) }}
+    </div>
+  {% endif %}
+  {% if properties.subtitle_visible %}
+    <div class="{{ globalClass }}__subtitle {{ localClass }}__subtitle">
+      {{ properties.subtitle | t({keyPrefix: 'shop.content'}) }}
+    </div>
+  {% endif %}
+</div>

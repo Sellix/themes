@@ -1,0 +1,25 @@
+{% set shop = global.common.shopInfo.shop %}
+{% set logoImage = safe_get(themeProperties.common.logo_image, null) %}
+
+<div class="glass-footer-section content-width">
+  <div class="glass-footer-column">
+    <div class="logo-description">
+      {% if logoImage %}
+        <div class="logo-wrapper">
+          <a href="/">
+            <img src="{{ logoImage }}" 
+                 class="logo-image" 
+                 alt="{{ shop.name }}">
+          </a>
+        </div>
+      {% endif %}
+      <p class="description-text">
+        {{ properties.text_content }}
+      </p>
+    </div>
+  </div>
+
+  {% for block_name in settings.block_order %}
+    {% render_block block_name %}
+  {% endfor %}
+</div>

@@ -1,18 +1,24 @@
 {% set id = uid() %}
-{% set shop = global.common.shopInfo.shop %}
 {% set properties = args.properties %}
-{% set cartEnabled = themeProperties.cart.is_enabled %}
-{% set cartEffect = themeProperties.cart.effect if cartEnabled else 'none' %}
-{% set group = args.group %}
-{% set isPlaceholder = not group.image_name %}
+{% set shopInfo = global.common.shopInfo %}
+{% set shop = shopInfo.shop %}
+{% set product = args.product %}
+{% set isPlaceholder = not product.image_name %}
 {% set placeholderType = safe_get(properties.placeholder_type, undefined) %}
-{% set image = cdn_link(group.cloudflare_image_id, 'shopItem') %}
+{% set isLicense = product.licensing_enabled %}
+{% set image = cdn_link(product.cloudflare_image_id, 'shopItem') %}
+{% set onHold = product.on_hold | int %}
+{% set isOut = (product.stock | int === 0) %}
+{% set isPayWhatYouWant = product.pay_what_you_want %}
+{% set isFree = product.price_display | float === 0 and not isPayWhatYouWant %}
 {% set cardProps = themeProperties.cards %}
-{% set count = args.count %}
-{% set itemsPerRowType = safe_get(properties.items_per_row_type, 'static') %}
-
 {% set showBadge = safe_get(properties.show_product_type_badge, true) %}
 {% set showTag = safe_get(properties.show_product_type_tag, true) %}
+
+
+{% set showStockInfo = safe_get(themeProperties.common.show_stock_info, false) %}
+{% set hideStockCounter = safe_get(themeProperties.common.hide_stock_counter, false) %}
+
 {% set background = safe_get(properties.background_color, cardProps.product_card_background_color) %}
 {% set border = '1px solid var(--borderColor)' if safe_get(properties.show_border, cardProps.product_card_show_border) else 'none' %}
 {% set borderRadius = safe_get(properties.border_radius, cardProps.product_card_border_radius) %}
@@ -42,7 +48,7 @@
   price_font_size: priceFontSize
 } %}
 
-{% set globalClass =  'snippet-product-card' %}
+{% set globalClass = 'snippet-product-card' %}
 {% set localClass = id %}
 
 <style>
@@ -68,6 +74,18 @@
     font-size: {{ descriptionFontSize }}px;
     font-weight: {{ descriptionFontWeight }};
   }
+  .{{ localClass }}__price-with-discount {
+    color: {{ priceFontColor | get_color }};
+    font-size: {{ priceFontSize }}px;
+    font-weight: {{ priceFontWeight }};
+  }
+
+  .{{ localClass }}__price-with-discount i {
+    color: var(--lightFontColor);
+    font-size: {{ priceFontSize }}px;
+    font-weight: 400;
+  }
+
   .{{ localClass }}__price {
     color: {{ priceFontColor | get_color }};
     font-size: {{ priceFontSize }}px;
@@ -82,122 +100,121 @@
     border-top-left-radius: {{ imageBorderRadius or borderRadius }}px;
     border-top-right-radius: {{ imageBorderRadius or borderRadius }}px;
   }
-
-  .group-card-block .snippet-product-card__title {
-    font-weight: 600;
-  }
-
 </style>
 
-<div class="{{ globalClass }} {{ localClass }} {{ 'single-card' if count == 1 and itemsPerRowType == 'dynamic' }} d-flex w-100 position-relative">
-  <div class="{{ globalClass }}__container {{ localClass }}__container" data-group-id="{{group.uniqid}}">
-    {% if showBadge %}
+<div class="{{ globalClass }} {{ localClass }} d-flex w-100 position-relative">
+  <a
+    href="{{'javascript:void(0)' if product.on_hold | int else ['product/', product.slug or product.uniqid] | join}}"
+    id="sellix-card-container-{{id}}"
+    class="{{ globalClass }}__container {{ localClass }}__container"
+  >
+    {% if onHold or isOut or (showBadge and isLicense) %}
       <div class="{{ globalClass }}__badge-container">
-        <div class="{{ globalClass }}__badge">
-          {{ 'shop.shared.titles.productType.group' | t }}
-        </div>
+        {% if onHold or isOut %}
+          <div class="{{ globalClass }}__badge icon-badge">
+            {% render_snippet 'Icons: Hand' %}
+          </div>
+        {% endif %}
+
+        {% if showBadge and isLicense %}
+          <div class="{{ globalClass }}__badge {{ 'icon-badge' if onHold }}">
+            {{ 'shop.shared.titles.productType.license' | t }}
+          </div>
+        {% endif %}
       </div>
     {% endif %}
 
-    <div class="{{ globalClass }}__card {{ localClass }}__card unselectable">
-      <div class="{{ globalClass }}__image {{ localClass }}__image {{'image-placeholder' if isPlaceholder}} {{ placeholderType }}">
+    <div class="{{ globalClass}}__card {{ localClass }}__card unselectable">
+      <div class="{{ globalClass}}__image {{ localClass }}__image {{'image-placeholder' if isPlaceholder}} {{ placeholderType }}">
+        <div class="{{ globalClass }}__cart {{ localClass }}__cart">
+          {% render_snippet 'Cart button 2', product=product %}
+        </div>
         {% if isPlaceholder %}
-          {% render_snippet 'Product: Placeholder icon', product=group, dark=(true if placeholderType == 'dark' else undefined) %}
+          {% render_snippet 'Product: Placeholder icon', product=product, dark=(true if placeholderType == 'dark' else undefined) %}
         {% else %}
-          <img src="{{image}}w={{ imageHeight }},h={{ imageHeight }}" alt="{{group.title}}" loading="lazy" />
+          <img src="{{image}}" alt="{{product.title}}" loading="lazy" />
         {% endif %}
       </div>
 
       <div class="{{ globalClass }}__info {{ localClass }}__info">
         <div class="{{ globalClass }}__description {{ localClass }}__description">
-          {% if group.min_price_item %}
-            <div class="{{ globalClass }}__group-description-info">
-              <span class="{{ globalClass }}__starting-at">
-                {{ 'shop.shared.titles.startingAt' | t }}
-              </span>
-
-              <span class="{{ globalClass }}__price {{ localClass }}__price">
-               {% render_snippet
-                 'Shared: Price',
-                 currency=group.min_price_item.currency,
-                 price=group.min_price,
-                 show_image=true,
-                 show_initial_price='last',
-                 properties=priceProperties
-               %}
-              </span>
+          {% if product.price_discount and not isFree %}
+            <div class="{{ globalClass }}__price-with-discount {{ localClass }}__price-with-discount">
+              {% render_snippet
+                'Shared: Price',
+                currency=product.currency,
+                price=product.min_price,
+                discount=product.price_discount,
+                show_image=true,
+                show_initial_price='last',
+                properties=priceProperties
+              %}
             </div>
           {% else %}
-            <span>
-              {{ 'shop.main.cards.group.outOfProducts' | t }}
-            </span>
+            <div class="{{ globalClass }}__group-description-info">
+              {% if not isFree and product.price_variants %}
+                <span class="{{ globalClass }}__starting-at">
+                  {{ 'shop.shared.titles.startingAt' | t }}
+                </span>
+              {% endif %}
+
+              <div class="{{ globalClass }}__price {{ localClass }}__price">
+                {% if showTag %}
+                  {% if isFree %}
+                    {% render_snippet 'Tag', tag=('shop.shared.titles.free' | t), type='success' %}
+                  {% elif isPayWhatYouWant %}
+                    {% render_snippet 'Tag', tag=('shop.main.cards.product.yourPrice' | t) %}
+                  {% endif %}
+                {% endif %}
+
+                {% if not isFree or not isPayWhatYouWant %}
+                  {% render_snippet
+                    'Shared: Price',
+                    currency=product.currency,
+                    price=product.min_price,
+                    show_image=true,
+                    show_initial_price='last',
+                    properties=priceProperties
+                  %}
+                {% endif %}
+              </div>
+            </div>
           {% endif %}
+
+          <div class="{{ globalClass }}__description-additional">
+            {% if showStockInfo %}
+              {% render_snippet
+                'Product: Stock',
+                stock=product.stock,
+                hide_stock_counter=hideStockCounter
+              %}
+            {% endif %}
+          </div>
         </div>
 
         <div class="{{ globalClass }}__title {{ localClass }}__title justify-content-{{ titleTextAlign }}">
-          {{group.title}}
+          {{product.title}}
         </div>
 
-        {% if group.min_price_item %}
+        {% if not isFree and not isOut and not onHold %}
           <span class="{{ globalClass }}__tax {{ localClass }}__tax"></span>
+        {% endif %}
+
+        {% if onHold %}
+          <span class="{{ globalClass }}__info-comment {{ localClass }}__info-comment">
+            {{ 'shop.main.cards.product.onHold' | t }}
+          </span>
+        {% endif %}
+
+        {% if isOut %}
+          <span class="{{ globalClass }}__info-comment {{ localClass }}__info-comment">
+            {{ 'shop.main.cards.product.soldOut' | t }}
+          </span>
         {% endif %}
       </div>
     </div>
-  </div>
+  </a>
 </div>
-
-<script type='application/javascript'>
-  $(document).ready(function () {
-    const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
-
-    $('.{{ localClass }}__container').on('click', function () {
-      const groupId = $(this).data('group-id');
-      const items = SellixContext.getShopItems();
-      const group = items.find(({uniqid}) => String(uniqid) === String(groupId));
-
-      if (group && group.products_bound.length) {
-        $(document).trigger('SellixSetActiveModalGroup', { groupId });
-        $('#group-card-modal').modal({
-          groupModalId: '{{ id }}',
-          cartItemIds: new Set(cart.getItems().map((item) => item.uniqid)),
-          modalClass: '',
-          blockerClass: 'sellix-overlay',
-          showClose: false,
-        });
-      }
-    });
-
-    $(document).on($.modal.AFTER_CLOSE, (event, context) => {
-      if ('{{ cartEffect }}' !== 'open_cart_modal') {
-        // effect is not enabled
-        return;
-      }
-
-      const { options } = context;
-      if (options.groupModalId !== '{{ id }}') {
-        // another group modal
-        return;
-      }
-
-      const set1 = options.cartItemIds || new Set([]);
-      const set2 = new Set(cart.getItems().map((item) => item.uniqid));
-      const diff = new Set([
-        ...[...set1].filter(x => !set2.has(x)),
-        ...[...set2].filter(x => !set1.has(x)),
-      ]);
-
-      if (diff.size > 0) {
-        $(document).trigger('SellixOpenCheckoutModal', { showContinueShoppingButton: true });
-      }
-    });
-
-    {% if global.request.type === 'group' and global.request.options.itemId === group.uniqid %}
-      setTimeout(function() {
-        $('.{{ localClass }}__container').click();
-      }, 0);
-    {% endif %}
-  });
-</script>
 
 <script type='application/javascript'>
   $(document).ready(function () {

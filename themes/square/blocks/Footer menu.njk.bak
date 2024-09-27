@@ -1,0 +1,10 @@
+<h5 class="text-light fw-bold text-uppercase text-md-start text-center">{{ menu.title }}</h5>
+<ul class="list-unstyled">
+  {% for item in menu.items %}
+    <li>
+      <a href="{{ item.page_slug }}" class="text-muted text-md-start text-center d-block footer-menu-item">
+        {{ item.title | t({ keyPrefix: 'menu' }) }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
