@@ -4,6 +4,7 @@
 {% set emailId = uid() %}
 {% set messageId = uid() %}
 {% set invoiceId = uid() %}
+{% set buttonId = ['contact-form-submit-', id] | join %}
 
 {% set formSize = safe_get(properties.form_size, 100) %}
 {% set formAlign = safe_get(properties.form_align, 'left') %}
@@ -96,7 +97,7 @@
     <div class="{{ globalClass }}__button-container {{ localClass }}__button-container justify-content-{{ buttonAlign }}">
       {% render_snippet
         'Shared: Ripple button',
-        button_id=['contact-form-submit-', id] | join,
+        button_id=buttonId,
         type='submit',
         title=(properties.button_title | t)
       %}
@@ -113,6 +114,7 @@
       '{{messageId}}',
       '{{invoiceId}}',
       '{{shop.name}}',
+      '{{buttonId}}',
     );
     $('.{{ localClass }}__form').validate({
       errorElement: 'div',

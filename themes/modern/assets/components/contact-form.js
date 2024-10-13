@@ -1,6 +1,6 @@
 (function (document, window, jQuery, sellixApi) {
   class FormComponent {
-    constructor(selector, titleId, emailId, messageId, invoiceId, shopName) {
+    constructor(selector, titleId, emailId, messageId, invoiceId, shopName, buttonId) {
       this.$form = jQuery(selector);
       this.shopName = shopName;
 
@@ -13,10 +13,15 @@
       this.$email = this.$form.find(`.${emailId}__input`);
       this.$message = this.$form.find(`.${messageId}__input`);
       this.$invoice = this.$form.find(`.${invoiceId}__input`);
+      this.$submitButton = buttonId ? this.$form.find(`#${buttonId}`) : null;
     }
 
     submit() {
       if (this.$title.val() && this.$email.val() && this.$message.val()) {
+        if (this.$submitButton) {
+          this.$submitButton.find('.ripple-button-label').addClass('d-none');
+          this.$submitButton.find('.ripple-button-loader').removeClass('d-none');
+        }
         sellixApi
           .createTicket({
             title: this.$title.val(),
@@ -38,6 +43,10 @@
                 text: resp.error,
               });
             }
+          })
+          .finally(() => {
+            this.$submitButton.find('.ripple-button-label').removeClass('d-none');
+            this.$submitButton.find('.ripple-button-loader').addClass('d-none');
           });
       }
     }

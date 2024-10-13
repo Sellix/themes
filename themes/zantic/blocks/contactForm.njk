@@ -4,6 +4,7 @@
 {% set emailId = uid() %}
 {% set messageId = uid() %}
 {% set invoiceId = uid() %}
+{% set buttonId = ['contact-form-submit-', id] | join %}
 
 {% set formSize = safe_get(properties.form_size, 100) %}
 {% set formAlign = safe_get(properties.form_align, 'left') %}
@@ -49,7 +50,7 @@
   }
   .{{ localClass }}__field {
     margin-bottom: 25px;
-    
+
   }
 
   .sellix-input {
@@ -73,7 +74,7 @@
     display: none;
   }
   {% endif %}
-  
+
 </style>
 
 <div class="{{ globalClass }}__container {{ localClass }}__container justify-content-{{ formAlign }}">
@@ -120,9 +121,11 @@
     <div class="{{ globalClass }}__button-container {{ localClass }}__button-container justify-content-{{ buttonAlign }}">
       {% render_snippet
         'Shared: Ripple button',
-        button_id=['contact-form-submit-', id] | join,
+        button_id=buttonId,
         type='submit',
-        title=(properties.button_title | t)
+        title=(properties.button_title | t),
+        bg_color=buttonColor,
+        label_color=buttonLabelColor
       %}
     </div>
   </form>
@@ -137,6 +140,7 @@
       '{{messageId}}',
       '{{invoiceId}}',
       '{{shop.name}}',
+      '{{buttonId}}',
     );
     $('.{{ localClass }}__form').validate({
       errorElement: 'div',
