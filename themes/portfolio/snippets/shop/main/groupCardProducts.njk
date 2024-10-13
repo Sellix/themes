@@ -96,7 +96,7 @@
       </a>
 
       <div class="group-option-buttons unselectable {{'with-cart' if cartEnabled else ''}}">
-        {% if not isDisabled and not isFree and product.type != 'SUBSCRIPTION' and not product.licensing_enabled %}
+        {% if not isDisabled and not isFree and isSubscription and not isLicense and not isPayWhatYouWant %}
           {% render_snippet 'Cart button', product=product, isGroup=true %}
         {% else %}
           <div></div>
