@@ -8,7 +8,7 @@
   if cartEnabled and global.request.type != 'checkout' and themeProperties.cart.effect in possibleCartEffects
   else 'none'
 %}
-{% set isSubscription = product.type === 'SUBSCRIPTION' %}
+{% set isSubscription = product.type === 'SUBSCRIPTION' or product.type === 'SUBSCRIPTION_V2' %}
 {% set isLicense = product.licensing_enabled %}
 {% set isPayWhatYouWant = product.pay_what_you_want %}
 
