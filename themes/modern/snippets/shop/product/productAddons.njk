@@ -27,6 +27,7 @@
 {% set paddingVertMobile = safe_get(properties.container_padding_vert_mobile, 20) %}
 {% set paddingHorizMobile = safe_get(properties.container_padding_horiz_mobile, 16) %}
 
+{% set isSubscription = product.type in ['SUBSCRIPTION', 'SUBSCRIPTION_V2'] %}
 {% set isInvoice = global.request.type == 'invoice' %}
 
 {% if isInvoice %}
@@ -38,7 +39,7 @@
 {% set globalClass = ['snippet-product-addons'] %}
 {% set localClass = id %}
 
-{% if product.type === 'SUBSCRIPTION' and product.trial_period %}
+{% if isSubscription and product.trial_period %}
   {# Do nothing #}
 {% elif addons | length %}
   <style>

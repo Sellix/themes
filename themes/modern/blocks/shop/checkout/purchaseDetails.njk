@@ -1,5 +1,6 @@
 {% if global.request.type in ['product', 'checkout'] %}
   {% set id = uid() %}
+  {% set isSubscription =product.type in ['SUBSCRIPTION', 'SUBSCRIPTION_V2']  %}
 
   {% set localClass = id %}
 
@@ -7,7 +8,7 @@
     {% set product = global.common.productInfo.product %}
     {% set productIds = [product.uniqid] if product.type != 'INFO_CARD' else [] %}
 
-    {% if product.type === 'SUBSCRIPTION' %}
+    {% if isSubscription %}
       {% set type = 'subscription' %}
     {% else %}
       {% set type = 'product' %}

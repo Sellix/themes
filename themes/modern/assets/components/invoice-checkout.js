@@ -124,7 +124,6 @@
       return sellixApi.payEvm(data);
     };
 
-
     onGetMeshNetworks = () => {
       return sellixApi.getMeshNetworks();
     };
@@ -136,6 +135,7 @@
     render() {
       ReactDOM.render(
         React.createElement(InvoiceCheckout.InvoiceCheckout, {
+          type: 'invoice',
           config: SellixContext.getConfig(),
           currencyConfig: SellixContext.getCurrencyConfig(),
           theme: this.theme,

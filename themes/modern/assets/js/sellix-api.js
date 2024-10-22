@@ -113,7 +113,7 @@
       });
     }
 
-    async createInvoice(data, options) {
+    createInvoice = async (data, options) => {
       let headers = {};
       if (options.token) {
         headers = {
@@ -132,7 +132,7 @@
         });
       };
       return this.requestWithCaptchaV3('createInvoice', onSuccess, null, options);
-    }
+    };
 
     async getCalculation(data) {
       return jQuery.ajax({
@@ -202,6 +202,36 @@
         contentType: 'application/json; charset=utf-8',
       });
     }
+
+    async getProductSubscription(id) {
+      return jQuery.ajax({
+        method: 'GET',
+        url: `${this.apiUrl}/api/shop/product-subscriptions/${id}`,
+        contentType: 'application/json; charset=utf-8',
+      });
+    }
+
+    createProductSubscription = async (data, options) => {
+      let headers = {};
+      if (options.token) {
+        headers = {
+          Authorization: 'Bearer ' + options.token,
+        };
+      }
+      const onSuccess = (captcha) => {
+        data.captcha = captcha;
+        return jQuery.ajax({
+          method: 'POST',
+          url: `${this.apiUrl}/api/shop/product-subscriptions`,
+          contentType: 'application/json; charset=utf-8',
+          dataType: 'json',
+          data: JSON.stringify(data),
+          headers,
+        });
+      };
+
+      return this.requestWithCaptchaV3('createSubscription', onSuccess, null, options);
+    };
 
     async customerAuthEmail(data, options) {
       const onSuccess = (captcha) => {

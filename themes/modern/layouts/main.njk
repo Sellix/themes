@@ -142,6 +142,7 @@
     <link rel="stylesheet" href="{{ 'snippet-product-share.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'snippet-product-stock.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'snippet-product-variants.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-product-plans.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'snippet-purchase-details.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'snippet-shop-message.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'snippet-social-links-floating.css' | asset_url(rtl) }}"/>
@@ -159,7 +160,7 @@
     {% if global.request.type in ['checkout'] %}
       <link rel="stylesheet" href="{{ 'template-checkout.css' | asset_url(rtl) }}"/>
     {% endif %}
-    {% if global.request.type in ['invoice'] %}
+    {% if global.request.type in ['invoice', 'product_subscription'] %}
       <link rel="stylesheet" href="{{ 'widget-invoice-checkout.css' | asset_url(rtl) }}" />
       <link rel="stylesheet" href="{{ 'template-invoice.css' | asset_url(rtl) }}"/>
     {% endif %}
@@ -187,7 +188,7 @@
         </div>
 
         {% if settings.sections['Footer menu'].settings.visible or settings.sections['Footer'].settings.visible %}
-          <div class="sellix-footer {{ 'with-border' if global.request.type in ['invoice'] }}">
+          <div class="sellix-footer {{ 'with-border' if global.request.type in ['invoice', 'product_subscription'] }}">
             {% if settings.sections['Footer menu'].settings.visible %}
               {% render_section 'Footer menu' %}
             {% endif %}
@@ -213,7 +214,7 @@
     {% render_snippet 'Toastify' %}
     {% render_snippet 'Heart beat' %}
 
-    {% if global.request.type not in ['invoice'] %}
+    {% if global.request.type not in ['invoice', 'product_subscription'] %}
       {% if themeProperties.common.show_floating_social_links %}
         {% render_snippet 'Social Links: Floating' %}
       {% endif %}
@@ -254,7 +255,7 @@
       <script src="{{ 'widget-purchase-details.js' | asset_url }}"></script>
     {% endif %}
 
-    {% if global.request.type in ['invoice'] %}
+    {% if global.request.type in ['invoice', 'product_subscription'] %}
       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
       <script src="{{ 'widget-invoice-checkout.js' | asset_url }}"></script>
     {% endif %}
@@ -272,6 +273,7 @@
   <script src="{{ 'sellix-collapsable-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-addons-store.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-variants-store.js' | asset_url }}"></script>
+  <script src="{{ 'sellix-product-plans-store.js' | asset_url }}"></script>
   <script src="{{ 'sellix-cart-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-customer-login-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-cart-product-component.js' | asset_url }}"></script>
@@ -282,11 +284,13 @@
   <script src="{{ 'sellix-feedback-pagination.js' | asset_url }}"></script>
   <script src="{{ 'sellix-feedback-pagination-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-invoice-checkout-component.js' | asset_url }}"></script>
+  <script src="{{ 'sellix-product-subscription-checkout-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-leave-feedback-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-addons-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-bundle-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-count-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-variants-component.js' | asset_url }}"></script>
+  <script src="{{ 'sellix-product-plans-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-purchase-details-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-ticket-component.js' | asset_url }}"></script>
 

@@ -11,7 +11,7 @@
 %}
 {% set onHold = product.on_hold | int %}
 {% set isFree = product.price_display | float === 0 %}
-{% set isSubscription = product.type === 'SUBSCRIPTION' or product.type === 'SUBSCRIPTION_V2'  %}
+{% set isSubscription = product.type in ['SUBSCRIPTION', 'SUBSCRIPTION_V2'] %}
 {% set isLicense = product.licensing_enabled %}
 {% set isPayWhatYouWant = product.pay_what_you_want %}
 

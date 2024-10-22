@@ -2,6 +2,7 @@
   {% set shop = global.common.shopInfo.shop %}
   {% set invoice = global.common.invoiceInfo.invoice %}
   {% set product = global.common.productInfo.product %}
+  {% set isSubscription = product.type in ['SUBSCRIPTION', 'SUBSCRIPTION_V2'] %}
 
   {% set allCurrencies = global.currencyConfig.allCurrencies %}
   {% set defaultCurrency = allCurrencies[global.currencyConfig.default] %}
@@ -12,7 +13,7 @@
     {% set currency = invoice.currency or product.currency or shop.currency %}
   {% endif %}
 
-  {% set type = invoice.type or ('PRODUCT_SUBSCRIPTION' if product.type === 'SUBSCRIPTION' else product.type) %}
+  {% set type = invoice.type or ('PRODUCT_SUBSCRIPTION' if isSubscription else product.type) %}
   <script type='application/javascript'>
     $(document).ready(function() {
       if (!window.paypal) {
