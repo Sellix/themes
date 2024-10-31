@@ -68,7 +68,7 @@
       return productsLeft
         .map((product) => {
           const { uniqid, quantity_min, on_hold, stock } = product;
-          const isSubscription = product.type === 'SUBSCRIPTION';
+          const isSubscription = ['SUBSCRIPTION', 'SUBSCRIPTION_V2'].includes(product.type);
           const isLicense = product.licensing_enabled;
           const isPayWhatYouWant = product.pay_what_you_want;
 
