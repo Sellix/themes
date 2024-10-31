@@ -54,3 +54,32 @@
   </script>
 
 {% endif %}
+
+{% set onChangeCodeInput = ['onChangeCodeInput_', id] | join %}
+{% set renderCodeInputCallback = ['renderCallback_', id] | join %}
+
+<div class="{{ localClass }}__container">
+  {% render_snippet 'Login modal',
+    globalClass='block-customer-login',
+    onChangeCodeInput=onChangeCodeInput,
+    renderCodeInputCallback=renderCodeInputCallback
+  %}
+</div>
+
+<script type="application/javascript">
+  let component{{ id }};
+  function {{ onChangeCodeInput }}(val) {
+    if (component{{ id }}) {
+      component{{ id }}.onCodeChange(val);
+    }
+  }
+
+  $(document).ready(function() {
+    const { shopInfo } = window.SellixContext.get('common');
+    component{{ id }} = new SellixCustomerLoginComponent(
+      '.{{ localClass }}__container',
+      {{ renderCodeInputCallback }},
+      shopInfo.shop,
+    );
+  });
+</script>

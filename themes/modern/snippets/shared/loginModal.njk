@@ -1,0 +1,60 @@
+{% set globalClass = args.globalClass %}
+{% set onChangeCodeInput = args.onChangeCodeInput %}
+{% set renderCodeInputCallback = args.renderCodeInputCallback %}
+
+<div class="sellix-modal sellix-ui-container {{ globalClass }}__modal {{ 'is-dark' if global.theme.isDark }}" style="display: none" data-modal="1">
+  <div class="{{ globalClass }}__close-icon" data-modal-close-icon="1">
+    {% render_snippet 'Icons: Close 1' %}
+  </div>
+
+  <div class="{{ globalClass }}__modal-container" data-modal-step="1">
+    <div class="{{ globalClass }}__modal-header">
+      <div class="{{ globalClass }}__modal-title">
+        {{ 'Customer Portal' | t({keyPrefix: 'shop.content'}) }}
+      </div>
+      <div class="{{ globalClass }}__modal-subtitle">
+        {{ 'Access the customer portal dashboard to manage your affiliate balances and more.' | t({keyPrefix: 'shop.content'}) }}
+      </div>
+    </div>
+    <div class="{{ globalClass }}__modal-form">
+      <div class="{{ globalClass }}__modal-field">
+        {% render_snippet 'Shared: Text',
+          name="email",
+          label=('Email' | t({keyPrefix: 'shop.content'})),
+          placeholder=('example@gmail.com' | t({keyPrefix: 'shop.content'}))
+        %}
+      </div>
+    </div>
+
+    {% render_snippet 'Shared: Ripple button',
+      class='medium primary send-email-button',
+      title=('Continue' | t({keyPrefix: 'shop.content'})),
+      disabled=true
+    %}
+  </div>
+
+  <div class="d-none {{ globalClass }}__modal-container" data-modal-step="2">
+    <div class="{{ globalClass }}__modal-header">
+      <div class="{{ globalClass }}__modal-title">
+        {{ 'We\'ve sent you a code' | t({keyPrefix: 'shop.content'}) }}
+      </div>
+      <div class="{{ globalClass }}__modal-subtitle">
+        {{ 'Please enter the authentication code we sent to your email address to go to your customer portal.' | t({keyPrefix: 'shop.content'}) }}
+      </div>
+    </div>
+    <div class="{{ globalClass }}__modal-form">
+      <div class="{{ globalClass }}__modal-field">
+        {% render_snippet
+          'Shared: Code input',
+          on_change=onChangeCodeInput,
+          render_callback=renderCodeInputCallback %}
+      </div>
+    </div>
+
+    {% render_snippet 'Shared: Ripple button',
+      class='medium primary verify-code-button',
+      title=('Verify & Login' | t({keyPrefix: 'shop.content'})),
+      disabled=true
+    %}
+  </div>
+</div>
