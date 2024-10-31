@@ -1,6 +1,5 @@
 {% set id = uid() %}
 {% set shop = global.common.shopInfo.shop %}
-{% set invoiceInfo = global.common.invoiceInfo %}
 {% set properties = args.properties %}
 
 {% set globalClass = ['snippet-invoice-checkout'] %}
@@ -12,20 +11,74 @@
   <div class="{{ globalClass }}__container {{ localClass }}__container"></div>
 </div>
 
-<script type='application/javascript'>
-  $(document).ready(async function () {
-    const shopInfo = SellixContext.getShopInfo();
-    const theme = SellixContext.getTheme();
-    const component = new SellixInvoiceCheckoutComponent({
-      selector: '.{{ localClass }}__container',
-      theme: theme,
-      shop: shopInfo.shop,
-      invoiceId: '{{ invoiceInfo.invoice.uniqid }}',
-      invoice: SellixContext.getInvoiceInfo().invoice,
-      options: {}
+{% if global.request.type == 'invoice' %}
+  {% set invoiceInfo = global.common.invoiceInfo %}
+
+  <script type='application/javascript'>
+    $(document).ready(async function () {
+      const shopInfo = SellixContext.getShopInfo();
+      const theme = SellixContext.getTheme();
+      const component = new SellixInvoiceCheckoutComponent({
+        selector: '.{{ localClass }}__container',
+        theme: theme,
+        shop: shopInfo.shop,
+        invoiceId: '{{ invoiceInfo.invoice.uniqid }}',
+        invoice: SellixContext.getInvoiceInfo().invoice,
+        options: {}
+      });
+      setTimeout(function() {
+        component.render();
+      }, 0);
     });
-    setTimeout(function() {
-      component.render();
-    }, 0);
+  </script>
+
+  {% elif global.request.type == 'product_subscription' %}
+  {% set productSubscriptionInfo = global.common.productSubscriptionInfo %}
+
+  <script type='application/javascript'>
+    $(document).ready(async function () {
+      const shopInfo = SellixContext.getShopInfo();
+      const theme = SellixContext.getTheme();
+      const component = new SellixProductSubscriptionCheckoutComponent({
+        selector: '.{{ localClass }}__container',
+        theme: theme,
+        shop: shopInfo.shop,
+        productSubscriptionId: '{{ productSubscriptionInfo.product_subscription.uniqid }}',
+        productSubscriptionInfo: SellixContext.getProductSubscriptionInfo(),
+        options: {}
+      });
+      setTimeout(function() {
+        component.render();
+      }, 0);
+    });
+  </script>
+
+{% endif %}
+
+{% set onChangeCodeInput = ['onChangeCodeInput_', id] | join %}
+{% set renderCodeInputCallback = ['renderCallback_', id] | join %}
+
+<div class="{{ localClass }}__container">
+  {% render_snippet 'Login modal',
+    globalClass='block-customer-login',
+    onChangeCodeInput=onChangeCodeInput,
+    renderCodeInputCallback=renderCodeInputCallback
+  %}
+</div>
+
+<script type="application/javascript">
+  let component{{ id }};
+  function {{ onChangeCodeInput }}(val) {
+    if (component{{ id }}) {
+      component{{ id }}.onCodeChange(val);
+    }
+  }
+  $(document).ready(function() {
+    const { shopInfo } = window.SellixContext.get('common');
+    component{{ id }} = new SellixCustomerLoginComponent(
+      '.{{ localClass }}__container',
+      {{ renderCodeInputCallback }},
+      shopInfo.shop,
+    );
   });
 </script>

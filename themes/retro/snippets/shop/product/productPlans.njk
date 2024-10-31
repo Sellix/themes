@@ -1,0 +1,163 @@
+{% set id = uid() %}
+{% set properties = args.properties %}
+{% set shop = global.common.shopInfo.shop %}
+{% set product = args.product %}
+{% set currency = args.currency %}
+{% set isCart = args.is_cart or false %}
+{% set productPlans = product.product_plans or [] %}
+{% set hideStockCounter = safe_get(themeProperties.common.hide_stock_counter, false) %}
+{% set showStockInfo = safe_get(themeProperties.common.show_stock_info, false) %}
+
+{% set bgColor = safe_get(properties.container_background_color, 'background_accent_light') %}
+{% set bgActiveColor = safe_get(properties.container_background_active_color, 'background_accent_light') %}
+{% set showBorder = safe_get(properties.container_show_border, true) %}
+{% set shadow = safe_get(properties.container_shadow, 'none') %}
+{% set borderRadius = safe_get(properties.container_border_radius, 8) %}
+
+{% set paddingVertDesktop = safe_get(properties.container_padding_vert_desktop, 16) %}
+{% set paddingHorizDesktop = safe_get(properties.container_padding_horiz_desktop, 16) %}
+{% set paddingVertTablet = safe_get(properties.container_padding_vert_tablet, 16) %}
+{% set paddingHorizTablet = safe_get(properties.container_padding_horiz_tablet, 16) %}
+{% set paddingVertMobile = safe_get(properties.container_padding_vert_mobile, 16) %}
+{% set paddingHorizMobile = safe_get(properties.container_padding_horiz_mobile, 16) %}
+
+{% set titleFontColor = safe_get(properties.title_font_color, 'dark_font_color') %}
+{% set titleActiveFontColor = safe_get(properties.title_active_font_color, 'black9') %}
+{% set titleFontSize = safe_get(properties.title_font_size, 16) %}
+{% set titleFontWeight = safe_get(properties.title_font_weight, 600) %}
+{% set titleLineHeight = safe_get(properties.title_line_height, 20) %}
+
+{% set infoFontColor = safe_get(properties.info_font_color, 'dark_font_color') %}
+{% set infoActiveFontColor = safe_get(properties.info_active_font_color, 'black9') %}
+{% set infoFontSize = safe_get(properties.info_font_size, 14) %}
+{% set infoFontWeight = safe_get(properties.info_font_weight, 500) %}
+{% set infoLineHeight = safe_get(properties.info_line_height, 20) %}
+
+{% set descriptionFontColor = safe_get(properties.description_font_color, 'light_font_color') %}
+{% set descriptionActiveFontColor = safe_get(properties.description_active_font_color, 'light_font_color') %}
+{% set descriptionFontSize = safe_get(properties.description_font_size, 14) %}
+{% set descriptionFontWeight = safe_get(properties.description_font_weight, 400) %}
+{% set descriptionLineHeight = safe_get(properties.description_line_height, 20) %}
+
+{% set globalClass = ['snippet-product-plans'] %}
+{% set localClass = id %}
+
+{# and product.stock #}
+{% if productPlans | length %}
+  <style>
+    .{{ localClass }}__plan {
+      background: {{ bgColor | get_color }};
+      border: {{ '1px solid var(--borderColor)' if showBorder else 'none' }};
+      box-shadow: {{ shadow }};
+      border-radius: {{ borderRadius }}px;
+      padding: {{ paddingVertDesktop }}px {{ paddingHorizDesktop }}px;
+    }
+    @media (max-width: 768px) {
+      .{{ localClass }}__plan {
+        padding: {{ paddingVertTablet }}px {{ paddingHorizTablet }}px;
+      }
+    }
+    @media (max-width: 640px) {
+      .{{ localClass }}__plan {
+        padding: {{ paddingVertMobile }}px {{ paddingHorizMobile }}px;
+      }
+    }
+    .{{ localClass }}__plan.active {
+      background: {{ bgActiveColor | get_color }};
+    }
+    .{{ localClass }}__plan.active .{{ localClass }}__title {
+      color: {{ titleActiveFontColor | get_color }};
+    }
+    .{{ localClass }}__plan.active .{{ localClass }}__info {
+      color: {{ infoActiveFontColor | get_color }};
+    }
+    .{{ localClass }}__plan.active .{{ localClass }}__description {
+      color: {{ descriptionActiveFontColor | get_color }};
+    }
+    .{{ localClass }}__title {
+      color: {{ titleFontColor | get_color }};
+      font-size: {{ titleFontSize }}px;
+      font-weight: {{ titleFontWeight }};
+      line-height: {{ titleLineHeight }}px;
+    }
+    .{{ localClass }}__description {
+      color: {{ descriptionFontColor | get_color }};
+      font-size: {{ descriptionFontSize }}px;
+      font-weight: {{ descriptionFontWeight }};
+      line-height: {{ descriptionLineHeight }}px;
+    }
+    .{{ localClass }}__info {
+      color: {{ infoFontColor | get_color }};
+      font-size: {{ infoFontSize }}px;
+      font-weight: {{ infoFontWeight }};
+      line-height: {{ infoLineHeight }}px;
+    }
+  </style>
+  <div class="{{ globalClass }} {{ localClass }}">
+    {% for plan in productPlans %}
+      {% if plan.stock === 0 %}
+      {% else %}
+        <div
+          class="{{ globalClass }}__plan {{ localClass }}__plan"
+          data-plan="{{ plan.uniqid }}"
+        >
+          <div class="{{ globalClass }}__header {{ localClass }}__header">
+            <div class="{{ globalClass }}__radio-wrapper">
+              <label class="sellix-radio-button {{ globalClass }}__checkbox" data-active-checkbox="1">
+                <input type="radio" name="radio_{{ id }}">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div class="{{ globalClass }}__title-wrapper">
+              <div class="{{ globalClass }}__title {{ localClass }}__title">
+              <span>
+                {{ plan.title }}
+              </span>
+                {% if plan.description %}
+                  <i class="chevron fa-solid fa-chevron-down" data-toggle-product-plan-description-button="1"></i>
+                {% endif %}
+              </div>
+              <div class="{{ globalClass }}__info {{ localClass }}__info">
+                <div class="{{ globalClass }}__info-price">
+                  <span>{{ 'shop.shared.titles.startingAt' | t }}</span>
+                  {% render_snippet 'Shared: Price', currency=currency, price=plan.price_conversions[currency] %}
+                </div>
+                {% if showStockInfo %}
+                  {% render_snippet
+                    'Product: Stock',
+                    stock=plan.stock,
+                    hide_stock_counter=hideStockCounter
+                  %}
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          <div
+            class="{{ globalClass }}__description {{ localClass }}__description"
+            style="height: 0; overflow: hidden;"
+            data-plan-description="1"
+          >
+            <div class="mt-2">
+              {{ plan.description }}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <script type='application/javascript'>
+    $(document).ready(function() {
+      $(document).ready(function() {
+        const productId = '{{ product.uniqid }}';
+        const component = new SellixProductPlansComponent(
+          `.{{ localClass }}`,
+          '{{ shop.name }}',
+          productId,
+          {{ (product.product_plans or []) | dump | safe }},
+          {{ isCart }}
+        );
+        component.render();
+      });
+    });
+  </script>
+{% endif %}
