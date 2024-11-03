@@ -1,8 +1,7 @@
 (function (document, window, jQuery, React, ReactDOM, SellixStoreFactory, sellixApi, sellixHelper) {
   class InvoiceCheckoutComponent {
-    constructor({ selector, config, theme, shop, invoiceId, invoice, options }) {
+    constructor({ selector, theme, shop, invoiceId, invoice, options }) {
       this.domContainer = document.querySelector(selector);
-      this.config = config;
       this.theme = theme;
       this.shop = shop;
       this.invoiceId = invoiceId;
@@ -158,7 +157,7 @@
       ReactDOM.render(
         React.createElement(InvoiceCheckout.InvoiceCheckout, {
           type: 'invoice',
-          config: this.config,
+          config: SellixContext.getConfig(),
           currencyConfig: SellixContext.getCurrencyConfig(),
           theme: this.theme,
           shop: this.shop,
