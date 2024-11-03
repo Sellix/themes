@@ -1,8 +1,17 @@
+{% set id = uid() %}
 {% set globalClass = args.globalClass %}
 {% set onChangeCodeInput = args.onChangeCodeInput %}
 {% set renderCodeInputCallback = args.renderCodeInputCallback %}
 
-<div class="sellix-modal sellix-ui-container {{ globalClass }}__modal {{ 'is-dark' if global.theme.isDark }}" style="display: none" data-modal="1">
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }}__modal .sellix-input {
+    background: #2a2a2a!important;
+  }
+</style>
+
+<div class="sellix-modal sellix-ui-container {{ globalClass }}__modal {{ localClass}}__modal {{ 'is-dark' if global.theme.isDark }}" style="display: none" data-modal="1">
   <div class="{{ globalClass }}__close-icon" data-modal-close-icon="1">
     <i class="fa-light fa-times" style="color: var(--darkFontColor); font-size: 1.25rem;"></i>
   </div>
