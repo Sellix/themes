@@ -3,6 +3,7 @@
 {% set product = args.product %}
 {% set invoice = args.invoice %}
 {% set colors = args.colors %}
+{% set isSubscription = product.type in ['SUBSCRIPTION', 'SUBSCRIPTION_V2'] %}
 
 {% set hideSold = (shop.hide_products_sold or (not shop.hide_products_sold and not product.sold_count)) and not product.sold_count %}
 
@@ -50,7 +51,7 @@
     {% endif %}
   </div>
 
-  {% if product.type === 'SUBSCRIPTION' %}
+  {% if isSubscription %}
     <div class="shop-product-info-subscription-badge" style="background-color: var(--backgroundColor)">
       {{ 'shop.shared.titles.productType.subscription' | t }}
     </div>

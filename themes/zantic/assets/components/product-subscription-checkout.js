@@ -15,6 +15,23 @@
       jQuery(document).trigger('SellixToastify', { type, text });
     };
 
+    onGetInvoice = (id) => {
+      return sellixApi.getInvoice(id).then((response) => {
+        const { status, data } = response;
+        if (status === 200) {
+          const { invoice } = data || {};
+          if (this.invoice && invoice && this.invoice.status !== 'COMPLETED' && invoice.status === 'COMPLETED') {
+            window.SellixAnalyticsManager.sendPurchase(invoice);
+          }
+        }
+        return response;
+      });
+    };
+
+    onGetInvoiceStatus = (id) => {
+      return sellixApi.getInvoiceStatus(id);
+    };
+
     onGetProductSubscription = (id) => {
       return sellixApi.getProductSubscription(id).then((response) => {
         const { status, data } = response;
@@ -90,6 +107,8 @@
           onShowMessage: this.onShowMessage,
           productSubscriptionId: this.productSubscriptionId,
           productSubscriptionInfo: this.productSubscriptionInfo,
+          onGetInvoice: this.onGetInvoice,
+          onGetInvoiceStatus: this.onGetInvoiceStatus,
           onGetProductSubscription: this.onGetProductSubscription,
           onUpdateProductSubscription: this.onUpdateProductSubscription,
           onGetPaymentMethods: this.onGetPaymentMethods,

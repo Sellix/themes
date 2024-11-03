@@ -133,7 +133,7 @@
     {% if global.request.type in ['checkout', 'product', 'subscription'] %}
       <link rel="stylesheet" href="{{ 'widget-purchase-details.css' | asset_url(rtl) }}" />
     {% endif %}
-    {% if global.request.type in ['invoice'] %}
+    {% if global.request.type in ['invoice', 'product_subscription'] %}
       <link rel="stylesheet" href="{{ 'widget-invoice-checkout.css' | asset_url(rtl) }}" />
     {% endif %}
     <link rel="stylesheet" href="{{ 'magnific-popup.1.1.0.css' | asset_url(rtl) }}" />
@@ -199,7 +199,7 @@
     <script src="{{ 'widget-purchase-details.js' | asset_url }}"></script>
   {% endif %}
 
-  {% if global.request.type in ['invoice'] %}
+  {% if global.request.type in ['invoice', 'product_subscription'] %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="{{ 'widget-invoice-checkout.js' | asset_url }}"></script>
   {% endif %}
