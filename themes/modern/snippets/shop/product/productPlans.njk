@@ -163,17 +163,15 @@
 
   <script type='application/javascript'>
     $(document).ready(function() {
-      $(document).ready(function() {
-        const productId = '{{ product.uniqid }}';
-        const component = new SellixProductPlansComponent(
-          `.{{ localClass }}`,
-          '{{ shop.name }}',
-          productId,
-          {{ (product.product_plans or []) | dump | safe }},
-          {{ isCart }}
-        );
-        component.render();
-      });
+      const productId = '{{ product.uniqid }}';
+      const component = new SellixProductPlansComponent(
+        `.{{ localClass }}`,
+        '{{ shop.name }}',
+        productId,
+        {{ (product.product_plans or []) | dump | safe }},
+        {{ isCart }}
+      );
+      component.render();
     });
   </script>
 {% endif %}

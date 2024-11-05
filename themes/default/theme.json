@@ -1,6 +1,6 @@
 {
   "id": "default",
-  "version": "0.1.47",
+  "version": "0.1.48",
   "is_active": 0,
   "name": "Default",
   "category": "Digital Products",
@@ -87,6 +87,12 @@
           "defaultValue": "#DEDEDE"
         },
         {
+          "id": "background_active",
+          "type": "color-picker",
+          "label": "Active",
+          "defaultValue": "#F4F4FE"
+        },
+        {
           "id": "header_text_colors",
           "type": "header",
           "content": "Text"
@@ -125,6 +131,12 @@
           "type": "color-picker",
           "label": "Border",
           "defaultValue": "#E8E8E8"
+        },
+        {
+          "id": "border_color_active",
+          "type": "color-picker",
+          "label": "Border active",
+          "defaultValue": "#6A3CE2"
         },
         {
           "id": "link_color",
@@ -294,6 +306,12 @@
           "defaultValue": "#DEDEDE"
         },
         {
+          "id": "background_active",
+          "type": "color-picker",
+          "label": "Active",
+          "defaultValue": "#F4F4FE"
+        },
+        {
           "id": "header_text_colors",
           "type": "header",
           "content": "Text"
@@ -332,6 +350,12 @@
           "type": "color-picker",
           "label": "Border",
           "defaultValue": "#E8E8E8"
+        },
+        {
+          "id": "border_color_active",
+          "type": "color-picker",
+          "label": "Border active",
+          "defaultValue": "#6A3CE2"
         },
         {
           "id": "link_color",
@@ -1530,6 +1554,7 @@
         "thin_color": "#989BA0",
         "brand_color": "#5F40E5",
         "border_color": "#E8E8E8",
+        "border_color_active": "#6A3CE2",
         "button_color": "#5F40E5",
         "input_border": "#C9C9CB",
         "background_dark": "#DEDEDE",
@@ -1538,6 +1563,7 @@
         "background_main_color": "#FFFFFF",
         "background_accent_light": "#FFFFFF",
         "background_accent_dark": "#F5F5F5",
+        "background_active": "#F4F4FE",
         "light_font_color": "#3F4A60",
         "input_border_hover": "#E5DFFA",
         "menu_background_hover": "#E9E4FF",
@@ -1563,10 +1589,12 @@
         "thin_color": "#989ba0",
         "brand_color": "#5F40E5",
         "border_color": "#233453",
+        "border_color_active": "#6A3CE2",
         "button_color": "#5F40E5",
         "input_border": "#233453",
         "background_dark": "#DEDEDE",
         "dark_font_color": "#b4aebc",
+        "background_active": "#6A3CE230",
         "menu_background": "rgb(249, 249, 250)",
         "background_main_color": "#0A1730",
         "background_accent_light": "#0A1730",
@@ -2324,7 +2352,7 @@
               "visible": true,
               "properties": {
                 "enable_right_sidebar": true,
-                "right_sidebar_blocks_count": 3
+                "right_sidebar_blocks_count": 4
               },
               "block_order": [
                 "Addons",
@@ -2333,6 +2361,7 @@
                 "Product relations",
                 "Purchase details",
                 "Price variants",
+                "Product plans",
                 "Product warranty"
               ],
               "blocks": {
@@ -2403,6 +2432,15 @@
                   "name": "Price variants",
                   "settings": {
                     "visible": true
+                  }
+                },
+                "Product plans": {
+                  "name": "Product plans",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "show_only_on_first_purchase_step": true
+                    }
                   }
                 }
               }
@@ -4503,6 +4541,10 @@
           },
           {
             "name": "Price variants",
+            "limit": 1
+          },
+          {
+            "name": "Product plans",
             "limit": 1
           }
         ],
@@ -9563,6 +9605,482 @@
         ]
       }
     },
+    "Product plans": {
+      "name": "Product plans",
+      "path": "blocks/shop/product/productPlans.njk",
+      "settings": {
+        "class": "block-product-plans",
+        "schema": [
+          {
+            "id": "show_only_on_first_purchase_step",
+            "type": "checkbox",
+            "label": "Show only on first purchase step",
+            "defaultValue": true
+          },
+          {
+            "id": "container_properties",
+            "type": "header",
+            "content": "Container properties"
+          },
+          {
+            "id": "container_background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_accent_light"
+          },
+          {
+            "id": "container_background_active_color",
+            "type": "select",
+            "label": "Background active color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Active",
+                "value": "background_active"
+              }
+            ],
+            "defaultValue": "background_active"
+          },
+          {
+            "id": "container_shadow",
+            "type": "select",
+            "label": "Drop shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0px 1px 2px rgba(16, 24, 40, 0.05)"
+              },
+              {
+                "title": "Variant 2",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+              }
+            ],
+            "defaultValue": "0px 1px 2px rgba(16, 24, 40, 0.05)"
+          },
+          {
+            "id": "container_show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": true
+          },
+          {
+            "id": "container_border_radius",
+            "type": "range",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Border radius",
+            "defaultValue": 8
+          },
+
+          {
+            "id": "desktop_screen_properties",
+            "type": "header",
+            "content": "Desktop screen"
+          },
+          {
+            "id": "container_padding_horiz_desktop",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding horizontal",
+            "defaultValue": 16
+          },
+          {
+            "id": "container_padding_vert_desktop",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding vertical",
+            "defaultValue": 16
+          },
+          {
+            "id": "tablet_screen_properties",
+            "type": "header",
+            "content": "Tablet screen"
+          },
+          {
+            "id": "container_padding_horiz_tablet",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding horizontal",
+            "defaultValue": 16
+          },
+          {
+            "id": "container_padding_vert_tablet",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding vertical",
+            "defaultValue": 16
+          },
+          {
+            "id": "mobile_screen_properties",
+            "type": "header",
+            "content": "Mobile screen"
+          },
+          {
+            "id": "container_padding_horiz_mobile",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding horizontal",
+            "defaultValue": 16
+          },
+          {
+            "id": "container_padding_vert_mobile",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding vertical",
+            "defaultValue": 16
+          },
+
+          {
+            "id": "title_properties",
+            "type": "header",
+            "content": "Title properties"
+          },
+          {
+            "id": "title_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              },
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              }
+            ],
+            "defaultValue": "dark_font_color"
+          },
+          {
+            "id": "title_active_font_color",
+            "type": "select",
+            "label": "Active Font color",
+            "options": [
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              },
+              {
+                "title": "White",
+                "value": "white"
+              },
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              },
+              {
+                "title": "Black",
+                "value": "black9"
+              }
+            ],
+            "defaultValue": "black9"
+          },
+          {
+            "id": "title_font_size",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 16
+          },
+          {
+            "id": "title_line_height",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Line height",
+            "defaultValue": 20
+          },
+          {
+            "id": "title_font_weight",
+            "type": "select",
+            "label": "Font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 600
+              },
+              {
+                "title": "Extra Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 600
+          },
+          {
+            "id": "info_properties",
+            "type": "header",
+            "content": "Info properties"
+          },
+          {
+            "id": "info_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              },
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              }
+            ],
+            "defaultValue": "dark_font_color"
+          },
+          {
+            "id": "info_active_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              },
+              {
+                "title": "White",
+                "value": "white"
+              },
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              },
+              {
+                "title": "Black",
+                "value": "black9"
+              }
+            ],
+            "defaultValue": "black9"
+          },
+          {
+            "id": "info_font_size",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 14
+          },
+          {
+            "id": "info_line_height",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Line height",
+            "defaultValue": 20
+          },
+          {
+            "id": "info_font_weight",
+            "type": "select",
+            "label": "Font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 600
+              },
+              {
+                "title": "Extra Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 500
+          },
+          {
+            "id": "description_properties",
+            "type": "header",
+            "content": "Description properties"
+          },
+          {
+            "id": "description_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              },
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              }
+            ],
+            "defaultValue": "light_font_color"
+          },
+          {
+            "id": "description_active_font_color",
+            "type": "select",
+            "label": "Font color",
+            "options": [
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              },
+              {
+                "title": "White",
+                "value": "white"
+              },
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              },
+              {
+                "title": "Black",
+                "value": "black9"
+              }
+            ],
+            "defaultValue": "light_font_color"
+          },
+          {
+            "id": "description_font_size",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Font size",
+            "defaultValue": 14
+          },
+          {
+            "id": "description_line_height",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Line height",
+            "defaultValue": 20
+          },
+          {
+            "id": "description_font_weight",
+            "type": "select",
+            "label": "Font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 600
+              },
+              {
+                "title": "Extra Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 400
+          }
+        ]
+      }
+    },
     "Q&A": {
       "name": "Q&A",
       "path": "blocks/shop/faq/Q&A.njk",
@@ -9966,6 +10484,10 @@
       "name": "Price variants",
       "path": "snippets/shop/product/priceVariants.njk"
     },
+    "Product plans": {
+      "name": "Product plans",
+      "path": "snippets/shop/product/productPlans.njk"
+    },
     "Invoice details": {
       "name": "Invoice details",
       "path": "snippets/shop/invoice/invoiceDetails.njk"
@@ -10021,6 +10543,14 @@
     "Language selector": {
       "name": "Language selector",
       "path": "snippets/shared/languageSelector.njk"
+    },
+    "Login modal": {
+      "name": "Login modal",
+      "path": "snippets/shared/loginModal.njk"
+    },
+    "Code input": {
+      "name": "Code input",
+      "path": "snippets/shared/codeInput.njk"
     }
   },
 
@@ -10085,6 +10615,10 @@
       "name": "snippet-price-variants.css",
       "path": "assets/css/snippet-price-variants.css"
     },
+    "snippet-product-plans.css": {
+      "name": "snippet-product-plans.css",
+      "path": "assets/css/snippet-product-plans.css"
+    },
     "section-trust.css": {
       "name": "section-trust.css",
       "path": "assets/css/section-trust.css"
@@ -10129,6 +10663,10 @@
       "name": "sellix-invoice-checkout-component.js",
       "path": "assets/components/invoice-checkout.js"
     },
+    "sellix-product-subscription-checkout-component.js": {
+      "name": "sellix-product-subscription-checkout-component.js",
+      "path": "assets/components/product-subscription-checkout.js"
+    },
     "widget-invoice-checkout.js": {
       "name": "widget-invoice-checkout.js",
       "path": "assets/packages/widgets/invoice-checkout/invoice-checkout.js"
@@ -10144,6 +10682,10 @@
     "widget-services.js": {
       "name": "widget-services.js",
       "path": "assets/packages/widgets/services/services.js"
+    },
+    "widget-react-code-input.js": {
+      "name": "widget-react-code-input.js",
+      "path": "assets/packages/widgets/react-code-input/react-code-input.js"
     },
     "select2.js": {
       "name": "select2.js",
@@ -10217,6 +10759,10 @@
       "name": "sellix-price-variants-store.js",
       "path": "assets/js/sellix-price-variants-store.js"
     },
+    "sellix-product-plans-store.js": {
+      "name": "sellix-product-plans-store.js",
+      "path": "assets/js/sellix-product-plans-store.js"
+    },
     "sellix-api.js": {
       "name": "sellix-api.js",
       "path": "assets/js/sellix-api.js"
@@ -10236,6 +10782,10 @@
     "sellix-cart-component.js": {
       "name": "sellix-cart-component.js",
       "path": "assets/components/cart.js"
+    },
+    "sellix-customer-login-component.js": {
+      "name": "sellix-customer-login-component.js",
+      "path": "assets/components/customer-login.js"
     },
     "sellix-addons-component.js": {
       "name": "sellix-addons-component.js",
@@ -10276,6 +10826,10 @@
     "sellix-price-variants-component.js": {
       "name": "sellix-price-variants-component.js",
       "path": "assets/components/price-variants.js"
+    },
+    "sellix-product-plans-component.js": {
+      "name": "sellix-product-plans-component.js",
+      "path": "assets/components/product-plans.js"
     },
     "sellix-contact-form-component.js": {
       "name": "sellix-contact-form-component.js",
@@ -10356,6 +10910,10 @@
     "block-banner-stats.css": {
       "name": "block-banner-stats.css",
       "path": "assets/css/block-banner-stats.css"
+    },
+    "block-customer-login.css": {
+      "name": "block-customer-login.css",
+      "path": "assets/css/block-customer-login.css"
     },
     "block-product-list-filter.css": {
       "name": "block-product-list-filter.css",

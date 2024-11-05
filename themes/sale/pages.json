@@ -434,6 +434,56 @@
       "slug": "/product/:id",
       "template_type": "PRODUCT"
     },
+    "product_subscription": {
+      "name": "Product Subscription",
+      "settings": {
+        "meta_tags": [
+          {
+            "name": "og:title",
+            "content": "{{ 'pages.shop.productSubscription.metaTags.title' | t({subscriptionId: global.common.productSubscriptionInfo.product_subscription.uniqid}) | safe }}"
+          },
+          {
+            "name": "twitter:title",
+            "content": "{{ 'pages.shop.productSubscription.metaTags.title' | t({subscriptionId: global.common.productSubscriptionInfo.product_subscription.uniqid}) | safe }}"
+          },
+          {
+            "name": "description",
+            "content": "{{ 'pages.shop.productSubscription.metaTags.description' | t | safe }}"
+          },
+          {
+            "name": "og:description",
+            "content": "{{ 'pages.shop.productSubscription.metaTags.description' | t | safe }}"
+          },
+          {
+            "name": "twitter:description",
+            "content": "{{ 'pages.shop.productSubscription.metaTags.description' | t | safe }}"
+          },
+          {
+            "name": "twitter:site",
+            "content": "https://sellix.io/invoice/{{global.common.productSubscriptionInfo.product_subscription.uniqid}}"
+          },
+          {
+            "name": "og:image",
+            "content": "https://cdn.sellix.io/static/previews/landing/new/payments.png"
+          },
+          {
+            "name": "twitter:image",
+            "content": "https://cdn.sellix.io/static/previews/landing/new/payments.png"
+          },
+          {
+            "name": "twitter:card",
+            "content": "summary_large_image"
+          },
+          {
+            "name": "robots",
+            "content": "noindex"
+          }
+        ],
+        "title": "{{ 'pages.shop.productSubscription.title' | t({subscriptionId: global.common.productSubscriptionInfo.product_subscription.uniqid}) | safe }}"
+      },
+      "slug": "/product-subscription/:id",
+      "template_type": "INVOICE"
+    },
     "shop": {
       "name": "Shop",
       "settings": {
@@ -590,4 +640,3 @@
       "template_type": "TICKET"
     }
   }
-  
