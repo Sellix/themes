@@ -113,6 +113,7 @@
     <link rel="stylesheet" href="{{ 'block-feedback-pagination.css' | asset_url }}"/>
     <link rel="stylesheet" href="{{ 'block-table-pagination.css' | asset_url }}"/>
     <link rel="stylesheet" href="{{ 'block-delivery-products-info.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'block-customer-login.css' | asset_url(rtl) }}"/>
 
     {# Snippets #}
     <link rel="stylesheet" href="{{ 'snippet-cart.css' | asset_url }}"/>
@@ -127,6 +128,7 @@
     <link rel="stylesheet" href="{{ 'snippet-bundle-products.css' | asset_url }}"/>
     <link rel="stylesheet" href="{{ 'snippet-purchase-details.css' | asset_url }}"/>
     <link rel="stylesheet" href="{{ 'snippet-price-variants.css' | asset_url }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-product-plans.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'snippet-invoice-details.css' | asset_url }}"/>
     <link rel="stylesheet" href="{{ 'snippet-invoice-track-badge.css' | asset_url }}"/>
     <link rel="stylesheet" href="{{ 'snippet-shop-info.css' | asset_url }}"/>
@@ -143,7 +145,7 @@
     {% if global.request.type in ['checkout', 'product', 'subscription'] %}
     <link rel="stylesheet" href="{{ 'purchase.css' | asset_url }}" />
     {% endif %}
-    {% if global.request.type in ['invoice'] %}
+    {% if global.request.type in ['invoice', 'product_subscription'] %}
       <link rel="stylesheet" href="{{ 'widget-invoice-checkout.css' | asset_url }}" />
     {% endif %}
     <link rel="stylesheet" href="{{ 'magnific-popup.1.1.0.css' | asset_url }}" />
@@ -214,7 +216,7 @@
       })();
     </script>
 
-    {% if global.request.type not in ['invoice'] %}
+    {% if global.request.type not in ['invoice', 'product_subscription'] %}
       {% render_snippet 'Social Links' %}
       {% render_snippet 'App crisp chat' %}
       {% render_snippet 'App helpspace' %}
@@ -291,10 +293,11 @@
     <script src="{{ 'select2.js' | asset_url }}"></script>
     <script src="{{ 'magnific-popup.1.1.0.min.js' | asset_url }}"></script>
     <script src="{{ 'ReactPlayer.standalone.js' | asset_url }}"></script>
+    <script src="{{ 'widget-react-code-input.js' | asset_url }}"></script>
     {% if global.request.type in ['checkout', 'product', 'subscription'] %}
       <script src="{{ 'purchase.js' | asset_url }}"></script>
     {% endif %}
-    {% if global.request.type in ['invoice'] %}
+    {% if global.request.type in ['invoice', 'product_subscription'] %}
       <script src="{{ 'widget-invoice-checkout.js' | asset_url }}"></script>
     {% endif %}
 
@@ -306,8 +309,10 @@
   <script src="{{ 'sellix-cart-store.js' | asset_url }}"></script>
   <script src="{{ 'sellix-addons-store.js' | asset_url }}"></script>
   <script src="{{ 'sellix-price-variants-store.js' | asset_url }}"></script>
+  <script src="{{ 'sellix-product-plans-store.js' | asset_url }}"></script>
   <script src="{{ 'sellix-cart-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-cart-product-component.js' | asset_url }}"></script>
+  <script src="{{ 'sellix-customer-login-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-addons-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-bundle-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-checkout-products-component.js' | asset_url }}"></script>
@@ -315,9 +320,11 @@
   <script src="{{ 'sellix-feedback-pagination.js' | asset_url }}"></script>
   <script src="{{ 'sellix-feedback-pagination-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-invoice-checkout-component.js' | asset_url }}"></script>
+  <script src="{{ 'sellix-product-subscription-checkout-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-invoice-products-info-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-count-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-price-variants-component.js' | asset_url }}"></script>
+  <script src="{{ 'sellix-product-plans-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-purchase-details-component.js' | asset_url}}"></script>
   <script src="{{ 'sellix-invoice-details-component.js' | asset_url}}"></script>
   <script src="{{ 'sellix-contact-form-component.js' | asset_url }}"></script>

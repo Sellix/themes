@@ -15,8 +15,10 @@
   {% render_snippet 'Icons: No image Serials' %}
 {% elif type == 'SERVICE' %}
   {% render_snippet 'Icons: No image Service' %}
-{% elif type == 'SUBSCRIPTION' %}
+{% elif type in ['SUBSCRIPTION', 'SUBSCRIPTION_V2'] %}
   {% render_snippet 'Icons: No image Subscription' %}
+{% elif type == 'GAMING_RCON' %}
+  {% render_snippet 'Icons: No image Rcon' %}
 {% else %}
   {% render_snippet 'Icons: No image Default' %}
 {% endif %}

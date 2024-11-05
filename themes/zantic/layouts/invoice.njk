@@ -115,7 +115,6 @@
 
     {# Blocks #}
     <link rel="stylesheet" href="{{ 'block-cart.css' | asset_url(rtl) }}"/>
-    <link rel="stylesheet" href="{{ 'block-customer-login.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'block-products-filter.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'block-products-category-filter.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'block-products-grid.css' | asset_url(rtl) }}"/>
@@ -128,7 +127,6 @@
     <link rel="stylesheet" href="{{ 'snippet-cart-button-2.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'snippet-checkout-products.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'snippet-checkout-product-count.css' | asset_url(rtl) }}"/>
-    <link rel="stylesheet" href="{{ 'snippet-code-input.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'snippet-currency-selector.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'snippet-burger-button.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'snippet-feedback-cards.css' | asset_url(rtl) }}"/>
@@ -148,10 +146,13 @@
     <link rel="stylesheet" href="{{ 'snippet-product-shortcut.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'snippet-product-stock.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'snippet-product-variants.css' | asset_url(rtl) }}"/>
+    <link rel="stylesheet" href="{{ 'snippet-product-plans.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'snippet-purchase-details.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'snippet-shop-message.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'snippet-social-links-floating.css' | asset_url(rtl) }}"/>
   {% endif %}
+
+  <link rel="stylesheet" href="{{ 'snippet-code-input.css' | asset_url(rtl) }}"/>
 
   {% set theme = global.common.shopInfo.theme %}
 
@@ -163,16 +164,17 @@
     <link rel="stylesheet" href="{{ 'widget-purchase-details.css' | asset_url(rtl) }}" />
   {% endif %}
 
-  {% if global.request.type in ['invoice'] %}
+  {% if global.request.type in ['invoice', 'product_subscription'] %}
+    <link rel="stylesheet" href="{{ 'block-customer-login.css' | asset_url(rtl) }}"/>
     <link rel="stylesheet" href="{{ 'widget-invoice-checkout.css' | asset_url(rtl) }}" />
   {% endif %}
 
   {% if not optimizeImports %}
     <link rel="stylesheet" href="{{ 'magnific-popup.1.1.0.css' | asset_url(rtl) }}" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css" />
   {% endif %}
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
 
   <script src="{{ 'jquery.js' | asset_url}}"></script>
@@ -210,11 +212,11 @@
 
   {% if not optimizeImports %}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrender/1.0.11/jsrender.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.waitforimages/1.5.0/jquery.waitforimages.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/textarea-autosize/0.4.2/jquery.textarea_autosize.min.js" ></script>
   {% endif %}
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
   {% if global.request.type in ['contact'] %}
@@ -241,7 +243,7 @@
     <script src="{{ 'widget-purchase-details.js' | asset_url }}"></script>
   {% endif %}
 
-  {% if global.request.type in ['invoice'] %}
+  {% if global.request.type in ['invoice', 'product_subscription'] %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="{{ 'widget-invoice-checkout.js' | asset_url }}"></script>
   {% endif %}
@@ -260,8 +262,8 @@
     <script src="{{ 'sellix-product-filter-store.js' | asset_url }}"></script>
     <script src="{{ 'sellix-product-addons-store.js' | asset_url }}"></script>
     <script src="{{ 'sellix-product-variants-store.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-product-plans-store.js' | asset_url }}"></script>
     <script src="{{ 'sellix-cart-component.js' | asset_url }}"></script>
-    <script src="{{ 'sellix-customer-login-component.js' | asset_url }}"></script>
     <script src="{{ 'sellix-cart-product-component.js' | asset_url }}"></script>
     <script src="{{ 'sellix-contact-form-component.js' | asset_url }}"></script>
     <script src="{{ 'sellix-checkout-product.js' | asset_url }}"></script>
@@ -273,10 +275,13 @@
     <script src="{{ 'sellix-product-bundle-component.js' | asset_url }}"></script>
     <script src="{{ 'sellix-product-count-component.js' | asset_url }}"></script>
     <script src="{{ 'sellix-product-variants-component.js' | asset_url }}"></script>
+    <script src="{{ 'sellix-product-plans-component.js' | asset_url }}"></script>
     <script src="{{ 'sellix-purchase-details-component.js' | asset_url }}"></script>
   {% endif %}
 
+  <script src="{{ 'sellix-customer-login-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-invoice-checkout-component.js' | asset_url }}"></script>
+  <script src="{{ 'sellix-product-subscription-checkout-component.js' | asset_url }}"></script>
 
   {% render_snippet 'App cookie modal' %}
   {% render_snippet 'I18Next' %}

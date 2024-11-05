@@ -2,6 +2,7 @@
   {% set shop = global.common.shopInfo.shop %}
   {% set invoice = global.common.invoiceInfo.invoice %}
   {% set product = global.common.productInfo.product %}
+  {% set isSubscription = product.type in ['SUBSCRIPTION', 'SUBSCRIPTION_V2'] %}
 
   {% set allCurrencies = global.currencyConfig.allCurrencies %}
   {% set defaultCurrency = allCurrencies[global.currencyConfig.default] %}
@@ -12,14 +13,15 @@
     {% set currency = invoice.currency or product.currency or shop.currency %}
   {% endif %}
 
-  {% set type = invoice.type or ('PRODUCT_SUBSCRIPTION' if product.type === 'SUBSCRIPTION' else product.type) %}
+  {% set type = invoice.type or ('PRODUCT_SUBSCRIPTION' if isSubscription else product.type) %}
   <script type='application/javascript'>
     $(document).ready(function() {
       if (!window.paypal) {
         const client = '{{ global.paypal.clientId }}';
         const merchantId = '{{ global.paypal.merchantId }}';
         const currency = '{{ currency }}';
-        const vault = '{{ type }}' === 'PRODUCT_SUBSCRIPTION' ? 'true' : 'false';
+        const type = '{{ type }}';
+        const vault = ['PRODUCT_SUBSCRIPTION', 'PRODUCT_SUBSCRIPTION_V2'].includes(type) ? 'true' : 'false';
 
         const script = document.createElement('script');
         script.src = `https://www.paypal.com/sdk/js?client-id=${client}&merchant-id=${merchantId}&components=buttons,funding-eligibility&currency=${currency}&commit=true&vault=${vault}`;

@@ -26,7 +26,11 @@
         this.$quickCheckoutBtn = jQuery('<div></div>');
       }
 
-      if (this.product.type !== 'SUBSCRIPTION' && !this.product.licensing_enabled && !this.product.pay_what_you_want) {
+      if (
+        !['SUBSCRIPTION', 'SUBSCRIPTION_V2'].includes(this.product.type) &&
+        !this.product.licensing_enabled &&
+        !this.product.pay_what_you_want
+      ) {
         this.$cart.on('click', (event) => {
           event.stopPropagation();
           event.preventDefault();

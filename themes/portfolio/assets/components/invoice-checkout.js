@@ -1,8 +1,7 @@
 (function (document, window, jQuery, React, ReactDOM, SellixStoreFactory, sellixApi, sellixHelper) {
   class InvoiceCheckoutComponent {
-    constructor({ selector, config, theme, shop, invoiceId, invoice, options }) {
+    constructor({ selector, theme, shop, invoiceId, invoice, options }) {
       this.domContainer = document.querySelector(selector);
-      this.config = config;
       this.theme = theme;
       this.shop = shop;
       this.invoiceId = invoiceId;
@@ -134,11 +133,31 @@
       return sellixApi.getMeshToken(data);
     };
 
+    onUpdateProductSubscription = (data, token) => {
+      return sellixApi.updateProductSubscription(data, { token });
+    };
+
+    onGetPaymentMethods = (data, token) => {
+      return sellixApi.getPaymentMethods(data, { token });
+    };
+
+    onConfirmProductSubscriptionPayment = (data, token) => {
+      return sellixApi.confirmProductSubscriptionPayment(data, { token });
+    };
+
+    onStripeCreateSetupIntent = (data, token) => {
+      return sellixApi.stripeCreateSetupIntent(data, { token });
+    };
+
+    onStripeRefreshSetupIntent = (data, token) => {
+      return sellixApi.stripeRefreshSetupIntent(data, { token });
+    };
 
     render() {
       ReactDOM.render(
         React.createElement(InvoiceCheckout.InvoiceCheckout, {
-          config: this.config,
+          type: 'invoice',
+          config: SellixContext.getConfig(),
           currencyConfig: SellixContext.getCurrencyConfig(),
           theme: this.theme,
           shop: this.shop,
@@ -172,6 +191,11 @@
           onPayEvm: this.onPayEvm,
           onGetMeshNetworks: this.onGetMeshNetworks,
           onGetMeshToken: this.onGetMeshToken,
+          onUpdateProductSubscription: this.onUpdateProductSubscription,
+          onGetPaymentMethods: this.onGetPaymentMethods,
+          onConfirmProductSubscriptionPayment: this.onConfirmProductSubscriptionPayment,
+          onStripeCreateSetupIntent: this.onStripeCreateSetupIntent,
+          onStripeRefreshSetupIntent: this.onStripeRefreshSetupIntent,
         }),
         this.domContainer,
       );

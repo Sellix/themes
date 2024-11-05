@@ -7,7 +7,9 @@
     {% set product = global.common.productInfo.product %}
     {% set productIds = [product.uniqid] if product.type != 'INFO_CARD' else [] %}
 
-    {% if product.type === 'SUBSCRIPTION' %}
+    {% set isSubscription = product.type in ['SUBSCRIPTION', 'SUBSCRIPTION_V2'] %}
+
+    {% if isSubscription %}
       {% set type = 'subscription' %}
     {% else %}
       {% set type = 'product' %}

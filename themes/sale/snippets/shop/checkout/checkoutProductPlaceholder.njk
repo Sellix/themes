@@ -29,18 +29,6 @@
 {% set productPaddingVertMobile = safe_get(properties.product_container_padding_vert_mobile, 16) %}
 {% set productPaddingHorizMobile = safe_get(properties.product_container_padding_horiz_mobile, 16) %}
 
-{% set addonsProps = {} %}
-{% set variantsProps = {} %}
-{% for key, value in properties %}
-  {% if key.slice(0, 6) === 'addons' %}
-    {% set addonsProps = addonsProps | set_attribute(key | replace('addons_', ''), value) %}
-  {% endif %}
-
-  {% if key.slice(0, 8) === 'variants' %}
-    {% set variantsProps = variantsProps | set_attribute(key | replace('variants_', ''), value) %}
-  {% endif %}
-{% endfor %}
-
 {% set globalClass = ['snippet-checkout-product'] %}
 {% set localClass = id %}
 
