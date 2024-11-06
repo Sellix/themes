@@ -47,23 +47,43 @@
     };
 
     onUpdateProductSubscription = (data, token) => {
-      return sellixApi.updateProductSubscription(data, { token });
+      return sellixApi.updateProductSubscription(data, {
+        token,
+        useCaptchaV2: true,
+        selectorCaptchaV2: this.selectorCaptchaV2,
+      });
     };
 
     onGetPaymentMethods = (data, token) => {
-      return sellixApi.getPaymentMethods(data, { token });
+      return sellixApi.getPaymentMethods(data, {
+        token,
+        useCaptchaV2: true,
+        selectorCaptchaV2: this.selectorCaptchaV2,
+      });
     };
 
     onConfirmProductSubscriptionPayment = (data, token) => {
-      return sellixApi.confirmProductSubscriptionPayment(data, { token });
+      return sellixApi.confirmProductSubscriptionPayment(data, {
+        token,
+        useCaptchaV2: true,
+        selectorCaptchaV2: this.selectorCaptchaV2,
+      });
     };
 
     onStripeCreateSetupIntent = (data, token) => {
-      return sellixApi.stripeCreateSetupIntent(data, { token });
+      return sellixApi.stripeCreateSetupIntent(data, {
+        token,
+        useCaptchaV2: true,
+        selectorCaptchaV2: this.selectorCaptchaV2,
+      });
     };
 
     onStripeRefreshSetupIntent = (data, token) => {
-      return sellixApi.stripeRefreshSetupIntent(data, { token });
+      return sellixApi.stripeRefreshSetupIntent(data, {
+        token,
+        useCaptchaV2: true,
+        selectorCaptchaV2: this.selectorCaptchaV2,
+      });
     };
 
     onGetInsightsTransaction = (data) => {
