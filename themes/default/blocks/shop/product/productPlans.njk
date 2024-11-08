@@ -1,0 +1,30 @@
+{% set product = global.common.productInfo.product %}
+
+{% if product.type === "SUBSCRIPTION_V2" %}
+
+  {% set showOnlyInFirstPurchaseStep = safe_get(properties.show_only_on_first_purchase_step, false) %}
+
+  {% set localClass = id %}
+
+  <div class="{{ globalClass }}__container {{ localClass }}__container">
+    {% render_snippet
+      'Product plans',
+      product=product,
+      properties=properties,
+      currency=product.currency
+    %}
+  </div>
+
+  <script type='application/javascript'>
+    $(document).on('SellixPurchaseDetailsChangeStep', function(event, eventInfo) {
+      if ({{ showOnlyInFirstPurchaseStep }}) {
+        if (eventInfo && eventInfo.step === 0) {
+          $('.{{ localClass }}__container').removeClass('d-none');
+        } else {
+          $('.{{ localClass }}__container').addClass('d-none');
+        }
+      }
+    });
+  </script>
+
+{% endif %}

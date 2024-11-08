@@ -5,9 +5,10 @@
 {% set isFree = product.price_display | float === 0 and not isPayWhatYouWant %}
 {% set onHold = product.on_hold | int %}
 {% set isOut = (product.stock | int === 0) %}
+{% set isSubscription = product.type in ['SUBSCRIPTION', 'SUBSCRIPTION_V2'] %}
 
 {% set tags = [] %}
-{% if product.type === 'SUBSCRIPTION' %}
+{% if isSubscription %}
   {% set tags = (tags.push('shop.shared.titles.productType.subscription'), tags) %}
 {% endif %}
 {% if isFree %}

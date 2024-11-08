@@ -113,9 +113,9 @@
       });
     }
 
-    async createInvoice(data, options) {
+    createInvoice = async (data, options) => {
       let headers = {};
-      if (options.token) {
+      if (options?.token) {
         headers = {
           Authorization: 'Bearer ' + options.token,
         };
@@ -132,7 +132,7 @@
         });
       };
       return this.requestWithCaptchaV3('createInvoice', onSuccess, null, options);
-    }
+    };
 
     async getCalculation(data) {
       return jQuery.ajax({
@@ -202,6 +202,145 @@
         contentType: 'application/json; charset=utf-8',
       });
     }
+
+    async getProductSubscription(id) {
+      return jQuery.ajax({
+        method: 'GET',
+        url: `${this.apiUrl}/api/shop/product-subscriptions/${id}`,
+        contentType: 'application/json; charset=utf-8',
+      });
+    }
+
+    createProductSubscription = async (data, options) => {
+      let headers = {};
+      if (options?.token) {
+        headers = {
+          Authorization: 'Bearer ' + options.token,
+        };
+      }
+      const onSuccess = (captcha) => {
+        data.captcha = captcha;
+        return jQuery.ajax({
+          method: 'POST',
+          url: `${this.apiUrl}/api/shop/product-subscriptions`,
+          contentType: 'application/json; charset=utf-8',
+          dataType: 'json',
+          data: JSON.stringify(data),
+          headers,
+        });
+      };
+
+      return this.requestWithCaptchaV3('createSubscription', onSuccess, null, options);
+    };
+
+    updateProductSubscription = async (data, options) => {
+      let headers = {};
+      if (options?.token) {
+        headers = {
+          Authorization: 'Bearer ' + options.token,
+        };
+      }
+      const onSuccess = (captcha) => {
+        data.captcha = captcha;
+        return jQuery.ajax({
+          method: 'PATCH',
+          url: `${this.apiUrl}/api/shop/product-subscriptions`,
+          contentType: 'application/json; charset=utf-8',
+          dataType: 'json',
+          data: JSON.stringify(data),
+          headers,
+        });
+      };
+
+      return this.requestWithCaptchaV3('updateSubscription', onSuccess, null, options);
+    };
+
+    getPaymentMethods = async (data, options) => {
+      let headers = {};
+      if (options?.token) {
+        headers = {
+          Authorization: 'Bearer ' + options.token,
+        };
+      }
+
+      const onSuccess = (captcha) => {
+        data.captcha = captcha;
+        return jQuery.ajax({
+          method: 'POST',
+          url: `${this.apiUrl}/api/shop/payment-methods/list`,
+          contentType: 'application/json; charset=utf-8',
+          dataType: 'json',
+          data: JSON.stringify(data),
+          headers,
+        });
+      };
+
+      return this.requestWithCaptchaV3('getPaymentMethods', onSuccess, null, options);
+    };
+
+    confirmProductSubscriptionPayment = async (data, options) => {
+      let headers = {};
+      if (options?.token) {
+        headers = {
+          Authorization: 'Bearer ' + options.token,
+        };
+      }
+      const onSuccess = (captcha) => {
+        data.captcha = captcha;
+        return jQuery.ajax({
+          method: 'POST',
+          url: `${this.apiUrl}/api/shop/product-subscriptions/confirm-payment`,
+          contentType: 'application/json; charset=utf-8',
+          dataType: 'json',
+          data: JSON.stringify(data),
+          headers,
+        });
+      };
+
+      return this.requestWithCaptchaV3('confirmProductSubscriptionPayment', onSuccess, null, options);
+    };
+
+    stripeCreateSetupIntent = async (data, options) => {
+      let headers = {};
+      if (options?.token) {
+        headers = {
+          Authorization: 'Bearer ' + options.token,
+        };
+      }
+      const onSuccess = (captcha) => {
+        data.captcha = captcha;
+        return jQuery.ajax({
+          method: 'POST',
+          url: `${this.apiUrl}/api/shop/stripe/setup-intent/create`,
+          contentType: 'application/json; charset=utf-8',
+          dataType: 'json',
+          data: JSON.stringify(data),
+          headers,
+        });
+      };
+      return this.requestWithCaptchaV3('stripeCreateSetupIntent', onSuccess, null, options);
+    };
+
+    stripeRefreshSetupIntent = async (data, options) => {
+      let headers = {};
+      if (options?.token) {
+        headers = {
+          Authorization: 'Bearer ' + options.token,
+        };
+      }
+      const onSuccess = (captcha) => {
+        data.captcha = captcha;
+        return jQuery.ajax({
+          method: 'POST',
+          url: `${this.apiUrl}/api/shop/stripe/setup-intent/refresh`,
+          contentType: 'application/json; charset=utf-8',
+          dataType: 'json',
+          data: JSON.stringify(data),
+          headers,
+        });
+      };
+      return this.requestWithCaptchaV3('stripeRefreshSetupIntent', onSuccess, null, options);
+    };
 
     async customerAuthEmail(data, options) {
       const onSuccess = (captcha) => {
@@ -431,7 +570,6 @@
         data: JSON.stringify(data, (key, value) => (typeof value === 'bigint' ? value.toString() : value)),
       });
     }
-
 
     async getMeshNetworks() {
       return jQuery.ajax({

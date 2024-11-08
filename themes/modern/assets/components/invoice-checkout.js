@@ -140,9 +140,30 @@
       return sellixApi.getMeshToken(data);
     };
 
+    onUpdateProductSubscription = (data, token) => {
+      return sellixApi.updateProductSubscription(data, { token });
+    };
+
+    onGetPaymentMethods = (data, token) => {
+      return sellixApi.getPaymentMethods(data, { token });
+    };
+
+    onConfirmProductSubscriptionPayment = (data, token) => {
+      return sellixApi.confirmProductSubscriptionPayment(data, { token });
+    };
+
+    onStripeCreateSetupIntent = (data, token) => {
+      return sellixApi.stripeCreateSetupIntent(data, { token });
+    };
+
+    onStripeRefreshSetupIntent = (data, token) => {
+      return sellixApi.stripeRefreshSetupIntent(data, { token });
+    };
+
     render() {
       ReactDOM.render(
         React.createElement(InvoiceCheckout.InvoiceCheckout, {
+          type: 'invoice',
           config: SellixContext.getConfig(),
           currencyConfig: SellixContext.getCurrencyConfig(),
           theme: this.theme,
@@ -179,6 +200,11 @@
           onGetCustomerInfo: this.onGetCustomerInfo,
           onGetMeshNetworks: this.onGetMeshNetworks,
           onGetMeshToken: this.onGetMeshToken,
+          onUpdateProductSubscription: this.onUpdateProductSubscription,
+          onGetPaymentMethods: this.onGetPaymentMethods,
+          onConfirmProductSubscriptionPayment: this.onConfirmProductSubscriptionPayment,
+          onStripeCreateSetupIntent: this.onStripeCreateSetupIntent,
+          onStripeRefreshSetupIntent: this.onStripeRefreshSetupIntent,
         }),
         this.domContainer,
       );

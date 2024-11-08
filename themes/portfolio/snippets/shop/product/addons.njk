@@ -5,6 +5,7 @@
 {% set product = args.product %}
 {% set invoice = args.invoice %}
 {% set currency = args.currency %}
+{% set isSubscription = product.type in ['SUBSCRIPTION', 'SUBSCRIPTION_V2'] %}
 
 {% set properties = args.properties %}
 {% set backgroundColor = properties.container_background_color if properties.container_background_color is defined else 'background_accent_dark' %}
@@ -53,7 +54,7 @@
   }
 </style>
 
-{% if product.type === "SUBSCRIPTION" and product.trial_period %}
+{% if isSubscription and product.trial_period %}
   {# Do nothing #}
 {% else %}
   <div id="shop-product-addons-{{ product.uniqid }}">

@@ -64,6 +64,10 @@
     static getPayLinkInfo() {
       return this.get('common', {}).payLinkInfo || {};
     }
+
+    static getProductSubscriptionInfo() {
+      return this.get('common', {}).productSubscriptionInfo || {};
+    }
   }
 
   window.SellixContext = Context;

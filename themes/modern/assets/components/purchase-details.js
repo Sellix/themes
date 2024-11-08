@@ -8,6 +8,7 @@
   SellixStoreFactory,
   SellixProductAddonsStore,
   SellixProductVariantsStore,
+  SellixProductPlansStore,
   sellixApi,
 ) {
   class PurchaseDetailsComponent {
@@ -56,6 +57,7 @@
           : { [product.uniqid]: product.addons },
       );
       this.productVariantsStore = new SellixProductVariantsStore(shop.name);
+      this.productPlansStore = new SellixProductPlansStore(shop.name);
 
       const renderEvent = sellixHelper.getEventName({
         name: 'SellixRenderComponent',
@@ -68,6 +70,7 @@
           'SellixCustomerInfoUpdateEvent',
           'SellixProductAddonsUpdateEvent',
           'SellixProductVariantsUpdateEvent',
+          'SellixProductPlansUpdateEvent',
           renderEvent
         ].join(' '),
         () => {
@@ -80,34 +83,35 @@
       return sellixApi.checkCoupon(data);
     };
 
-    onCreateInvoice = (data, token) => {
+    onCreateInvoiceOrSubscription = (type, data, token) => {
       data.clear_cart = true;
-      return sellixApi
-        .createInvoice(data, {
-          token: token,
-          useCaptchaV2: true,
-          selectorCaptchaV2: this.selectorCaptchaV2,
-          theme: this.theme.isDark ? 'dark' : 'light',
-          onShowCaptchaV2: (visible) => {
-            this.isCaptchaV2Visible = visible;
-            this.render();
-          },
-        })
-        .then((response) => {
-          const { status, data } = response;
-          if (status === 200) {
-            const { invoice } = data;
-            if (invoice) {
-              const invoices = this.shopStore.get('invoices') || {};
-              invoices[invoice.uniqid] = {
-                uniqid: invoice.uniqid,
-                secret: invoice.secret,
-              };
-              this.shopStore.set('invoices', invoices);
-            }
+
+      const action = type === 'invoice' ? sellixApi.createInvoice : sellixApi.createProductSubscription;
+
+      return action(data, {
+        token: token,
+        useCaptchaV2: true,
+        selectorCaptchaV2: this.selectorCaptchaV2,
+        theme: this.theme.isDark ? 'dark' : 'light',
+        onShowCaptchaV2: (visible) => {
+          this.isCaptchaV2Visible = visible;
+          this.render();
+        },
+      }).then((response) => {
+        const { status, data } = response;
+        if (status === 200) {
+          const { invoice } = data;
+          if (invoice) {
+            const invoices = this.shopStore.get('invoices') || {};
+            invoices[invoice.uniqid] = {
+              uniqid: invoice.uniqid,
+              secret: invoice.secret,
+            };
+            this.shopStore.set('invoices', invoices);
           }
-          return response;
-        });
+        }
+        return response;
+      });
     };
 
     onGetCalculation = (data) => {
@@ -227,7 +231,7 @@
       jQuery(document).trigger('SellixLoginButtonClick');
     };
 
-    onSuccess = ({ type, invoice }) => {
+    onSuccess = ({ type, invoice, product_subscription }) => {
       switch (type) {
         case 'invoice-trial':
           break;
@@ -235,6 +239,13 @@
           window.SellixAnalyticsManager.sendBeginCheckout(type, invoice);
           this.cart.clear(false, false);
           window.location.href = `invoice/${invoice.uniqid}`;
+          break;
+        case 'subscription':
+          if (invoice) {
+            window.SellixAnalyticsManager.sendBeginCheckout(type, invoice);
+            this.cart.clear(false, false);
+          }
+          window.location.href = `product-subscription/${product_subscription.uniqid}`;
           break;
       }
     };
@@ -267,6 +278,7 @@
           onCustomerRedeemGiftCard: this.onCustomerRedeemGiftCard,
           onGetCustomerInfo: this.onGetCustomerInfo,
           priceVariants: this.productVariantsStore.getAll(),
+          productPlans: this.productPlansStore.getAll(),
           theme: this.theme,
           sellixHelper: window.sellixHelper,
           sellixI18Next: window.sellixI18Next,
@@ -274,7 +286,8 @@
           onUpdateCart: this.onUpdateCart,
           onApplyCoupon: this.onApplyCoupon,
           onBackToShop: () => (window.location.href = 'shop'),
-          onCreateInvoice: this.onCreateInvoice,
+          onCreateInvoice: (data, token) => this.onCreateInvoiceOrSubscription('invoice', data, token),
+          onCreateSubscription: (data, token) => this.onCreateInvoiceOrSubscription('subscription', data, token),
           onGetCalculation: this.onGetCalculation,
           onShowMessage: this.onShowMessage,
           onShowProductTerms: this.onShowProductTerms,
@@ -319,5 +332,6 @@
   SellixStoreFactory,
   SellixProductAddonsStore,
   SellixProductVariantsStore,
+  SellixProductPlansStore,
   sellixApi,
 );

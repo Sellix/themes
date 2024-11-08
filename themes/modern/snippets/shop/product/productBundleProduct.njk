@@ -11,7 +11,7 @@
 {% set onHold = product.on_hold | int %}
 {% set isRatingGold = rating > 4 %}
 
-{% set isSubscription = product.type == 'SUBSCRIPTION' %}
+{% set isSubscription = product.type in ['SUBSCRIPTION', 'SUBSCRIPTION_V2'] %}
 {% set isLicense = product.licensing_enabled %}
 {% set isFree = product.price_display | float === 0 %}
 {% set isDisabled = product.stock | int === 0 or onHold %}

@@ -94,6 +94,7 @@
   <link rel="stylesheet" href="{{ 'block-cart.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'block-products-filter.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'block-products-grid.css' | asset_url }}"/>
+  <link rel="stylesheet" href="{{ 'block-customer-login.css' | asset_url(rtl) }}"/>
 
   {# Snippets #}
   <link rel="stylesheet" href="{{ 'snippet-cart-button-1.css' | asset_url }}"/>
@@ -117,6 +118,7 @@
   <link rel="stylesheet" href="{{ 'snippet-product-shortcut.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-product-stock.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-product-variants.css' | asset_url }}"/>
+  <link rel="stylesheet" href="{{ 'snippet-product-plans.css' | asset_url(rtl) }}"/>
   <link rel="stylesheet" href="{{ 'snippet-product-warranty.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-purchase-details.css' | asset_url }}"/>
   <link rel="stylesheet" href="{{ 'snippet-social-links-floating.css' | asset_url }}"/>
@@ -128,7 +130,7 @@
   {% if global.request.type in ['checkout', 'product', 'subscription', 'gift-card'] %}
     <link rel="stylesheet" href="{{ 'widget-purchase-details.css' | asset_url }}" />
   {% endif %}
-  {% if global.request.type in ['invoice'] %}
+  {% if global.request.type in ['invoice', 'product_subscription'] %}
     <link rel="stylesheet" href="{{ 'widget-invoice-checkout.css' | asset_url }}" />
   {% endif %}
   <link rel="stylesheet" href="{{ 'magnific-popup.1.1.0.css' | asset_url }}" />
@@ -196,12 +198,14 @@
   <script src="{{ 'select2.js' | asset_url }}"></script>
   <script src="{{ 'magnific-popup.1.1.0.min.js' | asset_url }}"></script>
   <script src="{{ 'react-player.standalone.js' | asset_url }}"></script>
+  <script src="{{ 'widget-react-code-input.js' | asset_url }}"></script>
   {% if global.request.type in ['checkout', 'product', 'subscription', 'gift-card'] %}
     <script src="{{ 'widget-purchase-details.js' | asset_url }}"></script>
   {% endif %}
 
-  {% if global.request.type in ['invoice'] %}
+  {% if global.request.type in ['invoice', 'product_subscription'] %}
     <script src="{{ 'widget-invoice-checkout.js' | asset_url }}"></script>
+    <script src="{{ 'widget-react-code-input.js' | asset_url }}"></script>
   {% endif %}
 
   {# Other packages #}
@@ -215,9 +219,11 @@
 {#  <script src="{{ 'sellix-cart-store.js' | asset_url }}"></script>#}
   <script src="{{ 'sellix-product-addons-store.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-variants-store.js' | asset_url }}"></script>
+  <script src="{{ 'sellix-product-plans-store.js' | asset_url }}"></script>
 {#  <script src="{{ 'sellix-cart-component.js' | asset_url }}"></script>#}
 {#  <script src="{{ 'sellix-cart-product-component.js' | asset_url }}"></script>#}
 {#  <script src="{{ 'sellix-contact-form-component.js' | asset_url }}"></script>#}
+  <script src="{{ 'sellix-customer-login-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-checkout-product.js' | asset_url }}"></script>
   <script src="{{ 'sellix-checkout-products.js' | asset_url }}"></script>
   <script src="{{ 'sellix-faq-component.js' | asset_url }}"></script>
@@ -225,11 +231,13 @@
 {#  <script src="{{ 'sellix-feedback-pagination-component.js' | asset_url }}"></script>#}
 {#  <script src="{{ 'sellix-invoice-checkout-component.js' | asset_url }}"></script>#}
 {#  <script src="{{ 'sellix-invoice-checkout' | asset_url }}"></script>#}
+{#  <script src="{{ 'sellix-product-subscription-checkout-component.js' | asset_url }}"></script>#}
 
   <script src="{{ 'sellix-product-addons-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-bundle-component.js' | asset_url }}"></script>
 {#  <script src="{{ 'sellix-product-count-component.js' | asset_url }}"></script>#}
   <script src="{{ 'sellix-product-variants-component.js' | asset_url }}"></script>
+  <script src="{{ 'sellix-product-plans-component.js' | asset_url }}"></script>
 {#  <script src="{{ 'sellix-purchase-details-component.js' | asset_url }}"></script>#}
 
   {% render_snippet 'App cookie modal' %}
