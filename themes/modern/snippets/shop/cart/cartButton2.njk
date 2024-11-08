@@ -12,13 +12,32 @@
 {% set onHold = product.on_hold | int %}
 {% set isFree = product.price_display | float === 0 %}
 {% set isSubscription = product.type === 'SUBSCRIPTION' %}
+{% set isGiftCard = product.type === 'GIFT_CARD' %}
 {% set isLicense = product.licensing_enabled %}
 {% set isPayWhatYouWant = product.pay_what_you_want %}
 
 {% set globalClass = 'snippet-cart-button-2' %}
 {% set localClass = id %}
 
-{% if product.stock | int === 0 or not cartEnabled or product.on_hold | int !== 0 %}
+{% if isGiftCard %}
+  <div class="{{ globalClass }} {{ localClass }} empty d-none">
+    <div class="{{ globalClass }}__container">
+      <div></div>
+      <div class="{{ globalClass }}__button unselectable" data-cart-product-quantity-button="1">
+        <span class="cart-button-animation-wrapper" data-cart-product-first-button="cart-product-first-button">
+          {{ 'shop.shared.titles.buy' | t }}
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+  <script type='application/javascript'>
+    $(document).ready(function () {
+      $('.{{ localClass }}').removeClass('d-none');
+    });
+  </script>
+{% elif product.stock | int === 0 or not cartEnabled or product.on_hold | int !== 0 %}
   {# Do Nothing #}
 {% else %}
   <div class="{{ globalClass }} {{ localClass }} empty {{'static' if args.isGroup else ''}} d-none">

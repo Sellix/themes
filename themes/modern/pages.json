@@ -489,6 +489,61 @@
     "slug": "/store/code",
     "template_type": "STORE_CODE"
   },
+  "gift_card": {
+    "name": "Gift Card",
+    "slug": "/gift-cards/:amount",
+    "template_type": "GIFT_CARD",
+    "settings": {
+      "meta_tags": [
+        {
+          "name": "og:title",
+          "content": "{{global.common.productInfo.product.title}}"
+        },
+        {
+          "name": "twitter:title",
+          "content": "{{global.common.productInfo.product.title}}"
+        },
+        {
+          "name": "description",
+          "content": "Check out {{global.common.productInfo.product.title}} by {{global.common.shopInfo.shop.name}}. Purchase it within minutes by using one of our many payment gateways, or get in touch with us for additional details."
+        },
+        {
+          "name": "og:description",
+          "content": "Check out {{global.common.productInfo.product.title}} by {{global.common.shopInfo.shop.name}}. Purchase it within minutes by using one of our many payment gateways, or get in touch with us for additional details."
+        },
+        {
+          "name": "twitter:description",
+          "content": "Check out {{global.common.productInfo.product.title}} by {{global.common.shopInfo.shop.name}}. Purchase it within minutes by using one of our many payment gateways, or get in touch with us for additional details."
+        },
+        {
+          "name": "twitter:site",
+          "content": "@{{global.common.shopInfo.shop.name}}"
+        },
+        {
+          "name": "og:image",
+          "content": "{% set first_img = global.common.productInfo.product.image_attachments | d([]) | first %}{{ cdn_link(first_img.cloudflare_image_id, 'shopItem') if first_img else [global.config.CDN_PREVIEWS_URL,'/product.png'] | join }}"
+        },
+        {
+          "name": "twitter:image",
+          "content": "{% set first_img = global.common.productInfo.product.image_attachments | d([]) | first %}{{ cdn_link(first_img.cloudflare_image_id, 'shopItem') if first_img else [global.config.CDN_PREVIEWS_URL,'/product.png'] | join }}"
+        },
+        {
+          "name": "twitter:card",
+          "content": "summary_large_image"
+        }
+      ],
+      "title": "{{global.common.productInfo.product.title}}"
+    }
+  },
+  "gift_cards": {
+    "name": "Gift Cards",
+    "slug": "/gift-cards",
+    "template_type": "GIFT_CARDS",
+    "settings": {
+      "title": "{{ 'pages.customer.profile.title' | t({invoiceId: global.common.invoiceInfo.invoice.uniqid}) | safe }}",
+      "meta_tags": []
+    }
+  },
   "subscription": {
     "name": "Subscription",
     "settings": {

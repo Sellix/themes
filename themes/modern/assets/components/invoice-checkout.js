@@ -124,6 +124,13 @@
       return sellixApi.payEvm(data);
     };
 
+    onCustomerRedeemGiftCard = (data, options) => {
+      return sellixApi.customerRedeemGiftCard(data, options);
+    };
+
+    onGetCustomerInfo = (data, options) => {
+      return sellixApi.customerInfo(data, options);
+    };
 
     onGetMeshNetworks = () => {
       return sellixApi.getMeshNetworks();
@@ -168,6 +175,8 @@
           onGetEvmSpenders: this.onGetEvmSpenders,
           onSaveEvm: this.onSaveEvm,
           onPayEvm: this.onPayEvm,
+          onCustomerRedeemGiftCard: this.onCustomerRedeemGiftCard,
+          onGetCustomerInfo: this.onGetCustomerInfo,
           onGetMeshNetworks: this.onGetMeshNetworks,
           onGetMeshToken: this.onGetMeshToken,
         }),

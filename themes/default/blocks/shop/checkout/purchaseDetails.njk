@@ -1,4 +1,4 @@
-{% if global.request.type in ['product', 'checkout'] %}
+{% if global.request.type in ['product', 'checkout', 'gift-card'] %}
   {% set id = uid() %}
   {% if global.request.type == 'product' %}
     {% set product = global.common.productInfo.product %}
@@ -11,11 +11,20 @@
     {% endif %}
 
   {% elif global.request.type == 'checkout' %}
+
     {% set productIds = global.common.checkoutInfo.productIds %}
     {% set type = 'checkout' %}
+
+  {% elif global.request.type == 'gift-card' %}
+
+    {% set product = global.common.productInfo.product %}
+    {% set productIds = [] %}
+    {% set type = 'gift-card' %}
+
   {% endif %}
 
   {% if productIds | length > 0 %}
+
     {% if properties.render_mode == "backend" %}
       {% render_snippet 'Purchase details',
         type=type,
@@ -29,6 +38,7 @@
         $(document).ready(function () {
           const $container = $('#sellix-purchase-details-{{ id }}');
           const renderOptions = {{ renderOptions | dump | safe }};
+
           sellixApi
             .renderComponent(
               {
@@ -61,6 +71,13 @@
         });
       </script>
     {% endif %}
+
+  {% elif global.request.type == 'gift-card' %}
+    {% render_snippet 'Purchase details',
+      type=type,
+      dependencies=[{'type': 'bundles', 'productIds': productIds}],
+      properties=properties
+    %}
   {% endif %}
 
 {% endif %}

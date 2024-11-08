@@ -26,20 +26,29 @@
 
 <div class="sellix-menu {{ localClass }}">
     {% for item in menu.items %}
-      {% set active = item.page_slug == slug %}
-      {% if item.page_slug != "/" %}
-        {% set active = item.page_slug in slug %}
-      {% endif %}
-      {% if item.page_slug == "/contact" and "/ticket" in slug %}
-        {% set active = true %}
+
+      {% if item.id == "gift-cards" and not isGiftCardEnabled %}
+
+      {% else %}
+
+        {% set active = item.page_slug == slug %}
+        {% if item.page_slug != "/" %}
+          {% set active = item.page_slug in slug %}
+        {% endif %}
+
+        {% if item.page_slug == "/contact" and "/ticket" in slug %}
+          {% set active = true %}
+        {% endif %}
+
+        {% render_snippet
+          'Menu item',
+          url=item.page_slug,
+          title=item.title,
+          is_active=active,
+          class=['menu-tab ', localClass, '__menu-tab'] | join('')
+        %}
+
       {% endif %}
 
-      {% render_snippet
-        'Menu item',
-        url=item.page_slug,
-        title=item.title,
-        is_active=active,
-        class=['menu-tab ', localClass, '__menu-tab'] | join('')
-      %}
-    {% endfor %}
+  {% endfor %}
 </div>

@@ -13,11 +13,14 @@
 {% if isFree %}
   {% set tags = (tags.push('shop.shared.titles.free'), tags) %}
 {% endif %}
-{% if isPayWhatYouWant %}
+{% if isPayWhatYouWant and not product.type === 'GIFT_CARD' %}
   {% set tags = (tags.push('shop.main.cards.product.yourPrice'), tags) %}
 {% endif %}
 {% if onHold %}
   {% set tags = (tags.push('shop.main.cards.product.onHold'), tags) %}
+{% endif %}
+{% if product.type === 'GIFT_CARD' %}
+  {% set tags = (tags.push('shop.main.cards.product.giftCard'), tags) %}
 {% endif %}
 
 {% set titleFontColor = safe_get(properties.title_font_color, 'dark_font_color') %}
@@ -107,39 +110,44 @@
   {% endif %}
 
   {% if not isFree %}
-    <div class="{{ globalClass }}__price-info {{ localClass }}__price-info">
-      {% if product.price_variants %}
-        <span class="{{ globalClass }}__price-starting-at {{ localClass }}__price-starting-at">
-          {{ 'shop.shared.titles.startingAt' | t }}
+    {% if product.type !== "GIFT_CARD" %}
+      <div class="{{ globalClass }}__price-info {{ localClass }}__price-info">
+        {% if product.price_variants %}
+          <span class="{{ globalClass }}__price-starting-at {{ localClass }}__price-starting-at">
+            {{ 'shop.shared.titles.startingAt' | t }}
+          </span>
+        {% endif %}
+
+        <span class="{{ globalClass }}__price {{ localClass }}__price">
+          {% render_snippet
+            'Shared: Price',
+            currency=product.currency,
+            price=product.min_price_item.price_display,
+            discount=product.price_discount,
+            show_initial_price='last',
+            show_image=true,
+            properties=priceProperties
+          %}
         </span>
-      {% endif %}
 
-      <span class="{{ globalClass }}__price {{ localClass }}__price">
-        {% render_snippet
-          'Shared: Price',
-          currency=product.currency,
-          price=product.min_price_item.price_display,
-          discount=product.price_discount,
-          show_initial_price='last',
-          show_image=true,
-          properties=priceProperties
-        %}
-      </span>
+        {% if product.price_discount %}
+          {% render_snippet
+            'Tag',
+            tag=([product.price_discount, '%', ' OFF'] | join | t),
+            is_warning=true
+          %}
+        {% endif %}
 
-      {% if product.price_discount %}
-        {% render_snippet
-          'Tag',
-          tag=([product.price_discount, '%', ' OFF'] | join | t),
-          is_warning=true
-        %}
-      {% endif %}
-
-      {# TODO #}
-      {# <span class="{{ globalClass }}__price-tax {{ localClass }}__price-tax"> #}
-      {#   +10% Tax #}
-      {# </span> #}
-    </div>
+        {# TODO #}
+        {# <span class="{{ globalClass }}__price-tax {{ localClass }}__price-tax"> #}
+        {#   +10% Tax #}
+        {# </span> #}
+      </div>
+    {% endif %}
   {% endif %}
 
-  {% render_snippet 'Product: Review stat', product=product %}
+
+  {% if product.type !== "GIFT_CARD" %}
+    {% render_snippet 'Product: Review stat', product=product %}
+  {% endif %}
 </div>

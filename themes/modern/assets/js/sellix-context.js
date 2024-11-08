@@ -38,6 +38,10 @@
       return this.getShopProducts(productIds);
     }
 
+    static getGiftCardsInfo() {
+      return this.getShopInfo().generatedGiftCards;
+    }
+
     static getShopProducts(ids) {
       let products = this.getShopInfo().products || {};
       if (!ids) {
