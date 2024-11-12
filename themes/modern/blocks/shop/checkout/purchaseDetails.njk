@@ -1,4 +1,4 @@
-{% if global.request.type in ['product', 'checkout', 'gift-card'] %}
+{% if global.request.type in ['product', 'checkout', 'gift_card'] %}
   {% set id = uid() %}
 
   {% set localClass = id %}
@@ -19,7 +19,7 @@
     {% set productIds = global.common.checkoutInfo.productIds %}
     {% set type = 'checkout' %}
 
-  {% elif global.request.type == 'gift-card' %}
+  {% elif global.request.type == 'gift_card' %}
 
     {% set product = global.common.productInfo.product %}
     {% set productIds = [] %}
@@ -33,7 +33,7 @@
       {% render_snippet 'Checkout purchase details placeholder', properties=properties %}
     {% elif global.request.type == 'product' %}
       {% render_snippet 'Product purchase details placeholder', product=product, properties=properties %}
-    {% elif global.request.type == 'gift-card' %}
+    {% elif global.request.type == 'gift_card' %}
       {% render_snippet 'Product purchase details placeholder', product=product, properties=properties %}
     {% endif %}
   </div>

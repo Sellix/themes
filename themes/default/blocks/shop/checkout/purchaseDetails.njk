@@ -1,4 +1,4 @@
-{% if global.request.type in ['product', 'checkout', 'gift-card'] %}
+{% if global.request.type in ['product', 'checkout', 'gift_card'] %}
   {% set id = uid() %}
   {% if global.request.type == 'product' %}
     {% set product = global.common.productInfo.product %}
@@ -16,7 +16,7 @@
     {% set productIds = global.common.checkoutInfo.productIds %}
     {% set type = 'checkout' %}
 
-  {% elif global.request.type == 'gift-card' %}
+  {% elif global.request.type == 'gift_card' %}
 
     {% set product = global.common.productInfo.product %}
     {% set productIds = [] %}
@@ -73,7 +73,7 @@
       </script>
     {% endif %}
 
-  {% elif global.request.type == 'gift-card' %}
+  {% elif global.request.type == 'gift_card' %}
     {% render_snippet 'Purchase details',
       type=type,
       dependencies=[{'type': 'bundles', 'productIds': productIds}],
