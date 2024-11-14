@@ -56,6 +56,22 @@
     </div>
   {% endif %}
 
+  {% if product.delivery_time != 0 %}
+    <div class="shop-product-info-product-tags">
+        {% if product.delivery_time == -1 %}
+          {% render_snippet 'Tag',
+            tag='immediate delivery',
+            type='success'
+          %}
+          {% elif product.delivery_time > 0 %}
+          {% render_snippet 'Tag',
+            tag=([(product.delivery_time | duration('seconds')).humanize(), 'delivery'] | join(' ')),
+            type='success'
+          %}
+        {% endif %}
+      </div>
+  {% endif %}
+
   <div class="shop-product-info-product-info">
     {% if product.sold_count %}
       {% if not shop.hide_products_sold %}

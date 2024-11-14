@@ -46,6 +46,10 @@
       });
     };
 
+    onGetProductSubscriptionStatus = (id) => {
+      return sellixApi.getProductSubscriptionStatus(id);
+    };
+
     onUpdateProductSubscription = (data, token) => {
       return sellixApi.updateProductSubscription(data, {
         token,
@@ -130,6 +134,7 @@
           onGetInvoice: this.onGetInvoice,
           onGetInvoiceStatus: this.onGetInvoiceStatus,
           onGetProductSubscription: this.onGetProductSubscription,
+          onGetProductSubscriptionStatus: this.onGetProductSubscriptionStatus,
           onUpdateProductSubscription: this.onUpdateProductSubscription,
           onGetPaymentMethods: this.onGetPaymentMethods,
           onConfirmProductSubscriptionPayment: this.onConfirmProductSubscriptionPayment,
