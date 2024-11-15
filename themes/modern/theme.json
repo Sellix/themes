@@ -2779,6 +2779,78 @@
         }
       }
     },
+    "Gift Cards": {
+      "name": "Gift Cards",
+      "path": "templates/shop/shop.njk",
+      "template_type": "GIFT_CARDS",
+      "is_default": 1,
+      "settings": {
+        "class": "template-gift-cards",
+        "section_order": [
+          "Breadcrumbs",
+          "Product list"
+        ],
+        "sections": {
+          "Breadcrumbs": {
+            "name": "Breadcrumbs",
+            "settings": {
+              "visible": true,
+              "properties": {
+                "crumb_label_1": "Home",
+                "crumb_url_1": "",
+                "crumb_label_2": "Gift Cards",
+                "crumb_url_2": "gift-cards",
+                "margin_top_desktop": 0,
+                "margin_bottom_desktop": 0,
+                "margin_top_tablet": 0,
+                "margin_bottom_tablet": 0,
+                "margin_top_mobile": 0,
+                "margin_bottom_mobile": 0,
+                "title_visible": true,
+                "title": "Gift Cards"
+              }
+            }
+          },
+          "Product list": {
+            "name": "Product list",
+            "settings": {
+              "visible": true,
+              "block_order": [
+                "Gift cards grid"
+              ],
+              "blocks": {
+                "Gift cards grid": {
+                  "name": "Gift cards grid",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "container_border_radius": 0,
+                      "grid_filter_name": "shop-product-grid-filter__main shop-gift-cards-grid-filter__main",
+                      "grid_show_group": true,
+                      "grid_show_info": false,
+                      "grid_show_product": true,
+                      "grid_show_subscription": true,
+                      "grid_show_border": false
+                    }
+                  }
+                }
+              },
+              "properties": {
+                "padding_top_desktop": 60,
+                "padding_top_tablet": 30,
+                "padding_top_mobile": 30,
+                "padding_bottom_desktop": 60,
+                "padding_bottom_tablet": 30,
+                "padding_bottom_mobile": 30,
+                "margin_bottom_desktop": 0,
+                "margin_bottom_tablet": 0,
+                "margin_bottom_mobile": 0
+              }
+            }
+          }
+        }
+      }
+    },
     "Contact/Contact": {
       "name": "Contact/Contact",
       "path": "templates/shop/contact.njk",
@@ -3291,6 +3363,7 @@
           "Main: Landing",
           "Container: Simple 1",
           "Container: Simple 2",
+          "Container: Simple 6",
           "Container: Simple 3",
           "Multi columns 2",
           "Multi columns 3",
@@ -3541,6 +3614,72 @@
                 "margin_bottom_desktop": 0,
                 "margin_bottom_tablet": 0,
                 "margin_bottom_mobile": 0
+              }
+            }
+          },
+          "Container: Simple 6": {
+            "name": "Container: Simple",
+            "settings": {
+              "visible": true,
+              "block_order": ["Title", "Gift cards grid"],
+              "blocks": {
+                "Title": {
+                  "name": "Title",
+                  "settings": {
+                    "visible": true,
+                    "group_name": "grid_best_sellers",
+                    "id": "gift-cards",
+                    "properties": {
+                      "title_content": "Checkout Our Gift Cards",
+                      "subtitle_content": "Buy Now, Enjoy Anytime!",
+                      "margin_bottom_desktop": 0,
+                      "margin_bottom_tablet": 0,
+                      "margin_bottom_mobile": 0
+                    }
+                  }
+                },
+                "Gift cards grid" : {
+                  "name": "Gift cards grid",
+                  "settings": {
+                    "visible": true,
+                    "group_name": "grid_gift_cards",
+                    "properties": {
+                      "visibility": "invisible_group_empty",
+                      "container_border_radius": 0,
+                      "grid_background_color": "transparent",
+                      "grid_card_placeholder_type": "light",
+                      "grid_limit": 4,
+                      "grid_show_product_type_badge": false,
+                      "grid_show_group": true,
+                      "grid_expand_group": false,
+                      "grid_show_info": false,
+                      "grid_show_product": false,
+                      "grid_show_subscription": false,
+                      "grid_show_border": false,
+                      "grid_show_view_all_button": true,
+                      "grid_items_per_row_type": "dynamic",
+                      "grid_items_per_row_desktop": 4,
+                      "grid_items_per_row_tablet": 2,
+                      "grid_items_per_row_mobile": 1,
+                      "grid_card_properties_enabled": true,
+                      "grid_card_image_height": 262,
+                      "grid_card_background_color": "background_light1",
+                      "grid_card_image_border_radius": 0,
+                      "grid_card_info_padding_vert": 24,
+                      "grid_card_info_padding_horiz": 24
+                    }
+                  }
+                }
+              },
+              "properties": {
+                "background_color": "background_accent_light",
+                "padding_bottom_desktop": 60,
+                "padding_bottom_tablet": 30,
+                "padding_bottom_mobile": 30,
+                "margin_bottom_desktop": 0,
+                "margin_bottom_tablet": 0,
+                "margin_bottom_mobile": 0,
+                "is_gift_cards": 1
               }
             }
           },
@@ -5420,6 +5559,199 @@
                 },
                 "Products grid" : {
                   "name": "Products grid",
+                  "settings": {
+                    "visible": true,
+                    "group_name": "grid_same_products",
+                    "properties": {
+                      "visibility": "invisible_group_empty",
+                      "grid_filter_type": "product_group_or_category",
+                      "container_border_radius": 0,
+                      "grid_background_color": "transparent",
+                      "grid_limit": 4,
+                      "grid_order_type": "popularity",
+                      "grid_order_direction": "desc",
+                      "grid_show_group": false,
+                      "grid_expand_group": true,
+                      "grid_show_info": false,
+                      "grid_show_product": true,
+                      "grid_show_subscription": true,
+                      "grid_show_border": false,
+                      "grid_show_view_all_button": false
+                    }
+                  }
+                }
+              },
+              "properties": {
+                "background_color": "background_accent_light",
+                "padding_bottom_desktop": 60,
+                "padding_bottom_tablet": 30,
+                "padding_bottom_mobile": 30,
+                "margin_bottom_desktop": 0,
+                "margin_bottom_tablet": 0,
+                "margin_bottom_mobile": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "Product/Gift Card": {
+      "name": "Product/Gift Card",
+      "path": "templates/shop/product.njk",
+      "template_type": "GIFT_CARD",
+      "is_default": 1,
+      "settings": {
+        "class": "template-product",
+        "section_order": [
+          "Breadcrumbs",
+          "Container: With sidebar",
+          "Container: Simple 1"
+        ],
+        "sections": {
+          "Breadcrumbs": {
+            "name": "Breadcrumbs",
+            "settings": {
+              "visible": true,
+              "properties": {
+                "crumb_label_1": "Home",
+                "crumb_url_1": "",
+                "crumb_label_2": "Gift Cards",
+                "crumb_url_2": "gift-cards",
+                "crumb_label_3": "{{global.common.productInfo.product.title}}",
+                "crumb_url_3": "gift-cards/{{global.common.productInfo.product.uniqid}}",
+                "margin_top_desktop": 0,
+                "margin_bottom_desktop": 0,
+                "margin_top_tablet": 0,
+                "margin_bottom_tablet": 0,
+                "margin_top_mobile": 0,
+                "margin_bottom_mobile": 0,
+                "padding_bottom_desktop": 24,
+                "padding_bottom_tablet": 24,
+                "padding_bottom_mobile": 24,
+                "title_visible": false
+              }
+            }
+          },
+          "Container: With sidebar": {
+            "name": "Container: With sidebar",
+            "settings": {
+              "visible": true,
+              "properties": {
+                "sidebar_blocks_count": 5,
+                "margin_bottom_desktop": 0,
+                "margin_bottom_tablet": 0,
+                "margin_bottom_mobile": 0,
+                "padding_bottom_desktop": 60,
+                "padding_bottom_tablet": 30,
+                "padding_bottom_mobile": 30
+              },
+              "block_order": [
+                "Product: Gallery",
+                "Product: Info",
+                "Horizontal delimiter 1",
+                "Purchase details",
+                "Horizontal delimiter 2",
+                "Product: Description"
+              ],
+              "blocks": {
+                "Product: Gallery": {
+                  "name": "Product: Gallery",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                    }
+                  }
+                },
+                "Product: Info": {
+                  "name": "Product: Info",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                    }
+                  }
+                },
+                "Horizontal delimiter 1": {
+                  "name": "Horizontal delimiter",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "margin_top_desktop": 24,
+                      "margin_bottom_desktop": 24,
+                      "margin_top_tablet": 24,
+                      "margin_bottom_tablet": 24,
+                      "margin_top_mobile": 24,
+                      "margin_bottom_mobile": 24
+                    }
+                  }
+                },
+                "Purchase details": {
+                  "name": "Purchase details",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "render_mode": "frontend",
+                      "show_title": false,
+                      "container_show_border": false,
+                      "container_padding_vert_desktop": 0,
+                      "container_padding_horiz_desktop": 0,
+                      "container_padding_vert_tablet": 0,
+                      "container_padding_horiz_tablet": 0,
+                      "container_padding_vert_mobile": 0,
+                      "container_padding_horiz_mobile": 0
+                    }
+                  }
+                },
+                "Horizontal delimiter 2": {
+                  "name": "Horizontal delimiter",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "margin_top_desktop": 24,
+                      "margin_bottom_desktop": 24,
+                      "margin_top_tablet": 24,
+                      "margin_bottom_tablet": 24,
+                      "margin_top_mobile": 24,
+                      "margin_bottom_mobile": 24
+                    }
+                  }
+                },
+                "Product: Description": {
+                  "name": "Product: Description",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "type": "collapsable"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Container: Simple 1": {
+            "name": "Container: Simple",
+            "settings": {
+              "visible": true,
+              "block_order": ["Title", "Gift cards grid"],
+              "blocks": {
+                "Title": {
+                  "name": "Title",
+                  "settings": {
+                    "visible": true,
+                    "group_name": "grid_same_products",
+                    "properties": {
+                      "title_content": "You Might Also Like",
+                      "subtitle_content": "Design is as much an act of spacing as an act of marking.",
+                      "margin_bottom_desktop": 0,
+                      "margin_bottom_tablet": 0,
+                      "margin_bottom_mobile": 0,
+                      "padding_bottom_desktop": 24,
+                      "padding_bottom_tablet": 12,
+                      "padding_bottom_mobile": 12
+                    }
+                  }
+                },
+                "Gift cards grid" : {
+                  "name": "Gift cards grid",
                   "settings": {
                     "visible": true,
                     "group_name": "grid_same_products",
@@ -8691,6 +9023,10 @@
           },
           {
             "name": "Trust",
+            "limit": 1
+          },
+          {
+            "name": "Gift cards grid",
             "limit": 1
           }
         ],
@@ -22948,10 +23284,709 @@
           }
         ]
       }
+    },
+    "Gift cards grid": {
+      "name": "Gift cards grid",
+      "path": "blocks/shop/giftCards/giftCardsGrid.njk",
+      "settings": {
+        "class": "block-products-grid",
+        "schema": [
+          {
+            "id": "container_border_radius",
+            "type": "range",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Border radius",
+            "defaultValue": 8
+          },
+          {
+            "id": "container_padding_horiz",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding horizontal",
+            "defaultValue": 0
+          },
+          {
+            "id": "container_padding_vert",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding vertical",
+            "defaultValue": 0
+          },
+          {
+            "id": "container_shadow",
+            "type": "select",
+            "label": "Drop shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 2",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+              }
+            ],
+            "defaultValue": "none"
+          },
+          {
+            "id": "visibility",
+            "type": "select",
+            "label": "Visibility",
+            "options":  [
+              {
+                "title": "Visible",
+                "value": "visible"
+              },
+              {
+                "title": "Invisible if empty",
+                "value": "invisible_empty"
+              },
+              {
+                "title": "Group invisible is empty",
+                "value": "invisible_group_empty"
+              }
+            ],
+            "defaultValue": "visible"
+          },
+          {
+            "id": "grid_filter_name",
+            "type": "text",
+            "label": "Filter name",
+            "defaultValue": "product-grid-filter"
+          },
+          {
+            "id": "grid_background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Light",
+                "value": "background_light"
+              },
+              {
+                "title": "Dark",
+                "value": "background_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_accent_light"
+          },
+          {
+            "id": "grid_show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": false
+          },
+          {
+            "id": "grid_column_gap",
+            "type": "range",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Column gap",
+            "defaultValue": 30
+          },
+          {
+            "id": "grid_row_gap",
+            "type": "range",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Row gap",
+            "defaultValue": 40
+          },
+          {
+            "id": "grid_limit",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "",
+            "label": "Items limit on grid",
+            "defaultValue": 0
+          },
+          {
+            "id": "grid_order_type",
+            "type": "select",
+            "label": "Ordering type",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Age",
+                "value": "age"
+              },
+              {
+                "title": "Popularity",
+                "value": "popularity"
+              }
+            ],
+            "defaultValue": "none"
+          },
+          {
+            "id": "grid_order_direction",
+            "type": "select",
+            "label": "Ordering direction",
+            "options": [
+              {
+                "title": "Ascending",
+                "value": "asc"
+              },
+              {
+                "title": "Descending",
+                "value": "desc"
+              }
+            ],
+            "defaultValue": "asc"
+          },
+          {
+            "id": "grid_filter_type",
+            "type": "select",
+            "label": "Filtering type",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Same category",
+                "value": "product_category"
+              },
+              {
+                "title": "Same group",
+                "value": "product_group"
+              },
+              {
+                "title": "Same category or group",
+                "value": "product_group_or_category"
+              }
+            ],
+            "defaultValue": "none"
+          },
+          {
+            "id": "grid_show_product_type_badge",
+            "type": "checkbox",
+            "label": "Show Product type Badge",
+            "defaultValue": true
+          },
+          {
+            "id": "grid_show_group",
+            "type": "checkbox",
+            "label": "Show Group cards",
+            "defaultValue": true
+          },
+          {
+            "id": "grid_expand_group",
+            "type": "checkbox",
+            "label": "Expand Group",
+            "defaultValue": false
+          },
+          {
+            "id": "grid_show_info",
+            "type": "checkbox",
+            "label": "Show Info cards",
+            "defaultValue": true
+          },
+          {
+            "id": "grid_show_product",
+            "type": "checkbox",
+            "label": "Show Product cards",
+            "defaultValue": true
+          },
+          {
+            "id": "grid_show_subscription",
+            "type": "checkbox",
+            "label": "Show Subscription cards",
+            "defaultValue": true
+          },
+          {
+            "id": "grid_show_view_all_button",
+            "type": "checkbox",
+            "label": "Show \"View All\" button",
+            "defaultValue": false
+          },
+          {
+            "id": "grid_items_per_row_type",
+            "type": "select",
+            "label": "Items per row type",
+            "options": [
+              {
+                "title": "Static",
+                "value": "static"
+              },
+              {
+                "title": "Dynamic",
+                "value": "dynamic"
+              }
+            ],
+            "defaultValue": "static"
+          },
+          {
+            "id": "desktop_screen_properties",
+            "type": "header",
+            "content": "Desktop screen"
+          },
+          {
+            "id": "grid_items_per_row_desktop",
+            "type": "text",
+            "label": "Items per row",
+            "defaultValue": 4
+          },
+          {
+            "id": "tablet_screen_properties",
+            "type": "header",
+            "content": "Tablet screen"
+          },
+          {
+            "id": "grid_items_per_row_tablet",
+            "type": "text",
+            "label": "Items per row",
+            "defaultValue": 2
+          },
+          {
+            "id": "mobile_screen_properties",
+            "type": "header",
+            "content": "Mobile screen"
+          },
+          {
+            "id": "grid_items_per_row_mobile",
+            "type": "text",
+            "label": "Items per row",
+            "defaultValue": 1
+          },
+          {
+            "id": "grid_card_placeholder_type",
+            "type": "select",
+            "label": "Placeholder type",
+            "options": [
+              {
+                "title": "Auto",
+                "value": "auto"
+              },
+              {
+                "title": "Light",
+                "value": "light"
+              },
+              {
+                "title": "Dark",
+                "value": "dark"
+              }
+            ],
+            "defaultValue": "auto"
+          },
+          {
+            "id": "grid_card_properties",
+            "type": "header",
+            "content": "Card properties"
+          },
+          {
+            "id": "grid_card_properties_enabled",
+            "type": "checkbox",
+            "label": "Enable custom card properties",
+            "defaultValue": false
+          },
+          {
+            "id": "grid_card_image_height",
+            "max": 500,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Image height",
+            "defaultValue": 247
+          },
+          {
+            "id": "grid_card_background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Light",
+                "value": "background_light"
+              },
+              {
+                "title": "Dark",
+                "value": "background_dark"
+              },
+              {
+                "title": "Light #2 (both color schemes)",
+                "value": "background_light2"
+              },
+              {
+                "title": "Dark #2 (both color schemes)",
+                "value": "background_dark2"
+              }
+            ],
+            "defaultValue": "background_accent_dark"
+          },
+          {
+            "id": "grid_card_show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": false
+          },
+          {
+            "id": "grid_card_border_radius",
+            "type": "range",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Border radius",
+            "defaultValue": 8
+          },
+          {
+            "id": "grid_card_image_border_radius",
+            "type": "range",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "unit": "px",
+            "label": "Image border radius",
+            "defaultValue": 8
+          },
+          {
+            "id": "grid_card_shadow",
+            "type": "select",
+            "label": "Drop shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 2",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+              }
+            ],
+            "defaultValue": "none"
+          },
+          {
+            "id": "grid_card_info_padding_horiz",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Info padding horizontal",
+            "defaultValue": 0
+          },
+          {
+            "id": "grid_card_info_padding_vert",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Info padding vertical",
+            "defaultValue": 12
+          },
+          {
+            "id": "grid_card_title_font_color",
+            "type": "select",
+            "label": "Title font color",
+            "options": [
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              },
+              {
+                "title": "Contrast light",
+                "value": "contrast_light_font_color"
+              },
+              {
+                "title": "Contrast dark",
+                "value": "contrast_dark_font_color"
+              },
+              {
+                "title": "Original Contrast Light",
+                "value": "original_contrast_light_font_color"
+              },
+              {
+                "title": "Original Contrast Dark",
+                "value": "original_contrast_dark_font_color"
+              },
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              }
+            ],
+            "defaultValue": "dark_font_color"
+          },
+          {
+            "id": "grid_card_title_font_size",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Title font size",
+            "defaultValue": 16
+          },
+          {
+            "id": "grid_card_title_line_height",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Title line height",
+            "defaultValue": 24
+          },
+          {
+            "id": "grid_card_title_text_align",
+            "type": "select",
+            "label": "Title text align",
+            "options": [
+              {
+                "title": "Left",
+                "value": "start"
+              },
+              {
+                "title": "Center",
+                "value": "center"
+              },
+              {
+                "title": "Right",
+                "value": "end"
+              }
+            ],
+            "defaultValue": "start"
+          },
+          {
+            "id": "grid_card_title_font_weight",
+            "type": "select",
+            "label": "Title font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 600
+              },
+              {
+                "title": "Extra Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 400
+          },
+          {
+            "id": "grid_card_price_font_color",
+            "type": "select",
+            "label": "Price font color",
+            "options": [
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              },
+              {
+                "title": "Contrast light",
+                "value": "contrast_light_font_color"
+              },
+              {
+                "title": "Contrast dark",
+                "value": "contrast_dark_font_color"
+              },
+              {
+                "title": "Original Contrast Light",
+                "value": "original_contrast_light_font_color"
+              },
+              {
+                "title": "Original Contrast Dark",
+                "value": "original_contrast_dark_font_color"
+              },
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              }
+            ],
+            "defaultValue": "dark_font_color"
+          },
+          {
+            "id": "grid_card_price_font_size",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Price font size",
+            "defaultValue": 16
+          },
+          {
+            "id": "grid_card_price_font_weight",
+            "type": "select",
+            "label": "Price font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 600
+              },
+              {
+                "title": "Extra Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 500
+          },
+          {
+            "id": "grid_card_description_font_color",
+            "type": "select",
+            "label": "Description font color",
+            "options": [
+              {
+                "title": "Light",
+                "value": "light_font_color"
+              },
+              {
+                "title": "Dark",
+                "value": "dark_font_color"
+              },
+              {
+                "title": "Contrast light",
+                "value": "contrast_light_font_color"
+              },
+              {
+                "title": "Contrast dark",
+                "value": "contrast_dark_font_color"
+              },
+              {
+                "title": "Original Contrast Light",
+                "value": "original_contrast_light_font_color"
+              },
+              {
+                "title": "Original Contrast Dark",
+                "value": "original_contrast_dark_font_color"
+              },
+              {
+                "title": "Brand",
+                "value": "brand_color"
+              }
+            ],
+            "defaultValue": "dark_font_color"
+          },
+          {
+            "id": "grid_card_description_font_size",
+            "max": 100,
+            "min": 1,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Description font size",
+            "defaultValue": 14
+          },
+          {
+            "id": "grid_card_description_font_weight",
+            "type": "select",
+            "label": "Description font weight",
+            "options": [
+              {
+                "title": "Normal",
+                "value": 400
+              },
+              {
+                "title": "Medium",
+                "value": 500
+              },
+              {
+                "title": "Bold",
+                "value": 600
+              },
+              {
+                "title": "Extra Bold",
+                "value": 700
+              }
+            ],
+            "defaultValue": 400
+          }
+        ]
+      }
     }
   },
 
   "snippets": {
+    "Card: Gift card": {
+      "name": "Card: Gift card",
+      "path": "snippets/shop/giftCards/cardGiftCard.njk"
+    },
     "App crisp chat": {
       "name": "App crisp chat",
       "path": "snippets/shop/external/appCrispChat.njk"
@@ -23143,6 +24178,10 @@
     "Icons: Minus": {
       "name": "Icons: Minus",
       "path": "snippets/shared/icons/iconMinus.njk"
+    },
+    "Icons: Gift Card": {
+      "name": "Icons: Gift Card",
+      "path": "snippets/shared/icons/iconGiftCard.njk"
     },
     "Icons: No images": {
       "name": "Icons: No images",

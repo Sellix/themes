@@ -1,4 +1,4 @@
-{% if global.request.type in ['product', 'checkout'] %}
+{% if global.request.type in ['product', 'checkout', 'gift_card'] %}
   {% set id = uid() %}
 
   {% set localClass = id %}
@@ -15,65 +15,64 @@
       {% set type = 'product' %}
     {% endif %}
 
-    {% elif global.request.type == 'checkout' %}
+  {% elif global.request.type == 'checkout' %}
     {% set productIds = global.common.checkoutInfo.productIds %}
     {% set type = 'checkout' %}
+
+  {% elif global.request.type == 'gift_card' %}
+
+    {% set product = global.common.productInfo.product %}
+    {% set productIds = [] %}
+
+    {% set type = 'gift-card' %}
+
   {% endif %}
 
-  {% if productIds | length > 0 %}
-    {% if properties.render_mode == "backend" %}
-      {% render_snippet 'Purchase details',
-        type=type,
-        dependencies=[{'type': 'bundles', 'productIds': productIds}],
-        properties=properties
-      %}
-    {% else %}
-      <div class="{{ globalClass }}__container {{ localClass }}__container">
-        {% if global.request.type == 'checkout' %}
-          {% render_snippet 'Checkout purchase details placeholder', properties=properties %}
-        {% else %}
-          {% render_snippet 'Product purchase details placeholder', product=product, properties=properties %}
-        {% endif %}
-      </div>
-
-      <script type='application/javascript'>
-        $(document).ready(function () {
-          const $container = $('.{{ localClass }}__container');
-          const renderOptions = {{ renderOptions | dump | safe }};
-          sellixApi
-            .renderComponent(
-              {
-                ...renderOptions,
-                path: [renderOptions.path, ['snippet', 'Purchase details'].join(':')].join(';'),
-              },
-              SellixContext.get('request'),
-              {
-                type: '{{ type }}',
-                dependencies: [
-                  {type: 'bundles', productIds : {{ productIds | dump | safe }}},
-                ],
-                properties: {{ properties | dump | safe }}
-              },
-            )
-            .then((resp) => {
-              const $component = $(resp.html);
-              $container.html($component);
-              setTimeout(function () {
-                $(document).trigger('SellixCartUpdateEvent', { action: 'update' });
-                $container.show();
-              });
-            })
-            .catch((resp) => {
-              console.log(resp);
-              const respJson = resp.responseJSON || {};
-              $(document).trigger('SellixToastify', {
-                type: 'error',
-                text: respJson.message || 'Internal server error',
-              });
-            });
-        });
-      </script>
+  <div class="{{ globalClass }}__container {{ localClass }}__container">
+    {% if global.request.type == 'checkout' %}
+      {% render_snippet 'Checkout purchase details placeholder', properties=properties %}
+    {% elif global.request.type == 'product' %}
+      {% render_snippet 'Product purchase details placeholder', product=product, properties=properties %}
+    {% elif global.request.type == 'gift_card' %}
+      {% render_snippet 'Product purchase details placeholder', product=product, properties=properties %}
     {% endif %}
-  {% endif %}
+  </div>
+
+  <script type='application/javascript'>
+    $(document).ready(function () {
+      const $container = $('.{{ localClass }}__container');
+      const renderOptions = {{ renderOptions | dump | safe }};
+      sellixApi
+        .renderComponent(
+          {
+            ...renderOptions,
+            path: [renderOptions.path, ['snippet', 'Purchase details'].join(':')].join(';'),
+          },
+          SellixContext.get('request'),
+          {
+            type: '{{ type }}',
+            dependencies: [
+              {type: 'bundles', productIds : {{ productIds | dump | safe }}},
+            ],
+            properties: {{ properties | dump | safe }}
+          },
+        )
+        .then((resp) => {
+          const $component = $(resp.html);
+          $container.html($component);
+          setTimeout(function () {
+            $(document).trigger('SellixCartUpdateEvent', { action: 'update' });
+            $container.show();
+          });
+        })
+        .catch((resp) => {
+          const respJson = resp.responseJSON || {};
+          $(document).trigger('SellixToastify', {
+            type: 'error',
+            text: respJson.message || 'Internal server error',
+          });
+        });
+    });
+  </script>
 
 {% endif %}

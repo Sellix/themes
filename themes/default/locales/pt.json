@@ -292,6 +292,7 @@
         "yes": "Este negócio verificou a sua identidade e detalhes à Sellix. As empresas verificadas passaram por uma fase de validação de endereços e documentos que confirma a sua identidade e a singularidade do comerciante."
       },
       "low": "Baixo",
+      "medium": "Médio",
       "paypalAccepted": {
         "no": "PayPal ou cartões de crédito/débito não aceites",
         "yes": "PayPal ou Cartões de crédito aceites"
@@ -375,6 +376,7 @@
           "byClickingPay": [ "Ao clicar em Pagar, está a concordar com", " Termos de Serviço" ]
         },
         "productQuantity": {
+          "inStock": "Em estoque",
           "stock": "Stock",
           "lastProduct": "Último produto"
         },
@@ -402,6 +404,7 @@
           "goToPortal": "Ir para o Portal de Facturação do Cliente",
           "noPaymentOptions": "Este produto não tem opções de pagamento.",
           "startSubscription": "Iniciar Assinatura",
+          "startTrial": "Iniciar teste",
           "applyACoupon": "Aplicar um cupão",
           "continue": "Continuar",
           "billedEvery": "Facturação Todos",
@@ -545,7 +548,10 @@
           "add": "Acrescentar",
           "selectPlaceholder": "Quantidade"
         },
-        "selectPaymentMethodError": "Selecione o método de pagamento!"
+        "selectPaymentMethodError": "Selecione o método de pagamento!",
+        "giftCards": {
+          "description": "Envie um cartão-presente personalizável que se adapta a qualquer ocasião. Seja com um valor pré-definido ou escolhido por você, esses cartões oferecem flexibilidade para que seus entes queridos escolham exatamente o que desejam. O saldo do cartão é exibido em dólares e pode ser usado para compras em qualquer moeda, incluindo criptomoedas."
+        }
       },
       "showDescription": "Mostrar Descrição",
       "stock": "Stock",
@@ -581,11 +587,14 @@
         "trustedAdvisor": "Conselheiro de confiança",
         "feedback": "Feedback",
         "faq": "F.A.Q",
-        "contact": "Contacto"
+        "contact": "Contacto",
+        "giftCards": "Cartões-presente"
       },
       "banner": {
         "shopInfo": {
+          "customer": "Cliente",
           "entrepreneur": "Empreiteiro",
+          "reseller": "Revendedor",
           "starter": "Arrancador",
           "business": "Empresas",
           "professional": "Profissional",
@@ -601,13 +610,17 @@
         "reviewsWithCount_few": "{{count}} revisões",
         "reviewsWithCount_one": "{{count}} revisão",
         "reviewsWithCount_many": "{{count}} revisões",
-        "noReviews": "Sem revisões"
+        "noReviews": "Sem revisões",
+        "totalReview": "Total de avaliações"
       },
       "toastify": {
         "fail": "Aconteceu um erro ao tentar aceder a um dos seus recursos.",
         "success": "A sua acção foi concluída, os recursos foram actualizados."
       },
       "titles": {
+        "addons": "Complementos",
+        "description": "Descrição",
+        "noDescription": "Sem descrição",
         "productType": {
           "serials": "Séries",
           "product": "Produto",
@@ -616,6 +629,8 @@
           "info": "Informação",
           "group": "Grupo"
         },
+        "productWarranty": "Garantia do produto",
+        "noProductWarranty": "Sem garantia",
         "serverError": "Erro no servidor!",
         "add": "Acrescentar",
         "startingAt": "Começando em",
@@ -624,6 +639,7 @@
         "remove": "Remover",
         "getIt": "Obtê-lo",
         "stock": "Stock",
+        "inStock": "Em estoque",
         "free": "Grátis",
         "moreInfo": "Clique para mais informações",
         "buy": "Comprar",
@@ -662,7 +678,9 @@
         "product": {
           "soldOut": "Produto esgotado",
           "onHold": "Este produto está em espera e não pode ser comprado a partir de agora",
-          "yourPrice": "Escolha o seu preço"
+          "yourPrice": "Escolha o seu preço",
+          "tax": "Imposto",
+          "giftCard": "Cartão-presente"
         },
         "info": {
           "clickHere": "Clique aqui para mais informações"
@@ -710,6 +728,7 @@
         "discountTitle": [ "Guardar", "adicionando mais um produto ao seu carrinho com os nossos descontos." ]
       },
       "warrantyTitle": "Garantia de Produto",
+      "noWarrantyTitle": "Sem garantia",
       "developerInvoiceDescription": "Está a adquirir um serviço por {{productTitle}}. <br /> Uma vez concluído o seu pagamento e esta factura assinalada como paga, será redireccionado de volta ao site de {{productTitle}}. <br /> Se tiver algum problema, consulte directamente o suporte de {{productTitle}}.",
       "soldTitle": [ "Produto vendido", "vezes" ],
       "relations": {
@@ -1044,50 +1063,47 @@
     },
 
     "invoices": {
-      "invoices": {
-        "pageTitle": "Minhas Faturas",
-        "filters": {
-          "statuses": {
-            "all": "Todos os Status",
-            "PENDING": "Pendente",
-            "PARTIAL": "Parcial",
-            "COMPLETED": "Concluída",
-            "VOIDED": "Cancelada",
-            "CANCELED": "Cancelada",
-            "CANCELLED": "Cancelada",
-            "WAITING_FOR_CONFIRMATIONS": "Aguardando Confirmações",
-            "WAITING_SHOP_ACTION": "Aguardando Ação do Lojista",
-            "REVERSED": "Estornada",
-            "REFUNDED": "Reembolsada",
-            "CUSTOMER_DISPUTE_ONGOING": "Disputa em Andamento"
-          },
-          "gateways": {
-            "all": "Todos os Gateways"
-          }
+      "pageTitle": "Minhas Faturas",
+      "filters": {
+        "statuses": {
+          "all": "Todos os Status",
+          "PENDING": "Pendente",
+          "PARTIAL": "Parcial",
+          "COMPLETED": "Concluída",
+          "VOIDED": "Cancelada",
+          "CANCELED": "Cancelada",
+          "CANCELLED": "Cancelada",
+          "WAITING_FOR_CONFIRMATIONS": "Aguardando Confirmações",
+          "WAITING_SHOP_ACTION": "Aguardando Ação do Lojista",
+          "REVERSED": "Estornada",
+          "REFUNDED": "Reembolsada",
+          "CUSTOMER_DISPUTE_ONGOING": "Disputa em Andamento"
         },
-        "table": {
-          "columns": {
-            "info": "Informações",
-            "gateway": "Gateway",
-            "value": "Valor",
-            "status": "Status",
-            "update": "Última Atualização"
-          },
-          "row": {
-            "soldOut": "Produto Esgotado",
-            "cartSoldOut": "Produtos do Carrinho Esgotados",
-            "free": "Gratuito",
-            "shoppingCart": "Compra no Carrinho de Compras",
-            "noProduct": "Nenhum Produto Fornecido",
-            "partialOut": "Carrinho Parcialmente Esgotado"
-          }
-        },
-        "empty": {
-          "title": "Faturas",
-          "message": "Não há faturas para exibir ainda"
+        "gateways": {
+        "all": "Todos os Gateways"
         }
       },
-
+      "table": {
+        "columns": {
+          "info": "Informações",
+          "gateway": "Gateway",
+          "value": "Valor",
+          "status": "Status",
+          "update": "Última Atualização"
+        },
+        "row": {
+          "soldOut": "Produto Esgotado",
+          "cartSoldOut": "Produtos do Carrinho Esgotados",
+          "free": "Gratuito",
+          "shoppingCart": "Compra no Carrinho de Compras",
+          "noProduct": "Nenhum Produto Fornecido",
+          "partialOut": "Carrinho Parcialmente Esgotado"
+        }
+      },
+      "empty": {
+        "title": "Faturas",
+        "message": "Não há faturas para exibir ainda"
+      },
 
       "details": {
         "breadcrumbs": "Minhas Faturas",
@@ -1161,6 +1177,7 @@
           "transactionFee": "Taxa de Transação",
           "serviceFee": "Taxa de Serviço"
         },
+
         "tax": {
           "title": "Informações de Imposto",
           "total": "Total",
@@ -1169,6 +1186,7 @@
           "percentage": "Porcentagem",
           "country": "País"
         },
+
         "goods": {
           "title": "Bens Entregues",
           "fileName": "Nome do Arquivo",
@@ -1304,6 +1322,7 @@
       "Awaiting for Payments": "Aguardando Pagamentos",
       "Back": "Voltar",
       "Back to": "Voltar para",
+      "Back to shop": "Voltar à loja",
       "Bundle Discount": "Desconto de Pacote",
       "COMPLETED": "COMPLETO",
       "Change gateway": "Alterar gateway",
@@ -1449,7 +1468,6 @@
       "seconds": "segundos",
       "transaction": "transação",
       "{{name}} has been received but it's not enough. We only received {{receivedMessage}}, please send the remaining amount in order to fulfill the invoice": "{{name}} foi recebido, mas não é o suficiente. Recebemos apenas {{receivedMessage}}, por favor, envie o valor restante para cumprir a fatura",
-      "Back to shop": "Voltar à loja",
       "The invoice has been created and we are now waiting for the customer to select a gateway.": "A fatura foi criada e agora estamos aguardando o cliente selecionar um método de pagamento.",
       "Leave a positive review to get": "Deixe um comentário positivo para obter",
       "Rewards with this Order": "Recompensas com este Pedido",
@@ -1457,7 +1475,11 @@
       "Free Product": "Produto Gratuito",
       "Product": "Produto",
       "Balance": "Saldo",
-      "a": ""
+      "a": "",
+      "Gift Card code": "Código do cartão-presente",
+      "This code has been delivered to {{email}}.": "Este código foi enviado para {{email}}.",
+      "It can be redeemed through the customer portal or by logging in when doing a new checkout.": "Este código pode ser resgatado através do portal do cliente ou ao fazer login durante uma nova compra.",
+      "Customer Portal": "Portal do Cliente"
     },
     "Payments": {
       "CashApp": {
@@ -1496,23 +1518,6 @@
         "Once you have sent the payment, please wait for the invoice to be marked as paid.": "Após enviar o pagamento, aguarde até que a fatura seja marcada como paga.",
         "payments take 2 to 14 days for the transaction to be processed and completed, depending on your bank.": "os pagamentos levam de 2 a 14 dias para serem processados e concluídos, dependendo do seu banco."
       }
-    },
-    "StripeForm": {
-      "Address": "Endereço",
-      "Address is required": "Endereço é obrigatório",
-      "City": "Cidade",
-      "City is required": "Cidade é obrigatória",
-      "Country": "País",
-      "Country is required": "País é obrigatório",
-      "Details requested by Stripe": "Detalhes solicitados pelo Stripe",
-      "Name": "Nome",
-      "Name is required": "Nome é obrigatório",
-      "Postal Code": "Código Postal",
-      "Postal Code is required": "Código Postal é obrigatório",
-      "State": "Estado",
-      "State is required": "Estado é obrigatório",
-      "Surname": "Sobrenome",
-      "Surname is required": "Sobrenome é obrigatório"
     },
     "PurchaseDetails": {
       "Terms of Service": "Termos de Serviço",
@@ -1555,7 +1560,32 @@
       "Login Here": "Faça o Login Aqui",
       "Aware of discounts, rewards and more of the merchant.": "Ciente dos descontos, recompensas e mais do comerciante.",
       "Stay up to date with discounts, rewards and more from us.": "Mantenha-se atualizado com descontos, recompensas e mais de nós.",
-      "a": ""
+      "a": "",
+      "highly recommended": "Altamente recomendado",
+      "Gift Card amount": "Valor do cartão-presente",
+      "Send to": "Enviar para",
+      "Receiver Email": "Email do destinatário",
+      "Use gift card": "Usar cartão-presente",
+      "Gift Card": "Cartão-presente",
+      "Redeem And Apply": "Resgatar e aplicar",
+      "Email is not valid": "Email inválido"
+    },
+    "StripeForm": {
+      "Address": "Endereço",
+      "Address is required": "Endereço é obrigatório",
+      "City": "Cidade",
+      "City is required": "Cidade é obrigatória",
+      "Country": "País",
+      "Country is required": "País é obrigatório",
+      "Details requested by Stripe": "Detalhes solicitados pelo Stripe",
+      "Name": "Nome",
+      "Name is required": "Nome é obrigatório",
+      "Postal Code": "Código Postal",
+      "Postal Code is required": "Código Postal é obrigatório",
+      "State": "Estado",
+      "State is required": "Estado é obrigatório",
+      "Surname": "Sobrenome",
+      "Surname is required": "Sobrenome é obrigatório"
     },
     "TaxForm": {
       "Additional Details": "Detalhes adicionais",

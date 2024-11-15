@@ -25,6 +25,10 @@
         {{ 'shop.product.developerInvoiceDescription' | t({ productTitle: product.title}) | safe }}
       </p>
     </div>
+  {% elif product.type === "GIFT_CARD" %}
+    <div class="sellix-text">
+      {{ 'shop.checkout.purchaseDetails.giftCards.description' | t }}
+    </div>
   {% else %}
     <div class="sellix-text">
       {{product.description | html_sanitize | safe}}

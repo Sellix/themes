@@ -375,6 +375,7 @@
           "byClickingPay": [ "Facendo clic su Pagamenti si accetta di", " Termini di servizio" ]
         },
         "productQuantity": {
+          "inStock": "Disponibile",
           "stock": "Stock",
           "lastProduct": "Ultimo prodotto"
         },
@@ -402,6 +403,7 @@
           "goToPortal": "Andare al portale di fatturazione clienti",
           "noPaymentOptions": "Questo prodotto non ha opzioni di pagamento.",
           "startSubscription": "Avviare l'abbonamento",
+          "startTrial": "Inizia la prova",
           "applyACoupon": "Applicare un coupon",
           "continue": "Continua",
           "billedEvery": "Fatturato ogni",
@@ -545,7 +547,10 @@
           "add": "Aggiungi",
           "selectPlaceholder": "Quantità"
         },
-        "selectPaymentMethodError": "Seleziona Metodo di pagamento!"
+        "selectPaymentMethodError": "Seleziona Metodo di pagamento!",
+        "giftCards": {
+          "description": "Regala una carta regalo personalizzabile adatta a qualsiasi occasione. Che sia con un importo prestabilito o scelto da te, queste carte offrono la flessibilità per i tuoi cari di scegliere esattamente ciò che desiderano. Il saldo della carta è visualizzato in dollari e può essere utilizzato per acquisti in qualsiasi valuta, incluse le criptovalute."
+        }
       },
       "showDescription": "Mostra Descrizione",
       "stock": "Stock",
@@ -581,11 +586,14 @@
         "trustedAdvisor": "Consulente di fiducia",
         "feedback": "Feedback",
         "faq": "F.A.Q",
-        "contact": "Contatto"
+        "contact": "Contatto",
+        "giftCards": "Carte regalo"
       },
       "banner": {
         "shopInfo": {
-          "entrepreneur": "Contraente",
+          "customer": "Cliente",
+          "entrepreneur": "契約者",
+          "reseller": "Rivenditore",
           "starter": "Avviamento",
           "business": "Affari",
           "professional": "Professionale",
@@ -601,13 +609,17 @@
         "reviewsWithCount_few": "{{count}} recensioni",
         "reviewsWithCount_one": "{{count}} recensione",
         "reviewsWithCount_many": "{{count}} recensioni",
-        "noReviews": "Nessuna recensione"
+        "noReviews": "Nessuna recensione",
+        "totalReview": "Totale recensioni"
       },
       "toastify": {
         "fail": "Si è verificato un errore durante il tentativo di accesso a una delle risorse.",
         "success": "La vostra azione è stata completata, le risorse sono state aggiornate."
       },
       "titles": {
+        "addons": "Componenti aggiuntivi",
+        "description": "Descrizione",
+        "noDescription": "Nessuna descrizione",
         "productType": {
           "serials": "Seriali",
           "product": "Prodotto",
@@ -616,6 +628,8 @@
           "info": "Info",
           "group": "Gruppo"
         },
+        "productWarranty": "Garanzia del prodotto",
+        "noProductWarranty": "Senza garanzia",
         "serverError": "Errore del server!",
         "add": "Aggiungi",
         "startingAt": "A partire da",
@@ -624,6 +638,7 @@
         "remove": "Rimuovere",
         "getIt": "Prendetelo",
         "stock": "Stock",
+        "inStock": "Disponibile",
         "free": "Gratuito",
         "moreInfo": "Clicca per maggiori informazioni",
         "buy": "Acquista",
@@ -662,7 +677,9 @@
         "product": {
           "soldOut": "Prodotto esaurito",
           "onHold": "Questo prodotto è in attesa e non può essere acquistato al momento.",
-          "yourPrice": "Scegliete il vostro prezzo"
+          "yourPrice": "Scegliete il vostro prezzo",
+          "tax": "Imposta",
+          "giftCard": "Carta regalo"
         },
         "info": {
           "clickHere": "Clicca qui per maggiori informazioni"
@@ -710,6 +727,7 @@
         "discountTitle": [ "Risparmiare", "aggiungendo un altro prodotto al carrello con i nostri sconti." ]
       },
       "warrantyTitle": "Garanzia del prodotto",
+      "noWarrantyTitle": "Senza garanzia",
       "developerInvoiceDescription": "Stai acquistando un servizio di {{productTitle}}. <br /> Una volta completato il pagamento e contrassegnata la fattura come pagata, si verrà reindirizzati al sito di {{productTitle}}. <br /> Per qualsiasi problema, rivolgersi direttamente all'assistenza di {{productTitle}}.",
       "soldTitle": [ "Prodotto venduto", "tempi" ],
       "relations": {
@@ -903,6 +921,35 @@
   },
   "customer": {
 
+    "commissions": {
+      "pageTitle": "Dashboard",
+      "table": {
+        "title": "Commissioni Recenti",
+        "columns": {
+          "invoices": "Fatture",
+          "product": "Prodotto",
+          "quantity": "Quantità",
+          "price": "Prezzo",
+          "percentage": "Percentuale",
+          "created": "Data di Creazione",
+          "commission": "Commissione"
+        }
+      },
+      "analytics": {
+        "titles": {
+          "totalReferrals": "Numero Totale di Riferimenti",
+          "totalCommission": "Commissione Totale",
+          "currentBalance": "Saldo Attuale",
+          "revenuePercentage": "Percentuale di Entrate",
+          "referralLink": "Link di Riferimento"
+        }
+      },
+      "empty": {
+        "title": "Commissioni Recenti",
+        "message": "Non ci sono ancora commissioni di affiliazione"
+      }
+    },
+
     "affiliates": {
       "pageTitle": "Prodotti Affiliati",
       "table": {
@@ -924,12 +971,14 @@
         "chooseYourPrice": "Scegli il tuo prezzo"
       }
     },
+
     "payouts": {
       "pageTitle": "Pagamenti Manuali",
       "title": "Pagamenti Manuali",
       "message": "Mettiti in contatto con il commerciante per un pagamento manuale del saldo delle commissioni.",
       "button": "Contatta il Commerciante"
     },
+
     "table": {
       "nothingToShow": "Non abbiamo nulla da mostrarti",
       "shiftForMultiSort": "Premi \"Shift\" per ordinare multiple colonne",
@@ -942,6 +991,7 @@
         "button": "Cancella Filtri"
       }
     },
+
     "menu": {
       "commissions": "Commissioni",
       "affiliates": "Link Affiliati",
@@ -952,6 +1002,7 @@
       "profile": "Il Mio Profilo",
       "signOut": "Esci"
     },
+
     "subscriptions": {
       "pageTitle": "Le Mie Iscrizioni",
       "filters": {
@@ -1052,6 +1103,7 @@
         "title": "Fatture",
         "message": "Non hai nessuna fattura da mostrare ancora"
       },
+
       "details": {
         "breadcrumbs": "Le Mie Fatture",
         "header": {
@@ -1124,6 +1176,7 @@
           "transactionFee": "Commissione di Transazione",
           "serviceFee": "Commissione di Servizio"
         },
+
         "tax": {
           "title": "Informazioni Fiscali",
           "total": "Totale",
@@ -1132,6 +1185,7 @@
           "percentage": "Percentuale",
           "country": "Paese"
         },
+
         "goods": {
           "title": "Beni Conseguiti",
           "fileName": "Nome del File",
@@ -1146,6 +1200,7 @@
         "invoicesTable": "Fatture"
       }
     },
+
     "licenses": {
       "pageTitle": "Le Mie Licenze",
       "filters": {
@@ -1423,7 +1478,11 @@
       "Login Here": "Accedi qui",
       "Aware of discounts, rewards and more of the merchant.": "Consapevole di sconti, premi e altro del commerciante.",
       "Stay up to date with discounts, rewards and more from us.": "Rimani aggiornato con sconti, premi e altro da noi.",
-      "a": ""
+      "a": "",
+      "Gift Card code": "Codice della carta regalo",
+      "This code has been delivered to {{email}}.": "Questo codice è stato inviato a {{email}}.",
+      "It can be redeemed through the customer portal or by logging in when doing a new checkout.": "Può essere riscattato tramite il portale clienti o accedendo durante un nuovo acquisto.",
+      "Customer Portal": "Portale clienti"
     },
     "Payments": {
       "CashApp": {
@@ -1462,23 +1521,6 @@
         "Once you have sent the payment, please wait for the invoice to be marked as paid.": "Una volta inviato il pagamento, attendi che la fattura venga contrassegnata come pagata.",
         "payments take 2 to 14 days for the transaction to be processed and completed, depending on your bank.": "i pagamenti richiedono da 2 a 14 giorni per l'elaborazione e il completamento della transazione, a seconda della tua banca."
       }
-    },
-    "StripeForm": {
-      "Address": "Indirizzo",
-      "Address is required": "L'indirizzo è obbligatorio",
-      "City": "Città",
-      "City is required": "La città è obbligatoria",
-      "Country": "Paese",
-      "Country is required": "Il paese è obbligatorio",
-      "Details requested by Stripe": "Dettagli richiesti da Stripe",
-      "Name": "Nome",
-      "Name is required": "Il nome è obbligatorio",
-      "Postal Code": "Codice postale",
-      "Postal Code is required": "Il codice postale è obbligatorio",
-      "State": "Stato",
-      "State is required": "Lo stato è obbligatorio",
-      "Surname": "Cognome",
-      "Surname is required": "Il cognome è obbligatorio"
     },
     "PurchaseDetails": {
       "Terms of Service": "Termini di Servizio",
@@ -1521,7 +1563,32 @@
       "Login Here": "Accedi qui",
       "Aware of discounts, rewards and more of the merchant.": "Consapevole di sconti, premi e altro del commerciante.",
       "Stay up to date with discounts, rewards and more from us.": "Rimani aggiornato con sconti, premi e altro da noi.",
-      "a": ""
+      "a": "",
+      "highly recommended": "Altamente consigliato",
+      "Gift Card amount": "Importo della carta regalo",
+      "Send to": "Invia a",
+      "Receiver Email": "Email del destinatario",
+      "Use gift card": "Usa carta regalo",
+      "Gift Card": "Carta regalo",
+      "Redeem And Apply": "Riscatta e applica",
+      "Email is not valid": "L'email non è valida"
+    },
+    "StripeForm": {
+      "Address": "Indirizzo",
+      "Address is required": "L'indirizzo è obbligatorio",
+      "City": "Città",
+      "City is required": "La città è obbligatoria",
+      "Country": "Paese",
+      "Country is required": "Il paese è obbligatorio",
+      "Details requested by Stripe": "Dettagli richiesti da Stripe",
+      "Name": "Nome",
+      "Name is required": "Il nome è obbligatorio",
+      "Postal Code": "Codice postale",
+      "Postal Code is required": "Il codice postale è obbligatorio",
+      "State": "Stato",
+      "State is required": "Lo stato è obbligatorio",
+      "Surname": "Cognome",
+      "Surname is required": "Il cognome è obbligatorio"
     },
     "TaxForm": {
       "Additional Details": "Dettagli aggiuntivi",

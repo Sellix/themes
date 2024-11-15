@@ -25,11 +25,16 @@
       theme,
       renderOptions,
       affiliateConversions,
+      customerInfo,
+      availableGiftCards,
+      options,
     }) {
       this.domContainer = document.querySelector(selector);
       this.selectorCaptchaV2 = selectorCaptchaV2;
       this.shop = shop;
       this.affiliateConversions = affiliateConversions;
+      this.customerInfo = customerInfo;
+      this.availableGiftCards = availableGiftCards;
       this.cartEnabled = cartEnabled;
       this.isCustomDomain = isCustomDomain;
       this.purchaseType = purchaseType;
@@ -40,9 +45,11 @@
       this.renderOptions = renderOptions;
       this.isCaptchaV2Visible = false;
       this.shopStore = SellixStoreFactory.getStore(this.shop.name);
+      this.options = options || {};
 
       this.addonsStore = new SellixAddonsStore(
         shop.name,
+        this.purchaseType === 'gift-card' ? {} :
         this.purchaseType === 'checkout'
           ? Object.fromEntries(this.cart.getItems().map((p) => [p.uniqid, p.addons]))
           : { [product.uniqid]: product.addons },
@@ -54,12 +61,14 @@
         name: 'SellixRenderComponent',
         namespace: renderOptions.id,
       });
+
       jQuery(document).on(
         [
           'SellixCartUpdateEvent',
           'SellixAddonsUpdateEvent',
           'SellixVariantsUpdateEvent',
           'SellixProductPlansUpdateEvent',
+          'SellixCustomerInfoUpdateEvent',
           renderEvent,
         ].join(' '),
         () => {
@@ -116,6 +125,26 @@
 
     onShowMessage = ({ type, text }) => {
       jQuery(document).trigger('SellixToastify', { type, text });
+    };
+
+    onCustomerRedeemGiftCard = (data, options) => {
+      return sellixApi.customerRedeemGiftCard(data, options);
+    };
+
+    onGetCustomerInfo = (data, options) => {
+
+      let callback = (customerInfo) => {
+        window.__RENDER_CONTEXT__.common.customerInfo = customerInfo;
+        this.affiliateConversions = customerInfo.customer?.affiliate_revenue_conversions || {}
+        this.availableGiftCards = customerInfo.customer.availableGiftCards;
+
+        jQuery(document).trigger('SellixCustomerInfoUpdateEvent');
+      }
+
+      return sellixApi.customerInfo(data, {
+        ...options,
+        callback
+      });
     };
 
     onShowProductTerms = () => {
@@ -222,9 +251,13 @@
           shopInfo: this.shop,
           productInfo: this.product || {},
           cartProducts: cartProducts,
-          addons: this.addonsStore.getAll(),
-          bundles: this.bundles,
+          addons: this.purchaseType === 'gift-card' ? {} : this.addonsStore.getAll(),
+          bundles: this.purchaseType === 'gift-card' ? [] : this.bundles,
           affiliateConversions: this.affiliateConversions,
+          availableGiftCards: this.availableGiftCards,
+          customerInfo: this.customerInfo,
+          onCustomerRedeemGiftCard: this.onCustomerRedeemGiftCard,
+          onGetCustomerInfo: this.onGetCustomerInfo,
           priceVariants: this.priceVariantsStore.getAll(),
           productPlans: this.productPlansStore.getAll(),
           theme: this.theme,
@@ -232,6 +265,7 @@
           sellixI18Next: window.sellixI18Next,
           onAddToCart: this.onAddToCart,
           onApplyCoupon: this.onApplyCoupon,
+          onBackToShop: () => (window.location.href = 'shop'),
           onCreateInvoice: (data, token) => this.onCreateInvoiceOrSubscription('invoice', data, token),
           onCreateSubscription: (data, token) => this.onCreateInvoiceOrSubscription('subscription', data, token),
           onGetCalculation: this.onGetCalculation,

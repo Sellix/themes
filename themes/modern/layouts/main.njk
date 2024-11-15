@@ -154,7 +154,7 @@
     {% if global.request.type in ['main'] %}
       <link rel="stylesheet" href="{{ 'template-main.css' | asset_url(rtl) }}" />
     {% endif %}
-    {% if global.request.type in ['checkout', 'product', 'subscription'] %}
+    {% if global.request.type in ['checkout', 'product', 'gift_card', 'subscription'] %}
       <link rel="stylesheet" href="{{ 'widget-purchase-details.css' | asset_url(rtl) }}" />
     {% endif %}
     {% if global.request.type in ['checkout'] %}
@@ -238,7 +238,7 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     {% endif %}
 
-    {% if global.request.type in ['product', 'checkout'] %}
+    {% if global.request.type in ['product', 'gift_card', 'checkout'] %}
       <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
     {% endif %}
 
@@ -251,7 +251,7 @@
     <script src="{{ 'magnific-popup.1.1.0.min.js' | asset_url }}"></script>
     <script src="{{ 'react-player.standalone.js' | asset_url }}"></script>
     <script src="{{ 'sharer.min.js' | asset_url }}"></script>
-    {% if global.request.type in ['checkout', 'product', 'subscription'] %}
+    {% if global.request.type in ['checkout', 'product', 'gift_card', 'subscription'] %}
       <script src="{{ 'widget-purchase-details.js' | asset_url }}"></script>
     {% endif %}
 

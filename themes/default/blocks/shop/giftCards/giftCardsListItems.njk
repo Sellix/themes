@@ -1,0 +1,47 @@
+{% set id = uid() %}
+{% set shopInfo = global.common.shopInfo %}
+{% set shop = shopInfo.shop %}
+{% set theme = global.common.theme %}
+{% set centerProduct = shop.center_product_titles %}
+{% set centerGroup = shop.center_group_titles %}
+{% set generatedGiftCards = shopInfo.generatedGiftCards %}
+{% set colors = themeProperties.current_colors %}
+
+{% set hideOutOfStock = shop.hide_out_of_stock %}
+
+<style>
+  .sellix-product-list-card-container--width {
+    width: {{ 100 / properties.list_items_per_row_wide | int }}%
+  }
+
+  @media (max-width: 768px) {
+    .sellix-product-list-card-container--width {
+      width: {{ 100 / properties.list_items_per_row_normal | int }}%
+    }
+  }
+
+  @media (max-width: 640px) {
+    .sellix-product-list-card-container--width {
+      width: {{ 100 / properties.list_items_per_row_narrow | int }}%
+    }
+  }
+</style>
+
+<div
+  class="sellix-product-list-body"
+  style="background: {{ colors[properties.list_items_background_color] }};{#
+      #} border: {{ "1px solid var(--borderColor)" if properties.list_items_show_border else "none" }};{#
+      #} padding: {{ properties.container_padding_vert }}px {{ properties.container_padding_horiz }}px;{#
+      #} box-shadow: {{ properties.container_shadow }};{#
+      #} border-radius: {{ properties.container_border_radius }}rem;"
+>
+  {% for giftCard in generatedGiftCards %}
+    <div
+      data-product-id="{{giftCard.uniqid}}"
+      class="sellix-product-list-card-container sellix-product-list-card-container--width"
+    >
+      {% render_snippet 'Gift card', product=giftCard, theme=theme, centerProduct=centerProduct %}
+    </div>
+  {% endfor %}
+
+</div>
