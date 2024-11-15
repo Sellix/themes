@@ -1,4 +1,6 @@
 {% set shop = global.common.shopInfo.shop %}
+{% set isGiftCardEnabled = shop.enable_gift_cards %}
+
 {% set currentContext = context() %}
 
 {% set shopName = safe_get(themeProperties.common.shop_name, null) or shop.name %}
@@ -124,12 +126,18 @@
           </div>
           <div class="{{ globalClass }}__menu-items {{ localClass }}__menu-items">
             {% for item in menu.items %}
-              {% render_snippet
-                'Menu item',
-                url=item.page_slug,
-                title=item.title,
-                class=''
-              %}
+
+              {% if item.id == "gift-cards" and not isGiftCardEnabled %}
+
+              {% else %}
+                {% render_snippet
+                  'Menu item',
+                  url=item.page_slug,
+                  title=item.title,
+                  class=''
+                %}
+              {% endif %}
+
             {% endfor %}
           </div>
         </div>

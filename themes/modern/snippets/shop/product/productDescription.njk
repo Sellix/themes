@@ -62,7 +62,11 @@
     {% endif %}
 
     <div class="{{ globalClass }}__description {{ localClass}}__description">
-      {% if description %}
+      {% if product.type === "GIFT_CARD" %}
+        <div class="sellix-text">
+            {{ 'shop.checkout.purchaseDetails.giftCards.description' | t }}
+        </div>
+      {% elif description %}
         <div class="sellix-text">
             {{ description | safe }}
         </div>

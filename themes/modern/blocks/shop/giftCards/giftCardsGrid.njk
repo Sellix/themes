@@ -1,0 +1,159 @@
+{% set shopInfo = global.common.shopInfo %}
+{% set shop = shopInfo.shop %}
+{% set theme = global.common.theme %}
+
+{% set limit = safe_get(properties.grid_limit, 0) | int %}
+{% set customClass = safe_get(properties.custom_class, '') %}
+{% set showViewAllButton = safe_get(properties.grid_show_view_all_button, false) %}
+{% set generatedGiftCards = shopInfo.generatedGiftCards %}
+
+{% set placeholderType = safe_get(properties.grid_card_placeholder_type, 'auto') %}
+{% set containerShadow = safe_get(properties.container_shadow, 'none') %}
+{% set containerBorderRadius = safe_get(properties.container_border_radius, '0.5') %}
+{% set backgroundColor = safe_get(properties.grid_background_color, 'transparent') %}
+{% set showBorder = safe_get(properties.grid_show_border, true) %}
+{% set paddingVert = safe_get(properties.container_padding_vert, 0) %}
+{% set paddingHoriz = safe_get(properties.container_padding_horiz, 0) %}
+{% set columnGap = safe_get(properties.grid_column_gap, 30) %}
+{% set rowGap = safe_get(properties.grid_row_gap, 30) %}
+{% set itemsPerRowType = safe_get(properties.grid_items_per_row_type, 'static') %}
+{% set itemsPerRowDesktop = safe_get(properties.grid_items_per_row_desktop, 4) | int %}
+{% set itemsPerRowTablet = safe_get(properties.grid_items_per_row_tablet, 2) | int %}
+{% set itemsPerRowMobile = safe_get(properties.grid_items_per_row_mobile, 1) | int %}
+
+{% set globalCardProps = themeProperties.cards %}
+{% set customCardPropsEnabled = safe_get(properties.grid_card_properties_enabled, false) %}
+{% if customCardPropsEnabled %}
+  {% set cardProps = {
+    'items_per_row_type': itemsPerRowType,
+    'placeholder_type': placeholderType,
+    'show_product_type_badge': safe_get(properties.grid_show_product_type_badge, true),
+    'image_height': safe_get(properties.grid_card_image_height, globalCardProps.product_card_image_height),
+    'image_border_radius': safe_get(properties.grid_card_image_border_radius, globalCardProps.product_card_image_border_radius),
+    'background_color': safe_get(properties.grid_card_background_color, globalCardProps.product_card_background_color),
+    'show_border': safe_get(properties.grid_card_show_border, globalCardProps.product_card_show_border),
+    'border_radius': safe_get(properties.grid_card_border_radius, globalCardProps.product_card_border_radius),
+    'shadow': safe_get(properties.grid_card_shadow, globalCardProps.product_card_shadow),
+    'info_padding_horiz': safe_get(properties.grid_card_info_padding_horiz, globalCardProps.product_card_info_padding_horiz),
+    'info_padding_vert': safe_get(properties.grid_card_info_padding_vert, globalCardProps.product_card_info_padding_vert),
+    'title_font_color': safe_get(properties.grid_card_title_font_color, globalCardProps.product_card_title_font_color),
+    'title_font_size': safe_get(properties.grid_card_title_font_size, globalCardProps.product_card_title_font_size),
+    'title_font_weight': safe_get(properties.grid_card_title_font_weight, globalCardProps.product_card_title_font_weight),
+    'title_line_height': safe_get(properties.grid_card_title_line_height, globalCardProps.product_card_title_line_height),
+    'title_text_align': safe_get(properties.grid_card_title_text_align, globalCardProps.product_card_title_text_align),
+    'description_font_color': safe_get(properties.grid_card_description_font_color, globalCardProps.product_card_description_font_color),
+    'description_font_size': safe_get(properties.grid_card_description_font_size, globalCardProps.product_card_description_font_size),
+    'description_font_weight': safe_get(properties.grid_card_description_font_weight, globalCardProps.product_card_description_font_weight),
+    'price_font_color': safe_get(properties.grid_card_price_font_color, globalCardProps.product_card_price_font_color),
+    'price_font_size': safe_get(properties.grid_card_price_font_size, globalCardProps.product_card_price_font_size),
+    'price_font_weight': safe_get(properties.grid_card_price_font_weight, globalCardProps.product_card_price_font_weight)
+  } %}
+{% else %}
+  {% set cardProps = {
+    'items_per_row_type': itemsPerRowType,
+    'placeholder_type': placeholderType,
+    'show_product_type_badge': safe_get(properties.grid_show_product_type_badge, true),
+    'image_height': safe_get(globalCardProps.product_card_image_height, 247),
+    'image_border_radius': safe_get(globalCardProps.product_card_image_border_radius, 8),
+    'background_color': safe_get(globalCardProps.product_card_background_color, 'background_accent_dark'),
+    'show_border': safe_get(globalCardProps.product_card_show_border, true),
+    'border_radius': safe_get(globalCardProps.product_card_border_radius, 8),
+    'shadow': safe_get(globalCardProps.product_card_shadow, 'none'),
+    'info_padding_horiz': safe_get(globalCardProps.product_card_info_padding_horiz, 0),
+    'info_padding_vert': safe_get(globalCardProps.product_card_info_padding_vert, 0),
+    'title_font_color': safe_get(globalCardProps.product_card_title_font_color, 'light_font_color'),
+    'title_font_size': safe_get(globalCardProps.product_card_title_font_size, 16),
+    'title_font_weight': safe_get(globalCardProps.product_card_title_font_weight, 400),
+    'title_line_height': safe_get(globalCardProps.product_card_title_line_height, 24),
+    'title_text_align': safe_get(globalCardProps.product_card_title_text_align, 'start'),
+    'description_font_color': safe_get(globalCardProps.product_card_description_font_color, 'dark_font_color'),
+    'description_font_size': safe_get(globalCardProps.product_card_description_font_size, 14),
+    'description_font_weight': safe_get(globalCardProps.product_card_description_font_weight, 400),
+    'price_font_color': safe_get(globalCardProps.product_card_price_font_color, 'brand_color'),
+    'price_font_size': safe_get(globalCardProps.product_card_price_font_size, 16),
+    'price_font_weight': safe_get(globalCardProps.product_card_price_font_weight, 500)
+  } %}
+{% endif %}
+
+{% if itemsPerRowType == 'dynamic' %}
+  {% if limit > 0 and limit < generatedGiftCards | length  %}
+    {% set itemsCount = limit %}
+  {% else %}
+    {% set itemsCount = generatedGiftCards | length %}
+  {% endif %}
+
+  {% set itemsPerRowDesktop = itemsPerRowDesktop if itemsPerRowDesktop < itemsCount else itemsCount %}
+  {% set itemsPerRowTablet = itemsPerRowTablet if itemsPerRowTablet < itemsCount else itemsCount %}
+  {% set itemsPerRowMobile = itemsPerRowMobile if itemsPerRowMobile < itemsCount else itemsCount %}
+{% endif %}
+
+{% set localClass = [globalClass, '-', id] | join %}
+
+<style>
+  .{{ localClass }}__container {
+    background: {{ backgroundColor | get_color }};
+    border: {{ "1px solid var(--borderColor)" if showBorder else "none" }};
+    padding: {{ paddingVert }}px {{ paddingHoriz }}px;
+    box-shadow: {{ containerShadow }};
+    border-radius: {{ containerBorderRadius }}px;
+  }
+
+  .{{ localClass }}__products {
+    display: grid;
+    grid-template-columns: repeat({{ itemsPerRowDesktop }}, minmax(50px, 1fr));
+    grid-column-gap: {{ columnGap }}px;
+    grid-row-gap: {{ rowGap }}px;
+  }
+
+  @media (max-width: 768px) {
+    .{{ localClass }}__products {
+      grid-template-columns: repeat({{ itemsPerRowTablet }}, minmax(50px, 1fr));
+    }
+  }
+  @media (max-width: 640px) {
+    .{{ localClass }}__products {
+      grid-template-columns: repeat({{ itemsPerRowMobile }}, minmax(50px, 1fr));
+    }
+  }
+
+  .grid-one-column {
+    grid-template-columns: repeat(1, 1fr)!important;
+  }
+</style>
+
+<div class="{{ globalClass }}__container {{ localClass }}__container {{ 'grid-one-column' if generatedGiftCards.length == 0 }} {{ customClass }}">
+  <div class="{{ globalClass }}__products {{ localClass }}__products">
+    {% set visibleProductsCnt = 0 %}
+    {% for giftCard in generatedGiftCards %}
+      {% if limit > 0 and visibleProductsCnt >= limit %}
+
+      {% else %}
+        {% set visibleProductsCnt = visibleProductsCnt + 1 %}
+        <div
+          data-product-id="{{giftCard.uniqid}}"
+          class="{{ globalClass }}__cards {{ localClass }}__cards"
+        >
+          {% render_snippet
+            'Card: Gift card',
+            product=giftCard,
+            theme=theme,
+            properties=cardProps
+          %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  {% if showViewAllButton %}
+    <div class="{{ globalClass }}__view-all-button">
+      {% render_snippet 'Shared: Link button',
+        properties={
+        'label': 'shop.shared.titles.viewAllGiftCards' | t,
+        'url': 'gift-cards'
+      }
+      %}
+    </div>
+  {% endif %}
+
+</div>
+

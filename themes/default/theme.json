@@ -1887,16 +1887,16 @@
         }
       }
     },
-    "Contact/Contact": {
-      "name": "Contact/Contact",
-      "path": "templates/shop/contact.njk",
-      "template_type": "CONTACT",
+    "Gift/Cards": {
+      "name": "Gift/Cards",
+      "path": "templates/shop/mainpage.njk",
+      "template_type": "GIFT_CARDS",
       "is_default": 1,
       "settings": {
         "section_order": [
           "Banner",
           "Menu",
-          "Contact form"
+          "Product list"
         ],
         "sections": {
           "Banner": {
@@ -1961,8 +1961,8 @@
               "block_order": []
             }
           },
-          "Contact form": {
-            "name": "Contact form",
+          "Product list": {
+            "name": "Product list",
             "settings": {
               "visible": true,
               "properties": {
@@ -1972,7 +1972,21 @@
                 "contact_form_button_title": "shop.contact.buttonTitle",
                 "contact_form_button_position": "flex-start"
               },
-              "block_order": []
+              "block_order": [
+                "Gift cards list items"
+              ],
+              "blocks": {
+                "Gift cards list items": {
+                  "name": "Gift cards list items",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "show_banner_products_sold": true,
+                      "show_banner_product_quality": true
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -2440,6 +2454,84 @@
                     "visible": true,
                     "properties": {
                       "show_only_on_first_purchase_step": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Product/Gift Card": {
+      "name": "Product/Product",
+      "path": "templates/shop/product.njk",
+      "template_type": "GIFT_CARD",
+      "is_default": 1,
+      "settings": {
+        "section_order": [
+          "Shop info",
+          "Product info"
+        ],
+        "sections": {
+          "Shop info": {
+            "name": "Shop info",
+            "settings": {
+              "visible": true,
+              "properties": {
+                "shop_info_font_size": 14,
+                "shop_info_font_color": "brand_color",
+                "shop_name": "",
+                "shop_info_font_weight": 400,
+                "show_shop_info_logo": true,
+                "shop_info_logo_color": "brand_color",
+                "shop_info_custom_logo": null
+              }
+            }
+          },
+          "Product info": {
+            "name": "Product info",
+            "settings": {
+              "visible": true,
+              "properties": {
+                "enable_right_sidebar": true,
+                "right_sidebar_blocks_count": 3
+              },
+              "block_order": [
+                "Product details",
+                "Product relations",
+                "Purchase details",
+                "Product warranty"
+              ],
+              "blocks": {
+                "Product details": {
+                  "name": "Product details",
+                  "settings": {
+                    "visible": true
+                  }
+                },
+                "Product relations": {
+                  "name": "Product relations",
+                  "settings": {
+                    "visible": true
+                  }
+                },
+                "Purchase details": {
+                  "name": "Purchase details",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "render_mode": "frontend"
+                    }
+                  }
+                },
+                "Product warranty": {
+                  "name": "Product warranty",
+                  "settings": {
+                    "visible": true,
+                    "properties": {
+                      "show_in_modal": true,
+                      "body_text_align": "left"
                     }
                   }
                 }
@@ -8295,6 +8387,116 @@
         ]
       }
     },
+    "Gift cards list items": {
+      "name": "Gift cards list items",
+      "path": "blocks/shop/giftCards/giftCardsListItems.njk",
+      "settings": {
+        "schema": [
+          {
+            "id": "list_items_background_color",
+            "type": "select",
+            "label": "Background color",
+            "options": [
+              {
+                "title": "Main",
+                "value": "background_main_color"
+              },
+              {
+                "title": "Accent (Light)",
+                "value": "background_accent_light"
+              },
+              {
+                "title": "Accent (Dark)",
+                "value": "background_accent_dark"
+              },
+              {
+                "title": "Transparent",
+                "value": "transparent"
+              }
+            ],
+            "defaultValue": "background_main_color"
+          },
+          {
+            "id": "list_items_show_border",
+            "type": "checkbox",
+            "label": "Show border",
+            "defaultValue": false
+          },
+          {
+            "id": "container_border_radius",
+            "type": "range",
+            "max": 2,
+            "min": 0,
+            "step": 0.25,
+            "unit": "rem",
+            "label": "Border radius",
+            "defaultValue": 0.5
+          },
+          {
+            "id": "container_padding_horiz",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding horizontal",
+            "defaultValue": 0
+          },
+          {
+            "id": "container_padding_vert",
+            "max": 24,
+            "min": 0,
+            "step": 1,
+            "type": "range",
+            "unit": "px",
+            "label": "Container padding vertical",
+            "defaultValue": 0
+          },
+          {
+            "id": "container_shadow",
+            "type": "select",
+            "label": "Drop shadow",
+            "options": [
+              {
+                "title": "None",
+                "value": "none"
+              },
+              {
+                "title": "Variant 1",
+                "value": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 2",
+                "value": "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+              },
+              {
+                "title": "Variant 3",
+                "value": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+              }
+            ],
+            "defaultValue": "none"
+          },
+          {
+            "id": "list_items_per_row_wide",
+            "type": "text",
+            "label": "Items per row (wide)",
+            "defaultValue": "4"
+          },
+          {
+            "id": "list_items_per_row_normal",
+            "type": "text",
+            "label": "Items per row (normal)",
+            "defaultValue": "2"
+          },
+          {
+            "id": "list_items_per_row_narrow",
+            "type": "text",
+            "label": "Items per row (narrow)",
+            "defaultValue": "1"
+          }
+        ]
+      }
+    },
     "Product relations": {
       "name": "Product relations",
       "path": "blocks/shop/product/productRelations.njk",
@@ -10359,6 +10561,10 @@
     "Info card": {
       "name": "Info card",
       "path": "snippets/shop/main/infoCard.njk"
+    },
+    "Gift card": {
+      "name": "Gift card",
+      "path": "snippets/shop/main/giftCard.njk"
     },
     "Placeholder card": {
       "name": "Placeholder card",

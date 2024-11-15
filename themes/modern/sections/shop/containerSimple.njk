@@ -1,6 +1,7 @@
 {% set fullWidth = safe_get(properties.fullwidth, false) %}
 {% set bgColor = properties.background_color %}
 {% set marginTopDesktop = safe_get(properties.margin_top_desktop, 0) %}
+{% set isGiftCards = safe_get(properties.is_gift_cards, 0) %}
 {% set marginBottomDesktop = safe_get(properties.margin_bottom_desktop, 120) %}
 {% set paddingTopDesktop = safe_get(properties.padding_top_desktop, 0) %}
 {% set paddingBottomDesktop = safe_get(properties.padding_bottom_desktop, 0) %}
@@ -16,38 +17,46 @@
 {% set paddingTopMobile = safe_get(properties.padding_top_mobile, 400) %}
 {% set paddingBottomMobile = safe_get(properties.padding_bottom_mobile, 400) %}
 
+{% set shop = global.common.shopInfo.shop %}
+{% set isGiftCardEnabled = shop.enable_gift_cards %}
+
 {% set localClass = id %}
 
-<style>
-  .sellix-section.{{ globalClass}}-global-{{ id }} {
-    background-color: {{ bgColor | get_color }};
-  }
 
-  .{{ localClass }}__container {
-    margin-top: {{ marginTopDesktop }}px;
-    margin-bottom: {{ marginBottomDesktop }}px;
-    padding: {{ paddingTopDesktop }}px {{ paddingHorizDesktop }}px {{ paddingBottomDesktop }}px {{ paddingHorizDesktop }}px;
-  }
+{% if isGiftCards and not isGiftCardEnabled %}
 
-  @media (max-width: 768px) {
-    .{{ localClass }}__container {
-      padding: {{ paddingTopTablet }}px {{ paddingHorizTablet }}px {{ paddingBottomTablet }}px {{ paddingHorizTablet }}px;
-      margin-top: {{ marginTopTablet }}px;
-      margin-bottom: {{ marginBottomTablet }}px;
+{% else %}
+  <style>
+    .sellix-section.{{ globalClass}}-global-{{ id }} {
+      background-color: {{ bgColor | get_color }};
     }
-  }
 
-  @media (max-width: 640px) {
     .{{ localClass }}__container {
-      padding: {{ paddingTopMobile }}px {{ paddingHorizMobile }}px {{ paddingBottomMobile }}px {{ paddingHorizMobile }}px;
-      margin-top: {{ marginTopMobile }}px;
-      margin-bottom: {{ marginBottomMobile }}px;
+      margin-top: {{ marginTopDesktop }}px;
+      margin-bottom: {{ marginBottomDesktop }}px;
+      padding: {{ paddingTopDesktop }}px {{ paddingHorizDesktop }}px {{ paddingBottomDesktop }}px {{ paddingHorizDesktop }}px;
     }
-  }
-</style>
 
-<div class="{{ globalClass }}__container {{ localClass }}__container {{ 'full-width' if fullWidth else 'content-width' }}">
-  {% for block_name in settings.block_order %}
-    {%- render_block block_name -%}
-  {% endfor%}
-</div>
+    @media (max-width: 768px) {
+      .{{ localClass }}__container {
+        padding: {{ paddingTopTablet }}px {{ paddingHorizTablet }}px {{ paddingBottomTablet }}px {{ paddingHorizTablet }}px;
+        margin-top: {{ marginTopTablet }}px;
+        margin-bottom: {{ marginBottomTablet }}px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .{{ localClass }}__container {
+        padding: {{ paddingTopMobile }}px {{ paddingHorizMobile }}px {{ paddingBottomMobile }}px {{ paddingHorizMobile }}px;
+        margin-top: {{ marginTopMobile }}px;
+        margin-bottom: {{ marginBottomMobile }}px;
+      }
+    }
+  </style>
+
+  <div class="{{ globalClass }}__container {{ localClass }}__container {{ 'full-width' if fullWidth else 'content-width' }}">
+    {% for block_name in settings.block_order %}
+      {%- render_block block_name -%}
+    {% endfor%}
+  </div>
+{% endif %}

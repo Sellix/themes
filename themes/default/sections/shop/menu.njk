@@ -1,6 +1,8 @@
 {% set slug = global.request.slug %}
 {% set colors = themeProperties.current_colors %}
 {% set menuProps = themeProperties.menu %}
+{% set shop = global.common.shopInfo.shop %}
+{% set isGiftCardEnabled = shop.enable_gift_cards %}
 
 {% if global.locales.defaultLocale != global.locales.locale %}
   {% set locale_prefix = ["/", global.locales.locale] | join %}
@@ -21,20 +23,27 @@
 </style>
 
 <div class="sellix-menu">
-    {% for item in menu.items %}
-      {% set active = item.page_slug == slug %}
-      {% if item.page_slug != "/" %}
-        {% set active = item.page_slug in slug %}
+  {% for item in menu.items %}
+
+      {% if item.id == "gift-cards" and not isGiftCardEnabled %}
+
+      {% else %}
+
+        {% set active = item.page_slug == slug %}
+        {% if item.page_slug != "/" %}
+          {% set active = item.page_slug in slug %}
+        {% endif %}
+        {% if item.page_slug == "/contact" and "/ticket" in slug %}
+          {% set active = true %}
+        {% endif %}
+        <a
+          href="{{ locale_prefix }}{{item.page_slug}}"
+          class="menu-tab {{'active' if active else ''}}"
+          style="font-size: {{ menuProps.menu_tab_font_size }}px; color: {{ colors[menuProps.menu_tab_font_color] }}; font-weight: {{ menuProps.menu_tab_font_weight }};"
+        >
+          {{item.title | t}}
+        </a>
+
       {% endif %}
-      {% if item.page_slug == "/contact" and "/ticket" in slug %}
-        {% set active = true %}
-      {% endif %}
-      <a
-        href="{{ locale_prefix }}{{item.page_slug}}"
-        class="menu-tab {{'active' if active else ''}}"
-        style="font-size: {{ menuProps.menu_tab_font_size }}px; color: {{ colors[menuProps.menu_tab_font_color] }}; font-weight: {{ menuProps.menu_tab_font_weight }};"
-      >
-        {{item.title | t}}
-      </a>
-    {% endfor %}
+  {% endfor %}
 </div>

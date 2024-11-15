@@ -360,6 +360,48 @@
       return this.requestWithCaptchaV3('stripeRefreshSetupIntent', onSuccess, null, options);
     };
 
+
+    async customerRedeemGiftCard(data, options) {
+      let headers = {};
+      if (options.token) {
+        headers = {
+          Authorization: 'Bearer ' + options.token,
+        };
+      }
+
+      return jQuery.ajax({
+        method: 'POST',
+        url: `${this.apiUrl}/api/shop/customer/gift-cards/redeem`,
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        data: JSON.stringify(data),
+        headers,
+      });
+    }
+
+    async customerInfo(data, options) {
+      let headers = {};
+      if (options.token) {
+        headers = {
+          Authorization: 'Bearer ' + options.token,
+        };
+      }
+
+      return jQuery.ajax({
+        method: 'POST',
+        url: `${this.apiUrl}/api/shop/customer/info`,
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        data: JSON.stringify(data),
+        headers,
+      })
+        .done((res) => {
+          if(res.status === 200) {
+            options.callback && options.callback(res);
+          }
+        });
+    }
+
     async customerAuthEmail(data, options) {
       const onSuccess = (captcha) => {
         return jQuery.ajax({
@@ -588,6 +630,7 @@
         data: JSON.stringify(data, (key, value) => (typeof value === 'bigint' ? value.toString() : value)),
       });
     }
+
 
     async getMeshNetworks() {
       return jQuery.ajax({

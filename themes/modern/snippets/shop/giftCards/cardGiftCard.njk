@@ -1,0 +1,141 @@
+{% set id = uid() %}
+{% set properties = args.properties %}
+{% set shopInfo = global.common.shopInfo %}
+{% set product = args.product %}
+{% set placeholderType = safe_get(properties.placeholder_type, undefined) %}
+{% set cardProps = themeProperties.cards %}
+
+{% set background = safe_get(properties.background_color, cardProps.product_card_background_color) %}
+{% set border = '1px solid var(--borderColor)' if safe_get(properties.show_border, cardProps.product_card_show_border) else 'none' %}
+{% set borderRadius = safe_get(properties.border_radius, cardProps.product_card_border_radius) %}
+{% set shadow = safe_get(properties.shadow, cardProps.product_card_shadow) %}
+{% set imageBorderRadius = safe_get(properties.image_border_radius, cardProps.product_card_image_border_radius) %}
+{% set imageHeight = safe_get(properties.image_height, cardProps.product_card_image_height) %}
+{% set infoPaddingHoriz = safe_get(properties.info_padding_horiz, cardProps.product_card_info_padding_horiz) %}
+{% set infoPaddingVert = safe_get(properties.info_padding_vert, cardProps.product_card_info_padding_vert) %}
+
+{% set titleFontcolor = safe_get(properties.title_font_color, cardProps.product_card_title_font_color) %}
+{% set titleFontSize = safe_get(properties.title_font_size, cardProps.product_card_title_font_size) %}
+{% set titleFontWeight = safe_get(properties.title_font_weight, cardProps.product_card_title_font_weight) %}
+{% set titleLineHeight = safe_get(properties.title_line_height, cardProps.product_card_title_line_height) %}
+{% set titleTextAlign = safe_get(properties.title_text_align, cardProps.product_card_title_text_align) %}
+
+{% set descriptionFontColor = safe_get(properties.description_font_color, cardProps.product_card_description_font_color) %}
+{% set descriptionFontSize = safe_get(properties.description_font_size, cardProps.product_card_description_font_size) %}
+{% set descriptionFontWeight = safe_get(properties.description_font_weight, cardProps.product_card_description_font_weight) %}
+
+{% set priceFontColor = safe_get(properties.price_font_color, cardProps.product_card_price_font_color) %}
+{% set priceFontSize = safe_get(properties.price_font_size, cardProps.product_card_price_font_size) %}
+{% set priceFontWeight = safe_get(properties.price_font_weight, cardProps.product_card_price_font_weight) %}
+
+{% set priceProperties = {
+  price_font_color: priceFontColor,
+  price_font_weight: 600,
+  price_font_size: 16
+} %}
+
+{#price_font_weight: priceFontWeight,#}
+{#price_font_size: priceFontSize#}
+
+{% set globalClass = 'snippet-product-card' %}
+{% set localClass = id %}
+
+<style>
+  .{{ localClass }}__container {
+    border: {{ border }};
+    border-radius: {{ borderRadius }}px;
+    box-shadow: {{ shadow }};
+  }
+  .{{ localClass }}__card {
+    background: {{ background | get_color }};
+  }
+  .{{ localClass }}__title {
+    color: {{ titleFontcolor | get_color }};
+    font-size: {{ titleFontSize }}px;
+    font-weight: {{ titleFontWeight }};
+    line-height: {{ titleLineHeight }}px;
+  }
+  .{{ localClass }}__info {
+    padding: {{ infoPaddingVert }}px {{ infoPaddingHoriz }}px;
+  }
+  .{{ localClass }}__description {
+    color: {{ descriptionFontColor | get_color }};
+    font-size: {{ descriptionFontSize }}px;
+    font-weight: {{ descriptionFontWeight }};
+  }
+  .{{ localClass }}__price-with-discount {
+    color: {{ priceFontColor | get_color }};
+    font-size: {{ priceFontSize }}px;
+    font-weight: {{ priceFontWeight }};
+  }
+
+  .{{ localClass }}__price-with-discount i {
+    color: var(--lightFontColor);
+    font-size: {{ priceFontSize }}px;
+    font-weight: 400;
+  }
+
+  .{{ localClass }}__price {
+    color: {{ priceFontColor | get_color }};
+    font-size: {{ priceFontSize }}px;
+    font-weight: {{ priceFontWeight }};
+  }
+  .{{ localClass }}__image {
+    min-height: {{ imageHeight }}px;
+    height: {{ imageHeight }}px;
+  }
+  .{{ localClass }}__image, .{{ localClass }}__image img {
+    border-radius: {{ imageBorderRadius }}px;
+    border-top-left-radius: {{ imageBorderRadius or borderRadius }}px;
+    border-top-right-radius: {{ imageBorderRadius or borderRadius }}px;
+  }
+</style>
+
+<div class="{{ globalClass }} {{ localClass }} d-flex w-100 position-relative">
+  <a
+    href="{{'javascript:void(0)' if product.on_hold | int else ['gift-cards/', product.slug or product.uniqid] | join}}"
+    id="sellix-card-container-{{id}}"
+    class="{{ globalClass }}__container {{ localClass }}__container"
+  >
+
+    <div class="{{ globalClass}}__card {{ localClass }}__card unselectable">
+      <div class="{{ globalClass}}__image {{ localClass }}__image image-placeholder {{ placeholderType }}">
+        <div class="{{ globalClass }}__cart {{ localClass }}__cart">
+          {% render_snippet 'Cart button 2', product=product %}
+        </div>
+        {% render_snippet 'Product: Placeholder icon', product=product, dark=(true if placeholderType == 'dark' else undefined) %}
+      </div>
+
+      <div class="{{ globalClass }}__info {{ localClass }}__info" style="flex-direction: row; align-items: center;">
+
+        <div class="{{ globalClass }}__title {{ localClass }}__title justify-content-{{ titleTextAlign }}">
+          {{product.title}}
+        </div>
+
+        <span class="{{ globalClass }}__tax {{ localClass }}__tax"></span>
+      </div>
+    </div>
+  </a>
+</div>
+
+<script type='application/javascript'>
+  $(document).ready(function () {
+    const shopInfo = SellixContext.getShopInfo();
+    const ipcountry = Cookies.get('ipcountry') || '';
+
+    let taxAmount = +shopInfo.shop.vat_percentage ? +shopInfo.shop.vat_percentage : '';
+    if (shopInfo.shop.tax_configuration === 'EU' || shopInfo.shop.tax_configuration === 'CUSTOM') {
+      if (shopInfo.shop.tax_configuration_data && ipcountry) {
+        const countryTaxData = shopInfo.shop.tax_configuration_data.find(({ country, type }) => country === ipcountry);
+        if (countryTaxData) {
+          taxAmount = countryTaxData.tax_percentage;
+        }
+      }
+    }
+
+    if (shopInfo.shop.display_tax_on_storefront && taxAmount) {
+      taxAmount = parseFloat(Number(taxAmount).toFixed(2));
+      $('.{{ localClass }}__tax').append(`<span>${taxAmount}% {{ 'shop.main.cards.product.tax' | t }}</span>`);
+    }
+  });
+</script>
