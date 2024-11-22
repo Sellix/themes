@@ -211,6 +211,14 @@
       });
     }
 
+    async getProductSubscriptionStatus(id) {
+      return jQuery.ajax({
+        method: 'GET',
+        url: `${this.apiUrl}/api/shop/product-subscriptions/${id}/status`,
+        contentType: 'application/json; charset=utf-8',
+      });
+    }
+
     createProductSubscription = async (data, options) => {
       let headers = {};
       if (options?.token) {

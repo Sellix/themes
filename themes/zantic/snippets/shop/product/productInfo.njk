@@ -99,6 +99,22 @@
     {% endif %}
   </div>
 
+  {% if product.delivery_time != 0 %}
+    <div class="{{ globalClass }}__tags {{ localClass }}__tags">
+      {% if product.delivery_time == -1 %}
+        {% render_snippet 'Tag',
+          tag='immediate delivery',
+          type='success'
+        %}
+        {% elif product.delivery_time > 0 %}
+        {% render_snippet 'Tag',
+          tag=([(product.delivery_time | duration('seconds')).humanize(), 'delivery'] | join(' ')),
+          type='success'
+        %}
+      {% endif %}
+    </div>
+  {% endif %}
+
   {% render_snippet 'Product: Review stat', product=product %}
 
   {% if not isFree and not isPayWhatYouWant %}
