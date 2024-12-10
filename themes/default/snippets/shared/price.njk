@@ -9,6 +9,17 @@
     {% endif %}
   {% endfor %}
   {% set productPrice = minPrice %}
+
+{% elif args.productPlans %}
+
+  {% set minPrice = null %}
+  {% for plan in args.productPlans %}
+    {% if minPrice === null or plan.price < minPrice %}
+      {% set minPrice = plan.price %}
+    {% endif %}
+  {% endfor %}
+  {% set productPrice = minPrice %}
+
 {% else %}
   {% set productPrice = args.price %}
 {% endif %}
