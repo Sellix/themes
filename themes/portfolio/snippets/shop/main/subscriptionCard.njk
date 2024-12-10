@@ -6,6 +6,7 @@
 {% set cardsProps = themeProperties.cards %}
 {% set onHold = product.on_hold | int %}
 {% set currencyOptions = global.currencyConfig.allCurrencies[product.currency] %}
+{% set productPlans = product.product_plans or [] %}
 
 <div class="d-flex w-100 position-relative">
   {% render_snippet 'Discount badge', product=product %}
@@ -54,7 +55,11 @@
             <span
               style="color: {{ colors[cardsProps.product_card_price_font_color] }}; font-size: {{ cardsProps.product_card_price_font_size }}px; font-weight: {{ cardsProps.product_card_price_font_weight }};"
             >
-              {{currencyOptions.symbol}}{{product.price_display}}
+                   {% render_snippet 'Price',
+                     currency=product.currency,
+                     price=product.price_display,
+                     productPlans=productPlans
+                   %}
             </span>
           </div>
           <span class="sellix-card-tax" style="color: var(--darkFontColor)"></span>
