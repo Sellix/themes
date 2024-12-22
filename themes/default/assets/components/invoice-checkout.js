@@ -1,11 +1,12 @@
 (function (document, window, jQuery, React, ReactDOM, SellixStoreFactory, sellixApi, sellixHelper) {
   class InvoiceCheckoutComponent {
-    constructor({ selector, theme, shop, invoiceId, invoice, options }) {
+    constructor({ selector, theme, shop, invoiceId, invoice, productSubscriptionInfo, options }) {
       this.domContainer = document.querySelector(selector);
       this.theme = theme;
       this.shop = shop;
-      this.invoiceId = invoiceId;
-      this.invoice = invoice;
+      this.productSubscriptionInfo = productSubscriptionInfo;
+      this.invoice = invoice || productSubscriptionInfo?.invoice;
+      this.invoiceId = invoiceId || this.invoice?.uniqid;
       this.options = options;
 
       this.selectorCaptchaV2 = '#invoice-checkout-recaptcha-v2';
@@ -140,33 +141,12 @@
       return sellixApi.getMeshToken(data);
     };
 
-    onUpdateProductSubscription = (data, token) => {
-      return sellixApi.updateProductSubscription(data, { token });
-    };
-
-    onGetPaymentMethods = (data, token) => {
-      return sellixApi.getPaymentMethods(data, { token });
-    };
-
-    onConfirmProductSubscriptionPayment = (data, token) => {
-      return sellixApi.confirmProductSubscriptionPayment(data, { token });
-    };
-
-    onStripeCreateSetupIntent = (data, token) => {
-      return sellixApi.stripeCreateSetupIntent(data, { token });
-    };
-
-    onStripeRefreshSetupIntent = (data, token) => {
-      return sellixApi.stripeRefreshSetupIntent(data, { token });
-    };
-
     onGetProductSubscription = (id) => {
       return sellixApi.getProductSubscription(id).then((response) => {
         const { status, data } = response;
         if (status === 200) {
           const { invoice } = data || {};
-          const currentInvoice = this.productSubscriptionInfo?.invoice;
-          if (currentInvoice?.status !== 'COMPLETED' && invoice?.status === 'COMPLETED') {
+          if (this.invoice?.status !== 'COMPLETED' && invoice?.status === 'COMPLETED') {
             window.SellixAnalyticsManager.sendPurchase(invoice);
           }
         }
@@ -178,10 +158,49 @@
       return sellixApi.getProductSubscriptionStatus(id);
     };
 
+    onUpdateProductSubscription = (data, token) => {
+      return sellixApi.updateProductSubscription(data, {
+        token,
+        useCaptchaV2: true,
+        selectorCaptchaV2: this.selectorCaptchaV2,
+      });
+    };
+
+    onGetPaymentMethods = (data, token) => {
+      return sellixApi.getPaymentMethods(data, {
+        token,
+        useCaptchaV2: true,
+        selectorCaptchaV2: this.selectorCaptchaV2,
+      });
+    };
+
+    onConfirmProductSubscriptionPayment = (data, token) => {
+      return sellixApi.confirmProductSubscriptionPayment(data, {
+        token,
+        useCaptchaV2: true,
+        selectorCaptchaV2: this.selectorCaptchaV2,
+      });
+    };
+
+    onStripeCreateSetupIntent = (data, token) => {
+      return sellixApi.stripeCreateSetupIntent(data, {
+        token,
+        useCaptchaV2: true,
+        selectorCaptchaV2: this.selectorCaptchaV2,
+      });
+    };
+
+    onStripeRefreshSetupIntent = (data, token) => {
+      return sellixApi.stripeRefreshSetupIntent(data, {
+        token,
+        useCaptchaV2: true,
+        selectorCaptchaV2: this.selectorCaptchaV2,
+      });
+    };
+
     render() {
       ReactDOM.render(
         React.createElement(InvoiceCheckout.InvoiceCheckout, {
-          type: 'invoice',
           config: SellixContext.getConfig(),
           currencyConfig: SellixContext.getCurrencyConfig(),
           theme: this.theme,
@@ -218,14 +237,15 @@
           onGetCustomerInfo: this.onGetCustomerInfo,
           onGetMeshNetworks: this.onGetMeshNetworks,
           onGetMeshToken: this.onGetMeshToken,
+
+          productSubscriptionInfo: this.productSubscriptionInfo,
+          onGetProductSubscription: this.onGetProductSubscription,
+          onGetProductSubscriptionStatus: this.onGetProductSubscriptionStatus,
           onUpdateProductSubscription: this.onUpdateProductSubscription,
           onGetPaymentMethods: this.onGetPaymentMethods,
           onConfirmProductSubscriptionPayment: this.onConfirmProductSubscriptionPayment,
           onStripeCreateSetupIntent: this.onStripeCreateSetupIntent,
           onStripeRefreshSetupIntent: this.onStripeRefreshSetupIntent,
-
-          onGetProductSubscription: this.onGetProductSubscription,
-          onGetProductSubscriptionStatus: this.onGetProductSubscriptionStatus,
         }),
         this.domContainer,
       );
