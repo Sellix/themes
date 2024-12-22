@@ -1,10 +1,9 @@
 (function (document, window, jQuery, React, ReactDOM, SellixContext, SellixStoreFactory, sellixApi, sellixHelper) {
   class ProductSubscriptionCheckoutComponent {
-    constructor({ selector, theme, shop, productSubscriptionId, productSubscriptionInfo, options }) {
+    constructor({ selector, theme, shop, productSubscriptionInfo, options }) {
       this.domContainer = document.querySelector(selector);
       this.theme = theme;
       this.shop = shop;
-      this.productSubscriptionId = productSubscriptionId;
       this.productSubscriptionInfo = productSubscriptionInfo;
       this.options = options;
 
@@ -129,7 +128,6 @@
           options: this.options,
           sellixI18Next: window.sellixI18Next,
           onShowMessage: this.onShowMessage,
-          productSubscriptionId: this.productSubscriptionId,
           productSubscriptionInfo: this.productSubscriptionInfo,
           onGetInvoice: this.onGetInvoice,
           onGetInvoiceStatus: this.onGetInvoiceStatus,

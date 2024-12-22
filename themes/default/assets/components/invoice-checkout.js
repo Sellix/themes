@@ -160,6 +160,24 @@
       return sellixApi.stripeRefreshSetupIntent(data, { token });
     };
 
+    onGetProductSubscription = (id) => {
+      return sellixApi.getProductSubscription(id).then((response) => {
+        const { status, data } = response;
+        if (status === 200) {
+          const { invoice } = data || {};
+          const currentInvoice = this.productSubscriptionInfo?.invoice;
+          if (currentInvoice?.status !== 'COMPLETED' && invoice?.status === 'COMPLETED') {
+            window.SellixAnalyticsManager.sendPurchase(invoice);
+          }
+        }
+        return response;
+      });
+    };
+
+    onGetProductSubscriptionStatus = (id) => {
+      return sellixApi.getProductSubscriptionStatus(id);
+    };
+
     render() {
       ReactDOM.render(
         React.createElement(InvoiceCheckout.InvoiceCheckout, {
@@ -205,6 +223,9 @@
           onConfirmProductSubscriptionPayment: this.onConfirmProductSubscriptionPayment,
           onStripeCreateSetupIntent: this.onStripeCreateSetupIntent,
           onStripeRefreshSetupIntent: this.onStripeRefreshSetupIntent,
+
+          onGetProductSubscription: this.onGetProductSubscription,
+          onGetProductSubscriptionStatus: this.onGetProductSubscriptionStatus,
         }),
         this.domContainer,
       );
