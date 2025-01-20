@@ -293,7 +293,6 @@
   <script src="{{ 'sellix-feedback-pagination.js' | asset_url }}"></script>
   <script src="{{ 'sellix-feedback-pagination-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-invoice-checkout-component.js' | asset_url }}"></script>
-  <script src="{{ 'sellix-product-subscription-checkout-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-invoice-products-info-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-product-count-component.js' | asset_url }}"></script>
   <script src="{{ 'sellix-price-variants-component.js' | asset_url }}"></script>
@@ -309,6 +308,7 @@
 
   {% render_snippet 'App cookie modal' %}
   {% render_snippet 'I18Next' %}
+  {% render_snippet 'Group card modal' %}
 
   <script type="application/javascript">
     $(document).ready(function () {
@@ -321,6 +321,17 @@
       $(document).on($.modal.AFTER_CLOSE, (event, context) => {
         window.sellixHelper.enableScroll();
       });
+
+      $('.sellix-group-card-container').on('click', function () {
+        const groupId = $(this).data('group-id');
+        console.log('Log #Click');
+        $(document).trigger('SellixSetActiveModalGroup', { groupId });
+      });
+      {% if global.request.type === 'group' and global.request.options.itemId %}
+        setTimeout(() => {
+          $(document).trigger('SellixSetActiveModalGroup', { groupId: '{{ global.request.options.itemId }}' });
+        }, 0);
+      {% endif %}
     });
   </script>
   </body>

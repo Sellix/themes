@@ -24,12 +24,19 @@
 
 <script type="application/javascript">
   $(document).ready(function() {
-    const items = __RENDER_CONTEXT__.common.shopInfo.items;
-
     $(document).on('SellixSetActiveModalGroup', function(e, eventInfo) {
       const renderOptions = {{renderOptions | dump | safe}};
-      const group = items.find(({uniqid}) => String(uniqid) === String(eventInfo.groupId));
+      const items = SellixContext.getShopItems();
+      const groupInfo = SellixContext.getGroupInfo();
+      const group = groupInfo?.group
+        ? groupInfo.group
+        : items.find(({uniqid}) => String(uniqid) === String(eventInfo.groupId));
       const $modalBody = $('#group-card-modal .sellix-modal-body');
+
+      console.log('Log #Modal', group, eventInfo.groupId);
+      if (!group) {
+        return;
+      }
 
       const productsCount = group.products_bound.length;
       const headerHtml = '<span>' + group.title + '</span>' +
@@ -72,6 +79,8 @@
             text: respJson.message || 'Internal server error',
           });
         });
+
+      $('#group-card-modal').modal({modalClass: '', blockerClass: '', showClose: false});
     });
   });
 </script>

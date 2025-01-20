@@ -35,7 +35,7 @@
 
 <div
   id="sellix-card-container-{{id}}"
-  class="sellix-card-container sellix-card-container-{{id}}"
+  class="sellix-card-container sellix-group-card-container sellix-card-container-{{id}}"
   data-group-id="{{group.uniqid}}"
 >
   <div class="sellix-card-badge">{{ 'shop.shared.titles.productType.group' | t }}</div>
@@ -75,31 +75,6 @@
 
 <script type='application/javascript'>
   $(document).ready(function () {
-    $('#sellix-card-container-{{id}}').on('click', function () {
-      const groupId = $(this).data('group-id');
-      const items = __RENDER_CONTEXT__.common.shopInfo.items;
-      const group = items.find(({uniqid}) => String(uniqid) === String(groupId));
-
-      if (group && group.products_bound.length) {
-        $(document).trigger('SellixSetActiveModalGroup', { groupId });
-        jQuery('#group-card-modal').modal({
-          modalClass: '',
-          blockerClass: '',
-          showClose: false,
-        });
-      }
-    });
-
-    {% if global.request.type === 'group' and global.request.options.itemId === group.uniqid %}
-      setTimeout(function() {
-        $('#sellix-card-container-{{id}}').click();
-      }, 0);
-    {% endif %}
-  });
-</script>
-
-<script type='application/javascript'>
-  $(document).ready(function () {
     const { shopInfo } = window.SellixContext.get('common');
     const ipcountry = Cookies.get('ipcountry') || "";
 
@@ -111,7 +86,6 @@
         }
       }
     }
-
 
     if(shopInfo.shop.display_tax_on_storefront && taxAmount) {
       taxAmount = parseFloat(Number(taxAmount).toFixed(2));
