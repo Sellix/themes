@@ -89,7 +89,7 @@
 </style>
 
 <div class="{{ globalClass }} {{ localClass }} {{ 'single-card' if count == 1 and itemsPerRowType == 'dynamic' }} d-flex w-100 position-relative">
-  <div class="{{ globalClass }}__container {{ localClass }}__container" data-group-id="{{group.uniqid}}">
+  <div class="sellix-group-card-container {{ globalClass }}__container {{ localClass }}__container" data-group-id="{{group.uniqid}}">
     {% if showBadge %}
       <div class="{{ globalClass }}__badge-container">
         <div class="{{ globalClass }}__badge">
@@ -144,59 +144,6 @@
     </div>
   </div>
 </div>
-
-<script type='application/javascript'>
-  $(document).ready(function () {
-    const cart = window.SellixCartStoreFactory.getCart('{{shop.name}}');
-
-    $('.{{ localClass }}__container').on('click', function () {
-      const groupId = $(this).data('group-id');
-      const items = SellixContext.getShopItems();
-      const group = items.find(({uniqid}) => String(uniqid) === String(groupId));
-
-      if (group && group.products_bound.length) {
-        $(document).trigger('SellixSetActiveModalGroup', { groupId });
-        $('#group-card-modal').modal({
-          groupModalId: '{{ id }}',
-          cartItemIds: new Set(cart.getItems().map((item) => item.uniqid)),
-          modalClass: '',
-          blockerClass: 'sellix-overlay',
-          showClose: false,
-        });
-      }
-    });
-
-    $(document).on($.modal.AFTER_CLOSE, (event, context) => {
-      if ('{{ cartEffect }}' !== 'open_cart_modal') {
-        // effect is not enabled
-        return;
-      }
-
-      const { options } = context;
-      if (options.groupModalId !== '{{ id }}') {
-        // another group modal
-        return;
-      }
-
-      const set1 = options.cartItemIds || new Set([]);
-      const set2 = new Set(cart.getItems().map((item) => item.uniqid));
-      const diff = new Set([
-        ...[...set1].filter(x => !set2.has(x)),
-        ...[...set2].filter(x => !set1.has(x)),
-      ]);
-
-      if (diff.size > 0) {
-        $(document).trigger('SellixOpenCheckoutModal', { showContinueShoppingButton: true });
-      }
-    });
-
-    {% if global.request.type === 'group' and global.request.options.itemId === group.uniqid %}
-      setTimeout(function() {
-        $('.{{ localClass }}__container').click();
-      }, 0);
-    {% endif %}
-  });
-</script>
 
 <script type='application/javascript'>
   $(document).ready(function () {

@@ -1,4 +1,6 @@
 {% set id = uid() %}
+{% set shop = global.common.shopInfo.shop %}
+{% set cartEffect = themeProperties.cart.effect if cartEnabled else 'none' %}
 
 {% set globalClass = 'snippet-product-card' %}
 {% set localClass = id %}
@@ -28,13 +30,20 @@
 
 <script type="application/javascript">
   $(document).ready(function() {
-    const items = SellixContext.getShopItems();
-
     $(document).on('SellixSetActiveModalGroup', function(e, eventInfo) {
+      const cart = window.SellixCartStoreFactory.getCart('{{ shop.name }}');
+      const items = SellixContext.getShopItems();
       const renderOptions = {{renderOptions | dump | safe}};
-      const group = items.find(({uniqid}) => String(uniqid) === String(eventInfo.groupId));
-      const $modalBody = $('#group-card-modal .sellix-modal-body');
+      const groupInfo = SellixContext.getGroupInfo();
+      const group = groupInfo?.group
+        ? groupInfo.group
+        : items.find(({uniqid}) => String(uniqid) === String(eventInfo.groupId));
 
+      if (!group) {
+        return;
+      }
+
+      const $modalBody = $('#group-card-modal .sellix-modal-body');
       const productsCount = group.products_bound.length;
       const headerHtml = `<div>${group.title}</div> ` +
         (productsCount > 0
@@ -81,6 +90,35 @@
             text: respJson.message || 'Internal server error',
           });
         });
+
+      $('#group-card-modal').modal({
+        shopName: '{{ shop.name }}',
+        groupModalId: eventInfo.groupId,
+        cartItemIds: new Set(cart.getItems().map((item) => item.uniqid)),
+        modalClass: '',
+        blockerClass: 'sellix-overlay',
+        showClose: false,
+      });
+    });
+
+    $(document).on($.modal.AFTER_CLOSE, (event, context) => {
+      if ('{{ cartEffect }}' !== 'open_cart_modal') {
+        // effect is not enabled
+        return;
+      }
+
+      const { options } = context;
+      const cart = window.SellixCartStoreFactory.getCart(options.shopName);
+      const set1 = options.cartItemIds || new Set([]);
+      const set2 = new Set(cart.getItems().map((item) => item.uniqid));
+      const diff = new Set([
+        ...[...set1].filter(x => !set2.has(x)),
+        ...[...set2].filter(x => !set1.has(x)),
+      ]);
+
+      if (diff.size > 0) {
+        $(document).trigger('SellixOpenCheckoutModal', { showContinueShoppingButton: true });
+      }
     });
   });
 </script>

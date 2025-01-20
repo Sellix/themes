@@ -319,5 +319,22 @@
       });
     });
   </script>
+
+  <script type='application/javascript'>
+    $(document).ready(function () {
+      $('.sellix-group-card-container').on('click', function () {
+        const groupId = $(this).data('group-id');
+        $(document).trigger('SellixSetActiveModalGroup', { groupId });
+      });
+      {% if global.request.type === 'group' and global.request.options.itemId %}
+        setTimeout(() => {
+          $(document).trigger(
+            'SellixSetActiveModalGroup',
+            { groupId: '{{ global.request.options.itemId }}' },
+          );
+        }, 0);
+      {% endif %}
+    });
+  </script>
 </body>
 </html>
