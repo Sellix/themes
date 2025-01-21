@@ -11,10 +11,11 @@ for dir in ../themes/*; do
     mkdir -p ./output/$theme_name
     archive_name="./output/$theme_name/$version.zip"
 
-    # Сжать содержимое каталога (все файлы и папки внутри)
-    tar -czf "$archive_name" -C "$dir" .
+    cd $dir
+    zip -qr "../../scripts/$archive_name" *
+    cd ../../scripts
 
-    # Вывести сообщение о завершении
+
     echo "Theme $theme compressed to $archive_name"
   fi
 done
