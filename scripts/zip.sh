@@ -1,18 +1,20 @@
 #!/bin/sh
 
-die () {
-  echo >&2 "$@"
-  exit 1
-}
+for dir in ../themes/*; do
+  if [ -d "$dir" ]; then
+    echo "Compressing: $dir"
 
-[ "$#" -eq 2 ] || die "usage: zip.sh themeName outputVersion"
+    theme_name=$(basename "$dir")
+    version=$(jq -r ".version" "$dir/theme.json")
+    echo "Theme and Version: $theme_name:$version"
 
-echo $1 | grep -E -q '^[a-zA-Z0-9_.-]*$' || die "String argument required, $1 provided; not matching regex"
-echo $2 | grep -E -q '^[a-zA-Z0-9_.-]*$' || die "String argument required, $2 provided; not matching regex"
+    mkdir -p ./output/$theme_name
+    archive_name="./output/$theme_name/$version.zip"
 
-[ -d "themes/$1" ] || die "Theme $1 does not exist"
+    # Сжать содержимое каталога (все файлы и папки внутри)
+    tar -czf "$archive_name" -C "$dir" .
 
-cd themes/$1
-mkdir -p ../../output/$1
-zip -r ../../output/$1/$2.zip *
-cd ../..
+    # Вывести сообщение о завершении
+    echo "Theme $theme compressed to $archive_name"
+  fi
+done
