@@ -73,6 +73,10 @@
       return this.get('theme', {});
     }
 
+    static getGroupInfo() {
+      return this.get('common', {}).groupInfo || {};
+    }
+
     static getProductInfo() {
       return this.get('common', {}).productInfo || {};
     }

@@ -233,6 +233,7 @@
           sellixI18Next: window.sellixI18Next,
           onAddToCart: this.onAddToCart,
           onApplyCoupon: this.onApplyCoupon,
+          onBackToShop: () => (window.location.href = ''),
           onCreateInvoice: (data, token) => this.onCreateInvoiceOrSubscription('invoice', data, token),
           onCreateSubscription: (data, token) => this.onCreateInvoiceOrSubscription('subscription', data, token),
           onGetCalculation: this.onGetCalculation,
