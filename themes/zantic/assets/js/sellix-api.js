@@ -350,6 +350,38 @@
       return this.requestWithCaptchaV3('stripeRefreshSetupIntent', onSuccess, null, options);
     };
 
+    paypalCreateVaultSetupToken = async (data, options) => {
+      const headers = options?.token ? { Authorization: 'Bearer ' + options.token } : {};
+      const onSuccess = (captcha) => {
+        data.captcha = captcha;
+        return jQuery.ajax({
+          method: 'POST',
+          url: `${this.apiUrl}/api/shop/paypal/vault/setup_tokens/init`,
+          contentType: 'application/json; charset=utf-8',
+          dataType: 'json',
+          data: JSON.stringify(data),
+          headers,
+        });
+      };
+      return this.requestWithCaptchaV3('paypalCreateVaultSetupToken', onSuccess, null, options);
+    };
+
+    paypalSaveVaultSetupToken = async (data, options) => {
+      const headers = options?.token ? { Authorization: 'Bearer ' + options.token } : {};
+      const onSuccess = (captcha) => {
+        data.captcha = captcha;
+        return jQuery.ajax({
+          method: 'POST',
+          url: `${this.apiUrl}/api/shop/paypal/vault/setup_tokens/save`,
+          contentType: 'application/json; charset=utf-8',
+          dataType: 'json',
+          data: JSON.stringify(data),
+          headers,
+        });
+      };
+      return this.requestWithCaptchaV3('paypalSaveVaultSetupToken', onSuccess, null, options);
+    };
+
     async customerAuthEmail(data, options) {
       const onSuccess = (captcha) => {
         return jQuery.ajax({
@@ -578,7 +610,6 @@
         data: JSON.stringify(data, (key, value) => (typeof value === 'bigint' ? value.toString() : value)),
       });
     }
-
 
     async getMeshNetworks() {
       return jQuery.ajax({

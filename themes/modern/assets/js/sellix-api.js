@@ -350,6 +350,37 @@
       return this.requestWithCaptchaV3('stripeRefreshSetupIntent', onSuccess, null, options);
     };
 
+    paypalCreateVaultSetupToken = async (data, options) => {
+      const headers = options?.token ? { Authorization: 'Bearer ' + options.token } : {};
+      const onSuccess = (captcha) => {
+        data.captcha = captcha;
+        return jQuery.ajax({
+          method: 'POST',
+          url: `${this.apiUrl}/api/shop/paypal/vault/setup_tokens/init`,
+          contentType: 'application/json; charset=utf-8',
+          dataType: 'json',
+          data: JSON.stringify(data),
+          headers,
+        });
+      };
+      return this.requestWithCaptchaV3('paypalCreateVaultSetupToken', onSuccess, null, options);
+    };
+
+    paypalSaveVaultSetupToken = async (data, options) => {
+      const headers = options?.token ? { Authorization: 'Bearer ' + options.token } : {};
+      const onSuccess = (captcha) => {
+        data.captcha = captcha;
+        return jQuery.ajax({
+          method: 'POST',
+          url: `${this.apiUrl}/api/shop/paypal/vault/setup_tokens/save`,
+          contentType: 'application/json; charset=utf-8',
+          dataType: 'json',
+          data: JSON.stringify(data),
+          headers,
+        });
+      };
+      return this.requestWithCaptchaV3('paypalSaveVaultSetupToken', onSuccess, null, options);
+    };
 
     async customerRedeemGiftCard(data, options) {
       let headers = {};
@@ -377,16 +408,17 @@
         };
       }
 
-      return jQuery.ajax({
-        method: 'POST',
-        url: `${this.apiUrl}/api/shop/customer/info`,
-        contentType: 'application/json; charset=utf-8',
-        dataType: 'json',
-        data: JSON.stringify(data),
-        headers,
-      })
+      return jQuery
+        .ajax({
+          method: 'POST',
+          url: `${this.apiUrl}/api/shop/customer/info`,
+          contentType: 'application/json; charset=utf-8',
+          dataType: 'json',
+          data: JSON.stringify(data),
+          headers,
+        })
         .done((res) => {
-          if(res.status === 200) {
+          if (res.status === 200) {
             options.callback && options.callback(res);
           }
         });

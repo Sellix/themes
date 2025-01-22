@@ -190,6 +190,22 @@
       });
     };
 
+    onPayPalCreateVaultSetupToken = (data, token) => {
+      return sellixApi.paypalCreateVaultSetupToken(data, {
+        token,
+        useCaptchaV2: true,
+        selectorCaptchaV2: this.selectorCaptchaV2,
+      });
+    };
+
+    onPayPalSaveVaultSetupToken = (data, token) => {
+      return sellixApi.paypalSaveVaultSetupToken(data, {
+        token,
+        useCaptchaV2: true,
+        selectorCaptchaV2: this.selectorCaptchaV2,
+      });
+    };
+
     render() {
       ReactDOM.render(
         React.createElement(InvoiceCheckout.InvoiceCheckout, {
@@ -236,6 +252,9 @@
           onConfirmProductSubscriptionPayment: this.onConfirmProductSubscriptionPayment,
           onStripeCreateSetupIntent: this.onStripeCreateSetupIntent,
           onStripeRefreshSetupIntent: this.onStripeRefreshSetupIntent,
+
+          onPayPalCreateVaultSetupToken: this.onPayPalCreateVaultSetupToken,
+          onPayPalSaveVaultSetupToken: this.onPayPalSaveVaultSetupToken,
         }),
         this.domContainer,
       );
