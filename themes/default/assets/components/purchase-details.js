@@ -24,7 +24,7 @@
       bundles,
       theme,
       renderOptions,
-      affiliateConversions,
+      customerBalanceConversions,
       customerInfo,
       availableGiftCards,
       options,
@@ -32,7 +32,7 @@
       this.domContainer = document.querySelector(selector);
       this.selectorCaptchaV2 = selectorCaptchaV2;
       this.shop = shop;
-      this.affiliateConversions = affiliateConversions;
+      this.customerBalanceConversions = customerBalanceConversions;
       this.customerInfo = customerInfo;
       this.availableGiftCards = availableGiftCards;
       this.cartEnabled = cartEnabled;
@@ -135,7 +135,7 @@
 
       let callback = (customerInfo) => {
         window.__RENDER_CONTEXT__.common.customerInfo = customerInfo;
-        this.affiliateConversions = customerInfo.customer?.affiliate_revenue_conversions || {}
+        this.customerBalanceConversions = customerInfo.customer?.customer_balance_conversions || {}
         this.availableGiftCards = customerInfo.customer.availableGiftCards;
 
         jQuery(document).trigger('SellixCustomerInfoUpdateEvent');
@@ -253,7 +253,7 @@
           cartProducts: cartProducts,
           addons: this.purchaseType === 'gift-card' ? {} : this.addonsStore.getAll(),
           bundles: this.purchaseType === 'gift-card' ? [] : this.bundles,
-          affiliateConversions: this.affiliateConversions,
+          customerBalanceConversions: this.customerBalanceConversions,
           availableGiftCards: this.availableGiftCards,
           customerInfo: this.customerInfo,
           onCustomerRedeemGiftCard: this.onCustomerRedeemGiftCard,
