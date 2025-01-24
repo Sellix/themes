@@ -6,7 +6,6 @@
 {% set cardsProps = themeProperties.cards %}
 {% set onHold = product.on_hold | int %}
 {% set currencyOptions = global.currencyConfig.allCurrencies[product.currency] %}
-{% set productPlans = product.product_plans or [] %}
 
 <div class="d-flex w-100 position-relative">
   {% render_snippet 'Discount badge', product=product %}
@@ -58,7 +57,7 @@
                    {% render_snippet 'Price',
                      currency=product.currency,
                      price=product.price_display,
-                     productPlans=productPlans
+                     productPlans=product.product_plans
                    %}
             </span>
           </div>
