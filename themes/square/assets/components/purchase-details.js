@@ -24,13 +24,13 @@
       bundles,
       theme,
       renderOptions,
-      affiliateConversions,
+      customerBalanceConversions,
       options,
     }) {
       this.domContainer = document.querySelector(selector);
       this.selectorCaptchaV2 = selectorCaptchaV2;
       this.shop = shop;
-      this.affiliateConversions = affiliateConversions;
+      this.customerBalanceConversions = customerBalanceConversions;
       this.cartEnabled = cartEnabled;
       this.cartEffect = cartEffect;
       this.isCustomDomain = isCustomDomain;
@@ -235,7 +235,7 @@
           cartProducts: cartProducts,
           addons: this.productAddonsStore.getAll(),
           bundles: this.bundles,
-          affiliateConversions: this.affiliateConversions,
+          customerBalanceConversions: this.customerBalanceConversions,
           priceVariants: this.productVariantsStore.getAll(),
           theme: this.theme,
           sellixHelper: window.sellixHelper,
